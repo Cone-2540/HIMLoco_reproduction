@@ -212,7 +212,7 @@
       "source_commit": "1072b1a56b5ba93109430ff10d5fce78be14438b"
     }
   ],
-  "active_run": "isaaclab/logs/2026-10-11_03-53-36_stairs-hard-contact670",
+  "active_run": "contact_force smoke then100updates from archived620",
   "next_step": "Evaluatehard570/earliercheckpointandstandard370onnewcontactprovenance; completehardmatrixandmaterialchecks; candidatecontactrewardifactualscrapingpersists",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
@@ -281,8 +281,8 @@
     "intent": "isolatehardterrainextensionbeforecontactrewardablation"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T04:09:29+08:00",
-  "verified_remote_commit": "84b98164f7dae26fdd873c5f62c36930afac4f5c",
+  "last_update_local": "2026-10-11T04:42:00+08:00",
+  "verified_remote_commit": "87756a9",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
     "model": "standard/model_200.pt",
@@ -357,7 +357,7 @@
     "learning_rate": "planned1e-4explicitresumeoverriderecordsAdamretained; lowerKLtowardsrefinement",
     "start_after": "hard570finishandfixedmatrixselection"
   },
-  "active_evaluation": "contact620-interim-regression",
+  "active_evaluation": "matched-control-contact-speed03",
   "contact_reward_profile_source_commit": "e4c7df7",
   "contact_reward_gpu_smoke": {
     "run": "isaaclab/logs/2026-10-11_03-52-45_contact-smoke-resume-rate",
@@ -411,5 +411,60 @@
     "checkpoint520_lateral_escapes": 0,
     "note": "Low stair regression; failure flags can overlap. Same named fixed scene/three reused tuning reset seeds; not final heldout."
   },
-  "next_action": "Complete contact100 then faithful100 matched from hard570 with retained Adam/fixed1e-4/start_level4/same seed; compare standard+hard matrix and both speeds."
+  "next_action": "Compare faithful/contact same570 origin at50/100 updates; evaluate force intermediate checkpoints then freeze before final heldout.",
+  "contact620_tuning": {
+    "completions_speed03": 2302,
+    "completions_speed05": 2304,
+    "episodes_each_speed": 2304,
+    "final_traversal_speed03": true,
+    "final_traversal_speed05": true,
+    "smoothness_verified": false,
+    "unresolved": "Two17cm/25cm ascentstallsat.3;3.62smaxpause;descent17–34%currentlegcontactandlargecalf/thighcontactforceproxy."
+  },
+  "contact_later_checkpoints_low_speed": {
+    "640_completions": 2299,
+    "670_completions": 2302,
+    "episodes": 2304,
+    "640_final_traversal": false,
+    "670_final_traversal": false,
+    "reason": "Both have20cm/27cmnominaldescentcasewith30/32andtwostallsinoneseseed; pooled99.9%doesnotsatisfycasewisegate."
+  },
+  "planned_single_additional_reward": "Keepcontact-.1plusforceproxythreshold50N,scale50N,cap4/body,weight-.02; smallerthanproposed-.05 toreduceearlystopincentive. FaithfultermsandLRunchangedforcontrolledrefinement.",
+  "pending_final_freeze_local": "Around06:15; retain≥1h for final heldout/material/flat/video/report",
+  "updated_local": "2026-10-11T04:47:08.384230+08:00",
+  "active_training": "stairs-hard-force720",
+  "force_smoke": {
+    "run": "isaaclab/logs/2026-10-11_04-41-44_contact-force-smoke",
+    "result": {
+      "status": "smoke_passed",
+      "scope": "CUDA training and export; locomotion requires separate evaluation",
+      "iterations": 2,
+      "completed_iterations": 622,
+      "num_envs": 64,
+      "environment_steps_this_run": 12800,
+      "training_seconds": 4.085114638999585,
+      "parameters_finite": true,
+      "checkpoint": "model_622.pt",
+      "export": "policy.pt",
+      "export_max_abs_error": 1.9073486328125e-06,
+      "peak_cuda_memory_bytes": 88833024
+    },
+    "not_used_as_training_origin": true
+  },
+  "active_force_refinement": {
+    "origin": "artifacts/go2-stairs-contact620/model_620.pt",
+    "additional_updates": 100,
+    "num_envs": 4096,
+    "rollout_steps": 100,
+    "optimizer": "retained Adam",
+    "learning_rate": 0.0001,
+    "schedule": "fixed",
+    "start_level": 4,
+    "speed_range": [
+      0.25,
+      0.65
+    ],
+    "single_new_reward_weight": -0.02,
+    "smoothness_verified": false
+  }
 }

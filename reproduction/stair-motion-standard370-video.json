@@ -463,7 +463,10 @@
         "current_sample_base_force_n": false,
         "current_sample_shank_force_n": false,
         "leg_current_normal_force_norm_n": false,
-        "leg_history_peak_normal_force_norm_n": false
+        "leg_history_peak_normal_force_norm_n": false,
+        "leg_current_normal_force_w_n": false,
+        "leg_link_pos_w_m": false,
+        "leg_link_quat_w_xyzw": false
       },
       "progress": {
         "initial_trace_root_relative_xyz_m": [
@@ -1197,6 +1200,9 @@
         "recorded_body_names": null,
         "body_order_source": null,
         "contact_threshold_n": 1.0,
+        "current_force_vectors_available": false,
+        "leg_link_world_poses_available": false,
+        "pose_and_vector_limit": "Current vector and body-link world pose are timestamped at the policy boundary; a retained-history peak may occur at an earlier substep. Quaternion order is xyzw. No contact point or collider identity is inferred.",
         "measurement": "Per-body world-frame net normal-force vector norm; tangential friction excluded",
         "bodies": [
           {
@@ -1705,7 +1711,10 @@
         "current_sample_base_force_n": false,
         "current_sample_shank_force_n": false,
         "leg_current_normal_force_norm_n": false,
-        "leg_history_peak_normal_force_norm_n": false
+        "leg_history_peak_normal_force_norm_n": false,
+        "leg_current_normal_force_w_n": false,
+        "leg_link_pos_w_m": false,
+        "leg_link_quat_w_xyzw": false
       },
       "progress": {
         "initial_trace_root_relative_xyz_m": [
@@ -2642,6 +2651,9 @@
         "recorded_body_names": null,
         "body_order_source": null,
         "contact_threshold_n": 1.0,
+        "current_force_vectors_available": false,
+        "leg_link_world_poses_available": false,
+        "pose_and_vector_limit": "Current vector and body-link world pose are timestamped at the policy boundary; a retained-history peak may occur at an earlier substep. Quaternion order is xyzw. No contact point or collider identity is inferred.",
         "measurement": "Per-body world-frame net normal-force vector norm; tangential friction excluded",
         "bodies": [
           {

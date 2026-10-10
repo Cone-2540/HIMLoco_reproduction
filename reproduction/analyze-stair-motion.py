@@ -44,6 +44,7 @@ TRACE_FIELDS = (
     "actions", "action_delta_rms", "action_second_delta_rms", "flight_paused",
     "base_force_n", "shank_force_n", "current_sample_base_force_n", "current_sample_shank_force_n",
     "leg_current_normal_force_norm_n", "leg_history_peak_normal_force_norm_n",
+    "leg_current_normal_force_w_n", "leg_link_pos_w_m", "leg_link_quat_w_xyzw",
 )
 
 
@@ -168,6 +169,9 @@ def extract_environments(trial):
                 raise ValueError("Active trace time must be finite")
             for name in TRACE_FIELDS:
                 if name in frame:
+                    if frame[name] is None:
+                        record[name] = None
+                        continue
                     if len(frame[name]) != len(env_ids):
                         raise ValueError(f"Trace field {name} does not match environment columns")
                     record[name] = frame[name][column]
@@ -420,13 +424,26 @@ def analyze_trace(source, trial, case_index, env_id, records, limit):
     leg_names = source["leg_body_names"]
     force_current = field(records, "leg_current_normal_force_norm_n")
     force_history = field(records, "leg_history_peak_normal_force_norm_n")
+    force_vectors = field(records, "leg_current_normal_force_w_n")
+    leg_positions = field(records, "leg_link_pos_w_m")
+    leg_quaternions = field(records, "leg_link_quat_w_xyzw")
     if leg_names:
         for forces in (force_current, force_history):
             if forces is not None:
                 checked_names(leg_names, len(forces[0]), "leg")
                 if any(len(row) != len(leg_names) for row in forces):
                     raise ValueError("Leg-force width changed within a trace")
+        for label, values, width in (("leg force vectors", force_vectors, 3),
+                                     ("leg positions", leg_positions, 3), ("leg quaternions", leg_quaternions, 4)):
+            if values is not None and any(len(row) != len(leg_names) or any(len(value) != width for value in row) for row in values):
+                raise ValueError(f"{label} dimensions disagree with named bodies")
+        if force_vectors is not None and force_current is not None:
+            for vectors, norms in zip(force_vectors, force_current):
+                if any(abs(norm(vector) - magnitude) > max(1e-5, abs(magnitude) * 1e-5)
+                       for vector, magnitude in zip(vectors, norms)):
+                    raise ValueError("Current leg force vector norm disagrees with recorded scalar norm")
     force_rows = []
+    event_indices_by_time = {record["time_s"]: index for index, record in enumerate(records)}
     leg_threshold = report.get("thresholds", {}).get("contact_force_n")
     # Always expose eight expected Go2 reward body entries; absent measurements remain null.
     for name in dict.fromkeys((*GO2_LEGS, *(leg_names or []))):
@@ -436,6 +453,12 @@ def analyze_trace(source, trial, case_index, env_id, records, limit):
             if values is not None and row["recorded_column"] is not None:
                 norms = [value[row["recorded_column"]] for value in values]
                 events = ranked_events(records, norms, mask, key, limit, name)
+                for event in events:
+                    index = event_indices_by_time[event["time_s"]]
+                    column = row["recorded_column"]
+                    event.update({"current_normal_force_w_n": force_vectors[index][column] if force_vectors is not None else None,
+                                  "leg_link_pos_w_m": leg_positions[index][column] if leg_positions is not None else None,
+                                  "leg_link_quat_w_xyzw": leg_quaternions[index][column] if leg_quaternions is not None else None})
                 row[label] = {"status": "available", "stats_post_warmup_n": stats([norms[i] for i in selected]),
                               "peak_post_warmup": events[0] if events else None, "largest_events": events,
                               "contact_trace_samples": sum(norms[i] > leg_threshold for i in selected) if leg_threshold is not None else None,
@@ -449,6 +472,9 @@ def analyze_trace(source, trial, case_index, env_id, records, limit):
     result["selected_leg_forces"] = {"expected_go2_body_count": 8, "recorded_body_names": leg_names,
         "body_order_source": "report.leg_body_names" if leg_names else None,
         "contact_threshold_n": leg_threshold,
+        "current_force_vectors_available": force_vectors is not None and leg_names is not None,
+        "leg_link_world_poses_available": leg_positions is not None and leg_quaternions is not None and leg_names is not None,
+        "pose_and_vector_limit": "Current vector and body-link world pose are timestamped at the policy boundary; a retained-history peak may occur at an earlier substep. Quaternion order is xyzw. No contact point or collider identity is inferred.",
         "measurement": "Per-body world-frame net normal-force vector norm; tangential friction excluded",
         "bodies": force_rows}
     result["aggregate_contacts"] = {}
@@ -738,6 +764,25 @@ def self_test():
             rows[0]["current_sample_contacts"] = [False]
             with self.assertRaises(ValueError):
                 analyze_trace(source, trial, 0, 0, rows, 2)
+
+        def test_current_vectors_and_world_poses_follow_manifest_and_keep_history_time_limit(self):
+            source, trial, rows = self.source()
+            for row in rows:
+                row["leg_current_normal_force_w_n"] = [[0., magnitude, 0.] for magnitude in row["leg_current_normal_force_norm_n"]]
+                row["leg_link_pos_w_m"] = [[float(index), 2., 3.] for index in range(8)]
+                row["leg_link_quat_w_xyzw"] = [[0., 0., 0., 1.]] * 8
+            result = analyze_trace(source, trial, 0, 0, rows, 2)
+            body = result["selected_leg_forces"]["bodies"][0]
+            self.assertEqual(body["current"]["peak_post_warmup"]["current_normal_force_w_n"], [0., 14., 0.])
+            self.assertEqual(body["current"]["peak_post_warmup"]["leg_link_pos_w_m"], [7., 2., 3.])
+            self.assertTrue(result["selected_leg_forces"]["leg_link_world_poses_available"])
+            self.assertIn("earlier substep", result["selected_leg_forces"]["pose_and_vector_limit"])
+            rows[0]["leg_current_normal_force_w_n"][0][1] += 1.
+            with self.assertRaises(ValueError):
+                analyze_trace(source, trial, 0, 0, rows, 2)
+            frames = [{"time_s": .02, "active": [True], "leg_link_quat_w_xyzw": None}]
+            extracted = extract_environments({"trace": frames})
+            self.assertIsNone(extracted[(0, 0)][0]["leg_link_quat_w_xyzw"])
 
         def test_no_root_flight_interval_is_not_zero_retraction_evidence(self):
             source, trial, rows = self.source()
