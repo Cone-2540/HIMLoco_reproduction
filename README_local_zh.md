@@ -4,6 +4,8 @@
 
 2026-10-11 的 Go2 GPU 楼梯迁移见 [楼梯入口](isaaclab/STAIRS_zh.md)和 [夜间中文报告](reproduction/stair-overnight-report_zh.md)。冻结主候选在论文对应楼梯和未训练常规几何上通过双速度独立验证，但较快长梯、陡梯及摩擦条件仍有失败，完整最终矩阵未通过。可直接加载的完整 checkpoint、TorchScript 和配置保存在 [artifacts](artifacts/README_zh.md)。此处下面记录的是原版 Isaac Gym 路线的历史结果。
 
+该冻结楼梯权重的平地回归只有 3/6 指令通过，后退、侧移和负向转弯能力退化。楼梯成功不代表保持了全向平地能力，此前专用平地模型的结果不能替代该回归。
+
 [离线结果查看器](reproduction/stair-results-viewer.html) 提供可点击矩阵和七段本机录像；[下一阶段计划](reproduction/stair-next-stage-plan_zh.md) 记录全向平地、入口／长梯、动力学与运动质量的控制实验。
 
 [中文恢复指南](reproduction/overnight-restore-guide_zh.md) 说明如何从 Git 和两份共享数据归档重建冻结数值报告。独立恢复核查已通过，原策略的科学验收仍为 FAIL。
