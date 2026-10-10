@@ -26,7 +26,8 @@ def main():
     if not config.get("video_policy_only") or len(result["policy"]["trials"]) != 1:
         parser.error("Require a policy-only video and exactly one reset seed")
     trial = result["policy"]["trials"][0]
-    duration = trial["per_env"]["first_episode_measured_duration_s"][0]
+    environment_id = config.get("video_environment_index", 0)
+    duration = trial["per_env"]["first_episode_measured_duration_s"][environment_id]
     capture = cv2.VideoCapture(str(videos[0]))
     fps = capture.get(cv2.CAP_PROP_FPS)
     count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -54,7 +55,7 @@ def main():
         "run": str(args.run), "checkpoint": config["checkpoint"],
         "video": str(videos[0]), "fps": fps, "recorded_frames": count,
         "first_episode_measured_duration_s": duration, "selected_frame_ids": ids,
-        "environment_id": 0, "completed": trial["per_env"]["completed"][0],
+        "environment_id": environment_id, "completed": trial["per_env"]["completed"][environment_id],
         "scope": "Sparse visual aid within the measured first episode; does not certify smoothness",
     }
     args.output.with_suffix(".json").write_text(json.dumps(metadata, indent=2) + "\n")

@@ -1,9 +1,12 @@
 # Final staircase protocol and hard570 failure review
 
 Independent CPU review on 2026-10-11. No GPU rollout, reward change, training
-change or threshold change was made for this review. The only executable change
-is evaluation metadata clarifying startup versus reset-time dynamics sampling;
-25 evaluator CPU tests pass.
+change or threshold change was made for this review. Executable changes are
+limited to evaluation metadata clarifying startup versus reset-time dynamics
+sampling and a read-only terrain USD material report; 25 evaluator CPU tests
+and 13 domain-randomization/readback CPU tests pass. Live GPU validation of the
+new terrain report passed in the faithful control training scene; the snapshot
+is archived in `reproduction/stair-terrain-live-readback.json`.
 
 ## Verified hard570 versus hard520 tradeoff
 
@@ -224,9 +227,46 @@ Each material requires a new environment because startup buckets are fixed.
 Inside one material environment, compare a predeclared candidate in the same
 scene using `--candidate_checkpoint` if needed. Three reset seeds test reset
 variability on that material; they do not create three new startup material
-draws. Terrain coefficients remain 1/1; the configured multiply combine mode
-explains the intended interaction, while actual foot-material readback verifies
-the coefficients applied to collision shapes.
+draws. Terrain is configured with static/dynamic friction 1/1 and multiply
+combine mode. Confirm these values in the actual terrain USD readback rather
+than treating configuration as an observation. Foot-material readback verifies
+the robot collision-shape coefficients; this does not establish the solver's
+effective contact-pair coefficients.
+
+### Terrain USD material readback
+
+`capture_domain_parameters()` now includes `terrain_material` in the existing
+initial/final JSON snapshots. It reads the environment's existing `env.sim.stage`
+only; it neither creates/attaches a stage nor writes USD, invokes an event,
+uses RNG, sets backend state or steps physics. Under
+`scene.terrain.cfg.prim_path`, it finds meshes with `UsdPhysics.CollisionAPI`
+and resolves each material using
+`UsdShade.MaterialBindingAPI.ComputeBoundMaterial(materialPurpose="physics")`.
+Ancestor bindings, mesh overrides and geometry-subset bindings are resolved
+independently. For generated terrain the pinned importer normally creates
+`/World/ground/terrain/mesh`, with material
+`/World/ground/terrain/physicsMaterial`; paths are read from the real stage,
+not assumed in code.
+
+The report records mesh/material paths, binding relationship/targets, material
+schemas, collision-enabled state and composed **authored** values of
+`physics:staticFriction`, `physics:dynamicFriction`, `physics:restitution`, and
+`physxMaterial:frictionCombineMode`, `physxMaterial:restitutionCombineMode`,
+`physxMaterial:dampingCombineMode`. Missing/un-authored/blocked/non-finite
+attributes are individually `unavailable` with reasons; other fields remain
+visible. No schema fallback or cfg coefficient is substituted as a measurement.
+Cfg values are separately labeled `configured_reference`; solver effective
+contact-pair coefficients remain explicitly `unavailable` because they also
+depend on the other shape, combine-mode priority and backend state.
+
+Four new real CPU USD tests cover inherited physics versus visual bindings,
+actual values differing from stale cfg, independent missing bindings/fields,
+mesh/subset overrides, missing stage/root and unchanged stage serialization.
+The complete 13-test domain suite passes with the GPU masked. Installed API
+evidence is in IsaacLab `terrains/utils.py`, `terrains/terrain_importer.py`,
+`sim/utils/prims.py`, and PhysX `physics_materials_cfg.py`; no `PhysxSchema`
+module is required for authored-attribute reads. This is USD provenance, not a
+new robustness outcome or a claim of backend contact-coefficient readback.
 
 Reserve combined dynamics testing for a separate run:
 `--domain_profile robust --eval_dynamics --eval_randomized`. Prefer at least
@@ -244,3 +284,5 @@ remains. Keep any unfinished block explicitly unvalidated. Do not weaken the
 case/seed final gate or call the controller smooth based only on absence of a
 pause flag. Save short ascent/descent videos on difficult, long and previously
 drifting easy cases so motion/contact interpretation has visual evidence.
+
+Live terrain readback on 2026-10-11 at approximately 04:20 confirmed one collision mesh at `/World/ground/terrain/mesh`, physics material `/World/ground/terrain/physicsMaterial`, authored static/dynamic friction 1/1, restitution 0 and both friction/restitution combine modes `multiply`. The optional damping combine field is explicitly unavailable because it has no authored value. This verifies the actual USD binding in the control scene, not historical runs or solver pair coefficients.
