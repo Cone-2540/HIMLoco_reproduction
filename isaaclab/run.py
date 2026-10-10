@@ -255,7 +255,8 @@ def main():
         )]
         cfg.video_recorders = [VideoRecorderCfg(
             source="visualizer:kit", output_dir=str(log_dir / "videos"),
-            video_length=args.video_length, fps=50, output_filename_prefix="go2_flat",
+            video_length=args.video_length, fps=50,
+            output_filename_prefix="go2_" + args.terrain + ("_" + args.stair_direction if args.terrain == "stairs" else ""),
         )]
         args.enable_cameras = True
     config = train_config(args.steps_per_env)
