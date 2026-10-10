@@ -144,6 +144,8 @@ def main():
     parser.add_argument("--video_length", type=int, default=500)
     parser.add_argument("--video_env_index", type=int, default=0,
                         help="Environment whose robot the recorded camera follows.")
+    parser.add_argument("--video_isolate_env", action="store_true",
+                        help="Hide other environment roots from rendering using USD visibility only.")
     parser.add_argument("--video_eye", type=float, nargs=3, default=(2.4, 2.4, 1.7),
                         metavar=("X", "Y", "Z"), help="Camera eye relative to the tracked robot.")
     parser.add_argument("--video_lookat", type=float, nargs=3, default=(0.0, 0.0, 0.3),
@@ -156,6 +158,8 @@ def main():
         parser.error("--eval_trace_stride must be at least 1")
     if not 0 <= args.video_env_index < args.num_envs:
         parser.error("--video_env_index must be within --num_envs")
+    if args.video_isolate_env and not args.video:
+        parser.error("--video_isolate_env requires --video")
     if args.video_policy_only and not (args.video and args.mode == "evaluate" and args.terrain == "stairs"):
         parser.error("--video_policy_only requires --video, evaluate mode, and --terrain stairs")
     if args.candidate_checkpoint and args.mode != "evaluate":
@@ -305,6 +309,7 @@ def main():
                 "video_length": args.video_length if args.video else None,
                 "video_fps": 50 if args.video else None,
                 "video_environment_index": args.video_env_index if args.video else None,
+                "video_isolate_environment": args.video_isolate_env,
                 "video_camera_eye_relative_xyz": args.video_eye if args.video else None,
                 "video_camera_lookat_relative_xyz": args.video_lookat if args.video else None,
                 "evaluation_include_zero_action": not args.video_policy_only
@@ -328,6 +333,25 @@ def main():
             cfg.commands.base_velocity.class_type = HIMVelocityCommand
         env = gym.make(task, cfg=cfg)
         wrapped = HIMVecEnv(env)
+        if args.video_isolate_env:
+            from pxr import UsdGeom
+            paths = wrapped.env.scene.env_prim_paths
+            stage = wrapped.env.sim.stage
+            hidden = []
+            for index, path in enumerate(paths):
+                if index == args.video_env_index:
+                    continue
+                prim = stage.GetPrimAtPath(path)
+                if not prim.IsValid() or not prim.IsA(UsdGeom.Imageable):
+                    raise ValueError(f"Environment root is not imageable: {path}")
+                UsdGeom.Imageable(prim).MakeInvisible()
+                hidden.append(str(path))
+            metadata["video_render_isolation"] = {
+                "visible_environment_index": args.video_env_index,
+                "visible_environment_prim": str(paths[args.video_env_index]),
+                "hidden_environment_count": len(hidden),
+                "operation": "USD visibility only; collision and rigid-body attributes unchanged",
+            }
         robot = wrapped.env.scene["robot"]
         if args.terrain == "stairs" and args.reward_profile == "contact":
             term = wrapped.env.reward_manager.get_term_cfg("leg_contacts")
