@@ -1,0 +1,85 @@
+{
+  "start_local": "2026-10-11T00:29:13+08:00",
+  "budget_end_local": "2026-10-11T07:29:13+08:00",
+  "otherterrain_cutoff_local": "2026-10-11T08:20:00+08:00",
+  "branch": "feature/stairs-overnight-20261011",
+  "hard_constraint": "Do not modify GPU driver/system graphics configuration",
+  "runs": [
+    {
+      "run": "isaaclab/logs/2026-10-11_00-32-53_rough-physics-pilot",
+      "config_exists": true,
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 5,
+        "completed_iterations": 5,
+        "num_envs": 512,
+        "environment_steps_this_run": 256000,
+        "training_seconds": 16.473487859000045,
+        "parameters_finite": true,
+        "checkpoint": "model_5.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 7.450580596923828e-08,
+        "peak_cuda_memory_bytes": 491109376
+      }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_00-37-03_rough-2048-throughput",
+      "config_exists": true,
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 10,
+        "completed_iterations": 10,
+        "num_envs": 2048,
+        "environment_steps_this_run": 2048000,
+        "training_seconds": 82.86489250599993,
+        "parameters_finite": true,
+        "checkpoint": "model_10.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.1920928955078125e-06,
+        "peak_cuda_memory_bytes": 1874411008
+      }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_00-41-34_stairs-physics-smoke",
+      "config_exists": true,
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 5,
+        "completed_iterations": 5,
+        "num_envs": 512,
+        "environment_steps_this_run": 256000,
+        "training_seconds": 12.83057614200004,
+        "parameters_finite": true,
+        "checkpoint": "model_5.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.1920928955078125e-06,
+        "peak_cuda_memory_bytes": 497662976
+      }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_00-44-07_stairs-6144-throughput",
+      "config_exists": true,
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 10,
+        "completed_iterations": 10,
+        "num_envs": 6144,
+        "environment_steps_this_run": 6144000,
+        "training_seconds": 178.72707729700005,
+        "parameters_finite": true,
+        "checkpoint": "model_10.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.0728836059570312e-06,
+        "peak_cuda_memory_bytes": 5537901568
+      }
+    }
+  ]
+}

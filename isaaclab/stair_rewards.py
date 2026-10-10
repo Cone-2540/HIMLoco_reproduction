@@ -22,12 +22,41 @@ def _tensor(value):
 
 
 def _inverse_rotate(quaternion, vectors):
-    """Rotate world vectors into body coordinates; quaternion order is wxyz."""
-    q = quaternion[:, None, 1:].expand_as(vectors)
-    w = quaternion[:, None, :1]
+    """Rotate world vectors into body coordinates using pinned Lab 3 xyzw.
+
+    This matches Isaac Gym's runtime quaternion order. Lab 2 used wxyz; using
+    that older Lab convention here silently corrupts both pitch and yaw rewards.
+    """
+    q = quaternion[:, None, :3].expand_as(vectors)
+    w = quaternion[:, None, 3:4]
     return vectors - 2.0 * w * torch.cross(q, vectors, dim=-1) + 2.0 * torch.cross(
         q, torch.cross(q, vectors, dim=-1), dim=-1
     )
+
+
+def validate_reward_frames(env):
+    """Check actual physics quaternions against the pinned math implementation.
+
+    Run once during scene validation, outside the training loop. The pinned
+    ``quat_apply_inverse`` independently handles actual xyzw identity, yaw and
+    pitch, avoiding a self-consistent synthetic convention error in tests.
+    """
+    from isaaclab.utils.math import quat_apply_inverse
+
+    quaternion = _tensor(env.scene["robot"].data.root_quat_w)[:8]
+    if not torch.isfinite(quaternion).all():
+        raise ValueError("Non-finite physics quaternion")
+    torch.testing.assert_close(quaternion.norm(dim=-1), torch.ones_like(quaternion[:, 0]),
+                               atol=1e-4, rtol=1e-4)
+    vectors = torch.eye(3, device=quaternion.device, dtype=quaternion.dtype)
+    vectors = vectors[None].expand(quaternion.shape[0], -1, -1)
+    actual = _inverse_rotate(quaternion, vectors)
+    expected = quat_apply_inverse(quaternion[:, None].expand(-1, 3, -1).reshape(-1, 4),
+                                 vectors.reshape(-1, 3)).reshape_as(actual)
+    torch.testing.assert_close(actual, expected, atol=1e-5, rtol=1e-5)
+    return {"quaternion_order": "xyzw", "checked_physics_quaternions": len(quaternion),
+            "root_position": "root link origin", "root_velocity": "root COM",
+            "foot_position": "foot link origin", "foot_velocity": "foot COM"}
 
 
 def joint_power_l1(env, asset_cfg):
@@ -43,6 +72,11 @@ def foot_clearance_body_l2(env, asset_cfg, target_height=-0.20):
 
     This does not prescribe world foot height while ascending. It also does not
     reward prolonged flight or large swings beyond the target height.
+
+    Pinned Lab aliases body_pos_w to body_link_pos_w and body_lin_vel_w to
+    body_com_lin_vel_w. Go2 foot COM is exactly its link origin, so the foot
+    position/velocity pair is consistent. Root pos uses link origin and root
+    velocity uses COM, matching the released Gym root-state reward semantics.
     """
     robot = env.scene[asset_cfg.name]
     root_position = _tensor(robot.data.root_pos_w)
@@ -72,7 +106,7 @@ def terrain_relative_base_height_l2(
     root = _tensor(robot.data.root_pos_w)
     hits = _tensor(env.scene[sensor_cfg.name].data.ray_hits_w)
     quaternion = _tensor(robot.data.root_quat_w)
-    w, x, y, z = quaternion.unbind(dim=1)
+    x, y, z, w = quaternion.unbind(dim=1)
     yaw = torch.atan2(2.0 * (w * z + x * y), 1.0 - 2.0 * (y.square() + z.square()))
     delta = hits[..., :2] - root[:, None, :2]
     local_x = yaw.cos()[:, None] * delta[..., 0] + yaw.sin()[:, None] * delta[..., 1]
@@ -188,6 +222,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
         "height_target_m": 0.30,
         "body_foot_height_target_m": -0.20,
         "joint_acceleration_interval": "policy step",
+        "physics_quaternion_order": "xyzw",
         "weights": {name: term.weight for name, term in vars(cfg.rewards).items()
                     if term is not None and hasattr(term, "weight")},
         "tuned_changes": [] if profile == "faithful" else [

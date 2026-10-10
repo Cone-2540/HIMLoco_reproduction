@@ -300,6 +300,57 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
     return manifest
 
 
+def configure_stair_batch(cfg, specs, *, seed=1):
+    """Install fixed held-out flights in deterministic columns in one simulator.
+
+    ``specs`` is an ordered sequence of the same dicts accepted by ``spec`` in
+    :func:`configure_stair_terrain`. Each column has one fixed geometry; all
+    heights remain fixed despite using the generator's curriculum layout to
+    obtain deterministic columns. Runtime curriculum and successful-episode
+    timeouts are both disabled. Isaac Lab groups environment ids by column:
+    use ``scene.terrain.terrain_types`` to choose metadata for each robot.
+
+    Prefer ``num_envs`` divisible by the number of specs. Equal groups then
+    provide equal trial counts without rebuilding physics for every flight.
+    """
+    specs = list(specs)
+    if not specs:
+        raise ValueError("Stair batch must contain at least one specification")
+    # Reuse the single-flight configuration to keep sensors/terminations
+    # identical, then replace only the terrain generator with the full batch.
+    manifest = configure_stair_terrain(cfg, spec=specs[0], num_rows=1, num_cols=1, seed=seed)
+    variants, columns = {}, []
+    for index, spec in enumerate(specs):
+        selected = build_stair_generator(spec=spec, num_rows=1, num_cols=1, seed=seed)
+        term = selected.sub_terrains["heldout"]
+        name = str(spec.get("name", f"case_{index:02d}"))
+        variants[f"column_{index:02d}"] = term
+        columns.append({
+            "column": index, "name": name,
+            "geometry": stair_metadata(term.step_height_range[0], term.step_depth, term.nosing,
+                                       term.direction, term.num_steps, term.width, term.landing_length,
+                                       selected.size, term.nosing_thickness),
+        })
+    generator = TerrainGeneratorCfg(seed=seed, size=(8.0, 3.0), num_rows=1, num_cols=len(specs),
+                                    curriculum=True, sub_terrains=variants, border_width=4.0,
+                                    difficulty_range=(0.0, 1.0), use_cache=False, color_scheme="height")
+    cfg.scene.terrain.terrain_generator = generator
+    cfg.scene.terrain.max_init_terrain_level = 0
+    cfg.curriculum.terrain_levels = None
+    cfg.terminations.stair_goal_reached = None
+    manifest.pop("geometry", None)
+    manifest.update({"stage": "heldout_batch", "batch": True, "num_rows": 1, "num_cols": len(specs),
+                     "columns": columns,
+                     "geometry": [column["geometry"] for column in columns],
+                     "variant_names": [column["name"] for column in columns],
+                     "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
+                                   "step_depth": term.step_depth, "nosing": term.nosing}
+                                  for term in variants.values()],
+                     "environment_column_mapping": "scene.terrain.terrain_types",
+                     "generator_curriculum_layout": True, "runtime_curriculum": False})
+    return manifest
+
+
 def heldout_stair_specs():
     """Named exact cases, distinct from arbitrary easy random-curriculum draws."""
     return [

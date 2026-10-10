@@ -8,6 +8,7 @@ from unittest import mock
 import torch
 
 from stair_rewards import (
+    _inverse_rotate,
     action_smoothness_l2,
     configure_stair_rewards,
     feet_slide_l2,
@@ -15,6 +16,7 @@ from stair_rewards import (
     joint_power_l1,
     policy_joint_acceleration_l2,
     terrain_relative_base_height_l2,
+    validate_reward_frames,
 )
 
 
@@ -25,7 +27,7 @@ def tensor(value):
 def make_env():
     robot = NS(data=NS(
         root_pos_w=tensor([[0, 0, 0.3], [5, 3, 1.5]]),
-        root_quat_w=tensor([[1, 0, 0, 0], [1, 0, 0, 0]]),
+        root_quat_w=tensor([[0, 0, 0, 1], [0, 0, 0, 1]]),
         root_lin_vel_w=tensor([[0, 0, 0], [0, 0, 0]]),
         body_pos_w=tensor([[[0, 0, 0.1], [0, 0, 0.0]], [[5, 3, 1.3], [5, 3, 1.2]]]),
         body_lin_vel_w=tensor([[[1, 0, 0], [1, 0, 0]], [[1, 0, 0], [1, 0, 0]]]),
@@ -40,6 +42,21 @@ ASSET = NS(name="robot", joint_ids=slice(None), body_ids=slice(None))
 
 
 class StairRewardTest(unittest.TestCase):
+    def test_pinned_math_identity_yaw_and_pitch_use_xyzw(self):
+        from isaaclab.utils.math import quat_apply_inverse, quat_from_euler_xyz
+        angles = torch.tensor([[0., 0., 0.], [0., 0., math.pi / 2], [0., math.pi / 4, 0.]])
+        quaternion = quat_from_euler_xyz(*angles.unbind(dim=1))
+        torch.testing.assert_close(quaternion[0], torch.tensor([0., 0., 0., 1.]))
+        vectors = torch.tensor([[[1., 0., 0.], [0., 0., 1.]]]).repeat(3, 1, 1)
+        expected = quat_apply_inverse(quaternion[:, None].expand(-1, 2, -1).reshape(-1, 4),
+                                     vectors.reshape(-1, 3)).reshape(3, 2, 3)
+        torch.testing.assert_close(_inverse_rotate(quaternion, vectors), expected)
+        torch.testing.assert_close(expected[1, 0], torch.tensor([0., -1., 0.]), atol=1e-6, rtol=0)
+        env = make_env()
+        env.scene["robot"].data.root_quat_w.torch = quaternion
+        result = validate_reward_frames(env)
+        self.assertEqual(result["quaternion_order"], "xyzw")
+
     def test_power_uses_actual_effort_and_absolute_product(self):
         env = make_env()
         torch.testing.assert_close(joint_power_l1(env, ASSET), torch.tensor([8., 32.]))
@@ -55,7 +72,7 @@ class StairRewardTest(unittest.TestCase):
     def test_foot_clearance_uses_full_body_rotation_on_pitch(self):
         env = make_env()
         half = math.pi / 8
-        env.scene["robot"].data.root_quat_w.torch[:] = torch.tensor([math.cos(half), 0, math.sin(half), 0])
+        env.scene["robot"].data.root_quat_w.torch[:] = torch.tensor([0, math.sin(half), 0, math.cos(half)])
         # These world vectors correspond to body [0,0,-.2] at pitch pi/4.
         delta = torch.tensor([-math.sqrt(.02), 0, -math.sqrt(.02)])
         root = env.scene["robot"].data.root_pos_w.torch
@@ -77,7 +94,7 @@ class StairRewardTest(unittest.TestCase):
     def test_height_rotates_footprint_and_excludes_invalid_rays(self):
         env = make_env()
         env.scene["robot"].data.root_pos_w.torch[:] = torch.tensor([0, 0, .3])
-        env.scene["robot"].data.root_quat_w.torch[:] = torch.tensor([math.sqrt(.5), 0, 0, math.sqrt(.5)])
+        env.scene["robot"].data.root_quat_w.torch[:] = torch.tensor([0, 0, math.sqrt(.5), math.sqrt(.5)])
         env.scene["scanner"] = NS(data=NS(ray_hits_w=tensor([
             [[.19, 0, 0], [0, .19, .9], [float("inf"), 0, float("inf")]],
             [[float("nan"), 0, 0], [float("inf"), 0, 0], [0, 0, float("inf")]],

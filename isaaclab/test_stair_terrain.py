@@ -9,7 +9,7 @@ import torch
 from isaaclab.terrains import TerrainGenerator
 
 from stair_terrain import (
-    StraightStairTerrainCfg, build_stair_generator, configure_stair_terrain,
+    StraightStairTerrainCfg, build_stair_generator, configure_stair_batch, configure_stair_terrain,
     heldout_stair_specs, stair_corridor_exit, stair_meshes, stair_metadata,
     stair_goal_reached, stair_terrain_curriculum,
 )
@@ -160,6 +160,44 @@ class StairGeometryTest(unittest.TestCase):
         self.assertTrue(manifest["heldout"])
         self.assertIsNone(cfg.terminations.stair_goal_reached)
         self.assertIsNone(cfg.curriculum.terrain_levels)
+
+    def test_batch_specs_have_deterministic_columns_and_fixed_heights(self):
+        class Scanner(NS):
+            def copy(self):
+                return deepcopy(self)
+        cfg = NS(scene=NS(height_scanner=Scanner(), terrain=NS(), num_envs=128), sim=NS(dt=.005),
+                 decimation=4, terminations=NS(), curriculum=NS())
+        specs = [{"name": f"{direction}_{height}", "direction": direction, "height": height, "depth": .27}
+                 for direction in ("asc", "desc") for height in (.08, .16)]
+        manifest = configure_stair_batch(cfg, specs, seed=11)
+        generator_cfg = cfg.scene.terrain.terrain_generator
+        self.assertEqual((generator_cfg.num_rows, generator_cfg.num_cols), (1, 4))
+        self.assertTrue(generator_cfg.curriculum)
+        self.assertIsNone(cfg.curriculum.terrain_levels)
+        self.assertIsNone(cfg.terminations.stair_goal_reached)
+        self.assertEqual(cfg.scene.terrain.max_init_terrain_level, 0)
+        self.assertEqual(manifest["variant_names"], [spec["name"] for spec in specs])
+        self.assertEqual(len(manifest["geometry"]), len(specs))
+        variants = list(generator_cfg.sub_terrains.values())
+        for variant, column in zip(variants, manifest["columns"]):
+            low_mesh, low_origin = stair_meshes(0., variant.replace(size=generator_cfg.size))
+            high_mesh, high_origin = stair_meshes(1., variant.replace(size=generator_cfg.size))
+            np.testing.assert_allclose(low_origin, high_origin)
+            np.testing.assert_allclose(low_mesh[-1].vertices, high_mesh[-1].vertices)
+            self.assertEqual(column["geometry"]["direction"], variant.direction)
+            self.assertEqual(column["geometry"]["step_height"], variant.step_height_range[0])
+        generated = TerrainGenerator(cfg=generator_cfg, device="cpu")
+        expected_z = [0., 0., .48, .96]
+        np.testing.assert_allclose(generated.terrain_origins[0, :, 2], expected_z)
+        # Distinct tile origins retain the expected fixed geometries despite
+        # randomly drawn per-row difficulty in the curriculum generator.
+        self.assertEqual(generated.terrain_origins.shape, (1, 4, 3))
+        self.assertEqual(manifest["environment_column_mapping"], "scene.terrain.terrain_types")
+
+    def test_empty_batch_rejected_before_configuration(self):
+        cfg = NS()
+        with self.assertRaisesRegex(ValueError, "at least one"):
+            configure_stair_batch(cfg, [])
 
 
 if __name__ == "__main__":
