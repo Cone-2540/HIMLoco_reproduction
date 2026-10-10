@@ -1,0 +1,21 @@
+{
+  "status": "diagnostic_protocol_recorded_before_collection",
+  "scope": "Exploratory speed sensitivity of the frozen primary after final failures were observed; not another independent final acceptance or a policy selection",
+  "original_plan_sha256": "fd27265a2d714662a3d03404903537cf6abec3c13ae2f65f21b7edf38b5391ae",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "reward_profile": "contact",
+  "geometry": "reproduction/stair-frozen-speed-probe.json",
+  "num_envs": 192,
+  "envs_per_case": 32,
+  "seconds": 40,
+  "speeds_m_s": [0.2, 0.3, 0.4, 0.5, 0.6],
+  "reset_seeds": [503, 509, 521],
+  "construction_seed": 1,
+  "domain_profile": "none",
+  "eval_dynamics": false,
+  "heading": "Original proportional yaw controller, no lateral correction",
+  "selection": "No new checkpoint, reward tuning or operating-envelope certification from this probe",
+  "acceptance": "Original case/resetseed gates reported unchanged; the original final matrix FAIL remains",
+  "limits": "Geometry was selected to diagnose known failures. Fresh reset seeds do not make the adaptive geometry selection a fresh independent final test. Nominal material acts on all robot bodies."
+}
