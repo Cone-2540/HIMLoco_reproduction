@@ -101,7 +101,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "stock"], default="faithful")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -311,6 +311,20 @@ def main():
         env = gym.make(task, cfg=cfg)
         wrapped = HIMVecEnv(env)
         robot = wrapped.env.scene["robot"]
+        if args.terrain == "stairs" and args.reward_profile == "contact":
+            term = wrapped.env.reward_manager.get_term_cfg("leg_contacts")
+            sensor_cfg = term.params["sensor_cfg"]
+            sensor = wrapped.env.scene[sensor_cfg.name]
+            ids = sensor_cfg.body_ids
+            if isinstance(ids, slice):
+                names = sensor.body_names[ids]
+            else:
+                names = [sensor.body_names[int(index)] for index in ids]
+            expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
+                              for part in ("thigh", "calf")}
+            if len(names) != 8 or set(names) != expected_names:
+                raise ValueError(f"Contact reward must select exactly eight Go2 thigh/calf bodies: {names}")
+            metadata["resolved_contact_reward_bodies"] = names
         metadata["joint_names"] = robot.joint_names
         metadata["default_joint_positions"] = robot.data.default_joint_pos.torch[0].tolist()
         metadata["action_scale"] = cfg.actions.joint_pos.scale

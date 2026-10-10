@@ -2,7 +2,8 @@
 
 Only training rewards see terrain sensors. No term adds terrain to the actor.
 The ``faithful`` profile uses the released Go1 weights; ``tuned`` is an explicit
-small stair ablation. The controller, asset, and physics remain Go2/Isaac Lab,
+small stair ablation, and ``contact`` adds only a leg-contact penalty to faithful.
+The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
 Isaac Lab manager types are imported inside the configuration function. This
@@ -168,11 +169,12 @@ def configure_stair_rewards(cfg, profile="faithful"):
 
     Call after terrain configuration has installed ``base_height_scanner``.
     ``stock`` leaves the task configuration unchanged for migration comparisons.
-    Both non-stock presets preserve the original 0.25 tracking variance,
+    All non-stock presets preserve the original 0.25 tracking variance,
     first/second action differences, energy and body-relative clearance terms.
+    ``contact`` preserves every faithful term and adds one Go2 adaptation.
     """
-    if profile not in ("faithful", "tuned", "stock"):
-        raise ValueError("reward profile must be faithful, tuned, or stock")
+    if profile not in ("faithful", "tuned", "contact", "stock"):
+        raise ValueError("reward profile must be faithful, tuned, contact, or stock")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
@@ -182,6 +184,8 @@ def configure_stair_rewards(cfg, profile="faithful"):
         sensor_name = "height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
+    if profile == "contact" and getattr(cfg.scene, "contact_forces", None) is None:
+        raise ValueError("Contact reward requires the contact_forces sensor")
 
     # Prevent residual stock torque/air-time/position-limit rewards from silently
     # changing the released objective when the source task adds optional terms.
@@ -201,9 +205,9 @@ def configure_stair_rewards(cfg, profile="faithful"):
         command_name="base_velocity", std=math.sqrt(0.25))
     add("track_ang_vel_z_exp", mdp + "track_ang_vel_z_exp", 0.5,
         command_name="base_velocity", std=math.sqrt(0.25))
-    add("lin_vel_z_l2", mdp + "lin_vel_z_l2", -2.0 if profile == "faithful" else -0.5)
+    add("lin_vel_z_l2", mdp + "lin_vel_z_l2", -0.5 if profile == "tuned" else -2.0)
     add("ang_vel_xy_l2", mdp + "ang_vel_xy_l2", -0.05)
-    add("flat_orientation_l2", mdp + "flat_orientation_l2", -0.2 if profile == "faithful" else -0.1)
+    add("flat_orientation_l2", mdp + "flat_orientation_l2", -0.1 if profile == "tuned" else -0.2)
     add("dof_acc_l2", custom + "policy_joint_acceleration_l2", -2.5e-7, asset_cfg=robot)
     add("joint_power", custom + "joint_power_l1", -2e-5, asset_cfg=robot)
     add("base_height", custom + "terrain_relative_base_height_l2", -1.0,
@@ -215,6 +219,9 @@ def configure_stair_rewards(cfg, profile="faithful"):
     if profile == "tuned":
         add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
+    if profile == "contact":
+        add("leg_contacts", mdp + "undesired_contacts", -0.1, threshold=1.0,
+            sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
     return {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -225,9 +232,23 @@ def configure_stair_rewards(cfg, profile="faithful"):
         "physics_quaternion_order": "xyzw",
         "weights": {name: term.weight for name, term in vars(cfg.rewards).items()
                     if term is not None and hasattr(term, "weight")},
-        "tuned_changes": [] if profile == "faithful" else [
+        "tuned_changes": [
             "vertical velocity penalty -2 -> -0.5",
             "orientation penalty -0.2 -> -0.1",
             "contact-only foot slip penalty -0.05",
-        ],
+        ] if profile == "tuned" else [],
+        "adaptation_changes": ["faithful plus leg_contacts -0.1; no other faithful term changes"]
+            if profile == "contact" else [],
+        "contact_penalty": {
+            "baseline_profile": "faithful",
+            "term": "leg_contacts",
+            "function": mdp + "undesired_contacts",
+            "body_name_patterns": [".*_thigh", ".*_calf"],
+            "expected_selected_go2_bodies": 8,
+            "excluded_bodies": "feet, base and hips",
+            "threshold_n": 1.0,
+            "measurement": "count of selected bodies with retained-history net-normal-force vector norm strictly above threshold",
+            "weight_scaling": "Isaac Lab reward manager multiplies -0.1 by policy dt",
+            "reproduction_scope": "added Go2 adaptation; released Go1 collision weight is zero",
+        } if profile == "contact" else None,
     }

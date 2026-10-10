@@ -15,6 +15,8 @@
 
 `bootstrap` 是遇到首阶停滞后新增的迁移课程，并非论文配置。`faithful` 使用发布的 Go1 奖励权重与公式；Go2 电机、资产和 Isaac Lab 物理仍与原论文不同。actor 始终只有 6×45 本体历史；187 个地形高度样本只进入 critic。
 
+`contact` 是单项 Go2 楼梯消融：保留全部 `faithful` 权重/公式，只追加八个大腿/小腿的历史法向接触计数惩罚 `-0.1`（阈值 1 N），运行时核对选中的身体名称。它不属于发布版原奖励，也不包含 `tuned` 对竖直速度、姿态和脚滑的其他改动。接触计数与脚滑代理的采样局限见 `reproduction/stair-contact-sampling-review.md`。
+
 训练命令例：
 
 ```bash

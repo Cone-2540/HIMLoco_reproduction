@@ -167,6 +167,76 @@ class StairRewardTest(unittest.TestCase):
             self.assertEqual(tuned["weights"]["lin_vel_z_l2"], -.5)
             self.assertIn("feet_slide", tuned["weights"])
 
+    def test_contact_profile_changes_exactly_one_term_from_faithful(self):
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()),
+                      rewards=NS(dof_torques_l2=NS(weight=-.0002), feet_air_time=NS(weight=.01)))
+        faithful, contact = config(), config()
+        original = configure_stair_rewards(faithful, "faithful")
+        manifest = configure_stair_rewards(contact, "contact")
+        self.assertEqual(manifest["profile"], "contact")
+        self.assertEqual(manifest["weights"], {**original["weights"], "leg_contacts": -.1})
+        for name in original["weights"]:
+            self.assertEqual(getattr(contact.rewards, name).to_dict(),
+                             getattr(faithful.rewards, name).to_dict(), name)
+        self.assertIsNone(contact.rewards.dof_torques_l2)
+        self.assertIsNone(contact.rewards.feet_air_time)
+        self.assertFalse(hasattr(contact.rewards, "feet_slide"))
+        self.assertEqual(manifest["tuned_changes"], [])
+        self.assertEqual(len(manifest["adaptation_changes"]), 1)
+        term = contact.rewards.leg_contacts
+        self.assertEqual(term.func, "isaaclab.envs.mdp:undesired_contacts")
+        self.assertEqual(term.weight, -.1)
+        self.assertEqual(term.params["threshold"], 1.)
+        self.assertEqual(manifest["contact_penalty"]["baseline_profile"], "faithful")
+        self.assertEqual(manifest["contact_penalty"]["expected_selected_go2_bodies"], 8)
+
+    def test_contact_selector_and_installed_mdp_exclude_feet_base_and_hips(self):
+        from isaaclab.envs.mdp import undesired_contacts
+        from isaaclab.utils.string import resolve_matching_names
+
+        names = ["base", "Head_upper", "Head_lower"] + [f"{leg}_{body}" for leg in ("FL", "FR", "RL", "RR")
+                            for body in ("hip", "thigh", "calf", "foot")]
+        class ContactSensor:
+            body_names = names
+            num_sensors = len(names)
+
+            def find_sensors(self, keys, preserve_order=False):
+                return resolve_matching_names(keys, self.body_names, preserve_order=preserve_order)
+
+        sensor = ContactSensor()
+        history = torch.zeros(5, 3, len(names), 3)
+        history[0, 0, names.index("FL_thigh"), 0] = 2.  # Horizontal riser normal.
+        history[1, 2, names.index("FR_calf"), 1] = 2.  # Retained contact, current zero.
+        history[2, 0, names.index("RL_calf"), 2] = 1.  # Strict threshold.
+        for body in ("base", "FL_foot", "FR_hip", "Head_upper"):
+            history[3, :, names.index(body), 2] = 100.
+        history[4, 0, names.index("RR_thigh"), 2] = 2.
+        history[4, 1, names.index("RL_calf"), 0] = 2.  # Count both bodies.
+        sensor.data = NS(net_normal_forces_w_history=NS(torch=history))
+        class Scene(dict):
+            pass
+        scene = Scene(contact_forces=sensor)
+        scene.sensors = {"contact_forces": sensor}
+        cfg = NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        configure_stair_rewards(cfg, "contact")
+        term = cfg.rewards.leg_contacts
+        selection = term.params["sensor_cfg"]
+        selection.resolve(scene)
+        expected = {f"{leg}_{body}" for leg in ("FL", "FR", "RL", "RR")
+                    for body in ("thigh", "calf")}
+        self.assertEqual({names[index] for index in selection.body_ids}, expected)
+        self.assertEqual(len(selection.body_ids), 8)
+        value = undesired_contacts(NS(scene=scene), **term.params)
+        torch.testing.assert_close(value, torch.tensor([1, 1, 0, 0, 2]))
+
+    def test_contact_profile_requires_sensor_before_mutating_rewards(self):
+        old = NS(weight=-.0002)
+        cfg = NS(scene=NS(base_height_scanner=object()), rewards=NS(dof_torques_l2=old))
+        with self.assertRaisesRegex(ValueError, "contact_forces sensor"):
+            configure_stair_rewards(cfg, "contact")
+        self.assertIs(cfg.rewards.dof_torques_l2, old)
+
 
 if __name__ == "__main__":
     unittest.main()
