@@ -4,6 +4,8 @@
 
 自主任务从 2026-10-11 00:29:13 开始，预算至 07:29:13，北京时间。原冻结协议的 11 次采集已于 06:25:16 全部完成；33 项冻结文件哈希核对通过。采集完成不代表科学验收通过；后续速度、尺寸、电机曲线与高速度动力学测试是单独预写协议的诊断，不改变原验收或模型选择。
 
+[离线结果查看器](stair-results-viewer.html) 可以切换各矩阵、点击格子查看三个种子的精确失败记录，并播放本机七段视频。页面不需要联网；MP4 与完整逐帧图页留在本机，不随 Git 下载。
+
 ## 保存的策略与训练范围
 
 | 模型 | 用途 | 从 contact620 继续的已保存更新 | 奖励差异 | 输入／输出 |
@@ -154,4 +156,6 @@ bash isaaclab/run.sh train --terrain stairs --stair_stage hard --reward_profile 
 
 真机迁移前仍缺电机曲线、动作延迟、输入轴向／四元数约定、关节重排和实际 PD 的逐项核对。原版 URDF 与 Lab 小腿峰值力矩／速度分别为 35.55 Nm / 20.07 rad/s 和 45.43 Nm / 15.70 rad/s。固定模型换用前者的 DC 曲线后，0.3 / 0.5 m/s 分别完成 1490/1536、1507/1536，整体仍 FAIL；常规与未训练几何仍全通。它在低速下峰值力矩更小、额定速度更高，不能笼统称整个速度域更保守。配置调用与参数读回的核查范围见 [小腿曲线敏感性](stair-frozen-calf-sensitivity.md)，不能判断用户 EDU 实际采用哪一套。
 
-驱动约束始终保持：595.104.02；未修改驱动、系统 CUDA、Vulkan、Xorg、modprobe、系统电源或 DNS 配置。最终会再次核对原保存文件哈希。共享依赖保留在机器人通用目录，训练日志在 `isaaclab/logs/`，报告／权重在本仓库；没有把大型模拟器二进制或全量视频塞进 Git。
+驱动约束始终保持：595.104.02；未修改驱动、系统 CUDA、Vulkan、Xorg、modprobe、系统电源或 DNS 配置。[只读驱动核查](driver-overnight-final-audit.json) 的版本与原保存五个文件哈希均一致；这五项不是整个系统的全文件审计。共享依赖保留在机器人通用目录，训练日志在 `isaaclab/logs/`，报告／权重在本仓库；没有把大型模拟器二进制或全量视频塞进 Git。
+
+所有本日已保存的配置／评估结果，包括调参和不完整采集尝试，共 227 个 JSON、约 5.55 GiB，另备份到共享目录 `/home/cone/robotics/archives/himloco-overnight-20261011/evaluation-data.tar.gz`，压缩后约 1.05 GiB。全部归档成员逐个 SHA256 核对原文件一致，Git 保存 [清单](overnight-evaluation-archive-manifest.json) 和 [归档脚本](archive-overnight-evaluation-data.py)。原数据没有移动或删除；该归档不含模拟器、权重、视频和 stdout 日志。
