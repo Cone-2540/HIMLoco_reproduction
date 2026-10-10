@@ -2,6 +2,8 @@
 
 本入口使用已有 Isaac Lab 3 / Sim 6.1 容器和 Go2 USD，在 RTX 5080 上运行原 HIM 网络与 PPO。训练与评价分别保存 `config.json`、物理检查和 `result.json`。训练中的 `smoke_passed` 只说明数值与策略导出成功，不是楼梯验收。
 
+夜间训练的冻结模型、独立测试结果和上下楼视频入口见 [中文实验报告](../reproduction/stair-overnight-report_zh.md)。论文对应几何通过，完整最终矩阵未通过；主候选保留为 control660，不能把调参矩阵全通视为流畅性或真机验证。
+
 ## 场景和课程
 
 所有楼梯沿 +x 前进，上楼增高、下楼降低。每个训练场景有六级台阶、前后平台和 1.2 m 通道。真实三角网格支持带下表面的悬挑边沿，禁止转成 heightfield。侧面绕行会结束 episode。
