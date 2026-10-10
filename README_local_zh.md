@@ -1,5 +1,7 @@
 # 本机 Go2 / 原版 Isaac Gym 复现记录
 
+原版基线保存在 Git 标签 `original-cpu-baseline`。RTX 5080 的 GPU 迁移、训练与定量平地验收见 [isaaclab/README_zh.md](isaaclab/README_zh.md)，使用已有 Isaac Lab 容器。
+
 2026-10-10 已下载并安装原仓库的软件栈，完成 **CPU 平地 Go2 仿真、HIM/PPO 训练、模型导出和回放**。GPU 路线与复杂地形目前未通过；不能据此声称复现了论文中的敏捷越障性能。
 
 ## 环境与位置
@@ -120,6 +122,6 @@ CPU 平地的这些验收证明流程可运行，100 轮训练仍未达到论文
 
 更改驱动无法让 PyTorch 1.10 获得 `sm_120` 支持。后续若坚持原版 GPU 训练，需要使用与这个旧软件栈兼容的显卡／训练机并实际验证；本机的新 GPU 路线可以另行使用支持 Blackwell 的 Isaac Lab 软件栈，但那属于迁移实现，不是原软件环境复现。
 
-原版日志：`~/robotics/logs/himloco-*.log`。验收 JSON 与模型保存在本仓库 `legged_gym/logs/`；可提交的历史验收摘要见 `reproduction/validation-original.json`。此前试验的 Isaac Lab 适配位于本机 `~/Research/himloco_sim`，与本次环境分开保存；原版入口不会启动该容器。
+原版日志：`~/robotics/logs/himloco-*.log`。验收 JSON 与模型保存在本仓库 `legged_gym/logs/`；可提交的历史验收摘要见 `reproduction/validation-original.json`。Isaac Lab GPU 迁移入口已整理到本仓库 `isaaclab/`；此前 `~/Research/himloco_sim` 的试验目录仅保留历史记录。原版入口不会启动该容器。
 
 来源：[HIMLoco](https://github.com/InternRobotics/HIMLoco)、[Isaac Gym 下载](https://developer.nvidia.com/isaac-gym-preview-4)、[宇树 unitree_rl_gym](https://github.com/unitreerobotics/unitree_rl_gym)。本地已保留软件与资产许可证。

@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/InternRobotics/HIMLoco",
+  "commit": "ef289acaa62795009363b7b819c9186690630441",
+  "changes": [
+    "Package renamed from rsl_rl to him_rsl_rl to coexist with the container RSL-RL.",
+    "Preserve scalar std checkpoint parameter and enforce a positive 0.001 minimum for Gaussian sampling and after PPO optimizer updates.",
+    "Correct timeout bootstrap to use pre-reset next critic value; explicit terminated flag takes precedence over timeout.",
+    "Reject non-finite estimator/PPO losses and gradients; log estimator and swap losses averaged over minibatches.",
+    "Periodic checkpoints now record completed iteration and filename consistently; restore adaptive optimizer learning rates and cumulative counters.",
+    "Load own tensor checkpoints with explicit device mapping and weights_only=True for PyTorch 2.11.",
+    "Add CPU regression tests for observation target semantics, bootstrap, scalar std validity, mean losses, and checkpoint resume."
+  ]
+}

@@ -1,3 +1,5 @@
+本机 Go2 复现：[原版 Isaac Gym 基线](README_local_zh.md) · [RTX 5080 / Isaac Lab GPU 迁移](isaaclab/README_zh.md)。原版版本保存在 `original-cpu-baseline` 标签，GPU 平地训练与验收记录在 `reproduction/`。
+
 ## Learning-based Locomotion Control from OpenRobotLab
 This repository contains learning-based locomotion control research from OpenRobotLab, currently including [Hybrid Internal Model](/projects/himloco/README.md) & [H-Infinity Locomotion Control](/projects/h_infinity/README.md).
 ## 🔥 News

@@ -1,0 +1,375 @@
+{
+  "status": "failed",
+  "passed": false,
+  "thresholds": {
+    "xy_mae_m_s": 0.2,
+    "yaw_mae_rad_s": 0.3,
+    "first_episode_survival_fraction": 0.95,
+    "minimum_duration_s": 20.0,
+    "minimum_num_envs": 64
+  },
+  "metrics_scope": "first episode only; pre-reset terminal velocities; survival includes warmup",
+  "moving_command_tested": true,
+  "cases": [
+    {
+      "command_m_s_m_s_rad_s": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "controller": "HIM_policy",
+      "passed": true,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.060363608054368696,
+      "xy_rmse_m_s": 0.07000985999489023,
+      "yaw_mae_rad_s": 0.053155461569510606,
+      "yaw_rmse_rad_s": 0.06854202890081186,
+      "mean_measured_vx_vy_yaw": [
+        0.4749333685465778,
+        0.002933024709410448,
+        0.020718186156118465
+      ],
+      "mean_root_height_m": 0.2210691014599486,
+      "nominal_height_fraction": 0.999582827091217,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.18439649045467377,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "controller": "HIM_policy",
+      "passed": true,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.03491680816652257,
+      "xy_rmse_m_s": 0.039794617237181924,
+      "yaw_mae_rad_s": 0.014896838711278646,
+      "yaw_rmse_rad_s": 0.018100617877956183,
+      "mean_measured_vx_vy_yaw": [
+        -0.4887512344152977,
+        -0.012144168664983428,
+        -0.003556506714520727
+      ],
+      "mean_root_height_m": 0.2333484414521526,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.23023198544979095,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "controller": "HIM_policy",
+      "passed": true,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.08536587197785896,
+      "xy_rmse_m_s": 0.10650718905885087,
+      "yaw_mae_rad_s": 0.06462332922672026,
+      "yaw_rmse_rad_s": 0.08550140116177679,
+      "mean_measured_vx_vy_yaw": [
+        0.013743752343838827,
+        0.22916325243482585,
+        -0.05290816944028999
+      ],
+      "mean_root_height_m": 0.23406767242979692,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.22516262531280518,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "controller": "HIM_policy",
+      "passed": false,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.01581694659885993,
+      "xy_rmse_m_s": 0.028562710662299328,
+      "yaw_mae_rad_s": 0.48939268955133025,
+      "yaw_rmse_rad_s": 0.4926996059356308,
+      "mean_measured_vx_vy_yaw": [
+        0.0009461018910268841,
+        -0.003344886741357346,
+        0.010607310517984558
+      ],
+      "mean_root_height_m": 0.2672123605679634,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.2316529005765915,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    }
+  ],
+  "zero_action_cases": [
+    {
+      "command_m_s_m_s_rad_s": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "controller": "zero_action",
+      "passed": false,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.5010045660318186,
+      "xy_rmse_m_s": 0.5013113739849865,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.233189657330513,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "controller": "zero_action",
+      "passed": false,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.4989954359477593,
+      "xy_rmse_m_s": 0.49930347838550543,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.233189657330513,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "controller": "zero_action",
+      "passed": false,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.3005016858606703,
+      "xy_rmse_m_s": 0.3005064882037231,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.233189657330513,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "controller": "zero_action",
+      "passed": false,
+      "sample_eligible": true,
+      "num_envs": 64,
+      "requested_duration_s": 20.0,
+      "executed_steps": 1000,
+      "warmup_steps": 100,
+      "tracking_samples": 57600,
+      "tracking_env_count": 64,
+      "xy_mae_m_s": 0.007864668624859707,
+      "xy_rmse_m_s": 0.01756501611074232,
+      "yaw_mae_rad_s": 0.5000100841538774,
+      "yaw_rmse_rad_s": 0.5000100960498776,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "upright_fraction": 1.0,
+      "height_tracking_samples": 57536,
+      "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+      "first_episode_survival_fraction": 1.0,
+      "first_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_falls": 0,
+      "all_episode_timeouts": 64,
+      "mean_first_episode_duration_s": 20.0,
+      "minimum_root_height_m": 0.233189657330513,
+      "maximum_root_height_m": 0.4000000059604645,
+      "finite_physics": true,
+      "failure_reasons": []
+    }
+  ],
+  "baseline_comparison": [
+    {
+      "command_m_s_m_s_rad_s": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "xy_mae_improvement_m_s": 0.44064095797744995,
+      "yaw_mae_improvement_rad_s": -0.053091151703941006
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "xy_mae_improvement_m_s": 0.46407862778123676,
+      "yaw_mae_improvement_rad_s": -0.014832528845709049
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "xy_mae_improvement_m_s": 0.21513581388281133,
+      "yaw_mae_improvement_rad_s": -0.06455901936115066
+    },
+    {
+      "command_m_s_m_s_rad_s": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "xy_mae_improvement_m_s": -0.007952277974000221,
+      "yaw_mae_improvement_rad_s": 0.010617394602547126
+    }
+  ]
+}
