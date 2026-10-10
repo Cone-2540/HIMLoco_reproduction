@@ -1,0 +1,48 @@
+{
+  "checkpoint_status": "candidate, standard nominal six-step scenes only",
+  "training_source_commit": "783412201fe10fb27b951c522ba6b4f3cc3ef993",
+  "training_run": "isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370",
+  "algorithm": "HIM actor 270 inputs:6x45 history; blind proprioception",
+  "terrain_actor_input": false,
+  "robot": "Go2 pinnedIsaacLabUSD; not a deployment-ready EDU policy",
+  "validation": {
+    "command_speeds_m_s": [
+      0.3,
+      0.5
+    ],
+    "six_step_cases": 12,
+    "reset_seeds": [
+      11,
+      29,
+      47
+    ],
+    "envs_each_case_seed": 32,
+    "completions_each_speed": 1152,
+    "trials_each_speed": 1152,
+    "nominal_dynamics": true,
+    "smoothness_verified": false,
+    "notes": "These reset seeds and geometries are tuning data; generalization requires final heldout tests."
+  },
+  "evaluations": [
+    "isaaclab/logs/2026-10-11_03-04-27_standard370-low-speed-validation",
+    "isaaclab/logs/2026-10-11_03-08-49_standard370-speed05-validation"
+  ],
+  "files": {
+    "model_370.pt": {
+      "sha256": "73afe9733c17ac595e9087413a945f588e444c4840d47942789056ce7fa4b6e1",
+      "bytes": 6566347
+    },
+    "policy.pt": {
+      "sha256": "ed74484d1f56e9b35e1cf793f2c73230e424a2dc93c7ae88d208609e34607616",
+      "bytes": 992060
+    },
+    "config.json": {
+      "sha256": "85ac56a440e05aa2de3ab0560785bc58bed2e64584f9f3d395d0a80e21c27e49",
+      "bytes": 10942
+    },
+    "result.json": {
+      "sha256": "3cc2b89c2bde7e3bdfc18d273dac37e5c4b087d17dbabb26d717e10cf42360e0",
+      "bytes": 442
+    }
+  }
+}
