@@ -678,7 +678,11 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
         "current_sample_slip_metric_scope": "foot-link horizontal speed gated only by latest normal-contact force >1N at the same policy boundary; proxy, not contact-point tangential slip",
         "smoothness_passed": None,
         "smoothness_note": "Metrics are reported for comparison; no universal smoothness threshold has been calibrated",
-        "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds",
+        "seed_scope": (
+            "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds; enabled reset-mode dynamics events (such as actuator gains) resample on resets"
+            if dynamics_randomized else
+            "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds; mass/COM/gain evaluation randomization is disabled"
+        ),
         "validation_scope": "randomized reset cases" if randomized else "nominal deterministic repeated environments; not independent robustness trials",
         "independent_reset_validation_eligible": bool(randomized and len(set(seeds)) >= 3
             and all(trial["initial_reset_distribution"]["yaw_std_rad"] > 1e-6 for trial in trials)),

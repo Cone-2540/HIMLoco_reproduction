@@ -439,6 +439,16 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertFalse(result["independent_reset_validation_eligible"])
         self.assertEqual(result["trials"][0]["initial_reset_distribution"]["yaw_std_rad"], 0.0)
 
+    def test_seed_scope_distinguishes_startup_parameters_from_reset_dynamics(self):
+        nominal = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=0)
+        self.assertIn("mass/COM/gain evaluation randomization is disabled", nominal["seed_scope"])
+        randomized = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=0,
+                                     dynamics_randomized=True)
+        self.assertIn("startup terrain/material/dynamics", randomized["seed_scope"])
+        self.assertIn("enabled reset-mode dynamics events", randomized["seed_scope"])
+        self.assertIn("resample on resets", randomized["seed_scope"])
+        self.assertNotIn("evaluation randomization is disabled", randomized["seed_scope"])
+
     def test_inactive_finished_environment_nonfinite_does_not_fail_active_trial(self):
         class DifferentTimes(FakeWrapped):
             def place(self, x, final=False):

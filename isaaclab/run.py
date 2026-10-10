@@ -134,6 +134,8 @@ def main():
     parser.add_argument("--turn_fraction", type=float, default=0.0,
                         help="Training command fraction with zero XY and random yaw; 0 preserves stock sampling.")
     parser.add_argument("--eval_seconds", type=float, default=20.0)
+    parser.add_argument("--eval_trace_stride", type=int, default=5,
+                        help="Record staircase telemetry every N policy steps; 1 records every 20 ms.")
     parser.add_argument("--command", type=float, nargs=3, action="append", metavar=("VX", "VY", "YAW"),
                         help="Fixed command; repeat to choose evaluation cases.")
     parser.add_argument("--video", action="store_true", help="Record a headless Kit camera clip.")
@@ -144,6 +146,8 @@ def main():
                         help="After results are saved, exit if Isaac Sim teardown hangs; 0 disables.")
     add_launcher_args(parser)
     args = parser.parse_args()
+    if args.eval_trace_stride < 1:
+        parser.error("--eval_trace_stride must be at least 1")
     if args.video_policy_only and not (args.video and args.mode == "evaluate" and args.terrain == "stairs"):
         parser.error("--video_policy_only requires --video, evaluate mode, and --terrain stairs")
     if args.candidate_checkpoint and args.mode != "evaluate":
@@ -288,6 +292,7 @@ def main():
                 "reward_weights": {name: term.weight for name, term in vars(cfg.rewards).items()
                                    if term is not None and hasattr(term, "weight")},
                 "command_override": args.command, "evaluation_seconds": args.eval_seconds,
+                "evaluation_trace_stride_policy_steps": args.eval_trace_stride,
                 "video": args.video, "video_policy_only": args.video_policy_only,
                 "video_length": args.video_length if args.video else None,
                 "video_fps": 50 if args.video else None,
@@ -401,6 +406,7 @@ def main():
                                                  seconds=args.eval_seconds, speed=args.speed,
                                                  seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
                                                  dynamics_randomized=args.eval_dynamics,
+                                                 record_stride=args.eval_trace_stride,
                                                  include_zero_action=not args.video_policy_only,
                                                  heading_control=not args.open_loop_heading,
                                                  progress=lambda metrics: print(json.dumps(metrics), flush=True))
