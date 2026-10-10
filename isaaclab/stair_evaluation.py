@@ -169,6 +169,7 @@ class StairStateCapture:
         if len(foot_ids) != 4:
             raise ValueError("Stair evaluation requires exactly four Go2 foot bodies")
         self.foot_ids = torch.tensor(foot_ids, device=env.device, dtype=torch.long)
+        self.foot_body_names = [self.robot.body_names[index] for index in foot_ids]
         sensor = env.scene.sensors["contact_forces"]
         self.sensor = sensor
         # Match by name instead of assuming sensor and robot body order agree.
@@ -179,6 +180,12 @@ class StairStateCapture:
         self.base_ids = [index for index, name in enumerate(sensor.body_names) if name.lower() == "base"]
         self.shank_ids = [index for index, name in enumerate(sensor.body_names)
                           if any(part in name.lower() for part in ("calf", "thigh", "shank"))]
+        # Attribute the contact-reward bodies in robot order, independently of
+        # the legacy aggregate shank selection and the sensor's body ordering.
+        self.leg_body_names = [name for name in self.robot.body_names
+                               if name.endswith(("_thigh", "_calf"))]
+        self.sensor_leg_ids = torch.tensor([sensor.body_names.index(name) for name in self.leg_body_names],
+                                           device=env.device, dtype=torch.long)
         self.latest = None
 
     def snapshot(self):
@@ -209,6 +216,8 @@ class StairStateCapture:
             "shank_force_n": force_peak[:, self.shank_ids].amax(dim=1) if self.shank_ids else applied[:, 0] * 0,
             "current_base_force_n": current_force[:, self.base_ids].amax(dim=1) if self.base_ids else applied[:, 0] * 0,
             "current_shank_force_n": current_force[:, self.shank_ids].amax(dim=1) if self.shank_ids else applied[:, 0] * 0,
+            "leg_current_normal_force_norm_n": current_force[:, self.sensor_leg_ids].clone(),
+            "leg_history_peak_normal_force_norm_n": force_peak[:, self.sensor_leg_ids].clone(),
             "applied_effort": applied, "torque_saturated": clipped | near_limit,
             "peak_contact_force_n": force_peak.amax(dim=1),
         }
@@ -559,6 +568,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                                   "shank_force_n": state["shank_force_n"][trace_ids].tolist(),
                                   "current_sample_base_force_n": state["current_base_force_n"][trace_ids].tolist(),
                                   "current_sample_shank_force_n": state["current_shank_force_n"][trace_ids].tolist(),
+                                  "leg_current_normal_force_norm_n": state["leg_current_normal_force_norm_n"][trace_ids].tolist(),
+                                  "leg_history_peak_normal_force_norm_n": state["leg_history_peak_normal_force_norm_n"][trace_ids].tolist(),
                                   "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[trace_ids].tolist()})
                 active &= ~(complete | falls | escapes | stalls | nonfinite | dones.bool())
                 if progress is not None and ((step + 1) % 200 == 0 or not bool(active.any())):
@@ -653,6 +664,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
         "status": "passed" if all(trial["passed"] for trial in trials) else "failed",
         "passed": all(trial["passed"] for trial in trials), "geometry": original_geometry, "thresholds": limits,
         "controller": "zero_action" if zero_action else "HIM_policy", "trials": trials,
+        "foot_body_names": capture.foot_body_names,
+        "leg_body_names": capture.leg_body_names,
+        "leg_force_trace_scope": "per-leg arrays follow leg_body_names in robot body order, matched to sensor names; current policy-boundary normal-force norm and retained-history peak norm; sparse traces do not measure contact duration",
         "heading_control": {"enabled": heading_control, "target_yaw_rad": 0.0, "gain": heading_gain,
                             "maximum_yaw_rate_rad_s": max_yaw_rate,
                             "inputs": "root yaw only; standard velocity-command channels"},

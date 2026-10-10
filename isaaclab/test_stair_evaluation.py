@@ -277,6 +277,61 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertEqual(float(state["current_base_force_n"][0]), 4.)
         self.assertEqual(float(state["current_shank_force_n"][0]), 3.)
         self.assertEqual(float(state["shank_force_n"][0]), 9.)
+        self.assertEqual(state["leg_current_normal_force_norm_n"][0].tolist(), [3.])
+        self.assertEqual(state["leg_history_peak_normal_force_norm_n"][0].tolist(), [9.])
+
+    def test_report_names_and_per_leg_trace_match_reordered_sensor_bodies(self):
+        class PerLegWrapped(FakeWrapped):
+            def __init__(self):
+                super().__init__()
+                # Both feet and legs deliberately use noncanonical robot order.
+                self.robot.body_names = ["base", "RR_foot", "FL_foot", "RL_foot", "FR_foot",
+                                         "FR_calf", "RL_thigh", "FL_calf", "RR_thigh",
+                                         "FL_thigh", "RR_calf", "FR_thigh", "RL_calf", "FL_hip"]
+                self.sensor.body_names = list(reversed(self.robot.body_names))
+                count = len(self.robot.body_names)
+                self.robot.data.body_link_pos_w = proxy(torch.zeros(32, count, 3))
+                self.robot.data.body_link_lin_vel_w = proxy(torch.zeros(32, count, 3))
+                self.sensor.data.net_normal_forces_w = proxy(torch.zeros(32, count, 3))
+                self.sensor.data.net_normal_forces_w_history = proxy(torch.zeros(32, 3, count, 3))
+
+            def place(self, x, final=False):
+                super().place(x, final)
+                force = self.sensor.data.net_normal_forces_w.torch
+                history = self.sensor.data.net_normal_forces_w_history.torch
+                force.zero_()
+                history.zero_()
+                for name in self.robot.body_names:
+                    index = self.sensor.body_names.index(name)
+                    if name.endswith("_foot"):
+                        force[:, index, 2] = 10.
+                        history[:, :, index, 2] = 10.
+                legs = [name for name in self.robot.body_names if name.endswith(("_thigh", "_calf"))]
+                for number, name in enumerate(legs, start=1):
+                    index = self.sensor.body_names.index(name)
+                    force[:, index, 0] = float(number)  # Includes horizontal normal forces.
+                    history[:, 0, index] = force[:, index]
+                    history[:, 1, index, 1] = 10. + number
+                # Hip impacts must not enter these reward-body arrays.
+                hip_index = self.sensor.body_names.index("FL_hip")
+                force[:, hip_index, 2] = 100.
+                history[:, :, hip_index, 2] = 100.
+
+        wrapped = PerLegWrapped()
+        result = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=4, record_stride=1)
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["foot_body_names"], ["RR_foot", "FL_foot", "RL_foot", "FR_foot"])
+        expected_names = ["FR_calf", "RL_thigh", "FL_calf", "RR_thigh",
+                          "FL_thigh", "RR_calf", "FR_thigh", "RL_calf"]
+        self.assertEqual(result["leg_body_names"], expected_names)
+        trace = result["trials"][0]["trace"]
+        self.assertGreater(len(trace), 0)
+        for row in trace:
+            self.assertLessEqual(len(row["env_ids"]), 4)
+            self.assertEqual(row["leg_current_normal_force_norm_n"], [list(range(1, 9))] * 4)
+            self.assertEqual(row["leg_history_peak_normal_force_norm_n"], [list(range(11, 19))] * 4)
+            self.assertTrue(all(all(flags) for flags in row["current_sample_contacts"]))
+        self.assertIn("sparse traces do not measure contact duration", result["leg_force_trace_scope"])
 
     def test_cadence_metadata_distinguishes_sample_age_from_count_window(self):
         result = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=0)
