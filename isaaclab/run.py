@@ -97,6 +97,11 @@ def main():
     parser.add_argument("--play_steps", type=int, default=500)
     parser.add_argument("--terrain", choices=["flat", "rough"], default="flat")
     parser.add_argument("--checkpoint", type=Path)
+    parser.add_argument("--warm_start", choices=["reset", "expand"],
+                        help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
+    parser.add_argument("--learning_rate", type=float, default=1e-3)
+    parser.add_argument("--entropy_coef", type=float, default=0.01)
+    parser.add_argument("--save_interval", type=int, default=20)
     parser.add_argument("--run_name", default="smoke")
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--turn_fraction", type=float, default=0.0,
@@ -166,6 +171,9 @@ def main():
         )]
         args.enable_cameras = True
     config = train_config(args.steps_per_env)
+    config["algorithm"]["learning_rate"] = args.learning_rate
+    config["algorithm"]["entropy_coef"] = args.entropy_coef
+    config["runner"]["save_interval"] = args.save_interval
     metadata = {"task": task, "seed": args.seed, "num_envs": args.num_envs, "train": config,
                 "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
                 "physics": "isaacsim_physx", "torch": torch.__version__, "cuda": torch.version.cuda,
@@ -194,7 +202,24 @@ def main():
         runner = HIMOnPolicyRunner(wrapped, config, str(log_dir), args.device)
         print(f"HIM dimensions: actor={wrapped.num_obs}, frame={wrapped.num_one_step_obs}, critic={wrapped.num_privileged_obs}, actions={wrapped.num_actions}", flush=True)
         if args.checkpoint:
-            runner.load(str(args.checkpoint), load_optimizer=args.mode == "train")
+            if args.warm_start:
+                if args.mode != "train":
+                    raise ValueError("--warm_start is only for training")
+                from checkpoint_transfer import warm_start
+                metadata["transfer"] = warm_start(runner, str(args.checkpoint), args.warm_start)
+                (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
+            else:
+                runner.load(str(args.checkpoint), load_optimizer=args.mode == "train")
+        diagnostic = {"root_pos_w": robot.data.root_pos_w.torch[:4].tolist(),
+                      "critic_shape": list(wrapped.get_privileged_observations().shape)}
+        if args.terrain == "rough":
+            scanner = wrapped.env.scene["height_scanner"]
+            scan = wrapped.get_privileged_observations()[:, 48:]
+            diagnostic.update({"scanner_pos_w": scanner.data.pos_w.torch[:4].tolist(),
+                               "ray_hits_z_quantiles": torch.quantile(scanner.data.ray_hits_w.torch[..., 2].flatten(), torch.tensor([0., .25, .5, .75, 1.], device=args.device)).tolist(),
+                               "scan_quantiles": torch.quantile(scan.flatten(), torch.tensor([0., .25, .5, .75, 1.], device=args.device)).tolist(),
+                               "scan_unsaturated_fraction": float((scan.abs() < 4.999).float().mean())})
+        (log_dir / "physics-diagnostic.json").write_text(json.dumps(diagnostic, indent=2))
         if args.mode != "train":
             export_error = export_and_verify(runner.alg.actor_critic, wrapped.get_observations(), log_dir)
         if args.mode == "train":
