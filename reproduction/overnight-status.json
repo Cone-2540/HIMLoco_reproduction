@@ -98,10 +98,35 @@
         "export_max_abs_error": 7.152557373046875e-07,
         "peak_cuda_memory_bytes": 5537812992
       }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_01-27-53_stairs-easy-move200",
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 100,
+        "completed_iterations": 200,
+        "num_envs": 4096,
+        "environment_steps_this_run": 40960000,
+        "training_seconds": 1042.9099642669999,
+        "parameters_finite": true,
+        "checkpoint": "model_200.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 8.344650268554688e-07,
+        "peak_cuda_memory_bytes": 3702045696
+      },
+      "core_evaluation": "isaaclab/logs/2026-10-11_01-46-30_move200-core-checkpoints",
+      "model200_results": {
+        "asc8cm": "0/96",
+        "asc16cm": "0/96",
+        "desc8cm": "95/96",
+        "desc16cm": "84/96"
+      }
     }
   ],
-  "active_run": "isaaclab/logs/2026-10-11_01-27-53_stairs-easy-move200",
-  "next_step": "Higher forward commands, restored adaptive learning rate and exploration; evaluate ascent and descent independently after continuation",
+  "active_run": "bootstrap-discovery120 (see launch log for exact run path)",
+  "next_step": "Assess bootstrap ascent discovery and policy KL; independent lower-stair and core evaluation after120 updates",
   "chosen_num_envs": 6144,
   "learning_rate_initial": 0.0003,
   "schedule_initial": "fixed",
@@ -136,5 +161,23 @@
     "optimizer": "checkpoint Adam and current LR3e-4 restored; adaptive adjusts subsequently",
     "rollout_steps": 100,
     "reward_profile": "faithful"
+  },
+  "current_changes": {
+    "stage": "bootstrap",
+    "height_range": [
+      0.025,
+      0.08
+    ],
+    "num_envs": 4096,
+    "optimizer": "fresh Adam; same-shape actor/HIM/critic weights copied frommodel200",
+    "learning_rate": 0.0003,
+    "schedule": "fixed",
+    "reset_noise_std": 0.5,
+    "speed_range": [
+      0.4,
+      0.8
+    ],
+    "reward": "faithful",
+    "iterations": 120
   }
 }
