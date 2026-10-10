@@ -311,6 +311,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             if not _finite_state(initial):
                 raise RuntimeError("Non-finite initial staircase physics")
             initial_relative = initial["root_pos_w"] - origins
+            last_measured_relative = initial_relative.clone()
+            last_measured_feet = initial["feet_pos_w"] - origins[:, None, :]
             initial_yaw, initial_roll, initial_pitch = _yaw_roll_pitch(initial["root_quat_w"])
             start_valid = ((initial_relative[:, 0] - geometry["start_x"]).abs() < 0.3)
             active = torch.ones(n, device=device, dtype=torch.bool)
@@ -384,6 +386,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 progress_m = relative[:, 0] - initial_relative[:, 0]
                 max_progress = torch.where(valid, torch.maximum(max_progress, progress_m), max_progress)
                 feet_relative = state["feet_pos_w"] - origins[:, None, :]
+                last_measured_relative = torch.where(valid[:, None], relative, last_measured_relative)
+                last_measured_feet = torch.where(valid[:, None, None], feet_relative, last_measured_feet)
                 flight_feet = ((feet_relative[:, :, 0] >= _parameter(geometry.get("first_riser_x", geometry["start_x"]), relative, feet=True))
                                & (feet_relative[:, :, 0] <= _parameter(geometry.get("goal_platform_start_x", geometry["goal_x"]), relative, feet=True)))
                 feet_outside = (feet_relative[:, :, 1] - _parameter(geometry.get("lateral_center_y", 0.0), relative, feet=True)).abs() > _parameter(geometry["width"], relative, feet=True) / 2 + 0.05
@@ -530,6 +534,13 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                             "longest_flight_pause_s": float(longest_pause.max())}, "failure_reason": failure_reason,
                 "per_env": {"completed": complete.tolist(), "fall": falls.tolist(), "stall": stalls.tolist(),
                             "lateral_escape": escapes.tolist(), "max_progress_m": max_progress.tolist(),
+                            "max_progress_definition": "maximum forward displacement from this environment's initial reset position",
+                            "initial_root_relative_xyz_m": initial_relative.tolist(),
+                            "maximum_root_relative_x_m": (initial_relative[:, 0] + max_progress).tolist(),
+                            "last_measured_root_relative_xyz_m": last_measured_relative.tolist(),
+                            "last_measured_feet_relative_xyz_m": last_measured_feet.tolist(),
+                            "first_episode_measured_duration_s": (active_steps * dt).tolist(),
+                            "longest_flight_pause_s": longest_pause.tolist(),
                             "completion_time_s": [float(x) if math.isfinite(float(x)) else None for x in completion_time]},
                 "trace": trace, "cases": case_summaries, "initial_reset_distribution": initial_distribution,
             })

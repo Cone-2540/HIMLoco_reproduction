@@ -105,6 +105,27 @@ def policy(obs):
 
 
 class StairEvaluationTest(unittest.TestCase):
+    def test_report_separates_reset_displacement_from_course_position(self):
+        class OffsetWrapped(FakeWrapped):
+            def reset(self):
+                super().reset()
+                self.place(0.15)
+
+        wrapped = OffsetWrapped()
+        result = evaluate_stairs(wrapped, lambda obs: torch.ones(32, 12), GEOMETRY, seconds=10., seeds=(7,))
+        trial = result["trials"][0]
+        per_env = trial["per_env"]
+        self.assertAlmostEqual(per_env["initial_root_relative_xyz_m"][0][0], 0.15, places=5)
+        initial_x = torch.tensor(per_env["initial_root_relative_xyz_m"])[:, 0]
+        course_max_x = torch.tensor(per_env["maximum_root_relative_x_m"])
+        displacement = torch.tensor(per_env["max_progress_m"])
+        torch.testing.assert_close(course_max_x, initial_x + displacement)
+        final_x = torch.tensor(per_env["last_measured_root_relative_xyz_m"])[:, 0]
+        torch.testing.assert_close(final_x, course_max_x)
+        self.assertEqual(torch.tensor(per_env["last_measured_feet_relative_xyz_m"]).shape, (32, 4, 3))
+        self.assertTrue(all(trial["per_env"]["completed"]))
+        self.assertGreater(per_env["first_episode_measured_duration_s"][0], 0.)
+
     def test_success_requires_complete_flight_and_zero_action_does_not_pass(self):
         result = evaluate_stair_suite(FakeWrapped(), policy, GEOMETRY, seconds=8., seeds=(1, 2), record_envs=0)
         self.assertTrue(result["passed"])
