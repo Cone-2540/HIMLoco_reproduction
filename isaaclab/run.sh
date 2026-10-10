@@ -31,4 +31,4 @@ for arg in "${args[@]}"; do
   fi
 done
 exec "${compose[@]}" exec -T "${extra_args[@]}" -w /workspace/himloco/isaaclab lab \
-  /isaac-sim/python.sh /workspace/himloco/isaaclab/run.py "${args[@]}"
+  /isaac-sim/python.sh -u /workspace/himloco/isaaclab/run.py "${args[@]}"

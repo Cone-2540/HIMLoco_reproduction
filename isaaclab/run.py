@@ -95,7 +95,19 @@ def main():
     parser.add_argument("--max_iterations", type=int, default=1000)
     parser.add_argument("--steps_per_env", type=int, default=100)
     parser.add_argument("--play_steps", type=int, default=500)
-    parser.add_argument("--terrain", choices=["flat", "rough"], default="flat")
+    parser.add_argument("--terrain", choices=["flat", "rough", "stairs"], default="flat")
+    parser.add_argument("--stair_stage", choices=["easy", "standard", "hard"], default="easy")
+    parser.add_argument("--stair_height", type=float)
+    parser.add_argument("--stair_depth", type=float, default=0.27)
+    parser.add_argument("--stair_nosing", type=float, default=0.0)
+    parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
+    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "stock"], default="faithful")
+    parser.add_argument("--speed", type=float, default=0.3)
+    parser.add_argument("--eval_seed", type=int, action="append")
+    parser.add_argument("--eval_randomized", action="store_true")
+    parser.add_argument("--friction", type=float, nargs=2, metavar=("STATIC", "DYNAMIC"))
+    parser.add_argument("--start_level", type=int, default=0)
+    parser.add_argument("--stair_pushes", action="store_true")
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--warm_start", choices=["reset", "expand"],
                         help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
@@ -122,12 +134,18 @@ def main():
     if not torch.cuda.is_available():
         raise RuntimeError("This entry point requires CUDA in the existing Isaac Lab container")
     torch.manual_seed(args.seed)
-    task = "Isaac-Velocity-" + args.terrain.title() + "-UnitreeGo2"
+    task = "Isaac-Velocity-" + ("Rough" if args.terrain == "stairs" else args.terrain.title()) + "-UnitreeGo2"
     cfg, _ = resolve_task_config(task, "", overrides=["physics=isaacsim_physx"])
     cfg.scene.num_envs = args.num_envs
     cfg.seed = args.seed
     cfg.sim.device = args.device
     cfg.sim.use_newton_actuators = False
+    source_usd = cfg.scene.robot.spawn.usd_path
+    shared_usd = Path("/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd")
+    if shared_usd.is_file():
+        # Pin the already downloaded asset, avoiding remote stat timeouts on
+        # every short diagnostic run. Relative USD dependencies stay together.
+        cfg.scene.robot.spawn.usd_path = str(shared_usd)
     cfg.compute_final_obs = True
     cfg.observations = HIMObservations()
     cfg.scene.terrain.visual_material = None
@@ -136,15 +154,53 @@ def main():
     if args.mode == "train" and args.turn_fraction > 0:
         cfg.commands.base_velocity.turn_fraction = args.turn_fraction
     # Add privileged terrain samples only to the critic.
-    if args.terrain == "rough":
+    if args.terrain in ("rough", "stairs"):
         from isaaclab.managers import SceneEntityCfg
         cfg.observations.critic.height_scan = ObservationTermCfg(func=MDP + "height_scan", params={"sensor_cfg": SceneEntityCfg("height_scanner")}, scale=5.0, clip=(-1.0, 1.0))
+    stair_manifest = reward_manifest = None
+    if args.terrain == "stairs":
+        from stair_terrain import configure_stair_terrain
+        from stair_rewards import configure_stair_rewards
+        spec = None
+        if args.mode != "train" or args.stair_height is not None:
+            spec = {"height": args.stair_height if args.stair_height is not None else 0.16,
+                    "depth": args.stair_depth, "direction": args.stair_direction, "nosing": args.stair_nosing}
+        stair_manifest = configure_stair_terrain(cfg, args.stair_stage, spec=spec, seed=args.seed,
+                                                 num_rows=10 if spec is None else 2, num_cols=24 if spec is None else 4)
+        cfg.scene.terrain.max_init_terrain_level = args.start_level
+        reward_manifest = configure_stair_rewards(cfg, args.reward_profile)
+        cfg.episode_length_s = max(args.eval_seconds, 20.0)
+        cfg.commands.base_velocity.heading_command = True
+        cfg.commands.base_velocity.rel_heading_envs = 1.0
+        cfg.commands.base_velocity.rel_standing_envs = 0.0
+        cfg.commands.base_velocity.ranges.lin_vel_x = (0.2, 0.6)
+        cfg.commands.base_velocity.ranges.lin_vel_y = (-0.03, 0.03)
+        cfg.commands.base_velocity.ranges.ang_vel_z = (-0.5, 0.5)
+        cfg.commands.base_velocity.ranges.heading = (0.0, 0.0)
+        cfg.events.reset_base.params["pose_range"] = {"x": (-0.15, 0.15), "y": (-0.12, 0.12), "yaw": (-0.15, 0.15)}
+        cfg.events.reset_base.params["velocity_range"] = {key: (0., 0.) for key in ("x", "y", "z", "roll", "pitch", "yaw")}
+        cfg.events.reset_robot_joints.params["position_range"] = (0.85, 1.15)
+        if not args.stair_pushes:
+            cfg.events.push_robot = None
+        cfg.events.base_com.params["com_range"] = {"x": (-0.02, 0.02), "y": (-0.02, 0.02), "z": (-0.01, 0.01)}
+    if args.friction:
+        static, dynamic = args.friction
+        if not 0 < dynamic <= static:
+            parser.error("Require 0 < dynamic friction <= static friction")
+        cfg.scene.terrain.physics_material.static_friction = 1.0
+        cfg.scene.terrain.physics_material.dynamic_friction = 1.0
+        cfg.events.physics_material.params["static_friction_range"] = (static, static)
+        cfg.events.physics_material.params["dynamic_friction_range"] = (dynamic, dynamic)
     if args.mode in ("play", "evaluate"):
         if args.checkpoint is None:
             parser.error("play/evaluate requires --checkpoint")
         cfg.events.push_robot = None
         cfg.observations.policy.enable_corruption = False
-    if args.mode == "evaluate":
+    if args.terrain == "stairs" and args.mode in ("evaluate", "play"):
+        from stair_evaluation import configure_stair_evaluation
+        configure_stair_evaluation(cfg, stair_manifest["geometry"], seconds=args.eval_seconds,
+                                  speed=args.speed, randomized=args.eval_randomized)
+    elif args.mode == "evaluate":
         from evaluation import configure_evaluation
         configure_evaluation(cfg, seconds=args.eval_seconds)
     elif args.mode == "play" and args.command:
@@ -180,12 +236,15 @@ def main():
                 "gpu": torch.cuda.get_device_name(), "gpu_capability": torch.cuda.get_device_capability(),
                 "python": sys.version, "algorithm_source": "vendored original HIMLoco at ef289ac",
                 "mode": args.mode, "checkpoint": str(args.checkpoint) if args.checkpoint else None,
-                "robot_usd": cfg.scene.robot.spawn.usd_path, "physics_dt": cfg.sim.dt,
+                "robot_usd": cfg.scene.robot.spawn.usd_path, "robot_usd_source": source_usd, "physics_dt": cfg.sim.dt,
                 "policy_decimation": cfg.decimation, "episode_length_s": cfg.episode_length_s,
                 "reward_weights": {name: term.weight for name, term in vars(cfg.rewards).items()
                                    if term is not None and hasattr(term, "weight")},
                 "command_override": args.command, "evaluation_seconds": args.eval_seconds,
                 "video": args.video, "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
+    metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
+                     "friction_override": args.friction, "stair_pushes": args.stair_pushes,
+                     "evaluation_seeds": args.eval_seed, "evaluation_randomized": args.eval_randomized})
     (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
     print(f"RUN: {log_dir}", flush=True)
     with launch_simulation(cfg, args):
@@ -212,7 +271,7 @@ def main():
                 runner.load(str(args.checkpoint), load_optimizer=args.mode == "train")
         diagnostic = {"root_pos_w": robot.data.root_pos_w.torch[:4].tolist(),
                       "critic_shape": list(wrapped.get_privileged_observations().shape)}
-        if args.terrain == "rough":
+        if args.terrain in ("rough", "stairs"):
             scanner = wrapped.env.scene["height_scanner"]
             scan = wrapped.get_privileged_observations()[:, 48:]
             diagnostic.update({"scanner_pos_w": scanner.data.pos_w.torch[:4].tolist(),
@@ -231,11 +290,18 @@ def main():
             export_error = export_and_verify(model, wrapped.get_observations(), log_dir)
             (log_dir / "result.json").write_text(json.dumps({"status": "smoke_passed", "scope": "CUDA training and export; locomotion requires separate evaluation", "iterations": args.max_iterations, "completed_iterations": runner.current_learning_iteration, "num_envs": args.num_envs, "environment_steps_this_run": args.max_iterations * args.steps_per_env * args.num_envs, "training_seconds": time.monotonic() - started, "parameters_finite": True, "checkpoint": f"model_{runner.current_learning_iteration}.pt", "export": "policy.pt", "export_max_abs_error": export_error, "peak_cuda_memory_bytes": torch.cuda.max_memory_allocated()}, indent=2))
         elif args.mode == "evaluate":
-            from evaluation import evaluate_suite
             policy = runner.get_inference_policy(device=args.device)
-            options = {"commands": args.command} if args.command else {}
-            result = evaluate_suite(wrapped, policy, seconds=args.eval_seconds, seed=args.seed,
-                                    progress=lambda metrics: print(json.dumps(metrics), flush=True), **options)
+            if args.terrain == "stairs":
+                from stair_evaluation import evaluate_stair_suite
+                result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
+                                             seconds=args.eval_seconds, speed=args.speed,
+                                             seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
+                                             progress=lambda metrics: print(json.dumps(metrics), flush=True))
+            else:
+                from evaluation import evaluate_suite
+                options = {"commands": args.command} if args.command else {}
+                result = evaluate_suite(wrapped, policy, seconds=args.eval_seconds, seed=args.seed,
+                                        progress=lambda metrics: print(json.dumps(metrics), flush=True), **options)
             result["export_max_abs_error"] = export_error
             (log_dir / "result.json").write_text(json.dumps(result, indent=2))
             print(json.dumps(result, indent=2), flush=True)

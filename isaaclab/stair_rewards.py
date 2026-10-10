@@ -1,0 +1,198 @@
+"""Released HIM reward semantics, transferred to the pinned Isaac Lab Go2 task.
+
+Only training rewards see terrain sensors. No term adds terrain to the actor.
+The ``faithful`` profile uses the released Go1 weights; ``tuned`` is an explicit
+small stair ablation. The controller, asset, and physics remain Go2/Isaac Lab,
+so this profile alone does not establish an identical paper reproduction.
+
+Isaac Lab manager types are imported inside the configuration function. This
+module itself is safe to import before the simulator and in CPU-only tests.
+"""
+
+from __future__ import annotations
+
+import math
+
+import torch
+
+
+def _tensor(value):
+    """Lab 3 stores physics arrays in wrappers exposing a Torch view."""
+    return getattr(value, "torch", value)
+
+
+def _inverse_rotate(quaternion, vectors):
+    """Rotate world vectors into body coordinates; quaternion order is wxyz."""
+    q = quaternion[:, None, 1:].expand_as(vectors)
+    w = quaternion[:, None, :1]
+    return vectors - 2.0 * w * torch.cross(q, vectors, dim=-1) + 2.0 * torch.cross(
+        q, torch.cross(q, vectors, dim=-1), dim=-1
+    )
+
+
+def joint_power_l1(env, asset_cfg):
+    """Original sum(abs(joint velocity) * abs(applied motor torque))."""
+    robot = env.scene[asset_cfg.name]
+    velocity = _tensor(robot.data.joint_vel)[:, asset_cfg.joint_ids]
+    effort = _tensor(robot.actuators.applied_effort)[:, asset_cfg.joint_ids]
+    return (velocity.abs() * effort.abs()).sum(dim=1)
+
+
+def foot_clearance_body_l2(env, asset_cfg, target_height=-0.20):
+    """Original body-relative foot-height error weighted by relative XY speed.
+
+    This does not prescribe world foot height while ascending. It also does not
+    reward prolonged flight or large swings beyond the target height.
+    """
+    robot = env.scene[asset_cfg.name]
+    root_position = _tensor(robot.data.root_pos_w)
+    root_velocity = _tensor(robot.data.root_lin_vel_w)
+    quaternion = _tensor(robot.data.root_quat_w)
+    foot_position = _tensor(robot.data.body_pos_w)[:, asset_cfg.body_ids]
+    foot_velocity = _tensor(robot.data.body_lin_vel_w)[:, asset_cfg.body_ids]
+    body_position = _inverse_rotate(quaternion, foot_position - root_position[:, None, :])
+    body_velocity = _inverse_rotate(quaternion, foot_velocity - root_velocity[:, None, :])
+    error = (body_position[..., 2] - target_height).square()
+    return (error * body_velocity[..., :2].norm(dim=-1)).sum(dim=1)
+
+
+def terrain_relative_base_height_l2(
+    env, asset_cfg, sensor_cfg, target_height=0.30, footprint=(0.15, 0.20)
+):
+    """Original close-under-base terrain-relative clearance penalty.
+
+    The preferred sensor is the dedicated 0.30 x 0.40 m base-height grid. The
+    footprint filter also makes the existing broad critic grid usable without
+    allowing distant stair treads to raise or lower the clearance target. Ray
+    origins are deliberately ignored: the scanner begins 20 m above the base.
+    Invalid/missed rays are excluded; no valid ray contributes zero penalty and
+    must be rejected separately by scene validation, rather than producing NaN.
+    """
+    robot = env.scene[asset_cfg.name]
+    root = _tensor(robot.data.root_pos_w)
+    hits = _tensor(env.scene[sensor_cfg.name].data.ray_hits_w)
+    quaternion = _tensor(robot.data.root_quat_w)
+    w, x, y, z = quaternion.unbind(dim=1)
+    yaw = torch.atan2(2.0 * (w * z + x * y), 1.0 - 2.0 * (y.square() + z.square()))
+    delta = hits[..., :2] - root[:, None, :2]
+    local_x = yaw.cos()[:, None] * delta[..., 0] + yaw.sin()[:, None] * delta[..., 1]
+    local_y = -yaw.sin()[:, None] * delta[..., 0] + yaw.cos()[:, None] * delta[..., 1]
+    valid = torch.isfinite(hits).all(dim=-1)
+    valid &= (local_x.abs() <= footprint[0] + 1e-4) & (local_y.abs() <= footprint[1] + 1e-4)
+    count = valid.sum(dim=1)
+    terrain_height = torch.where(valid, hits[..., 2], 0.0).sum(dim=1) / count.clamp_min(1)
+    error = root[:, 2] - terrain_height - target_height
+    return torch.where(count > 0, error.square(), 0.0)
+
+
+def _step_history(env, key, value):
+    """Cache one value per policy step, clearing rows at episode boundaries.
+
+    ManagerBasedRLEnv increments episode_length_buf before reward computation,
+    so a value <= 1 identifies the first reward after automatic/manual reset.
+    A repeated diagnostic call within the same step never advances history.
+    """
+    step = int(env.common_step_counter)
+    state = getattr(env, key, None)
+    if state is None:
+        state = {"step": -1, "value": torch.zeros_like(value), "previous": torch.zeros_like(value)}
+        setattr(env, key, state)
+    if state["step"] != step:
+        reset = env.episode_length_buf <= 1
+        state["previous"] = torch.where(reset[:, None], 0.0, state["value"])
+        state["value"] = value.clone()
+        state["step"] = step
+    return state["previous"]
+
+
+def action_smoothness_l2(env):
+    """Original sum((a[t] - 2*a[t-1] + a[t-2])**2), with reset-safe history."""
+    action = env.action_manager.action
+    previous = env.action_manager.prev_action
+    older = _step_history(env, "_him_previous_action_history", previous)
+    return (action - 2.0 * previous + older).square().sum(dim=1)
+
+
+def policy_joint_acceleration_l2(env, asset_cfg):
+    """Original joint-velocity difference over a policy step, not a physics step."""
+    current = _tensor(env.scene[asset_cfg.name].data.joint_vel)[:, asset_cfg.joint_ids]
+    previous = _step_history(env, "_him_joint_velocity_history", current)
+    return ((current - previous) / env.step_dt).square().sum(dim=1)
+
+
+def feet_slide_l2(env, sensor_cfg, asset_cfg, threshold=1.0):
+    """Small tuned-only penalty for horizontal foot speed during real contact."""
+    sensor = env.scene[sensor_cfg.name]
+    force = _tensor(sensor.data.net_normal_forces_w_history)[:, :, sensor_cfg.body_ids]
+    contact = force.norm(dim=-1).amax(dim=1) > threshold
+    velocity = _tensor(env.scene[asset_cfg.name].data.body_lin_vel_w)[:, asset_cfg.body_ids, :2]
+    return (velocity.square().sum(dim=-1) * contact).sum(dim=1)
+
+
+def configure_stair_rewards(cfg, profile="faithful"):
+    """Replace stock rewards before launch and return serializable provenance.
+
+    Call after terrain configuration has installed ``base_height_scanner``.
+    ``stock`` leaves the task configuration unchanged for migration comparisons.
+    Both non-stock presets preserve the original 0.25 tracking variance,
+    first/second action differences, energy and body-relative clearance terms.
+    """
+    if profile not in ("faithful", "tuned", "stock"):
+        raise ValueError("reward profile must be faithful, tuned, or stock")
+    if profile == "stock":
+        return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
+    from isaaclab.managers import RewardTermCfg, SceneEntityCfg
+
+    sensor_name = "base_height_scanner"
+    if getattr(cfg.scene, sensor_name, None) is None:
+        sensor_name = "height_scanner"
+    if getattr(cfg.scene, sensor_name, None) is None:
+        raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
+
+    # Prevent residual stock torque/air-time/position-limit rewards from silently
+    # changing the released objective when the source task adds optional terms.
+    for name, term in list(vars(cfg.rewards).items()):
+        if term is not None and hasattr(term, "weight"):
+            setattr(cfg.rewards, name, None)
+    robot = SceneEntityCfg("robot")
+    feet = SceneEntityCfg("robot", body_names=".*_foot", preserve_order=True)
+    scan = SceneEntityCfg(sensor_name)
+    mdp = "isaaclab.envs.mdp:"
+    custom = "stair_rewards:"
+
+    def add(name, function, weight, **params):
+        setattr(cfg.rewards, name, RewardTermCfg(func=function, weight=weight, params=params))
+
+    add("track_lin_vel_xy_exp", mdp + "track_lin_vel_xy_exp", 1.0,
+        command_name="base_velocity", std=math.sqrt(0.25))
+    add("track_ang_vel_z_exp", mdp + "track_ang_vel_z_exp", 0.5,
+        command_name="base_velocity", std=math.sqrt(0.25))
+    add("lin_vel_z_l2", mdp + "lin_vel_z_l2", -2.0 if profile == "faithful" else -0.5)
+    add("ang_vel_xy_l2", mdp + "ang_vel_xy_l2", -0.05)
+    add("flat_orientation_l2", mdp + "flat_orientation_l2", -0.2 if profile == "faithful" else -0.1)
+    add("dof_acc_l2", custom + "policy_joint_acceleration_l2", -2.5e-7, asset_cfg=robot)
+    add("joint_power", custom + "joint_power_l1", -2e-5, asset_cfg=robot)
+    add("base_height", custom + "terrain_relative_base_height_l2", -1.0,
+        asset_cfg=robot, sensor_cfg=scan, target_height=0.30)
+    add("foot_clearance", custom + "foot_clearance_body_l2", -0.01,
+        asset_cfg=feet, target_height=-0.20)
+    add("action_rate_l2", mdp + "action_rate_l2", -0.01)
+    add("action_smoothness", custom + "action_smoothness_l2", -0.01)
+    if profile == "tuned":
+        add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
+            sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
+    return {
+        "profile": profile,
+        "source": "released HIMLoco Go1 config/reward code at ef289ac",
+        "base_height_sensor": sensor_name,
+        "height_target_m": 0.30,
+        "body_foot_height_target_m": -0.20,
+        "joint_acceleration_interval": "policy step",
+        "weights": {name: term.weight for name, term in vars(cfg.rewards).items()
+                    if term is not None and hasattr(term, "weight")},
+        "tuned_changes": [] if profile == "faithful" else [
+            "vertical velocity penalty -2 -> -0.5",
+            "orientation penalty -0.2 -> -0.1",
+            "contact-only foot slip penalty -0.05",
+        ],
+    }

@@ -1,0 +1,166 @@
+"""CPU geometry tests, including the void under physical nosing collision slabs."""
+
+import unittest
+from copy import deepcopy
+from types import SimpleNamespace as NS
+
+import numpy as np
+import torch
+from isaaclab.terrains import TerrainGenerator
+
+from stair_terrain import (
+    StraightStairTerrainCfg, build_stair_generator, configure_stair_terrain,
+    heldout_stair_specs, stair_corridor_exit, stair_meshes, stair_metadata,
+    stair_goal_reached, stair_terrain_curriculum,
+)
+
+
+def covered_by_box_union(meshes, point):
+    """Exact for these axis-aligned closed boxes, avoiding optional rtree extras."""
+    point = np.asarray(point)
+    return any(np.all(point > mesh.bounds[0] + 1e-9) and np.all(point < mesh.bounds[1] - 1e-9)
+               for mesh in meshes)
+
+
+class StairGeometryTest(unittest.TestCase):
+    def test_six_risers_treads_and_landing_coordinates_for_both_directions(self):
+        for direction in ("asc", "desc"):
+            cfg = StraightStairTerrainCfg(size=(8., 3.), direction=direction, step_height_range=(.16, .16),
+                                          step_depth=.27, nosing=0.)
+            meshes, origin = stair_meshes(.5, cfg)
+            meta = stair_metadata(.16, .27, 0., direction)
+            np.testing.assert_allclose(origin, meta["terrain_local_origin"])
+            self.assertEqual(len(meta["treads"]), 6)
+            self.assertEqual(meta["first_riser_x"], 1.)
+            self.assertAlmostEqual(meta["last_riser_x"], 2.35)
+            self.assertAlmostEqual(meta["goal_x"], 3.27)
+            self.assertEqual(meta["landing_length"], 2.)
+            for tread in meta["treads"]:
+                x = (tread["x_min"] + tread["x_max"]) / 2 + origin[0]
+                top = tread["top_z"] + origin[2]
+                self.assertTrue(covered_by_box_union(meshes, (x, origin[1], top - .01)))
+                self.assertFalse(covered_by_box_union(meshes, (x, origin[1], top + .01)))
+            goal = origin + np.array([meta["goal_x"], 0, meta["goal_platform_z"]])
+            self.assertTrue(covered_by_box_union(meshes, goal + [0, 0, -.01]))
+            self.assertFalse(covered_by_box_union(meshes, goal + [0, 0, .01]))
+            self.assertTrue(all(mesh.is_watertight and mesh.is_winding_consistent for mesh in meshes))
+
+    def test_real_overhang_has_underside_and_empty_space_above_lower_surface(self):
+        height, nose, thickness = .17, .03, .02
+        for direction in ("asc", "desc"):
+            cfg = StraightStairTerrainCfg(size=(8., 3.), direction=direction,
+                                          step_height_range=(height, height), step_depth=.25,
+                                          nosing=nose, nosing_thickness=thickness)
+            meshes, origin = stair_meshes(.0, cfg)
+            riser = origin[0] + 1.0
+            lip_x = riser - nose / 2 if direction == "asc" else riser + nose / 2
+            higher = height if direction == "asc" else 6 * height
+            self.assertTrue(covered_by_box_union(meshes, (lip_x, origin[1], higher - thickness / 2)))
+            self.assertFalse(covered_by_box_union(meshes, (lip_x, origin[1], higher - thickness - .01)))
+            slabs = [mesh for mesh in meshes if mesh.metadata["role"].endswith("nosing")]
+            self.assertEqual(len(slabs), 6)
+            self.assertTrue(all((mesh.face_normals[:, 2] < -.99).any() for mesh in slabs))
+            # The first upward riser retains the complete requested 3 cm lip.
+            first = slabs[0]
+            self.assertAlmostEqual(first.bounds[1, 0] - first.bounds[0, 0],
+                                   (.25 if direction == "asc" else 2.0) + nose)
+            self.assertFalse(cfg.convert_to_heightfield)
+
+    def test_generator_integration_moves_mesh_and_spawn_origin_together(self):
+        cfg = build_stair_generator(spec={"height": .16, "depth": .27, "direction": "desc", "nosing": .02},
+                                    num_rows=1, num_cols=2, seed=3)
+        generator = TerrainGenerator(cfg=cfg, device="cpu")
+        self.assertEqual(generator.terrain_origins.shape, (1, 2, 3))
+        self.assertTrue(np.isfinite(generator.terrain_mesh.vertices).all())
+        self.assertTrue(np.isfinite(generator.terrain_origins).all())
+        np.testing.assert_allclose(generator.terrain_origins[0, 1] - generator.terrain_origins[0, 0], [0, 3, 0])
+        self.assertAlmostEqual(generator.terrain_origins[0, 0, 2], .96)
+        self.assertFalse(cfg.sub_terrains["heldout"].convert_to_heightfield)
+
+    def test_hard_stage_contains_full_range_directions_and_every_lip(self):
+        cfg = build_stair_generator("hard", num_cols=12)
+        variants = list(cfg.sub_terrains.values())
+        self.assertEqual(len(variants), 48)
+        self.assertGreaterEqual(cfg.num_cols, len(variants))
+        self.assertEqual({term.direction for term in variants}, {"asc", "desc"})
+        self.assertEqual({term.nosing for term in variants}, {0, .01, .02, .03})
+        self.assertEqual({term.step_depth for term in variants}, {.2, .25, .27, .3, .35, .4})
+        self.assertTrue(all(term.step_height_range == (.08, .23) for term in variants))
+        self.assertTrue(all(not term.convert_to_heightfield for term in variants))
+        for spec in heldout_stair_specs():
+            selected = build_stair_generator("easy", spec=spec, num_rows=1, num_cols=1)
+            meshes, _ = stair_meshes(.5, selected.sub_terrains["heldout"].replace(size=selected.size))
+            self.assertGreater(len(meshes), 1)
+
+    def test_invalid_geometry_does_not_create_mesh(self):
+        for params in ({"step_height": 0}, {"step_depth": .01, "nosing": .02},
+                       {"direction": "sideways"}, {"size": (3., 3.)}, {"nosing": -.01},
+                       {"step_height": float("nan")}):
+            with self.assertRaises(ValueError):
+                stair_metadata(**params)
+
+    def test_directed_curriculum_does_not_reward_backwards_distance_or_fall(self):
+        generator = build_stair_generator("easy", num_rows=2, num_cols=8)
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=torch.tensor([0, 0, 0, 0]),
+                     terrain_levels=torch.zeros(4, dtype=torch.long))
+        recorded = []
+        terrain.update_env_origins = lambda ids, up, down: recorded.append((ids.clone(), up.clone(), down.clone()))
+        data = NS(root_pos_w=NS(torch=torch.tensor([[5., 0., 0.], [-5., 0., 0.], [5., 0., 0.], [.1, .8, 0.]])))
+        env = NS(device="cpu", scene={"robot": NS(data=data)},
+                 termination_manager=NS(terminated=torch.tensor([False, False, True, True])))
+        # Add scene attributes required by the real manager term.
+        class Scene(dict):
+            pass
+        env.scene = Scene(env.scene)
+        env.scene.terrain, env.scene.env_origins = terrain, torch.zeros(4, 3)
+        stair_terrain_curriculum(env, [0, 1, 2, 3])
+        torch.testing.assert_close(recorded[0][1], torch.tensor([True, False, False, False]))
+        torch.testing.assert_close(recorded[0][2], torch.tensor([False, True, True, True]))
+        torch.testing.assert_close(stair_corridor_exit(env), torch.tensor([False, False, False, True]))
+
+    def test_training_goal_requires_feet_upright_height_and_corridor(self):
+        generator = build_stair_generator("easy", num_rows=2, num_cols=8)
+        n = 7
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=torch.zeros(n, dtype=torch.long))
+        roots = torch.tensor([[3.5, 0., .3]]).repeat(n, 1)
+        roots[1, 0], roots[2, 1], roots[3, 2] = 2., .7, .1
+        gravity = torch.tensor([[0., 0., -1.]]).repeat(n, 1)
+        gravity[4, 2] = -.7
+        feet = torch.tensor([[[3.1, 0., 0.]]]).repeat(n, 4, 1)
+        feet[5, 0, 0] = 1.5
+        hits = torch.zeros(n, 63, 3)
+        hits[6, 0, 2] = float("inf")
+        calls = []
+        robot = NS(data=NS(root_pos_w=NS(torch=roots), projected_gravity_b=NS(torch=gravity),
+                           body_pos_w=NS(torch=feet)))
+        robot.find_bodies = lambda name: (calls.append(name) or ([0, 1, 2, 3], ["foot"] * 4))
+        class Scene(dict):
+            pass
+        scene = Scene(robot=robot, base_height_scanner=NS(data=NS(ray_hits_w=NS(torch=hits))))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(n, 3)
+        env = NS(device="cpu", scene=scene)
+        expected = torch.tensor([True, False, False, False, False, False, False])
+        torch.testing.assert_close(stair_goal_reached(env), expected)
+        cached = env._him_stair_column_geometry
+        torch.testing.assert_close(stair_goal_reached(env), expected)
+        self.assertIs(cached, env._him_stair_column_geometry)
+        self.assertEqual(len(calls), 1)
+
+    def test_goal_timeout_is_only_enabled_for_training(self):
+        class Scanner(NS):
+            def copy(self):
+                return deepcopy(self)
+        cfg = NS(scene=NS(height_scanner=Scanner(), terrain=NS()), sim=NS(dt=.005),
+                 decimation=4, terminations=NS(), curriculum=NS())
+        manifest = configure_stair_terrain(cfg)
+        self.assertFalse(manifest["heldout"])
+        self.assertTrue(cfg.terminations.stair_goal_reached.time_out)
+        self.assertEqual(cfg.scene.base_height_scanner.update_period, .02)
+        manifest = configure_stair_terrain(cfg, spec={"height": .17, "depth": .25, "nosing": .03})
+        self.assertTrue(manifest["heldout"])
+        self.assertIsNone(cfg.terminations.stair_goal_reached)
+        self.assertIsNone(cfg.curriculum.terrain_levels)
+
+
+if __name__ == "__main__":
+    unittest.main()
