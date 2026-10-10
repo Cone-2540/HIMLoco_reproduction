@@ -194,3 +194,75 @@ The launcher option `--viz none` was checked separately. Construction seeds
 seeds remain 101/211/307. This checks syntax and CLI types/options only; the
 checkpoint/profile placeholders still require a frozen real selection, and
 none of these evaluation templates has been run as part of this audit.
+
+## Actual frozen-validation script audit
+
+`reproduction/run-frozen-stair-validation.sh` now checks the plan before any
+output directory creation and again before each simulation launch. Required
+top-level freeze fields are `status="frozen"`, `checkpoint`, `reward_profile`
+and `checkpoint_sha256`. The requested checkpoint must resolve to that exact
+file inside this repository, and its SHA-256 must match. The existing final
+geometry, standard heading geometry and acceptance-file paths and hashes must
+also match. Required heading fields are `heading_geometry_file` and
+`heading_geometry_sha256`. A nonempty `implementation_source_sha256` mapping
+must include `isaaclab/run.py`; its keys are repository-relative runtime Python
+paths, including the vendored algorithm files and excluding tests. Every
+listed source file is hash-checked before every launch. `source_git_commit`
+records provenance and is not a guard restriction, so report-only changes can
+be committed without invalidating the frozen algorithm. The guard
+rejects protocol fields that differ from the script's durations, counts,
+seeds, speeds, material pairs, dynamics schedule or flat commands. A copy of
+the accepted plan is saved with the output logs.
+
+Execution order prioritizes the two nominal speeds, the three foot-material
+scenes, the paired heading scenes and flat regression; the three dynamics
+construction seeds run last. Each launch prints start/end wall-clock times,
+elapsed time to milliseconds and process exit status. No automatic skipping
+or budget-based stopping is added.
+
+CPU-only temporary repository fixtures verified all 11 actual expanded CLI
+calls: eight final-matrix scenes (including three construction seeds for
+combined dynamics), two paired heading scenes, and one flat scene. Eight
+invalid initial freeze fixtures and ten additional heading/source fixtures
+were rejected before any simulator call or log directory creation. Altering
+the checkpoint or runtime source after the first shadow launch was rejected
+before the second launch. Report-only changes and a different provenance-only
+`source_git_commit` were accepted. `bash -n` and whitespace checks pass.
+No actual validation scene was launched in these checks.
+
+All staircase calls retain matching zero-action controls. The requested
+duration ceiling is 10 × 40 s × 3 reset seeds × 2 controllers = 2400
+simulation seconds, plus six flat commands × 20 s × 2 controllers = 240 s.
+At 20 ms policy/5 ms physics cadence this is at most 132,000 policy-batch
+steps and 528,000 physics-batch steps. Staircase trials stop when all their
+first episodes finish or fail, so actual steps are lower; flat trials
+normally execute their full duration. These simulated durations are not
+wall-clock predictions, and environments run in parallel.
+
+The flat call explicitly retains the frozen profile and uses
+`--warm_start reset` to transfer actor/HIM tensors into the flat critic architecture. It
+does not train the policy; six forward/backward/lateral/turn commands and
+matching zero-action controls exercise behavior outside staircase tracking.
+A CPU transfer check copied 22 actor/HIM/std tensors, retained eight fresh
+critic tensors, produced bit-identical actions on 17 observation rows, and
+kept weights unchanged after five inference calls without optimizer updates.
+Flat regression uses one nominal seed and does not establish flat robustness
+across reset seeds or randomized dynamics.
+
+Recent 768-environment suites used roughly 1.42–4.35 wall seconds per actual
+simulation second, with about 9–10 s from scene metadata to policy export.
+A successful 10-scene stair workload around 600–780 simulation seconds plus
+the flat suite gives a planning estimate of **25–70 minutes**, before any
+teardown hangs or continuous-video recording. Trials that frequently reach
+the full 40 s limit can increase this to roughly 1–3 hours. The 30 s teardown
+watchdog can add up to 5.5 minutes across 11 launches. These are estimates
+from recent runs, not a completion deadline or benchmark guarantee.
+
+The script does not record video or dense 20 ms traces. Freeze-matched,
+policy-only recordings in both directions remain a separate required step
+before a continuous smoothness claim. Source-manifest coverage depends on
+recording all relevant runtime modules, not just their entry point.
+Acceptance SHA-256 freezes the declared criteria, while `assess_final`
+currently applies matching hardcoded defaults rather than loading that JSON.
+Simulation process exit success means results were produced; inspect each
+saved `result.json` and `final_acceptance` to decide whether a gate passed.

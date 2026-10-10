@@ -94,3 +94,12 @@ Actual initial/final foot readbacks exist for standard370 and hard570: static fr
 The report preserves case/seed counts and unique failure endpoints. A pause flag is not a smoothness certificate. Increased hard-stair capability must be judged with standard regression, lateral tracking, per-case minimum completion and contact/action/jerk tradeoffs together.
 
 Sources: raw result paths, checkpoints, pairing checks, readback paths and numerical per-case metrics are in `stair-refinement-comparison.json`. Earlier `stair-hard520-analysis.md` and its artifacts are preserved.
+
+
+## Subsequent matched faithful control
+
+The later `stair-matched-contact-ablation.md` is complete. It compares equal 50 and 100 updates from model570, with the same learning rate, Adam recovery, training seed and checked terrain/configuration controls. At 0.5 m/s all four policies complete 2304/2304. Contact reduces current leg contact in all 24 cases at both update counts, with different quality tradeoffs: after 50 updates most action/slip metrics worsen; after 100 updates action variation and jerk mostly improve while descent lateral and tracking errors increase.
+
+At 0.3 m/s, faithful620 completes 2292/2304 and fails three case/seed gates. faithful670 and contact620 each complete 2302/2304 and pass all 72 case/seed gates, retaining two stalls and maximum pauses of 3.76 and 3.62 s. contact670 also completes 2302/2304, but two stalls concentrate in case 15/seed 29, only 30/32, so it fails the original gate. Keep contact620 and faithful670 for independent final comparison; this reused tuning matrix does not certify smoothness.
+
+The original comparison against model570 changes reward, learning rate and maximum initial terrain level together. The matched control refines its interpretation without replacing its historical numeric evidence. One training seed and saved manifest/dirty-source limits support this realization; they do not establish broad reward causality or arbitrary stair generalization.

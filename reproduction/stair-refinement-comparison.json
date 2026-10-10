@@ -59429,5 +59429,17 @@
         -0.415016
       ]
     }
+  },
+  "subsequent_matched_faithful_control": {
+    "status": "complete_two_speed_matched_training_ablation",
+    "report": "reproduction/stair-matched-contact-ablation.json",
+    "scope": "Equal 50 and 100 added-update faithful/contact continuations from model570, both fixed learning rate 0.0001, retained Adam state and identical checked controls; training seed 1 only",
+    "gate_qualified_two_speed_tuning_candidates": [
+      "faithful670",
+      "contact620"
+    ],
+    "high_speed_findings": "All four policies complete 2304/2304 at 0.5 m/s. Contact current leg fractions are lower in all 24 cases at both update counts. At 50 added updates most action/slip metrics worsen; at 100 added updates action is lower in 20/24 and jerk in 22/24, with higher descending lateral and tracking errors.",
+    "low_speed_findings": "faithful620 completes 2292/2304 and fails three case/seed gates. faithful670 and contact620 each complete 2302/2304 with all 72 case/seed gates passing, but retain two stalls and maximum pauses 3.76/3.62 s. contact670 completes 2302/2304 but concentrates two stalls in case15/seed29, 30/32, and fails the original gate.",
+    "confounding_limit": "The original model570-versus-contact620 comparison changes reward, optimizer schedule and maximum initial terrain level together. The later control matches these checked controls, with one training seed and dirty runtime-source limits; it does not justify broad causal attribution."
   }
 }

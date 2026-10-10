@@ -61,10 +61,26 @@ check_hash(frozen_checkpoint, plan.get("checkpoint_sha256"), "checkpoint")
 for path_key, hash_key, required_relative in (
     ("final_geometry_file", "final_geometry_sha256", "reproduction/stair-heldout-final.json"),
     ("acceptance_file", "acceptance_sha256", "reproduction/stair-acceptance.json"),
+    ("heading_geometry_file", "heading_geometry_sha256", "reproduction/stair-validation-core-standard.json"),
 ):
     path = repo_file(plan.get(path_key), path_key)
     require(path == (root / required_relative).resolve(), f"{path_key} differs from this script")
     check_hash(path, plan.get(hash_key), path_key)
+
+implementation_sources = plan.get("implementation_source_sha256")
+require(isinstance(implementation_sources, dict) and bool(implementation_sources),
+        "a nonempty implementation_source_sha256 dictionary is required")
+require("isaaclab/run.py" in implementation_sources,
+        "implementation_source_sha256 must include isaaclab/run.py")
+for relative, expected in implementation_sources.items():
+    require(isinstance(relative, str) and bool(relative), "invalid implementation source path")
+    relative_path = Path(relative)
+    require(not relative_path.is_absolute() and ".." not in relative_path.parts,
+            f"implementation source paths must be repository-relative: {relative}")
+    require(relative_path.suffix == ".py" and "tests" not in relative_path.parts
+            and not relative_path.name.startswith("test_") and relative_path.name != "conftest.py",
+            f"implementation source manifest must contain runtime Python files, not tests: {relative}")
+    check_hash(repo_file(relative, "implementation source"), expected, f"implementation source {relative}")
 
 # The protocol is explicit in the shell; refuse silently divergent plan values.
 require(plan.get("seconds") == 40 and plan.get("envs") == 512,
@@ -105,9 +121,18 @@ run_checked() {
   local validation_name=$1
   shift
   validate_freeze
+  local wall_start_ns wall_end_ns wall_elapsed_ns command_exit=0
+  wall_start_ns=$(date +%s%N)
   printf 'Starting %s at %s\n' "$validation_name" "$(date --iso-8601=seconds)"
   bash isaaclab/run.sh "$@" --run_name "$validation_name" \
-    > "$validation_logs/$validation_name.log" 2>&1
+    > "$validation_logs/$validation_name.log" 2>&1 || command_exit=$?
+  wall_end_ns=$(date +%s%N)
+  wall_elapsed_ns=$((wall_end_ns - wall_start_ns))
+  printf 'Finished %s at %s; elapsed %d.%03d s; command exit %d\n' \
+    "$validation_name" "$(date --iso-8601=seconds)" \
+    "$((wall_elapsed_ns / 1000000000))" "$(((wall_elapsed_ns % 1000000000) / 1000000))" \
+    "$command_exit"
+  return "$command_exit"
 }
 run_final() {
   local validation_name=$1
@@ -119,10 +144,6 @@ run_final frozen-final-speed05 --speed 0.5 --domain_profile none
 run_final frozen-foot-nominal-speed03 --speed 0.3 --domain_profile basic --friction 0.8 0.6
 run_final frozen-foot-low-speed03 --speed 0.3 --domain_profile basic --friction 0.45 0.35
 run_final frozen-foot-high-speed03 --speed 0.3 --domain_profile basic --friction 1.0 0.8
-for construction_seed in 71 73 79; do
-  run_final "frozen-dynamics-seed-$construction_seed-speed03" --speed 0.3 \
-    --domain_profile robust --eval_dynamics --friction 0.8 0.6 --seed "$construction_seed"
-done
 heading=(evaluate --terrain stairs --checkpoint "$selected_checkpoint"
   --reward_profile "$selected_profile" --stair_batch reproduction/stair-validation-core-standard.json
   --num_envs 384 --eval_seconds 40 --eval_randomized --speed 0.3
@@ -134,4 +155,8 @@ run_checked frozen-stair-policy-flat-regression evaluate --terrain flat \
   --warm_start reset --num_envs 64 --eval_seconds 20 --viz none \
   --command 0.3 0 0 --command 0.5 0 0 --command -0.5 0 0 \
   --command 0 0.3 0 --command 0 0 0.5 --command 0 0 -0.5
+for construction_seed in 71 73 79; do
+  run_final "frozen-dynamics-seed-$construction_seed-speed03" --speed 0.3 \
+    --domain_profile robust --eval_dynamics --friction 0.8 0.6 --seed "$construction_seed"
+done
 printf 'Frozen validation commands finished at %s\n' "$(date --iso-8601=seconds)"
