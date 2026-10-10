@@ -1,6 +1,31 @@
 """Explicit flat-to-terrain transfer; optimizer moments never cross shapes."""
 
+import math
+
 import torch
+
+
+def override_resume_learning_rate(runner, learning_rate):
+    """Explicitly change resumed PPO/HIM LR while retaining all Adam moments.
+
+    PPO passes its current rate into every estimator update, so set both rates
+    and all groups together. This helper does not reload/reset any parameters,
+    optimizer state, learning iteration or counters.
+    """
+    if not math.isfinite(learning_rate) or learning_rate <= 0:
+        raise ValueError("Require a finite positive resume learning rate")
+    algorithm = runner.alg
+    estimator = algorithm.actor_critic.estimator
+    before = {
+        "ppo": [group["lr"] for group in algorithm.optimizer.param_groups],
+        "estimator": [group["lr"] for group in estimator.optimizer.param_groups],
+    }
+    for component in (algorithm, estimator):
+        component.learning_rate = float(learning_rate)
+        for group in component.optimizer.param_groups:
+            group["lr"] = float(learning_rate)
+    return {"before": before, "after": float(learning_rate),
+            "optimizer_state": "retained", "training_iteration": runner.current_learning_iteration}
 
 
 def warm_start(runner, path, critic_mode="reset"):

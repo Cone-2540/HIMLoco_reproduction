@@ -24,7 +24,7 @@ bash isaaclab/run.sh train --terrain stairs --stair_stage easy \
   --learning_rate 0.0003 --lr_schedule fixed --run_name stairs-easy --viz none
 ```
 
-`expand` 暖启动保留 actor、HIM 与匹配的 critic 权重，新增高度输入列初始化为零，并使用新优化器。平地 48 维 critic 不能直接恢复到楼梯 235 维 critic。已有楼梯模型普通恢复会加载优化器及其实际学习率；`--learning_rate` 不会覆盖该值。要改变恢复学习率，明确使用 `--warm_start expand` 重建优化器；同形状 critic 会完整保留。`--reset_noise_std` 是训练探索调整，需在记录中说明。
+`expand` 暖启动保留 actor、HIM 与匹配的 critic 权重，新增高度输入列初始化为零，并使用新优化器。平地 48 维 critic 不能直接恢复到楼梯 235 维 critic。已有楼梯模型普通恢复会加载优化器及其实际学习率；`--learning_rate` 不会覆盖该值。要保留 Adam 动量并降低续训步长，显式传 `--resume_learning_rate 0.0001`，PPO 和 HIM 两个优化器一起调整，前后值写入配置；`--warm_start expand` 则重建优化器并保留同形状 critic 权重。`--reset_noise_std` 是训练探索调整，需在记录中说明。
 
 ## 独立验收
 

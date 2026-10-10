@@ -121,6 +121,8 @@ def main():
     parser.add_argument("--warm_start", choices=["reset", "expand"],
                         help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
     parser.add_argument("--learning_rate", type=float, default=1e-3)
+    parser.add_argument("--resume_learning_rate", type=float,
+                        help="Explicit training-resume PPO/HIM LR override, retaining Adam moments.")
     parser.add_argument("--lr_schedule", choices=["adaptive", "fixed"], default="adaptive")
     parser.add_argument("--entropy_coef", type=float, default=0.01)
     parser.add_argument("--reset_noise_std", type=float,
@@ -148,6 +150,11 @@ def main():
         parser.error("--candidate_checkpoint requires evaluate mode")
     if args.reset_noise_std is not None and (args.mode != "train" or args.reset_noise_std <= 0):
         parser.error("--reset_noise_std requires train mode and a positive value")
+    if args.resume_learning_rate is not None:
+        import math
+        if (args.mode != "train" or args.checkpoint is None or args.warm_start is not None
+                or not math.isfinite(args.resume_learning_rate) or args.resume_learning_rate <= 0):
+            parser.error("--resume_learning_rate requires ordinary training resume and a finite positive value")
     if not 0 < args.stair_speed_range[0] <= args.stair_speed_range[1]:
         parser.error("Require 0 < stair speed minimum <= maximum")
     args.physics = "isaacsim_physx"
@@ -288,6 +295,7 @@ def main():
                     if args.mode == "evaluate" and args.terrain == "stairs" else None,
                 "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
     metadata.update({"exploration_std_override": args.reset_noise_std,
+                     "resume_learning_rate_override": args.resume_learning_rate,
                      "stair_training_speed_range_m_s": list(args.stair_speed_range)})
     metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
                      "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
@@ -326,6 +334,11 @@ def main():
                 (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
             else:
                 runner.load(str(args.checkpoint), load_optimizer=args.mode == "train")
+        if args.resume_learning_rate is not None:
+            from checkpoint_transfer import override_resume_learning_rate
+            metadata["resume_learning_rate_applied"] = override_resume_learning_rate(
+                runner, args.resume_learning_rate)
+            (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         if args.reset_noise_std is not None:
             with torch.no_grad():
                 runner.alg.actor_critic.std.fill_(args.reset_noise_std)
