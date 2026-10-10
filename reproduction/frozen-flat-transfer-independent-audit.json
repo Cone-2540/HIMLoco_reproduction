@@ -1,0 +1,50 @@
+{
+  "recorded_local": "2026-10-10T22:59:42.589193+00:00",
+  "torch": "2.11.0+cu128",
+  "cuda_available": false,
+  "simulator_started": false,
+  "gradient_updates": 0,
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "flat_config_sha256": "6cdab8c036d9173818b5406912ae01128c4edd50772d18fa3f235f5b6cde7aa3",
+  "flat_export_sha256": "4e7582033a0e2614abc06ca2ab0a4e8a3f02e470a018fc83580beec1b063e77c",
+  "stair_export_sha256": "eb402ea68b2c7cc7b0c2426f6e5b6b30f6583aa1518f3adae16e116ce1e2ce76",
+  "critic_transfer_helper_sha256": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+  "input_shape": [
+    135,
+    270
+  ],
+  "seed": 1709,
+  "matching_actor_him_std_tensors": [
+    "std",
+    "estimator.encoder.0.weight",
+    "estimator.encoder.0.bias",
+    "estimator.encoder.2.weight",
+    "estimator.encoder.2.bias",
+    "estimator.encoder.4.weight",
+    "estimator.encoder.4.bias",
+    "estimator.target.0.weight",
+    "estimator.target.0.bias",
+    "estimator.target.2.weight",
+    "estimator.target.2.bias",
+    "estimator.target.4.weight",
+    "estimator.target.4.bias",
+    "estimator.proto.weight",
+    "actor.0.weight",
+    "actor.0.bias",
+    "actor.2.weight",
+    "actor.2.bias",
+    "actor.4.weight",
+    "actor.4.bias",
+    "actor.6.weight",
+    "actor.6.bias"
+  ],
+  "critic_dim_reset_to": 48,
+  "critic_fresh_initialization_retained": true,
+  "transfer_record_exactly_matches_actual_flat_evaluation": true,
+  "maximum_absolute_action_differences": {
+    "warm_start_vs_actual_flat_export": 0.0,
+    "warm_start_vs_stair_export": 0.0,
+    "actual_flat_export_vs_stair_export": 0.0
+  },
+  "limits": "Synthetic CPU inputs verify transfer/export synchronization, not actual sensor observations, locomotion quality, real-robot interface or unique cause of flat command failures."
+}
