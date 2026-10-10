@@ -118,6 +118,61 @@ class StairGeometryTest(unittest.TestCase):
         torch.testing.assert_close(recorded[0][2], torch.tensor([False, True, True, True]))
         torch.testing.assert_close(stair_corridor_exit(env), torch.tensor([False, False, False, True]))
 
+    def test_curriculum_reports_direction_failures_without_hiding_ascent(self):
+        generator = build_stair_generator("easy", num_rows=10, num_cols=8)
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=torch.tensor([0, 0, 4, 4]),
+                     terrain_levels=torch.tensor([2, 4, 6, 8]))
+        recorded = []
+        terrain.update_env_origins = lambda ids, up, down: recorded.append((ids.clone(), up.clone(), down.clone()))
+        data = NS(root_pos_w=NS(torch=torch.tensor([[.2, 0., 0.], [5., 0., 0.],
+                                                  [5., 0., 0.], [5., 0., 0.]])))
+        true_goals = torch.tensor([False, True, True, True])
+        manager = NS(terminated=torch.tensor([True, True, False, False]), get_term=lambda _: true_goals)
+        class Scene(dict):
+            pass
+        scene = Scene(robot=NS(data=data))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(4, 3)
+        env = NS(device="cpu", scene=scene, termination_manager=manager)
+        diagnostics = stair_terrain_curriculum(env, [0, 1, 2, 3])
+        self.assertEqual(float(diagnostics["levels_mean"]), 5.)
+        self.assertEqual(float(diagnostics["asc_levels_mean"]), 3.)
+        self.assertEqual(float(diagnostics["desc_levels_mean"]), 7.)
+        self.assertEqual(float(diagnostics["asc_goal_fraction"]), 0.)
+        self.assertEqual(float(diagnostics["desc_goal_fraction"]), 1.)
+        self.assertEqual(float(diagnostics["asc_terminated_fraction"]), 1.)
+        self.assertEqual(float(diagnostics["desc_terminated_fraction"]), 0.)
+        self.assertEqual(int(diagnostics["asc_reset_count"]), 2)
+        self.assertEqual(int(diagnostics["desc_reset_count"]), 2)
+        torch.testing.assert_close(recorded[0][1], torch.tensor([False, False, True, True]))
+        # The subset contains ascent failures only: descent fractions must be
+        # zero with count=0, rather than NaN or fictitious new success samples.
+        diagnostics = stair_terrain_curriculum(env, [0, 1])
+        self.assertEqual(float(diagnostics["desc_goal_fraction"]), 0.)
+        self.assertEqual(float(diagnostics["desc_terminated_fraction"]), 0.)
+        self.assertEqual(int(diagnostics["desc_reset_count"]), 0)
+        self.assertTrue(all(bool(torch.isfinite(value)) for value in diagnostics.values()))
+
+    def test_curriculum_goal_diagnostics_use_real_goal_term_not_progress_alone(self):
+        generator = build_stair_generator("easy", num_rows=2, num_cols=8)
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=torch.tensor([0, 0]),
+                     terrain_levels=torch.zeros(2, dtype=torch.long))
+        terrain.update_env_origins = lambda ids, up, down: None
+        class Scene(dict):
+            pass
+        scene = Scene(robot=NS(data=NS(root_pos_w=NS(torch=torch.tensor([[5., 0., 0.], [5., 0., 0.]])))))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(2, 3)
+        manager = NS(terminated=torch.zeros(2, dtype=torch.bool),
+                     get_term=lambda _: torch.tensor([False, True]))
+        env = NS(device="cpu", scene=scene, termination_manager=manager)
+        diagnostics = stair_terrain_curriculum(env, [0, 1])
+        self.assertEqual(float(diagnostics["asc_goal_fraction"]), .5)
+        self.assertEqual(float(diagnostics["asc_terminated_fraction"]), 0.)
+        self.assertEqual(float(diagnostics["desc_levels_mean"]), 0.)
+        diagnostics = stair_terrain_curriculum(env, [])
+        self.assertEqual(int(diagnostics["asc_reset_count"]), 0)
+        self.assertEqual(float(diagnostics["asc_goal_fraction"]), 0.)
+        self.assertTrue(all(bool(torch.isfinite(value)) for value in diagnostics.values()))
+
     def test_training_goal_requires_feet_upright_height_and_corridor(self):
         generator = build_stair_generator("easy", num_rows=2, num_cols=8)
         n = 7

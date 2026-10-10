@@ -105,6 +105,8 @@ def main():
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
+    parser.add_argument("--open_loop_heading", action="store_true",
+                        help="Stair evaluation with zero yaw command instead of external heading correction.")
     parser.add_argument("--friction", type=float, nargs=2, metavar=("STATIC", "DYNAMIC"))
     parser.add_argument("--start_level", type=int, default=0)
     parser.add_argument("--stair_pushes", action="store_true")
@@ -323,6 +325,7 @@ def main():
                     result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
                                                  seconds=args.eval_seconds, speed=args.speed,
                                                  seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
+                                                 heading_control=not args.open_loop_heading,
                                                  progress=lambda metrics: print(json.dumps(metrics), flush=True))
                     result["final_acceptance"] = assess_final(result)
                 else:
@@ -337,7 +340,11 @@ def main():
                 (log_dir / "primary-result.json").write_text(json.dumps(result, indent=2))
                 candidates = []
                 for index, candidate in enumerate(args.candidate_checkpoint):
-                    runner.load(str(candidate), load_optimizer=False)
+                    if args.warm_start:
+                        from checkpoint_transfer import warm_start
+                        warm_start(runner, str(candidate), args.warm_start)
+                    else:
+                        runner.load(str(candidate), load_optimizer=False)
                     candidate_dir = log_dir / "candidates" / (str(index) + "_" + candidate.stem)
                     candidate_dir.mkdir(parents=True)
                     error = export_and_verify(runner.alg.actor_critic, wrapped.get_observations(), candidate_dir)

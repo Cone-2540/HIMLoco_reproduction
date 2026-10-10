@@ -219,6 +219,8 @@ def _column_geometry_tensors(env):
             name: torch.tensor([geometry[name] for geometry in geometries], device=env.device)
             for name in ("goal_x", "last_riser_x", "goal_platform_start_x", "width")
         }
+        env._him_stair_column_geometry["is_ascending"] = torch.tensor(
+            [term.direction == "asc" for term in configs], device=env.device, dtype=torch.bool)
         env._him_stair_geometry_source = id(generator)
     return env._him_stair_column_geometry
 
@@ -272,18 +274,39 @@ def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
 
     Stock distance curriculum could reward walking behind/beside these stairs.
     This version also forbids promoting a genuine termination on the goal step.
+    Returned fractions describe only the current training reset rows. Direction
+    reset counts distinguish missing samples from zero success; they are not
+    independent held-out traversal results.
     """
     ids = torch.as_tensor(env_ids, device=env.device, dtype=torch.long)
     terrain = env.scene.terrain
-    goal_x = _column_geometry_tensors(env)["goal_x"]
+    geometry = _column_geometry_tensors(env)
+    goal_x = geometry["goal_x"]
     root = env.scene["robot"].data.root_pos_w.torch
     progress = root[ids, 0] - env.scene.env_origins[ids, 0]
     target = goal_x[terrain.terrain_types[ids]]
     terminated = env.termination_manager.terminated[ids]
     move_up = (progress >= target) & ~terminated
     move_down = ~move_up & (terminated | (progress < target * required_progress))
+    # Log the actual training goal term when available. Directed promotion
+    # remains the existing curriculum rule; genuine failure takes precedence
+    # when a goal and termination coincide.
+    manager = env.termination_manager
+    reached_goal = (manager.get_term("stair_goal_reached")[ids] & ~terminated
+                    if hasattr(manager, "get_term") else move_up)
     terrain.update_env_origins(ids, move_up, move_down)
-    return terrain.terrain_levels.float().mean()
+    ascending = geometry["is_ascending"][terrain.terrain_types]
+    ended_ascending = ascending[ids]
+    levels = terrain.terrain_levels.float()
+    diagnostics = {"levels_mean": levels.mean()}
+    for direction, mask, ended_mask in (("asc", ascending, ended_ascending),
+                                        ("desc", ~ascending, ~ended_ascending)):
+        count = ended_mask.sum()
+        diagnostics[f"{direction}_levels_mean"] = (levels * mask).sum() / mask.sum().clamp_min(1)
+        diagnostics[f"{direction}_goal_fraction"] = (reached_goal & ended_mask).sum() / count.clamp_min(1)
+        diagnostics[f"{direction}_terminated_fraction"] = (terminated & ended_mask).sum() / count.clamp_min(1)
+        diagnostics[f"{direction}_reset_count"] = count
+    return diagnostics
 
 
 def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1):
@@ -319,6 +342,8 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
                 "convert_to_heightfield": False,
                 "geometry_reference": "relative to scene.env_origins; positive x travel",
                 "height_scanner_samples": 187,
+                "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; "
+                    "zero fraction with reset_count=0 means no samples; not independent held-out validation",
                 "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
                               "step_depth": term.step_depth, "nosing": term.nosing,
                               "num_steps": term.num_steps, "width": term.width,
