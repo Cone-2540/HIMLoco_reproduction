@@ -123,6 +123,9 @@ def main():
     parser.add_argument("--learning_rate", type=float, default=1e-3)
     parser.add_argument("--lr_schedule", choices=["adaptive", "fixed"], default="adaptive")
     parser.add_argument("--entropy_coef", type=float, default=0.01)
+    parser.add_argument("--reset_noise_std", type=float,
+                        help="Training-only exploration std override after checkpoint loading.")
+    parser.add_argument("--stair_speed_range", type=float, nargs=2, default=(0.2, 0.6))
     parser.add_argument("--save_interval", type=int, default=20)
     parser.add_argument("--run_name", default="smoke")
     parser.add_argument("--seed", type=int, default=1)
@@ -139,6 +142,10 @@ def main():
     args = parser.parse_args()
     if args.candidate_checkpoint and args.mode != "evaluate":
         parser.error("--candidate_checkpoint requires evaluate mode")
+    if args.reset_noise_std is not None and (args.mode != "train" or args.reset_noise_std <= 0):
+        parser.error("--reset_noise_std requires train mode and a positive value")
+    if not 0 < args.stair_speed_range[0] <= args.stair_speed_range[1]:
+        parser.error("Require 0 < stair speed minimum <= maximum")
     args.physics = "isaacsim_physx"
     args.device = "cuda:0"
     if not 0 <= args.turn_fraction <= 1:
@@ -191,7 +198,7 @@ def main():
         cfg.commands.base_velocity.heading_command = True
         cfg.commands.base_velocity.rel_heading_envs = 1.0
         cfg.commands.base_velocity.rel_standing_envs = 0.0
-        cfg.commands.base_velocity.ranges.lin_vel_x = (0.2, 0.6)
+        cfg.commands.base_velocity.ranges.lin_vel_x = tuple(args.stair_speed_range)
         cfg.commands.base_velocity.ranges.lin_vel_y = (-0.03, 0.03)
         cfg.commands.base_velocity.ranges.ang_vel_z = (-0.5, 0.5)
         cfg.commands.base_velocity.ranges.heading = (0.0, 0.0)
@@ -268,6 +275,8 @@ def main():
                                    if term is not None and hasattr(term, "weight")},
                 "command_override": args.command, "evaluation_seconds": args.eval_seconds,
                 "video": args.video, "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
+    metadata.update({"exploration_std_override": args.reset_noise_std,
+                     "stair_training_speed_range_m_s": list(args.stair_speed_range)})
     metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
                      "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
                      "friction_override": args.friction, "stair_pushes": args.stair_pushes,
@@ -299,6 +308,9 @@ def main():
                 (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
             else:
                 runner.load(str(args.checkpoint), load_optimizer=args.mode == "train")
+        if args.reset_noise_std is not None:
+            with torch.no_grad():
+                runner.alg.actor_critic.std.fill_(args.reset_noise_std)
         diagnostic = {"root_pos_w": robot.data.root_pos_w.torch[:4].tolist(),
                       "root_quat_w_xyzw": robot.data.root_quat_w.torch[:4].tolist(),
                       "projected_gravity_b": robot.data.projected_gravity_b.torch[:4].tolist(),

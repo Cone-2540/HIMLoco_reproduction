@@ -459,6 +459,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                                   "foot_horizontal_speed_m_s": foot_speed[trace_ids].tolist(),
                                   "contacts": state["foot_contacts"][trace_ids].tolist(),
                                   "actions": actions[trace_ids].tolist(),
+                                  "action_delta_rms": action_delta.square().mean(-1).sqrt()[trace_ids].tolist(),
+                                  "action_second_delta_rms": action_second.square().mean(-1).sqrt()[trace_ids].tolist(),
+                                  "flight_paused": paused[trace_ids].tolist(),
                                   "base_force_n": state["base_force_n"][trace_ids].tolist(),
                                   "shank_force_n": state["shank_force_n"][trace_ids].tolist(),
                                   "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[trace_ids].tolist()})
