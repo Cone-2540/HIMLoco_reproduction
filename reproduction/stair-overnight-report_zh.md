@@ -158,6 +158,8 @@ bash isaaclab/run.sh train --terrain stairs --stair_stage hard --reward_profile 
 
 驱动约束始终保持：595.104.02；未修改驱动、系统 CUDA、Vulkan、Xorg、modprobe、系统电源或 DNS 配置。[只读驱动核查](driver-overnight-final-audit.json) 的版本与原保存五个文件哈希均一致；这五项不是整个系统的全文件审计。共享依赖保留在机器人通用目录，训练日志在 `isaaclab/logs/`，报告／权重在本仓库；没有把大型模拟器二进制或全量视频塞进 Git。
 
+[交付状态快照](overnight-delivery-status.json) 保存 07:20 的只读收尾状态：33 项冻结源码／几何／权重哈希仍全部吻合，GPU 占用 16 MiB、温度 41°C，没有计算进程，容器仅保留原入口和 Omniverse Hub。该快照之后只做 Git 传输、离线版本备份及本任务临时防休眠服务清理，不再训练或调参。
+
 所有本日已保存的配置／评估结果，包括调参和不完整采集尝试，共 227 个 JSON、约 5.55 GiB，另备份到共享目录 `/home/cone/robotics/archives/himloco-overnight-20261011/evaluation-data.tar.gz`，压缩后约 1.05 GiB。全部归档成员逐个 SHA256 核对原文件一致，Git 保存 [清单](overnight-evaluation-archive-manifest.json) 和 [归档脚本](archive-overnight-evaluation-data.py)。原数据没有移动或删除；该归档不含模拟器、权重、视频和 stdout 日志。
 
 完整数值重建还需要同目录的 `supplemental-readbacks-and-protocol.tar.gz`：238 个物理／动力学读回、终止记录和协议／小型启动日志，约 338 KiB，见 [补充归档清单](overnight-supplemental-readbacks-archive-manifest.json)。原数据归档单独不足以重建全部报告。
