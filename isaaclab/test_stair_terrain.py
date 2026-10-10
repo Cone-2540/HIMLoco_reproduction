@@ -199,6 +199,57 @@ class StairGeometryTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "at least one"):
             configure_stair_batch(cfg, [])
 
+    def test_fixed_long_flights_expand_tiles_and_preserve_every_riser(self):
+        for direction in ("asc", "desc"):
+            for count, depth, expected_size in ((10, .25, 8.), (12, .25, 8.), (12, .40, 10.)):
+                selected = build_stair_generator(spec={"height": .17, "depth": depth,
+                                                       "direction": direction, "num_steps": count})
+                self.assertEqual(selected.size, (expected_size, 3.))
+                term = selected.sub_terrains["heldout"].replace(size=selected.size)
+                meshes, origin = stair_meshes(.5, term)
+                geometry = meshes[0].metadata["stair_geometry"]
+                self.assertEqual(len(geometry["treads"]), count)
+                self.assertAlmostEqual(abs(geometry["goal_platform_z"]), count * .17)
+                for tread in geometry["treads"]:
+                    position = origin + [(tread["x_min"] + tread["x_max"]) / 2., 0., tread["top_z"]]
+                    self.assertTrue(covered_by_box_union(meshes, position + [0., 0., -.01]))
+                    self.assertFalse(covered_by_box_union(meshes, position + [0., 0., .01]))
+                self.assertTrue(all((mesh.bounds[:, 0] >= 0.).all() and
+                                    (mesh.bounds[:, 0] <= expected_size + 1e-9).all() for mesh in meshes))
+        for count in (.5, 6.5, float("inf"), float("nan")):
+            with self.assertRaises(ValueError):
+                build_stair_generator(spec={"num_steps": count})
+
+    def test_mixed_length_batch_uses_one_common_size_and_per_column_widths(self):
+        class Scanner(NS):
+            def copy(self):
+                return deepcopy(self)
+        cfg = NS(scene=NS(height_scanner=Scanner(), terrain=NS()), sim=NS(dt=.005),
+                 decimation=4, terminations=NS(), curriculum=NS())
+        specs = [{"name": "short", "height": .16, "depth": .27},
+                 {"name": "long_desc", "height": .17, "depth": .4,
+                  "num_steps": 12, "direction": "desc", "width": 1.6}]
+        manifest = configure_stair_batch(cfg, specs)
+        generator_cfg = cfg.scene.terrain.terrain_generator
+        self.assertEqual(generator_cfg.size, (10., 3.))
+        self.assertEqual(manifest["terrain_size"], [10., 3.])
+        self.assertIsNone(manifest["num_steps"])
+        self.assertIsNone(manifest["width"])
+        for term, column in zip(generator_cfg.sub_terrains.values(), manifest["columns"]):
+            meshes, origin = stair_meshes(.4, term.replace(size=generator_cfg.size))
+            self.assertEqual(column["geometry"]["terrain_size"], [10., 3.])
+            np.testing.assert_allclose(origin, column["geometry"]["terrain_local_origin"])
+            self.assertEqual(meshes[0].bounds[1, 0], 10.)
+        generated = TerrainGenerator(generator_cfg, device="cpu")
+        np.testing.assert_allclose(generated.terrain_origins[0, :, 2], [0., 2.04])
+        terrain = NS(cfg=NS(terrain_generator=generator_cfg), terrain_types=torch.tensor([0, 1]))
+        class Scene(dict):
+            pass
+        scene = Scene(robot=NS(data=NS(root_pos_w=NS(torch=torch.tensor([[0., .7, 0.], [0., .7, 0.]])))))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(2, 3)
+        env = NS(device="cpu", scene=scene)
+        torch.testing.assert_close(stair_corridor_exit(env), torch.tensor([True, False]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,8 +1,9 @@
-"""Six-riser straight stairs for training and independent held-out evaluation.
+"""Straight stairs for training and independent held-out evaluation.
 
 All paths travel in +x: ``asc`` gains elevation and ``desc`` loses elevation.
-Each flight has six risers, six treads, a 1.2 m corridor and 2 m landings at
-both ends. A nosing is a thin, closed slab that overhangs the lower surface;
+Default flights have six risers, a 1.2 m corridor and 2 m landings at both
+ends. Fixed held-out specs can use longer flights and wider corridors. A
+nosing is a thin, closed slab that overhangs the lower surface;
 its underside remains a real collision surface. No heightfield conversion is
 allowed. Actor observations remain unchanged by this module.
 
@@ -37,13 +38,14 @@ def stair_metadata(step_height=0.16, step_depth=0.27, nosing=0.0, direction="asc
     """Describe one exact flight, using SI units and terrain-origin coordinates."""
     if direction not in ("asc", "desc"):
         raise ValueError("direction must be asc or desc")
-    values = (step_height, step_depth, nosing, width, landing_length, *size, nosing_thickness)
+    values = (step_height, step_depth, nosing, num_steps, width, landing_length, *size, nosing_thickness)
     if not all(math.isfinite(float(value)) for value in values):
         raise ValueError("Stair dimensions must be finite")
     if (num_steps < 1 or int(num_steps) != num_steps or step_height <= 0 or step_depth <= 0
             or width <= 0 or landing_length <= 0 or nosing < 0 or nosing >= step_depth
             or nosing_thickness <= 0 or nosing_thickness >= step_height):
         raise ValueError("Invalid stair dimensions or nosing thickness")
+    num_steps = int(num_steps)
     length = 2 * landing_length + num_steps * step_depth
     if size[0] < length or size[1] < width:
         raise ValueError("Flight and landings must fit in terrain size")
@@ -140,25 +142,47 @@ class StraightStairTerrainCfg(SubTerrainBaseCfg):
     nosing_thickness: float = 0.02
 
 
+def _fixed_stair_spec(spec):
+    """Validate dimensions and reserve at least 1 m extra length per tile."""
+    height = float(spec.get("step_height", spec.get("height", 0.16)))
+    depth = float(spec.get("step_depth", spec.get("depth", 0.27)))
+    nose, direction = float(spec.get("nosing", 0.0)), spec.get("direction", "asc")
+    count = float(spec.get("num_steps", 6))
+    width = float(spec.get("width", 1.2))
+    landing = float(spec.get("landing_length", 2.0))
+    thickness = float(spec.get("nosing_thickness", 0.02))
+    if not all(math.isfinite(value) for value in (height, depth, nose, count, width, landing, thickness)):
+        raise ValueError("Stair dimensions must be finite")
+    if count < 1 or count != int(count) or width <= 0 or landing <= 0 or depth <= 0:
+        raise ValueError("Invalid stair flight dimensions")
+    count = int(count)
+    # Preserve default 8 x 3 m tiles. Longer flights expand in 2 m increments:
+    # e.g. 12 * 0.40 + two 2 m landings = 8.8 m needs a 10 m tile.
+    size = (max(8.0, 2.0 * math.ceil((2.0 * landing + count * depth + 1.0) / 2.0)),
+            max(3.0, width + 1.0))
+    stair_metadata(height, depth, nose, direction, count, width, landing, size, thickness)
+    return StraightStairTerrainCfg(direction=direction, step_height_range=(height, height),
+                                   step_depth=depth, nosing=nose, num_steps=count, width=width,
+                                   landing_length=landing, nosing_thickness=thickness), size
+
+
 def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1):
     """Training uses ascending/descending variants; spec selects a fixed heldout flight.
 
     ``spec`` keys: step_height (or height), step_depth (or depth), nosing,
-    direction. Heldout runs use identical flights in separated 8 m x 3 m tiles.
+    direction, num_steps, width, landing_length. Heldout tiles expand to contain
+    longer flights. Training retains six risers and default 8 m x 3 m tiles.
     """
     if stage not in STAGES:
         raise ValueError("stage must be easy, standard or hard")
     if num_rows < 1 or num_cols < 1:
         raise ValueError("Terrain grid dimensions must be positive")
     if spec is not None:
-        height = float(spec.get("step_height", spec.get("height", 0.16)))
-        depth = float(spec.get("step_depth", spec.get("depth", 0.27)))
-        nose, direction = float(spec.get("nosing", 0.0)), spec.get("direction", "asc")
-        stair_metadata(height, depth, nose, direction)
-        variants = {"heldout": StraightStairTerrainCfg(direction=direction, step_height_range=(height, height),
-                                                      step_depth=depth, nosing=nose)}
+        term, size = _fixed_stair_spec(spec)
+        variants = {"heldout": term}
         curriculum = False
     else:
+        size = (8.0, 3.0)
         selected = STAGES[stage]
         variants = {}
         for direction in ("asc", "desc"):
@@ -170,7 +194,7 @@ def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, 
         curriculum = True
         # Columns must represent every type; never silently omit a tread/nosing.
         num_cols = max(num_cols, len(variants))
-    return TerrainGeneratorCfg(seed=seed, size=(8.0, 3.0), num_rows=num_rows, num_cols=num_cols,
+    return TerrainGeneratorCfg(seed=seed, size=size, num_rows=num_rows, num_cols=num_cols,
                                curriculum=curriculum, sub_terrains=variants, border_width=4.0,
                                difficulty_range=(0.0, 1.0), use_cache=False, color_scheme="height")
 
@@ -203,9 +227,11 @@ def _tensor(value):
     return value if isinstance(value, torch.Tensor) else value.torch
 
 
-def stair_corridor_exit(env, width=1.2, margin=0.05):
+def stair_corridor_exit(env, width=None, margin=0.05):
     """End episodes that bypass the staircase by walking beside the corridor."""
     root = env.scene["robot"].data.root_pos_w.torch
+    if width is None:
+        width = _column_geometry_tensors(env)["width"][env.scene.terrain.terrain_types]
     return (root[:, 1] - env.scene.env_origins[:, 1]).abs() > width / 2 + margin
 
 
@@ -288,15 +314,20 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
     configs = _column_stair_cfgs(generator)
     manifest = {"stage": stage, "seed": seed, "heldout": spec is not None,
                 "num_rows": generator.num_rows, "num_cols": generator.num_cols,
-                "terrain_size": list(generator.size), "num_steps": 6, "width": 1.2,
-                "landing_length": 2.0, "convert_to_heightfield": False,
+                "terrain_size": list(generator.size), "num_steps": configs[0].num_steps,
+                "width": configs[0].width, "landing_length": configs[0].landing_length,
+                "convert_to_heightfield": False,
                 "geometry_reference": "relative to scene.env_origins; positive x travel",
                 "height_scanner_samples": 187,
                 "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
-                              "step_depth": term.step_depth, "nosing": term.nosing} for term in configs]}
+                              "step_depth": term.step_depth, "nosing": term.nosing,
+                              "num_steps": term.num_steps, "width": term.width,
+                              "landing_length": term.landing_length} for term in configs]}
     if spec is not None:
         term = configs[0]
-        manifest["geometry"] = stair_metadata(term.step_height_range[0], term.step_depth, term.nosing, term.direction)
+        manifest["geometry"] = stair_metadata(term.step_height_range[0], term.step_depth, term.nosing, term.direction,
+                                              term.num_steps, term.width, term.landing_length,
+                                              generator.size, term.nosing_thickness)
     return manifest
 
 
@@ -319,19 +350,19 @@ def configure_stair_batch(cfg, specs, *, seed=1):
     # Reuse the single-flight configuration to keep sensors/terminations
     # identical, then replace only the terrain generator with the full batch.
     manifest = configure_stair_terrain(cfg, spec=specs[0], num_rows=1, num_cols=1, seed=seed)
-    variants, columns = {}, []
+    variants, columns, requested_sizes = {}, [], []
     for index, spec in enumerate(specs):
-        selected = build_stair_generator(spec=spec, num_rows=1, num_cols=1, seed=seed)
-        term = selected.sub_terrains["heldout"]
+        term, size = _fixed_stair_spec(spec)
+        requested_sizes.append(size)
         name = str(spec.get("name", f"case_{index:02d}"))
         variants[f"column_{index:02d}"] = term
-        columns.append({
-            "column": index, "name": name,
-            "geometry": stair_metadata(term.step_height_range[0], term.step_depth, term.nosing,
-                                       term.direction, term.num_steps, term.width, term.landing_length,
-                                       selected.size, term.nosing_thickness),
-        })
-    generator = TerrainGeneratorCfg(seed=seed, size=(8.0, 3.0), num_rows=1, num_cols=len(specs),
+        columns.append({"column": index, "name": name})
+    common_size = tuple(max(size[axis] for size in requested_sizes) for axis in range(2))
+    for column, term in zip(columns, variants.values()):
+        column["geometry"] = stair_metadata(term.step_height_range[0], term.step_depth, term.nosing,
+                                             term.direction, term.num_steps, term.width, term.landing_length,
+                                             common_size, term.nosing_thickness)
+    generator = TerrainGeneratorCfg(seed=seed, size=common_size, num_rows=1, num_cols=len(specs),
                                     curriculum=True, sub_terrains=variants, border_width=4.0,
                                     difficulty_range=(0.0, 1.0), use_cache=False, color_scheme="height")
     cfg.scene.terrain.terrain_generator = generator
@@ -340,20 +371,26 @@ def configure_stair_batch(cfg, specs, *, seed=1):
     cfg.terminations.stair_goal_reached = None
     manifest.pop("geometry", None)
     manifest.update({"stage": "heldout_batch", "batch": True, "num_rows": 1, "num_cols": len(specs),
+                     "terrain_size": list(common_size),
                      "columns": columns,
                      "geometry": [column["geometry"] for column in columns],
                      "variant_names": [column["name"] for column in columns],
                      "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
-                                   "step_depth": term.step_depth, "nosing": term.nosing}
+                                   "step_depth": term.step_depth, "nosing": term.nosing,
+                                   "num_steps": term.num_steps, "width": term.width,
+                                   "landing_length": term.landing_length}
                                   for term in variants.values()],
                      "environment_column_mapping": "scene.terrain.terrain_types",
                      "generator_curriculum_layout": True, "runtime_curriculum": False})
+    for field in ("num_steps", "width", "landing_length"):
+        values = {getattr(term, field) for term in variants.values()}
+        manifest[field] = next(iter(values)) if len(values) == 1 else None
     return manifest
 
 
 def heldout_stair_specs():
     """Named exact cases, distinct from arbitrary easy random-curriculum draws."""
-    return [
+    specs = [
         {"name": f"{direction}_{name}", "direction": direction, "step_height": height,
          "step_depth": depth, "nosing": nose}
         for direction in ("asc", "desc")
@@ -367,3 +404,8 @@ def heldout_stair_specs():
             ("lip_3cm_16cm_27cm", 0.16, 0.27, 0.03),
         )
     ]
+    specs.extend({"name": f"{direction}_long{count}_17cm_{int(depth * 100)}cm",
+                  "direction": direction, "step_height": .17, "step_depth": depth,
+                  "num_steps": count, "nosing": 0.0}
+                 for direction in ("asc", "desc") for count, depth in ((10, .25), (12, .25), (12, .40)))
+    return specs
