@@ -174,8 +174,8 @@
       "changes": "standardstage,5–17cm,20–40cmtreads,no nosing; originalreward;resumeAdam3e-4fixed;resetstd.4;commands.4–.8;actualgoalpromotionfix"
     }
   ],
-  "active_run": "standard270 threecheckpoint12case3seedvalidation",
-  "next_step": "Compare270/240/200 completion and pauses;matchedspeed.5diagnostic;GPUbasic/robustsmoke;decidehardlipsvs lowspeedrefinement",
+  "active_run": "isaaclab/logs/2026-10-11_02-45-19_stairs-standard-low-speed370",
+  "next_step": "Low-speed command refinement, then independent.3/.5evaluation; collect16cmcontinuousvideo; hardnosingcurriculumifbasicstairscompetent",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
   "schedule_initial": "fixed",
@@ -212,26 +212,21 @@
     "reward_profile": "faithful"
   },
   "current_changes": {
+    "from_checkpoint": "standard270/model_270.pt",
     "stage": "standard",
-    "height_range": [
-      0.05,
-      0.17
+    "reward": "faithful",
+    "speed_range": [
+      0.25,
+      0.65
     ],
     "num_envs": 4096,
-    "optimizer": "resumebootstrap120Adam",
-    "learning_rate": 0.0003,
-    "schedule": "fixed",
-    "reset_noise_std": 0.4,
-    "speed_range": [
-      0.4,
-      0.8
-    ],
-    "reward": "faithful",
-    "additional_iterations": 150,
-    "checkpoint_iteration_target": 270
+    "additional_updates": 100,
+    "optimizer": "checkpointAdam/fixed3e-4 unchanged",
+    "exploration_std": "checkpoint std, no override",
+    "intent": "single command distribution change to reduce low-speed stop behavior"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T02:40:13.672871+08:00",
+  "last_update_local": "2026-10-11T02:46:24.854265+08:00",
   "verified_remote_commit": "90c811e",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
@@ -243,5 +238,8 @@
     "desc16cm": "32/32",
     "maximum_flight_pause_s_asc16cm": 3.6
   },
-  "meaningful_stair_training_transitions_total": 212992000
+  "meaningful_stair_training_transitions_total": 212992000,
+  "standard270_evaluation": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation",
+  "matched_speed_evaluation": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05",
+  "domain_runtime_smoke_report": "reproduction/domain-runtime-smoke-results.json"
 }

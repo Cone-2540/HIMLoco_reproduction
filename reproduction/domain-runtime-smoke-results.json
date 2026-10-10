@@ -1,0 +1,1171 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-11",
+  "status": "passed",
+  "scope": "Actual PhysX parameter readback and CUDA optimizer/export smoke only; no locomotion/robustness acceptance",
+  "weight_disposition": "discarded_weights; model_2.pt and policy.pt are runtime smoke artifacts, not selected or deployed policies",
+  "source_of_evidence": "Existing independently inspected initial/final JSON captures and result/config files; reviewer did not launch GPU jobs",
+  "tolerances": {
+    "mass_ratio_range": 1e-06,
+    "com_m": 1e-06,
+    "pd_gain": 1e-06,
+    "inertia_scaling_kg_m2": 1e-06,
+    "startup_mass_readback_absolute_kg": 1e-06
+  },
+  "runs": {
+    "basic": {
+      "log_dir": "isaaclab/logs/2026-10-11_02-41-57_domain-basic-runtime-smoke",
+      "source_commit": "783412201fe10fb27b951c522ba6b4f3cc3ef993",
+      "source_files_sha256": {
+        "config.json": "8cc235c7cf67c7ce6e5729abe0fa578fc39bdb8116c45c987def9602150a940f",
+        "result.json": "6448a4028195239221bcc2703ba5a54c491e217da47a5ee01449eaae6b86216d",
+        "domain-parameters-initial.json": "2aa4dc923e9fda18578df8bdd82574bd1e03ea52a82fb3aac6b31274a3a8418a",
+        "domain-parameters-final.json": "944594095a7307fefcda64985e8f516dbda5c7afb2be850e5987b393a1802c08"
+      },
+      "runtime": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 2,
+        "completed_iterations": 2,
+        "num_envs": 64,
+        "environment_steps_this_run": 3072,
+        "training_seconds": 2.219358063999607,
+        "parameters_finite": true,
+        "checkpoint": "model_2.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.1920928955078125e-07,
+        "peak_cuda_memory_bytes": 41176576
+      },
+      "snapshots": {
+        "initial": {
+          "base_mass_kg": {
+            "min": 5.601104259490967,
+            "max": 8.59945297241211,
+            "mean": 7.017493516206741,
+            "std": 0.8765938148449084,
+            "finite": true
+          },
+          "original_base_mass_kg": {
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "finite": true
+          },
+          "mass_ratio": {
+            "min": 0.8092911243438721,
+            "max": 1.2425159215927124,
+            "mean": 1.0139420665800571,
+            "std": 0.12665710186941673,
+            "finite": true
+          },
+          "inertia_scaling_max_abs_error_kg_m2": 0.0,
+          "com_min_xyz_m": [
+            -0.00977059081196785,
+            -0.009658319875597954,
+            -0.00472228555008769
+          ],
+          "com_max_xyz_m": [
+            0.009964564815163612,
+            0.00973818451166153,
+            0.004855462349951267
+          ],
+          "com_first3_offsets_m": [
+            [
+              [
+                -0.005051970481872559,
+                -0.00021830573678016663,
+                0.0007786927744746208
+              ]
+            ],
+            [
+              [
+                0.00877133198082447,
+                0.004324968904256821,
+                0.002572296652942896
+              ]
+            ],
+            [
+              [
+                -0.003621123731136322,
+                -0.006478007882833481,
+                0.001471413765102625
+              ]
+            ]
+          ],
+          "pd": {
+            "stiffness": {
+              "observed": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "default": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 1.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                25.0,
+                25.0,
+                25.0
+              ]
+            },
+            "damping": {
+              "observed": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "default": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 1.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                0.5,
+                0.5,
+                0.5
+              ]
+            }
+          },
+          "foot_static_friction": {
+            "min": 0.6149461269378662,
+            "max": 1.099526286125183,
+            "mean": 0.86560383066535,
+            "std": 0.15372388610887913,
+            "finite": true
+          },
+          "foot_dynamic_friction": {
+            "min": 0.5056122541427612,
+            "max": 0.9936568737030029,
+            "mean": 0.7167149798478931,
+            "std": 0.12772951211836994,
+            "finite": true
+          },
+          "material_unique_count": 64,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ]
+        },
+        "final": {
+          "base_mass_kg": {
+            "min": 5.601104259490967,
+            "max": 8.59945297241211,
+            "mean": 7.01749350130558,
+            "std": 0.8765938112319488,
+            "finite": true
+          },
+          "original_base_mass_kg": {
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "finite": true
+          },
+          "mass_ratio": {
+            "min": 0.8092911243438721,
+            "max": 1.2425159215927124,
+            "mean": 1.0139420619234443,
+            "std": 0.12665710043454764,
+            "finite": true
+          },
+          "inertia_scaling_max_abs_error_kg_m2": 4.470348358154297e-08,
+          "com_min_xyz_m": [
+            -0.00977059081196785,
+            -0.009658319875597954,
+            -0.00472228555008769
+          ],
+          "com_max_xyz_m": [
+            0.009964564815163612,
+            0.00973818451166153,
+            0.004855462349951267
+          ],
+          "com_first3_offsets_m": [
+            [
+              [
+                -0.005051970481872559,
+                -0.00021830573678016663,
+                0.0007786927744746208
+              ]
+            ],
+            [
+              [
+                0.00877133198082447,
+                0.004324968904256821,
+                0.002572296652942896
+              ]
+            ],
+            [
+              [
+                -0.003621123731136322,
+                -0.006478007882833481,
+                0.001471413765102625
+              ]
+            ]
+          ],
+          "pd": {
+            "stiffness": {
+              "observed": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "default": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 1.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                25.0,
+                25.0,
+                25.0
+              ]
+            },
+            "damping": {
+              "observed": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "default": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 1.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                0.5,
+                0.5,
+                0.5
+              ]
+            }
+          },
+          "foot_static_friction": {
+            "min": 0.6149461269378662,
+            "max": 1.099526286125183,
+            "mean": 0.86560383066535,
+            "std": 0.15372388610887913,
+            "finite": true
+          },
+          "foot_dynamic_friction": {
+            "min": 0.5056122541427612,
+            "max": 0.9936568737030029,
+            "mean": 0.7167149798478931,
+            "std": 0.12772951211836994,
+            "finite": true
+          },
+          "material_unique_count": 64,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ]
+        }
+      },
+      "checks": {
+        "cuda_optimizer_export_completed": {
+          "passed": true,
+          "iterations": 2,
+          "num_envs": 64,
+          "environment_steps": 3072,
+          "export_max_abs_error": 1.1920928955078125e-07
+        },
+        "explicit_runtime_only_scope": {
+          "passed": true,
+          "rollout_steps": 24,
+          "policy_use": "discarded_weights"
+        },
+        "initial_all_current_and_original_event_reads_available": {
+          "passed": true,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ],
+          "nonfinite_paths": []
+        },
+        "initial_mass_ratio_in_range_and_varied": {
+          "passed": true,
+          "observed_ratio_range": [
+            0.8092911243438721,
+            1.2425159215927124
+          ],
+          "expected": [
+            0.8,
+            1.25
+          ],
+          "std": 0.12665710186941673
+        },
+        "initial_original_base_mass_available": {
+          "passed": true,
+          "original_mass_kg": 6.9210004806518555
+        },
+        "initial_inertia_scales_with_mass": {
+          "passed": true,
+          "all_environment_helper_max_abs_error_kg_m2": 0.0,
+          "independently_recomputed_first3_max_abs_error_kg_m2": 5.158348942435609e-09
+        },
+        "initial_com_axis_offsets_in_range_and_varied": {
+          "passed": true,
+          "observed_min_xyz_m": [
+            -0.00977059081196785,
+            -0.009658319875597954,
+            -0.00472228555008769
+          ],
+          "observed_max_xyz_m": [
+            0.009964564815163612,
+            0.00973818451166153,
+            0.004855462349951267
+          ],
+          "expected_abs_max_xyz_m": [
+            0.01,
+            0.01,
+            0.005
+          ]
+        },
+        "initial_com_samples_and_quaternion_preserved": {
+          "passed": true,
+          "max_abs_quaternion_change": 0.0
+        },
+        "initial_stiffness_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            25.0,
+            25.0
+          ],
+          "default_value": 25.0,
+          "actual_std": 0.0,
+          "gain_ratio_range": [
+            1.0,
+            1.0
+          ],
+          "default_source": "actuator.cfg.stiffness (configured reference)"
+        },
+        "initial_damping_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            0.5,
+            0.5
+          ],
+          "default_value": 0.5,
+          "actual_std": 0.0,
+          "gain_ratio_range": [
+            1.0,
+            1.0
+          ],
+          "default_source": "actuator.cfg.damping (configured reference)"
+        },
+        "initial_foot_body_shape_mapping": {
+          "passed": true,
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "initial_actual_foot_material_ranges_and_variation": {
+          "passed": true,
+          "static_range": [
+            0.6149461269378662,
+            1.099526286125183
+          ],
+          "dynamic_range": [
+            0.5056122541427612,
+            0.9936568737030029
+          ],
+          "restitution_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "initial_dynamic_le_static_and_cached_bucket_membership": {
+          "passed": true,
+          "dynamic_le_static": true,
+          "all_observed_in_bucket_pool": true,
+          "unique_material_count": 64
+        },
+        "final_all_current_and_original_event_reads_available": {
+          "passed": true,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ],
+          "nonfinite_paths": []
+        },
+        "final_mass_ratio_in_range_and_varied": {
+          "passed": true,
+          "observed_ratio_range": [
+            0.8092911243438721,
+            1.2425159215927124
+          ],
+          "expected": [
+            0.8,
+            1.25
+          ],
+          "std": 0.12665710043454764
+        },
+        "final_original_base_mass_available": {
+          "passed": true,
+          "original_mass_kg": 6.9210004806518555
+        },
+        "final_inertia_scales_with_mass": {
+          "passed": true,
+          "all_environment_helper_max_abs_error_kg_m2": 4.470348358154297e-08,
+          "independently_recomputed_first3_max_abs_error_kg_m2": 3.105277587844846e-08
+        },
+        "final_com_axis_offsets_in_range_and_varied": {
+          "passed": true,
+          "observed_min_xyz_m": [
+            -0.00977059081196785,
+            -0.009658319875597954,
+            -0.00472228555008769
+          ],
+          "observed_max_xyz_m": [
+            0.009964564815163612,
+            0.00973818451166153,
+            0.004855462349951267
+          ],
+          "expected_abs_max_xyz_m": [
+            0.01,
+            0.01,
+            0.005
+          ]
+        },
+        "final_com_samples_and_quaternion_preserved": {
+          "passed": true,
+          "max_abs_quaternion_change": 0.0
+        },
+        "final_stiffness_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            25.0,
+            25.0
+          ],
+          "default_value": 25.0,
+          "actual_std": 0.0,
+          "gain_ratio_range": [
+            1.0,
+            1.0
+          ],
+          "default_source": "actuator.cfg.stiffness (configured reference)"
+        },
+        "final_damping_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            0.5,
+            0.5
+          ],
+          "default_value": 0.5,
+          "actual_std": 0.0,
+          "gain_ratio_range": [
+            1.0,
+            1.0
+          ],
+          "default_source": "actuator.cfg.damping (configured reference)"
+        },
+        "final_foot_body_shape_mapping": {
+          "passed": true,
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "final_actual_foot_material_ranges_and_variation": {
+          "passed": true,
+          "static_range": [
+            0.6149461269378662,
+            1.099526286125183
+          ],
+          "dynamic_range": [
+            0.5056122541427612,
+            0.9936568737030029
+          ],
+          "restitution_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_dynamic_le_static_and_cached_bucket_membership": {
+          "passed": true,
+          "dynamic_le_static": true,
+          "all_observed_in_bucket_pool": true,
+          "unique_material_count": 64
+        },
+        "startup_com_and_foot_material_fixed_during_run": {
+          "passed": true
+        },
+        "startup_mass_preserved_with_float32_readback_tolerance": {
+          "passed": true,
+          "max_abs_reported_mass_change_kg": 4.76837158203125e-07,
+          "note": "Physics tensor readback has tiny float32 mass/inertia differences; COM/material are exactly unchanged"
+        },
+        "basic_gains_exactly_unchanged": {
+          "passed": true
+        }
+      },
+      "passed": true,
+      "check_count": 27
+    },
+    "robust": {
+      "log_dir": "isaaclab/logs/2026-10-11_02-42-26_domain-robust-runtime-smoke",
+      "source_commit": "783412201fe10fb27b951c522ba6b4f3cc3ef993",
+      "source_files_sha256": {
+        "config.json": "6828d268bea040d37ad1e345b91ee64f59a87c2354a2add773635438352004c3",
+        "result.json": "d3e229e3972a9bbcb1fa8cd55019e8df075961d946e3e8cb40307258d2a56d83",
+        "domain-parameters-initial.json": "97f6fe0367d21078771f6f22590556f96592d8913af50ef7ccf342321befec2b",
+        "domain-parameters-final.json": "ece242655af515056e8f7e8ff310011825c750f389cb2cf4c62f7a902f27b33e"
+      },
+      "runtime": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 2,
+        "completed_iterations": 2,
+        "num_envs": 64,
+        "environment_steps_this_run": 3072,
+        "training_seconds": 2.1965706849996423,
+        "parameters_finite": true,
+        "checkpoint": "model_2.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.1920928955078125e-07,
+        "peak_cuda_memory_bytes": 41189376
+      },
+      "snapshots": {
+        "initial": {
+          "base_mass_kg": {
+            "min": 5.601104259490967,
+            "max": 8.59945297241211,
+            "mean": 7.017493516206741,
+            "std": 0.8765938148449084,
+            "finite": true
+          },
+          "original_base_mass_kg": {
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "finite": true
+          },
+          "mass_ratio": {
+            "min": 0.8092911243438721,
+            "max": 1.2425159215927124,
+            "mean": 1.0139420665800571,
+            "std": 0.12665710186941673,
+            "finite": true
+          },
+          "inertia_scaling_max_abs_error_kg_m2": 0.0,
+          "com_min_xyz_m": [
+            -0.0293117742985487,
+            -0.019316639751195908,
+            -0.009444570168852806
+          ],
+          "com_max_xyz_m": [
+            0.029893694445490837,
+            0.01947636902332306,
+            0.009710924699902534
+          ],
+          "com_first3_offsets_m": [
+            [
+              [
+                -0.015155911445617676,
+                -0.00043661147356033325,
+                0.0015573855489492416
+              ]
+            ],
+            [
+              [
+                0.02631399594247341,
+                0.008649937808513641,
+                0.005144593305885792
+              ]
+            ],
+            [
+              [
+                -0.010863371193408966,
+                -0.012956015765666962,
+                0.00294282753020525
+              ]
+            ]
+          ],
+          "pd": {
+            "stiffness": {
+              "observed": {
+                "min": 22.50390625,
+                "max": 27.493234634399414,
+                "mean": 25.04049049814542,
+                "std": 1.428979086457306,
+                "finite": true
+              },
+              "default": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 0.9001562595367432,
+                "max": 1.0997294187545776,
+                "mean": 1.0016196199382346,
+                "std": 0.057159164662050906,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                24.579959869384766,
+                23.242881774902344,
+                26.877418518066406
+              ]
+            },
+            "damping": {
+              "observed": {
+                "min": 0.45007434487342834,
+                "max": 0.5499523282051086,
+                "mean": 0.5009554441009337,
+                "std": 0.02881168939992172,
+                "finite": true
+              },
+              "default": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 0.9001486897468567,
+                "max": 1.0999046564102173,
+                "mean": 1.0019108882018675,
+                "std": 0.05762337879984344,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                0.4897657334804535,
+                0.5468838214874268,
+                0.512671947479248
+              ]
+            }
+          },
+          "foot_static_friction": {
+            "min": 0.6149461269378662,
+            "max": 1.099526286125183,
+            "mean": 0.86560383066535,
+            "std": 0.15372388610887913,
+            "finite": true
+          },
+          "foot_dynamic_friction": {
+            "min": 0.5056122541427612,
+            "max": 0.9936568737030029,
+            "mean": 0.7167149798478931,
+            "std": 0.12772951211836994,
+            "finite": true
+          },
+          "material_unique_count": 64,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ]
+        },
+        "final": {
+          "base_mass_kg": {
+            "min": 5.601104259490967,
+            "max": 8.59945297241211,
+            "mean": 7.01749350130558,
+            "std": 0.8765938112319488,
+            "finite": true
+          },
+          "original_base_mass_kg": {
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "finite": true
+          },
+          "mass_ratio": {
+            "min": 0.8092911243438721,
+            "max": 1.2425159215927124,
+            "mean": 1.0139420619234443,
+            "std": 0.12665710043454764,
+            "finite": true
+          },
+          "inertia_scaling_max_abs_error_kg_m2": 4.470348358154297e-08,
+          "com_min_xyz_m": [
+            -0.0293117742985487,
+            -0.019316639751195908,
+            -0.009444570168852806
+          ],
+          "com_max_xyz_m": [
+            0.029893694445490837,
+            0.01947636902332306,
+            0.009710924699902534
+          ],
+          "com_first3_offsets_m": [
+            [
+              [
+                -0.015155911445617676,
+                -0.00043661147356033325,
+                0.0015573855489492416
+              ]
+            ],
+            [
+              [
+                0.02631399594247341,
+                0.008649937808513641,
+                0.005144593305885792
+              ]
+            ],
+            [
+              [
+                -0.010863371193408966,
+                -0.012956015765666962,
+                0.00294282753020525
+              ]
+            ]
+          ],
+          "pd": {
+            "stiffness": {
+              "observed": {
+                "min": 22.50390625,
+                "max": 27.493234634399414,
+                "mean": 25.03677025437355,
+                "std": 1.423490161844075,
+                "finite": true
+              },
+              "default": {
+                "min": 25.0,
+                "max": 25.0,
+                "mean": 25.0,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 0.9001562595367432,
+                "max": 1.0997294187545776,
+                "mean": 1.001470810500905,
+                "std": 0.05693960782846007,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                24.579959869384766,
+                23.242881774902344,
+                26.877418518066406
+              ]
+            },
+            "damping": {
+              "observed": {
+                "min": 0.45007434487342834,
+                "max": 0.5499523282051086,
+                "mean": 0.5006679457534725,
+                "std": 0.02880928368542208,
+                "finite": true
+              },
+              "default": {
+                "min": 0.5,
+                "max": 0.5,
+                "mean": 0.5,
+                "std": 0.0,
+                "finite": true
+              },
+              "ratio": {
+                "min": 0.9001486897468567,
+                "max": 1.0999046564102173,
+                "mean": 1.001335891506945,
+                "std": 0.05761856737084416,
+                "finite": true
+              },
+              "first3_env_first_joint": [
+                0.4897657334804535,
+                0.5468838214874268,
+                0.512671947479248
+              ]
+            }
+          },
+          "foot_static_friction": {
+            "min": 0.6149461269378662,
+            "max": 1.099526286125183,
+            "mean": 0.86560383066535,
+            "std": 0.15372388610887913,
+            "finite": true
+          },
+          "foot_dynamic_friction": {
+            "min": 0.5056122541427612,
+            "max": 0.9936568737030029,
+            "mean": 0.7167149798478931,
+            "std": 0.12772951211836994,
+            "finite": true
+          },
+          "material_unique_count": 64,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ]
+        }
+      },
+      "checks": {
+        "cuda_optimizer_export_completed": {
+          "passed": true,
+          "iterations": 2,
+          "num_envs": 64,
+          "environment_steps": 3072,
+          "export_max_abs_error": 1.1920928955078125e-07
+        },
+        "explicit_runtime_only_scope": {
+          "passed": true,
+          "rollout_steps": 24,
+          "policy_use": "discarded_weights"
+        },
+        "initial_all_current_and_original_event_reads_available": {
+          "passed": true,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ],
+          "nonfinite_paths": []
+        },
+        "initial_mass_ratio_in_range_and_varied": {
+          "passed": true,
+          "observed_ratio_range": [
+            0.8092911243438721,
+            1.2425159215927124
+          ],
+          "expected": [
+            0.8,
+            1.25
+          ],
+          "std": 0.12665710186941673
+        },
+        "initial_original_base_mass_available": {
+          "passed": true,
+          "original_mass_kg": 6.9210004806518555
+        },
+        "initial_inertia_scales_with_mass": {
+          "passed": true,
+          "all_environment_helper_max_abs_error_kg_m2": 0.0,
+          "independently_recomputed_first3_max_abs_error_kg_m2": 5.158348942435609e-09
+        },
+        "initial_com_axis_offsets_in_range_and_varied": {
+          "passed": true,
+          "observed_min_xyz_m": [
+            -0.0293117742985487,
+            -0.019316639751195908,
+            -0.009444570168852806
+          ],
+          "observed_max_xyz_m": [
+            0.029893694445490837,
+            0.01947636902332306,
+            0.009710924699902534
+          ],
+          "expected_abs_max_xyz_m": [
+            0.03,
+            0.02,
+            0.01
+          ]
+        },
+        "initial_com_samples_and_quaternion_preserved": {
+          "passed": true,
+          "max_abs_quaternion_change": 0.0
+        },
+        "initial_stiffness_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            22.50390625,
+            27.493234634399414
+          ],
+          "default_value": 25.0,
+          "actual_std": 1.428979086457306,
+          "gain_ratio_range": [
+            0.9001562595367432,
+            1.0997294187545776
+          ],
+          "default_source": "him_actuator_gains.func.default_actuator_stiffness['base_legs']"
+        },
+        "initial_damping_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            0.45007434487342834,
+            0.5499523282051086
+          ],
+          "default_value": 0.5,
+          "actual_std": 0.02881168939992172,
+          "gain_ratio_range": [
+            0.9001486897468567,
+            1.0999046564102173
+          ],
+          "default_source": "him_actuator_gains.func.default_actuator_damping['base_legs']"
+        },
+        "initial_foot_body_shape_mapping": {
+          "passed": true,
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "initial_actual_foot_material_ranges_and_variation": {
+          "passed": true,
+          "static_range": [
+            0.6149461269378662,
+            1.099526286125183
+          ],
+          "dynamic_range": [
+            0.5056122541427612,
+            0.9936568737030029
+          ],
+          "restitution_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "initial_dynamic_le_static_and_cached_bucket_membership": {
+          "passed": true,
+          "dynamic_le_static": true,
+          "all_observed_in_bucket_pool": true,
+          "unique_material_count": 64
+        },
+        "final_all_current_and_original_event_reads_available": {
+          "passed": true,
+          "expected_unavailable": [
+            {
+              "path": "foot_material.default",
+              "reason": "The PhysX material event does not retain pre-randomization materials"
+            }
+          ],
+          "nonfinite_paths": []
+        },
+        "final_mass_ratio_in_range_and_varied": {
+          "passed": true,
+          "observed_ratio_range": [
+            0.8092911243438721,
+            1.2425159215927124
+          ],
+          "expected": [
+            0.8,
+            1.25
+          ],
+          "std": 0.12665710043454764
+        },
+        "final_original_base_mass_available": {
+          "passed": true,
+          "original_mass_kg": 6.9210004806518555
+        },
+        "final_inertia_scales_with_mass": {
+          "passed": true,
+          "all_environment_helper_max_abs_error_kg_m2": 4.470348358154297e-08,
+          "independently_recomputed_first3_max_abs_error_kg_m2": 3.105277587844846e-08
+        },
+        "final_com_axis_offsets_in_range_and_varied": {
+          "passed": true,
+          "observed_min_xyz_m": [
+            -0.0293117742985487,
+            -0.019316639751195908,
+            -0.009444570168852806
+          ],
+          "observed_max_xyz_m": [
+            0.029893694445490837,
+            0.01947636902332306,
+            0.009710924699902534
+          ],
+          "expected_abs_max_xyz_m": [
+            0.03,
+            0.02,
+            0.01
+          ]
+        },
+        "final_com_samples_and_quaternion_preserved": {
+          "passed": true,
+          "max_abs_quaternion_change": 0.0
+        },
+        "final_stiffness_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            22.50390625,
+            27.493234634399414
+          ],
+          "default_value": 25.0,
+          "actual_std": 1.423490161844075,
+          "gain_ratio_range": [
+            0.9001562595367432,
+            1.0997294187545776
+          ],
+          "default_source": "him_actuator_gains.func.default_actuator_stiffness['base_legs']"
+        },
+        "final_damping_actual_explicit_actuator_and_expected_range": {
+          "passed": true,
+          "actual_range": [
+            0.45007434487342834,
+            0.5499523282051086
+          ],
+          "default_value": 0.5,
+          "actual_std": 0.02880928368542208,
+          "gain_ratio_range": [
+            0.9001486897468567,
+            1.0999046564102173
+          ],
+          "default_source": "him_actuator_gains.func.default_actuator_damping['base_legs']"
+        },
+        "final_foot_body_shape_mapping": {
+          "passed": true,
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "final_actual_foot_material_ranges_and_variation": {
+          "passed": true,
+          "static_range": [
+            0.6149461269378662,
+            1.099526286125183
+          ],
+          "dynamic_range": [
+            0.5056122541427612,
+            0.9936568737030029
+          ],
+          "restitution_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "final_dynamic_le_static_and_cached_bucket_membership": {
+          "passed": true,
+          "dynamic_le_static": true,
+          "all_observed_in_bucket_pool": true,
+          "unique_material_count": 64
+        },
+        "startup_com_and_foot_material_fixed_during_run": {
+          "passed": true
+        },
+        "startup_mass_preserved_with_float32_readback_tolerance": {
+          "passed": true,
+          "max_abs_reported_mass_change_kg": 4.76837158203125e-07,
+          "note": "Physics tensor readback has tiny float32 mass/inertia differences; COM/material are exactly unchanged"
+        },
+        "robust_reset_gains_changed_and_retained_original_defaults": {
+          "passed": true,
+          "aggregate_deltas": {
+            "stiffness": {
+              "mean": -0.0037202437718697468,
+              "std": -0.005488924613231028
+            },
+            "damping": {
+              "mean": -0.0002874983474612236,
+              "std": -2.4057144996370017e-06
+            }
+          },
+          "note": "The saved first3 env gain rows are unchanged; whole-buffer mean/std changes establish later resampling, without establishing which or how many environments reset"
+        }
+      },
+      "passed": true,
+      "check_count": 27
+    }
+  },
+  "total_checks": 54
+}
