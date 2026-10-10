@@ -1,0 +1,25 @@
+{
+  "status": "supplementary_protocol_recorded_before_collection",
+  "scope": "Evaluation-only sensitivity to the legacy URDF calf torque-speed envelope; no hardware calibration or policy selection",
+  "original_plan_sha256": "fd27265a2d714662a3d03404903537cf6abec3c13ae2f65f21b7edf38b5391ae",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "reward_profile": "contact",
+  "geometry": "reproduction/stair-heldout-final.json",
+  "num_envs": 512,
+  "envs_per_case": 32,
+  "seconds": 40,
+  "speeds_m_s": [0.3, 0.5],
+  "reset_seeds": [101, 211, 307],
+  "construction_seed": 1,
+  "domain_profile": "none",
+  "eval_dynamics": false,
+  "changed_parameters": {
+    "calf_peak_and_saturation_torque_nm": {"nominal_usd": 45.43, "legacy_urdf": 35.55},
+    "calf_motor_and_joint_velocity_limit_rad_s": {"nominal_usd": 15.70, "legacy_urdf": 20.07},
+    "calf_joint_effort_limit_nm": {"nominal_usd": 45.43, "legacy_urdf": 35.55}
+  },
+  "preserved": "Existing DCMotor torque-speed clipping, robot morphology, hip/thigh settings, kp/kd, observations and heading controller",
+  "selection": "No new checkpoint or retuning; original final acceptance remains unchanged",
+  "limits": "Neither envelope has been measured on the user's Go2 EDU. This is a model sensitivity experiment, not a claim about its actual hardware. Delay, thermal derating, motor-strength uncertainty and battery state are not covered."
+}
