@@ -196,6 +196,23 @@ class StairGeometryTest(unittest.TestCase):
         self.assertEqual(float(diagnostics["asc_goal_fraction"]), 0.)
         self.assertTrue(all(bool(torch.isfinite(value)) for value in diagnostics.values()))
 
+    def test_curriculum_does_not_promote_root_beyond_goal_without_actual_goal(self):
+        generator = build_stair_generator("easy", num_rows=2, num_cols=8)
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=torch.tensor([0, 0, 0]),
+                     terrain_levels=torch.zeros(3, dtype=torch.long))
+        recorded = []
+        terrain.update_env_origins = lambda ids, up, down: recorded.append((ids.clone(), up.clone(), down.clone()))
+        class Scene(dict):
+            pass
+        scene = Scene(robot=NS(data=NS(root_pos_w=NS(torch=torch.tensor([[5., 0., .3]]).repeat(3, 1)))))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(3, 3)
+        manager = NS(terminated=torch.tensor([False, False, True]),
+                     get_term=lambda _: torch.tensor([False, True, True]))
+        env = NS(device="cpu", scene=scene, termination_manager=manager)
+        stair_terrain_curriculum(env, [0, 1, 2])
+        torch.testing.assert_close(recorded[0][1], torch.tensor([False, True, False]))
+        torch.testing.assert_close(recorded[0][2], torch.tensor([False, False, True]))
+
     def test_training_goal_requires_feet_upright_height_and_corridor(self):
         generator = build_stair_generator("easy", num_rows=2, num_cols=8)
         n = 7

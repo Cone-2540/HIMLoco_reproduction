@@ -286,15 +286,16 @@ def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
     root = env.scene["robot"].data.root_pos_w.torch
     progress = root[ids, 0] - env.scene.env_origins[ids, 0]
     target = goal_x[terrain.terrain_types[ids]]
-    terminated = env.termination_manager.terminated[ids]
-    move_up = (progress >= target) & ~terminated
-    move_down = ~move_up & (terminated | (progress < target * required_progress))
-    # Log the actual training goal term when available. Directed promotion
-    # remains the existing curriculum rule; genuine failure takes precedence
-    # when a goal and termination coincide.
     manager = env.termination_manager
+    terminated = manager.terminated[ids]
+    directed_goal = (progress >= target) & ~terminated
     reached_goal = (manager.get_term("stair_goal_reached")[ids] & ~terminated
-                    if hasattr(manager, "get_term") else move_up)
+                    if hasattr(manager, "get_term") else directed_goal)
+    # Root progress alone cannot certify that the hind feet and body satisfy
+    # the training goal. Promote only actual goals; keep the directed fallback
+    # for environments without the manager term-query API.
+    move_up = directed_goal & reached_goal
+    move_down = ~move_up & (terminated | (progress < target * required_progress))
     terrain.update_env_origins(ids, move_up, move_down)
     ascending = geometry["is_ascending"][terrain.terrain_types]
     ended_ascending = ascending[ids]
@@ -343,6 +344,7 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
                 "convert_to_heightfield": False,
                 "geometry_reference": "relative to scene.env_origins; positive x travel",
                 "height_scanner_samples": 187,
+                "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
                 "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; "
                     "zero fraction with reset_count=0 means no samples; not independent held-out validation",
                 "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
