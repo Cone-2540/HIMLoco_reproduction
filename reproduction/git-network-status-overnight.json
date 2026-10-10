@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "status": "pushed_and_independently_verified",
+  "verified_utc": "2026-10-10T19:08:50.138990+00:00",
+  "remote_url": "https://github.com/Cone-2540/HIMLoco_reproduction.git",
+  "branch": "feature/stairs-overnight-20261011",
+  "local_head_at_verification": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+  "independent_ls_remote_hash": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+  "remote_tracking_hash": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+  "normal_fast_forward_pushes": [
+    {
+      "before": "783412201fe10fb27b951c522ba6b4f3cc3ef993",
+      "after": "391ccac3b5987536cfe874c69509685ed2363a5a",
+      "endpoint": "140.82.116.4",
+      "http_version": "HTTP/2",
+      "exit_code": 0,
+      "independent_confirmation": {
+        "endpoint": "140.82.114.4",
+        "http_version": "HTTP/1.1",
+        "git_protocol": 0,
+        "ls_remote_hash": "391ccac3b5987536cfe874c69509685ed2363a5a",
+        "exit_code": 0
+      }
+    },
+    {
+      "before": "391ccac3b5987536cfe874c69509685ed2363a5a",
+      "after": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+      "endpoint": "140.82.114.4",
+      "http_version": "HTTP/1.1",
+      "git_protocol": 0,
+      "exit_code": 0,
+      "independent_confirmation": {
+        "endpoint": "140.82.114.4",
+        "http_version": "HTTP/1.1",
+        "git_protocol": 0,
+        "ls_remote_hash": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+        "exit_code": 0
+      }
+    }
+  ],
+  "root_cause": {
+    "git_version": "git version 2.34.1",
+    "http_curloptResolve_supported": false,
+    "evidence": [
+      "git help --config contains no http.curloptResolve option",
+      "Supplying the unknown config key stores it but Git ignores it",
+      "Strict network-only trace from the old command showed Trying 20.205.243.166:443 despite configured 140.82.116.4",
+      "Process shim test resolves github.com to the opted-in address, and Git trace showed actual Trying 140.82.116.4:443"
+    ],
+    "default_dns_at_final_verification": [
+      "20.205.243.166"
+    ]
+  },
+  "process_only_resolution": {
+    "directory": "/home/cone/robotics/tools/git-network",
+    "source": "github-resolve.c",
+    "library": "github-resolve.so",
+    "readme": "README.md",
+    "library_sha256": "3cd228d89f6ca052df34245c9c72c8ca06039c179bfd82a53bfbf12a6043caaa",
+    "scope": "Only github.com getaddrinfo in explicitly opted-in command and its subprocesses; other hosts resolve normally",
+    "tls_hostname": "github.com",
+    "ssl_verify_config": "default true",
+    "system_dns_changed": false,
+    "persistent_proxy_changed": false,
+    "persistent_git_config_changed": false,
+    "keyring_changed": false,
+    "drivers_changed": false
+  },
+  "safe_command_arguments_prefix": [
+    "env",
+    "-u",
+    "https_proxy",
+    "-u",
+    "http_proxy",
+    "-u",
+    "all_proxy",
+    "HTTPS_PROXY=",
+    "HTTP_PROXY=",
+    "ALL_PROXY=",
+    "GIT_TERMINAL_PROMPT=0",
+    "LD_PRELOAD=/home/cone/robotics/tools/git-network/github-resolve.so",
+    "HIM_GITHUB_IPV4=140.82.114.4",
+    "git",
+    "-c",
+    "http.proxy=",
+    "-c",
+    "http.version=HTTP/1.1",
+    "-c",
+    "protocol.version=0",
+    "-c",
+    "credential.helper=",
+    "-c",
+    "credential.helper=!/home/cone/robotics/tools/github-cli/gh auth git-credential"
+  ],
+  "push_arguments": [
+    "push",
+    "origin",
+    "d3c68f70d993c583c6d4329121e766a8a9bad7fa:refs/heads/feature/stairs-overnight-20261011"
+  ],
+  "verify_arguments": [
+    "ls-remote",
+    "origin",
+    "refs/heads/feature/stairs-overnight-20261011"
+  ],
+  "bounded_failed_attempts": [
+    {
+      "ignored_resolution_endpoint": "140.82.112.3",
+      "http": "HTTP/1.1",
+      "operation": "push391ccac",
+      "timeout_s": 90,
+      "exit_code": 124
+    },
+    {
+      "ignored_resolution_endpoint": "140.82.116.4",
+      "http": "HTTP/2",
+      "operation": "push391ccac",
+      "timeout_s": 45,
+      "exit_code": 124
+    },
+    {
+      "ignored_resolution_endpoint": "140.82.116.4",
+      "http": "HTTP/1.1",
+      "operation": "push391ccac network trace",
+      "timeout_s": 30,
+      "exit_code": 124,
+      "actual_trace_ip": "20.205.243.166"
+    },
+    {
+      "actual_resolution_endpoint": "140.82.116.4",
+      "http": "HTTP/2",
+      "operation": "ls-remote",
+      "timeout_s": 30,
+      "exit_code": 124
+    },
+    {
+      "actual_resolution_endpoint": "140.82.112.4",
+      "http": "HTTP/1.1",
+      "operation": "ls-remote",
+      "timeout_s": 30,
+      "exit_code": 124
+    },
+    {
+      "actual_resolution_endpoint": "140.82.116.4",
+      "http": "HTTP/2",
+      "git_protocol": 0,
+      "operation": "ls-remote network trace",
+      "timeout_s": 30,
+      "exit_code": 124,
+      "actual_trace_ip": "140.82.116.4"
+    }
+  ],
+  "cleanup": {
+    "all_own_network_commands_bounded_by_timeout_process_groups": true,
+    "manually_killed_processes": [],
+    "other_repository_fetches_untouched": true
+  },
+  "credential_handling": "Existing gh credential helper only; no token, credential content or Authorization header printed or persisted in diagnostics",
+  "limitations": "External endpoint availability still fluctuates. The process helper corrects routing for old Git; it does not guarantee network reliability."
+}
