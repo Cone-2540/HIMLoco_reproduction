@@ -3,6 +3,11 @@ set -Eeuo pipefail
 repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 cd -- "$repo_root"
 video_logs=${1:-/home/cone/robotics/logs/himloco-overnight-20261011/frozen-failure-videos}
+video_subset=${2:-all}
+case "$video_subset" in
+  all|remaining) ;;
+  *) printf 'Expected optional subset all or remaining\n' >&2; exit 2 ;;
+esac
 mkdir -p -- "$video_logs"
 guard() {
   python3 - "$repo_root" <<'PY'
@@ -42,7 +47,9 @@ run_failure_video() {
     --run_name "$video_name" "$@" > "$video_logs/$video_name.log" 2>&1
   printf 'Finished %s at %s; collection exit 0\n' "$video_name" "$(date --iso-8601=seconds)"
 }
-run_failure_video frozen-failure-long12-desc-video 416 211 0.5 --domain_profile none
+if [[ $video_subset == all ]]; then
+  run_failure_video frozen-failure-long12-desc-video 416 211 0.5 --domain_profile none
+fi
 run_failure_video frozen-failure-stretch-desc-video 481 101 0.3 --domain_profile none
 run_failure_video frozen-failure-highfriction-lip-asc-video 329 101 0.3 --domain_profile basic --friction 1.0 0.8
 guard
