@@ -4,7 +4,7 @@
 
 ## Matched experiment and acceptance
 
-The two independent frozen-checkpoint evaluations use identical twelve six-step geometries, 1.2 m width, no nosing and 2 m landings. Reset seeds are 11/29/47, with 32 environments per case/seed (96 per case; 1152 per model/speed). The same model has exactly equal initial root-position arrays between 0.3 and 0.5 m/s, along with matching heading control and thresholds. All tests use randomized reset poses and nominal dynamics. Startup material parameters were not recorded and can differ between separate environment constructions; matching reset seeds does not establish matching material draws or randomized-dynamics validation.
+The two independent frozen-checkpoint evaluations use identical twelve six-step geometries, 1.2 m width, no nosing and 2 m landings. Reset seeds are 11/29/47, with 32 environments per case/seed (96 per case; 1152 per model/speed). The same model has exactly equal initial root-position arrays between 0.3 and 0.5 m/s, along with matching heading control and thresholds. All tests use randomized reset poses and nominal dynamics. Saved initial/final PhysX foot-material readbacks match across both runs: static friction 0.8, dynamic friction 0.6 and restitution 0, with zero dispersion across all 384×4 feet and fixed configured ranges. A separate physical terrain-material readback is absent from these files. Reset seeds do not resample startup materials/dynamics; the fixed material evidence does not establish randomized-dynamics validation.
 
 | Checkpoint / speed m/s | Completed | Stalls | Worst case/seed completion | Final traversal gate |
 |---|---:|---:|---:|---|

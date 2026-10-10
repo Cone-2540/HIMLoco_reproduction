@@ -21,7 +21,7 @@
     },
     "duration_limitation": "New fast-speed budgets are 24s; old model270 fast-speed and all 0.3 runs use 25s. Every new episode finishes before budget with zero timeouts.",
     "matching": "Geometry, reset seeds, per-env initial root positions, aggregate initial pose distribution, heading control and both gates exactly match model270/0.3. Per-env initial quaternions are not stored.",
-    "material_limitation": "Material draws/parameters are not recorded; reset seeds do not resample startup material/dynamics. Separate construction draws need not match.",
+    "material_limitation": "Actual initial/final foot-material readbacks exist and match across these runs: static friction0.8,dynamic0.6,restitution0,zero dispersion over all384x4feet; configured ranges fixed. No separate physical terrain-material readback is present in these files. Reset seeds do not resample startup material/dynamics.",
     "metric_mean": "Arithmetic mean of three seed-level aggregate metrics. Overall macro-means give each case equal weight; not pooled sample RMS.",
     "metric_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
     "slip_metric_scope": "foot-link horizontal speed while recent physics-step normal-contact history peaks >1N; proxy, not exact contact-point tangential slip",
@@ -16291,5 +16291,439 @@
       }
     }
   ],
-  "new_checkpoint_failures": []
+  "new_checkpoint_failures": [],
+  "foot_material_provenance": [
+    {
+      "source": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-04-27_standard370-low-speed-validation/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-04-27_standard370-low-speed-validation/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-08-49_standard370-speed05-validation/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-08-49_standard370-speed05-validation/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    }
+  ]
 }

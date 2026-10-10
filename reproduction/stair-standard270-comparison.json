@@ -12,7 +12,7 @@
     "trials_per_model_speed": 1152,
     "dynamics_randomized": false,
     "geometry_and_reset_matching": "Exact geometry, same per-model initial root position arrays, heading control and thresholds.",
-    "material_limitation": "Startup material parameters are not recorded; separate environment constructions may have different material draws. Reset seeds do not resample startup material/dynamics.",
+    "material_limitation": "Actual initial/final foot-material readbacks exist and match across these runs: static friction0.8,dynamic0.6,restitution0,zero dispersion over all384x4feet; configured ranges fixed. No separate physical terrain-material readback is present in these files. Reset seeds do not resample startup material/dynamics.",
     "metrics_scope": "First measured episode until classification; motion statistics exclude first second.",
     "mean_definition": "Arithmetic mean of three seed-level aggregate metrics, not a sample-pooled RMS.",
     "leg_contact_definition": "Policy-boundary existence fraction using three 5ms normal-force-norm history samples over calf/thigh/shank; oldest sample10ms, nominal count window15ms. Not sustained scraping duration or calf-only.",
@@ -15628,6 +15628,224 @@
       ],
       "longest_flight_pause_s": 3.5199973583221436,
       "first_episode_measured_duration_s": 6.099999904632568
+    }
+  ],
+  "foot_material_provenance": [
+    {
+      "source": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05/domain-parameters-initial.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05/domain-parameters-final.json",
+      "body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "configured_ranges": {
+        "static_friction_range": [
+          0.8,
+          0.8
+        ],
+        "dynamic_friction_range": [
+          0.6,
+          0.6
+        ],
+        "restitution_range": [
+          0.0,
+          0.0
+        ],
+        "num_buckets": 64
+      },
+      "static_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.800000011920929,
+        "max": 0.800000011920929,
+        "std": 0.0
+      },
+      "dynamic_friction": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.6000000238418579,
+        "max": 0.6000000238418579,
+        "std": 0.0
+      },
+      "restitution": {
+        "shape": [
+          384,
+          4
+        ],
+        "finite": true,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      }
     }
   ]
 }
