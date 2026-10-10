@@ -172,9 +172,28 @@
       "source_commit": "aba595b",
       "source_dirty": false,
       "changes": "standardstage,5–17cm,20–40cmtreads,no nosing; originalreward;resumeAdam3e-4fixed;resetstd.4;commands.4–.8;actualgoalpromotionfix"
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370",
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 100,
+        "completed_iterations": 370,
+        "num_envs": 4096,
+        "environment_steps_this_run": 40960000,
+        "training_seconds": 1000.6978994150013,
+        "parameters_finite": true,
+        "checkpoint": "model_370.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.2069940567016602e-06,
+        "peak_cuda_memory_bytes": 3702060032
+      },
+      "changes": "Only lower command distribution0.25–0.65; same standardterrain/faithfulreward/checkpointAdamfixed3e-4/stdnooverride"
     }
   ],
-  "active_run": "isaaclab/logs/2026-10-11_02-45-19_stairs-standard-low-speed370",
+  "active_run": "standard370/340 frozen12case3seed0.3evaluation",
   "next_step": "Low-speed command refinement, then independent.3/.5evaluation; collect16cmcontinuousvideo; hardnosingcurriculumifbasicstairscompetent",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
@@ -226,7 +245,7 @@
     "intent": "single command distribution change to reduce low-speed stop behavior"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T02:46:24.854265+08:00",
+  "last_update_local": "2026-10-11T03:05:55.902497+08:00",
   "verified_remote_commit": "90c811e",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
@@ -238,8 +257,19 @@
     "desc16cm": "32/32",
     "maximum_flight_pause_s_asc16cm": 3.6
   },
-  "meaningful_stair_training_transitions_total": 212992000,
+  "meaningful_stair_training_transitions_total": 253952000,
   "standard270_evaluation": "isaaclab/logs/2026-10-11_02-39-54_standard270-checkpoints-validation",
   "matched_speed_evaluation": "isaaclab/logs/2026-10-11_02-43-45_standard270-matched-speed05",
-  "domain_runtime_smoke_report": "reproduction/domain-runtime-smoke-results.json"
+  "domain_runtime_smoke_report": "reproduction/domain-runtime-smoke-results.json",
+  "flat_diagnostic": {
+    "run": "isaaclab/logs/2026-10-11_02-54-11_standard270-flat-regression",
+    "scope": "15s not formally sampleeligible vs frozen20sminimum; do not countaspassed",
+    "falls": "0/64 eachforward.3/.5andstanding",
+    "xy_tracking_mae_m_s": [
+      0.038774,
+      0.042293,
+      0.002412
+    ],
+    "next": "20sformalregressionforfinalcandidate"
+  }
 }
