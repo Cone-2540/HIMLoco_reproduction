@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "analysis": "CPU read-only telemetry/geometry and selected video stills",
+  "batch_run": "isaaclab/logs/2026-10-11_04-31-42_contact620-calf-event-batch-video",
+  "isolated_run": "isaaclab/logs/2026-10-11_04-37-10_contact620-calf-event-isolated-video",
+  "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_03-53-36_stairs-hard-contact670/model_620.pt",
+  "body_name": "FR_calf",
+  "environment_id": 416,
+  "case_index": 13,
+  "seed": 47,
+  "command_speed_m_s": 0.3,
+  "geometry": {
+    "schema_version": 1,
+    "direction": "desc",
+    "travel_sign": 1,
+    "num_steps": 6,
+    "step_height": 0.18,
+    "step_depth": 0.27,
+    "width": 1.2,
+    "nosing": 0.0,
+    "nosing_thickness": 0.02,
+    "landing_length": 2.0,
+    "start_x": 0.0,
+    "first_riser_x": 1.0,
+    "last_riser_x": 2.35,
+    "goal_platform_start_x": 2.62,
+    "goal_x": 3.27,
+    "flight_end_x": 4.62,
+    "start_platform_z": 0.0,
+    "goal_platform_z": -1.08,
+    "lateral_center_y": 0.0,
+    "goal_dwell_s": 0.5,
+    "terrain_local_origin": [
+      2.19,
+      1.5,
+      1.08
+    ],
+    "terrain_size": [
+      8.0,
+      3.0
+    ],
+    "treads": [
+      {
+        "index": 1,
+        "x_min": 1.0,
+        "x_max": 1.27,
+        "top_z": -0.18
+      },
+      {
+        "index": 2,
+        "x_min": 1.27,
+        "x_max": 1.54,
+        "top_z": -0.36
+      },
+      {
+        "index": 3,
+        "x_min": 1.54,
+        "x_max": 1.81,
+        "top_z": -0.54
+      },
+      {
+        "index": 4,
+        "x_min": 1.81,
+        "x_max": 2.08,
+        "top_z": -0.72
+      },
+      {
+        "index": 5,
+        "x_min": 2.08,
+        "x_max": 2.35,
+        "top_z": -0.8999999999999999
+      },
+      {
+        "index": 6,
+        "x_min": 2.35,
+        "x_max": 2.62,
+        "top_z": -1.08
+      }
+    ],
+    "collision_representation": "closed triangle meshes with physical overhang undersides",
+    "convert_to_heightfield": false
+  },
+  "render_isolation": {
+    "visible_environment_index": 416,
+    "visible_environment_prim": "/World/envs/env_416",
+    "hidden_environment_count": 767,
+    "operation": "USD visibility only; collision and rigid-body attributes unchanged"
+  },
+  "replay_equality": {
+    "parsed_entire_result_equal": true,
+    "result_file_bytes_equal": true,
+    "per_env_all_fields_equal": true,
+    "metrics_all_fields_equal": true,
+    "trace_all_rows_all_fields_equal": true,
+    "cases_all_fields_equal": true,
+    "initial_reset_distribution_equal": true,
+    "num_envs": 768,
+    "completed_envs": 768,
+    "trace_rows": 861,
+    "result_sha256_batch": "c8e3159c7169bc2ac5dbe13d124cee34fc16772f6cdbb839cb22c99c8493d17b",
+    "result_sha256_isolated": "c8e3159c7169bc2ac5dbe13d124cee34fc16772f6cdbb839cb22c99c8493d17b",
+    "scope": "Exact equality of recorded replay results supports visual-only isolation leaving these physics recordings unchanged."
+  },
+  "origin_reconstruction": {
+    "method": "calf world position + rotated source fixed calf-to-foot offset - recorded foot course-relative position, across all four feet",
+    "origin_world_xyz_m": [
+      -1.8099999304901937,
+      4.499999997596711,
+      1.080000001112198
+    ],
+    "max_absolute_residual_xyz_m": [
+      4.3552117157119596e-07,
+      4.790157195344591e-07,
+      1.4102080347910828e-07
+    ],
+    "active_foot_pose_samples": 2812
+  },
+  "video": "isaaclab/logs/2026-10-11_04-37-10_contact620-calf-event-isolated-video/videos/go2_stairs_asc_0000.mp4",
+  "video_fps": 50.0,
+  "recorded_frames": 861,
+  "first_episode_duration_env416_s": 14.059999465942383,
+  "video_time_mapping": "Nominal post-step simulation time=(frame_id+1)*0.02s, encoded PTS=frame_id/50s. Renderer/physics synchronization was not independently instrumented.",
+  "selected_stills_crop_original_pixels": [
+    250,
+    230,
+    1000,
+    720
+  ],
+  "continuous_video_reviewed": false,
+  "source_geometry_readback": "reproduction/go2-contact-geometry-readback.json",
+  "distance_method": "Minimize ideal finite source-cylinder signed distance along each horizontal outgoing upper stair edge inside corridor; no cooked collision shapes or effective offsets available.",
+  "events": [
+    {
+      "time_s": 7.18,
+      "active_first_episode": true,
+      "current_force_world_xyz_n": [
+        238.08860778808594,
+        4.443332457526594e-08,
+        190.01544189453125
+      ],
+      "current_force_norm_n": 304.61785888671875,
+      "history_peak_force_norm_n": 304.61785888671875,
+      "force_xz_angle_deg": 38.59291524693434,
+      "calf_link_relative_xyz_m": [
+        1.806131115932403,
+        -0.01902198551174994,
+        -0.5120092808401338
+      ],
+      "calf_link_world_quaternion_xyzw": [
+        0.12411544471979141,
+        -0.22303947806358337,
+        -0.09339748322963715,
+        0.9623541831970215
+      ],
+      "front_right_foot_relative_xyz_m": [
+        1.9025073051452637,
+        0.022986888885498047,
+        -0.6972548365592957
+      ],
+      "transformed_source_cylinders": [
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_0",
+          "center_relative_xyz_m": [
+            1.842109928720621,
+            -0.009539864001237571,
+            -0.5601301103904163
+          ],
+          "axis_world_xyz": [
+            -0.6188877231166148,
+            -0.14657935896394975,
+            0.7716815908788094
+          ],
+          "radius_m": 0.013000000268220901,
+          "half_height_m": 0.05999999865889549,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              1.8792431912776248,
+              -0.000745102659978826,
+              -0.6064310048082392
+            ],
+            [
+              1.8049766661636173,
+              -0.018334625342496316,
+              -0.5138292159725933
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 3,
+              "x": 1.81,
+              "z": -0.54
+            },
+            "edge_y_at_minimum_m": -0.014843677853115805,
+            "nominal_signed_gap_m": -0.000545111248698809
+          }
+        },
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_1",
+          "center_relative_xyz_m": [
+            1.8907579071617264,
+            0.005464513602053869,
+            -0.6326024734924223
+          ],
+          "axis_world_xyz": [
+            -0.407768327487933,
+            -0.20872885672845903,
+            0.8889079004410547
+          ],
+          "radius_m": 0.010999999940395355,
+          "half_height_m": 0.032499998807907104,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              1.9040103773189865,
+              0.0122482011969046,
+              -0.6614919791970958
+            ],
+            [
+              1.8775054370044664,
+              -0.001319173992796862,
+              -0.6037129677877487
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 3,
+              "x": 1.81,
+              "z": -0.54
+            },
+            "edge_y_at_minimum_m": 0.004776040014815908,
+            "nominal_signed_gap_m": 0.08857514288080938
+          }
+        },
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_2",
+          "center_relative_xyz_m": [
+            1.8980229958714876,
+            0.01606342280875072,
+            -0.671780032823917
+          ],
+          "axis_world_xyz": [
+            0.05602230320154898,
+            -0.28903091716205676,
+            0.9556791461931425
+          ],
+          "radius_m": 0.01549999974668026,
+          "half_height_m": 0.014999999664723873,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              1.8971826613422473,
+              0.020398886469276404,
+              -0.6861152196963977
+            ],
+            [
+              1.8988633304007279,
+              0.011727959148225036,
+              -0.6574448459514363
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 3,
+              "x": 1.81,
+              "z": -0.54
+            },
+            "edge_y_at_minimum_m": 0.01715755681830733,
+            "nominal_signed_gap_m": 0.13702483161433632
+          }
+        }
+      ],
+      "nearest_nominal_source_cylinder": "/go2_description/FR_calf/collisions/mesh_0",
+      "nearest_nominal_descending_edge": {
+        "edge": {
+          "after_tread": 3,
+          "x": 1.81,
+          "z": -0.54
+        },
+        "edge_y_at_minimum_m": -0.014843677853115805,
+        "nominal_signed_gap_m": -0.000545111248698809
+      },
+      "dense_selected_frames": [
+        {
+          "offset_s": -0.06,
+          "nominal_simulation_time_s": 7.12,
+          "frame_id": 355,
+          "video_pts_s": 7.1,
+          "current_fr_calf_force_n": 68.03691864013672,
+          "history_peak_fr_calf_force_n": 78.20208740234375
+        },
+        {
+          "offset_s": -0.04,
+          "nominal_simulation_time_s": 7.14,
+          "frame_id": 356,
+          "video_pts_s": 7.12,
+          "current_fr_calf_force_n": 37.283363342285156,
+          "history_peak_fr_calf_force_n": 46.4690055847168
+        },
+        {
+          "offset_s": -0.02,
+          "nominal_simulation_time_s": 7.16,
+          "frame_id": 357,
+          "video_pts_s": 7.14,
+          "current_fr_calf_force_n": 55.00737380981445,
+          "history_peak_fr_calf_force_n": 55.00737380981445
+        },
+        {
+          "offset_s": 0.0,
+          "nominal_simulation_time_s": 7.18,
+          "frame_id": 358,
+          "video_pts_s": 7.16,
+          "current_fr_calf_force_n": 304.61785888671875,
+          "history_peak_fr_calf_force_n": 304.61785888671875
+        },
+        {
+          "offset_s": 0.02,
+          "nominal_simulation_time_s": 7.2,
+          "frame_id": 359,
+          "video_pts_s": 7.18,
+          "current_fr_calf_force_n": 64.7063980102539,
+          "history_peak_fr_calf_force_n": 64.7063980102539
+        },
+        {
+          "offset_s": 0.04,
+          "nominal_simulation_time_s": 7.22,
+          "frame_id": 360,
+          "video_pts_s": 7.2,
+          "current_fr_calf_force_n": 30.883684158325195,
+          "history_peak_fr_calf_force_n": 43.53411102294922
+        },
+        {
+          "offset_s": 0.06,
+          "nominal_simulation_time_s": 7.24,
+          "frame_id": 361,
+          "video_pts_s": 7.22,
+          "current_fr_calf_force_n": 33.384273529052734,
+          "history_peak_fr_calf_force_n": 34.4974365234375
+        }
+      ]
+    },
+    {
+      "time_s": 8.32,
+      "active_first_episode": true,
+      "current_force_world_xyz_n": [
+        402.5275573730469,
+        3.906172452161627e-08,
+        278.67535400390625
+      ],
+      "current_force_norm_n": 489.5798034667969,
+      "history_peak_force_norm_n": 489.5798034667969,
+      "force_xz_angle_deg": 34.69538731779693,
+      "calf_link_relative_xyz_m": [
+        2.073193001378713,
+        -0.05252933261868353,
+        -0.6844265042936555
+      ],
+      "calf_link_world_quaternion_xyzw": [
+        0.0953269973397255,
+        -0.19328142702579498,
+        -0.05855962634086609,
+        0.9747440218925476
+      ],
+      "front_right_foot_relative_xyz_m": [
+        2.155829429626465,
+        -0.01776742935180664,
+        -0.877640962600708
+      ],
+      "transformed_source_cylinders": [
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_0",
+          "center_relative_xyz_m": [
+            2.1056551274231863,
+            -0.04424733326289673,
+            -0.7351967583204042
+          ],
+          "axis_world_xyz": [
+            -0.562693875558621,
+            -0.12994743771954304,
+            0.8163879383227957
+          ],
+          "radius_m": 0.013000000268220901,
+          "half_height_m": 0.05999999865889549,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              2.139416759202072,
+              -0.036450487173997244,
+              -0.7841800335249104
+            ],
+            [
+              2.0718934956443005,
+              -0.05204417935179622,
+              -0.686213483115898
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 4,
+              "x": 2.08,
+              "z": -0.72
+            },
+            "edge_y_at_minimum_m": -0.04779535172088498,
+            "nominal_signed_gap_m": -0.0005006026770663259
+          }
+        },
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_1",
+          "center_relative_xyz_m": [
+            2.1489802591475575,
+            -0.03139568131660506,
+            -0.8113660997287074
+          ],
+          "axis_world_xyz": [
+            -0.341575639885066,
+            -0.17054557114680438,
+            0.9242512052463431
+          ],
+          "radius_m": 0.010999999940395355,
+          "half_height_m": 0.032499998807907104,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              2.1600814670366324,
+              -0.025852950457640085,
+              -0.8414042627974203
+            ],
+            [
+              2.1378790512584827,
+              -0.03693841217557004,
+              -0.7813279366599946
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 4,
+              "x": 2.08,
+              "z": -0.72
+            },
+            "edge_y_at_minimum_m": -0.0316553867331515,
+            "nominal_signed_gap_m": 0.0801734845548836
+          }
+        },
+        {
+          "shape": "/go2_description/FR_calf/collisions/mesh_2",
+          "center_relative_xyz_m": [
+            2.1532766691984557,
+            -0.023147212852232826,
+            -0.8515345347762927
+          ],
+          "axis_world_xyz": [
+            0.12955673598312895,
+            -0.21715289257728343,
+            0.9675017692008201
+          ],
+          "radius_m": 0.01549999974668026,
+          "half_height_m": 0.014999999664723873,
+          "axis_endpoints_relative_xyz_m": [
+            [
+              2.151333318202146,
+              -0.019889919536379756,
+              -0.8660470609899248
+            ],
+            [
+              2.1552200201947653,
+              -0.026404506168085897,
+              -0.8370220085626606
+            ]
+          ],
+          "nearest_descending_upper_edge": {
+            "edge": {
+              "after_tread": 4,
+              "x": 2.08,
+              "z": -0.72
+            },
+            "edge_y_at_minimum_m": -0.022016101014858364,
+            "nominal_signed_gap_m": 0.1292037116122821
+          }
+        }
+      ],
+      "nearest_nominal_source_cylinder": "/go2_description/FR_calf/collisions/mesh_0",
+      "nearest_nominal_descending_edge": {
+        "edge": {
+          "after_tread": 4,
+          "x": 2.08,
+          "z": -0.72
+        },
+        "edge_y_at_minimum_m": -0.04779535172088498,
+        "nominal_signed_gap_m": -0.0005006026770663259
+      },
+      "dense_selected_frames": [
+        {
+          "offset_s": -0.06,
+          "nominal_simulation_time_s": 8.26,
+          "frame_id": 412,
+          "video_pts_s": 8.24,
+          "current_fr_calf_force_n": 44.077083587646484,
+          "history_peak_fr_calf_force_n": 54.62879180908203
+        },
+        {
+          "offset_s": -0.04,
+          "nominal_simulation_time_s": 8.28,
+          "frame_id": 413,
+          "video_pts_s": 8.26,
+          "current_fr_calf_force_n": 33.283634185791016,
+          "history_peak_fr_calf_force_n": 55.09065628051758
+        },
+        {
+          "offset_s": -0.02,
+          "nominal_simulation_time_s": 8.3,
+          "frame_id": 414,
+          "video_pts_s": 8.28,
+          "current_fr_calf_force_n": 0.0,
+          "history_peak_fr_calf_force_n": 6.8197150230407715
+        },
+        {
+          "offset_s": 0.0,
+          "nominal_simulation_time_s": 8.32,
+          "frame_id": 415,
+          "video_pts_s": 8.3,
+          "current_fr_calf_force_n": 489.5798034667969,
+          "history_peak_fr_calf_force_n": 489.5798034667969
+        },
+        {
+          "offset_s": 0.02,
+          "nominal_simulation_time_s": 8.34,
+          "frame_id": 416,
+          "video_pts_s": 8.32,
+          "current_fr_calf_force_n": 0.0,
+          "history_peak_fr_calf_force_n": 0.0
+        },
+        {
+          "offset_s": 0.04,
+          "nominal_simulation_time_s": 8.36,
+          "frame_id": 417,
+          "video_pts_s": 8.34,
+          "current_fr_calf_force_n": 0.0,
+          "history_peak_fr_calf_force_n": 93.32575225830078
+        },
+        {
+          "offset_s": 0.06,
+          "nominal_simulation_time_s": 8.38,
+          "frame_id": 418,
+          "video_pts_s": 8.36,
+          "current_fr_calf_force_n": 2.435293674468994,
+          "history_peak_fr_calf_force_n": 6.425363063812256
+        }
+      ]
+    }
+  ],
+  "interpretation": "Both event poses place the long proximal FR_calf/mesh_0 source cylinder at the outgoing upper stair edge. The positive X/Z net normal force is consistent with edge support. This is geometric attribution evidence, not direct per-shape/contact-point measurement.",
+  "limits": [
+    "No measured PhysX contact point, collider pair, per-shape force or effective offset.",
+    "Current force is a net normal vector; multiple contact normals may sum or cancel and friction is excluded.",
+    "History force peaks can precede the current pose; these two highlighted peaks also occur in the current sample.",
+    "Selected stills do not prove smoothness, absence of transient contacts, or whole-video behavior.",
+    "Exact equality applies to these replay recordings; it is not a general backend determinism proof."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "created_local": "2026-10-11T04:50:46.657604+08:00",
+  "status": "Planned before evaluating final geometry or reset seeds; checkpoint not yet frozen",
+  "planned_freeze_no_later_than_local": "2026-10-11T06:15:00+08:00",
+  "checkpoint": null,
+  "no_retuning_from_final_matrix": true,
+  "acceptance_file": "reproduction/stair-acceptance.json",
+  "acceptance_sha256": "a435a41bb99717824c5c6692d97851de02c1781abfcdd50ccc610d3463c31b52",
+  "final_geometry_file": "reproduction/stair-heldout-final.json",
+  "final_geometry_sha256": "5fa2fc3b1bb58f2fb94f1f980e26a910d75f8b2c3037999c41369e5d706541c0",
+  "final_reset_seeds": [
+    101,
+    211,
+    307
+  ],
+  "seconds": 40,
+  "envs": 512,
+  "envs_each_case_seed": 32,
+  "speeds_m_s": [
+    0.3,
+    0.5
+  ],
+  "heading_controller": {
+    "primary": "yaw-rate = clamp(-yaw, -.5, .5) rad/s, target0; no lateral correction",
+    "supplementary": "--open_loop_heading on 12 standard cases, .3m/s, three new reset seeds",
+    "supplementary_reset_seeds": [
+      401,
+      409,
+      419
+    ]
+  },
+  "materials": {
+    "scene_profile": "basic",
+    "eval_dynamics": false,
+    "robot_body_scope": "foot only; other body material unchanged across all scenes",
+    "foot_static_dynamic_pairs": {
+      "nominal": [
+        0.8,
+        0.6
+      ],
+      "lower": [
+        0.45,
+        0.35
+      ],
+      "higher": [
+        1.0,
+        0.8
+      ]
+    },
+    "geometry": "same final matrix",
+    "speed_m_s": 0.3,
+    "construction_seed": 1,
+    "readback_required": true,
+    "interpretation": "friction sensitivity, not calibrated named real-world material or contact-pair coefficient"
+  },
+  "combined_dynamics": {
+    "scene_profile": "robust",
+    "eval_dynamics": true,
+    "construction_seeds": [
+      71,
+      73,
+      79
+    ],
+    "reset_seeds": [
+      101,
+      211,
+      307
+    ],
+    "speed_m_s": 0.3,
+    "geometry": "same final matrix",
+    "scope": "mass/COM sampled at scene startup, fixed nominal foot friction; PD gains resampled at reset; no actuator delay/strength calibration",
+    "foot_static_dynamic_pair": [
+      0.8,
+      0.6
+    ]
+  },
+  "flat_regression": {
+    "envs": 64,
+    "seconds": 20,
+    "warm_start": "reset",
+    "gradient_updates": 0,
+    "commands": [
+      [
+        0.3,
+        0,
+        0
+      ],
+      [
+        0.5,
+        0,
+        0
+      ],
+      [
+        -0.5,
+        0,
+        0
+      ],
+      [
+        0,
+        0.3,
+        0
+      ],
+      [
+        0,
+        0,
+        0.5
+      ],
+      [
+        0,
+        0,
+        -0.5
+      ]
+    ]
+  },
+  "video": {
+    "record_complete_first_episode_both_directions": true,
+    "policy_only": true,
+    "physics_dt": 0.005,
+    "policy_dt": 0.02,
+    "fps": 50,
+    "dense_trace_stride": 1,
+    "clip_to_recorded_environment_first_episode": true,
+    "selected_stills_do_not_certify_continuous_smoothness": true
+  },
+  "driver_changes_allowed": false
+}
