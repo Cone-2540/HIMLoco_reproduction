@@ -123,11 +123,39 @@
         "desc8cm": "95/96",
         "desc16cm": "84/96"
       }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_01-48-50_stairs-bootstrap-discovery120",
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 120,
+        "completed_iterations": 120,
+        "num_envs": 4096,
+        "environment_steps_this_run": 49152000,
+        "training_seconds": 875.1151539749999,
+        "parameters_finite": true,
+        "checkpoint": "model_120.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.1920928955078125e-06,
+        "peak_cuda_memory_bytes": 3705854976
+      },
+      "core_evaluation": "isaaclab/logs/2026-10-11_02-04-54_bootstrap120-progress-checkpoints",
+      "model120_results": {
+        "asc8cm": "94/96; worst seed30/32; complete six-riser traversal",
+        "desc8cm": "96/96",
+        "asc16cm": "0/96",
+        "desc16cm": "4/96,66falls",
+        "asc2.5cm": "72/96; mainly rear-foot final-riser transition",
+        "asc5cm": "87/96"
+      },
+      "final_smoothness_acceptance_passed": false
     }
   ],
-  "active_run": "isaaclab/logs/2026-10-11_01-48-50_stairs-bootstrap-discovery120",
-  "next_step": "Assess bootstrap ascent discovery and policy KL; independent lower-stair and core evaluation after120 updates",
-  "chosen_num_envs": 6144,
+  "active_run": "bootstrap120 8cm ascent continuous video; then standard150 continuation",
+  "next_step": "Usebootstrap120 aswarmstart forstandard5–17cm stairs,150additionalupdates,faithfulreward,fixed3e-4,explorationstd0.4,speed0.4–0.8; independent8/16cmfixed-casevalidation",
+  "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
   "schedule_initial": "fixed",
   "discarded_weight_runs": [
@@ -163,22 +191,24 @@
     "reward_profile": "faithful"
   },
   "current_changes": {
-    "stage": "bootstrap",
+    "stage": "standard",
     "height_range": [
-      0.025,
-      0.08
+      0.05,
+      0.17
     ],
     "num_envs": 4096,
-    "optimizer": "fresh Adam; same-shape actor/HIM/critic weights copied frommodel200",
+    "optimizer": "resumebootstrap120Adam",
     "learning_rate": 0.0003,
     "schedule": "fixed",
-    "reset_noise_std": 0.5,
+    "reset_noise_std": 0.4,
     "speed_range": [
       0.4,
       0.8
     ],
     "reward": "faithful",
-    "iterations": 120
+    "additional_iterations": 150,
+    "checkpoint_iteration_target": 270
   },
-  "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending"
+  "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
+  "last_update_local": "2026-10-11T02:13:07.677824+08:00"
 }
