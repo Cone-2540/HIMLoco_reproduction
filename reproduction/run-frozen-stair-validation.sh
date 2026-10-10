@@ -10,7 +10,7 @@ selected_checkpoint=$1
 selected_profile=$2
 validation_logs=$3
 case "$selected_profile" in
-  faithful|contact|contact_force) ;;
+  faithful|contact|contact_force|contact_slide) ;;
   *) printf 'Unsupported frozen reward profile: %s\n' "$selected_profile" >&2; exit 2 ;;
 esac
 repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)

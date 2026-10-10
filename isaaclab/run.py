@@ -101,7 +101,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "contact_force", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "contact_force", "contact_slide", "stock"], default="faithful")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -353,7 +353,7 @@ def main():
                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
             }
         robot = wrapped.env.scene["robot"]
-        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force"):
+        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force", "contact_slide"):
             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
                               for part in ("thigh", "calf")}
             term_names = ["leg_contacts"]
@@ -372,6 +372,23 @@ def main():
                 selections[term_name] = names
             metadata["resolved_contact_reward_bodies"] = selections["leg_contacts"]
             metadata["resolved_leg_reward_body_selections"] = selections
+        if args.terrain == "stairs" and args.reward_profile == "contact_slide":
+            term = wrapped.env.reward_manager.get_term_cfg("feet_slide")
+            sensor_cfg, asset_cfg = term.params["sensor_cfg"], term.params["asset_cfg"]
+            sensor, asset = wrapped.env.scene[sensor_cfg.name], wrapped.env.scene[asset_cfg.name]
+            sensor_ids, asset_ids = sensor_cfg.body_ids, asset_cfg.body_ids
+            sensor_names = sensor.body_names[sensor_ids] if isinstance(sensor_ids, slice) else [
+                sensor.body_names[int(index)] for index in sensor_ids]
+            asset_names = asset.body_names[asset_ids] if isinstance(asset_ids, slice) else [
+                asset.body_names[int(index)] for index in asset_ids]
+            expected_feet = {leg + "_foot" for leg in ("FL", "FR", "RL", "RR")}
+            if (len(sensor_names) != 4 or len(asset_names) != 4
+                    or set(sensor_names) != expected_feet or set(asset_names) != expected_feet
+                    or list(sensor_names) != list(asset_names)):
+                raise ValueError("feet_slide must select the same four Go2 feet in the same order: "
+                                 f"sensor={sensor_names}, asset={asset_names}")
+            metadata["resolved_foot_reward_body_selections"] = {
+                "feet_slide": {"sensor": sensor_names, "asset": asset_names}}
         metadata["joint_names"] = robot.joint_names
         metadata["default_joint_positions"] = robot.data.default_joint_pos.torch[0].tolist()
         metadata["action_scale"] = cfg.actions.joint_pos.scale

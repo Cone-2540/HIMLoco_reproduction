@@ -80,7 +80,7 @@ the supported headless option; this CLI has no `--headless` flag.
 
 ```bash
 selected_checkpoint='<frozen checkpoint inside this repository>'
-selected_profile='<contact or contact_force, matching frozen checkpoint>'
+selected_profile='<faithful, contact, contact_force or contact_slide, matching frozen checkpoint>'
 
 final_eval() {
   bash isaaclab/run.sh evaluate --terrain stairs \
@@ -266,3 +266,49 @@ Acceptance SHA-256 freezes the declared criteria, while `assess_final`
 currently applies matching hardcoded defaults rather than loading that JSON.
 Simulation process exit success means results were produced; inspect each
 saved `result.json` and `final_acceptance` to decide whether a gate passed.
+
+## Minimal contact-slide candidate CPU review
+
+`contact_slide` preserves the complete `contact` objective and adds only the
+existing tuned-profile `feet_slide` term at weight −0.05. Its function body,
+parameters and wildcard foot selectors are identical to the tuned term.
+Vertical-velocity weight stays −2, orientation weight stays −0.2, leg count
+stays −0.1, and the bounded force proxy is absent. No actor, terrain,
+base-height, foot-clearance, actuator or collision changes are included.
+
+The term is the sum over four feet of current world-XY foot-link/COM speed
+squared, gated by each foot's retained-history net-normal-force norm strictly
+above 1 N. The manager multiplies weight and policy dt once; at 20 ms the
+cost is `−0.001 × sum(v_x²+v_y²)`. Raw units are m²/s² and the term is
+unbounded. This is a foot-link velocity proxy, not exact contact-point or
+terrain-tangent slip. Riser normals can activate its contact gate; retained
+contact can penalize a newly lifted foot. The reused helper requires nonempty
+force history and has no current-only fallback.
+
+The CLI and frozen-validation whitelist accept `contact_slide`. Startup still
+asserts the exact eight thigh/calf bodies for leg count, then asserts the exact
+four feet and equal ordered sensor/asset selections for `feet_slide`, so
+contact gates pair with the correct foot velocities. The manifest includes
+the formula, threshold, frames, units, history requirements, scaling and
+interpretation limits; runtime metadata records both resolved foot axes.
+
+CPU regression passed 21 reward tests. New tests compare complete term
+`to_dict()` values, verify equality with the tuned slide term, resolve four
+named feet/eight legs with the actual pinned `SceneEntityCfg`, and check
+history gating, strict 1 N exclusion, multi-foot XY sums, Z and other-body
+exclusion, unchanged inputs and no internal dt scaling.
+
+A separate CPU-only check constructed the real pinned
+`UnitreeGo2RoughEnvCfg` using the same PhysX configuration resolver and hard
+terrain setup. Complete task `to_dict()` comparison found every non-reward
+field identical and exactly one changed reward, `feet_slide`. Executing the
+actual new startup guard against resolved mock body lists produced matching
+FL/FR/RL/RR foot names and rejected a deliberate ordered-axis mismatch.
+The CPU process had `CUDA_VISIBLE_DEVICES` empty and CUDA unavailable; no
+simulation or training was launched. Independent read-only review found no
+configuration or guard issue.
+
+Any continuation from contact620 also adds training updates; compare against
+the corresponding count-only continuation before attributing differences to
+the slide term. Candidate selection must preserve the original tuning gates
+and must be frozen before independent final geometry/reset-seed evaluation.

@@ -238,6 +238,96 @@ class StairRewardTest(unittest.TestCase):
             configure_stair_rewards(cfg, "contact")
         self.assertIs(cfg.rewards.dof_torques_l2, old)
 
+    def test_slide_profile_preserves_full_contact_config_and_reuses_only_tuned_slide(self):
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()),
+                      rewards=NS(feet_air_time=NS(weight=.01)))
+        baseline, modified, tuned_cfg = config(), config(), config()
+        original = configure_stair_rewards(baseline, "contact")
+        manifest = configure_stair_rewards(modified, "contact_slide")
+        configure_stair_rewards(tuned_cfg, "tuned")
+        self.assertEqual(manifest["weights"], {**original["weights"], "feet_slide": -.05})
+        for name in original["weights"]:
+            self.assertEqual(getattr(baseline.rewards, name).to_dict(),
+                             getattr(modified.rewards, name).to_dict(), name)
+        self.assertEqual(modified.rewards.feet_slide.to_dict(), tuned_cfg.rewards.feet_slide.to_dict())
+        self.assertEqual(modified.rewards.lin_vel_z_l2.weight, -2.)
+        self.assertEqual(modified.rewards.flat_orientation_l2.weight, -.2)
+        self.assertEqual(manifest["contact_penalty"], original["contact_penalty"])
+        self.assertIsNone(manifest["force_proxy_penalty"])
+        self.assertEqual(manifest["tuned_changes"], [])
+        self.assertEqual(len(manifest["adaptation_changes"]), 2)
+        self.assertEqual(manifest["slide_proxy_penalty"]["expected_selected_go2_bodies"], 4)
+        self.assertEqual(manifest["slide_proxy_penalty"]["threshold_n"], 1.)
+        self.assertIn("not exact contact-point slip", manifest["slide_proxy_penalty"]["interpretation_limit"])
+        cfg = NS(scene=NS(base_height_scanner=object()), rewards=NS(old=NS(weight=1.)))
+        with self.assertRaisesRegex(ValueError, "contact_forces sensor"):
+            configure_stair_rewards(cfg, "contact_slide")
+        self.assertEqual(cfg.rewards.old.weight, 1.)
+
+    def test_slide_profile_four_named_feet_strict_history_gate_xy_sum_and_exclusions(self):
+        from isaaclab.utils.string import resolve_matching_names
+        names = ["base", "Head_lower"] + [f"{leg}_{part}" for leg in ("FL", "FR", "RL", "RR")
+                                          for part in ("hip", "foot", "calf", "thigh")]
+        class ContactSensor:
+            body_names = names
+            num_sensors = len(names)
+
+            def find_sensors(self, keys, preserve_order=False):
+                return resolve_matching_names(keys, self.body_names, preserve_order=preserve_order)
+
+        class Robot:
+            body_names = names
+            num_bodies = len(names)
+
+            def find_bodies(self, keys, preserve_order=False):
+                return resolve_matching_names(keys, self.body_names, preserve_order=preserve_order)
+
+        sensor, robot = ContactSensor(), Robot()
+        force = torch.zeros(3, 3, len(names), 3)
+        velocity = torch.zeros(3, len(names), 3)
+        # Retained horizontal normal, with current contact absent, still gates XY speed.
+        force[0, 2, names.index("FR_foot"), 0] = 2.
+        velocity[0, names.index("FR_foot")] = torch.tensor([3., 4., 100.])
+        # A vector norm exactly1N is excluded by the strict gate.
+        force[1, 0, names.index("FL_foot"), :2] = torch.tensor([.6, .8])
+        velocity[1, names.index("FL_foot"), 0] = 10.
+        # Two independently contacted feet sum; Z speed is irrelevant.
+        force[2, 1, names.index("FL_foot"), 0] = 2.
+        force[2, 2, names.index("RR_foot"), 2] = 2.
+        velocity[2, names.index("FL_foot")] = torch.tensor([1., 2., 50.])
+        velocity[2, names.index("RR_foot")] = torch.tensor([2., 0., 70.])
+        # Unselected body impacts/motion and uncontacted foot speed do not contribute.
+        force[:, :, names.index("RL_calf"), 2] = 500.
+        velocity[:, names.index("RL_calf"), :2] = 100.
+        velocity[:, names.index("RL_foot"), :2] = 100.
+        sensor.data = NS(net_normal_forces_w_history=NS(torch=force))
+        robot.data = NS(body_lin_vel_w=NS(torch=velocity))
+        class Scene(dict):
+            pass
+        scene = Scene(contact_forces=sensor, robot=robot)
+        scene.sensors = {"contact_forces": sensor}
+        cfg = NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        configure_stair_rewards(cfg, "contact_slide")
+        term = cfg.rewards.feet_slide
+        sensor_cfg, asset_cfg = term.params["sensor_cfg"], term.params["asset_cfg"]
+        sensor_cfg.resolve(scene)
+        asset_cfg.resolve(scene)
+        expected = [f"{leg}_foot" for leg in ("FL", "FR", "RL", "RR")]
+        self.assertEqual([names[i] for i in sensor_cfg.body_ids], expected)
+        self.assertEqual([names[i] for i in asset_cfg.body_ids], expected)
+        leg_cfg = cfg.rewards.leg_contacts.params["sensor_cfg"]
+        leg_cfg.resolve(scene)
+        self.assertEqual({names[i] for i in leg_cfg.body_ids},
+                         {f"{leg}_{part}" for leg in ("FL", "FR", "RL", "RR") for part in ("thigh", "calf")})
+        env = NS(scene=scene, step_dt=.02)
+        force_before, velocity_before = force.clone(), velocity.clone()
+        torch.testing.assert_close(feet_slide_l2(env, **term.params), torch.tensor([25., 0., 9.]))
+        env.step_dt = .1
+        torch.testing.assert_close(feet_slide_l2(env, **term.params), torch.tensor([25., 0., 9.]))
+        torch.testing.assert_close(force, force_before)
+        torch.testing.assert_close(velocity, velocity_before)
+
     def test_force_profile_preserves_every_contact_term_and_adds_only_bounded_proxy(self):
         def config():
             return NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
