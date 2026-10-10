@@ -1,0 +1,92 @@
+{
+  "kind": "incomplete_pre_failure_diagnostic",
+  "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-27-25_frozen-failure-highfriction-lip-asc-video",
+  "environment_id": 329,
+  "seed": 101,
+  "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+  "selected_environment_completed": false,
+  "failure_flags": {
+    "fall": false,
+    "stall": true,
+    "lateral_escape": false
+  },
+  "measured_first_episode_failure_time_s": 7.139999866485596,
+  "source_video": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-27-25_frozen-failure-highfriction-lip-asc-video/videos/go2_stairs_asc_0000.mp4",
+  "output_video": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-highfriction-lip-asc-prefailure.mp4",
+  "source_video_sha256": "0f5b456bf714aad35f7ebd7949547e57a2039a60a4a9b30b3c19c6aabbf2a214",
+  "output_video_sha256": "c777c82c175307350d7b534473039c8cd487935e55330a7df8953f24eb5227d4",
+  "config_sha256": "6feb68b403f8ec84c933a81ea682875577e1f16c903cb02c1a762e08bac0c91f",
+  "result_sha256": "26e42a10df1a044a12b2c18dd2367911b92a2f7ebdea96f3542616019cec877e",
+  "source_video_info": {
+    "fps": 50.0,
+    "reported_frame_count": 1163,
+    "width": 1280,
+    "height": 720,
+    "decoded_frame_count": 1163
+  },
+  "output_video_info": {
+    "fps": 50.0,
+    "reported_frame_count": 355,
+    "width": 1280,
+    "height": 720,
+    "decoded_frame_count": 355
+  },
+  "policy_dt_s": 0.02,
+  "retained_frame_count": 355,
+  "retained_source_frame_indices_inclusive": [
+    0,
+    354
+  ],
+  "nominal_retained_simulation_times_s": [
+    0.02,
+    7.1000000000000005
+  ],
+  "excluded_terminal_duration_s": 0.04,
+  "terminal_reset_guard": "Exclude the terminal rendered frame and one additional policy frame; this is not the full episode or a view of the exact terminal state.",
+  "synchronization_limit": "Encoded PTS + policy dt is nominal simulation time; exact renderer/physics alignment was not separately instrumented.",
+  "continuous_video_reviewed": false,
+  "encoding": {
+    "hardware_acceleration": "none",
+    "codec": "libx264",
+    "b_frames": 0,
+    "command_with_final_output": [
+      "/home/cone/isaaclab/data/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-hwaccel",
+      "none",
+      "-threads",
+      "2",
+      "-i",
+      "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-27-25_frozen-failure-highfriction-lip-asc-video/videos/go2_stairs_asc_0000.mp4",
+      "-map",
+      "0:v:0",
+      "-vf",
+      "trim=start_frame=0:end_frame=355,setpts=N/(50*TB)",
+      "-frames:v",
+      "355",
+      "-r",
+      "50",
+      "-fps_mode",
+      "cfr",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "18",
+      "-bf",
+      "0",
+      "-threads",
+      "2",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      "/home/cone/Research/HIMLoco/reproduction/frozen-failure-highfriction-lip-asc-prefailure.mp4"
+    ]
+  }
+}

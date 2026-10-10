@@ -1,0 +1,114 @@
+{
+  "review_method": "complete chronological decoded-frame contact-sheet inspection",
+  "continuous_video_reviewed": false,
+  "continuous_playback_smoothness_certified": false,
+  "total_retained_frames_inspected": 3212,
+  "total_pages_inspected": 56,
+  "runtime_or_policy_changed": false,
+  "review_document": "reproduction/frozen-control660-complete-frame-sequence-review.md",
+  "review_document_sha256": "bee5f4ad8fe4d56919ce1c8e9adc182903ee7702d778083e6eb15613011e8518",
+  "recordings": [
+    {
+      "name": "16cm-asc",
+      "all_retained_frames_visually_inspected": true,
+      "inspection_order": "page ascending, row-major, consecutive frame ascending",
+      "pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "coverage_index": "reproduction/frozen-control660-16cm-asc-all-frames.json",
+      "coverage_index_sha256": "45fff447f8b95a115c46c9bc00daaed4da24a9c3a9736d13b2b7023e5af762fd",
+      "telemetry_summary": "reproduction/frozen-control660-16cm-asc-frame-telemetry-summary.json"
+    },
+    {
+      "name": "16cm-desc",
+      "all_retained_frames_visually_inspected": true,
+      "inspection_order": "page ascending, row-major, consecutive frame ascending",
+      "pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "coverage_index": "reproduction/frozen-control660-16cm-desc-all-frames.json",
+      "coverage_index_sha256": "88a7366b240f24c5db0d5057d2159be503636462aa8ae1a9868e8dd957a43e41",
+      "telemetry_summary": "reproduction/frozen-control660-16cm-desc-frame-telemetry-summary.json"
+    },
+    {
+      "name": "long12-desc",
+      "all_retained_frames_visually_inspected": true,
+      "inspection_order": "page ascending, row-major, consecutive frame ascending",
+      "pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "coverage_index": "reproduction/frozen-control660-long12-desc-all-frames.json",
+      "coverage_index_sha256": "ea8cd81250d8f8db439b24fb9b8304f46c8ababeb155cf18af5f070a29e87aa5",
+      "telemetry_summary": "reproduction/frozen-control660-long12-desc-frame-telemetry-summary.json"
+    },
+    {
+      "name": "long12-asc",
+      "all_retained_frames_visually_inspected": true,
+      "inspection_order": "page ascending, row-major, consecutive frame ascending",
+      "pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "coverage_index": "reproduction/frozen-control660-long12-asc-all-frames.json",
+      "coverage_index_sha256": "2fb3bb8be291e2acb78c682508396172e88eea1a24c270a599c18cec9fd6938a",
+      "telemetry_summary": "reproduction/frozen-control660-long12-asc-frame-telemetry-summary.json"
+    }
+  ],
+  "limitations": [
+    "Selected successful 0.3 m/s episodes do not erase failed frozen matrix cases.",
+    "Camera occlusion and 320x180 thumbnails limit exact foot/stair contact attribution.",
+    "Nominal sim time equals encoded PTS + 20 ms; exact renderer/physics synchronization is not independently instrumented.",
+    "Contact-gated foot link world XY speed is not exact tangential contact point slip."
+  ]
+}

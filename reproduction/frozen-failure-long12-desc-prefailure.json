@@ -1,0 +1,92 @@
+{
+  "kind": "incomplete_pre_failure_diagnostic",
+  "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-16-18_frozen-failure-long12-desc-video",
+  "environment_id": 416,
+  "seed": 211,
+  "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+  "selected_environment_completed": false,
+  "failure_flags": {
+    "fall": false,
+    "stall": false,
+    "lateral_escape": true
+  },
+  "measured_first_episode_failure_time_s": 10.760000228881836,
+  "source_video": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-16-18_frozen-failure-long12-desc-video/videos/go2_stairs_asc_0000.mp4",
+  "output_video": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-long12-desc-prefailure.mp4",
+  "source_video_sha256": "733d346fa8b9cac200e524e84a346ded531720b1f040120e537f09e83f23a14f",
+  "output_video_sha256": "d14d89318722662759dfa66accf152754d9d82d3e86b19829eec015167da37e4",
+  "config_sha256": "38017b3d175a4015555e74c2446641915728448530c2a07fd92f5ddfde84664c",
+  "result_sha256": "8a300ccead637e58d5ad3a21871929c0f85f2196edbc0bef79ea71d4977e0318",
+  "source_video_info": {
+    "fps": 50.0,
+    "reported_frame_count": 614,
+    "width": 1280,
+    "height": 720,
+    "decoded_frame_count": 614
+  },
+  "output_video_info": {
+    "fps": 50.0,
+    "reported_frame_count": 536,
+    "width": 1280,
+    "height": 720,
+    "decoded_frame_count": 536
+  },
+  "policy_dt_s": 0.02,
+  "retained_frame_count": 536,
+  "retained_source_frame_indices_inclusive": [
+    0,
+    535
+  ],
+  "nominal_retained_simulation_times_s": [
+    0.02,
+    10.72
+  ],
+  "excluded_terminal_duration_s": 0.04,
+  "terminal_reset_guard": "Exclude the terminal rendered frame and one additional policy frame; this is not the full episode or a view of the exact terminal state.",
+  "synchronization_limit": "Encoded PTS + policy dt is nominal simulation time; exact renderer/physics alignment was not separately instrumented.",
+  "continuous_video_reviewed": false,
+  "encoding": {
+    "hardware_acceleration": "none",
+    "codec": "libx264",
+    "b_frames": 0,
+    "command_with_final_output": [
+      "/home/cone/isaaclab/data/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-hwaccel",
+      "none",
+      "-threads",
+      "2",
+      "-i",
+      "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-16-18_frozen-failure-long12-desc-video/videos/go2_stairs_asc_0000.mp4",
+      "-map",
+      "0:v:0",
+      "-vf",
+      "trim=start_frame=0:end_frame=536,setpts=N/(50*TB)",
+      "-frames:v",
+      "536",
+      "-r",
+      "50",
+      "-fps_mode",
+      "cfr",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "18",
+      "-bf",
+      "0",
+      "-threads",
+      "2",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      "/home/cone/Research/HIMLoco/reproduction/frozen-failure-long12-desc-prefailure.mp4"
+    ]
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "clip": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure.mp4",
+  "clip_sha256": "3a95dbd1557577d17962733cda9cdc90b3f80ab3e92ebd118650e7a76435e9c8",
+  "provenance": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure.json",
+  "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_06-25-31_frozen-failure-stretch-desc-video",
+  "environment_id": 481,
+  "frame_count": 221,
+  "fully_cpu_decoded": true,
+  "coverage": "Every retained frame exactly once, chronological row-major; no sampling.",
+  "crop_original_pixels_xyxy_exclusive": [
+    360,
+    300,
+    1000,
+    660
+  ],
+  "original_dimensions": [
+    1280,
+    720
+  ],
+  "thumbnail_dimensions": [
+    320,
+    180
+  ],
+  "page_dimensions": [
+    1920,
+    2012
+  ],
+  "grid_columns": 6,
+  "grid_rows": 10,
+  "frames_per_full_page": 60,
+  "timing_note": "Encoded PTS + policy dt is nominal simulation time; exact renderer/physics alignment was not separately instrumented.",
+  "continuous_video_reviewed": false,
+  "pages": [
+    {
+      "page": 1,
+      "path": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure-all-frames/page-01.png",
+      "frame_indices_inclusive": [
+        0,
+        59
+      ],
+      "frame_count": 60,
+      "encoded_pts_s_inclusive": [
+        0.0,
+        1.18
+      ],
+      "nominal_simulation_time_s_inclusive": [
+        0.02,
+        1.2
+      ],
+      "sha256": "bd2c9b2227a348a8ce750fad626a24bc417790e9e5418a822c27aa2f71d57597"
+    },
+    {
+      "page": 2,
+      "path": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure-all-frames/page-02.png",
+      "frame_indices_inclusive": [
+        60,
+        119
+      ],
+      "frame_count": 60,
+      "encoded_pts_s_inclusive": [
+        1.2,
+        2.38
+      ],
+      "nominal_simulation_time_s_inclusive": [
+        1.22,
+        2.4
+      ],
+      "sha256": "d20c32454f440c2dd5a396a2fb5cfb712296f39c5e3f27406bd1392827b0a8ed"
+    },
+    {
+      "page": 3,
+      "path": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure-all-frames/page-03.png",
+      "frame_indices_inclusive": [
+        120,
+        179
+      ],
+      "frame_count": 60,
+      "encoded_pts_s_inclusive": [
+        2.4,
+        3.58
+      ],
+      "nominal_simulation_time_s_inclusive": [
+        2.42,
+        3.6
+      ],
+      "sha256": "dbdbe4a45a65f78044f12ca5ca7ade5e91a9e08d3ac506c083dd3fe130a94676"
+    },
+    {
+      "page": 4,
+      "path": "/home/cone/Research/HIMLoco/reproduction/frozen-failure-stretch-desc-prefailure-all-frames/page-04.png",
+      "frame_indices_inclusive": [
+        180,
+        220
+      ],
+      "frame_count": 41,
+      "encoded_pts_s_inclusive": [
+        3.6,
+        4.4
+      ],
+      "nominal_simulation_time_s_inclusive": [
+        3.62,
+        4.42
+      ],
+      "sha256": "18147dcb858655d218683c21e39a8e34071d71a00294f6542af4796e144f4ecc"
+    }
+  ],
+  "kind": "incomplete_pre_failure_diagnostic",
+  "telemetry_available": false,
+  "telemetry_environment_id": null,
+  "telemetry_unavailable_reason": "Selected recorded environment is absent from saved trace; no neighboring environment was substituted.",
+  "selected_environment_completed": false,
+  "failure_flags": {
+    "fall": true,
+    "stall": false,
+    "lateral_escape": false
+  },
+  "measured_first_episode_failure_time_s": 4.460000038146973,
+  "nominal_retained_simulation_times_s": [
+    0.02,
+    4.42
+  ],
+  "excluded_terminal_duration_s": 0.04,
+  "terminal_reset_guard": "Exclude the terminal rendered frame and one additional policy frame; this is not the full episode or a view of the exact terminal state.",
+  "full_failed_episode_shown": false,
+  "exact_terminal_state_shown": false,
+  "selected_environment_endpoint_from_result": {
+    "completed": false,
+    "fall": true,
+    "stall": false,
+    "lateral_escape": false,
+    "max_progress_m": 1.1936712265014648,
+    "initial_root_relative_xyz_m": [
+      0.003835439682006836,
+      -0.0024700164794921875,
+      0.3999999761581421
+    ],
+    "maximum_root_relative_x_m": 1.1975066661834717,
+    "last_measured_root_relative_xyz_m": [
+      1.1975066661834717,
+      0.015764236450195312,
+      -0.02674424648284912
+    ],
+    "last_measured_feet_relative_xyz_m": [
+      [
+        1.3633075952529907,
+        0.09710502624511719,
+        -0.43671053647994995
+      ],
+      [
+        1.4423174858093262,
+        -0.03527641296386719,
+        -0.45294541120529175
+      ],
+      [
+        0.8394719362258911,
+        0.19244766235351562,
+        0.0216214656829834
+      ],
+      [
+        0.7543501257896423,
+        -0.2320079803466797,
+        0.021039843559265137
+      ]
+    ],
+    "first_episode_measured_duration_s": 4.460000038146973,
+    "longest_flight_pause_s": 0.0,
+    "completion_time_s": null
+  },
+  "endpoint_scope": "Saved first-episode endpoint from the exact selected environment; this terminal measurement is not a paired retained video frame.",
+  "provenance_sha256": "6fd96b2335b406c9d6f9fe6e508d5a98aa3270d2405ce7586d20569e6da2c3b7"
+}

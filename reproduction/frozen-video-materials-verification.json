@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-10T22:02:47.847510+00:00",
+  "primary_checkpoint_host": "/home/cone/Research/HIMLoco/artifacts/go2-stairs-control660/model_660.pt",
+  "primary_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "total_retained_frames": 3212,
+  "total_pages": 56,
+  "total_csv_rows": 3212,
+  "all_frames_materialized": true,
+  "continuous_playback_watched": false,
+  "visual_review_owner": "Independent complete chronological sheet inspection is recorded by parent reviewer separately; material verification itself does not claim visual smoothness.",
+  "sheet_format": {
+    "crop_xyxy_exclusive_original_pixels": [
+      360,
+      300,
+      1000,
+      660
+    ],
+    "original_dimensions": [
+      1280,
+      720
+    ],
+    "thumbnail_dimensions": [
+      320,
+      180
+    ],
+    "grid_columns": 6,
+    "grid_rows": 10,
+    "frames_per_full_page": 60,
+    "page_dimensions": [
+      1920,
+      2012
+    ],
+    "ordering": "chronological row-major, each retained frame exactly once",
+    "labels": "zero-based frame index; encoded PTS; nominal simulation time"
+  },
+  "timing_limit": "Pinned recorder begins after first policy step. Frame n encoded PTS is n/50 seconds; nominal matching dense trace time is (n+1)*0.02 seconds. Exact render/physics synchronization was not independently instrumented. Episode telemetry is measured before reset; failed or timeout-ending selected episodes are rejected by clipping guard.",
+  "physical_measurement_limit": "Camera and thumbnail occlusion can hide feet/calf surfaces. Foot world-XY link speed gated by current or retained normal-force contact is a proxy, not contact-point tangential slip. History force can exceed the current recorded policy-boundary sample. Full frame coverage does not certify smooth locomotion or absence of scraping.",
+  "records": [
+    {
+      "prefix": "frozen-control660-16cm-asc",
+      "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_05-48-28_frozen-control660-16cm-asc-video",
+      "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+      "source_commit": "be0801ffba1f0accd7c78b0958e817e31512c940",
+      "source_tracked_files_dirty": true,
+      "environment_id": 0,
+      "case_id": 0,
+      "seed": 101,
+      "configured_command_override": null,
+      "selected_episode_completed": true,
+      "selected_episode_fall": false,
+      "selected_episode_stall": false,
+      "selected_episode_lateral_escape": false,
+      "geometry": {
+        "direction": "asc",
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "width": 1.2,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "goal_platform_z": 0.96
+      },
+      "source_frame_count": 629,
+      "retained_frame_count": 623,
+      "discarded_trailing_frame_count": 6,
+      "encoded_duration_s": 12.46,
+      "fps": 50.0,
+      "retained_frame_indices_inclusive": [
+        0,
+        622
+      ],
+      "nominal_simulation_times_s_inclusive": [
+        0.02,
+        12.46
+      ],
+      "page_count": 11,
+      "csv_rows": 623,
+      "csv_columns": 158,
+      "cpu_decoding_frame_count_verified": true,
+      "sheet_coverage_and_file_hashes_verified": true,
+      "csv_recorded_telemetry_fields_equal_selected_dense_trace": true,
+      "csv_frame_metadata_checked": true,
+      "csv_all_active_and_finite": true,
+      "video_isolation": {
+        "visible_environment_index": 0,
+        "visible_environment_prim": "/World/envs/env_0",
+        "hidden_environment_count": 31,
+        "operation": "USD visibility only; collision and rigid-body attributes unchanged"
+      },
+      "clip": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-first-episode.mp4",
+      "clip_provenance": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-first-episode.json",
+      "all_frames_index": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-all-frames.json",
+      "csv": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-frame-telemetry.csv",
+      "telemetry_summary": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-frame-telemetry-summary.json",
+      "telemetry_plot": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-asc-frame-telemetry.png",
+      "batch_context": {
+        "num_envs": 32,
+        "passed": true,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "failed_cases": []
+      },
+      "csv_sha256": "842bad2325466d8befa295745918154321f76b04180fcfe350756051dd197fd9"
+    },
+    {
+      "prefix": "frozen-control660-16cm-desc",
+      "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_05-50-31_frozen-control660-16cm-desc-video",
+      "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+      "source_commit": "be0801ffba1f0accd7c78b0958e817e31512c940",
+      "source_tracked_files_dirty": true,
+      "environment_id": 0,
+      "case_id": 0,
+      "seed": 101,
+      "configured_command_override": null,
+      "selected_episode_completed": true,
+      "selected_episode_fall": false,
+      "selected_episode_stall": false,
+      "selected_episode_lateral_escape": false,
+      "geometry": {
+        "direction": "desc",
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "width": 1.2,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "goal_platform_z": -0.96
+      },
+      "source_frame_count": 689,
+      "retained_frame_count": 678,
+      "discarded_trailing_frame_count": 11,
+      "encoded_duration_s": 13.56,
+      "fps": 50.0,
+      "retained_frame_indices_inclusive": [
+        0,
+        677
+      ],
+      "nominal_simulation_times_s_inclusive": [
+        0.02,
+        13.56
+      ],
+      "page_count": 12,
+      "csv_rows": 678,
+      "csv_columns": 158,
+      "cpu_decoding_frame_count_verified": true,
+      "sheet_coverage_and_file_hashes_verified": true,
+      "csv_recorded_telemetry_fields_equal_selected_dense_trace": true,
+      "csv_frame_metadata_checked": true,
+      "csv_all_active_and_finite": true,
+      "video_isolation": {
+        "visible_environment_index": 0,
+        "visible_environment_prim": "/World/envs/env_0",
+        "hidden_environment_count": 31,
+        "operation": "USD visibility only; collision and rigid-body attributes unchanged"
+      },
+      "clip": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-first-episode.mp4",
+      "clip_provenance": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-first-episode.json",
+      "all_frames_index": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-all-frames.json",
+      "csv": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-frame-telemetry.csv",
+      "telemetry_summary": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-frame-telemetry-summary.json",
+      "telemetry_plot": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-16cm-desc-frame-telemetry.png",
+      "batch_context": {
+        "num_envs": 32,
+        "passed": true,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "failed_cases": []
+      },
+      "csv_sha256": "a7a7e06010f54ac745faaef99b16d775971834494c2c9b64eab7b25832b5a990"
+    },
+    {
+      "prefix": "frozen-control660-long12-asc",
+      "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_05-54-57_frozen-control660-long12-asc-video",
+      "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+      "source_commit": "be0801ffba1f0accd7c78b0958e817e31512c940",
+      "source_tracked_files_dirty": true,
+      "environment_id": 384,
+      "case_id": 12,
+      "seed": 101,
+      "configured_command_override": null,
+      "selected_episode_completed": true,
+      "selected_episode_fall": false,
+      "selected_episode_stall": false,
+      "selected_episode_lateral_escape": false,
+      "geometry": {
+        "direction": "asc",
+        "num_steps": 12,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "width": 1.2,
+        "first_riser_x": 1.0,
+        "last_riser_x": 3.75,
+        "goal_platform_start_x": 4.0,
+        "goal_x": 4.65,
+        "goal_platform_z": 2.04
+      },
+      "source_frame_count": 1031,
+      "retained_frame_count": 890,
+      "discarded_trailing_frame_count": 141,
+      "encoded_duration_s": 17.8,
+      "fps": 50.0,
+      "retained_frame_indices_inclusive": [
+        0,
+        889
+      ],
+      "nominal_simulation_times_s_inclusive": [
+        0.02,
+        17.8
+      ],
+      "page_count": 15,
+      "csv_rows": 890,
+      "csv_columns": 158,
+      "cpu_decoding_frame_count_verified": true,
+      "sheet_coverage_and_file_hashes_verified": true,
+      "csv_recorded_telemetry_fields_equal_selected_dense_trace": true,
+      "csv_frame_metadata_checked": true,
+      "csv_all_active_and_finite": true,
+      "video_isolation": {
+        "visible_environment_index": 384,
+        "visible_environment_prim": "/World/envs/env_384",
+        "hidden_environment_count": 511,
+        "operation": "USD visibility only; collision and rigid-body attributes unchanged"
+      },
+      "clip": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-first-episode.mp4",
+      "clip_provenance": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-first-episode.json",
+      "all_frames_index": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-all-frames.json",
+      "csv": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-frame-telemetry.csv",
+      "telemetry_summary": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-frame-telemetry-summary.json",
+      "telemetry_plot": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-asc-frame-telemetry.png",
+      "batch_context": {
+        "num_envs": 512,
+        "passed": false,
+        "completions": 492,
+        "falls": 17,
+        "stalls": 3,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "failed_cases": [
+          {
+            "case_id": 15,
+            "num_envs": 32,
+            "completions": 12,
+            "falls": 17,
+            "stalls": 3,
+            "lateral_escapes": 0
+          }
+        ]
+      },
+      "csv_sha256": "d1217b7090b292a4e378c5a4c4e27e6143f86b61135da2118933add241e049ec"
+    },
+    {
+      "prefix": "frozen-control660-long12-desc",
+      "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_05-52-20_frozen-control660-long12-desc-video",
+      "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+      "source_commit": "be0801ffba1f0accd7c78b0958e817e31512c940",
+      "source_tracked_files_dirty": true,
+      "environment_id": 416,
+      "case_id": 13,
+      "seed": 101,
+      "configured_command_override": null,
+      "selected_episode_completed": true,
+      "selected_episode_fall": false,
+      "selected_episode_stall": false,
+      "selected_episode_lateral_escape": false,
+      "geometry": {
+        "direction": "desc",
+        "num_steps": 12,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "width": 1.2,
+        "first_riser_x": 1.0,
+        "last_riser_x": 3.75,
+        "goal_platform_start_x": 4.0,
+        "goal_x": 4.65,
+        "goal_platform_z": -2.04
+      },
+      "source_frame_count": 1031,
+      "retained_frame_count": 1021,
+      "discarded_trailing_frame_count": 10,
+      "encoded_duration_s": 20.42,
+      "fps": 50.0,
+      "retained_frame_indices_inclusive": [
+        0,
+        1020
+      ],
+      "nominal_simulation_times_s_inclusive": [
+        0.02,
+        20.42
+      ],
+      "page_count": 18,
+      "csv_rows": 1021,
+      "csv_columns": 158,
+      "cpu_decoding_frame_count_verified": true,
+      "sheet_coverage_and_file_hashes_verified": true,
+      "csv_recorded_telemetry_fields_equal_selected_dense_trace": true,
+      "csv_frame_metadata_checked": true,
+      "csv_all_active_and_finite": true,
+      "video_isolation": {
+        "visible_environment_index": 416,
+        "visible_environment_prim": "/World/envs/env_416",
+        "hidden_environment_count": 511,
+        "operation": "USD visibility only; collision and rigid-body attributes unchanged"
+      },
+      "clip": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-first-episode.mp4",
+      "clip_provenance": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-first-episode.json",
+      "all_frames_index": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-all-frames.json",
+      "csv": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-frame-telemetry.csv",
+      "telemetry_summary": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-frame-telemetry-summary.json",
+      "telemetry_plot": "/home/cone/Research/HIMLoco/reproduction/frozen-control660-long12-desc-frame-telemetry.png",
+      "batch_context": {
+        "num_envs": 512,
+        "passed": false,
+        "completions": 492,
+        "falls": 17,
+        "stalls": 3,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "failed_cases": [
+          {
+            "case_id": 15,
+            "num_envs": 32,
+            "completions": 12,
+            "falls": 17,
+            "stalls": 3,
+            "lateral_escapes": 0
+          }
+        ]
+      },
+      "csv_sha256": "8ea7429cb61fe0892d771ded9a4ac35ffb4dc233ff31cc06266f1dae5a811e3f"
+    }
+  ],
+  "reproduction_script": "/home/cone/Research/HIMLoco/reproduction/inspect-first-episode-frames.py",
+  "reproduction_script_sha256": "8c4573b16dd2b4fb5f0ee1349dfe86af274ab03a1a6a2e464d1801c002f0865b",
+  "reproduction_validation": {
+    "verify_only_command": "python3 -B reproduction/inspect-first-episode-frames.py --verify-only",
+    "verify_only_passed_all_four_clips": true,
+    "verified_frame_count": 3212,
+    "verified_page_count": 56,
+    "verified_csv_row_count": 3212,
+    "verified_csv_columns": 158,
+    "generation_roundtrip_clip": "frozen-control660-16cm-asc-first-episode.mp4",
+    "generation_roundtrip_location": "/tmp/him-frame-inspector-roundtrip",
+    "generation_roundtrip_page_count": 11,
+    "generation_roundtrip_all_page_bytes_identical": true,
+    "generation_roundtrip_csv_bytes_identical": true,
+    "csv_line_ending": "LF",
+    "csv_normalization_all_numeric_content_unchanged": true,
+    "coverage_indexes_unchanged_after_csv_normalization": true,
+    "generation_roundtrip_repeated_after_lf_normalization": true
+  },
+  "csv_line_ending": "LF"
+}
