@@ -12,8 +12,8 @@ fi
 # Accept checkpoint paths in the host checkout, even from another cwd.
 args=("$@")
 for ((i=0; i<${#args[@]}; i++)); do
-  if [[ ${args[i]} == --checkpoint ]]; then
-    (( i+1 < ${#args[@]} )) || { printf '%s\n' 'Missing checkpoint path' >&2; exit 2; }
+  if [[ ${args[i]} == --checkpoint || ${args[i]} == --stair_batch ]]; then
+    (( i+1 < ${#args[@]} )) || { printf '%s\n' 'Missing input file path' >&2; exit 2; }
     checkpoint=$(realpath -- "${args[i+1]}")
     case "$checkpoint" in
       "$HIM_REPO_ROOT"/*) args[i+1]="/workspace/himloco/${checkpoint#"$HIM_REPO_ROOT"/}" ;;

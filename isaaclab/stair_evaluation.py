@@ -32,6 +32,12 @@ def _tensor(value):
 
 
 def _validate_geometry(geometry):
+    if isinstance(geometry, (list, tuple)):
+        if not geometry:
+            raise ValueError("Provide at least one staircase geometry")
+        for item in geometry:
+            _validate_geometry(item)
+        return
     required = ("direction", "num_steps", "step_height", "step_depth", "width", "start_x",
                 "last_riser_x", "goal_x", "goal_platform_z")
     if any(name not in geometry for name in required):
@@ -42,6 +48,28 @@ def _validate_geometry(geometry):
         raise ValueError("Goal must be beyond the full flight")
     if not all(math.isfinite(float(geometry[name])) for name in required if name != "direction"):
         raise ValueError("Staircase geometry must be finite")
+
+
+def _geometry_for_envs(geometry, env):
+    """Fixed batches map each terrain column to its exact metadata."""
+    if not isinstance(geometry, (list, tuple)):
+        return geometry, torch.zeros(env.num_envs, device=env.device, dtype=torch.long), [geometry]
+    types = _tensor(env.scene.terrain.terrain_types).long()
+    if bool((types < 0).any()) or bool((types >= len(geometry)).any()):
+        raise ValueError("Terrain column does not match supplied geometry list")
+    numeric = ("num_steps", "step_height", "step_depth", "width", "start_x", "first_riser_x", "last_riser_x",
+               "goal_x", "goal_platform_start_x", "goal_platform_z", "lateral_center_y", "goal_dwell_s")
+    defaults = {"lateral_center_y": 0.0, "goal_dwell_s": 0.5}
+    parameters = {}
+    for name in numeric:
+        values = [item.get(name, defaults.get(name, item.get("last_riser_x"))) for item in geometry]
+        parameters[name] = torch.tensor(values, device=env.device)[types]
+    return parameters, types, list(geometry)
+
+
+def _parameter(value, reference, *, feet=False):
+    result = torch.as_tensor(value, device=reference.device, dtype=reference.dtype)
+    return result[:, None] if feet and result.ndim else result
 
 
 def _command_cfg(command, seconds, speed):
@@ -78,9 +106,13 @@ def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomize
         if hasattr(cfg.events, name):
             setattr(cfg.events, name, None)
     delta, yaw, vel = (0.08, 0.08, 0.03) if randomized else (0.0, 0.0, 0.0)
+    # Every batch flight uses the same starting-landing origin convention.
+    reset_geometry = geometry[0] if isinstance(geometry, (list, tuple)) else geometry
+    if isinstance(geometry, (list, tuple)) and any(item["start_x"] != reset_geometry["start_x"] for item in geometry):
+        raise ValueError("Batch geometry must share the same reset start_x")
     cfg.events.reset_base.params["pose_range"] = {
-        "x": (geometry["start_x"] - delta, geometry["start_x"] + delta),
-        "y": (geometry.get("lateral_center_y", 0.0) - delta, geometry.get("lateral_center_y", 0.0) + delta),
+        "x": (reset_geometry["start_x"] - delta, reset_geometry["start_x"] + delta),
+        "y": (reset_geometry.get("lateral_center_y", 0.0) - delta, reset_geometry.get("lateral_center_y", 0.0) + delta),
         "yaw": (-yaw, yaw), "z": (0.0, 0.0), "roll": (0.0, 0.0), "pitch": (0.0, 0.0),
     }
     cfg.events.reset_base.params["velocity_range"] = {
@@ -187,16 +219,19 @@ def completion_mask(state, origins, geometry, thresholds=None):
     limits = {**DEFAULT_THRESHOLDS, **(thresholds or {})}
     relative = state["root_pos_w"] - origins
     feet = state["feet_pos_w"] - origins[:, None, :]
-    goal_z = float(geometry["goal_platform_z"])
-    y = float(geometry.get("lateral_center_y", 0.0))
+    goal_z = _parameter(geometry["goal_platform_z"], relative)
+    y = _parameter(geometry.get("lateral_center_y", 0.0), relative)
+    last_riser = _parameter(geometry["last_riser_x"], relative)
+    platform_start = _parameter(geometry.get("goal_platform_start_x", geometry["last_riser_x"]), relative)
+    width = _parameter(geometry["width"], relative)
     root_clearance = relative[:, 2] - goal_z
     return (
         (relative[:, 0] >= geometry["goal_x"])
-        & (feet[:, :, 0].amin(dim=1) >= geometry["last_riser_x"] + limits["goal_foot_clearance_m"])
-        & (feet[:, :, 0].amin(dim=1) >= geometry.get("goal_platform_start_x", geometry["last_riser_x"]) + 0.03)
-        & ((feet[:, :, 2] - goal_z).abs().amax(dim=1) < limits["goal_foot_height_tolerance_m"])
-        & ((relative[:, 1] - y).abs() < geometry["width"] / 2)
-        & ((feet[:, :, 1] - y).abs().amax(dim=1) < geometry["width"] / 2 + 0.05)
+        & (feet[:, :, 0].amin(dim=1) >= last_riser + limits["goal_foot_clearance_m"])
+        & (feet[:, :, 0].amin(dim=1) >= platform_start + 0.03)
+        & ((feet[:, :, 2] - _parameter(geometry["goal_platform_z"], feet, feet=True)).abs().amax(dim=1) < limits["goal_foot_height_tolerance_m"])
+        & ((relative[:, 1] - y).abs() < width / 2)
+        & ((feet[:, :, 1] - _parameter(geometry.get("lateral_center_y", 0.0), feet, feet=True)).abs().amax(dim=1) < width / 2 + 0.05)
         & (root_clearance >= limits["minimum_base_clearance_m"])
         & (root_clearance <= limits["maximum_base_clearance_m"])
         & (state["gravity"][:, 2] < limits["upright_gravity_z"])
@@ -252,6 +287,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
     env, n, device = wrapped.env, wrapped.num_envs, wrapped.device
     dt = float(env.step_dt)
     steps = math.ceil(seconds / dt)
+    original_geometry = geometry
+    geometry, case_ids, case_geometries = _geometry_for_envs(geometry, env)
     capture = StairStateCapture(env)
     trials = []
 
@@ -263,6 +300,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             if not _finite_state(initial):
                 raise RuntimeError("Non-finite initial staircase physics")
             initial_relative = initial["root_pos_w"] - origins
+            initial_yaw, initial_roll, initial_pitch = _yaw_roll_pitch(initial["root_quat_w"])
             start_valid = ((initial_relative[:, 0] - geometry["start_x"]).abs() < 0.3)
             active = torch.ones(n, device=device, dtype=torch.bool)
             complete = torch.zeros_like(active)
@@ -289,9 +327,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             trace = []
 
             def accumulate(name, value, mask, elements=1):
-                selected = value[mask].double()
-                statistics[name] = statistics.get(name, 0.0) + float(selected.sum())
-                counts[name] = counts.get(name, 0) + int(mask.sum()) * elements
+                statistics[name] = statistics.get(name, 0.0) + torch.where(mask, value.double(), 0.0)
+                counts[name] = counts.get(name, 0) + mask.long() * elements
 
             failure_reason = None
             executed = 0
@@ -303,9 +340,10 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 yaw_command = (-heading_gain * yaw_before).clamp(-max_yaw_rate, max_yaw_rate) if heading_control else yaw_before * 0
                 _apply_command(wrapped, speed, yaw_command)
                 actions = torch.zeros(n, wrapped.num_actions, device=device) if zero_action else policy(wrapped.get_observations())
+                actions[~active] = 0
                 action_finite = torch.isfinite(actions).all(dim=-1)
                 nonfinite |= active & ~action_finite
-                if not bool(action_finite.all()):
+                if not bool((action_finite | ~active).all()):
                     failure_reason = "non_finite_actions"
                     break
                 _, _, rewards, dones, infos, _, _ = wrapped.step(actions)
@@ -324,9 +362,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 progress_m = relative[:, 0] - initial_relative[:, 0]
                 max_progress = torch.where(valid, torch.maximum(max_progress, progress_m), max_progress)
                 feet_relative = state["feet_pos_w"] - origins[:, None, :]
-                flight_feet = ((feet_relative[:, :, 0] >= geometry.get("first_riser_x", geometry["start_x"]))
-                               & (feet_relative[:, :, 0] <= geometry.get("goal_platform_start_x", geometry["goal_x"])))
-                feet_outside = (feet_relative[:, :, 1] - geometry.get("lateral_center_y", 0.0)).abs() > geometry["width"] / 2 + 0.05
+                flight_feet = ((feet_relative[:, :, 0] >= _parameter(geometry.get("first_riser_x", geometry["start_x"]), relative, feet=True))
+                               & (feet_relative[:, :, 0] <= _parameter(geometry.get("goal_platform_start_x", geometry["goal_x"]), relative, feet=True)))
+                feet_outside = (feet_relative[:, :, 1] - _parameter(geometry.get("lateral_center_y", 0.0), relative, feet=True)).abs() > _parameter(geometry["width"], relative, feet=True) / 2 + 0.05
                 escaped = (y.abs() > geometry["width"] / 2 + 0.05) | (flight_feet & feet_outside).any(dim=1)
                 escapes |= valid & escaped
                 bases = state["base_force_n"] > limits["contact_force_n"]
@@ -371,9 +409,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     accumulate(name, value, sample_mask)
                 contact = state["foot_contacts"] & sample_mask[:, None]
                 foot_speed = state["feet_vel_w"][:, :, :2].norm(dim=-1)
-                statistics["contact_foot_horizontal_speed_m_s"] = statistics.get("contact_foot_horizontal_speed_m_s", 0) + float(foot_speed[contact].sum())
-                statistics["foot_slip_fraction"] = statistics.get("foot_slip_fraction", 0) + int((foot_speed[contact] > limits["slip_speed_m_s"]).sum())
-                counts["contact_foot_horizontal_speed_m_s"] = counts.get("contact_foot_horizontal_speed_m_s", 0) + int(contact.sum())
+                statistics["contact_foot_horizontal_speed_m_s"] = statistics.get("contact_foot_horizontal_speed_m_s", 0) + torch.where(contact, foot_speed.double(), 0.0).sum(dim=1)
+                statistics["foot_slip_fraction"] = statistics.get("foot_slip_fraction", 0) + ((foot_speed > limits["slip_speed_m_s"]) & contact).sum(dim=1)
+                counts["contact_foot_horizontal_speed_m_s"] = counts.get("contact_foot_horizontal_speed_m_s", 0) + contact.sum(dim=1)
                 counts["foot_slip_fraction"] = counts["contact_foot_horizontal_speed_m_s"]
                 peaks["peak_contact_force_n"] = max(peaks.get("peak_contact_force_n", 0), float(state["peak_contact_force_n"][valid].max()) if bool(valid.any()) else 0)
                 last_velocity, last_acceleration = state["root_lin_vel_w"], acceleration
@@ -391,25 +429,47 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     progress({"seed": seed, "step": step + 1, "num_steps": steps, "zero_action": zero_action,
                               "completed": int(complete.sum()), "falls": int(falls.sum()),
                               "stalls": int(stalls.sum()), "lateral_escapes": int(escapes.sum())})
-                if not bool(finite.all()):
+                if bool(nonfinite.any()):
                     failure_reason = "non_finite_physics_or_reward"
                     break
 
-            metrics = {name: value / counts[name] if counts.get(name, 0) else None for name, value in statistics.items()}
-            for source, target in (("xy_tracking_mse", "xy_tracking_rmse_m_s"), ("roll_mse", "roll_rms_rad"),
+            def metric_summary(mask):
+                metrics = {name: float(value[mask].sum() / counts[name][mask].sum())
+                           if int(counts[name][mask].sum()) else None for name, value in statistics.items()}
+                for source, target in (("xy_tracking_mse", "xy_tracking_rmse_m_s"), ("roll_mse", "roll_rms_rad"),
                                    ("pitch_mse", "pitch_rms_rad"), ("linear_acceleration_squared", "linear_acceleration_rms_m_s2"),
                                    ("linear_jerk_squared", "linear_jerk_rms_m_s3"),
                                    ("action_delta_squared", "action_delta_rms"),
                                    ("action_second_delta_squared", "action_second_delta_rms"),
                                    ("applied_torque_squared", "applied_torque_rms_nm")):
-                mean = metrics.pop(source, None)
-                metrics[target] = math.sqrt(mean) if mean is not None else None
+                    mean = metrics.pop(source, None)
+                    metrics[target] = math.sqrt(mean) if mean is not None else None
+                return metrics
+            metrics = metric_summary(torch.ones_like(active))
             completion_fraction = float(complete.float().mean())
             successful_times = completion_time[complete]
-            goal_distance = float(geometry["goal_x"] - geometry["start_x"])
+            goal_distance = geometry["goal_x"] - geometry["start_x"]
+            case_summaries = []
+            for index, case_geometry in enumerate(case_geometries):
+                mask = case_ids == index
+                case_n = int(mask.sum())
+                fraction = float(complete[mask].float().mean()) if case_n else 0.0
+                case_summaries.append({"case_index": index, "geometry": case_geometry, "num_envs": case_n,
+                    "passed": case_n >= limits["minimum_num_envs"] and fraction >= limits["completion_fraction"] and failure_reason is None,
+                    "completion_fraction": fraction, "completions": int(complete[mask].sum()),
+                    "falls": int(falls[mask].sum()), "stalls": int(stalls[mask].sum()),
+                    "lateral_escapes": int(escapes[mask].sum()), "metrics": metric_summary(mask),
+                    "mean_max_progress_m": float(max_progress[mask].mean()) if case_n else None})
+            initial_distribution = {"root_relative_xyz_min": initial_relative.amin(dim=0).tolist(),
+                "root_relative_xyz_max": initial_relative.amax(dim=0).tolist(),
+                "root_relative_xyz_std": initial_relative.std(dim=0, unbiased=False).tolist(),
+                "yaw_range_rad": [float(initial_yaw.min()), float(initial_yaw.max())],
+                "yaw_std_rad": float(initial_yaw.std(unbiased=False)),
+                "root_quaternion_xyzw_min": initial["root_quat_w"].amin(dim=0).tolist(),
+                "root_quaternion_xyzw_max": initial["root_quat_w"].amax(dim=0).tolist()}
             trials.append({
                 "seed": seed, "num_envs": n, "executed_steps": executed, "requested_duration_s": seconds,
-                "passed": completion_fraction >= limits["completion_fraction"] and n >= limits["minimum_num_envs"] and failure_reason is None,
+                "passed": all(case["passed"] for case in case_summaries),
                 "completion_fraction": completion_fraction, "completions": int(complete.sum()),
                 "falls": int(falls.sum()), "stalls": int(stalls.sum()), "lateral_escapes": int(escapes.sum()),
                 "timeouts_before_completion": int((timeouts & ~complete).sum()), "nonfinite_envs": int(nonfinite.sum()),
@@ -423,12 +483,12 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 "per_env": {"completed": complete.tolist(), "fall": falls.tolist(), "stall": stalls.tolist(),
                             "lateral_escape": escapes.tolist(), "max_progress_m": max_progress.tolist(),
                             "completion_time_s": [float(x) if math.isfinite(float(x)) else None for x in completion_time]},
-                "trace": trace,
+                "trace": trace, "cases": case_summaries, "initial_reset_distribution": initial_distribution,
             })
 
     return {
         "status": "passed" if all(trial["passed"] for trial in trials) else "failed",
-        "passed": all(trial["passed"] for trial in trials), "geometry": geometry, "thresholds": limits,
+        "passed": all(trial["passed"] for trial in trials), "geometry": original_geometry, "thresholds": limits,
         "controller": "zero_action" if zero_action else "HIM_policy", "trials": trials,
         "heading_control": {"enabled": heading_control, "target_yaw_rad": 0.0, "gain": heading_gain,
                             "maximum_yaw_rate_rad_s": max_yaw_rate,
@@ -439,6 +499,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
         "smoothness_passed": None,
         "smoothness_note": "Metrics are reported for comparison; no universal smoothness threshold has been calibrated",
         "seed_scope": "reset RNG seeds; startup terrain and material remain fixed for this environment",
+        "validation_scope": "randomized reset cases" if randomized else "nominal deterministic repeated environments; not independent robustness trials",
+        "independent_reset_validation_eligible": bool(randomized and len(set(seeds)) >= 3
+            and all(trial["initial_reset_distribution"]["yaw_std_rad"] > 1e-6 for trial in trials)),
     }
 
 
@@ -446,6 +509,7 @@ def evaluate_stair_suite(wrapped, policy, geometry, seconds=30.0, speed=0.3, see
                          randomized=False, include_zero_action=True, heading_control=True,
                          thresholds=None, progress=None, **kwargs):
     """Evaluate one frozen geometry with repeated seeded first episodes and control."""
+    seeds = tuple(seeds)
     learned = evaluate_stairs(wrapped, policy, geometry, seconds, speed, seeds, randomized,
                              heading_control=heading_control, thresholds=thresholds, progress=progress, **kwargs)
     control = evaluate_stairs(wrapped, policy, geometry, seconds, speed, seeds, randomized,

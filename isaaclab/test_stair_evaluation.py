@@ -48,7 +48,7 @@ class FakeWrapped:
         scene = Scene(scene)
         scene.env_origins = torch.tensor([[10., 20., 1.2]]).repeat(n, 1)
         scene.sensors = {"contact_forces": self.sensor}
-        self.env = NS(scene=scene, device="cpu", step_dt=0.5, termination_manager=Manager(),
+        self.env = NS(scene=scene, device="cpu", num_envs=n, step_dt=0.5, termination_manager=Manager(),
                       command_manager=NS(get_term=lambda _: self.term), seed=lambda seed: None,
                       reset_terminated=torch.zeros(n, dtype=torch.bool))
         self.obs_buf = torch.zeros(n, 270)
@@ -168,6 +168,26 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertEqual(cfg.events.reset_robot_joints.params["position_range"], (0.95, 1.05))
         self.assertIsNone(cfg.terminations.stair_goal_reached)
         self.assertIsNone(cfg.curriculum.terrain_levels)
+
+    def test_batch_keeps_failed_column_from_hiding_in_average(self):
+        wrapped = FakeWrapped()
+        wrapped.env.scene.terrain = NS(terrain_types=torch.tensor([0] * 16 + [1] * 16))
+        too_high = {**GEOMETRY, "goal_platform_z": 1.0}
+        result = evaluate_stairs(wrapped, policy, [GEOMETRY, too_high], seconds=8.,
+                                thresholds={"minimum_num_envs": 16}, record_envs=0)
+        self.assertFalse(result["passed"])
+        cases = result["trials"][0]["cases"]
+        self.assertTrue(cases[0]["passed"])
+        self.assertFalse(cases[1]["passed"])
+        self.assertEqual(cases[0]["completion_fraction"], 1.0)
+        self.assertEqual(cases[1]["completion_fraction"], 0.0)
+
+    def test_nominal_duplicate_poses_are_not_independent_validation(self):
+        result = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8.,
+                                 seeds=(1, 2, 3), randomized=True, record_envs=0)
+        self.assertTrue(result["passed"])
+        self.assertFalse(result["independent_reset_validation_eligible"])
+        self.assertEqual(result["trials"][0]["initial_reset_distribution"]["yaw_std_rad"], 0.0)
 
 
 if __name__ == "__main__":

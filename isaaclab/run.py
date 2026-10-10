@@ -108,6 +108,7 @@ def main():
     parser.add_argument("--friction", type=float, nargs=2, metavar=("STATIC", "DYNAMIC"))
     parser.add_argument("--start_level", type=int, default=0)
     parser.add_argument("--stair_pushes", action="store_true")
+    parser.add_argument("--stair_batch", type=Path, help="JSON list of fixed evaluation stair specifications.")
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--warm_start", choices=["reset", "expand"],
                         help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
@@ -160,14 +161,20 @@ def main():
         cfg.observations.critic.height_scan = ObservationTermCfg(func=MDP + "height_scan", params={"sensor_cfg": SceneEntityCfg("height_scanner")}, scale=5.0, clip=(-1.0, 1.0))
     stair_manifest = reward_manifest = None
     if args.terrain == "stairs":
-        from stair_terrain import configure_stair_terrain
+        from stair_terrain import configure_stair_terrain, configure_stair_batch
         from stair_rewards import configure_stair_rewards
         spec = None
         if args.mode != "train" or args.stair_height is not None:
             spec = {"height": args.stair_height if args.stair_height is not None else 0.16,
                     "depth": args.stair_depth, "direction": args.stair_direction, "nosing": args.stair_nosing}
-        stair_manifest = configure_stair_terrain(cfg, args.stair_stage, spec=spec, seed=args.seed,
-                                                 num_rows=10 if spec is None else 2, num_cols=24 if spec is None else 4)
+        if args.stair_batch:
+            if args.mode == "train":
+                parser.error("--stair_batch is for frozen evaluation/play scenes")
+            specs = json.loads(args.stair_batch.read_text())
+            stair_manifest = configure_stair_batch(cfg, specs, seed=args.seed)
+        else:
+            stair_manifest = configure_stair_terrain(cfg, args.stair_stage, spec=spec, seed=args.seed,
+                                                     num_rows=10 if spec is None else 2, num_cols=24 if spec is None else 4)
         cfg.scene.terrain.max_init_terrain_level = args.start_level
         reward_manifest = configure_stair_rewards(cfg, args.reward_profile)
         cfg.episode_length_s = max(args.eval_seconds, 20.0)
