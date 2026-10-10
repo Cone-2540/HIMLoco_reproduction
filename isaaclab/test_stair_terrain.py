@@ -7,11 +7,14 @@ from types import SimpleNamespace as NS
 import numpy as np
 import torch
 from isaaclab.terrains import TerrainGenerator
+from isaaclab.terrains.trimesh.mesh_terrains import flat_terrain
+from isaaclab.terrains.trimesh.mesh_terrains_cfg import MeshPlaneTerrainCfg
 
 from stair_terrain import (
     StraightStairTerrainCfg, build_stair_generator, configure_stair_batch, configure_stair_terrain,
     heldout_stair_specs, stair_corridor_exit, stair_meshes, stair_metadata,
     stair_goal_reached, stair_terrain_curriculum,
+    flat_env_mask, flat_replay_region_exit,
 )
 
 
@@ -23,6 +26,138 @@ def covered_by_box_union(meshes, point):
 
 
 class StairGeometryTest(unittest.TestCase):
+    def test_true_flat_replay_preserves_every_hard_variant_and_actual_lab_columns(self):
+        class RecordingGenerator(TerrainGenerator):
+            def __init__(self, cfg):
+                self.generated = []
+                super().__init__(cfg, device="cpu")
+
+            def _get_terrain_mesh(self, difficulty, cfg):
+                self.generated.append((isinstance(cfg, MeshPlaneTerrainCfg),
+                                       None if isinstance(cfg, MeshPlaneTerrainCfg) else
+                                       (cfg.direction, cfg.step_depth, cfg.nosing)))
+                return super()._get_terrain_mesh(difficulty, cfg)
+
+        cfg = build_stair_generator("hard", num_rows=2, num_cols=12, seed=53, flat_fraction=.25)
+        self.assertEqual(cfg.num_cols, 64)
+        generator = RecordingGenerator(cfg)
+        observed_columns = [generator.generated[2 * column:2 * column + 2]
+                            for column in range(cfg.num_cols)]
+        self.assertTrue(all(pair == [(True, None)] * 2 for pair in observed_columns[:16]))
+        observed_stairs = [pair[0][1] for pair in observed_columns[16:]]
+        self.assertEqual(set(observed_stairs),
+                         {(direction, depth, nose) for direction in ("asc", "desc")
+                          for depth in (.20, .25, .27, .30, .35, .40)
+                          for nose in (0., .01, .02, .03)})
+        self.assertEqual(len(observed_stairs), len(set(observed_stairs)))
+        self.assertTrue(all(pair[0] == pair[1] and not pair[0][0] for pair in observed_columns[16:]))
+        flat_origins = generator.terrain_origins[:, :16]
+        np.testing.assert_allclose(flat_origins[:, :, 2], 0.)
+        np.testing.assert_allclose(flat_origins[1, 0] - flat_origins[0, 0], [8., 0., 0.])
+        np.testing.assert_allclose(flat_origins[0, 1] - flat_origins[0, 0], [0., 3., 0.])
+        flat_cfg = cfg.sub_terrains["flat_replay"].replace(size=cfg.size)
+        meshes, origin = flat_terrain(.95, flat_cfg)
+        np.testing.assert_allclose(origin, [4., 1.5, 0.])
+        np.testing.assert_allclose(meshes[0].vertices[:, 2], 0.)
+        self.assertEqual(len(meshes[0].faces), 2)
+        self.assertFalse(hasattr(flat_cfg, "step_height_range"))
+        self.assertTrue(all(not term.convert_to_heightfield for term in cfg.sub_terrains.values()))
+
+    def test_replay_fraction_validation_and_configuration_manifest(self):
+        for fraction in (-.25, .1, .5, float("nan"), float("inf")):
+            with self.assertRaisesRegex(ValueError, "flat_fraction"):
+                build_stair_generator(flat_fraction=fraction)
+        with self.assertRaisesRegex(ValueError, "training-only"):
+            build_stair_generator(spec={"height": .16}, flat_fraction=.25)
+        class Scanner(NS):
+            def copy(self):
+                return deepcopy(self)
+        cfg = NS(scene=NS(height_scanner=Scanner(), terrain=NS()), sim=NS(dt=.005),
+                 decimation=4, terminations=NS(), curriculum=NS())
+        manifest = configure_stair_terrain(cfg, "standard", flat_fraction=.25)
+        self.assertEqual(manifest["num_cols"], 32)
+        self.assertEqual(manifest["flat_replay"]["flat_columns"], list(range(8)))
+        self.assertEqual(manifest["flat_replay"]["actual_column_fraction"], .25)
+        self.assertEqual(len(manifest["flat_replay"]["stair_columns"]), 24)
+        self.assertTrue(cfg.terminations.flat_replay_region_exit.time_out)
+        self.assertFalse(cfg.terminations.stair_corridor_exit.time_out)
+        self.assertEqual(cfg.scene.height_scanner.pattern_cfg.size, [1.6, 1.0])
+        self.assertTrue(all(term["kind"] == "flat" for term in manifest["variants"][:8]))
+        configure_stair_terrain(cfg)
+        self.assertIsNone(cfg.terminations.flat_replay_region_exit)
+
+    def test_flat_replay_never_gets_stair_goal_corridor_failure_or_curriculum(self):
+        generator = build_stair_generator("standard", num_rows=2, flat_fraction=.25)
+        types = torch.tensor([0, 7, 8, 20])
+        terrain = NS(cfg=NS(terrain_generator=generator), terrain_types=types,
+                     terrain_levels=torch.tensor([1, 1, 0, 1]))
+        recorded = []
+        terrain.update_env_origins = lambda ids, up, down: recorded.append((ids.clone(), up.clone(), down.clone()))
+        roots = torch.tensor([[5., 1., .3], [5., 0., .3], [5., 1., .3], [5., 0., .3]])
+        feet = torch.tensor([[[4.5, 0., 0.]]]).repeat(4, 4, 1)
+        robot = NS(data=NS(root_pos_w=NS(torch=roots), body_pos_w=NS(torch=feet),
+                           projected_gravity_b=NS(torch=torch.tensor([[0., 0., -1.]]).repeat(4, 1))))
+        robot.find_bodies = lambda _: ([0, 1, 2, 3], ["foot"] * 4)
+        class Scene(dict):
+            pass
+        scene = Scene(robot=robot, base_height_scanner=NS(data=NS(ray_hits_w=NS(torch=torch.zeros(4, 63, 3)))))
+        scene.terrain, scene.env_origins = terrain, torch.zeros(4, 3)
+        manager = NS(terminated=torch.tensor([True, False, True, False]),
+                     get_term=lambda _: torch.tensor([True, True, False, True]))
+        env = NS(device="cpu", scene=scene, termination_manager=manager)
+        torch.testing.assert_close(flat_env_mask(env), torch.tensor([True, True, False, False]))
+        torch.testing.assert_close(stair_corridor_exit(env), torch.tensor([False, False, True, False]))
+        torch.testing.assert_close(stair_corridor_exit(env, width=1.), torch.tensor([False, False, True, False]))
+        torch.testing.assert_close(stair_goal_reached(env), torch.tensor([False, False, False, True]))
+        diagnostics = stair_terrain_curriculum(env, [0, 1, 2, 3])
+        torch.testing.assert_close(recorded[0][0], torch.tensor([2, 3]))
+        torch.testing.assert_close(recorded[0][1], torch.tensor([False, True]))
+        torch.testing.assert_close(recorded[0][2], torch.tensor([True, False]))
+        self.assertEqual(int(diagnostics["flat_reset_count"]), 2)
+        self.assertEqual(int(diagnostics["asc_reset_count"]), 1)
+        self.assertEqual(int(diagnostics["desc_reset_count"]), 1)
+        self.assertEqual(float(diagnostics["levels_mean"]), .5)
+        self.assertEqual(float(diagnostics["asc_terminated_fraction"]), 1.)
+        self.assertEqual(float(diagnostics["desc_goal_fraction"]), 1.)
+        recorded.clear()
+        diagnostics = stair_terrain_curriculum(env, [0, 1])
+        self.assertFalse(recorded)
+        self.assertEqual(int(diagnostics["flat_reset_count"]), 2)
+        self.assertEqual(int(diagnostics["desc_reset_count"]), 0)
+        self.assertTrue(all(bool(torch.isfinite(value)) for value in diagnostics.values()))
+
+    def test_flat_region_timeout_uses_all_rows_columns_and_world_origins(self):
+        generator_cfg = build_stair_generator("standard", num_rows=2, flat_fraction=.25, seed=5)
+        actual = TerrainGenerator(generator_cfg, device="cpu")
+        # Move the whole generated terrain in world space. The test derives its
+        # boundaries from actual Lab plane origins with independently set size.
+        translation = torch.tensor([100., 200., 0.])
+        origins = torch.as_tensor(actual.terrain_origins, dtype=torch.float) + translation
+        lower = origins[0, 0, :2] - torch.tensor([4., 1.5])
+        upper = origins[1, 7, :2] + torch.tensor([4., 1.5])
+        centre = (lower + upper) / 2
+        roots = torch.tensor([[centre[0], centre[1], .3]]).repeat(7, 1)
+        roots[1, 0] = lower[0] + .99
+        roots[2, 1] = upper[1] - .99
+        roots[3, :2] = origins[1, 4, :2]  # another genuine flat tile is permitted
+        roots[4, 0] = upper[0] + 10.      # stair robot is exempt even outside region
+        roots[5, 0] = lower[0] + 1.      # exact inner boundary is permitted
+        roots[6, 1] = lower[1] + 1.01
+        terrain = NS(cfg=NS(terrain_generator=generator_cfg), terrain_origins=origins,
+                     terrain_types=torch.tensor([0, 0, 7, 0, 8, 0, 0]))
+        class Scene(dict):
+            pass
+        scene = Scene(robot=NS(data=NS(root_pos_w=NS(torch=roots))))
+        scene.terrain, scene.env_origins = terrain, origins[0, terrain.terrain_types]
+        env = NS(device="cpu", scene=scene)
+        expected = torch.tensor([False, True, True, False, False, False, False])
+        torch.testing.assert_close(flat_replay_region_exit(env), expected)
+        # Assigned-origin movement does not redefine the fixed world flat block.
+        scene.env_origins += torch.tensor([1000., 1000., 0.])
+        torch.testing.assert_close(flat_replay_region_exit(env), expected)
+        with self.assertRaisesRegex(ValueError, "margin"):
+            flat_replay_region_exit(env, margin=-1.)
+
     def test_six_risers_treads_and_landing_coordinates_for_both_directions(self):
         for direction in ("asc", "desc"):
             cfg = StraightStairTerrainCfg(size=(8., 3.), direction=direction, step_height_range=(.16, .16),

@@ -1,0 +1,42 @@
+{
+  "recorded_local": "2026-10-11T07:50:20.724189+08:00",
+  "scope": "CPU preparation only, no GPU simulation/training in phase1",
+  "suites": [
+    {
+      "module": "test_stair_terrain",
+      "tests": 20,
+      "status": "PASS",
+      "provenance": "preserved session execution result; full stdout not archived here",
+      "cuda_visible_devices": ""
+    },
+    {
+      "module": "test_commands",
+      "tests": 14,
+      "status": "PASS",
+      "provenance": "preserved session execution result; full stdout not archived here",
+      "cuda_visible_devices": ""
+    },
+    {
+      "module": "test_replay_configuration",
+      "tests": 6,
+      "status": "PASS",
+      "provenance": "configuration-test.stdout.log and configuration-test-launch.json",
+      "cuda_visible_devices": ""
+    }
+  ],
+  "source_sha256": {
+    "isaaclab/commands.py": "5167a38d35da0b78b17481a681faf48bc11a05570373078f337861c4391b6b69",
+    "isaaclab/run.py": "025148600ae7f62951ca95ab4227fd30b0b50463099ac57dd2b2248a0e1b5db2",
+    "isaaclab/stair_terrain.py": "cb4e57e121e3597942ac55cbb89da7151fb02b83ed45db90c93b10b1f9d1bbaf",
+    "isaaclab/test_commands.py": "8ba6a0df5568c7038442397bac3476393399eb380e762cc6692a3d683611a69b",
+    "isaaclab/test_stair_terrain.py": "a474cd7a1f997bb34b5dd3d0b66c0df69dc66cf390dd31df2312cbdbbfd66965",
+    "isaaclab/test_replay_configuration.py": "18aabc6eb2b370f5997a29001472bd56b2c359dbe7c0422f9e2381187b19a238",
+    "reproduction/run-stair-generalization-phase1.py": "afb13d469d52223d14ba368d4c67a6b3eb71a693fbce60a0a6dbc2b9575547c9",
+    "reproduction/stair-generalization-phase1-plan.json": "4bf3dc92deb2713c13746a9e6385c1ff8bcb9e9734ca1ac4f1b6fd0afc003eb3",
+    "reproduction/stair-generalization-phase1-reserved-geometries.json": "0d2e6c37c8cad604e43d34de59dd6f7995a6d3c9f201009cf68c580b8a8e74c3"
+  },
+  "configuration_audit_uses_mock_gpu_description": true,
+  "checkpoint_load_not_exercised_in_configuration_test": true,
+  "original_scientific_acceptance": "FAIL",
+  "new_stage_scientific_acceptance": "NOT_RUN"
+}

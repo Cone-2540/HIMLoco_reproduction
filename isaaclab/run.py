@@ -97,6 +97,10 @@ def main():
     parser.add_argument("--play_steps", type=int, default=500)
     parser.add_argument("--terrain", choices=["flat", "rough", "stairs"], default="flat")
     parser.add_argument("--stair_stage", choices=["bootstrap", "easy", "standard", "hard"], default="easy")
+    parser.add_argument("--flat_replay_fraction", type=float, choices=[0.0, 0.25], default=0.0,
+                        help="Training-only fraction of true flat columns mixed with staircase curriculum.")
+    parser.add_argument("--flat_replay_all_directions", action="store_true",
+                        help="Use balanced signed motion/turning commands only in flat replay environments.")
     parser.add_argument("--stair_height", type=float)
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
@@ -154,6 +158,11 @@ def main():
                         help="After results are saved, exit if Isaac Sim teardown hangs; 0 disables.")
     add_launcher_args(parser)
     args = parser.parse_args()
+    if args.flat_replay_fraction and (args.mode != "train" or args.terrain != "stairs"
+                                     or args.stair_height is not None or args.stair_batch):
+        parser.error("--flat_replay_fraction requires staircase curriculum training without fixed geometry")
+    if args.flat_replay_all_directions and not args.flat_replay_fraction:
+        parser.error("--flat_replay_all_directions requires --flat_replay_fraction 0.25")
     if args.eval_trace_stride < 1:
         parser.error("--eval_trace_stride must be at least 1")
     if not 0 <= args.video_env_index < args.num_envs:
@@ -197,7 +206,7 @@ def main():
     cfg.scene.terrain.visual_material = None
     cfg.scene.sky_light.spawn.texture_file = None
     cfg.commands.base_velocity.debug_vis = False
-    if args.mode == "train" and args.turn_fraction > 0:
+    if args.mode == "train" and (args.turn_fraction > 0 or args.flat_replay_all_directions):
         cfg.commands.base_velocity.turn_fraction = args.turn_fraction
     # Add privileged terrain samples only to the critic.
     if args.terrain in ("rough", "stairs"):
@@ -218,7 +227,8 @@ def main():
             stair_manifest = configure_stair_batch(cfg, specs, seed=args.seed)
         else:
             stair_manifest = configure_stair_terrain(cfg, args.stair_stage, spec=spec, seed=args.seed,
-                                                     num_rows=10 if spec is None else 2, num_cols=24 if spec is None else 4)
+                                                     num_rows=10 if spec is None else 2, num_cols=24 if spec is None else 4,
+                                                     flat_fraction=args.flat_replay_fraction)
         cfg.scene.terrain.max_init_terrain_level = args.start_level
         reward_manifest = configure_stair_rewards(cfg, args.reward_profile)
         cfg.episode_length_s = max(args.eval_seconds, 20.0)
@@ -229,6 +239,12 @@ def main():
         cfg.commands.base_velocity.ranges.lin_vel_y = (-0.03, 0.03)
         cfg.commands.base_velocity.ranges.ang_vel_z = (-0.5, 0.5)
         cfg.commands.base_velocity.ranges.heading = (0.0, 0.0)
+        if args.flat_replay_all_directions:
+            cfg.commands.base_velocity.replay_enabled = True
+            cfg.commands.base_velocity.replay_standing_fraction = 0.1
+            cfg.commands.base_velocity.replay_vx_range = (0.2, 0.65)
+            cfg.commands.base_velocity.replay_vy_range = (0.15, 0.35)
+            cfg.commands.base_velocity.replay_yaw_range = (0.2, 0.6)
         cfg.events.reset_base.params["pose_range"] = {"x": (-0.15, 0.15), "y": (-0.12, 0.12), "yaw": (-0.15, 0.15)}
         cfg.events.reset_base.params["velocity_range"] = {key: (0., 0.) for key in ("x", "y", "z", "roll", "pitch", "yaw")}
         cfg.events.reset_robot_joints.params["position_range"] = (0.85, 1.15)
@@ -324,11 +340,21 @@ def main():
                      "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
                      "friction_override": args.friction, "stair_pushes": args.stair_pushes,
                      "evaluation_seeds": args.eval_seed, "evaluation_randomized": args.eval_randomized})
+    metadata["flat_replay"] = {
+        "requested_terrain_fraction": args.flat_replay_fraction,
+        "all_direction_commands": args.flat_replay_all_directions,
+        "standing_fraction": 0.1 if args.flat_replay_all_directions else None,
+        "moving_categories": ["forward", "backward", "left", "right", "positive_yaw", "negative_yaw"]
+            if args.flat_replay_all_directions else None,
+        "positive_magnitude_ranges": {"vx": [0.2, 0.65], "vy": [0.15, 0.35], "yaw": [0.2, 0.6]}
+            if args.flat_replay_all_directions else None,
+        "actor_terrain_inputs_added": False,
+    }
     metadata["evaluation_dynamics_randomized"] = args.eval_dynamics
     (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
     print(f"RUN: {log_dir}", flush=True)
     with launch_simulation(cfg, args):
-        if args.mode == "train" and args.turn_fraction > 0:
+        if args.mode == "train" and (args.turn_fraction > 0 or args.flat_replay_all_directions):
             from commands import HIMVelocityCommand
             cfg.commands.base_velocity.class_type = HIMVelocityCommand
         env = gym.make(task, cfg=cfg)
@@ -394,6 +420,34 @@ def main():
         metadata["action_scale"] = cfg.actions.joint_pos.scale
         (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         runner = HIMOnPolicyRunner(wrapped, config, str(log_dir), args.device)
+        if args.flat_replay_fraction:
+            from stair_terrain import flat_env_mask
+            flat_mask = flat_env_mask(wrapped.env)
+            command_term = wrapped.env.command_manager.get_term("base_velocity")
+            flat_ids = flat_mask.nonzero(as_tuple=False).flatten()
+            actual_commands = command_term.command
+            actual_commands = getattr(actual_commands, "torch", actual_commands)
+            readback = {
+                "flat_environment_count": int(flat_mask.sum()),
+                "stair_environment_count": int((~flat_mask).sum()),
+                "flat_environment_fraction": float(flat_mask.float().mean()),
+                "flat_column_indices": stair_manifest["flat_replay"]["flat_columns"],
+                "initial_sample_environment_ids": flat_ids[:128].tolist(),
+                "initial_sample_commands": actual_commands[flat_ids[:128]].tolist(),
+                "sample_scope": "after the runner's initial reset, before learning; not a rollout distribution",
+                "flat_boundary_timeout": "whole flat block with a 1 m inner margin",
+            }
+            if args.flat_replay_all_directions:
+                categories = command_term.replay_category[flat_mask]
+                if (categories < 0).any() or (categories > 6).any():
+                    raise ValueError("Every flat replay command must have a valid category after reset")
+                if command_term.is_heading_env[flat_mask].any() or command_term.is_standing_env[flat_mask].any():
+                    raise ValueError("Parent heading/standing processing must not overwrite flat replay commands")
+                readback["initial_category_counts"] = torch.bincount(categories, minlength=7).tolist()
+                readback["category_order"] = ["standing", "forward", "backward", "left", "right",
+                                             "positive_yaw", "negative_yaw"]
+            metadata["flat_replay_runtime_readback"] = readback
+            (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         if args.terrain == "stairs":
             from stair_randomization import capture_domain_parameters
             (log_dir / "domain-parameters-initial.json").write_text(

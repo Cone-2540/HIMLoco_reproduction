@@ -1,0 +1,24 @@
+{
+  "scope": "CPU configuration test process; no physical or policy acceptance claim",
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-m",
+    "unittest",
+    "-v",
+    "test_replay_configuration"
+  ],
+  "started_local": "2026-10-11T07:49:07.548016+08:00",
+  "ended_local": "2026-10-11T07:49:12.612006+08:00",
+  "exit_code": 0,
+  "stdout_log": "/home/cone/Research/HIMLoco/reproduction/stair-generalization-phase1-cpu-audit/configuration-test.stdout.log",
+  "temporary_configuration_evidence_container_path": "/tmp/him-replay-cpu-configuration-1afw_ds2"
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-11T07:42:57.989151+08:00",
+  "status": "prepared_not_gpu_started_awaiting_additional_time_budget",
+  "original_phase_end_commit": "7dbacc06e1c687d293d96a5c8eea6cc7310ac714",
+  "original_phase_scientific_acceptance": "FAIL",
+  "original_phase_tag": "go2-stairs-overnight-20261011",
+  "branch": "feature/stairs-generalization-20261011",
+  "purpose": "Restore signed flat motion command coverage without sacrificing staircase traversal, then continue toward smooth robust ascent/descent. This first factor study alone is not full goal completion.",
+  "resource_authorization": {
+    "original_window": "2026-10-11T00:29:13+08:00 to 2026-10-11T07:29:13+08:00, approximately seven hours",
+    "additional_gpu_time": "awaiting explicit user response; no extra GPU training or simulation has been started",
+    "permitted_preparation": "reversible repository edits and CUDA-masked CPU checks",
+    "driver_changes_allowed": false,
+    "system_gpu_configuration_changes_allowed": false
+  },
+  "common_training": {
+    "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+    "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+    "restore_optimizer_states": true,
+    "warm_start": null,
+    "exploration_std_override": null,
+    "num_envs": 4096,
+    "policy_steps_per_update": 100,
+    "saved_updates_per_arm": 100,
+    "requested_additional_updates": 100,
+    "environment_steps_per_arm_seed_job": 40960000,
+    "environment_steps_per_arm_all_three_seeds": 122880000,
+    "environment_steps_all_nine_jobs": 368640000,
+    "paired_continuation_seeds": [
+      1001,
+      1009,
+      1013
+    ],
+    "ppo_learning_rate": 0.0001,
+    "him_learning_rate": 0.0001,
+    "lr_schedule": "fixed",
+    "save_interval": 20,
+    "reward_profile": "contact",
+    "stair_stage": "hard",
+    "stair_initial_maximum_level": 4,
+    "stair_forward_speed_range": [
+      0.25,
+      0.65
+    ],
+    "turn_fraction": 0.0,
+    "domain_profile": "none",
+    "actor_history_dimension": 270,
+    "critic_dimension": 235,
+    "privileged_heights_only_in_critic": 187,
+    "new_actor_terrain_inputs": false,
+    "physics_dt_s": 0.005,
+    "policy_dt_s": 0.02
+  },
+  "arms": [
+    {
+      "id": "A",
+      "flat_replay_fraction": 0.0,
+      "flat_replay_all_directions": false,
+      "description": "Existing staircase continuation control"
+    },
+    {
+      "id": "B",
+      "flat_replay_fraction": 0.25,
+      "flat_replay_all_directions": false,
+      "description": "25% true flat replay with existing forward/heading commands"
+    },
+    {
+      "id": "C",
+      "flat_replay_fraction": 0.25,
+      "flat_replay_all_directions": true,
+      "description": "Same terrain as B; only flat commands gain signed-axis coverage"
+    }
+  ],
+  "command_distribution_C_flat": {
+    "standing": 0.1,
+    "remaining_six_categories_each": 0.15,
+    "category_order": [
+      "standing",
+      "forward",
+      "backward",
+      "left",
+      "right",
+      "positive_yaw",
+      "negative_yaw"
+    ],
+    "positive_magnitude_ranges": {
+      "vx": [
+        0.2,
+        0.65
+      ],
+      "vy": [
+        0.15,
+        0.35
+      ],
+      "yaw": [
+        0.2,
+        0.6
+      ]
+    },
+    "heading_on_flat": false,
+    "stock_standing_selection_on_flat": false,
+    "stair_command_logic": "unchanged parent forward/heading sampler; no added pure turns"
+  },
+  "flat_terrain": {
+    "hard_columns": 64,
+    "flat_columns": 16,
+    "stair_columns": 48,
+    "all_original_stair_variants_preserved": true,
+    "representation": "MeshPlaneTerrainCfg, not zero-height stairs",
+    "origin": "plane tile centre",
+    "region_exit_timeout_inward_margin_m": 1.0,
+    "boundary_scope": "outer world rectangle across every flat row and contiguous flat columns; edge starts can truncate sooner",
+    "stair_goal_corridor_curriculum_on_flat": false,
+    "initial_environment_split_for4096": {
+      "flat": 1024,
+      "stairs": 3072
+    },
+    "limits": [
+      "A has4096 stair environments; B/C have3072. Stair-only exposure is deliberately reduced by the replay factor.",
+      "Flat boundary truncation is separately recorded and must not be counted as stair success.",
+      "Additional sampling changes RNG consumption; paired seeds do not mean identical stochastic trajectories."
+    ]
+  },
+  "preflight": {
+    "status": "not_started_requires_additional_gpu_budget",
+    "num_envs": 128,
+    "steps_per_env": 100,
+    "max_iterations": 3,
+    "save_interval": 1,
+    "seed": 997,
+    "run_name": "phase1-replay-preflight",
+    "purpose": "Finite buffers, correct235critic/270history, all64column types, command and terrain readbacks; excluded from arm selection and formal results"
+  },
+  "development_validation": {
+    "geometries": "Previously opened original geometries are development data only in this phase",
+    "flat_commands": [
+      [
+        0.3,
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.0,
+        0.0
+      ],
+      [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.3,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      [
+        0.3,
+        0.15,
+        0.3
+      ]
+    ],
+    "flat_envs_per_command": 64,
+    "flat_seconds": 20,
+    "new_reset_seeds": [
+      827,
+      829,
+      839
+    ],
+    "select_only_from_saved_update100": "all three continuation seeds and all arms reported; no best-single-seed promotion"
+  },
+  "reserved_final_validation": {
+    "geometry_file": "reproduction/stair-generalization-phase1-reserved-geometries.json",
+    "geometry_sha256": "0d2e6c37c8cad604e43d34de59dd6f7995a6d3c9f201009cf68c580b8a8e74c3",
+    "reset_seeds": [
+      701,
+      709,
+      719
+    ],
+    "construction_seeds": [
+      131,
+      137,
+      139
+    ],
+    "envs_per_case_seed": 32,
+    "speeds_m_s": [
+      0.3,
+      0.5
+    ],
+    "seconds": 40,
+    "must_freeze_all_candidates_source_and_gate_before_opening": true,
+    "original_final_results_do_not_become_new_holdout": true,
+    "all_direction_flat_and_motion_gates_required": true,
+    "whole_goal_completion_cannot_be_claimed_from_this_small_geometry_subset": true
+  },
+  "selection_and_reporting": [
+    "Keep old tagged weights/reports/video unchanged.",
+    "Do not increase individual arm budget because its results are worse; a200-update experiment requires new equal budgets for all arms.",
+    "Do not call pure turning improvements a smooth staircase reproduction.",
+    "Report falls/stalls/foot escape/history-base, roll/pause/proxies and failures; continuous realtime video remains a separate unmet requirement.",
+    "No real-robot deployment or materials/electric-actuator calibration claim."
+  ]
+}

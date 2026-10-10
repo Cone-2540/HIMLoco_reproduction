@@ -22,6 +22,7 @@ import trimesh
 from isaaclab.managers import CurriculumTermCfg, TerminationTermCfg
 from isaaclab.sensors import patterns
 from isaaclab.terrains import SubTerrainBaseCfg, TerrainGeneratorCfg
+from isaaclab.terrains.trimesh.mesh_terrains_cfg import MeshPlaneTerrainCfg
 from isaaclab.utils import configclass
 
 
@@ -167,17 +168,24 @@ def _fixed_stair_spec(spec):
                                    landing_length=landing, nosing_thickness=thickness), size
 
 
-def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1):
+def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1,
+                          flat_fraction=0.0):
     """Training uses ascending/descending variants; spec selects a fixed heldout flight.
 
     ``spec`` keys: step_height (or height), step_depth (or depth), nosing,
     direction, num_steps, width, landing_length. Heldout tiles expand to contain
     longer flights. Training retains six risers and default 8 m x 3 m tiles.
+    Optional 25% flat replay uses actual plane meshes in contiguous columns.
+    Its other columns retain every original stair variant with equal exposure.
     """
     if stage not in STAGES:
         raise ValueError("stage must be easy, standard or hard")
     if num_rows < 1 or num_cols < 1:
         raise ValueError("Terrain grid dimensions must be positive")
+    if not math.isfinite(float(flat_fraction)) or flat_fraction not in (0.0, 0.25):
+        raise ValueError("flat_fraction must be 0.0 or 0.25")
+    if spec is not None and flat_fraction:
+        raise ValueError("Flat replay is training-only, not a held-out stair specification")
     if spec is not None:
         term, size = _fixed_stair_spec(spec)
         variants = {"heldout": term}
@@ -195,6 +203,23 @@ def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, 
         curriculum = True
         # Columns must represent every type; never silently omit a tread/nosing.
         num_cols = max(num_cols, len(variants))
+        if flat_fraction:
+            stair_count = len(variants)
+            # A multiple of this unit assigns exactly 25% flat columns and an
+            # equal integer number of columns to every remaining stair type.
+            unit = 4 * stair_count // math.gcd(3, stair_count)
+            num_cols = unit * math.ceil(num_cols / unit)
+            for term in variants.values():
+                term.proportion = 0.75 / stair_count
+            variants = {"flat_replay": MeshPlaneTerrainCfg(proportion=0.25,
+                                                          convert_to_heightfield=False), **variants}
+            # Use the same strict cumulative boundary test as Lab; fail early
+            # rather than silently leave a hard geometry without a column.
+            cumulative = np.cumsum([term.proportion for term in variants.values()], dtype=float)
+            cumulative /= cumulative[-1]
+            selected = np.searchsorted(cumulative, np.arange(num_cols) / num_cols + 0.001, side="right")
+            if set(selected) != set(range(len(variants))):
+                raise ValueError("Terrain columns omit a requested replay/stair variant")
     return TerrainGeneratorCfg(seed=seed, size=size, num_rows=num_rows, num_cols=num_cols,
                                curriculum=curriculum, sub_terrains=variants, border_width=4.0,
                                difficulty_range=(0.0, 1.0), use_cache=False, color_scheme="height")
@@ -204,7 +229,7 @@ def _column_stair_cfgs(generator_cfg):
     configs = list(generator_cfg.sub_terrains.values())
     cumulative = np.cumsum([term.proportion for term in configs], dtype=float)
     cumulative /= cumulative[-1]
-    return [configs[int(np.searchsorted(cumulative, index / generator_cfg.num_cols + 0.001))]
+    return [configs[int(np.searchsorted(cumulative, index / generator_cfg.num_cols + 0.001, side="right"))]
             for index in range(generator_cfg.num_cols)]
 
 
@@ -213,15 +238,27 @@ def _column_geometry_tensors(env):
     generator = env.scene.terrain.cfg.terrain_generator
     if getattr(env, "_him_stair_geometry_source", None) != id(generator):
         configs = _column_stair_cfgs(generator)
+        is_stair = [isinstance(term, StraightStairTerrainCfg) for term in configs]
+        if any(not stair and not isinstance(term, MeshPlaneTerrainCfg)
+               for term, stair in zip(configs, is_stair)):
+            raise ValueError("Stair manager terms support straight stairs and true replay planes only")
         geometries = [stair_metadata(term.step_height_range[0], term.step_depth, term.nosing,
                                     term.direction, term.num_steps, term.width, term.landing_length,
-                                    generator.size, term.nosing_thickness) for term in configs]
+                                    generator.size, term.nosing_thickness) if stair else None
+                      for term, stair in zip(configs, is_stair)]
         env._him_stair_column_geometry = {
-            name: torch.tensor([geometry[name] for geometry in geometries], device=env.device)
+            # Zero entries are unused tensor placeholders, not a zero-height
+            # stair geometry: all stair manager decisions require is_stair.
+            name: torch.tensor([geometry[name] if geometry is not None else 0.0
+                                for geometry in geometries], device=env.device)
             for name in ("goal_x", "last_riser_x", "goal_platform_start_x", "width")
         }
+        env._him_stair_column_geometry["is_stair"] = torch.tensor(is_stair, device=env.device, dtype=torch.bool)
+        env._him_stair_column_geometry["flat_column_indices"] = tuple(
+            index for index, stair in enumerate(is_stair) if not stair)
         env._him_stair_column_geometry["is_ascending"] = torch.tensor(
-            [term.direction == "asc" for term in configs], device=env.device, dtype=torch.bool)
+            [stair and term.direction == "asc" for term, stair in zip(configs, is_stair)],
+            device=env.device, dtype=torch.bool)
         env._him_stair_geometry_source = id(generator)
     return env._him_stair_column_geometry
 
@@ -230,12 +267,58 @@ def _tensor(value):
     return value if isinstance(value, torch.Tensor) else value.torch
 
 
+def flat_env_mask(env):
+    """Identify replay environments from the actual Lab terrain column map."""
+    return ~_column_geometry_tensors(env)["is_stair"][env.scene.terrain.terrain_types]
+
+
+def flat_replay_region_exit(env, margin=1.0):
+    """Truncate replay near the outer true-flat block, never count a stair fail.
+
+    Flat columns are contiguous and cover all generator rows. Neighbouring
+    true-flat tiles remain usable, but their surrounding stair columns and
+    terrain border must not enter an all-direction replay episode. The inward
+    margin protects the scanner and feet. Edge spawns can truncate sooner than
+    the configured episode duration; this is a training timeout only.
+    """
+    if not math.isfinite(float(margin)) or margin < 0:
+        raise ValueError("Flat replay boundary margin must be finite and nonnegative")
+    columns = _column_geometry_tensors(env)
+    indices = columns["flat_column_indices"]
+    if not indices:
+        return torch.zeros(env.scene.terrain.terrain_types.shape, device=env.device, dtype=torch.bool)
+    if "flat_region_bounds" not in columns:
+        if any(right - left != 1 for left, right in zip(indices, indices[1:])):
+            raise ValueError("Replay plane columns must form one contiguous block")
+        terrain = env.scene.terrain
+        flat_columns = ~columns["is_stair"]
+        origins = _tensor(terrain.terrain_origins)[:, flat_columns, :2]
+        half_size = torch.as_tensor(terrain.cfg.terrain_generator.size, device=env.device) / 2
+        columns["flat_region_bounds"] = torch.stack((origins.amin(dim=(0, 1)) - half_size,
+                                                     origins.amax(dim=(0, 1)) + half_size))
+        columns["flat_region_inner_bounds"] = {}
+    # Validate/cache each margin once. No device-to-host scalar checks occur
+    # in the policy-step path after the block is constructed.
+    cached_bounds = columns["flat_region_inner_bounds"]
+    if margin not in cached_bounds:
+        bounds = columns["flat_region_bounds"]
+        if bool((bounds[1] - bounds[0] <= 2 * margin).any()):
+            raise ValueError("Flat replay block has no interior for the boundary margin")
+        cached_bounds[margin] = torch.stack((bounds[0] + margin, bounds[1] - margin))
+    bounds = cached_bounds[margin]
+    root = _tensor(env.scene["robot"].data.root_pos_w)[:, :2]
+    outside = ((root < bounds[0]) | (root > bounds[1])).any(dim=1)
+    return outside & flat_env_mask(env)
+
+
 def stair_corridor_exit(env, width=None, margin=0.05):
     """End episodes that bypass the staircase by walking beside the corridor."""
     root = env.scene["robot"].data.root_pos_w.torch
+    columns = _column_geometry_tensors(env)
+    terrain_types = env.scene.terrain.terrain_types
     if width is None:
-        width = _column_geometry_tensors(env)["width"][env.scene.terrain.terrain_types]
-    return (root[:, 1] - env.scene.env_origins[:, 1]).abs() > width / 2 + margin
+        width = columns["width"][terrain_types]
+    return ((root[:, 1] - env.scene.env_origins[:, 1]).abs() > width / 2 + margin) & columns["is_stair"][terrain_types]
 
 
 def stair_goal_reached(env):
@@ -267,7 +350,7 @@ def stair_goal_reached(env):
     valid = torch.isfinite(hits).all(dim=1)
     clearance = root[:, 2] - hits.median(dim=1).values
     standing = valid & (clearance >= 0.18) & (clearance <= 0.60)
-    return progress & corridor & upright & feet_clear & standing
+    return progress & corridor & upright & feet_clear & standing & columns["is_stair"][terrain_type]
 
 
 def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
@@ -282,6 +365,9 @@ def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
     ids = torch.as_tensor(env_ids, device=env.device, dtype=torch.long)
     terrain = env.scene.terrain
     geometry = _column_geometry_tensors(env)
+    reset_ids = ids
+    all_stairs = geometry["is_stair"][terrain.terrain_types]
+    ids = ids[all_stairs[ids]]
     goal_x = geometry["goal_x"]
     root = env.scene["robot"].data.root_pos_w.torch
     progress = root[ids, 0] - env.scene.env_origins[ids, 0]
@@ -296,13 +382,15 @@ def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
     # for environments without the manager term-query API.
     move_up = directed_goal & reached_goal
     move_down = ~move_up & (terminated | (progress < target * required_progress))
-    terrain.update_env_origins(ids, move_up, move_down)
+    if len(ids):
+        terrain.update_env_origins(ids, move_up, move_down)
     ascending = geometry["is_ascending"][terrain.terrain_types]
     ended_ascending = ascending[ids]
     levels = terrain.terrain_levels.float()
-    diagnostics = {"levels_mean": levels.mean()}
+    diagnostics = {"levels_mean": (levels * all_stairs).sum() / all_stairs.sum().clamp_min(1),
+                   "flat_reset_count": (~all_stairs[reset_ids]).sum()}
     for direction, mask, ended_mask in (("asc", ascending, ended_ascending),
-                                        ("desc", ~ascending, ~ended_ascending)):
+                                        ("desc", ~ascending & all_stairs, ~ended_ascending)):
         count = ended_mask.sum()
         diagnostics[f"{direction}_levels_mean"] = (levels * mask).sum() / mask.sum().clamp_min(1)
         diagnostics[f"{direction}_goal_fraction"] = (reached_goal & ended_mask).sum() / count.clamp_min(1)
@@ -311,7 +399,8 @@ def stair_terrain_curriculum(env, env_ids, required_progress=0.8):
     return diagnostics
 
 
-def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1):
+def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_cols=24, seed=1,
+                            flat_fraction=0.0):
     """Apply geometry/sensors/curriculum to an existing pinned Lab Go2 rough cfg.
 
     The caller selects rewards and commands. This function retains the robot,
@@ -320,7 +409,8 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
     """
     if getattr(cfg.scene, "height_scanner", None) is None:
         raise ValueError("Stair configuration requires the Go2 rough cfg height_scanner")
-    generator = build_stair_generator(stage, spec=spec, num_rows=num_rows, num_cols=num_cols, seed=seed)
+    generator = build_stair_generator(stage, spec=spec, num_rows=num_rows, num_cols=num_cols,
+                                     seed=seed, flat_fraction=flat_fraction)
     cfg.scene.terrain.terrain_type = "generator"
     cfg.scene.terrain.terrain_generator = generator
     cfg.scene.terrain.max_init_terrain_level = 0
@@ -330,6 +420,9 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
     cfg.scene.base_height_scanner.pattern_cfg = patterns.GridPatternCfg(resolution=0.05, size=[0.3, 0.4])
     cfg.scene.base_height_scanner.update_period = cfg.sim.dt * cfg.decimation
     cfg.terminations.stair_corridor_exit = TerminationTermCfg(func=stair_corridor_exit)
+    cfg.terminations.flat_replay_region_exit = (TerminationTermCfg(func=flat_replay_region_exit,
+                                                                 time_out=True, params={"margin": 1.0})
+                                               if flat_fraction else None)
     if spec is None:
         cfg.curriculum.terrain_levels = CurriculumTermCfg(func=stair_terrain_curriculum)
         cfg.terminations.stair_goal_reached = TerminationTermCfg(func=stair_goal_reached, time_out=True)
@@ -337,10 +430,11 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
         cfg.curriculum.terrain_levels = None
         cfg.terminations.stair_goal_reached = None
     configs = _column_stair_cfgs(generator)
+    stair_configs = [term for term in configs if isinstance(term, StraightStairTerrainCfg)]
     manifest = {"stage": stage, "seed": seed, "heldout": spec is not None,
                 "num_rows": generator.num_rows, "num_cols": generator.num_cols,
-                "terrain_size": list(generator.size), "num_steps": configs[0].num_steps,
-                "width": configs[0].width, "landing_length": configs[0].landing_length,
+                "terrain_size": list(generator.size), "num_steps": stair_configs[0].num_steps,
+                "width": stair_configs[0].width, "landing_length": stair_configs[0].landing_length,
                 "convert_to_heightfield": False,
                 "geometry_reference": "relative to scene.env_origins; positive x travel",
                 "height_scanner_samples": 187,
@@ -350,7 +444,26 @@ def configure_stair_terrain(cfg, stage="easy", *, spec=None, num_rows=10, num_co
                 "variants": [{"direction": term.direction, "step_height_range": list(term.step_height_range),
                               "step_depth": term.step_depth, "nosing": term.nosing,
                               "num_steps": term.num_steps, "width": term.width,
-                              "landing_length": term.landing_length} for term in configs]}
+                              "landing_length": term.landing_length}
+                             if isinstance(term, StraightStairTerrainCfg) else
+                             {"kind": "flat", "collision_representation": "true plane triangle mesh",
+                              "terrain_local_origin": [generator.size[0] / 2, generator.size[1] / 2, 0.0]}
+                             for term in configs]}
+    if flat_fraction:
+        flat_columns = [index for index, term in enumerate(configs) if isinstance(term, MeshPlaneTerrainCfg)]
+        manifest["flat_replay"] = {
+            "requested_fraction": flat_fraction, "actual_column_fraction": len(flat_columns) / generator.num_cols,
+            "flat_columns": flat_columns,
+            "stair_columns": [index for index in range(generator.num_cols) if index not in flat_columns],
+            "environment_column_mapping": "scene.terrain.terrain_types",
+            "origin": "plane tile centre at local (size_x/2,size_y/2,0); Lab world translation applies",
+            "world_block_bounds": "all row/flat-column terrain_origins min/max XY, expanded by half tile size",
+            "boundary_timeout": {"term": "flat_replay_region_exit", "inward_margin_m": 1.0,
+                                  "counts_as_failure": False,
+                                  "scope": "training only; can shorten edge-spawn episodes"},
+            "curriculum": "no promotion/demotion or stair goal/corridor for flat environments",
+            "diagnostics": "flat_reset_count separate from ascent/descent reset counts",
+        }
     if spec is not None:
         term = configs[0]
         manifest["geometry"] = stair_metadata(term.step_height_range[0], term.step_depth, term.nosing, term.direction,

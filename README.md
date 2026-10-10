@@ -2,6 +2,8 @@
 
 2026-10-11 夜间楼梯训练与独立验证见 [中文报告](reproduction/stair-overnight-report_zh.md)。已归档上下楼模型和完整本地录像；论文对应楼梯几何通过，但长梯、陡梯及摩擦条件仍存在失败，完整最终矩阵未通过，流畅性和真机迁移尚未验证。
 
+后续 [平地回放与指令覆盖阶段](reproduction/stair-generalization-phase1_zh.md) 已准备 A/B/C 配置和 CPU 检查，尚未进行 GPU 训练；原冻结结果保留在 `go2-stairs-overnight-20261011` 标签。
+
 ## Learning-based Locomotion Control from OpenRobotLab
 This repository contains learning-based locomotion control research from OpenRobotLab, currently including [Hybrid Internal Model](/projects/himloco/README.md) & [H-Infinity Locomotion Control](/projects/h_infinity/README.md).
 ## 🔥 News
