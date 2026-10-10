@@ -144,6 +144,10 @@ def main():
     parser.add_argument("--video_length", type=int, default=500)
     parser.add_argument("--video_env_index", type=int, default=0,
                         help="Environment whose robot the recorded camera follows.")
+    parser.add_argument("--video_eye", type=float, nargs=3, default=(2.4, 2.4, 1.7),
+                        metavar=("X", "Y", "Z"), help="Camera eye relative to the tracked robot.")
+    parser.add_argument("--video_lookat", type=float, nargs=3, default=(0.0, 0.0, 0.3),
+                        metavar=("X", "Y", "Z"), help="Camera target relative to the tracked robot.")
     parser.add_argument("--shutdown_timeout", type=float, default=30.0,
                         help="After results are saved, exit if Isaac Sim teardown hangs; 0 disables.")
     add_launcher_args(parser)
@@ -269,7 +273,7 @@ def main():
         from isaaclab_visualizers.kit import KitVisualizerCfg
         cfg.sim.visualizer_cfgs = [KitVisualizerCfg(
             headless=True, window_width=1280, window_height=720,
-            eye=(2.4, 2.4, 1.7), lookat=(0.0, 0.0, 0.3),
+            eye=tuple(args.video_eye), lookat=tuple(args.video_lookat),
             origin_type="asset", origin_env_index=args.video_env_index, origin_track_path="robot",
         )]
         cfg.video_recorders = [VideoRecorderCfg(
@@ -301,6 +305,8 @@ def main():
                 "video_length": args.video_length if args.video else None,
                 "video_fps": 50 if args.video else None,
                 "video_environment_index": args.video_env_index if args.video else None,
+                "video_camera_eye_relative_xyz": args.video_eye if args.video else None,
+                "video_camera_lookat_relative_xyz": args.video_lookat if args.video else None,
                 "evaluation_include_zero_action": not args.video_policy_only
                     if args.mode == "evaluate" and args.terrain == "stairs" else None,
                 "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}

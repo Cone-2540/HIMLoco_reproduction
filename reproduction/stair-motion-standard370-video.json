@@ -1,0 +1,2988 @@
+{
+  "schema_version": 1,
+  "scope": "CPU-only saved first-episode trace analysis; no acceptance thresholds changed",
+  "acceptance_reference": {
+    "scope": "Final fixed-case, repeated randomized-reset Go2 staircase validation",
+    "written_before_first_stair_training_validation": true,
+    "core_completion_fraction_each_case_each_seed": 0.95,
+    "maximum_fall_fraction_each_case_each_seed": 0.05,
+    "maximum_stall_fraction_each_case_each_seed": 0.05,
+    "maximum_lateral_escape_fraction_each_case_each_seed": 0.05,
+    "maximum_base_contact_envs": 0,
+    "minimum_distinct_reset_seeds": 3,
+    "minimum_environments_per_case_per_seed": 32,
+    "training_transition_completion_fraction": 0.9,
+    "smoothness": {
+      "requires_complete_continuous_video_review_both_directions": true,
+      "roll_rms_reference_rad": 0.15,
+      "roll_peak_reference_rad": 0.35,
+      "long_flight_pause_review_threshold_s": 1.0,
+      "contact_foot_link_slip_proxy_reference_fraction": 0.15,
+      "slip_proxy_is_not_contact_point_slip": true,
+      "pitch": "Report relative to staircase grade; do not impose flat-world horizontal posture",
+      "candidate_comparison": "Compare action second differences and root jerk at equal geometry/speed with a competent baseline; preserve completion and tracking",
+      "no_single_scalar_proves_smoothness": true
+    },
+    "limitations": "Reset randomization alone is not full dynamics or real-robot validation; material and actuator sensitivity reported separately"
+  },
+  "sources": [
+    {
+      "path": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/result.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370/model_370.pt",
+      "controller": "policy",
+      "policy_dt_s": 0.02,
+      "physics_dt_s": 0.005,
+      "foot_body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "foot_name_source": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/domain-parameters-initial.json:foot_material.body_names",
+      "leg_body_names": null,
+      "domain_readback_path": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/domain-parameters-initial.json"
+    },
+    {
+      "path": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/result.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370/model_370.pt",
+      "controller": "policy",
+      "policy_dt_s": 0.02,
+      "physics_dt_s": 0.005,
+      "foot_body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "foot_name_source": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/domain-parameters-initial.json:foot_material.body_names",
+      "leg_body_names": null,
+      "domain_readback_path": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/domain-parameters-initial.json"
+    }
+  ],
+  "source_case_metrics": [
+    {
+      "source": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/result.json",
+      "seed": 29,
+      "case_index": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": 0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "num_envs": 1,
+      "completion_fraction": 1.0,
+      "falls": 0,
+      "stalls": 0,
+      "lateral_escapes": 0,
+      "base_contact_envs": 0,
+      "metrics": {
+        "flight_pause_fraction": 0.0,
+        "xy_tracking_mae_m_s": 0.04520950769870263,
+        "yaw_tracking_mae_rad_s": 0.036480479418702076,
+        "measured_vx_m_s": 0.29331113836194717,
+        "measured_vy_m_s": 0.0022429531938137695,
+        "heading_abs_error_rad": 0.006465088857807225,
+        "lateral_abs_error_m": 0.056904573522062386,
+        "torque_saturation_fraction": 0.0,
+        "base_contact_step_fraction": 0.0,
+        "shank_contact_step_fraction": 0.15384615384615385,
+        "contact_foot_horizontal_speed_m_s": 0.11908674324532602,
+        "foot_slip_fraction": 0.1527472585439682,
+        "xy_tracking_rmse_m_s": 0.04986993943357467,
+        "roll_rms_rad": 0.05688573622733943,
+        "pitch_rms_rad": 0.28549017617582356,
+        "linear_acceleration_rms_m_s2": 0.9074687653305072,
+        "linear_jerk_rms_m_s3": 36.02038577527927,
+        "body_angular_acceleration_rms_rad_s2": 8.424854930123221,
+        "action_delta_rms": 0.1902933629282621,
+        "action_second_delta_rms": 0.08792454255682763,
+        "applied_torque_rms_nm": 6.017007860569429,
+        "peak_contact_force_n": 134.9170379638672,
+        "roll_peak_rad": 0.11351125687360764,
+        "longest_flight_pause_s": 0.0
+      },
+      "source_trial_failure_reason": null,
+      "source_contact_sample_counts": null,
+      "mean_max_progress_m": 3.437241554260254,
+      "declared_per_case_traversal_gate_passed": false
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/result.json",
+      "seed": 29,
+      "case_index": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.96
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": -0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": -0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": -0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": -0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": -0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": -0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "num_envs": 1,
+      "completion_fraction": 1.0,
+      "falls": 0,
+      "stalls": 0,
+      "lateral_escapes": 0,
+      "base_contact_envs": 0,
+      "metrics": {
+        "flight_pause_fraction": 0.0,
+        "xy_tracking_mae_m_s": 0.05127162341351745,
+        "yaw_tracking_mae_rad_s": 0.034718344765800574,
+        "measured_vx_m_s": 0.2712147161601835,
+        "measured_vy_m_s": 0.004243182775840329,
+        "heading_abs_error_rad": 0.00926959263289776,
+        "lateral_abs_error_m": 0.06546976308154452,
+        "torque_saturation_fraction": 0.0,
+        "base_contact_step_fraction": 0.0,
+        "shank_contact_step_fraction": 0.25,
+        "contact_foot_horizontal_speed_m_s": 0.18610479921108275,
+        "foot_slip_fraction": 0.24653740227222443,
+        "xy_tracking_rmse_m_s": 0.05741894899909708,
+        "roll_rms_rad": 0.04127039791269904,
+        "pitch_rms_rad": 0.22769083565948267,
+        "linear_acceleration_rms_m_s2": 1.013712397972635,
+        "linear_jerk_rms_m_s3": 50.70564118151974,
+        "body_angular_acceleration_rms_rad_s2": 11.42695378688315,
+        "action_delta_rms": 0.15120655382324907,
+        "action_second_delta_rms": 0.07437270403086334,
+        "applied_torque_rms_nm": 4.9034049430692805,
+        "peak_contact_force_n": 408.6146240234375,
+        "roll_peak_rad": 0.11270297318696976,
+        "longest_flight_pause_s": 0.0
+      },
+      "source_trial_failure_reason": null,
+      "source_contact_sample_counts": null,
+      "mean_max_progress_m": 3.4395699501037598,
+      "declared_per_case_traversal_gate_passed": false
+    }
+  ],
+  "traces": [
+    {
+      "source": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/result.json",
+      "seed": 29,
+      "case_index": 0,
+      "env_id": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": 0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "trace_cadence": {
+        "samples": 127,
+        "first_time_s": 0.02,
+        "last_time_s": 12.620000000000001,
+        "interval_s": {
+          "samples": 126,
+          "mean": 0.1,
+          "rms": 0.1,
+          "min": 0.09999999999999964,
+          "max": 0.10000000000000142,
+          "p95": 0.10000000000000142
+        },
+        "median_interval_s": 0.09999999999999964,
+        "policy_dt_s": 0.02,
+        "every_policy_boundary_recorded_in_observed_span": false,
+        "classification": "sparse_or_unknown_trace",
+        "limit": "Camera frame rate is independent of trace cadence; sampled peaks are lower bounds."
+      },
+      "first_evaluator_motion_sample_time_s": 1.02,
+      "post_warmup_trace_samples": 117,
+      "root_flight_trace_samples": 59,
+      "foot_body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "foot_name_source": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/domain-parameters-initial.json:foot_material.body_names",
+      "outcome": {
+        "completed": true,
+        "fall": false,
+        "stall": false,
+        "lateral_escape": false,
+        "completion_time_s": 12.699999809265137,
+        "first_episode_measured_duration_s": 12.699999809265137,
+        "initial_root_relative_xyz_m": [
+          -0.034407615661621094,
+          0.05182027816772461,
+          0.4000000059604645
+        ],
+        "last_measured_root_relative_xyz_m": [
+          3.402833938598633,
+          0.07510232925415039,
+          1.205496907234192
+        ],
+        "case_num_envs": 1,
+        "case_completion_fraction": 1.0,
+        "case_falls": 0,
+        "case_stalls": 0,
+        "case_lateral_escapes": 0,
+        "case_base_contact_envs": 0,
+        "case_metrics": {
+          "flight_pause_fraction": 0.0,
+          "xy_tracking_mae_m_s": 0.04520950769870263,
+          "yaw_tracking_mae_rad_s": 0.036480479418702076,
+          "measured_vx_m_s": 0.29331113836194717,
+          "measured_vy_m_s": 0.0022429531938137695,
+          "heading_abs_error_rad": 0.006465088857807225,
+          "lateral_abs_error_m": 0.056904573522062386,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "shank_contact_step_fraction": 0.15384615384615385,
+          "contact_foot_horizontal_speed_m_s": 0.11908674324532602,
+          "foot_slip_fraction": 0.1527472585439682,
+          "xy_tracking_rmse_m_s": 0.04986993943357467,
+          "roll_rms_rad": 0.05688573622733943,
+          "pitch_rms_rad": 0.28549017617582356,
+          "linear_acceleration_rms_m_s2": 0.9074687653305072,
+          "linear_jerk_rms_m_s3": 36.02038577527927,
+          "body_angular_acceleration_rms_rad_s2": 8.424854930123221,
+          "action_delta_rms": 0.1902933629282621,
+          "action_second_delta_rms": 0.08792454255682763,
+          "applied_torque_rms_nm": 6.017007860569429,
+          "peak_contact_force_n": 134.9170379638672,
+          "roll_peak_rad": 0.11351125687360764,
+          "longest_flight_pause_s": 0.0
+        },
+        "case_contact_sample_counts": null,
+        "limit": "Failure labels come from evaluator; falls also include non-escape termination."
+      },
+      "telemetry_availability": {
+        "root_relative_xyz": true,
+        "root_linear_velocity_w": true,
+        "yaw_roll_pitch": true,
+        "feet_relative_xyz": true,
+        "foot_horizontal_speed_m_s": true,
+        "contacts": true,
+        "current_sample_contacts": false,
+        "command_vx_vy_yaw": true,
+        "actions": true,
+        "action_delta_rms": true,
+        "action_second_delta_rms": true,
+        "flight_paused": true,
+        "base_force_n": true,
+        "shank_force_n": true,
+        "current_sample_base_force_n": false,
+        "current_sample_shank_force_n": false,
+        "leg_current_normal_force_norm_n": false,
+        "leg_history_peak_normal_force_norm_n": false
+      },
+      "progress": {
+        "initial_trace_root_relative_xyz_m": [
+          -0.03456401824951172,
+          0.051491737365722656,
+          0.3987150192260742
+        ],
+        "last_trace_root_relative_xyz_m": [
+          3.3817331790924072,
+          0.07832622528076172,
+          1.2052191495895386
+        ],
+        "root_trace_displacement_x_m": 3.416297197341919,
+        "maximum_trace_root_x_m": 3.3817331790924072,
+        "minimum_adjacent_root_flight_delta_x_m": 0.017255306243896484,
+        "limit": "Trace endpoints can precede true terminal state; source outcome retains actual pre-reset endpoint."
+      },
+      "tracking": {
+        "world_vx_m_s": {
+          "samples": 117,
+          "mean": 0.2748848365412818,
+          "rms": 0.27774421108677827,
+          "min": 0.1703968048095703,
+          "max": 0.38293465971946716,
+          "p95": 0.35269633531570427
+        },
+        "root_flight_world_vx_m_s": {
+          "samples": 59,
+          "mean": 0.2776679477449191,
+          "rms": 0.2826185789982698,
+          "min": 0.1703968048095703,
+          "max": 0.38293465971946716,
+          "p95": 0.37264459431171415
+        },
+        "yaw_rotated_xy_command_error_proxy_m_s": {
+          "samples": 117,
+          "mean": 0.04717122544550984,
+          "rms": 0.05482702951771188,
+          "min": 0.0038197810811773664,
+          "max": 0.13615803791544884,
+          "p95": 0.10821140270957467
+        },
+        "note": "Yaw-only projection is a tracking proxy on pitched stairs; authoritative full-body-frame errors are source case metrics."
+      },
+      "pauses": {
+        "runs": [],
+        "paused_trace_hits": 0,
+        "longest_observed_endpoint_span_s": 0.0,
+        "limit": "Sparse low-vx hits cannot establish continuous pause duration; use source policy-cadence longest_flight_pause_s.",
+        "flag_source": "recorded flight_paused",
+        "source_case_longest_flight_pause_s": 0.0
+      },
+      "action_changes": {
+        "action_delta_rms": {
+          "status": "available",
+          "sampled_post_warmup": {
+            "samples": 117,
+            "mean": 0.17010006706556705,
+            "rms": 0.19036009599730877,
+            "min": 0.035787150263786316,
+            "max": 0.478310227394104,
+            "p95": 0.3273143112659454
+          },
+          "largest_post_warmup_events": [
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.478310227394104,
+              "time_s": 6.92,
+              "root_relative_xyz_m": [
+                1.7910552024841309,
+                0.06186819076538086,
+                0.8649247884750366
+              ],
+              "world_vx_m_s": 0.21412725746631622,
+              "action_second_delta_rms": 0.150080144405365,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.44938117265701294,
+              "time_s": 5.92,
+              "root_relative_xyz_m": [
+                1.5200181007385254,
+                0.06218433380126953,
+                0.7043445706367493
+              ],
+              "world_vx_m_s": 0.1974397599697113,
+              "action_second_delta_rms": 0.16346316039562225,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.4470750093460083,
+              "time_s": 7.92,
+              "root_relative_xyz_m": [
+                2.061192035675049,
+                0.062107086181640625,
+                1.0266532897949219
+              ],
+              "world_vx_m_s": 0.2452302873134613,
+              "action_second_delta_rms": 0.14039252698421478,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.4136216640472412,
+              "time_s": 4.92,
+              "root_relative_xyz_m": [
+                1.2489023208618164,
+                0.059739112854003906,
+                0.5429341197013855
+              ],
+              "world_vx_m_s": 0.19366230070590973,
+              "action_second_delta_rms": 0.13205623626708984,
+              "aggregate_leg_history_peak_n": 5.48934268951416,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3404766619205475,
+              "time_s": 4.0200000000000005,
+              "root_relative_xyz_m": [
+                1.004831314086914,
+                0.041172027587890625,
+                0.39854297041893005
+              ],
+              "world_vx_m_s": 0.21625877916812897,
+              "action_second_delta_rms": 0.12069418281316757,
+              "aggregate_leg_history_peak_n": 38.5927734375,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "largest_root_flight_events": [
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.478310227394104,
+              "time_s": 6.92,
+              "root_relative_xyz_m": [
+                1.7910552024841309,
+                0.06186819076538086,
+                0.8649247884750366
+              ],
+              "world_vx_m_s": 0.21412725746631622,
+              "action_second_delta_rms": 0.150080144405365,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.44938117265701294,
+              "time_s": 5.92,
+              "root_relative_xyz_m": [
+                1.5200181007385254,
+                0.06218433380126953,
+                0.7043445706367493
+              ],
+              "world_vx_m_s": 0.1974397599697113,
+              "action_second_delta_rms": 0.16346316039562225,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.4470750093460083,
+              "time_s": 7.92,
+              "root_relative_xyz_m": [
+                2.061192035675049,
+                0.062107086181640625,
+                1.0266532897949219
+              ],
+              "world_vx_m_s": 0.2452302873134613,
+              "action_second_delta_rms": 0.14039252698421478,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.4136216640472412,
+              "time_s": 4.92,
+              "root_relative_xyz_m": [
+                1.2489023208618164,
+                0.059739112854003906,
+                0.5429341197013855
+              ],
+              "world_vx_m_s": 0.19366230070590973,
+              "action_second_delta_rms": 0.13205623626708984,
+              "aggregate_leg_history_peak_n": 5.48934268951416,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3404766619205475,
+              "time_s": 4.0200000000000005,
+              "root_relative_xyz_m": [
+                1.004831314086914,
+                0.041172027587890625,
+                0.39854297041893005
+              ],
+              "world_vx_m_s": 0.21625877916812897,
+              "action_second_delta_rms": 0.12069418281316757,
+              "aggregate_leg_history_peak_n": 38.5927734375,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "scope": "Recorded one-policy-step differences sampled at trace timestamps; never differences across sparse action snapshots."
+        },
+        "action_second_delta_rms": {
+          "status": "available",
+          "sampled_post_warmup": {
+            "samples": 117,
+            "mean": 0.06927388526785833,
+            "rms": 0.08805456363420706,
+            "min": 0.010016419924795628,
+            "max": 0.3866370618343353,
+            "p95": 0.15096306502819062
+          },
+          "largest_post_warmup_events": [
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.3866370618343353,
+              "time_s": 3.12,
+              "root_relative_xyz_m": [
+                0.755800724029541,
+                0.04485368728637695,
+                0.282653272151947
+              ],
+              "world_vx_m_s": 0.2606585621833801,
+              "action_second_delta_rms": 0.3866370618343353,
+              "aggregate_leg_history_peak_n": 53.86545181274414,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.2820564806461334,
+              "time_s": 3.22,
+              "root_relative_xyz_m": [
+                0.7801270484924316,
+                0.04848194122314453,
+                0.2973822057247162
+              ],
+              "world_vx_m_s": 0.26799458265304565,
+              "action_second_delta_rms": 0.2820564806461334,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.1795925498008728,
+              "time_s": 4.12,
+              "root_relative_xyz_m": [
+                1.0312557220458984,
+                0.04592084884643555,
+                0.4111335277557373
+              ],
+              "world_vx_m_s": 0.2809109687805176,
+              "action_second_delta_rms": 0.1795925498008728,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.17175903916358948,
+              "time_s": 9.82,
+              "root_relative_xyz_m": [
+                2.60733699798584,
+                0.060819149017333984,
+                1.1766852140426636
+              ],
+              "world_vx_m_s": 0.32389649748802185,
+              "action_second_delta_rms": 0.17175903916358948,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.16346316039562225,
+              "time_s": 5.92,
+              "root_relative_xyz_m": [
+                1.5200181007385254,
+                0.06218433380126953,
+                0.7043445706367493
+              ],
+              "world_vx_m_s": 0.1974397599697113,
+              "action_second_delta_rms": 0.16346316039562225,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "largest_root_flight_events": [
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.1795925498008728,
+              "time_s": 4.12,
+              "root_relative_xyz_m": [
+                1.0312557220458984,
+                0.04592084884643555,
+                0.4111335277557373
+              ],
+              "world_vx_m_s": 0.2809109687805176,
+              "action_second_delta_rms": 0.1795925498008728,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.17175903916358948,
+              "time_s": 9.82,
+              "root_relative_xyz_m": [
+                2.60733699798584,
+                0.060819149017333984,
+                1.1766852140426636
+              ],
+              "world_vx_m_s": 0.32389649748802185,
+              "action_second_delta_rms": 0.17175903916358948,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.16346316039562225,
+              "time_s": 5.92,
+              "root_relative_xyz_m": [
+                1.5200181007385254,
+                0.06218433380126953,
+                0.7043445706367493
+              ],
+              "world_vx_m_s": 0.1974397599697113,
+              "action_second_delta_rms": 0.16346316039562225,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.15109841525554657,
+              "time_s": 5.82,
+              "root_relative_xyz_m": [
+                1.502762794494629,
+                0.05859565734863281,
+                0.6865010857582092
+              ],
+              "world_vx_m_s": 0.17675746977329254,
+              "action_second_delta_rms": 0.15109841525554657,
+              "aggregate_leg_history_peak_n": 23.44731903076172,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.15092922747135162,
+              "time_s": 4.5200000000000005,
+              "root_relative_xyz_m": [
+                1.1590852737426758,
+                0.045508384704589844,
+                0.47713127732276917
+              ],
+              "world_vx_m_s": 0.28431540727615356,
+              "action_second_delta_rms": 0.15092922747135162,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "scope": "Recorded one-policy-step differences sampled at trace timestamps; never differences across sparse action snapshots."
+        },
+        "derived_dense_action_second_delta_rms": null
+      },
+      "foot_contacts": {
+        "history": {
+          "status": "available",
+          "bodies": [
+            {
+              "body_name": "FL_foot",
+              "eligible_trace_samples": 117,
+              "contact_trace_samples": 89,
+              "sample_fraction": 0.7606837606837606,
+              "observed_flag_transitions": 25,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 89,
+                "mean": 0.0748629042109621,
+                "rms": 0.2101467189451984,
+                "min": 0.0016344748437404633,
+                "max": 1.5236846208572388,
+                "p95": 0.4578985333442687
+              }
+            },
+            {
+              "body_name": "FR_foot",
+              "eligible_trace_samples": 117,
+              "contact_trace_samples": 79,
+              "sample_fraction": 0.6752136752136753,
+              "observed_flag_transitions": 22,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 79,
+                "mean": 0.1339249094753656,
+                "rms": 0.2889824679774727,
+                "min": 0.001535000978037715,
+                "max": 1.0005755424499512,
+                "p95": 0.7814681410789484
+              }
+            },
+            {
+              "body_name": "RL_foot",
+              "eligible_trace_samples": 117,
+              "contact_trace_samples": 102,
+              "sample_fraction": 0.8717948717948718,
+              "observed_flag_transitions": 28,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 102,
+                "mean": 0.15677320873981124,
+                "rms": 0.33573935285731105,
+                "min": 0.0009930882370099425,
+                "max": 1.1842025518417358,
+                "p95": 0.9367658734321591
+              }
+            },
+            {
+              "body_name": "RR_foot",
+              "eligible_trace_samples": 117,
+              "contact_trace_samples": 99,
+              "sample_fraction": 0.8461538461538461,
+              "observed_flag_transitions": 22,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 99,
+                "mean": 0.12422360201375653,
+                "rms": 0.34314777050472506,
+                "min": 0.008401958271861076,
+                "max": 1.8288474082946777,
+                "p95": 0.697092306613922
+              }
+            }
+          ]
+        },
+        "current": {
+          "status": "unavailable",
+          "reason": "current_sample_contacts was not recorded"
+        },
+        "scope": "Trace-sample contact flags after evaluator warmup; neither exact contact duration nor exact touchdown timing."
+      },
+      "foot_retractions": {
+        "scope": "Course/world-x foot-center decrease between adjacent recorded root-flight samples; normal gait corrections also qualify.",
+        "contact_mechanism_inferred": false,
+        "feet": [
+          {
+            "body_name": "FL_foot",
+            "negative_interval_count": 0,
+            "eligible_adjacent_intervals": 58,
+            "maximum_sampled_retraction_m": 0.0,
+            "largest_events": []
+          },
+          {
+            "body_name": "FR_foot",
+            "negative_interval_count": 9,
+            "eligible_adjacent_intervals": 58,
+            "maximum_sampled_retraction_m": 0.005650997161865234,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.005650997161865234,
+                "time_s": 8.82,
+                "root_relative_xyz_m": [
+                  2.327906608581543,
+                  0.05393552780151367,
+                  1.163665533065796
+                ],
+                "world_vx_m_s": 0.279880166053772,
+                "action_second_delta_rms": 0.11172721534967422,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 8.72,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.792120933532715,
+                  -0.14515161514282227,
+                  1.1456809043884277
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.7864699363708496,
+                  -0.1298537254333496,
+                  0.9836381673812866
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.003129243850708008,
+                "time_s": 7.0200000000000005,
+                "root_relative_xyz_m": [
+                  1.8180794715881348,
+                  0.061957359313964844,
+                  0.8799611330032349
+                ],
+                "world_vx_m_s": 0.2829626500606537,
+                "action_second_delta_rms": 0.06985698640346527,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 6.92,
+                "interval_s": 0.10000000000000053,
+                "foot_start_relative_xyz_m": [
+                  2.2483608722686768,
+                  -0.18175888061523438,
+                  0.8238227367401123
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.2452316284179688,
+                  -0.18042755126953125,
+                  0.8238500952720642
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0028104782104492188,
+                "time_s": 5.0200000000000005,
+                "root_relative_xyz_m": [
+                  1.275099754333496,
+                  0.062186241149902344,
+                  0.5581408739089966
+                ],
+                "world_vx_m_s": 0.2850057780742645,
+                "action_second_delta_rms": 0.0883721262216568,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 4.92,
+                "interval_s": 0.10000000000000053,
+                "foot_start_relative_xyz_m": [
+                  1.7111587524414062,
+                  -0.17847919464111328,
+                  0.5038405060768127
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.708348274230957,
+                  -0.1771225929260254,
+                  0.503842294216156
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0024251937866210938,
+                "time_s": 6.0200000000000005,
+                "root_relative_xyz_m": [
+                  1.5464205741882324,
+                  0.06233406066894531,
+                  0.7188982367515564
+                ],
+                "world_vx_m_s": 0.28292205929756165,
+                "action_second_delta_rms": 0.07614560425281525,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 5.92,
+                "interval_s": 0.10000000000000053,
+                "foot_start_relative_xyz_m": [
+                  1.9773917198181152,
+                  -0.1806812286376953,
+                  0.6638231873512268
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.9749665260314941,
+                  -0.17983531951904297,
+                  0.663846492767334
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.001621246337890625,
+                "time_s": 8.92,
+                "root_relative_xyz_m": [
+                  2.3548941612243652,
+                  0.05533885955810547,
+                  1.1680020093917847
+                ],
+                "world_vx_m_s": 0.2697449326515198,
+                "action_second_delta_rms": 0.06994510442018509,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 8.82,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.7864699363708496,
+                  -0.1298537254333496,
+                  0.9836381673812866
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.784848690032959,
+                  -0.12972211837768555,
+                  0.983902096748352
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              }
+            ]
+          },
+          {
+            "body_name": "RL_foot",
+            "negative_interval_count": 1,
+            "eligible_adjacent_intervals": 58,
+            "maximum_sampled_retraction_m": 0.0067865848541259766,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.0067865848541259766,
+                "time_s": 9.620000000000001,
+                "root_relative_xyz_m": [
+                  2.5521953105926514,
+                  0.05898284912109375,
+                  1.17336106300354
+                ],
+                "world_vx_m_s": 0.25725996494293213,
+                "action_second_delta_rms": 0.09528885781764984,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 9.52,
+                "interval_s": 0.10000000000000142,
+                "foot_start_relative_xyz_m": [
+                  2.3293895721435547,
+                  0.16957473754882812,
+                  0.8507729172706604
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.3226029872894287,
+                  0.1586456298828125,
+                  0.8232051134109497
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              }
+            ]
+          },
+          {
+            "body_name": "RR_foot",
+            "negative_interval_count": 2,
+            "eligible_adjacent_intervals": 58,
+            "maximum_sampled_retraction_m": 0.00865793228149414,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RR_foot",
+                "value": 0.00865793228149414,
+                "time_s": 9.32,
+                "root_relative_xyz_m": [
+                  2.4663000106811523,
+                  0.05909252166748047,
+                  1.1746044158935547
+                ],
+                "world_vx_m_s": 0.2976665496826172,
+                "action_second_delta_rms": 0.10220540314912796,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 9.22,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.327706813812256,
+                  -0.06530618667602539,
+                  0.886023223400116
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.3190488815307617,
+                  -0.05696439743041992,
+                  0.8235301971435547
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RR_foot",
+                "value": 0.0002753734588623047,
+                "time_s": 9.22,
+                "root_relative_xyz_m": [
+                  2.4373152256011963,
+                  0.060692787170410156,
+                  1.176521897315979
+                ],
+                "world_vx_m_s": 0.2764531373977661,
+                "action_second_delta_rms": 0.028777869418263435,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 9.120000000000001,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.327982187271118,
+                  -0.07993602752685547,
+                  0.9536836743354797
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.327706813812256,
+                  -0.06530618667602539,
+                  0.886023223400116
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              }
+            ]
+          }
+        ]
+      },
+      "selected_leg_forces": {
+        "expected_go2_body_count": 8,
+        "recorded_body_names": null,
+        "body_order_source": null,
+        "contact_threshold_n": 1.0,
+        "measurement": "Per-body world-frame net normal-force vector norm; tangential friction excluded",
+        "bodies": [
+          {
+            "body_name": "FL_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FL_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FR_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FR_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RL_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RL_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RR_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RR_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          }
+        ]
+      },
+      "aggregate_contacts": {
+        "base_force_n": {
+          "status": "available",
+          "stats_post_warmup_n": {
+            "samples": 117,
+            "mean": 0.0,
+            "rms": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "p95": 0.0
+          },
+          "peak_post_warmup": {
+            "field": "base_force_n",
+            "body_name": null,
+            "value": 0.0,
+            "time_s": 1.02,
+            "root_relative_xyz_m": [
+              0.20397710800170898,
+              0.04595613479614258,
+              0.30416780710220337
+            ],
+            "world_vx_m_s": 0.2327810525894165,
+            "action_second_delta_rms": 0.033978935331106186,
+            "aggregate_leg_history_peak_n": 0.0,
+            "aggregate_leg_current_n": null
+          },
+          "largest_root_flight_events": [
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.0200000000000005,
+              "root_relative_xyz_m": [
+                1.004831314086914,
+                0.041172027587890625,
+                0.39854297041893005
+              ],
+              "world_vx_m_s": 0.21625877916812897,
+              "action_second_delta_rms": 0.12069418281316757,
+              "aggregate_leg_history_peak_n": 38.5927734375,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.12,
+              "root_relative_xyz_m": [
+                1.0312557220458984,
+                0.04592084884643555,
+                0.4111335277557373
+              ],
+              "world_vx_m_s": 0.2809109687805176,
+              "action_second_delta_rms": 0.1795925498008728,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.22,
+              "root_relative_xyz_m": [
+                1.0596976280212402,
+                0.04983997344970703,
+                0.4338875412940979
+              ],
+              "world_vx_m_s": 0.3197534680366516,
+              "action_second_delta_rms": 0.09786548465490341,
+              "aggregate_leg_history_peak_n": 73.20877075195312,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.32,
+              "root_relative_xyz_m": [
+                1.0903964042663574,
+                0.0494236946105957,
+                0.45606744289398193
+              ],
+              "world_vx_m_s": 0.31649160385131836,
+              "action_second_delta_rms": 0.11853744089603424,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.42,
+              "root_relative_xyz_m": [
+                1.12615966796875,
+                0.04632568359375,
+                0.47075310349464417
+              ],
+              "world_vx_m_s": 0.37661150097846985,
+              "action_second_delta_rms": 0.07095091789960861,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            }
+          ]
+        },
+        "shank_force_n": {
+          "status": "available",
+          "stats_post_warmup_n": {
+            "samples": 117,
+            "mean": 4.023370202789959,
+            "rms": 13.121496473203948,
+            "min": 0.0,
+            "max": 73.20877075195312,
+            "p95": 30.143063354492067
+          },
+          "peak_post_warmup": {
+            "field": "shank_force_n",
+            "body_name": null,
+            "value": 73.20877075195312,
+            "time_s": 4.22,
+            "root_relative_xyz_m": [
+              1.0596976280212402,
+              0.04983997344970703,
+              0.4338875412940979
+            ],
+            "world_vx_m_s": 0.3197534680366516,
+            "action_second_delta_rms": 0.09786548465490341,
+            "aggregate_leg_history_peak_n": 73.20877075195312,
+            "aggregate_leg_current_n": null
+          },
+          "largest_root_flight_events": [
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 73.20877075195312,
+              "time_s": 4.22,
+              "root_relative_xyz_m": [
+                1.0596976280212402,
+                0.04983997344970703,
+                0.4338875412940979
+              ],
+              "world_vx_m_s": 0.3197534680366516,
+              "action_second_delta_rms": 0.09786548465490341,
+              "aggregate_leg_history_peak_n": 73.20877075195312,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 49.46417236328125,
+              "time_s": 7.12,
+              "root_relative_xyz_m": [
+                1.8473517894744873,
+                0.058413028717041016,
+                0.8997777700424194
+              ],
+              "world_vx_m_s": 0.30212828516960144,
+              "action_second_delta_rms": 0.0668918564915657,
+              "aggregate_leg_history_peak_n": 49.46417236328125,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 46.360694885253906,
+              "time_s": 4.72,
+              "root_relative_xyz_m": [
+                1.2110543251037598,
+                0.05168008804321289,
+                0.5052772164344788
+              ],
+              "world_vx_m_s": 0.222416952252388,
+              "action_second_delta_rms": 0.027457065880298615,
+              "aggregate_leg_history_peak_n": 46.360694885253906,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 38.5927734375,
+              "time_s": 4.0200000000000005,
+              "root_relative_xyz_m": [
+                1.004831314086914,
+                0.041172027587890625,
+                0.39854297041893005
+              ],
+              "world_vx_m_s": 0.21625877916812897,
+              "action_second_delta_rms": 0.12069418281316757,
+              "aggregate_leg_history_peak_n": 38.5927734375,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 28.030635833740234,
+              "time_s": 4.82,
+              "root_relative_xyz_m": [
+                1.2309355735778809,
+                0.05563831329345703,
+                0.5238296389579773
+              ],
+              "world_vx_m_s": 0.18980175256729126,
+              "action_second_delta_rms": 0.13342660665512085,
+              "aggregate_leg_history_peak_n": 28.030635833740234,
+              "aggregate_leg_current_n": null
+            }
+          ]
+        },
+        "current_sample_base_force_n": {
+          "status": "unavailable",
+          "reason": "Not recorded"
+        },
+        "current_sample_shank_force_n": {
+          "status": "unavailable",
+          "reason": "Not recorded"
+        }
+      }
+    },
+    {
+      "source": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/result.json",
+      "seed": 29,
+      "case_index": 0,
+      "env_id": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.96
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": -0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": -0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": -0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": -0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": -0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": -0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "trace_cadence": {
+        "samples": 136,
+        "first_time_s": 0.02,
+        "last_time_s": 13.52,
+        "interval_s": {
+          "samples": 135,
+          "mean": 0.1,
+          "rms": 0.09999999999999999,
+          "min": 0.09999999999999964,
+          "max": 0.10000000000000142,
+          "p95": 0.10000000000000142
+        },
+        "median_interval_s": 0.09999999999999964,
+        "policy_dt_s": 0.02,
+        "every_policy_boundary_recorded_in_observed_span": false,
+        "classification": "sparse_or_unknown_trace",
+        "limit": "Camera frame rate is independent of trace cadence; sampled peaks are lower bounds."
+      },
+      "first_evaluator_motion_sample_time_s": 1.02,
+      "post_warmup_trace_samples": 126,
+      "root_flight_trace_samples": 66,
+      "foot_body_names": [
+        "FL_foot",
+        "FR_foot",
+        "RL_foot",
+        "RR_foot"
+      ],
+      "foot_name_source": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/domain-parameters-initial.json:foot_material.body_names",
+      "outcome": {
+        "completed": true,
+        "fall": false,
+        "stall": false,
+        "lateral_escape": false,
+        "completion_time_s": 13.5600004196167,
+        "first_episode_measured_duration_s": 13.559999465942383,
+        "initial_root_relative_xyz_m": [
+          -0.034407615661621094,
+          0.05182027816772461,
+          0.40000003576278687
+        ],
+        "last_measured_root_relative_xyz_m": [
+          3.4051623344421387,
+          0.0781702995300293,
+          -0.7152767181396484
+        ],
+        "case_num_envs": 1,
+        "case_completion_fraction": 1.0,
+        "case_falls": 0,
+        "case_stalls": 0,
+        "case_lateral_escapes": 0,
+        "case_base_contact_envs": 0,
+        "case_metrics": {
+          "flight_pause_fraction": 0.0,
+          "xy_tracking_mae_m_s": 0.05127162341351745,
+          "yaw_tracking_mae_rad_s": 0.034718344765800574,
+          "measured_vx_m_s": 0.2712147161601835,
+          "measured_vy_m_s": 0.004243182775840329,
+          "heading_abs_error_rad": 0.00926959263289776,
+          "lateral_abs_error_m": 0.06546976308154452,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "shank_contact_step_fraction": 0.25,
+          "contact_foot_horizontal_speed_m_s": 0.18610479921108275,
+          "foot_slip_fraction": 0.24653740227222443,
+          "xy_tracking_rmse_m_s": 0.05741894899909708,
+          "roll_rms_rad": 0.04127039791269904,
+          "pitch_rms_rad": 0.22769083565948267,
+          "linear_acceleration_rms_m_s2": 1.013712397972635,
+          "linear_jerk_rms_m_s3": 50.70564118151974,
+          "body_angular_acceleration_rms_rad_s2": 11.42695378688315,
+          "action_delta_rms": 0.15120655382324907,
+          "action_second_delta_rms": 0.07437270403086334,
+          "applied_torque_rms_nm": 4.9034049430692805,
+          "peak_contact_force_n": 408.6146240234375,
+          "roll_peak_rad": 0.11270297318696976,
+          "longest_flight_pause_s": 0.0
+        },
+        "case_contact_sample_counts": null,
+        "limit": "Failure labels come from evaluator; falls also include non-escape termination."
+      },
+      "telemetry_availability": {
+        "root_relative_xyz": true,
+        "root_linear_velocity_w": true,
+        "yaw_roll_pitch": true,
+        "feet_relative_xyz": true,
+        "foot_horizontal_speed_m_s": true,
+        "contacts": true,
+        "current_sample_contacts": false,
+        "command_vx_vy_yaw": true,
+        "actions": true,
+        "action_delta_rms": true,
+        "action_second_delta_rms": true,
+        "flight_paused": true,
+        "base_force_n": true,
+        "shank_force_n": true,
+        "current_sample_base_force_n": false,
+        "current_sample_shank_force_n": false,
+        "leg_current_normal_force_norm_n": false,
+        "leg_history_peak_normal_force_norm_n": false
+      },
+      "progress": {
+        "initial_trace_root_relative_xyz_m": [
+          -0.03456401824951172,
+          0.051491737365722656,
+          0.3987153172492981
+        ],
+        "last_trace_root_relative_xyz_m": [
+          3.3944456577301025,
+          0.07968378067016602,
+          -0.715393602848053
+        ],
+        "root_trace_displacement_x_m": 3.4290096759796143,
+        "maximum_trace_root_x_m": 3.3944456577301025,
+        "minimum_adjacent_root_flight_delta_x_m": 0.014159679412841797,
+        "limit": "Trace endpoints can precede true terminal state; source outcome retains actual pre-reset endpoint."
+      },
+      "tracking": {
+        "world_vx_m_s": {
+          "samples": 126,
+          "mean": 0.25572387412900016,
+          "rms": 0.2587057332381727,
+          "min": 0.1343642622232437,
+          "max": 0.3780606687068939,
+          "p95": 0.30992211401462555
+        },
+        "root_flight_world_vx_m_s": {
+          "samples": 66,
+          "mean": 0.24456072124567899,
+          "rms": 0.24890895868963267,
+          "min": 0.1343642622232437,
+          "max": 0.3780606687068939,
+          "p95": 0.31732552498579025
+        },
+        "yaw_rotated_xy_command_error_proxy_m_s": {
+          "samples": 126,
+          "mean": 0.06068455978275691,
+          "rms": 0.0679679843495618,
+          "min": 0.006622776948749695,
+          "max": 0.1665631166698874,
+          "p95": 0.11175052970822
+        },
+        "note": "Yaw-only projection is a tracking proxy on pitched stairs; authoritative full-body-frame errors are source case metrics."
+      },
+      "pauses": {
+        "runs": [],
+        "paused_trace_hits": 0,
+        "longest_observed_endpoint_span_s": 0.0,
+        "limit": "Sparse low-vx hits cannot establish continuous pause duration; use source policy-cadence longest_flight_pause_s.",
+        "flag_source": "recorded flight_paused",
+        "source_case_longest_flight_pause_s": 0.0
+      },
+      "action_changes": {
+        "action_delta_rms": {
+          "status": "available",
+          "sampled_post_warmup": {
+            "samples": 126,
+            "mean": 0.1338942631014756,
+            "rms": 0.14932128572073405,
+            "min": 0.03853461518883705,
+            "max": 0.3362429738044739,
+            "p95": 0.2578810527920723
+          },
+          "largest_post_warmup_events": [
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3362429738044739,
+              "time_s": 6.72,
+              "root_relative_xyz_m": [
+                1.647864818572998,
+                0.061936378479003906,
+                -0.137107253074646
+              ],
+              "world_vx_m_s": 0.3661404848098755,
+              "action_second_delta_rms": 0.11854471266269684,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3290669918060303,
+              "time_s": 6.62,
+              "root_relative_xyz_m": [
+                1.6127967834472656,
+                0.06305217742919922,
+                -0.12075662612915039
+              ],
+              "world_vx_m_s": 0.29433250427246094,
+              "action_second_delta_rms": 0.1260381042957306,
+              "aggregate_leg_history_peak_n": 60.660152435302734,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3221288025379181,
+              "time_s": 5.62,
+              "root_relative_xyz_m": [
+                1.3695049285888672,
+                0.06507635116577148,
+                0.01526552438735962
+              ],
+              "world_vx_m_s": 0.31014806032180786,
+              "action_second_delta_rms": 0.0784059688448906,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.27748239040374756,
+              "time_s": 7.0200000000000005,
+              "root_relative_xyz_m": [
+                1.7197093963623047,
+                0.07219886779785156,
+                -0.18500900268554688
+              ],
+              "world_vx_m_s": 0.19904515147209167,
+              "action_second_delta_rms": 0.4260411262512207,
+              "aggregate_leg_history_peak_n": 59.78396987915039,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.27705880999565125,
+              "time_s": 1.12,
+              "root_relative_xyz_m": [
+                0.22730112075805664,
+                0.04815816879272461,
+                0.3004510998725891
+              ],
+              "world_vx_m_s": 0.23385724425315857,
+              "action_second_delta_rms": 0.0756293386220932,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "largest_root_flight_events": [
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3362429738044739,
+              "time_s": 6.72,
+              "root_relative_xyz_m": [
+                1.647864818572998,
+                0.061936378479003906,
+                -0.137107253074646
+              ],
+              "world_vx_m_s": 0.3661404848098755,
+              "action_second_delta_rms": 0.11854471266269684,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3290669918060303,
+              "time_s": 6.62,
+              "root_relative_xyz_m": [
+                1.6127967834472656,
+                0.06305217742919922,
+                -0.12075662612915039
+              ],
+              "world_vx_m_s": 0.29433250427246094,
+              "action_second_delta_rms": 0.1260381042957306,
+              "aggregate_leg_history_peak_n": 60.660152435302734,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.3221288025379181,
+              "time_s": 5.62,
+              "root_relative_xyz_m": [
+                1.3695049285888672,
+                0.06507635116577148,
+                0.01526552438735962
+              ],
+              "world_vx_m_s": 0.31014806032180786,
+              "action_second_delta_rms": 0.0784059688448906,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.27748239040374756,
+              "time_s": 7.0200000000000005,
+              "root_relative_xyz_m": [
+                1.7197093963623047,
+                0.07219886779785156,
+                -0.18500900268554688
+              ],
+              "world_vx_m_s": 0.19904515147209167,
+              "action_second_delta_rms": 0.4260411262512207,
+              "aggregate_leg_history_peak_n": 59.78396987915039,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_delta_rms",
+              "body_name": null,
+              "value": 0.2698702812194824,
+              "time_s": 5.5200000000000005,
+              "root_relative_xyz_m": [
+                1.342534065246582,
+                0.06900548934936523,
+                0.023146092891693115
+              ],
+              "world_vx_m_s": 0.2087567150592804,
+              "action_second_delta_rms": 0.25899508595466614,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "scope": "Recorded one-policy-step differences sampled at trace timestamps; never differences across sparse action snapshots."
+        },
+        "action_second_delta_rms": {
+          "status": "available",
+          "sampled_post_warmup": {
+            "samples": 126,
+            "mean": 0.06064202653480664,
+            "rms": 0.08606175232691171,
+            "min": 0.006956680677831173,
+            "max": 0.4260411262512207,
+            "p95": 0.1854177638888359
+          },
+          "largest_post_warmup_events": [
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.4260411262512207,
+              "time_s": 7.0200000000000005,
+              "root_relative_xyz_m": [
+                1.7197093963623047,
+                0.07219886779785156,
+                -0.18500900268554688
+              ],
+              "world_vx_m_s": 0.19904515147209167,
+              "action_second_delta_rms": 0.4260411262512207,
+              "aggregate_leg_history_peak_n": 59.78396987915039,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.25899508595466614,
+              "time_s": 5.5200000000000005,
+              "root_relative_xyz_m": [
+                1.342534065246582,
+                0.06900548934936523,
+                0.023146092891693115
+              ],
+              "world_vx_m_s": 0.2087567150592804,
+              "action_second_delta_rms": 0.25899508595466614,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.23900075256824493,
+              "time_s": 6.82,
+              "root_relative_xyz_m": [
+                1.6800718307495117,
+                0.07045793533325195,
+                -0.154815673828125
+              ],
+              "world_vx_m_s": 0.2708125710487366,
+              "action_second_delta_rms": 0.23900075256824493,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.22581472992897034,
+              "time_s": 10.22,
+              "root_relative_xyz_m": [
+                2.489762783050537,
+                0.06424093246459961,
+                -0.6310349702835083
+              ],
+              "world_vx_m_s": 0.2950085401535034,
+              "action_second_delta_rms": 0.22581472992897034,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.21144074201583862,
+              "time_s": 8.92,
+              "root_relative_xyz_m": [
+                2.1618471145629883,
+                0.06203269958496094,
+                -0.44785332679748535
+              ],
+              "world_vx_m_s": 0.2965512275695801,
+              "action_second_delta_rms": 0.21144074201583862,
+              "aggregate_leg_history_peak_n": 53.953189849853516,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "largest_root_flight_events": [
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.4260411262512207,
+              "time_s": 7.0200000000000005,
+              "root_relative_xyz_m": [
+                1.7197093963623047,
+                0.07219886779785156,
+                -0.18500900268554688
+              ],
+              "world_vx_m_s": 0.19904515147209167,
+              "action_second_delta_rms": 0.4260411262512207,
+              "aggregate_leg_history_peak_n": 59.78396987915039,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.25899508595466614,
+              "time_s": 5.5200000000000005,
+              "root_relative_xyz_m": [
+                1.342534065246582,
+                0.06900548934936523,
+                0.023146092891693115
+              ],
+              "world_vx_m_s": 0.2087567150592804,
+              "action_second_delta_rms": 0.25899508595466614,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.23900075256824493,
+              "time_s": 6.82,
+              "root_relative_xyz_m": [
+                1.6800718307495117,
+                0.07045793533325195,
+                -0.154815673828125
+              ],
+              "world_vx_m_s": 0.2708125710487366,
+              "action_second_delta_rms": 0.23900075256824493,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.22581472992897034,
+              "time_s": 10.22,
+              "root_relative_xyz_m": [
+                2.489762783050537,
+                0.06424093246459961,
+                -0.6310349702835083
+              ],
+              "world_vx_m_s": 0.2950085401535034,
+              "action_second_delta_rms": 0.22581472992897034,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "action_second_delta_rms",
+              "body_name": null,
+              "value": 0.21144074201583862,
+              "time_s": 8.92,
+              "root_relative_xyz_m": [
+                2.1618471145629883,
+                0.06203269958496094,
+                -0.44785332679748535
+              ],
+              "world_vx_m_s": 0.2965512275695801,
+              "action_second_delta_rms": 0.21144074201583862,
+              "aggregate_leg_history_peak_n": 53.953189849853516,
+              "aggregate_leg_current_n": null
+            }
+          ],
+          "scope": "Recorded one-policy-step differences sampled at trace timestamps; never differences across sparse action snapshots."
+        },
+        "derived_dense_action_second_delta_rms": null
+      },
+      "foot_contacts": {
+        "history": {
+          "status": "available",
+          "bodies": [
+            {
+              "body_name": "FL_foot",
+              "eligible_trace_samples": 126,
+              "contact_trace_samples": 101,
+              "sample_fraction": 0.8015873015873016,
+              "observed_flag_transitions": 22,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 101,
+                "mean": 0.13844237651325542,
+                "rms": 0.41624310708626966,
+                "min": 0.000882421329151839,
+                "max": 2.2974910736083984,
+                "p95": 1.049551248550415
+              }
+            },
+            {
+              "body_name": "FR_foot",
+              "eligible_trace_samples": 126,
+              "contact_trace_samples": 106,
+              "sample_fraction": 0.8412698412698413,
+              "observed_flag_transitions": 18,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 106,
+                "mean": 0.2212663171357115,
+                "rms": 0.4554331940788926,
+                "min": 0.0006210919236764312,
+                "max": 2.013836145401001,
+                "p95": 1.0390914678573608
+              }
+            },
+            {
+              "body_name": "RL_foot",
+              "eligible_trace_samples": 126,
+              "contact_trace_samples": 112,
+              "sample_fraction": 0.8888888888888888,
+              "observed_flag_transitions": 14,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 112,
+                "mean": 0.22267949833933795,
+                "rms": 0.41018901273655584,
+                "min": 0.0167086161673069,
+                "max": 1.4055805206298828,
+                "p95": 0.9979033678770055
+              }
+            },
+            {
+              "body_name": "RR_foot",
+              "eligible_trace_samples": 126,
+              "contact_trace_samples": 118,
+              "sample_fraction": 0.9365079365079365,
+              "observed_flag_transitions": 12,
+              "contact_foot_horizontal_speed_m_s": {
+                "samples": 118,
+                "mean": 0.18727072105758777,
+                "rms": 0.3897001672915162,
+                "min": 0.008687002584338188,
+                "max": 1.558651328086853,
+                "p95": 0.9386323153972621
+              }
+            }
+          ]
+        },
+        "current": {
+          "status": "unavailable",
+          "reason": "current_sample_contacts was not recorded"
+        },
+        "scope": "Trace-sample contact flags after evaluator warmup; neither exact contact duration nor exact touchdown timing."
+      },
+      "foot_retractions": {
+        "scope": "Course/world-x foot-center decrease between adjacent recorded root-flight samples; normal gait corrections also qualify.",
+        "contact_mechanism_inferred": false,
+        "feet": [
+          {
+            "body_name": "FL_foot",
+            "negative_interval_count": 11,
+            "eligible_adjacent_intervals": 65,
+            "maximum_sampled_retraction_m": 0.0818490982055664,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FL_foot",
+                "value": 0.0818490982055664,
+                "time_s": 4.42,
+                "root_relative_xyz_m": [
+                  1.1022076606750488,
+                  0.06508588790893555,
+                  0.166562020778656
+                ],
+                "world_vx_m_s": 0.2782568633556366,
+                "action_second_delta_rms": 0.1277628242969513,
+                "aggregate_leg_history_peak_n": 143.38900756835938,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 4.32,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.4147424697875977,
+                  0.1774888038635254,
+                  -0.17610520124435425
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.3328933715820312,
+                  0.15252447128295898,
+                  -0.269247829914093
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FL_foot",
+                "value": 0.03280329704284668,
+                "time_s": 6.82,
+                "root_relative_xyz_m": [
+                  1.6800718307495117,
+                  0.07045793533325195,
+                  -0.154815673828125
+                ],
+                "world_vx_m_s": 0.2708125710487366,
+                "action_second_delta_rms": 0.23900075256824493,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 6.72,
+                "interval_s": 0.10000000000000053,
+                "foot_start_relative_xyz_m": [
+                  1.9403846263885498,
+                  0.20458745956420898,
+                  -0.5086499452590942
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.9075813293457031,
+                  0.14875411987304688,
+                  -0.6170080900192261
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FL_foot",
+                "value": 0.006768226623535156,
+                "time_s": 8.02,
+                "root_relative_xyz_m": [
+                  1.9453375339508057,
+                  0.06291866302490234,
+                  -0.32130855321884155
+                ],
+                "world_vx_m_s": 0.3261764645576477,
+                "action_second_delta_rms": 0.0565803125500679,
+                "aggregate_leg_history_peak_n": 90.33489990234375,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 7.92,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.1290810108184814,
+                  0.20532798767089844,
+                  -0.7167589068412781
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.1223127841949463,
+                  0.20692920684814453,
+                  -0.7210016250610352
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FL_foot",
+                "value": 0.005133628845214844,
+                "time_s": 7.92,
+                "root_relative_xyz_m": [
+                  1.9154486656188965,
+                  0.07020425796508789,
+                  -0.30849146842956543
+                ],
+                "world_vx_m_s": 0.27067673206329346,
+                "action_second_delta_rms": 0.102141372859478,
+                "aggregate_leg_history_peak_n": 76.24749755859375,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 7.82,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.1342146396636963,
+                  0.2047271728515625,
+                  -0.7128434777259827
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.1290810108184814,
+                  0.20532798767089844,
+                  -0.7167589068412781
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FL_foot",
+                "value": 0.0003228187561035156,
+                "time_s": 9.32,
+                "root_relative_xyz_m": [
+                  2.2673768997192383,
+                  0.07682943344116211,
+                  -0.5143833160400391
+                ],
+                "world_vx_m_s": 0.20531119406223297,
+                "action_second_delta_rms": 0.025929566472768784,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 9.22,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.500239610671997,
+                  0.2077503204345703,
+                  -0.9368577003479004
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.4999167919158936,
+                  0.20806360244750977,
+                  -0.9367600679397583
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              }
+            ]
+          },
+          {
+            "body_name": "FR_foot",
+            "negative_interval_count": 9,
+            "eligible_adjacent_intervals": 65,
+            "maximum_sampled_retraction_m": 0.016869068145751953,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.016869068145751953,
+                "time_s": 8.120000000000001,
+                "root_relative_xyz_m": [
+                  1.9731721878051758,
+                  0.05532121658325195,
+                  -0.3374224305152893
+                ],
+                "world_vx_m_s": 0.21574470400810242,
+                "action_second_delta_rms": 0.15778599679470062,
+                "aggregate_leg_history_peak_n": 40.044151306152344,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 8.02,
+                "interval_s": 0.10000000000000142,
+                "foot_start_relative_xyz_m": [
+                  2.208594799041748,
+                  -0.04887056350708008,
+                  -0.7578140497207642
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.191725730895996,
+                  -0.050507545471191406,
+                  -0.7768430709838867
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0027985572814941406,
+                "time_s": 5.72,
+                "root_relative_xyz_m": [
+                  1.3958792686462402,
+                  0.06309986114501953,
+                  -4.9233436584472656e-05
+                ],
+                "world_vx_m_s": 0.2060033679008484,
+                "action_second_delta_rms": 0.0797257199883461,
+                "aggregate_leg_history_peak_n": 70.00360870361328,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 5.62,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.6386127471923828,
+                  -0.026865482330322266,
+                  -0.4343310594558716
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.6358141899108887,
+                  -0.03615760803222656,
+                  -0.4559689164161682
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0011858940124511719,
+                "time_s": 5.0200000000000005,
+                "root_relative_xyz_m": [
+                  1.243309497833252,
+                  0.06282186508178711,
+                  0.08217328786849976
+                ],
+                "world_vx_m_s": 0.17997890710830688,
+                "action_second_delta_rms": 0.04306045547127724,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 4.92,
+                "interval_s": 0.10000000000000053,
+                "foot_start_relative_xyz_m": [
+                  1.451463222503662,
+                  -0.027587413787841797,
+                  -0.29654037952423096
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.450277328491211,
+                  -0.02779674530029297,
+                  -0.29648590087890625
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0007238388061523438,
+                "time_s": 4.92,
+                "root_relative_xyz_m": [
+                  1.226487159729004,
+                  0.06338167190551758,
+                  0.0982556939125061
+                ],
+                "world_vx_m_s": 0.17567496001720428,
+                "action_second_delta_rms": 0.022508423775434494,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 4.82,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.4521870613098145,
+                  -0.027580738067626953,
+                  -0.29665881395339966
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.451463222503662,
+                  -0.027587413787841797,
+                  -0.29654037952423096
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "FR_foot",
+                "value": 0.0005667209625244141,
+                "time_s": 7.12,
+                "root_relative_xyz_m": [
+                  1.7407689094543457,
+                  0.07022857666015625,
+                  -0.20050853490829468
+                ],
+                "world_vx_m_s": 0.20848491787910461,
+                "action_second_delta_rms": 0.05416383966803551,
+                "aggregate_leg_history_peak_n": 20.739641189575195,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 7.0200000000000005,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.9547233581542969,
+                  -0.0009164810180664062,
+                  -0.6168299317359924
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.9541566371917725,
+                  -0.0011210441589355469,
+                  -0.6167842745780945
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              }
+            ]
+          },
+          {
+            "body_name": "RL_foot",
+            "negative_interval_count": 5,
+            "eligible_adjacent_intervals": 65,
+            "maximum_sampled_retraction_m": 0.036063194274902344,
+            "largest_events": [
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.036063194274902344,
+                "time_s": 10.02,
+                "root_relative_xyz_m": [
+                  2.4304752349853516,
+                  0.06502151489257812,
+                  -0.6077728271484375
+                ],
+                "world_vx_m_s": 0.3780606687068939,
+                "action_second_delta_rms": 0.181513249874115,
+                "aggregate_leg_history_peak_n": 49.03254318237305,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 9.92,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  2.1615803241729736,
+                  0.25646257400512695,
+                  -0.7186636328697205
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.1255171298980713,
+                  0.25638866424560547,
+                  -0.75560063123703
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.03296375274658203,
+                "time_s": 6.72,
+                "root_relative_xyz_m": [
+                  1.647864818572998,
+                  0.061936378479003906,
+                  -0.137107253074646
+                ],
+                "world_vx_m_s": 0.3661404848098755,
+                "action_second_delta_rms": 0.11854471266269684,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 6.62,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.3384323120117188,
+                  0.24637651443481445,
+                  -0.2739102244377136
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.3054685592651367,
+                  0.2515883445739746,
+                  -0.2976177930831909
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.016204357147216797,
+                "time_s": 6.62,
+                "root_relative_xyz_m": [
+                  1.6127967834472656,
+                  0.06305217742919922,
+                  -0.12075662612915039
+                ],
+                "world_vx_m_s": 0.29433250427246094,
+                "action_second_delta_rms": 0.1260381042957306,
+                "aggregate_leg_history_peak_n": 60.660152435302734,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 6.5200000000000005,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.3546366691589355,
+                  0.25738954544067383,
+                  -0.2035975456237793
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.3384323120117188,
+                  0.24637651443481445,
+                  -0.2739102244377136
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": false
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.011619329452514648,
+                "time_s": 10.120000000000001,
+                "root_relative_xyz_m": [
+                  2.4642817974090576,
+                  0.06422805786132812,
+                  -0.6190781593322754
+                ],
+                "world_vx_m_s": 0.2648782730102539,
+                "action_second_delta_rms": 0.12176913022994995,
+                "aggregate_leg_history_peak_n": 0.0,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 10.02,
+                "interval_s": 0.10000000000000142,
+                "foot_start_relative_xyz_m": [
+                  2.1255171298980713,
+                  0.25638866424560547,
+                  -0.75560063123703
+                ],
+                "foot_end_relative_xyz_m": [
+                  2.1138978004455566,
+                  0.25891542434692383,
+                  -0.7776718735694885
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              },
+              {
+                "field": "sampled_foot_course_x_retraction_m",
+                "body_name": "RL_foot",
+                "value": 0.005799531936645508,
+                "time_s": 9.02,
+                "root_relative_xyz_m": [
+                  2.188007116317749,
+                  0.06071901321411133,
+                  -0.4694163203239441
+                ],
+                "world_vx_m_s": 0.2488372027873993,
+                "action_second_delta_rms": 0.08966617286205292,
+                "aggregate_leg_history_peak_n": 74.61680603027344,
+                "aggregate_leg_current_n": null,
+                "start_time_s": 8.92,
+                "interval_s": 0.09999999999999964,
+                "foot_start_relative_xyz_m": [
+                  1.9059455394744873,
+                  0.23648309707641602,
+                  -0.5871375799179077
+                ],
+                "foot_end_relative_xyz_m": [
+                  1.9001460075378418,
+                  0.2256760597229004,
+                  -0.6170505881309509
+                ],
+                "current_contact_at_end": null,
+                "history_contact_at_end": true
+              }
+            ]
+          },
+          {
+            "body_name": "RR_foot",
+            "negative_interval_count": 0,
+            "eligible_adjacent_intervals": 65,
+            "maximum_sampled_retraction_m": 0.0,
+            "largest_events": []
+          }
+        ]
+      },
+      "selected_leg_forces": {
+        "expected_go2_body_count": 8,
+        "recorded_body_names": null,
+        "body_order_source": null,
+        "contact_threshold_n": 1.0,
+        "measurement": "Per-body world-frame net normal-force vector norm; tangential friction excluded",
+        "bodies": [
+          {
+            "body_name": "FL_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FL_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FR_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "FR_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RL_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RL_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RR_thigh",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          },
+          {
+            "body_name": "RR_calf",
+            "recorded_column": null,
+            "current": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            },
+            "history_peak": {
+              "status": "unavailable",
+              "peak_post_warmup": null,
+              "reason": "Named per-body force was not recorded; aggregate shank force cannot identify this body"
+            }
+          }
+        ]
+      },
+      "aggregate_contacts": {
+        "base_force_n": {
+          "status": "available",
+          "stats_post_warmup_n": {
+            "samples": 126,
+            "mean": 0.0,
+            "rms": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "p95": 0.0
+          },
+          "peak_post_warmup": {
+            "field": "base_force_n",
+            "body_name": null,
+            "value": 0.0,
+            "time_s": 1.02,
+            "root_relative_xyz_m": [
+              0.20397615432739258,
+              0.04595232009887695,
+              0.3041737675666809
+            ],
+            "world_vx_m_s": 0.2327793389558792,
+            "action_second_delta_rms": 0.03396784886717796,
+            "aggregate_leg_history_peak_n": 0.0,
+            "aggregate_leg_current_n": null
+          },
+          "largest_root_flight_events": [
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.12,
+              "root_relative_xyz_m": [
+                1.0189313888549805,
+                0.0648798942565918,
+                0.18944114446640015
+              ],
+              "world_vx_m_s": 0.21431826055049896,
+              "action_second_delta_rms": 0.06145796924829483,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.22,
+              "root_relative_xyz_m": [
+                1.0421013832092285,
+                0.06466007232666016,
+                0.18178540468215942
+              ],
+              "world_vx_m_s": 0.2592119872570038,
+              "action_second_delta_rms": 0.07414716482162476,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.32,
+              "root_relative_xyz_m": [
+                1.0711450576782227,
+                0.06351327896118164,
+                0.17722970247268677
+              ],
+              "world_vx_m_s": 0.31819915771484375,
+              "action_second_delta_rms": 0.03110046125948429,
+              "aggregate_leg_history_peak_n": 0.0,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.42,
+              "root_relative_xyz_m": [
+                1.1022076606750488,
+                0.06508588790893555,
+                0.166562020778656
+              ],
+              "world_vx_m_s": 0.2782568633556366,
+              "action_second_delta_rms": 0.1277628242969513,
+              "aggregate_leg_history_peak_n": 143.38900756835938,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "base_force_n",
+              "body_name": null,
+              "value": 0.0,
+              "time_s": 4.5200000000000005,
+              "root_relative_xyz_m": [
+                1.1291871070861816,
+                0.06777334213256836,
+                0.15186291933059692
+              ],
+              "world_vx_m_s": 0.265197217464447,
+              "action_second_delta_rms": 0.016157116740942,
+              "aggregate_leg_history_peak_n": 52.813720703125,
+              "aggregate_leg_current_n": null
+            }
+          ]
+        },
+        "shank_force_n": {
+          "status": "available",
+          "stats_post_warmup_n": {
+            "samples": 126,
+            "mean": 12.7509249581231,
+            "rms": 28.936426797425668,
+            "min": 0.0,
+            "max": 143.38900756835938,
+            "p95": 68.34478569030762
+          },
+          "peak_post_warmup": {
+            "field": "shank_force_n",
+            "body_name": null,
+            "value": 143.38900756835938,
+            "time_s": 4.42,
+            "root_relative_xyz_m": [
+              1.1022076606750488,
+              0.06508588790893555,
+              0.166562020778656
+            ],
+            "world_vx_m_s": 0.2782568633556366,
+            "action_second_delta_rms": 0.1277628242969513,
+            "aggregate_leg_history_peak_n": 143.38900756835938,
+            "aggregate_leg_current_n": null
+          },
+          "largest_root_flight_events": [
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 143.38900756835938,
+              "time_s": 4.42,
+              "root_relative_xyz_m": [
+                1.1022076606750488,
+                0.06508588790893555,
+                0.166562020778656
+              ],
+              "world_vx_m_s": 0.2782568633556366,
+              "action_second_delta_rms": 0.1277628242969513,
+              "aggregate_leg_history_peak_n": 143.38900756835938,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 95.54916381835938,
+              "time_s": 9.120000000000001,
+              "root_relative_xyz_m": [
+                2.2128870487213135,
+                0.06315183639526367,
+                -0.48979589343070984
+              ],
+              "world_vx_m_s": 0.25880807638168335,
+              "action_second_delta_rms": 0.15106208622455597,
+              "aggregate_leg_history_peak_n": 95.54916381835938,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 90.33489990234375,
+              "time_s": 8.02,
+              "root_relative_xyz_m": [
+                1.9453375339508057,
+                0.06291866302490234,
+                -0.32130855321884155
+              ],
+              "world_vx_m_s": 0.3261764645576477,
+              "action_second_delta_rms": 0.0565803125500679,
+              "aggregate_leg_history_peak_n": 90.33489990234375,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 76.24749755859375,
+              "time_s": 7.92,
+              "root_relative_xyz_m": [
+                1.9154486656188965,
+                0.07020425796508789,
+                -0.30849146842956543
+              ],
+              "world_vx_m_s": 0.27067673206329346,
+              "action_second_delta_rms": 0.102141372859478,
+              "aggregate_leg_history_peak_n": 76.24749755859375,
+              "aggregate_leg_current_n": null
+            },
+            {
+              "field": "shank_force_n",
+              "body_name": null,
+              "value": 74.61680603027344,
+              "time_s": 9.02,
+              "root_relative_xyz_m": [
+                2.188007116317749,
+                0.06071901321411133,
+                -0.4694163203239441
+              ],
+              "world_vx_m_s": 0.2488372027873993,
+              "action_second_delta_rms": 0.08966617286205292,
+              "aggregate_leg_history_peak_n": 74.61680603027344,
+              "aggregate_leg_current_n": null
+            }
+          ]
+        },
+        "current_sample_base_force_n": {
+          "status": "unavailable",
+          "reason": "Not recorded"
+        },
+        "current_sample_shank_force_n": {
+          "status": "unavailable",
+          "reason": "Not recorded"
+        }
+      }
+    }
+  ],
+  "matched_comparisons": [],
+  "limits": [
+    "Source case statistics cover all measured policy steps; trace statistics cover only recorded active samples.",
+    "Current/history contact and foot-link horizontal speed are proxies, not exact scraping/slip duration.",
+    "Sparse action snapshots are never differentiated; recorded policy-step action differences are retained.",
+    "Named leg force is never reconstructed from aggregate shank force.",
+    "Low action variation in a stalled policy does not establish smooth traversal.",
+    "This analysis does not replace continuous video review, unseen-case validation or material/dynamics tests."
+  ]
+}

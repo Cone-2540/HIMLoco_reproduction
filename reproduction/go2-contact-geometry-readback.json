@@ -1,0 +1,2763 @@
+{
+  "schema_version": 1,
+  "reader": "CPU pxr UsdPhysics.LoadUsdPhysicsFromRange + Usd.TraverseInstanceProxies + existing authored USD stage only",
+  "usd_version": [
+    0,
+    25,
+    5
+  ],
+  "source_container_path": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+  "source_host_path": "/home/cone/isaaclab/data/assets/isaaclab6.1/Go2/go2.usd",
+  "units_m": 1.0,
+  "up_axis": "Z",
+  "source_sha256": {
+    "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd": "ba171c972b987d8c8fb7157ccad2ba9c0c1fed105755d2d8af46bef96cc11c6d",
+    "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/Props/instanceable_meshes.usd": "82087cf9d4f6deeecb3437560b6061847f5f0228f7e524e253ed5e88cf218c08"
+  },
+  "stage_root_serialization_unchanged": true,
+  "rigid_body_count": 19,
+  "collision_shape_count": 27,
+  "collision_shapes_per_body": {
+    "FL_calf": 3,
+    "FL_foot": 1,
+    "FL_hip": 1,
+    "FL_thigh": 1,
+    "FR_calf": 3,
+    "FR_foot": 1,
+    "FR_hip": 1,
+    "FR_thigh": 1,
+    "Head_lower": 1,
+    "Head_upper": 1,
+    "RL_calf": 3,
+    "RL_foot": 1,
+    "RL_hip": 1,
+    "RL_thigh": 1,
+    "RR_calf": 3,
+    "RR_foot": 1,
+    "RR_hip": 1,
+    "RR_thigh": 1,
+    "base": 1
+  },
+  "rigid_bodies": [
+    {
+      "prim_path": "/go2_description/base",
+      "collisions": [
+        "/go2_description/base/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 6.921000003814697
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI",
+        "PhysicsArticulationRootAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_hip",
+      "collisions": [
+        "/go2_description/FL_hip/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.6779999732971191
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_thigh",
+      "collisions": [
+        "/go2_description/FL_thigh/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 1.1519999504089355
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_calf",
+      "collisions": [
+        "/go2_description/FL_calf/collisions/mesh_0",
+        "/go2_description/FL_calf/collisions/mesh_1",
+        "/go2_description/FL_calf/collisions/mesh_2"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.15399999916553497
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_foot",
+      "collisions": [
+        "/go2_description/FL_foot/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.03999999910593033
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_hip",
+      "collisions": [
+        "/go2_description/FR_hip/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.6779999732971191
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_thigh",
+      "collisions": [
+        "/go2_description/FR_thigh/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 1.1519999504089355
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_calf",
+      "collisions": [
+        "/go2_description/FR_calf/collisions/mesh_0",
+        "/go2_description/FR_calf/collisions/mesh_1",
+        "/go2_description/FR_calf/collisions/mesh_2"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.15399999916553497
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_foot",
+      "collisions": [
+        "/go2_description/FR_foot/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.03999999910593033
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/Head_upper",
+      "collisions": [
+        "/go2_description/Head_upper/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.0010000000474974513
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/Head_lower",
+      "collisions": [
+        "/go2_description/Head_lower/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.0010000000474974513
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_hip",
+      "collisions": [
+        "/go2_description/RL_hip/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.6779999732971191
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_thigh",
+      "collisions": [
+        "/go2_description/RL_thigh/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 1.1519999504089355
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_calf",
+      "collisions": [
+        "/go2_description/RL_calf/collisions/mesh_0",
+        "/go2_description/RL_calf/collisions/mesh_1",
+        "/go2_description/RL_calf/collisions/mesh_2"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.15399999916553497
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_foot",
+      "collisions": [
+        "/go2_description/RL_foot/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.03999999910593033
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_hip",
+      "collisions": [
+        "/go2_description/RR_hip/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.6779999732971191
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_thigh",
+      "collisions": [
+        "/go2_description/RR_thigh/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 1.1519999504089355
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_calf",
+      "collisions": [
+        "/go2_description/RR_calf/collisions/mesh_0",
+        "/go2_description/RR_calf/collisions/mesh_1",
+        "/go2_description/RR_calf/collisions/mesh_2"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.15399999916553497
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_foot",
+      "collisions": [
+        "/go2_description/RR_foot/collisions/mesh_0"
+      ],
+      "rigid_body_enabled": true,
+      "kinematic": false,
+      "mass_kg": {
+        "has_authored_value": true,
+        "value": 0.03999999910593033
+      },
+      "applied_schemas": [
+        "PhysicsRigidBodyAPI",
+        "PhysicsMassAPI"
+      ]
+    }
+  ],
+  "collision_shapes": [
+    {
+      "prim_path": "/go2_description/FL_foot/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FL_foot/collisions",
+      "shape_type": "SphereShape",
+      "rigid_body_owner": "/go2_description/FL_foot",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        -0.0020000000949949026,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.0020000000949949026,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.02199999988079071
+    },
+    {
+      "prim_path": "/go2_description/FR_foot/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FR_foot/collisions",
+      "shape_type": "SphereShape",
+      "rigid_body_owner": "/go2_description/FR_foot",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        -0.0020000000949949026,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.0020000000949949026,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.02199999988079071
+    },
+    {
+      "prim_path": "/go2_description/Head_lower/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/Head_lower/collisions",
+      "shape_type": "SphereShape",
+      "rigid_body_owner": "/go2_description/Head_lower",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.04699999839067459
+    },
+    {
+      "prim_path": "/go2_description/RL_foot/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RL_foot/collisions",
+      "shape_type": "SphereShape",
+      "rigid_body_owner": "/go2_description/RL_foot",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        -0.0020000000949949026,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.0020000000949949026,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.02199999988079071
+    },
+    {
+      "prim_path": "/go2_description/RR_foot/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RR_foot/collisions",
+      "shape_type": "SphereShape",
+      "rigid_body_owner": "/go2_description/RR_foot",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        -0.0020000000949949026,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.0020000000949949026,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.02199999988079071
+    },
+    {
+      "prim_path": "/go2_description/base/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/base/collisions",
+      "shape_type": "CubeShape",
+      "rigid_body_owner": "/go2_description/base",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        0.37619999051094055,
+        0.09350000321865082,
+        0.11400000005960464
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.37619999051094055,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.09350000321865082,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.11400000005960464,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "halfExtents": [
+        0.18809999525547028,
+        0.04675000160932541,
+        0.05700000002980232
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_thigh/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FL_thigh/collisions",
+      "shape_type": "CubeShape",
+      "rigid_body_owner": "/go2_description/FL_thigh",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        -0.10649999976158142
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.0,
+        0.7071067690849304,
+        0.0
+      ],
+      "local_scale": [
+        0.21299999952316284,
+        0.02449999935925007,
+        0.03400000184774399
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          -7.29067938254219e-09,
+          0.0,
+          -0.2129999995231627,
+          0.0
+        ],
+        [
+          0.0,
+          0.02449999935925007,
+          0.0,
+          0.0
+        ],
+        [
+          0.03400000184774397,
+          0.0,
+          -1.163770483721467e-09,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.10649999976158142,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "halfExtents": [
+        0.10649999976158142,
+        0.012249999679625034,
+        0.017000000923871994
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_thigh/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FR_thigh/collisions",
+      "shape_type": "CubeShape",
+      "rigid_body_owner": "/go2_description/FR_thigh",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        -0.10649999976158142
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.0,
+        0.7071067690849304,
+        0.0
+      ],
+      "local_scale": [
+        0.21299999952316284,
+        0.02449999935925007,
+        0.03400000184774399
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          -7.29067938254219e-09,
+          0.0,
+          -0.2129999995231627,
+          0.0
+        ],
+        [
+          0.0,
+          0.02449999935925007,
+          0.0,
+          0.0
+        ],
+        [
+          0.03400000184774397,
+          0.0,
+          -1.163770483721467e-09,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.10649999976158142,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "halfExtents": [
+        0.10649999976158142,
+        0.012249999679625034,
+        0.017000000923871994
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_thigh/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RL_thigh/collisions",
+      "shape_type": "CubeShape",
+      "rigid_body_owner": "/go2_description/RL_thigh",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        -0.10649999976158142
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.0,
+        0.7071067690849304,
+        0.0
+      ],
+      "local_scale": [
+        0.21299999952316284,
+        0.02449999935925007,
+        0.03400000184774399
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          -7.29067938254219e-09,
+          0.0,
+          -0.2129999995231627,
+          0.0
+        ],
+        [
+          0.0,
+          0.02449999935925007,
+          0.0,
+          0.0
+        ],
+        [
+          0.03400000184774397,
+          0.0,
+          -1.163770483721467e-09,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.10649999976158142,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "halfExtents": [
+        0.10649999976158142,
+        0.012249999679625034,
+        0.017000000923871994
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_thigh/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RR_thigh/collisions",
+      "shape_type": "CubeShape",
+      "rigid_body_owner": "/go2_description/RR_thigh",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        -0.10649999976158142
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.0,
+        0.7071067690849304,
+        0.0
+      ],
+      "local_scale": [
+        0.21299999952316284,
+        0.02449999935925007,
+        0.03400000184774399
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          -7.29067938254219e-09,
+          0.0,
+          -0.2129999995231627,
+          0.0
+        ],
+        [
+          0.0,
+          0.02449999935925007,
+          0.0,
+          0.0
+        ],
+        [
+          0.03400000184774397,
+          0.0,
+          -1.163770483721467e-09,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.10649999976158142,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "halfExtents": [
+        0.10649999976158142,
+        0.012249999679625034,
+        0.017000000923871994
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_hip/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FL_hip/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FL_hip",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.07999999821186066,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.7071067690849304,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.422854177870249e-08,
+          0.9999999999999993,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999993,
+          -3.422854177870249e-08,
+          0.0
+        ],
+        [
+          0.0,
+          0.07999999821186066,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.04600000008940697,
+      "halfHeight": 0.019999999552965164,
+      "axis": 2,
+      "axis_owner": [
+        0.0,
+        -0.9999999999999994,
+        -3.42285417787025e-08
+      ],
+      "aabb_owner_min_m": [
+        -0.04600000008940697,
+        0.05999999712617507,
+        -0.04600000077397776
+      ],
+      "aabb_owner_max_m": [
+        0.04600000008940697,
+        0.09999999929754624,
+        0.04600000077397776
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_calf/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.00800000037997961,
+        0.0,
+        -0.05999999865889549
+      ],
+      "local_rotation_wxyz": [
+        0.9944925904273987,
+        0.0,
+        -0.10480690747499466,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9780310248299955,
+          0.0,
+          0.2084593832620368,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.2084593832620368,
+          0.0,
+          0.9780310248299955,
+          0.0
+        ],
+        [
+          0.00800000037997961,
+          0.0,
+          -0.05999999865889549,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.012000000104308128,
+      "halfHeight": 0.05999999865889549,
+      "axis": 2,
+      "axis_owner": [
+        -0.2084593832620368,
+        0.0,
+        0.9780310248299955
+      ],
+      "aabb_owner_min_m": [
+        -0.01624393473615331,
+        -0.012000000104308128,
+        -0.12118337145794186
+      ],
+      "aabb_owner_max_m": [
+        0.03224393549611253,
+        0.012000000104308128,
+        0.001183374140150871
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_calf/collisions/mesh_1",
+      "parent_prim_path": "/go2_description/FL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.019999999552965164,
+        0.0,
+        -0.14800000190734863
+      ],
+      "local_rotation_wxyz": [
+        0.9996874928474426,
+        0.0,
+        0.024998333305120468,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9987501667112113,
+          0.0,
+          -0.04998104134897173,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.04998104134897173,
+          0.0,
+          0.9987501667112113,
+          0.0
+        ],
+        [
+          0.019999999552965164,
+          0.0,
+          -0.14800000190734863,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.010999999940395355,
+      "halfHeight": 0.032499998807907104,
+      "axis": 2,
+      "axis_owner": [
+        0.04998104134897173,
+        0.0,
+        0.9987501667112113
+      ],
+      "aabb_owner_min_m": [
+        0.007389363994412451,
+        -0.010999999940395355,
+        -0.1810091725867196
+      ],
+      "aabb_owner_max_m": [
+        0.03261063511151788,
+        0.010999999940395355,
+        -0.11499083122797765
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FL_calf/collisions/mesh_2",
+      "parent_prim_path": "/go2_description/FL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.008013331331312656,
+        0.0,
+        -0.18745021522045135
+      ],
+      "local_rotation_wxyz": [
+        0.9650924801826477,
+        0.0,
+        0.2619093358516693,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.8628069906101885,
+          0.0,
+          -0.5055334775800611,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5055334775800611,
+          0.0,
+          0.8628069906101885,
+          0.0
+        ],
+        [
+          0.008013331331312656,
+          0.0,
+          -0.18745021522045135,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.01549999974668026,
+      "halfHeight": 0.014999999664723873,
+      "axis": 2,
+      "axis_owner": [
+        0.5055334775800611,
+        0.0,
+        0.8628069906101885
+      ],
+      "aabb_owner_min_m": [
+        -0.012943178798786831,
+        -0.01549999974668026,
+        -0.20822808856475494
+      ],
+      "aabb_owner_max_m": [
+        0.028969841461412144,
+        0.01549999974668026,
+        -0.16667234187614777
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_hip/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FR_hip/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FR_hip",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        -0.07999999821186066,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.7071067690849304,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.422854177870249e-08,
+          0.9999999999999993,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999993,
+          -3.422854177870249e-08,
+          0.0
+        ],
+        [
+          0.0,
+          -0.07999999821186066,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.04600000008940697,
+      "halfHeight": 0.019999999552965164,
+      "axis": 2,
+      "axis_owner": [
+        0.0,
+        -0.9999999999999994,
+        -3.42285417787025e-08
+      ],
+      "aabb_owner_min_m": [
+        -0.04600000008940697,
+        -0.09999999929754624,
+        -0.04600000077397776
+      ],
+      "aabb_owner_max_m": [
+        0.04600000008940697,
+        -0.05999999712617507,
+        0.04600000077397776
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_calf/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/FR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.009999999776482582,
+        0.0,
+        -0.05999999865889549
+      ],
+      "local_rotation_wxyz": [
+        0.9950041770935059,
+        0.0,
+        -0.09983330219984055,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9800666248670495,
+          0.0,
+          0.19866909880932662,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.19866909880932662,
+          0.0,
+          0.9800666248670495,
+          0.0
+        ],
+        [
+          0.009999999776482582,
+          0.0,
+          -0.05999999865889549,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.013000000268220901,
+      "halfHeight": 0.05999999865889549,
+      "axis": 2,
+      "axis_owner": [
+        -0.19866909880932662,
+        0.0,
+        0.9800666248670495
+      ],
+      "aabb_owner_min_m": [
+        -0.01466101227178699,
+        -0.013000000268220901,
+        -0.12138669317435515
+      ],
+      "aabb_owner_max_m": [
+        0.034661011824752154,
+        0.013000000268220901,
+        0.0013866958565641602
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_calf/collisions/mesh_1",
+      "parent_prim_path": "/go2_description/FR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.019999999552965164,
+        0.0,
+        -0.14800000190734863
+      ],
+      "local_rotation_wxyz": [
+        0.9996874928474426,
+        0.0,
+        0.024998333305120468,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9987501667112113,
+          0.0,
+          -0.04998104134897173,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.04998104134897173,
+          0.0,
+          0.9987501667112113,
+          0.0
+        ],
+        [
+          0.019999999552965164,
+          0.0,
+          -0.14800000190734863,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.010999999940395355,
+      "halfHeight": 0.032499998807907104,
+      "axis": 2,
+      "axis_owner": [
+        0.04998104134897173,
+        0.0,
+        0.9987501667112113
+      ],
+      "aabb_owner_min_m": [
+        0.007389363994412451,
+        -0.010999999940395355,
+        -0.1810091725867196
+      ],
+      "aabb_owner_max_m": [
+        0.03261063511151788,
+        0.010999999940395355,
+        -0.11499083122797765
+      ]
+    },
+    {
+      "prim_path": "/go2_description/FR_calf/collisions/mesh_2",
+      "parent_prim_path": "/go2_description/FR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/FR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.008013331331312656,
+        0.0,
+        -0.18745021522045135
+      ],
+      "local_rotation_wxyz": [
+        0.9650924801826477,
+        0.0,
+        0.2619093358516693,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.8628069906101885,
+          0.0,
+          -0.5055334775800611,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5055334775800611,
+          0.0,
+          0.8628069906101885,
+          0.0
+        ],
+        [
+          0.008013331331312656,
+          0.0,
+          -0.18745021522045135,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.01549999974668026,
+      "halfHeight": 0.014999999664723873,
+      "axis": 2,
+      "axis_owner": [
+        0.5055334775800611,
+        0.0,
+        0.8628069906101885
+      ],
+      "aabb_owner_min_m": [
+        -0.012943178798786831,
+        -0.01549999974668026,
+        -0.20822808856475494
+      ],
+      "aabb_owner_max_m": [
+        0.028969841461412144,
+        0.01549999974668026,
+        -0.16667234187614777
+      ]
+    },
+    {
+      "prim_path": "/go2_description/Head_upper/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/Head_upper/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/Head_upper",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.05000000074505806,
+      "halfHeight": 0.04500000178813934,
+      "axis": 2,
+      "axis_owner": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "aabb_owner_min_m": [
+        -0.05000000074505806,
+        -0.05000000074505806,
+        -0.04500000178813934
+      ],
+      "aabb_owner_max_m": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.04500000178813934
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_hip/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RL_hip/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RL_hip",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        0.07999999821186066,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.7071067690849304,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.422854177870249e-08,
+          0.9999999999999993,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999993,
+          -3.422854177870249e-08,
+          0.0
+        ],
+        [
+          0.0,
+          0.07999999821186066,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.04600000008940697,
+      "halfHeight": 0.019999999552965164,
+      "axis": 2,
+      "axis_owner": [
+        0.0,
+        -0.9999999999999994,
+        -3.42285417787025e-08
+      ],
+      "aabb_owner_min_m": [
+        -0.04600000008940697,
+        0.05999999712617507,
+        -0.04600000077397776
+      ],
+      "aabb_owner_max_m": [
+        0.04600000008940697,
+        0.09999999929754624,
+        0.04600000077397776
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_calf/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.009999999776482582,
+        0.0,
+        -0.05999999865889549
+      ],
+      "local_rotation_wxyz": [
+        0.9950041770935059,
+        0.0,
+        -0.09983330219984055,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9800666248670495,
+          0.0,
+          0.19866909880932662,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.19866909880932662,
+          0.0,
+          0.9800666248670495,
+          0.0
+        ],
+        [
+          0.009999999776482582,
+          0.0,
+          -0.05999999865889549,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.013000000268220901,
+      "halfHeight": 0.05999999865889549,
+      "axis": 2,
+      "axis_owner": [
+        -0.19866909880932662,
+        0.0,
+        0.9800666248670495
+      ],
+      "aabb_owner_min_m": [
+        -0.01466101227178699,
+        -0.013000000268220901,
+        -0.12138669317435515
+      ],
+      "aabb_owner_max_m": [
+        0.034661011824752154,
+        0.013000000268220901,
+        0.0013866958565641602
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_calf/collisions/mesh_1",
+      "parent_prim_path": "/go2_description/RL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.019999999552965164,
+        0.0,
+        -0.14800000190734863
+      ],
+      "local_rotation_wxyz": [
+        0.9996874928474426,
+        0.0,
+        0.024998333305120468,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9987501667112113,
+          0.0,
+          -0.04998104134897173,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.04998104134897173,
+          0.0,
+          0.9987501667112113,
+          0.0
+        ],
+        [
+          0.019999999552965164,
+          0.0,
+          -0.14800000190734863,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.010999999940395355,
+      "halfHeight": 0.032499998807907104,
+      "axis": 2,
+      "axis_owner": [
+        0.04998104134897173,
+        0.0,
+        0.9987501667112113
+      ],
+      "aabb_owner_min_m": [
+        0.007389363994412451,
+        -0.010999999940395355,
+        -0.1810091725867196
+      ],
+      "aabb_owner_max_m": [
+        0.03261063511151788,
+        0.010999999940395355,
+        -0.11499083122797765
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RL_calf/collisions/mesh_2",
+      "parent_prim_path": "/go2_description/RL_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RL_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.008013331331312656,
+        0.0,
+        -0.18745021522045135
+      ],
+      "local_rotation_wxyz": [
+        0.9650924801826477,
+        0.0,
+        0.2619093358516693,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.8628069906101885,
+          0.0,
+          -0.5055334775800611,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5055334775800611,
+          0.0,
+          0.8628069906101885,
+          0.0
+        ],
+        [
+          0.008013331331312656,
+          0.0,
+          -0.18745021522045135,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.01549999974668026,
+      "halfHeight": 0.014999999664723873,
+      "axis": 2,
+      "axis_owner": [
+        0.5055334775800611,
+        0.0,
+        0.8628069906101885
+      ],
+      "aabb_owner_min_m": [
+        -0.012943178798786831,
+        -0.01549999974668026,
+        -0.20822808856475494
+      ],
+      "aabb_owner_max_m": [
+        0.028969841461412144,
+        0.01549999974668026,
+        -0.16667234187614777
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_hip/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RR_hip/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RR_hip",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.0,
+        -0.07999999821186066,
+        0.0
+      ],
+      "local_rotation_wxyz": [
+        0.7071067690849304,
+        0.7071067690849304,
+        0.0,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.422854177870249e-08,
+          0.9999999999999993,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999993,
+          -3.422854177870249e-08,
+          0.0
+        ],
+        [
+          0.0,
+          -0.07999999821186066,
+          0.0,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.04600000008940697,
+      "halfHeight": 0.019999999552965164,
+      "axis": 2,
+      "axis_owner": [
+        0.0,
+        -0.9999999999999994,
+        -3.42285417787025e-08
+      ],
+      "aabb_owner_min_m": [
+        -0.04600000008940697,
+        -0.09999999929754624,
+        -0.04600000077397776
+      ],
+      "aabb_owner_max_m": [
+        0.04600000008940697,
+        -0.05999999712617507,
+        0.04600000077397776
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_calf/collisions/mesh_0",
+      "parent_prim_path": "/go2_description/RR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.009999999776482582,
+        0.0,
+        -0.05999999865889549
+      ],
+      "local_rotation_wxyz": [
+        0.9950041770935059,
+        0.0,
+        -0.09983330219984055,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9800666248670495,
+          0.0,
+          0.19866909880932662,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.19866909880932662,
+          0.0,
+          0.9800666248670495,
+          0.0
+        ],
+        [
+          0.009999999776482582,
+          0.0,
+          -0.05999999865889549,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.013000000268220901,
+      "halfHeight": 0.05999999865889549,
+      "axis": 2,
+      "axis_owner": [
+        -0.19866909880932662,
+        0.0,
+        0.9800666248670495
+      ],
+      "aabb_owner_min_m": [
+        -0.01466101227178699,
+        -0.013000000268220901,
+        -0.12138669317435515
+      ],
+      "aabb_owner_max_m": [
+        0.034661011824752154,
+        0.013000000268220901,
+        0.0013866958565641602
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_calf/collisions/mesh_1",
+      "parent_prim_path": "/go2_description/RR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.019999999552965164,
+        0.0,
+        -0.14800000190734863
+      ],
+      "local_rotation_wxyz": [
+        0.9996874928474426,
+        0.0,
+        0.024998333305120468,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.9987501667112113,
+          0.0,
+          -0.04998104134897173,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.04998104134897173,
+          0.0,
+          0.9987501667112113,
+          0.0
+        ],
+        [
+          0.019999999552965164,
+          0.0,
+          -0.14800000190734863,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.010999999940395355,
+      "halfHeight": 0.032499998807907104,
+      "axis": 2,
+      "axis_owner": [
+        0.04998104134897173,
+        0.0,
+        0.9987501667112113
+      ],
+      "aabb_owner_min_m": [
+        0.007389363994412451,
+        -0.010999999940395355,
+        -0.1810091725867196
+      ],
+      "aabb_owner_max_m": [
+        0.03261063511151788,
+        0.010999999940395355,
+        -0.11499083122797765
+      ]
+    },
+    {
+      "prim_path": "/go2_description/RR_calf/collisions/mesh_2",
+      "parent_prim_path": "/go2_description/RR_calf/collisions",
+      "shape_type": "CylinderShape",
+      "rigid_body_owner": "/go2_description/RR_calf",
+      "owner_parent_prim_path": "/go2_description",
+      "is_instance_proxy": true,
+      "is_valid": true,
+      "collision_enabled": true,
+      "local_position_m": [
+        0.008013331331312656,
+        0.0,
+        -0.18745021522045135
+      ],
+      "local_rotation_wxyz": [
+        0.9650924801826477,
+        0.0,
+        0.2619093358516693,
+        0.0
+      ],
+      "local_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parsed_materials": [],
+      "owner_relative_transform": [
+        [
+          0.8628069906101885,
+          0.0,
+          -0.5055334775800611,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5055334775800611,
+          0.0,
+          0.8628069906101885,
+          0.0
+        ],
+        [
+          0.008013331331312656,
+          0.0,
+          -0.18745021522045135,
+          1.0
+        ]
+      ],
+      "contact_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "rest_offset": {
+        "has_authored_value": false,
+        "value": null
+      },
+      "physics_binding": {
+        "material_path": null,
+        "relationship_path": null
+      },
+      "radius": 0.01549999974668026,
+      "halfHeight": 0.014999999664723873,
+      "axis": 2,
+      "axis_owner": [
+        0.5055334775800611,
+        0.0,
+        0.8628069906101885
+      ],
+      "aabb_owner_min_m": [
+        -0.012943178798786831,
+        -0.01549999974668026,
+        -0.20822808856475494
+      ],
+      "aabb_owner_max_m": [
+        0.028969841461412144,
+        0.01549999974668026,
+        -0.16667234187614777
+      ]
+    }
+  ],
+  "fixed_joints": [
+    {
+      "primPath": "/go2_description/base/Head_upper_joint",
+      "body0": "/go2_description/base",
+      "body1": "/go2_description/Head_upper",
+      "localPose0Position": [
+        0.2849999964237213,
+        0.0,
+        0.009999999776482582
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    },
+    {
+      "primPath": "/go2_description/FL_calf/FL_foot_joint",
+      "body0": "/go2_description/FL_calf",
+      "body1": "/go2_description/FL_foot",
+      "localPose0Position": [
+        0.0,
+        0.0,
+        -0.21299999952316284
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    },
+    {
+      "primPath": "/go2_description/FR_calf/FR_foot_joint",
+      "body0": "/go2_description/FR_calf",
+      "body1": "/go2_description/FR_foot",
+      "localPose0Position": [
+        0.0,
+        0.0,
+        -0.21299999952316284
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    },
+    {
+      "primPath": "/go2_description/Head_upper/Head_lower_joint",
+      "body0": "/go2_description/Head_upper",
+      "body1": "/go2_description/Head_lower",
+      "localPose0Position": [
+        0.00800000037997961,
+        0.0,
+        -0.07000000029802322
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    },
+    {
+      "primPath": "/go2_description/RL_calf/RL_foot_joint",
+      "body0": "/go2_description/RL_calf",
+      "body1": "/go2_description/RL_foot",
+      "localPose0Position": [
+        0.0,
+        0.0,
+        -0.21299999952316284
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    },
+    {
+      "primPath": "/go2_description/RR_calf/RR_foot_joint",
+      "body0": "/go2_description/RR_calf",
+      "body1": "/go2_description/RR_foot",
+      "localPose0Position": [
+        0.0,
+        0.0,
+        -0.21299999952316284
+      ],
+      "localPose1Position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "localPose0Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "localPose1Orientation": [
+        0.7071068286895752,
+        0.0,
+        0.7071068286895752,
+        0.0
+      ],
+      "jointEnabled": true,
+      "excludeFromArticulation": false,
+      "collisionEnabled": false
+    }
+  ],
+  "articulations": [
+    {
+      "primPath": "/go2_description/base",
+      "rootPrims": [
+        "/go2_description/base"
+      ],
+      "articulatedBodies": [
+        "/go2_description/FL_calf",
+        "/go2_description/FL_foot",
+        "/go2_description/FL_hip",
+        "/go2_description/FL_thigh",
+        "/go2_description/FR_calf",
+        "/go2_description/FR_foot",
+        "/go2_description/FR_hip",
+        "/go2_description/FR_thigh",
+        "/go2_description/Head_lower",
+        "/go2_description/Head_upper",
+        "/go2_description/RL_calf",
+        "/go2_description/RL_foot",
+        "/go2_description/RL_hip",
+        "/go2_description/RL_thigh",
+        "/go2_description/RR_calf",
+        "/go2_description/RR_foot",
+        "/go2_description/RR_hip",
+        "/go2_description/RR_thigh",
+        "/go2_description/base"
+      ],
+      "articulatedJoints": [
+        "/go2_description/FL_calf/FL_foot_joint",
+        "/go2_description/FL_hip/FL_thigh_joint",
+        "/go2_description/FL_thigh/FL_calf_joint",
+        "/go2_description/FR_calf/FR_foot_joint",
+        "/go2_description/FR_hip/FR_thigh_joint",
+        "/go2_description/FR_thigh/FR_calf_joint",
+        "/go2_description/Head_upper/Head_lower_joint",
+        "/go2_description/RL_calf/RL_foot_joint",
+        "/go2_description/RL_hip/RL_thigh_joint",
+        "/go2_description/RL_thigh/RL_calf_joint",
+        "/go2_description/RR_calf/RR_foot_joint",
+        "/go2_description/RR_hip/RR_thigh_joint",
+        "/go2_description/RR_thigh/RR_calf_joint",
+        "/go2_description/base/FL_hip_joint",
+        "/go2_description/base/FR_hip_joint",
+        "/go2_description/base/Head_upper_joint",
+        "/go2_description/base/RL_hip_joint",
+        "/go2_description/base/RR_hip_joint"
+      ]
+    }
+  ],
+  "distal_calf_foot_solid_overlap": [
+    {
+      "leg": "FL",
+      "sphere_center_calf_m": [
+        -0.0020000000949949026,
+        0.0,
+        -0.21299999952316284
+      ],
+      "sphere_radius_m": 0.02199999988079071,
+      "distal_calf_cylinder_path": "/go2_description/FL_calf/collisions/mesh_2",
+      "distal_calf_lower_cap_center_m": [
+        0.00043032933710504713,
+        0.0,
+        -0.2003923197903256
+      ],
+      "cap_center_to_sphere_center_m": 0.01283978541075848,
+      "cap_center_inside_sphere": true,
+      "calf_cylinder_lowest_owner_z_m": -0.20822808856475494,
+      "sphere_lowest_owner_z_m": -0.23499999940395355,
+      "note": "Intersecting source collision solids, not duplicate ownership; source rest pose and preserved fixed-joint relative transform, not a runtime stair contact point."
+    },
+    {
+      "leg": "FR",
+      "sphere_center_calf_m": [
+        -0.0020000000949949026,
+        0.0,
+        -0.21299999952316284
+      ],
+      "sphere_radius_m": 0.02199999988079071,
+      "distal_calf_cylinder_path": "/go2_description/FR_calf/collisions/mesh_2",
+      "distal_calf_lower_cap_center_m": [
+        0.00043032933710504713,
+        0.0,
+        -0.2003923197903256
+      ],
+      "cap_center_to_sphere_center_m": 0.01283978541075848,
+      "cap_center_inside_sphere": true,
+      "calf_cylinder_lowest_owner_z_m": -0.20822808856475494,
+      "sphere_lowest_owner_z_m": -0.23499999940395355,
+      "note": "Intersecting source collision solids, not duplicate ownership; source rest pose and preserved fixed-joint relative transform, not a runtime stair contact point."
+    },
+    {
+      "leg": "RL",
+      "sphere_center_calf_m": [
+        -0.0020000000949949026,
+        0.0,
+        -0.21299999952316284
+      ],
+      "sphere_radius_m": 0.02199999988079071,
+      "distal_calf_cylinder_path": "/go2_description/RL_calf/collisions/mesh_2",
+      "distal_calf_lower_cap_center_m": [
+        0.00043032933710504713,
+        0.0,
+        -0.2003923197903256
+      ],
+      "cap_center_to_sphere_center_m": 0.01283978541075848,
+      "cap_center_inside_sphere": true,
+      "calf_cylinder_lowest_owner_z_m": -0.20822808856475494,
+      "sphere_lowest_owner_z_m": -0.23499999940395355,
+      "note": "Intersecting source collision solids, not duplicate ownership; source rest pose and preserved fixed-joint relative transform, not a runtime stair contact point."
+    },
+    {
+      "leg": "RR",
+      "sphere_center_calf_m": [
+        -0.0020000000949949026,
+        0.0,
+        -0.21299999952316284
+      ],
+      "sphere_radius_m": 0.02199999988079071,
+      "distal_calf_cylinder_path": "/go2_description/RR_calf/collisions/mesh_2",
+      "distal_calf_lower_cap_center_m": [
+        0.00043032933710504713,
+        0.0,
+        -0.2003923197903256
+      ],
+      "cap_center_to_sphere_center_m": 0.01283978541075848,
+      "cap_center_inside_sphere": true,
+      "calf_cylinder_lowest_owner_z_m": -0.20822808856475494,
+      "sphere_lowest_owner_z_m": -0.23499999940395355,
+      "note": "Intersecting source collision solids, not duplicate ownership; source rest pose and preserved fixed-joint relative transform, not a runtime stair contact point."
+    }
+  ],
+  "runtime_limit": "CPU authored USD/parser result; actual PhysX contact pair positions, per-shape cooked mapping and effective offsets are not captured by this audit."
+}
