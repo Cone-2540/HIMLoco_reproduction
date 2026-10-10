@@ -80,6 +80,61 @@
         "export_max_abs_error": 1.0728836059570312e-06,
         "peak_cuda_memory_bytes": 5537901568
       }
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_00-51-49_stairs-easy-faithful-100",
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 100,
+        "completed_iterations": 100,
+        "num_envs": 6144,
+        "environment_steps_this_run": 61440000,
+        "training_seconds": 1704.5772438800002,
+        "parameters_finite": true,
+        "checkpoint": "model_100.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 7.152557373046875e-07,
+        "peak_cuda_memory_bytes": 5537812992
+      }
     }
-  ]
+  ],
+  "active_run": "isaaclab/logs/2026-10-11_01-27-53_stairs-easy-move200",
+  "next_step": "Higher forward commands, restored adaptive learning rate and exploration; evaluate ascent and descent independently after continuation",
+  "chosen_num_envs": 6144,
+  "learning_rate_initial": 0.0003,
+  "schedule_initial": "fixed",
+  "discarded_weight_runs": [
+    "stairs-physics-smoke",
+    "stairs-6144-throughput",
+    "stairs-4096-throughput"
+  ],
+  "discard_reason": "Reward quaternion convention corrected after throughput-only tests; formal run uses corrected xyzw and preserves critic",
+  "baseline_evaluation": "isaaclab/logs/2026-10-11_00-51-11_flat-baseline-8cm-asc",
+  "baseline_result": "0/32 nominal 8cm ascent completion; stops at first riser, no falls; not robustness statistics",
+  "core_evaluation": "isaaclab/logs/2026-10-11_01-21-27_easy100-core-checkpoints",
+  "core_findings": {
+    "model100": {
+      "asc8cm": "0/96",
+      "asc16cm": "0/96",
+      "desc8cm": "85/96",
+      "desc16cm": "88/96"
+    },
+    "bottleneck": "Front foot centre stops 2cm before first riser; no meaningful foot lift; zero torque saturation",
+    "speed06_test": "Ascent remains 0/32; desc8cm 32/32; desc16cm 16/32 with15falls",
+    "visual_failure_video": "isaaclab/logs/2026-10-11_01-26-07_easy100-8cm-asc-video/videos/go2_flat_0000.mp4"
+  },
+  "continuation_changes": {
+    "num_envs": 4096,
+    "stair_speed_range": [
+      0.4,
+      0.8
+    ],
+    "exploration_std_override": 0.4,
+    "schedule": "adaptive",
+    "optimizer": "checkpoint Adam and current LR3e-4 restored; adaptive adjusts subsequently",
+    "rollout_steps": 100,
+    "reward_profile": "faithful"
+  }
 }
