@@ -165,3 +165,5 @@ bash isaaclab/run.sh train --terrain stairs --stair_stage hard --reward_profile 
 [独立离线恢复核查](overnight-offline-restore-check.md) 从精确 Git `13fa5b9` 和两份归档恢复源码／权重及 465 个数据成员，在禁止读取原仓库／原日志、禁止导入模拟器与 Torch 的条件下，重建八组报告并运行六组 CPU 验证器。13,866 项检查通过，八个 CSV 与 Git 原报告逐字节一致，八个 JSON 仅归一化生成时间／工作路径后全字段一致。它证明数值归档可恢复，不代表重新训练、重新仿真或科学验收通过；原 FAIL、平地退化和流畅性未证成均保留。恢复副本、访问保护与命令日志也留在该共享归档目录。
 
 [中文恢复指南](overnight-restore-guide_zh.md) 提供从精确 Git 与两份归档重建到全新目录的命令，以及七段 MP4 的可选单独复制方法。权重在 Git 中；视频和大型数据包仍需从本机共享目录保存。
+
+七段 MP4 另备份在同一共享目录的 `first-episodes-and-prefailure-videos.tar`，约 10.84 MiB；七个成员的大小／SHA256 与原视频及已有来源记录全部一致，见 [视频备份清单](overnight-videos-archive-manifest.json)。它只保存四段完整首轮录像和三段失败前片段，不包含全部帧图或未裁剪源视频，也不改变运动质量结论。

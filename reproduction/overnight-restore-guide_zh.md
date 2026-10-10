@@ -93,4 +93,6 @@ cp --no-clobber \
   "$HIM_RESTORE_ROOT/reproduction/"
 ```
 
+七段视频也已有单独共享备份 `first-episodes-and-prefailure-videos.tar`，校验值和成员列表在 [视频归档清单](overnight-videos-archive-manifest.json)。它不包含帧页或未裁剪源视频。如果没有执行上面的 MP4 复制，可改用 `tar --keep-old-files -xf "$HIM_ARCHIVE_ROOT/first-episodes-and-prefailure-videos.tar" -C "$HIM_RESTORE_ROOT"` 恢复七个相对路径；不要对已有同名视频的目录重复解压。
+
 数值恢复不包含 Isaac 安装、TensorBoard、大型启动日志、全部帧图或重新训练，也不会调整驱动。迁移机器时需同时搬运两份数据归档、相应 Git 代码／权重和核查 helper；想复查视频还须单独保存七段 MP4。配置中的旧 `/workspace` 和机器路径只是历史来源记录，不能当作新机器的安装路径。
