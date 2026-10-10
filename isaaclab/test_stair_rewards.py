@@ -14,6 +14,7 @@ from stair_rewards import (
     feet_slide_l2,
     foot_clearance_body_l2,
     joint_power_l1,
+    leg_contact_force_proxy,
     policy_joint_acceleration_l2,
     terrain_relative_base_height_l2,
     validate_reward_frames,
@@ -236,6 +237,115 @@ class StairRewardTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "contact_forces sensor"):
             configure_stair_rewards(cfg, "contact")
         self.assertIs(cfg.rewards.dof_torques_l2, old)
+
+    def test_force_profile_preserves_every_contact_term_and_adds_only_bounded_proxy(self):
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        baseline, modified = config(), config()
+        original = configure_stair_rewards(baseline, "contact")
+        manifest = configure_stair_rewards(modified, "contact_force")
+        self.assertEqual(manifest["weights"], {**original["weights"], "leg_contact_force_proxy": -.02})
+        for name in original["weights"]:
+            self.assertEqual(getattr(baseline.rewards, name).to_dict(),
+                             getattr(modified.rewards, name).to_dict(), name)
+        self.assertEqual(manifest["contact_penalty"], original["contact_penalty"])
+        self.assertEqual(manifest["tuned_changes"], [])
+        self.assertEqual(len(manifest["adaptation_changes"]), 2)
+        term = modified.rewards.leg_contact_force_proxy
+        self.assertEqual(term.func, "stair_rewards:leg_contact_force_proxy")
+        self.assertEqual(term.weight, -.02)
+        self.assertEqual({k: v for k, v in term.params.items() if k != "sensor_cfg"},
+                         {"threshold_n": 50., "force_scale_n": 50., "cap_per_body": 4.})
+        self.assertEqual(manifest["force_proxy_penalty"]["baseline_profile"], "contact")
+        self.assertIn("not impact impulse", manifest["force_proxy_penalty"]["interpretation_limit"])
+        cfg = NS(scene=NS(base_height_scanner=object()), rewards=NS(old=NS(weight=1.)))
+        with self.assertRaisesRegex(ValueError, "contact_forces sensor"):
+            configure_stair_rewards(cfg, "contact_force")
+        self.assertEqual(cfg.rewards.old.weight, 1.)
+
+    def test_force_proxy_vector_norm_history_peak_per_body_cap_and_multiple_bodies(self):
+        # Named columns deliberately interleave feet/base with the selected legs.
+        names = ["FR_foot", "FR_calf", "base", "FL_thigh", "FL_foot", "RL_calf"]
+        history = torch.zeros(6, 3, len(names), 3)
+        history[0, 1, 1, 0] = 50.  # Boundary; current is zero.
+        history[1, 2, 1, :2] = torch.tensor([60., 80.])  # Norm100, not z or component max.
+        history[2, 0, 1, 0] = 150.
+        history[3, 0, 1, 0] = 1000.  # Bounded, no linear force spill.
+        history[4, 0, 1, 0] = 1000.
+        history[4, 2, 3, 1] = 100.  # Different body's peak in a different history slot.
+        history[4, 1, 5, 2] = 75.  # sum independent caps:4+1+.25.
+        history[5, :, [0, 2, 4], 2] = 10000.  # Unselected feet/base don't contribute.
+        current = torch.zeros(6, len(names), 3)
+        sensor = NS(data=NS(net_normal_forces_w_history=NS(torch=history),
+                            net_normal_forces_w=NS(torch=current)))
+        env = NS(scene={"contact": sensor}, step_dt=.02)
+        selection = NS(name="contact", body_ids=[1, 3, 5])
+        before = history.clone()
+        rng_before = torch.random.get_rng_state().clone()
+        torch.testing.assert_close(leg_contact_force_proxy(env, selection),
+                                   torch.tensor([0., 1., 4., 4., 5.25, 0.]))
+        torch.testing.assert_close(leg_contact_force_proxy(env, selection),
+                                   torch.tensor([0., 1., 4., 4., 5.25, 0.]))
+        self.assertTrue(torch.equal(history, before))
+        self.assertTrue(torch.equal(torch.random.get_rng_state(), rng_before))
+        env.step_dt = .1  # The reward manager, not this function, applies dt.
+        torch.testing.assert_close(leg_contact_force_proxy(env, selection),
+                                   torch.tensor([0., 1., 4., 4., 5.25, 0.]))
+
+    def test_force_proxy_disabled_and_zero_length_history_use_current_sample(self):
+        current = torch.zeros(2, 2, 3)
+        current[0, 0, 1] = 100.
+        current[1, 0, 0] = 75.
+        current[:, 1, 2] = 5000.  # Excluded body.
+        data = NS(net_normal_forces_w=NS(torch=current))
+        env = NS(scene={"contact": NS(data=data)})
+        cfg = NS(name="contact", body_ids=[0])
+        for history in (None, torch.empty(2, 0, 2, 3)):
+            with self.subTest(history_disabled=history is None):
+                data.net_normal_forces_w_history = None if history is None else NS(torch=history)
+                torch.testing.assert_close(leg_contact_force_proxy(env, cfg), torch.tensor([1., .25]))
+        del data.net_normal_forces_w_history
+        torch.testing.assert_close(leg_contact_force_proxy(env, cfg), torch.tensor([1., .25]))
+
+    def test_force_proxy_runtime_selector_resolves_same_eight_leg_bodies(self):
+        from isaaclab.utils.string import resolve_matching_names
+        names = ["base", "Head_lower"] + [f"{leg}_{body}" for leg in ("FL", "FR", "RL", "RR")
+                        for body in ("foot", "calf", "hip", "thigh")]
+        class ContactSensor:
+            body_names = names
+            num_sensors = len(names)
+
+            def find_sensors(self, keys, preserve_order=False):
+                return resolve_matching_names(keys, self.body_names, preserve_order=preserve_order)
+        sensor = ContactSensor()
+        force = torch.zeros(2, 3, len(names), 3)
+        force[0, 1, names.index("FR_calf"), 1] = 100.
+        force[1, :, names.index("FR_foot"), 0] = 1000.
+        sensor.data = NS(net_normal_forces_w_history=NS(torch=force))
+        class Scene(dict):
+            pass
+        scene = Scene(contact_forces=sensor)
+        scene.sensors = {"contact_forces": sensor}
+        cfg = NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        configure_stair_rewards(cfg, "contact_force")
+        count = cfg.rewards.leg_contacts.params["sensor_cfg"]
+        term = cfg.rewards.leg_contact_force_proxy
+        selection = term.params["sensor_cfg"]
+        count.resolve(scene)
+        selection.resolve(scene)
+        self.assertEqual(selection.body_ids, count.body_ids)
+        self.assertEqual({names[i] for i in selection.body_ids},
+                         {f"{leg}_{body}" for leg in ("FL", "FR", "RL", "RR") for body in ("thigh", "calf")})
+        torch.testing.assert_close(leg_contact_force_proxy(NS(scene=scene), **term.params), torch.tensor([1., 0.]))
+
+    def test_force_proxy_rejects_invalid_scaling_parameters_before_sensor_access(self):
+        for parameter, values in (("threshold_n", [-1., math.nan, math.inf]),
+                                  ("force_scale_n", [0., -1., math.nan, math.inf]),
+                                  ("cap_per_body", [0., -1., math.nan, math.inf])):
+            for value in values:
+                with self.subTest(parameter=parameter, value=value):
+                    with self.assertRaisesRegex(ValueError, parameter):
+                        leg_contact_force_proxy(NS(scene={}), NS(name="missing"), **{parameter: value})
 
 
 if __name__ == "__main__":

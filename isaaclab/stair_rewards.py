@@ -3,6 +3,7 @@
 Only training rewards see terrain sensors. No term adds terrain to the actor.
 The ``faithful`` profile uses the released Go1 weights; ``tuned`` is an explicit
 small stair ablation, and ``contact`` adds only a leg-contact penalty to faithful.
+``contact_force`` retains contact and adds a bounded high-force contact proxy.
 The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
@@ -164,6 +165,31 @@ def feet_slide_l2(env, sensor_cfg, asset_cfg, threshold=1.0):
     return (velocity.square().sum(dim=-1) * contact).sum(dim=1)
 
 
+def leg_contact_force_proxy(env, sensor_cfg, threshold_n=50.0, force_scale_n=50.0, cap_per_body=4.0):
+    """Bounded high-force normal-contact proxy, not an impact impulse.
+
+    Match the count term's per-body retained-history normal-force norm peak.
+    Empty/disabled history uses the current sample. Rectify and normalize each
+    selected body's excess, square and cap independently, then sum over bodies.
+    The manager supplies weight and policy dt; this function applies neither.
+    """
+    parameters = {}
+    for name, value in (("threshold_n", threshold_n), ("force_scale_n", force_scale_n),
+                        ("cap_per_body", cap_per_body)):
+        value = float(value)
+        if not math.isfinite(value) or (value < 0.0 if name == "threshold_n" else value <= 0.0):
+            raise ValueError(f"{name} must be finite and {'non-negative' if name == 'threshold_n' else 'positive'}")
+        parameters[name] = value
+    sensor = env.scene[sensor_cfg.name]
+    history = _tensor(getattr(sensor.data, "net_normal_forces_w_history", None))
+    if history is None or history.shape[1] == 0:
+        force = _tensor(sensor.data.net_normal_forces_w)[:, sensor_cfg.body_ids].norm(dim=-1)
+    else:
+        force = history[:, :, sensor_cfg.body_ids].norm(dim=-1).amax(dim=1)
+    excess = ((force - parameters["threshold_n"]) / parameters["force_scale_n"]).clamp_min(0.0)
+    return excess.square().clamp_max(parameters["cap_per_body"]).sum(dim=1)
+
+
 def configure_stair_rewards(cfg, profile="faithful"):
     """Replace stock rewards before launch and return serializable provenance.
 
@@ -172,9 +198,10 @@ def configure_stair_rewards(cfg, profile="faithful"):
     All non-stock presets preserve the original 0.25 tracking variance,
     first/second action differences, energy and body-relative clearance terms.
     ``contact`` preserves every faithful term and adds one Go2 adaptation.
+    ``contact_force`` retains all contact terms and adds one bounded force proxy.
     """
-    if profile not in ("faithful", "tuned", "contact", "stock"):
-        raise ValueError("reward profile must be faithful, tuned, contact, or stock")
+    if profile not in ("faithful", "tuned", "contact", "contact_force", "stock"):
+        raise ValueError("reward profile must be faithful, tuned, contact, contact_force, or stock")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
@@ -184,7 +211,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
         sensor_name = "height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
-    if profile == "contact" and getattr(cfg.scene, "contact_forces", None) is None:
+    if profile in ("contact", "contact_force") and getattr(cfg.scene, "contact_forces", None) is None:
         raise ValueError("Contact reward requires the contact_forces sensor")
 
     # Prevent residual stock torque/air-time/position-limit rewards from silently
@@ -219,8 +246,12 @@ def configure_stair_rewards(cfg, profile="faithful"):
     if profile == "tuned":
         add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
-    if profile == "contact":
+    if profile in ("contact", "contact_force"):
         add("leg_contacts", mdp + "undesired_contacts", -0.1, threshold=1.0,
+            sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
+    if profile == "contact_force":
+        add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
+            threshold_n=50.0, force_scale_n=50.0, cap_per_body=4.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
     return {
         "profile": profile,
@@ -237,8 +268,9 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "orientation penalty -0.2 -> -0.1",
             "contact-only foot slip penalty -0.05",
         ] if profile == "tuned" else [],
-        "adaptation_changes": ["faithful plus leg_contacts -0.1; no other faithful term changes"]
-            if profile == "contact" else [],
+        "adaptation_changes": (["faithful plus leg_contacts -0.1; no other faithful term changes"]
+            + (["contact plus bounded leg_contact_force_proxy -0.02; no other contact term changes"]
+               if profile == "contact_force" else [])) if profile in ("contact", "contact_force") else [],
         "contact_penalty": {
             "baseline_profile": "faithful",
             "term": "leg_contacts",
@@ -250,5 +282,23 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "measurement": "count of selected bodies with retained-history net-normal-force vector norm strictly above threshold",
             "weight_scaling": "Isaac Lab reward manager multiplies -0.1 by policy dt",
             "reproduction_scope": "added Go2 adaptation; released Go1 collision weight is zero",
-        } if profile == "contact" else None,
+        } if profile in ("contact", "contact_force") else None,
+        "force_proxy_penalty": {
+            "baseline_profile": "contact",
+            "term": "leg_contact_force_proxy",
+            "function": custom + "leg_contact_force_proxy",
+            "body_name_patterns": [".*_thigh", ".*_calf"],
+            "expected_selected_go2_bodies": 8,
+            "excluded_bodies": "feet, base and hips",
+            "threshold_n": 50.0,
+            "force_scale_n": 50.0,
+            "cap_per_body": 4.0,
+            "weight": -0.02,
+            "formula": "sum_i min(max((F_i-50)/50,0)^2,4); F_i=max_history(norm(net_normal_force_i))",
+            "measurement": "bounded per-body retained-history normal-contact-force norm excess; current sample if history is empty or disabled",
+            "interpretation_limit": "force-sample proxy, not impact impulse, energy, scrape duration or damage; forces >=150N saturate",
+            "weight_scaling": "Isaac Lab reward manager multiplies -0.02 by policy dt; function has no dt factor",
+            "reproduction_scope": "added Go2 adaptation; all faithful terms and contact count -0.1 retained",
+            "actor_observations_and_collision_geometry": "unchanged",
+        } if profile == "contact_force" else None,
     }
