@@ -190,6 +190,8 @@ class HIMOnPolicyRunner:
         self.writer.add_scalar('Loss/Estimation Loss', locs['mean_estimation_loss'], locs['it'])
         self.writer.add_scalar('Loss/Swap Loss', locs['mean_swap_loss'], locs['it'])
         self.writer.add_scalar('Loss/learning_rate', self.alg.learning_rate, locs['it'])
+        for name, value in self.alg.last_update_diagnostics.items():
+            self.writer.add_scalar('PPO/' + name, value, locs['it'])
         self.writer.add_scalar('Policy/mean_noise_std', mean_std.item(), locs['it'])
         self.writer.add_scalar('Perf/total_fps', fps, locs['it'])
         self.writer.add_scalar('Perf/collection time', locs['collection_time'], locs['it'])

@@ -59,6 +59,7 @@ class HIMPPO:
         self.desired_kl = desired_kl
         self.schedule = schedule
         self.learning_rate = learning_rate
+        self.last_update_diagnostics = {}
 
         # PPO components
         self.actor_critic = actor_critic
@@ -129,6 +130,9 @@ class HIMPPO:
         mean_surrogate_loss = 0
         mean_estimation_loss = 0
         mean_swap_loss = 0
+        kl_means = []
+        clip_fractions = []
+        update_learning_rates = []
 
         generator = self.storage.mini_batch_generator(self.num_mini_batches, self.num_learning_epochs)
 
@@ -142,13 +146,15 @@ class HIMPPO:
                 sigma_batch = self.actor_critic.action_std
                 entropy_batch = self.actor_critic.entropy
 
-                # KL
-                if self.desired_kl != None and self.schedule == 'adaptive':
-                    with torch.inference_mode():
-                        kl = torch.sum(
-                            torch.log(sigma_batch / old_sigma_batch + 1.e-5) + (torch.square(old_sigma_batch) + torch.square(old_mu_batch - mu_batch)) / (2.0 * torch.square(sigma_batch)) - 0.5, axis=-1)
-                        kl_mean = torch.mean(kl)
+                # Read-only diagnostics use the same saved behavior-policy
+                # statistics as adaptive scheduling, including fixed schedules.
+                with torch.inference_mode():
+                    kl = torch.sum(
+                        torch.log(sigma_batch / old_sigma_batch + 1.e-5) + (torch.square(old_sigma_batch) + torch.square(old_mu_batch - mu_batch)) / (2.0 * torch.square(sigma_batch)) - 0.5, axis=-1)
+                    kl_mean = torch.mean(kl)
+                    kl_means.append(kl_mean)
 
+                    if self.desired_kl != None and self.schedule == 'adaptive':
                         if kl_mean > self.desired_kl * 2.0:
                             self.learning_rate = max(1e-5, self.learning_rate / 1.5)
                         elif kl_mean < self.desired_kl / 2.0 and kl_mean > 0.0:
@@ -158,10 +164,14 @@ class HIMPPO:
                             param_group['lr'] = self.learning_rate
 
                 #Estimator Update
+                update_learning_rates.append(self.learning_rate)
                 estimation_loss, swap_loss = self.actor_critic.estimator.update(obs_batch, next_critic_obs_batch, lr=self.learning_rate)
 
                 # Surrogate loss
                 ratio = torch.exp(actions_log_prob_batch - torch.squeeze(old_actions_log_prob_batch))
+                with torch.no_grad():
+                    clip_fractions.append(((ratio < 1.0 - self.clip_param) |
+                                           (ratio > 1.0 + self.clip_param)).float().mean())
                 surrogate = -torch.squeeze(advantages_batch) * ratio
                 surrogate_clipped = -torch.squeeze(advantages_batch) * torch.clamp(ratio, 1.0 - self.clip_param,
                                                                                 1.0 + self.clip_param)
@@ -200,5 +210,19 @@ class HIMPPO:
         mean_estimation_loss /= num_updates
         mean_swap_loss /= num_updates
         self.storage.clear()
+
+        # Keep observations on device until the update ends; one small copy
+        # avoids adding per-minibatch CPU synchronization to fixed schedules.
+        with torch.no_grad():
+            effective_std = self.actor_critic.std.clamp_min(1e-3)
+            values = torch.stack((torch.stack(kl_means).mean(), torch.stack(kl_means).max(),
+                                  torch.stack(clip_fractions).mean(), effective_std.min(), effective_std.max()))
+            self.last_update_diagnostics = dict(zip(
+                ('kl_mean', 'kl_max_minibatch_mean', 'clip_fraction', 'std_min', 'std_max'),
+                values.cpu().tolist()))
+            self.last_update_diagnostics['learning_rate'] = self.learning_rate
+            self.last_update_diagnostics['learning_rate_min'] = min(update_learning_rates)
+            self.last_update_diagnostics['learning_rate_max'] = max(update_learning_rates)
+            self.last_update_diagnostics['learning_rate_mean'] = sum(update_learning_rates) / len(update_learning_rates)
 
         return mean_value_loss, mean_surrogate_loss, mean_estimation_loss, mean_swap_loss
