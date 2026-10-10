@@ -1,0 +1,1001 @@
+{
+  "schema_version": 1,
+  "completed_local": "2026-10-11T07:09:24.953956+08:00",
+  "status": "complete",
+  "scientific_acceptance": "FAIL",
+  "scope": "Actual CPU-only rebuild of all eight frozen report sets and six independent validators in a clean exact Git13fa5b9 source/artifact tree with both archives restored; no existing report was used as a rebuild input. No simulator or GPU execution.",
+  "source_commit": "13fa5b9489224802b820bbe65bf146e17dd49fb5",
+  "source_tree_members": 681,
+  "source_tar": "/home/cone/robotics/archives/himloco-overnight-20261011/source-13fa5b9.tar",
+  "source_tar_sha256": "888564eaaee7b52a4c034bd1e20440e416051be6558bd57acb53c8c55812a5ea",
+  "restore_root": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+  "restored_launch_log_root": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs",
+  "archives": [
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/evaluation-data.tar.gz",
+      "sha256": "0bae5240502b6305da193de86567683123fcdbb5c345bfa5eeb4d0775b593cf6",
+      "archive_bytes": 1132429007,
+      "members": 227,
+      "source_bytes": 5960060502,
+      "scope": "All 227 available 2026-10-11 config/result/primary-result JSON. Alone it omits required domain and physics sidecars."
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/supplemental-readbacks-and-protocol.tar.gz",
+      "sha256": "ffc99efd6eab52581c9118eddc78e5d5b98938a7ec1057aea85adf3f62fd5fe2",
+      "archive_bytes": 346005,
+      "members": 238,
+      "source_bytes": 3044629,
+      "scope": "Every available 2026-10-11 domain-parameters-initial/final, physics-diagnostic and operator-stop JSON; every top-level *master.log, saved frozen execution plan and small first 0.6 m/s OOM stdout. Complements, and does not replace or change, evaluation-data.tar.gz.",
+      "source_categories": {
+        "physics-diagnostic.json": 89,
+        "domain-parameters-final.json": 68,
+        "domain-parameters-initial.json": 70,
+        "operator-stop.json": 1
+      },
+      "launch_files": 10
+    }
+  ],
+  "restored_data_files": 465,
+  "all_restored_member_hashes_pass": true,
+  "removed_generated_report_copies_before_rebuild": [
+    "reproduction/stair-frozen-final-validation.md",
+    "reproduction/stair-frozen-final-validation.csv",
+    "reproduction/stair-frozen-final-validation.json.gz",
+    "reproduction/stair-policy-frozen-flat-regression.md",
+    "reproduction/stair-policy-frozen-flat-regression.csv",
+    "reproduction/stair-policy-frozen-flat-regression.json.gz",
+    "reproduction/stair-frozen-heading-dependence.md",
+    "reproduction/stair-frozen-heading-dependence.csv",
+    "reproduction/stair-frozen-heading-dependence.json.gz",
+    "reproduction/stair-frozen-material-speed05.md",
+    "reproduction/stair-frozen-material-speed05.csv",
+    "reproduction/stair-frozen-material-speed05.json.gz",
+    "reproduction/stair-frozen-speed-probe.md",
+    "reproduction/stair-frozen-speed-probe.csv",
+    "reproduction/stair-frozen-speed-probe.json.gz",
+    "reproduction/stair-frozen-calf-sensitivity.md",
+    "reproduction/stair-frozen-calf-sensitivity.csv",
+    "reproduction/stair-frozen-calf-sensitivity.json.gz",
+    "reproduction/stair-frozen-height-depth-probe.md",
+    "reproduction/stair-frozen-height-depth-probe.csv",
+    "reproduction/stair-frozen-height-depth-probe.json.gz",
+    "reproduction/stair-frozen-dynamics-speed05.md",
+    "reproduction/stair-frozen-dynamics-speed05.csv",
+    "reproduction/stair-frozen-dynamics-speed05.json.gz"
+  ],
+  "freeze_verification": {
+    "implementation_sources": 28,
+    "checks": 33,
+    "all_match": true,
+    "execution_copy_equal": true
+  },
+  "guard": {
+    "blocked_original_roots": [
+      "/home/cone/Research/HIMLoco",
+      "/home/cone/robotics/logs/himloco-overnight-20261011"
+    ],
+    "scope": "Python file open/listdir/scandir audit denial inherited by motion subprocess; GPU/simulator imports denied. Saved absolute strings may remain as provenance.",
+    "path": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/guard/sitecustomize.py",
+    "sha256": "dcb9d4c626bffcca0c5c40ba5628935ce2025f7dd1e39b2266ed7213731c91bb",
+    "negative_control_summary": {
+      "original_file_reads_denied": [
+        "/home/cone/Research/HIMLoco/reproduction/stair-final-evaluation-plan.json",
+        "/home/cone/robotics/logs/himloco-overnight-20261011/frozen-validation-master.log"
+      ],
+      "torch_import_denied": true
+    },
+    "applied_to_all_rebuilds_validators_and_motion_subprocess": true
+  },
+  "helper": {
+    "path": "reproduction/audit-offline-restored-reports.py",
+    "sha256": "03bfda6b34d3da38858c36d0db143f695f9ce216733c5bbf94b50c493e763cf5",
+    "requires_new_evidence_directory": true,
+    "refuses_preexisting_generated_reports": true,
+    "executed_helper_path": "/home/cone/robotics/archives/himloco-overnight-20261011/audit-offline-restored-reports-v2.py",
+    "executed_helper_sha256": "195cb8256328af38ae42e00670979b8a389369947af2b462216f76a3d44729a7",
+    "post_execution_preflight_hardening": "Current helper additionally rejects restore/evidence roots overlapping original source/data roots in either direction. Actual successful v2 run used safe external directories. Only these three path negative controls ran after hardening; report generators/validators were not rerun.",
+    "post_execution_preflight_hardening_evidence": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-helper-overlap-preflight-check.json"
+  },
+  "commands": [
+    {
+      "label": "guard-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "-c",
+        "import json, pathlib, sitecustomize\ntargets = ['/home/cone/Research/HIMLoco/reproduction/stair-final-evaluation-plan.json', '/home/cone/robotics/logs/himloco-overnight-20261011/frozen-validation-master.log']\ndenied = []\nfor target in targets:\n    try:\n        pathlib.Path(target).read_bytes()\n    except PermissionError:\n        denied.append(target)\n    else:\n        raise RuntimeError(\"Original read was unexpectedly allowed: \" + target)\ntry:\n    __import__(\"torch\")\nexcept RuntimeError as error:\n    if \"prohibits simulator/GPU import\" not in str(error):\n        raise\nelse:\n    raise RuntimeError(\"GPU library import unexpectedly allowed\")\nprint(json.dumps({\"original_file_reads_denied\": denied, \"torch_import_denied\": True}))\n"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:39.937726+08:00",
+      "elapsed_seconds": 0.013426194000203395,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/guard-negative-controls.log",
+      "stdout_stderr_sha256": "bf105bd9a64fbe4640a2fca9f438eeda9bb82b44d39e6ac9b459d7019ca37176",
+      "guard_enabled": true,
+      "summary": {
+        "original_file_reads_denied": [
+          "/home/cone/Research/HIMLoco/reproduction/stair-final-evaluation-plan.json",
+          "/home/cone/robotics/logs/himloco-overnight-20261011/frozen-validation-master.log"
+        ],
+        "torch_import_denied": true
+      }
+    },
+    {
+      "label": "rebuild-flat",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-flat-regression.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:39.951445+08:00",
+      "elapsed_seconds": 0.02819673300109571,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-flat.log",
+      "stdout_stderr_sha256": "5c55f8e1da74cd58bcf22a60be4f391c0b6231737723fb33a7bcbb751b48656b",
+      "guard_enabled": true,
+      "summary": {
+        "controller": "policy",
+        "command_vx_m_s": 0.0,
+        "command_vy_m_s": 0.0,
+        "command_yaw_rad_s": -0.5,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "survived": 64,
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "passed": false,
+        "failed_gate_terms": "yaw_MAE",
+        "xy_mae_m_s": 0.0008060329243666445,
+        "xy_rmse_m_s": 0.005512407704252994,
+        "yaw_mae_rad_s": 0.4984747817294879,
+        "yaw_rmse_rad_s": 0.49855851212153357,
+        "mean_measured_vx_m_s": 0.0005580040992621394,
+        "mean_measured_vy_m_s": -0.00026696323960228034,
+        "mean_measured_yaw_rad_s": -0.0015252182682301211,
+        "mean_root_height_m": 0.2541086590984573,
+        "upright_fraction": 1.0,
+        "nominal_height_fraction": 0.9999999403953552,
+        "roll_rms_rad": null,
+        "roll_peak_rad": null,
+        "tracking_samples": 57600,
+        "height_tracking_samples": 57536,
+        "mean_first_episode_duration_s": 20.0,
+        "finite_physics": true,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64
+      }
+    },
+    {
+      "label": "rebuild-material05",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-material-speed05.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:39.952210+08:00",
+      "elapsed_seconds": 2.1836446599991177,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-material05.log",
+      "stdout_stderr_sha256": "1de4dc74c4d00bb5c48e7fd04eb5ad8b6311233488ab0af85c5c8f956ad27545",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 3,
+        "pending": 0,
+        "csv_rows": 144,
+        "summary": [
+          {
+            "material": "nominal",
+            "evaluation_id": "foot_nominal_primary_speed0.5",
+            "completions": 1520,
+            "num_envs": 1536,
+            "unique_noncompletions": 16,
+            "final_traversal_passed": false,
+            "fall_stall_escape_flags": {
+              "falls": 1,
+              "stalls": 1,
+              "lateral_escapes": 14
+            },
+            "history_base_contact_envs": 0
+          },
+          {
+            "material": "low",
+            "evaluation_id": "foot_low_primary_speed0.5",
+            "completions": 1535,
+            "num_envs": 1536,
+            "unique_noncompletions": 1,
+            "final_traversal_passed": true,
+            "fall_stall_escape_flags": {
+              "falls": 1,
+              "stalls": 0,
+              "lateral_escapes": 0
+            },
+            "history_base_contact_envs": 0
+          },
+          {
+            "material": "high",
+            "evaluation_id": "foot_high_primary_speed0.5",
+            "completions": 1395,
+            "num_envs": 1536,
+            "unique_noncompletions": 141,
+            "final_traversal_passed": false,
+            "fall_stall_escape_flags": {
+              "falls": 24,
+              "stalls": 52,
+              "lateral_escapes": 65
+            },
+            "history_base_contact_envs": 6
+          }
+        ]
+      }
+    },
+    {
+      "label": "rebuild-speed",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-stair-diagnostics.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs",
+        "--kind",
+        "speed"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:39.953104+08:00",
+      "elapsed_seconds": 1.9562862610000593,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-speed.log",
+      "stdout_stderr_sha256": "6372bd456302b16fac92566e193dc808a051cc57a50250b8465acf5735cb5fc9",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "kind": "speed",
+        "evaluations": 5,
+        "pending": 0,
+        "csv_rows": 90,
+        "summary": [
+          {
+            "evaluation_id": "speed_probe_02",
+            "speed_m_s": 0.2,
+            "counts": {
+              "num_envs": 576,
+              "completions": 512,
+              "falls": 28,
+              "stalls": 36,
+              "lateral_escapes": 0,
+              "base_contact_envs": 17,
+              "current_sample_base_contact_envs": 17,
+              "unique_noncompletions": 64
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.9599969387054443
+          },
+          {
+            "evaluation_id": "speed_probe_03",
+            "speed_m_s": 0.3,
+            "counts": {
+              "num_envs": 576,
+              "completions": 529,
+              "falls": 40,
+              "stalls": 7,
+              "lateral_escapes": 0,
+              "base_contact_envs": 39,
+              "current_sample_base_contact_envs": 35,
+              "unique_noncompletions": 47
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.5799973011016846
+          },
+          {
+            "evaluation_id": "speed_probe_04",
+            "speed_m_s": 0.4,
+            "counts": {
+              "num_envs": 576,
+              "completions": 564,
+              "falls": 7,
+              "stalls": 1,
+              "lateral_escapes": 4,
+              "base_contact_envs": 7,
+              "current_sample_base_contact_envs": 6,
+              "unique_noncompletions": 12
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.5999972820281982
+          },
+          {
+            "evaluation_id": "speed_probe_05",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 576,
+              "completions": 555,
+              "falls": 0,
+              "stalls": 1,
+              "lateral_escapes": 20,
+              "base_contact_envs": 0,
+              "current_sample_base_contact_envs": 0,
+              "unique_noncompletions": 21
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.7199971675872803
+          },
+          {
+            "evaluation_id": "speed_probe_06",
+            "speed_m_s": 0.6,
+            "counts": {
+              "num_envs": 576,
+              "completions": 570,
+              "falls": 1,
+              "stalls": 0,
+              "lateral_escapes": 5,
+              "base_contact_envs": 0,
+              "current_sample_base_contact_envs": 0,
+              "unique_noncompletions": 6
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 0.6199999451637268
+          }
+        ]
+      }
+    },
+    {
+      "label": "rebuild-calf",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-stair-diagnostics.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs",
+        "--kind",
+        "calf"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:39.979841+08:00",
+      "elapsed_seconds": 4.459807115999865,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-calf.log",
+      "stdout_stderr_sha256": "dbe65b1ac538e1b20515cab327b49acb8b163ff923a6aacef22b1303903c2832",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "kind": "calf",
+        "evaluations": 4,
+        "pending": 0,
+        "csv_rows": 192,
+        "summary": [
+          {
+            "evaluation_id": "nominal_primary_speed0.3",
+            "speed_m_s": 0.3,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1494,
+              "falls": 34,
+              "stalls": 8,
+              "lateral_escapes": 0,
+              "base_contact_envs": 33,
+              "current_sample_base_contact_envs": 32,
+              "unique_noncompletions": 42
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.6399972438812256
+          },
+          {
+            "evaluation_id": "legacy_calf_primary_speed0.3",
+            "speed_m_s": 0.3,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1490,
+              "falls": 36,
+              "stalls": 9,
+              "lateral_escapes": 1,
+              "base_contact_envs": 36,
+              "current_sample_base_contact_envs": 34,
+              "unique_noncompletions": 46
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.619997262954712
+          },
+          {
+            "evaluation_id": "nominal_primary_speed0.5",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1511,
+              "falls": 3,
+              "stalls": 0,
+              "lateral_escapes": 22,
+              "base_contact_envs": 3,
+              "current_sample_base_contact_envs": 0,
+              "unique_noncompletions": 25
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 0.3199999928474426
+          },
+          {
+            "evaluation_id": "legacy_calf_primary_speed0.5",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1507,
+              "falls": 2,
+              "stalls": 0,
+              "lateral_escapes": 27,
+              "base_contact_envs": 0,
+              "current_sample_base_contact_envs": 0,
+              "unique_noncompletions": 29
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 0.3400000035762787
+          }
+        ]
+      }
+    },
+    {
+      "label": "rebuild-geometry",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-stair-diagnostics.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs",
+        "--kind",
+        "geometry"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:41.909752+08:00",
+      "elapsed_seconds": 1.482104877999518,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-geometry.log",
+      "stdout_stderr_sha256": "e806caaaddd897c7ac824e548f8a050fbb22b3a7d7d8dfdd6f3f41d5fdb2e560",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "kind": "geometry",
+        "evaluations": 2,
+        "pending": 0,
+        "csv_rows": 108,
+        "summary": [
+          {
+            "evaluation_id": "height_depth_probe_03",
+            "speed_m_s": 0.3,
+            "counts": {
+              "num_envs": 1728,
+              "completions": 1656,
+              "falls": 47,
+              "stalls": 25,
+              "lateral_escapes": 0,
+              "base_contact_envs": 36,
+              "current_sample_base_contact_envs": 33,
+              "unique_noncompletions": 72
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.6399972438812256
+          },
+          {
+            "evaluation_id": "height_depth_probe_05",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1728,
+              "completions": 1725,
+              "falls": 2,
+              "stalls": 1,
+              "lateral_escapes": 0,
+              "base_contact_envs": 0,
+              "current_sample_base_contact_envs": 0,
+              "unique_noncompletions": 3
+            },
+            "final_traversal_passed": true,
+            "maximum_pause_s": 3.7199971675872803
+          }
+        ]
+      }
+    },
+    {
+      "label": "rebuild-dynamics05",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-stair-diagnostics.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs",
+        "--kind",
+        "dynamics05"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:42.135987+08:00",
+      "elapsed_seconds": 2.2688812330015935,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-dynamics05.log",
+      "stdout_stderr_sha256": "70d4bdf43fdb2d4367c5eab31a810646bd18ba184263a3867347d473e8a6a6cf",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "kind": "dynamics05",
+        "evaluations": 3,
+        "pending": 0,
+        "csv_rows": 144,
+        "summary": [
+          {
+            "evaluation_id": "dynamics_seed71_primary_speed0.5",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1501,
+              "falls": 8,
+              "stalls": 2,
+              "lateral_escapes": 26,
+              "base_contact_envs": 4,
+              "current_sample_base_contact_envs": 3,
+              "unique_noncompletions": 35
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.49999737739563
+          },
+          {
+            "evaluation_id": "dynamics_seed73_primary_speed0.5",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1486,
+              "falls": 14,
+              "stalls": 8,
+              "lateral_escapes": 28,
+              "base_contact_envs": 6,
+              "current_sample_base_contact_envs": 3,
+              "unique_noncompletions": 50
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.9399969577789307
+          },
+          {
+            "evaluation_id": "dynamics_seed79_primary_speed0.5",
+            "speed_m_s": 0.5,
+            "counts": {
+              "num_envs": 1536,
+              "completions": 1492,
+              "falls": 18,
+              "stalls": 7,
+              "lateral_escapes": 19,
+              "base_contact_envs": 9,
+              "current_sample_base_contact_envs": 8,
+              "unique_noncompletions": 44
+            },
+            "final_traversal_passed": false,
+            "maximum_pause_s": 3.7799971103668213
+          }
+        ]
+      }
+    },
+    {
+      "label": "rebuild-main-heading",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/summarize-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--run-log-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/restored-launchlogs"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:44.440419+08:00",
+      "elapsed_seconds": 13.75678081499791,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/rebuild-main-heading.log",
+      "stdout_stderr_sha256": "887042f4e46e5f21ade30467c398dc6a93a542d3b21aa30d98d9d3b5d43cdfa0",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "stair_evaluations": 12,
+        "pending": 0,
+        "csv_seed_rows": 552,
+        "case_rows": 184,
+        "hash_checks": 33,
+        "paired_comparisons": 5,
+        "compressed_json_bytes": 700515,
+        "flat": "complete",
+        "scientific_acceptance": "FAIL",
+        "all_primary_stair_scenes_passed": false,
+        "original_suite_gate_failed_from_available_results": true
+      }
+    },
+    {
+      "label": "validate-original",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:58.197588+08:00",
+      "elapsed_seconds": 6.984699961001752,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-original.log",
+      "stdout_stderr_sha256": "5106db91b133318976bdb6196293c67cd748eed8baf80bca3c151f5d719fcb31",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 12,
+        "csv_seed_rows": 552,
+        "independent_cross_checks": 6200,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    },
+    {
+      "label": "validate-material05",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--supplement"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:58.198549+08:00",
+      "elapsed_seconds": 1.3729201780006406,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-material05.log",
+      "stdout_stderr_sha256": "78539d60634e1cf9fee5f2f175bdab6da770bd66452ddc50d4d1791a4273c231",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 3,
+        "csv_seed_rows": 144,
+        "independent_cross_checks": 1620,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    },
+    {
+      "label": "validate-speed",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--diagnostic",
+        "speed"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:58.199230+08:00",
+      "elapsed_seconds": 1.025580417997844,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-speed.log",
+      "stdout_stderr_sha256": "f73cd2fdb8d8998facb875050c5cc0c58263406aad8c2c24df7ffdaf5a371842",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 5,
+        "csv_seed_rows": 90,
+        "independent_cross_checks": 1070,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    },
+    {
+      "label": "validate-calf",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--diagnostic",
+        "calf"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:59.230156+08:00",
+      "elapsed_seconds": 2.148726046001684,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-calf.log",
+      "stdout_stderr_sha256": "92c53ecd215286357ea03b14c39dac5c98ce34b14b74ab0dcc97574e6401878c",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 4,
+        "csv_seed_rows": 192,
+        "independent_cross_checks": 2160,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    },
+    {
+      "label": "validate-geometry",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--diagnostic",
+        "geometry"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:06:59.571587+08:00",
+      "elapsed_seconds": 1.0686009529999865,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-geometry.log",
+      "stdout_stderr_sha256": "8c805df59fc2c7117f415103c29b3b4894b52133f8d8678e693b94c3dba2d2a0",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 2,
+        "csv_seed_rows": 108,
+        "independent_cross_checks": 1196,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    },
+    {
+      "label": "validate-dynamics05",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check/reproduction/validate-frozen-stair-validation.py",
+        "--repo-root",
+        "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+        "--diagnostic",
+        "dynamics05"
+      ],
+      "cwd": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check",
+      "started_local": "2026-10-11T07:07:00.640313+08:00",
+      "elapsed_seconds": 1.362965971999074,
+      "exit_code": 0,
+      "stdout_stderr": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/validate-dynamics05.log",
+      "stdout_stderr_sha256": "78539d60634e1cf9fee5f2f175bdab6da770bd66452ddc50d4d1791a4273c231",
+      "guard_enabled": true,
+      "summary": {
+        "status": "complete",
+        "evaluations": 3,
+        "csv_seed_rows": 144,
+        "independent_cross_checks": 1620,
+        "gzip_lossless": true,
+        "frozen_hash_checks": 33,
+        "pending": 0
+      }
+    }
+  ],
+  "all_final_command_returncodes_zero": true,
+  "independent_cross_checks": 13866,
+  "validation_summaries": {
+    "validate-original": {
+      "status": "complete",
+      "evaluations": 12,
+      "csv_seed_rows": 552,
+      "independent_cross_checks": 6200,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    },
+    "validate-material05": {
+      "status": "complete",
+      "evaluations": 3,
+      "csv_seed_rows": 144,
+      "independent_cross_checks": 1620,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    },
+    "validate-speed": {
+      "status": "complete",
+      "evaluations": 5,
+      "csv_seed_rows": 90,
+      "independent_cross_checks": 1070,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    },
+    "validate-calf": {
+      "status": "complete",
+      "evaluations": 4,
+      "csv_seed_rows": 192,
+      "independent_cross_checks": 2160,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    },
+    "validate-geometry": {
+      "status": "complete",
+      "evaluations": 2,
+      "csv_seed_rows": 108,
+      "independent_cross_checks": 1196,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    },
+    "validate-dynamics05": {
+      "status": "complete",
+      "evaluations": 3,
+      "csv_seed_rows": 144,
+      "independent_cross_checks": 1620,
+      "gzip_lossless": true,
+      "frozen_hash_checks": 33,
+      "pending": 0
+    }
+  },
+  "main_summary": {
+    "status": "complete",
+    "stair_evaluations": 12,
+    "pending": 0,
+    "csv_seed_rows": 552,
+    "case_rows": 184,
+    "hash_checks": 33,
+    "paired_comparisons": 5,
+    "compressed_json_bytes": 700515,
+    "flat": "complete",
+    "scientific_acceptance": "FAIL",
+    "all_primary_stair_scenes_passed": false,
+    "original_suite_gate_failed_from_available_results": true
+  },
+  "report_comparisons": [
+    {
+      "report": "stair-frozen-final-validation",
+      "csv_seed_rows": 552,
+      "csv_columns": 44,
+      "csv_sha256": "b1bbd9e3b8cdb6688863c9f1bf784d5937f81b9ed74cbf90fc35a0b336da9a31",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": "FAIL"
+    },
+    {
+      "report": "stair-policy-frozen-flat-regression",
+      "csv_seed_rows": 12,
+      "csv_columns": 30,
+      "csv_sha256": "9dab031d22fb23d504e3c28bba60cd4143948d9634c4b800cd183eff78319a28",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "failed",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-heading-dependence",
+      "csv_seed_rows": 72,
+      "csv_columns": 44,
+      "csv_sha256": "7e03575bfcebccf12264bda84e6b550484bbc713cd8bd3c470f8948dfe47743f",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-material-speed05",
+      "csv_seed_rows": 144,
+      "csv_columns": 44,
+      "csv_sha256": "e428d4d7431ebabfbb1f6a834038c5973ba5d1fce5e8e8ce931cff92eaab9d21",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-speed-probe",
+      "csv_seed_rows": 90,
+      "csv_columns": 44,
+      "csv_sha256": "e4b5ab46fc93fe2bbaeb15192b200a6da287c18b4d12cc6fa0463b142baba04c",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-calf-sensitivity",
+      "csv_seed_rows": 192,
+      "csv_columns": 44,
+      "csv_sha256": "ef6ac6b8e0d6cb67c3c1aedbc1ebbb50b5c625a0ef468ce779d1bac62da122cb",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-height-depth-probe",
+      "csv_seed_rows": 108,
+      "csv_columns": 44,
+      "csv_sha256": "2a1a1b0cd2f4d73a8fe33f0e27314072e7dbfc0d8661912f4efb3f300aac38cc",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    },
+    {
+      "report": "stair-frozen-dynamics-speed05",
+      "csv_seed_rows": 144,
+      "csv_columns": 44,
+      "csv_sha256": "ea7bec104b3fe72c4a9e61e7d6f0cc39f2e6c871bac4b16100940fd52608805f",
+      "csv_byte_equal_to_git13fa5b9": true,
+      "status": "complete",
+      "normalized_json_equal_to_git13fa5b9": true,
+      "normalized_json_differences": [],
+      "scientific_acceptance": null
+    }
+  ],
+  "all_eight_csv_byte_identical_to_git13fa5b9": true,
+  "all_eight_json_equal_after_path_time_normalization": true,
+  "comparison_normalization": "Ignore generated_local only; map original/restored repo and launch roots to shared tokens. All data, numeric gates, physical readbacks, hashes and stored source configurations compared.",
+  "comparison_baseline": "Generated report members from source-13fa5b9.tar; did not read the original checkout for this comparison.",
+  "initial_guard_attempt_preserved": {
+    "status": "negative_control_failed_before_any_rebuild",
+    "exit_code": 1,
+    "helper_sha256": "2875d413b4a0a060ecbb6e55840225e4348e928b542a7fceb1e3c3b1c0d429c5",
+    "evidence": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit/guard-negative-controls.log",
+    "reason": "importlib.import_module on a missing torch did not raise the audit import event; changed the negative control to built-in __import__ without importing torch. Original file read denial succeeded; no reports were written."
+  },
+  "evidence_files": [
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check-source-provenance.json",
+      "sha256": "56ffec77ec3fa381bacd5c95a4038cf7ff7f8b40d6f028b55710f95280ff385b"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check-extraction-verification.json",
+      "sha256": "6beab6bbe0d858ec2c328352f0a646fb79ff224836295265345f926922d20ecb"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check-frozen-hash-verification.json",
+      "sha256": "5d6782960c6da0c52647f345d79820ef3cc5cb9b850bd40db04e52291cdb6760"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/restore-check-report-comparison.json",
+      "sha256": "25ada696487ecbecd29bcf3d6ad0dba97e3ad9e586f678867887aea031c4b705"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/command-results.json",
+      "sha256": "9480a5d6bff8c1c161a113da6388e57bad30dc1d1dbc179bf5d81c6be7439f3c"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit-complete/guard/sitecustomize.py",
+      "sha256": "dcb9d4c626bffcca0c5c40ba5628935ce2025f7dd1e39b2266ed7213731c91bb"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-audit/initial-negative-control-result.json",
+      "sha256": "5eb5df101c821af635d4d7142a07ab2ebfcbce1329ff2b4bc4ad33274c7ce8cb"
+    },
+    {
+      "path": "/home/cone/robotics/archives/himloco-overnight-20261011/offline-restore-helper-overlap-preflight-check.json",
+      "sha256": "50dbae0b31caf10b5018abbc8c66f92f40dceea6a8ea3b70c7d5f684a4a215a4"
+    }
+  ],
+  "portability_limits": [
+    "Actual result/config/physics/domain reads are discovered from --repo-root; runtime and checkpoint freeze files are repository-relative. Independent motion source_paths are repository-relative and survived relocation.",
+    "Explicit --run-log-root is required for this relocation; omitting it defaults to the original HOME robotics launch directory. Rebuilt execution/master/OOM provenance paths are absolute paths to the restored launch directory and must be redirected on another host.",
+    "Archived config snapshots retain original /workspace and local source/checkpoint/asset strings as historical provenance. They were not dereferenced: guarded rebuilds reject original checkout or original launch-log file reads.",
+    "Both archives plus the exact Git source/artifacts are required. This verifies eight CPU numeric report sets, not all historical tuning report generators, videos, frames, simulator installation or checkpoint training.",
+    "Ignored videos and multi-gigabyte stdout/Kit/TensorBoard logs were not restored. The first OOM stdout is small and explicitly included to preserve the failure and retry record.",
+    "Normalized JSON comparison removes generated_local and relocates only repo/run-log root strings; it preserves every numeric field, outcome, physical readback, source hash and saved configuration. CSV equality requires no normalization.",
+    "The first guard negative-control attempt failed before any rebuild because importlib.import_module of absent torch skipped the audit import event. Its evidence is retained; the corrected built-in import negative control passes without importing torch.",
+    "Original source data, original archive/manifest, current reports, runtime, models, Git state and drivers were not modified by this task. Only new supplemental archive/manifest, new helper/report and separate restored/evidence directories were created."
+  ]
+}
