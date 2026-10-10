@@ -1,0 +1,20 @@
+{
+  "status": "diagnostic_protocol_recorded_before_collection",
+  "scope": "Selected known failing environments, rerun for dense telemetry and visual evidence; not independent policy selection",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "runtime": "Original frozen runtime Python and acceptance hashes remain unchanged",
+  "num_envs": 512,
+  "geometry": "reproduction/stair-heldout-final.json",
+  "seconds": 40,
+  "video_frames_max": 2000,
+  "trace_stride_policy_steps": 1,
+  "construction_seed": 1,
+  "cases": [
+    {"name": "frozen-failure-long12-desc-video", "environment_id": 416, "case_index": 13, "reset_seed": 211, "speed_m_s": 0.5, "domain_profile": "none", "prior_failure": "lateral escape"},
+    {"name": "frozen-failure-stretch-desc-video", "environment_id": 481, "case_index": 15, "reset_seed": 101, "speed_m_s": 0.3, "domain_profile": "none", "prior_failure": "fall"},
+    {"name": "frozen-failure-highfriction-lip-asc-video", "environment_id": 329, "case_index": 10, "reset_seed": 101, "speed_m_s": 0.3, "domain_profile": "basic", "foot_static_dynamic": [1.0, 0.8], "prior_failure": "stall"}
+  ],
+  "selection_limit": "Rendering/dense sampling reruns may not be trajectory identical on GPU; compare saved results before interpreting the selected environment",
+  "terminal_limit": "Failed episodes may already be reset at the terminal rendered frame. Any prefailure clip excludes the terminal frame and an additional frame, and cannot show the exact terminal physical state. Never label it a successful complete episode."
+}
