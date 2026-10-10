@@ -1,0 +1,170 @@
+{
+  "status": "frozen_files_and_policy_exports_passed",
+  "frozen_local": "2026-10-11T05:47:03.427901+08:00",
+  "source_commit_before_freeze": "81b1e88f02df38afe4cfc91508d2c2291bf60f0d",
+  "plan_sha256": "fd27265a2d714662a3d03404903537cf6abec3c13ae2f65f21b7edf38b5391ae",
+  "plan_files": {
+    "artifacts/go2-stairs-control660/model_660.pt": {
+      "sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+      "matches_frozen_plan": true,
+      "bytes": 6566347
+    },
+    "artifacts/go2-stairs-slide680/model_680.pt": {
+      "sha256": "bcbb5a2db6d034a798d26b0dddc6541f22e6cd0e59f88f8a6fa5ebed7401df75",
+      "matches_frozen_plan": true,
+      "bytes": 6566347
+    },
+    "reproduction/stair-acceptance.json": {
+      "sha256": "a435a41bb99717824c5c6692d97851de02c1781abfcdd50ccc610d3463c31b52",
+      "matches_frozen_plan": true,
+      "bytes": 1320
+    },
+    "reproduction/stair-heldout-final.json": {
+      "sha256": "5fa2fc3b1bb58f2fb94f1f980e26a910d75f8b2c3037999c41369e5d706541c0",
+      "matches_frozen_plan": true,
+      "bytes": 1567
+    },
+    "reproduction/stair-validation-core-standard.json": {
+      "sha256": "b568ebff9b30c3ee4924e2045fbee1ddef3229f6663b3110f4210031479bd43a",
+      "matches_frozen_plan": true,
+      "bytes": 1057
+    }
+  },
+  "runtime_source_files_count": 28,
+  "all_runtime_source_hashes_match": true,
+  "artifact_manifest_files": {
+    "artifacts/go2-stairs-control660": {
+      "manifest_profile": "contact",
+      "files": {
+        "policy.pt": {
+          "sha256": "eb402ea68b2c7cc7b0c2426f6e5b6b30f6583aa1518f3adae16e116ce1e2ce76",
+          "bytes": 992060,
+          "matches_artifact_manifest": true
+        },
+        "training-config.json": {
+          "sha256": "a2a06417fb56e06260239c78f50ac75a099b0aab94ccb7f9969d2dc5d50f5a0e",
+          "bytes": 18922,
+          "matches_artifact_manifest": true
+        },
+        "model_660.pt": {
+          "sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+          "bytes": 6566347,
+          "matches_artifact_manifest": true
+        },
+        "operator-stop.json": {
+          "sha256": "2949cf07e84f3354b52a330ddabe9557e7b6a4a5b8bdda8568f6c1facc3ab0a5",
+          "bytes": 1116,
+          "matches_artifact_manifest": true
+        }
+      }
+    },
+    "artifacts/go2-stairs-slide680": {
+      "manifest_profile": "contact_slide",
+      "files": {
+        "training-result.json": {
+          "sha256": "c6faf96125ea98bbed465dd1276602b4f8e4b30bcb910a8767c679145c19f502",
+          "bytes": 440,
+          "matches_artifact_manifest": true
+        },
+        "policy.pt": {
+          "sha256": "1cd256683e4650ea4b2e53bfa1b9fa1b03fe78ae47f5de2fa5da02c56b9eb7cf",
+          "bytes": 992060,
+          "matches_artifact_manifest": true
+        },
+        "training-config.json": {
+          "sha256": "800dd20e5aed6ee9c2ce522b3d920bfd142fe4e8df3e21ce78a5ee9331c22f7f",
+          "bytes": 21041,
+          "matches_artifact_manifest": true
+        },
+        "model_680.pt": {
+          "sha256": "bcbb5a2db6d034a798d26b0dddc6541f22e6cd0e59f88f8a6fa5ebed7401df75",
+          "bytes": 6566347,
+          "matches_artifact_manifest": true
+        }
+      }
+    }
+  },
+  "scope": "CPU read-only artifact/protocol verification; no final result or video certification",
+  "torchscript_cpu_sync": {
+    "primary": {
+      "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+      "checkpoint_update": 660,
+      "actor_him_std_checkpoint_tensors": 22,
+      "torchscript_inference_tensors": 14,
+      "all_exported_tensors_bit_identical_to_checkpoint": true,
+      "export_to_checkpoint_key_mapping": {
+        "encoder.0.weight": "estimator.encoder.0.weight",
+        "encoder.0.bias": "estimator.encoder.0.bias",
+        "encoder.2.weight": "estimator.encoder.2.weight",
+        "encoder.2.bias": "estimator.encoder.2.bias",
+        "encoder.4.weight": "estimator.encoder.4.weight",
+        "encoder.4.bias": "estimator.encoder.4.bias",
+        "actor.0.weight": "actor.0.weight",
+        "actor.0.bias": "actor.0.bias",
+        "actor.2.weight": "actor.2.weight",
+        "actor.2.bias": "actor.2.bias",
+        "actor.4.weight": "actor.4.weight",
+        "actor.4.bias": "actor.4.bias",
+        "actor.6.weight": "actor.6.weight",
+        "actor.6.bias": "actor.6.bias"
+      },
+      "training_only_tensors_omitted_from_export": [
+        "std",
+        "estimator.target.0.weight",
+        "estimator.target.0.bias",
+        "estimator.target.2.weight",
+        "estimator.target.2.bias",
+        "estimator.target.4.weight",
+        "estimator.target.4.bias",
+        "estimator.proto.weight"
+      ],
+      "inference_observation_rows": 52,
+      "inference_history_width": 270,
+      "max_abs_action_difference_cpu": 0.0,
+      "actions_match_atol": 1e-05,
+      "actions_match_rtol": 1e-05,
+      "weights_unchanged_after_inference": true,
+      "cuda_available": false
+    },
+    "secondary": {
+      "checkpoint": "artifacts/go2-stairs-slide680/model_680.pt",
+      "checkpoint_update": 680,
+      "actor_him_std_checkpoint_tensors": 22,
+      "torchscript_inference_tensors": 14,
+      "all_exported_tensors_bit_identical_to_checkpoint": true,
+      "export_to_checkpoint_key_mapping": {
+        "encoder.0.weight": "estimator.encoder.0.weight",
+        "encoder.0.bias": "estimator.encoder.0.bias",
+        "encoder.2.weight": "estimator.encoder.2.weight",
+        "encoder.2.bias": "estimator.encoder.2.bias",
+        "encoder.4.weight": "estimator.encoder.4.weight",
+        "encoder.4.bias": "estimator.encoder.4.bias",
+        "actor.0.weight": "actor.0.weight",
+        "actor.0.bias": "actor.0.bias",
+        "actor.2.weight": "actor.2.weight",
+        "actor.2.bias": "actor.2.bias",
+        "actor.4.weight": "actor.4.weight",
+        "actor.4.bias": "actor.4.bias",
+        "actor.6.weight": "actor.6.weight",
+        "actor.6.bias": "actor.6.bias"
+      },
+      "training_only_tensors_omitted_from_export": [
+        "std",
+        "estimator.target.0.weight",
+        "estimator.target.0.bias",
+        "estimator.target.2.weight",
+        "estimator.target.2.bias",
+        "estimator.target.4.weight",
+        "estimator.target.4.bias",
+        "estimator.proto.weight"
+      ],
+      "inference_observation_rows": 52,
+      "inference_history_width": 270,
+      "max_abs_action_difference_cpu": 0.0,
+      "actions_match_atol": 1e-05,
+      "actions_match_rtol": 1e-05,
+      "weights_unchanged_after_inference": true,
+      "cuda_available": false
+    }
+  }
+}

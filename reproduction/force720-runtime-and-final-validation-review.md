@@ -220,6 +220,25 @@ construction seeds run last. Each launch prints start/end wall-clock times,
 elapsed time to milliseconds and process exit status. No automatic skipping
 or budget-based stopping is added.
 
+The plan may also freeze `secondary_checkpoint`, `secondary_checkpoint_sha256`
+and `secondary_reward_profile`; these optional fields must be populated
+together. Each preflight checks the secondary hash and locks its initial path
+and profile. Only the first two nominal-speed launches append
+`--candidate_checkpoint`; material, heading, flat and dynamics scenes use the
+primary policy. CPU shadow-argv checks verified all 11 calls, the absence of
+secondary arguments on the remaining nine, optional omission, five malformed
+secondary plans, and rejection of mid-run secondary file/profile changes.
+
+`run.py` loads the secondary model into the same nominal scene without
+learning. The primary scene's reward profile remains installed; it does not
+alter actor inputs, dynamics or traversal gates, and evaluation checks rewards
+only for finiteness. The candidate result's checkpoint must be mapped to the
+frozen plan's secondary profile and hash because its scene metadata describes
+the primary reward configuration. This comparison evaluates policy behavior,
+not the secondary training reward return. Verify saved geometry and initial
+reset rows after the actual paired runs. The secondary scope is limited to
+the two nominal speeds.
+
 CPU-only temporary repository fixtures verified all 11 actual expanded CLI
 calls: eight final-matrix scenes (including three construction seeds for
 combined dynamics), two paired heading scenes, and one flat scene. Eight
