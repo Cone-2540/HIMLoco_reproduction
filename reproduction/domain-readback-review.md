@@ -120,6 +120,21 @@ tensors during capture. It does not construct a simulator or touch GPU work.
 All 9 CPU tests passed (6 existing configuration tests and 3 readback tests).
 Actual GPU readback evidence must come from the separate smoke result files.
 
+The first live PhysX readback was independently inspected from
+`isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress/`
+after its single reset-seed 29 evaluation finished. Initial and final parameter
+reports are exactly equal, as expected with evaluation dynamics disabled.
+All live current fields were available and finite. Across its 128 environments,
+base mass is 6.92100048 kg, actuator kp/kd are exactly 25/0.5, and the asset's
+local COM position is `[0.021111997, 0, -0.005366]` m. The four feet are public
+and backend bodies 15–18, mapped to collision shapes 23–26. Their actual material
+is `[static 0.8, dynamic 0.6, restitution 0]` on every selected shape, and every
+triple belongs to the cached bucket pool. Original mass/COM event baselines are
+explicitly unavailable because this evaluation removes those events. These are
+expected absences, rather than failed actual reads. This validates the helper
+against the live PhysX APIs for profile `none`; basic/robust randomization still
+needs the separate smoke checks.
+
 ## Late PPO KL observation and isolation experiment
 
 In `stairs-bootstrap-discovery120`, final update 119 has mean KL 0.07115058,
