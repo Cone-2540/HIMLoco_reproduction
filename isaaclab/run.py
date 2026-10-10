@@ -296,6 +296,8 @@ def main():
                 "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
     metadata.update({"exploration_std_override": args.reset_noise_std,
                      "resume_learning_rate_override": args.resume_learning_rate,
+                     "requested_additional_training_updates": args.max_iterations if args.mode == "train" else None,
+                     "terrain_start_level": args.start_level if args.terrain == "stairs" else None,
                      "stair_training_speed_range_m_s": list(args.stair_speed_range)})
     metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
                      "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
@@ -356,6 +358,18 @@ def main():
         if args.reset_noise_std is not None:
             with torch.no_grad():
                 runner.alg.actor_critic.std.fill_(args.reset_noise_std)
+        if args.mode == "train":
+            metadata["runtime_training_state_before_learning"] = {
+                "completed_updates": runner.current_learning_iteration,
+                "ppo_learning_rate": runner.alg.learning_rate,
+                "ppo_adam_group_rates": [group["lr"] for group in runner.alg.optimizer.param_groups],
+                "him_learning_rate": runner.alg.actor_critic.estimator.learning_rate,
+                "him_adam_group_rates": [group["lr"] for group in runner.alg.actor_critic.estimator.optimizer.param_groups],
+                "exploration_std_min": float(runner.alg.actor_critic.std.min()),
+                "exploration_std_max": float(runner.alg.actor_critic.std.max()),
+                "optimizer_state": "fresh" if args.warm_start or not args.checkpoint else "checkpoint Adam retained",
+            }
+            (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         diagnostic = {"root_pos_w": robot.data.root_pos_w.torch[:4].tolist(),
                       "root_quat_w_xyzw": robot.data.root_quat_w.torch[:4].tolist(),
                       "projected_gravity_b": robot.data.projected_gravity_b.torch[:4].tolist(),
