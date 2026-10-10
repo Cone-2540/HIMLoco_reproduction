@@ -163,3 +163,5 @@ bash isaaclab/run.sh train --terrain stairs --stair_stage hard --reward_profile 
 完整数值重建还需要同目录的 `supplemental-readbacks-and-protocol.tar.gz`：238 个物理／动力学读回、终止记录和协议／小型启动日志，约 338 KiB，见 [补充归档清单](overnight-supplemental-readbacks-archive-manifest.json)。原数据归档单独不足以重建全部报告。
 
 [独立离线恢复核查](overnight-offline-restore-check.md) 从精确 Git `13fa5b9` 和两份归档恢复源码／权重及 465 个数据成员，在禁止读取原仓库／原日志、禁止导入模拟器与 Torch 的条件下，重建八组报告并运行六组 CPU 验证器。13,866 项检查通过，八个 CSV 与 Git 原报告逐字节一致，八个 JSON 仅归一化生成时间／工作路径后全字段一致。它证明数值归档可恢复，不代表重新训练、重新仿真或科学验收通过；原 FAIL、平地退化和流畅性未证成均保留。恢复副本、访问保护与命令日志也留在该共享归档目录。
+
+[中文恢复指南](overnight-restore-guide_zh.md) 提供从精确 Git 与两份归档重建到全新目录的命令，以及七段 MP4 的可选单独复制方法。权重在 Git 中；视频和大型数据包仍需从本机共享目录保存。

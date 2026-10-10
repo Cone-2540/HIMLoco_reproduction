@@ -16,7 +16,7 @@ bash isaaclab/run.sh evaluate --terrain stairs --reward_profile contact --viz no
   --eval_seed 11 --eval_seed 29 --eval_seed 47 --run_name control660-archived-check
 ```
 
-要复查对照，将 checkpoint 改为 `artifacts/go2-stairs-slide680/model_680.pt`，profile 改为 `contact_slide`。独立测试的冻结方案、代码与测试哈希保存在 [stair-final-evaluation-plan.json](../reproduction/stair-final-evaluation-plan.json)；完成结果会独立记录，不以训练 `smoke_passed` 替代通关判定。
+要复查对照，将 checkpoint 改为 `artifacts/go2-stairs-slide680/model_680.pt`，profile 改为 `contact_slide`。独立测试的冻结方案、代码与测试哈希保存在 [stair-final-evaluation-plan.json](../reproduction/stair-final-evaluation-plan.json)；完成结果已独立记录在 [最终验收](../reproduction/stair-frozen-final-validation.md)，不以训练 `smoke_passed` 替代通关判定。模型旁 manifest 保留验收前的历史快照，其中 pending 字段不描述当前完成状态。
 
 `go2-stairs-standard370` 保存完整训练 checkpoint、CPU TorchScript 策略、训练配置、训练结果及 SHA256 清单。它是本次夜间实验的标准楼梯对照模型，后续更难课程不会覆盖它。
 

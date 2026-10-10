@@ -6,6 +6,8 @@
 
 [离线结果查看器](reproduction/stair-results-viewer.html) 提供可点击矩阵和七段本机录像；[下一阶段计划](reproduction/stair-next-stage-plan_zh.md) 记录全向平地、入口／长梯、动力学与运动质量的控制实验。
 
+[中文恢复指南](reproduction/overnight-restore-guide_zh.md) 说明如何从 Git 和两份共享数据归档重建冻结数值报告。独立恢复核查已通过，原策略的科学验收仍为 FAIL。
+
 2026-10-10 已下载并安装原仓库的软件栈，完成 **CPU 平地 Go2 仿真、HIM/PPO 训练、模型导出和回放**。GPU 路线与复杂地形目前未通过；不能据此声称复现了论文中的敏捷越障性能。
 
 ## 环境与位置
