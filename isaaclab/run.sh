@@ -25,10 +25,17 @@ done
 compose=(docker compose -f "$LAB_ROOT/compose.yaml" -f "$BASE/compose.override.yaml")
 "${compose[@]}" up -d
 extra_args=()
+source_commit=$(git -C "$HIM_REPO_ROOT" rev-parse HEAD)
+source_dirty=0
+if [[ -n $(git -C "$HIM_REPO_ROOT" status --porcelain --untracked-files=no) ]]; then
+  source_dirty=1
+fi
 for arg in "${args[@]}"; do
   if [[ $arg == --video ]]; then
     extra_args=(-e PYTHONPATH=/workspace/isaaclab/data_storage/python-extras/video)
   fi
 done
-exec "${compose[@]}" exec -T "${extra_args[@]}" -w /workspace/himloco/isaaclab lab \
+exec "${compose[@]}" exec -T "${extra_args[@]}" \
+  -e HIM_SOURCE_COMMIT="$source_commit" -e HIM_SOURCE_DIRTY="$source_dirty" \
+  -w /workspace/himloco/isaaclab lab \
   /isaac-sim/python.sh -u /workspace/himloco/isaaclab/run.py "${args[@]}"

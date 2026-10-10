@@ -265,6 +265,8 @@ def main():
     config["algorithm"]["entropy_coef"] = args.entropy_coef
     config["runner"]["save_interval"] = args.save_interval
     metadata = {"task": task, "seed": args.seed, "num_envs": args.num_envs, "train": config,
+                "source_commit": os.environ.get("HIM_SOURCE_COMMIT"),
+                "source_tracked_files_dirty": os.environ.get("HIM_SOURCE_DIRTY") == "1",
                 "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
                 "physics": "isaacsim_physx", "torch": torch.__version__, "cuda": torch.version.cuda,
                 "gpu": torch.cuda.get_device_name(), "gpu_capability": torch.cuda.get_device_capability(),
