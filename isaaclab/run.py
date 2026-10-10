@@ -112,6 +112,8 @@ def main():
     parser.add_argument("--domain_profile", choices=["none", "basic", "robust"], default="none")
     parser.add_argument("--conservative_calf", action="store_true")
     parser.add_argument("--checkpoint", type=Path)
+    parser.add_argument("--candidate_checkpoint", type=Path, action="append",
+                        help="Evaluate extra checkpoints in the same frozen scene; no automatic selection.")
     parser.add_argument("--warm_start", choices=["reset", "expand"],
                         help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
     parser.add_argument("--learning_rate", type=float, default=1e-3)
@@ -131,6 +133,8 @@ def main():
                         help="After results are saved, exit if Isaac Sim teardown hangs; 0 disables.")
     add_launcher_args(parser)
     args = parser.parse_args()
+    if args.candidate_checkpoint and args.mode != "evaluate":
+        parser.error("--candidate_checkpoint requires evaluate mode")
     args.physics = "isaacsim_physx"
     args.device = "cuda:0"
     if not 0 <= args.turn_fraction <= 1:
@@ -313,18 +317,37 @@ def main():
             (log_dir / "result.json").write_text(json.dumps({"status": "smoke_passed", "scope": "CUDA training and export; locomotion requires separate evaluation", "iterations": args.max_iterations, "completed_iterations": runner.current_learning_iteration, "num_envs": args.num_envs, "environment_steps_this_run": args.max_iterations * args.steps_per_env * args.num_envs, "training_seconds": time.monotonic() - started, "parameters_finite": True, "checkpoint": f"model_{runner.current_learning_iteration}.pt", "export": "policy.pt", "export_max_abs_error": export_error, "peak_cuda_memory_bytes": torch.cuda.max_memory_allocated()}, indent=2))
         elif args.mode == "evaluate":
             policy = runner.get_inference_policy(device=args.device)
-            if args.terrain == "stairs":
-                from stair_evaluation import evaluate_stair_suite, assess_final
-                result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
-                                             seconds=args.eval_seconds, speed=args.speed,
-                                             seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
-                                             progress=lambda metrics: print(json.dumps(metrics), flush=True))
-                result["final_acceptance"] = assess_final(result)
-            else:
-                from evaluation import evaluate_suite
-                options = {"commands": args.command} if args.command else {}
-                result = evaluate_suite(wrapped, policy, seconds=args.eval_seconds, seed=args.seed,
-                                        progress=lambda metrics: print(json.dumps(metrics), flush=True), **options)
+            def evaluate_current():
+                if args.terrain == "stairs":
+                    from stair_evaluation import evaluate_stair_suite, assess_final
+                    result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
+                                                 seconds=args.eval_seconds, speed=args.speed,
+                                                 seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
+                                                 progress=lambda metrics: print(json.dumps(metrics), flush=True))
+                    result["final_acceptance"] = assess_final(result)
+                else:
+                    from evaluation import evaluate_suite
+                    options = {"commands": args.command} if args.command else {}
+                    result = evaluate_suite(wrapped, policy, seconds=args.eval_seconds, seed=args.seed,
+                                            progress=lambda metrics: print(json.dumps(metrics), flush=True), **options)
+                return result
+            result = evaluate_current()
+            if args.candidate_checkpoint:
+                result["checkpoint"] = str(args.checkpoint)
+                (log_dir / "primary-result.json").write_text(json.dumps(result, indent=2))
+                candidates = []
+                for index, candidate in enumerate(args.candidate_checkpoint):
+                    runner.load(str(candidate), load_optimizer=False)
+                    candidate_dir = log_dir / "candidates" / (str(index) + "_" + candidate.stem)
+                    candidate_dir.mkdir(parents=True)
+                    error = export_and_verify(runner.alg.actor_critic, wrapped.get_observations(), candidate_dir)
+                    candidate_result = evaluate_current()
+                    candidate_result.update({"checkpoint": str(candidate), "export_max_abs_error": error})
+                    (candidate_dir / "result.json").write_text(json.dumps(candidate_result, indent=2))
+                    candidates.append({"checkpoint": str(candidate), "result_directory": str(candidate_dir),
+                                       "passed": candidate_result["passed"],
+                                       "final_acceptance": candidate_result.get("final_acceptance")})
+                result["additional_candidates"] = candidates
             result["export_max_abs_error"] = export_error
             (log_dir / "result.json").write_text(json.dumps(result, indent=2))
             print(json.dumps(result, indent=2), flush=True)

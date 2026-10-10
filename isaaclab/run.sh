@@ -12,7 +12,7 @@ fi
 # Accept checkpoint paths in the host checkout, even from another cwd.
 args=("$@")
 for ((i=0; i<${#args[@]}; i++)); do
-  if [[ ${args[i]} == --checkpoint || ${args[i]} == --stair_batch ]]; then
+  if [[ ${args[i]} == --checkpoint || ${args[i]} == --candidate_checkpoint || ${args[i]} == --stair_batch ]]; then
     (( i+1 < ${#args[@]} )) || { printf '%s\n' 'Missing input file path' >&2; exit 2; }
     checkpoint=$(realpath -- "${args[i+1]}")
     case "$checkpoint" in
