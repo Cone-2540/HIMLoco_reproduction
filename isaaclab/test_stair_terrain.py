@@ -92,6 +92,29 @@ class StairGeometryTest(unittest.TestCase):
             meshes, _ = stair_meshes(.5, selected.sub_terrains["heldout"].replace(size=selected.size))
             self.assertGreater(len(meshes), 1)
 
+    def test_bootstrap_stairs_remain_closed_and_above_nosing_thickness(self):
+        cfg = build_stair_generator("bootstrap", num_rows=3, num_cols=4, seed=17)
+        variants = list(cfg.sub_terrains.values())
+        self.assertEqual(len(variants), 4)
+        self.assertEqual({term.direction for term in variants}, {"asc", "desc"})
+        self.assertEqual({term.step_depth for term in variants}, {.30, .36})
+        self.assertTrue(all(term.step_height_range == (.025, .08) and term.nosing == 0.
+                            for term in variants))
+        for term in variants:
+            for difficulty in np.linspace(0., 1., 11):
+                meshes, origin = stair_meshes(difficulty, term.replace(size=cfg.size))
+                geometry = meshes[0].metadata["stair_geometry"]
+                self.assertGreater(geometry["step_height"], term.nosing_thickness)
+                self.assertEqual(len(geometry["treads"]), 6)
+                self.assertTrue(np.isfinite(origin).all())
+                self.assertTrue(all(mesh.is_watertight and mesh.is_winding_consistent and
+                                    np.isfinite(mesh.vertices).all() and mesh.volume > 0
+                                    for mesh in meshes))
+        generated = TerrainGenerator(cfg, device="cpu")
+        self.assertEqual(generated.terrain_origins.shape, (3, 4, 3))
+        self.assertTrue(np.isfinite(generated.terrain_origins).all())
+        self.assertTrue(np.isfinite(generated.terrain_mesh.vertices).all())
+
     def test_invalid_geometry_does_not_create_mesh(self):
         for params in ({"step_height": 0}, {"step_depth": .01, "nosing": .02},
                        {"direction": "sideways"}, {"size": (3., 3.)}, {"nosing": -.01},

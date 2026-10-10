@@ -26,6 +26,7 @@ from isaaclab.utils import configclass
 
 
 STAGES = {
+    "bootstrap": {"height_range": (0.025, 0.08), "depths": (0.30, 0.36), "nosings": (0.0,)},
     "easy": {"height_range": (0.05, 0.12), "depths": (0.28, 0.30, 0.32, 0.36), "nosings": (0.0,)},
     "standard": {"height_range": (0.05, 0.17), "depths": (0.20, 0.25, 0.27, 0.30, 0.35, 0.40), "nosings": (0.0,)},
     "hard": {"height_range": (0.08, 0.23), "depths": (0.20, 0.25, 0.27, 0.30, 0.35, 0.40), "nosings": (0.0, 0.01, 0.02, 0.03)},

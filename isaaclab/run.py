@@ -96,7 +96,7 @@ def main():
     parser.add_argument("--steps_per_env", type=int, default=100)
     parser.add_argument("--play_steps", type=int, default=500)
     parser.add_argument("--terrain", choices=["flat", "rough", "stairs"], default="flat")
-    parser.add_argument("--stair_stage", choices=["easy", "standard", "hard"], default="easy")
+    parser.add_argument("--stair_stage", choices=["bootstrap", "easy", "standard", "hard"], default="easy")
     parser.add_argument("--stair_height", type=float)
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
