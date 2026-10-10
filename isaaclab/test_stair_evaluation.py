@@ -39,7 +39,8 @@ class FakeWrapped:
                         actuators=NS(applied_effort=proxy(torch.ones(n, 12)), computed_effort=proxy(torch.ones(n, 12))))
         sensor_data = NS(net_normal_forces_w=proxy(torch.zeros(n, 6, 3)),
                          net_normal_forces_w_history=proxy(torch.zeros(n, 3, 6, 3)))
-        self.sensor = NS(data=sensor_data, body_names=self.names)
+        self.sensor = NS(data=sensor_data, body_names=self.names,
+                         cfg=NS(update_period=0.125, history_length=3))
         self.term = NS(cfg=NS(ranges=NS()), is_standing_env=torch.zeros(n, dtype=torch.bool),
                        is_heading_env=torch.zeros(n, dtype=torch.bool), vel_command_b=torch.zeros(n, 3))
         scene = {"robot": self.robot}
@@ -48,7 +49,9 @@ class FakeWrapped:
         scene = Scene(scene)
         scene.env_origins = torch.tensor([[10., 20., 1.2]]).repeat(n, 1)
         scene.sensors = {"contact_forces": self.sensor}
-        self.env = NS(scene=scene, device="cpu", num_envs=n, step_dt=0.5, termination_manager=Manager(),
+        scene.cfg = NS(lazy_sensor_update=False)
+        self.env = NS(scene=scene, device="cpu", num_envs=n, step_dt=0.5, physics_dt=0.125,
+                      _physics_handles_decimation=False, termination_manager=Manager(),
                       command_manager=NS(get_term=lambda _: self.term), seed=lambda seed: None,
                       reset_terminated=torch.zeros(n, dtype=torch.bool))
         self.obs_buf = torch.zeros(n, 270)
@@ -179,8 +182,9 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertEqual(metrics["torque_saturation_fraction"], 1.)
         self.assertEqual(metrics["applied_torque_rms_nm"], 1.)
 
-    def test_randomized_configuration_only_changes_reset_ranges(self):
+    def test_evaluation_configures_reset_ranges_and_eager_physics_sensor_refresh(self):
         cfg = NS(compute_final_obs=False, observations=NS(policy=NS(), critic=NS()), curriculum=NS(terrain_levels=object()),
+                 sim=NS(dt=0.005), scene=NS(lazy_sensor_update=True, contact_forces=NS(update_period=0.02, history_length=3)),
                  terminations=NS(stair_goal_reached=object()), events=NS(push_robot=object(), add_base_mass=object(), base_com=object(),
                  reset_base=NS(params={}), reset_robot_joints=NS(params={}), base_external_force_torque=NS(params={})),
                  commands=NS(base_velocity=NS(ranges=NS())))
@@ -189,10 +193,14 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertEqual(cfg.events.reset_robot_joints.params["position_range"], (0.95, 1.05))
         self.assertIsNone(cfg.terminations.stair_goal_reached)
         self.assertIsNone(cfg.curriculum.terrain_levels)
+        self.assertFalse(cfg.scene.lazy_sensor_update)
+        self.assertEqual(cfg.scene.contact_forces.update_period, 0.005)
+        self.assertEqual(cfg.scene.contact_forces.history_length, 3)
 
     def test_default_removes_gain_randomization_and_explicit_dynamics_keeps_events(self):
         def cfg_factory():
             return NS(observations=NS(policy=NS(), critic=NS()), curriculum=NS(), terminations=NS(),
+                      sim=NS(dt=0.005), scene=NS(lazy_sensor_update=True, contact_forces=NS(update_period=0.02)),
                       events=NS(push_robot=object(), add_base_mass=object(), base_com=object(), him_actuator_gains=object(),
                                 reset_base=NS(params={}), reset_robot_joints=NS(params={})),
                       commands=NS(base_velocity=NS(ranges=NS())))
@@ -205,6 +213,145 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertIs(dynamics.events.add_base_mass, original_mass)
         self.assertIs(dynamics.events.him_actuator_gains, original_gains)
         self.assertIsNone(dynamics.events.push_robot)
+
+    def test_history_only_contacts_do_not_contaminate_current_sample_metrics_or_gate(self):
+        class HistoryOnly(FakeWrapped):
+            def place(self, x, final=False):
+                super().place(x, final)
+                self.sensor.data.net_normal_forces_w.torch[:, 1:6] = 0
+                self.sensor.data.net_normal_forces_w_history.torch[:, 1:, 5, 0] = 5.
+                self.robot.data.body_link_lin_vel_w.torch[:, 1:5, 0] = 0.2
+
+        result = evaluate_stairs(HistoryOnly(), policy, GEOMETRY, seconds=8., record_envs=1)
+        self.assertTrue(result["passed"])
+        trial = result["trials"][0]
+        metrics = trial["metrics"]
+        self.assertEqual(metrics["shank_contact_step_fraction"], 1.)
+        self.assertEqual(metrics["current_sample_shank_contact_step_fraction"], 0.)
+        self.assertEqual(metrics["foot_slip_fraction"], 1.)
+        self.assertIsNone(metrics["current_sample_foot_slip_fraction"])
+        self.assertIsNone(metrics["current_sample_contact_foot_horizontal_speed_m_s"])
+        self.assertEqual(trial["shank_contact_envs"], 32)
+        self.assertEqual(trial["current_sample_shank_contact_envs"], 0)
+        self.assertEqual(trial["contact_sample_counts"]["current_contact_foot_samples"], 0)
+        self.assertGreater(trial["contact_sample_counts"]["history_contact_foot_samples"], 0)
+        self.assertTrue(all(trial["trace"][0]["contacts"][0]))
+        self.assertFalse(any(trial["trace"][0]["current_sample_contacts"][0]))
+
+    def test_matching_history_and_current_contacts_have_matching_metrics_and_denominators(self):
+        class CurrentContact(FakeWrapped):
+            def place(self, x, final=False):
+                super().place(x, final)
+                self.sensor.data.net_normal_forces_w.torch[:, 5, 0] = 5.
+                self.sensor.data.net_normal_forces_w_history.torch[:, :, 5, 0] = 5.
+                self.robot.data.body_link_lin_vel_w.torch[:, 1:5, 0] = 0.2
+
+        result = evaluate_stairs(CurrentContact(), policy, GEOMETRY, seconds=8., record_envs=0)
+        trial = result["trials"][0]
+        for scope in (trial, trial["cases"][0]):
+            metrics = scope["metrics"]
+            for name in ("base_contact_step_fraction", "shank_contact_step_fraction",
+                         "contact_foot_horizontal_speed_m_s", "foot_slip_fraction"):
+                self.assertEqual(metrics[name], metrics["current_sample_" + name])
+            counts = scope["contact_sample_counts"]
+            self.assertEqual(counts["current_contact_foot_samples"], counts["history_contact_foot_samples"])
+            self.assertEqual(counts["current_contact_foot_samples"], 4 * counts["environment_samples"])
+        self.assertEqual(trial["current_sample_shank_contact_envs"], 32)
+
+    def test_current_forces_match_body_names_and_include_horizontal_riser_normals(self):
+        wrapped = FakeWrapped()
+        wrapped.reset()
+        wrapped.sensor.body_names = ["FL_calf", "RR_foot", "base", "RL_foot", "FR_foot", "FL_foot"]
+        current = wrapped.sensor.data.net_normal_forces_w.torch
+        history = wrapped.sensor.data.net_normal_forces_w_history.torch
+        current.zero_()
+        history.zero_()
+        current[:, 0, 1] = 3.
+        current[:, 1, 0] = 2.
+        current[:, 2, 0] = 4.
+        current[:, 3, 2] = 1.  # Exact threshold does not count as contact.
+        history[:, 0] = current
+        history[:, 1, 0, 0] = 9.
+        state = StairStateCapture(wrapped.env).snapshot()
+        self.assertEqual(state["current_foot_contacts"][0].tolist(), [False, False, False, True])
+        self.assertEqual(float(state["current_base_force_n"][0]), 4.)
+        self.assertEqual(float(state["current_shank_force_n"][0]), 3.)
+        self.assertEqual(float(state["shank_force_n"][0]), 9.)
+
+    def test_cadence_metadata_distinguishes_sample_age_from_count_window(self):
+        result = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=0)
+        sampling = result["contact_sampling"]
+        self.assertEqual(sampling["semantics_version"], 2)
+        self.assertEqual(sampling["physics_dt_s"], 0.125)
+        self.assertEqual(sampling["policy_sample_dt_s"], 0.5)
+        self.assertEqual(sampling["history_sampling"], "eager_physics_step_history")
+        self.assertEqual(sampling["history_oldest_sample_age_s_after_warmup"], 0.25)
+        self.assertEqual(sampling["history_nominal_count_window_s"], 0.375)
+        self.assertFalse(sampling["history_covers_entire_policy_step"])
+
+    def test_lazy_or_unknown_scene_cadence_is_not_reported_as_physics_step_history(self):
+        for lazy, handles_decimation, expected in (
+            (True, False, "lazy_read_driven_history"),
+            (False, None, "unknown"),
+            (False, True, "eager_policy_step_history"),
+        ):
+            with self.subTest(lazy=lazy, handles_decimation=handles_decimation):
+                wrapped = FakeWrapped()
+                wrapped.env.scene.cfg.lazy_sensor_update = lazy
+                wrapped.env._physics_handles_decimation = handles_decimation
+                sampling = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=0)["contact_sampling"]
+                self.assertEqual(sampling["history_sampling"], expected)
+                if lazy or handles_decimation is None:
+                    self.assertIsNone(sampling["inferred_history_sample_dt_s"])
+                    self.assertIsNone(sampling["history_oldest_sample_age_s_after_warmup"])
+
+    def test_installed_contact_history_override_is_eager_even_with_lazy_scene(self):
+        def history_update():
+            pass
+        # Stand in for the inherited method identity, without importing Kit.
+        history_update.__module__ = "isaaclab.sensors.contact_sensor.base_contact_sensor"
+        history_update.__qualname__ = "BaseContactSensor.update"
+        wrapped = FakeWrapped()
+        wrapped.env.scene.cfg.lazy_sensor_update = True
+        wrapped.sensor.update = history_update
+        sampling = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=0)["contact_sampling"]
+        self.assertTrue(sampling["installed_sensor_updates_nonempty_history_with_lazy_scene"])
+        self.assertEqual(sampling["history_sampling"], "eager_physics_step_history")
+        self.assertEqual(sampling["inferred_history_sample_dt_s"], 0.125)
+
+    def test_zero_configured_history_does_not_infer_eager_history_from_allocated_slot(self):
+        def history_update():
+            pass
+        history_update.__module__ = "isaaclab.sensors.contact_sensor.base_contact_sensor"
+        history_update.__qualname__ = "BaseContactSensor.update"
+        wrapped = FakeWrapped()
+        wrapped.env.scene.cfg.lazy_sensor_update = True
+        wrapped.sensor.cfg.history_length = 0
+        wrapped.sensor.update = history_update
+        wrapped.sensor.data.net_normal_forces_w_history = proxy(torch.zeros(32, 1, 6, 3))
+        sampling = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=0)["contact_sampling"]
+        self.assertEqual(sampling["history_length"], 0)
+        self.assertEqual(sampling["history_buffer_length"], 1)
+        self.assertFalse(sampling["installed_sensor_updates_nonempty_history_with_lazy_scene"])
+        self.assertEqual(sampling["history_sampling"], "current_force_fallback_without_history")
+        self.assertIsNone(sampling["history_covers_entire_policy_step"])
+
+    def test_eager_scene_with_slow_sensor_period_does_not_claim_physics_cadence(self):
+        wrapped = FakeWrapped()
+        wrapped.sensor.cfg.update_period = 0.5
+        sampling = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=0)["contact_sampling"]
+        self.assertEqual(sampling["history_sampling"], "unknown")
+        self.assertIsNone(sampling["inferred_history_sample_dt_s"])
+        self.assertIsNone(sampling["history_covers_entire_policy_step"])
+
+    def test_backend_decimation_does_not_claim_all_substeps_were_sampled(self):
+        wrapped = FakeWrapped()
+        wrapped.env._physics_handles_decimation = True
+        wrapped.sensor.cfg.history_length = 1
+        sampling = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=0)["contact_sampling"]
+        self.assertEqual(sampling["history_sampling"], "eager_policy_step_history")
+        self.assertEqual(sampling["history_nominal_count_window_s"], 0.5)
+        self.assertIsNone(sampling["history_covers_entire_policy_step"])
 
     def test_batch_keeps_failed_column_from_hiding_in_average(self):
         wrapped = FakeWrapped()

@@ -93,6 +93,8 @@ def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomize
     seeds only alter resets. dynamics_randomized preserves caller-configured
     startup events; it does not synthesize new randomization ranges.
     Friction-heldout cases require a separately constructed environment.
+    Sensor refresh is explicitly eager during evaluation. The installed contact
+    sensor also refreshes nonempty history eagerly when scene reads are lazy.
     """
     _validate_geometry(geometry)
     if seconds <= 0 or speed <= 0 or not math.isfinite(speed):
@@ -101,6 +103,13 @@ def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomize
     cfg.episode_length_s = float(seconds)
     cfg.observations.policy.enable_corruption = False
     cfg.observations.critic.enable_corruption = False
+    scene = getattr(cfg, "scene", None)
+    if hasattr(scene, "lazy_sensor_update"):
+        scene.lazy_sensor_update = False
+    contact_cfg = getattr(scene, "contact_forces", None)
+    physics_dt = getattr(getattr(cfg, "sim", None), "dt", None)
+    if contact_cfg is not None and physics_dt is not None:
+        contact_cfg.update_period = float(physics_dt)
     if hasattr(cfg.curriculum, "terrain_levels"):
         cfg.curriculum.terrain_levels = None
     if hasattr(cfg.terminations, "stair_goal_reached"):
@@ -175,6 +184,7 @@ class StairStateCapture:
     def snapshot(self):
         data = self.robot.data
         force = _tensor(self.sensor.data.net_normal_forces_w).clone()
+        current_force = force.norm(dim=-1)
         history = _tensor(self.sensor.data.net_normal_forces_w_history)
         force_peak = history.norm(dim=-1).amax(dim=1).clone() if history.shape[1] else force.norm(dim=-1)
         applied = _tensor(self.robot.actuators.applied_effort).clone()
@@ -194,8 +204,11 @@ class StairStateCapture:
             "feet_pos_w": _tensor(data.body_link_pos_w)[:, self.foot_ids].clone(),
             "feet_vel_w": _tensor(data.body_link_lin_vel_w)[:, self.foot_ids].clone(),
             "foot_contacts": force_peak[:, self.sensor_foot_ids] > 1.0,
+            "current_foot_contacts": current_force[:, self.sensor_foot_ids] > 1.0,
             "base_force_n": force_peak[:, self.base_ids].amax(dim=1) if self.base_ids else applied[:, 0] * 0,
             "shank_force_n": force_peak[:, self.shank_ids].amax(dim=1) if self.shank_ids else applied[:, 0] * 0,
+            "current_base_force_n": current_force[:, self.base_ids].amax(dim=1) if self.base_ids else applied[:, 0] * 0,
+            "current_shank_force_n": current_force[:, self.shank_ids].amax(dim=1) if self.shank_ids else applied[:, 0] * 0,
             "applied_effort": applied, "torque_saturated": clipped | near_limit,
             "peak_contact_force_n": force_peak.amax(dim=1),
         }
@@ -220,6 +233,70 @@ class StairStateCapture:
                 manager.compute = own
             else:
                 del manager.compute
+
+
+def _contact_sampling_metadata(env, capture, limits):
+    """Describe configured cadence without claiming measured runtime timestamps."""
+    scene_cfg = getattr(env.scene, "cfg", getattr(getattr(env, "cfg", None), "scene", None))
+    sensor_cfg = getattr(capture.sensor, "cfg", None)
+    physics_dt = getattr(env, "physics_dt", None)
+    if physics_dt is None:
+        physics_dt = getattr(getattr(getattr(env, "cfg", None), "sim", None), "dt", None)
+    physics_dt = float(physics_dt) if physics_dt is not None else None
+    update_period = getattr(sensor_cfg, "update_period", None)
+    update_period = float(update_period) if update_period is not None else None
+    lazy = getattr(scene_cfg, "lazy_sensor_update", None)
+    handles_decimation = getattr(env, "_physics_handles_decimation", None)
+    buffer_length = int(_tensor(capture.sensor.data.net_normal_forces_w_history).shape[1])
+    configured_length = getattr(sensor_cfg, "history_length", None)
+    history_length = int(configured_length) if configured_length is not None else buffer_length
+    update = getattr(capture.sensor, "update", None)
+    update_method = (getattr(update, "__module__", "") + "." + getattr(update, "__qualname__", "")) if update is not None else None
+    # This installed BaseContactSensor override refreshes nonempty history even
+    # if SensorBase.update receives force_recompute=False from a lazy scene.
+    history_updates = history_length > 0 and update_method == "isaaclab.sensors.contact_sensor.base_contact_sensor.BaseContactSensor.update"
+    cadence, interval = "unknown", None
+    if lazy is False or history_updates:
+        scene_dt = float(env.step_dt) if handles_decimation is True else physics_dt if handles_decimation is False else None
+        if scene_dt is not None and update_period is not None and update_period <= scene_dt + 1e-9:
+            interval = scene_dt
+            cadence = "eager_policy_step_history" if handles_decimation else "eager_physics_step_history"
+    elif lazy is True:
+        cadence = "lazy_read_driven_history"
+    if not history_length:
+        cadence, interval = "current_force_fallback_without_history", None
+    physics_step_history = (interval is not None and handles_decimation is False
+                            and physics_dt is not None and abs(interval - physics_dt) <= 1e-9)
+    return {
+        "semantics_version": 2,
+        "physics_dt_s": physics_dt,
+        "policy_sample_dt_s": float(env.step_dt),
+        "sensor_update_period_s": update_period,
+        "scene_lazy_sensor_update": lazy,
+        "physics_handles_policy_decimation": handles_decimation,
+        "sensor_type": type(capture.sensor).__module__ + "." + type(capture.sensor).__qualname__,
+        "sensor_update_method": update_method,
+        "installed_sensor_updates_nonempty_history_with_lazy_scene": history_updates,
+        "history_length": history_length,
+        "history_buffer_length": buffer_length,
+        "history_length_source": "sensor_configuration" if configured_length is not None else "buffer_shape_configuration_unavailable",
+        "history_order": "newest_first",
+        "history_sampling": cadence,
+        "inferred_history_sample_dt_s": interval,
+        "history_oldest_sample_age_s_after_warmup": (history_length - 1) * interval if interval is not None else None,
+        "history_nominal_count_window_s": history_length * interval if interval is not None else None,
+        "history_count_window_definition": "history_length times sample interval; distinct from oldest sample age",
+        "history_covers_entire_policy_step": history_length * interval + 1e-9 >= float(env.step_dt) if physics_step_history else None,
+        "cadence_evidence": "inferred from instantiated config and scene stepping; runtime sensor timestamps were not measured",
+        "history_limit": "history peaks can miss contacts outside the retained samples; reset rows start with zero history",
+        "current_sample_scope": "latest sensor force at the policy boundary before auto-reset; no substep duration inference",
+        "force_measure": "world-frame vector norm of net normal force, including riser normals; no tangential friction force",
+        "foot_contact_threshold_n": 1.0,
+        "base_and_shank_contact_threshold_n": limits["contact_force_n"],
+        "slip_speed_threshold_m_s": limits["slip_speed_m_s"],
+        "slip_velocity_measure": "foot-link world-horizontal speed at the policy boundary; not contact-point tangential slip",
+        "legacy_results": "reports without this metadata keep their original sampling semantics and cannot be assumed to use physics-step history",
+    }
 
 
 def completion_mask(state, origins, geometry, thresholds=None):
@@ -301,6 +378,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
     trace_ids = torch.cat([(case_ids == index).nonzero(as_tuple=False).flatten()[:max(1, record_envs // len(case_geometries))]
                           for index in range(len(case_geometries))]) if record_envs > 0 else case_ids[:0]
     capture = StairStateCapture(env)
+    contact_sampling = _contact_sampling_metadata(env, capture, limits)
     trials = []
 
     with capture.installed():
@@ -325,6 +403,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             invalid_physics = torch.zeros_like(active)
             base_contact = torch.zeros_like(active)
             shank_contact = torch.zeros_like(active)
+            current_base_contact = torch.zeros_like(active)
+            current_shank_contact = torch.zeros_like(active)
             dwell = torch.zeros(n, device=device)
             completion_time = torch.full((n,), float("nan"), device=device)
             max_progress = torch.zeros(n, device=device)
@@ -395,8 +475,12 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 escapes |= valid & escaped
                 bases = state["base_force_n"] > limits["contact_force_n"]
                 shanks = state["shank_force_n"] > limits["contact_force_n"]
+                current_bases = state["current_base_force_n"] > limits["contact_force_n"]
+                current_shanks = state["current_shank_force_n"] > limits["contact_force_n"]
                 base_contact |= valid & bases
                 shank_contact |= valid & shanks
+                current_base_contact |= valid & current_bases
+                current_shank_contact |= valid & current_shanks
                 terminated = _tensor(infos.get("terminated", env.reset_terminated)).bool()
                 truncated = _tensor(infos["time_outs"]).bool()
                 fallen = bases | (state["gravity"][:, 2] > -0.5) | (terminated & ~escaped) | abnormal_physics
@@ -440,14 +524,18 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     ("applied_torque_squared", state["applied_effort"].square().mean(-1)),
                     ("torque_saturation_fraction", state["torque_saturated"].float().mean(-1)),
                     ("base_contact_step_fraction", bases.float()), ("shank_contact_step_fraction", shanks.float()),
+                    ("current_sample_base_contact_step_fraction", current_bases.float()),
+                    ("current_sample_shank_contact_step_fraction", current_shanks.float()),
                 ):
                     accumulate(name, value, sample_mask)
-                contact = state["foot_contacts"] & sample_mask[:, None]
                 foot_speed = state["feet_vel_w"][:, :, :2].norm(dim=-1)
-                statistics["contact_foot_horizontal_speed_m_s"] = statistics.get("contact_foot_horizontal_speed_m_s", 0) + torch.where(contact, foot_speed.double(), 0.0).sum(dim=1)
-                statistics["foot_slip_fraction"] = statistics.get("foot_slip_fraction", 0) + ((foot_speed > limits["slip_speed_m_s"]) & contact).sum(dim=1)
-                counts["contact_foot_horizontal_speed_m_s"] = counts.get("contact_foot_horizontal_speed_m_s", 0) + contact.sum(dim=1)
-                counts["foot_slip_fraction"] = counts["contact_foot_horizontal_speed_m_s"]
+                for prefix, field in (("", "foot_contacts"), ("current_sample_", "current_foot_contacts")):
+                    contact = state[field] & sample_mask[:, None]
+                    speed_name, slip_name = prefix + "contact_foot_horizontal_speed_m_s", prefix + "foot_slip_fraction"
+                    statistics[speed_name] = statistics.get(speed_name, 0) + torch.where(contact, foot_speed.double(), 0.0).sum(dim=1)
+                    statistics[slip_name] = statistics.get(slip_name, 0) + ((foot_speed > limits["slip_speed_m_s"]) & contact).sum(dim=1)
+                    counts[speed_name] = counts.get(speed_name, 0) + contact.sum(dim=1)
+                    counts[slip_name] = counts[speed_name]
                 peaks["peak_contact_force_n"] = max(peaks.get("peak_contact_force_n", 0), float(state["peak_contact_force_n"][valid].max()) if bool(valid.any()) else 0)
                 peak_force_per_env = torch.where(valid, torch.maximum(peak_force_per_env, state["peak_contact_force_n"]), peak_force_per_env)
                 last_velocity, last_acceleration = state["root_lin_vel_w"], acceleration
@@ -462,12 +550,15 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                                   "feet_relative_xyz": (state["feet_pos_w"] - origins[:, None])[trace_ids].tolist(),
                                   "foot_horizontal_speed_m_s": foot_speed[trace_ids].tolist(),
                                   "contacts": state["foot_contacts"][trace_ids].tolist(),
+                                  "current_sample_contacts": state["current_foot_contacts"][trace_ids].tolist(),
                                   "actions": actions[trace_ids].tolist(),
                                   "action_delta_rms": action_delta.square().mean(-1).sqrt()[trace_ids].tolist(),
                                   "action_second_delta_rms": action_second.square().mean(-1).sqrt()[trace_ids].tolist(),
                                   "flight_paused": paused[trace_ids].tolist(),
                                   "base_force_n": state["base_force_n"][trace_ids].tolist(),
                                   "shank_force_n": state["shank_force_n"][trace_ids].tolist(),
+                                  "current_sample_base_force_n": state["current_base_force_n"][trace_ids].tolist(),
+                                  "current_sample_shank_force_n": state["current_shank_force_n"][trace_ids].tolist(),
                                   "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[trace_ids].tolist()})
                 active &= ~(complete | falls | escapes | stalls | nonfinite | dones.bool())
                 if progress is not None and ((step + 1) % 200 == 0 or not bool(active.any())):
@@ -491,6 +582,13 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     mean = metrics.pop(source, None)
                     metrics[target] = math.sqrt(mean) if mean is not None else None
                 return metrics
+
+            def contact_sample_counts(mask):
+                return {target: int(counts[source][mask].sum()) if source in counts else 0
+                        for source, target in (("base_contact_step_fraction", "environment_samples"),
+                            ("contact_foot_horizontal_speed_m_s", "history_contact_foot_samples"),
+                            ("current_sample_contact_foot_horizontal_speed_m_s", "current_contact_foot_samples"))}
+
             metrics = metric_summary(torch.ones_like(active))
             completion_fraction = float(complete.float().mean())
             successful_times = completion_time[complete]
@@ -505,6 +603,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     "completion_fraction": fraction, "completions": int(complete[mask].sum()),
                     "falls": int(falls[mask].sum()), "stalls": int(stalls[mask].sum()),
                     "lateral_escapes": int(escapes[mask].sum()), "base_contact_envs": int(base_contact[mask].sum()),
+                    "current_sample_base_contact_envs": int(current_base_contact[mask].sum()),
+                    "current_sample_shank_contact_envs": int(current_shank_contact[mask].sum()),
+                    "contact_sample_counts": contact_sample_counts(mask),
                     "metrics": {**metric_summary(mask),
                         "peak_contact_force_n": float(peak_force_per_env[mask].max()) if case_n else None,
                         "roll_peak_rad": float(roll_peak_per_env[mask].max()) if case_n else None,
@@ -525,6 +626,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 "timeouts_before_completion": int((timeouts & ~complete).sum()), "nonfinite_envs": int(nonfinite.sum()),
                 "invalid_physics_envs": int(invalid_physics.sum()),
                 "base_contact_envs": int(base_contact.sum()), "shank_contact_envs": int(shank_contact.sum()),
+                "current_sample_base_contact_envs": int(current_base_contact.sum()),
+                "current_sample_shank_contact_envs": int(current_shank_contact.sum()),
+                "contact_sample_counts": contact_sample_counts(torch.ones_like(active)),
                 "invalid_start_envs": int((~start_valid).sum()),
                 "mean_completion_time_s": float(successful_times.mean()) if successful_times.numel() else None,
                 "mean_max_directed_progress_m": float(max_progress.mean()),
@@ -555,7 +659,9 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
         "randomized_reset": bool(randomized), "command_forward_speed_m_s": speed,
         "dynamics_randomized": bool(dynamics_randomized),
         "metrics_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
-        "slip_metric_scope": "foot-link horizontal speed while recent physics-step normal-contact history peaks >1N; proxy, not exact contact-point tangential slip",
+        "contact_sampling": contact_sampling,
+        "slip_metric_scope": "foot-link horizontal speed gated by retained normal-contact history peaks >1N; cadence is in contact_sampling; proxy, not contact-point tangential slip",
+        "current_sample_slip_metric_scope": "foot-link horizontal speed gated only by latest normal-contact force >1N at the same policy boundary; proxy, not contact-point tangential slip",
         "smoothness_passed": None,
         "smoothness_note": "Metrics are reported for comparison; no universal smoothness threshold has been calibrated",
         "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds",
