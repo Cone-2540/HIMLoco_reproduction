@@ -1,0 +1,19 @@
+{
+  "HIMLoco": {
+    "repository": "https://github.com/InternRobotics/HIMLoco",
+    "upstream_commit": "ef289acaa62795009363b7b819c9186690630441"
+  },
+  "unitree_go2": {
+    "repository": "https://github.com/unitreerobotics/unitree_rl_gym",
+    "commit": "276801e46c5d433564f24658bac64f254b7d2d4b",
+    "source": "resources/robots/go2",
+    "destination": "legged_gym/resources/robots/go2"
+  },
+  "validation_date": "2026-10-10",
+  "platform": "linux-64",
+  "environment": "${ROBOTICS_ROOT}/envs/himloco-py37",
+  "python": "3.7.16",
+  "torch": "1.10.0+cu113",
+  "simulator": "Isaac Gym Preview 4",
+  "manifest_note": "Package environments, NVIDIA binaries, downloaded archives, training logs and checkpoints are not vendored. Go2 source assets and license are in legged_gym/resources/robots/go2."
+}
