@@ -357,7 +357,7 @@
     "learning_rate": "planned1e-4explicitresumeoverriderecordsAdamretained; lowerKLtowardsrefinement",
     "start_after": "hard570finishandfixedmatrixselection"
   },
-  "active_evaluation": "matched-control-contact-speed03",
+  "active_evaluation": "force720-700-control660-speed03",
   "contact_reward_profile_source_commit": "e4c7df7",
   "contact_reward_gpu_smoke": {
     "run": "isaaclab/logs/2026-10-11_03-52-45_contact-smoke-resume-rate",
@@ -411,7 +411,7 @@
     "checkpoint520_lateral_escapes": 0,
     "note": "Low stair regression; failure flags can overlap. Same named fixed scene/three reused tuning reset seeds; not final heldout."
   },
-  "next_action": "Compare faithful/contact same570 origin at50/100 updates; evaluate force intermediate checkpoints then freeze before final heldout.",
+  "next_action": "Evaluate final force checkpoints, matched40update control, then slide40/60 at both speeds; freeze best qualified candidate without using final geometry results.",
   "contact620_tuning": {
     "completions_speed03": 2302,
     "completions_speed05": 2304,
@@ -430,9 +430,9 @@
     "reason": "Both have20cm/27cmnominaldescentcasewith30/32andtwostallsinoneseseed; pooled99.9%doesnotsatisfycasewisegate."
   },
   "planned_single_additional_reward": "Keepcontact-.1plusforceproxythreshold50N,scale50N,cap4/body,weight-.02; smallerthanproposed-.05 toreduceearlystopincentive. FaithfultermsandLRunchangedforcontrolledrefinement.",
-  "pending_final_freeze_local": "Around06:15; retain≥1h for final heldout/material/flat/video/report",
-  "updated_local": "2026-10-11T04:47:08.384230+08:00",
-  "active_training": "stairs-hard-force720",
+  "pending_final_freeze_local": "Aim05:50–06:00; final heldout/material/heading/flat/dynamics/video under remaining budget",
+  "updated_local": "2026-10-11T05:25:20.500801+08:00",
+  "active_training": "stairs-hard-slide680",
   "force_smoke": {
     "run": "isaaclab/logs/2026-10-11_04-41-44_contact-force-smoke",
     "result": {
@@ -465,6 +465,55 @@
       0.65
     ],
     "single_new_reward_weight": -0.02,
+    "smoothness_verified": false
+  },
+  "force_training_complete": {
+    "status": "smoke_passed",
+    "scope": "CUDA training and export; locomotion requires separate evaluation",
+    "iterations": 100,
+    "completed_iterations": 720,
+    "num_envs": 4096,
+    "environment_steps_this_run": 40960000,
+    "training_seconds": 1429.5965077639994,
+    "parameters_finite": true,
+    "checkpoint": "model_720.pt",
+    "export": "policy.pt",
+    "export_max_abs_error": 1.6689300537109375e-06,
+    "peak_cuda_memory_bytes": 3702573568
+  },
+  "force_tuning_rejected": {
+    "force660": {
+      "completion": 2302,
+      "episodes": 2304,
+      "gate": false,
+      "minimum_case_seed": 30
+    },
+    "force680": {
+      "completion": 2291,
+      "episodes": 2304,
+      "gate": false,
+      "minimum_case_seed": 26
+    },
+    "reason": "20cm desc regression; lower action or force cannot excuse failure"
+  },
+  "control_truncation": "reproduction/stair-contact-control660-truncation.json",
+  "slide_refinement": {
+    "origin": "artifacts/go2-stairs-contact620/model_620.pt",
+    "new_term": "existing feet_slide_l2 history-contact-gated foot XY velocity squared sum",
+    "new_weight": -0.05,
+    "other_terms": "identical contact profile",
+    "num_envs": 4096,
+    "additional_updates": 60,
+    "optimizer": "retained Adam",
+    "lr": 0.0001,
+    "schedule": "fixed",
+    "max_initial_level": 4,
+    "speed_range": [
+      0.25,
+      0.65
+    ],
+    "gpu_smoke": "isaaclab/logs/2026-10-11_05-22-59_contact-slide-smoke",
+    "smoke_passed": true,
     "smoothness_verified": false
   }
 }
