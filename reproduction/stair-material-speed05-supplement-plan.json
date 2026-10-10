@@ -1,0 +1,27 @@
+{
+  "status": "supplementary_protocol_recorded_before_collection",
+  "scope": "Frozen primary foot-only friction sensitivity at a second prescribed speed; distinct from the original 11-launch final protocol",
+  "original_plan_sha256": "fd27265a2d714662a3d03404903537cf6abec3c13ae2f65f21b7edf38b5391ae",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "reward_profile": "contact",
+  "geometry": "reproduction/stair-heldout-final.json",
+  "geometry_sha256": "5fa2fc3b1bb58f2fb94f1f980e26a910d75f8b2c3037999c41369e5d706541c0",
+  "num_envs": 512,
+  "envs_per_case": 32,
+  "seconds": 40,
+  "speed_m_s": 0.5,
+  "reset_seeds": [101, 211, 307],
+  "construction_seed": 1,
+  "domain_profile": "basic",
+  "eval_dynamics": false,
+  "foot_static_dynamic_pairs": {
+    "nominal": [0.8, 0.6],
+    "lower": [0.45, 0.35],
+    "higher": [1.0, 0.8]
+  },
+  "heading": "Original proportional yaw controller, no lateral correction",
+  "selection": "Primary and secondary choices stay fixed; no training or retuning follows these observations",
+  "acceptance": "Original case/resetseed completion, failure and base-contact gates remain unchanged; command exit 0 denotes collection only",
+  "limits": "Authored coefficients are not calibrated named real materials or measured solver contact-pair coefficients"
+}
