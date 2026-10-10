@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+from collections import deque
 
 import torch
 
@@ -46,15 +47,15 @@ class FakeEnv:
                 {}, torch.empty(0, dtype=torch.long), self.critic[:0])
 
 
-def make_runner(path):
+def make_runner(path, env=None, steps=1):
     cfg = {
         'runner': {'policy_class_name': 'HIMActorCritic', 'algorithm_class_name': 'HIMPPO',
-                   'num_steps_per_env': 1, 'save_interval': 1},
+                   'num_steps_per_env': steps, 'save_interval': 1},
         'policy': {'actor_hidden_dims': [16], 'critic_hidden_dims': [16]},
         'algorithm': {'num_learning_epochs': 1, 'num_mini_batches': 2},
     }
     with contextlib.redirect_stdout(io.StringIO()):
-        return HIMOnPolicyRunner(FakeEnv(), cfg, str(path), device='cpu')
+        return HIMOnPolicyRunner(env if env is not None else FakeEnv(), cfg, str(path), device='cpu')
 
 
 class RuntimeTests(unittest.TestCase):
@@ -86,6 +87,100 @@ class RuntimeTests(unittest.TestCase):
                                   'terminated': torch.tensor([False, True, True])}, next_critic)
         torch.testing.assert_close(alg.storage.rewards[0, :, 0], torch.tensor([7.93, 1.0, 1.0]))
         torch.testing.assert_close(alg.storage.next_privileged_observations[0], next_critic)
+
+    def test_sparse_timeout_bootstrap_matches_full_batch_values_and_returns(self):
+        model = make_model()
+        alg = HIMPPO(model, gamma=.99, lam=.95)
+        n = 7
+        alg.init_storage(n, 1, [270], [48], [12])
+        current, next_critic = torch.randn(n, 48), torch.randn(n, 48)
+        rewards = torch.randn(n)
+        original_rewards = rewards.clone()
+        timeouts = torch.tensor([True, False, True, True, False, False, True])
+        terminated = torch.tensor([False, False, True, False, False, False, True])
+        true_timeouts = timeouts & ~terminated
+        with torch.no_grad():
+            expected_rewards = rewards + .99 * model.evaluate(next_critic).squeeze(-1) * true_timeouts
+        alg.act(torch.randn(n, 270), current)
+        with mock.patch.object(model, 'evaluate', wraps=model.evaluate) as evaluate:
+            alg.process_env_step(rewards, timeouts | terminated,
+                                 {'time_outs': timeouts, 'terminated': terminated}, next_critic)
+        self.assertEqual(evaluate.call_count, 1)
+        torch.testing.assert_close(evaluate.call_args.args[0], next_critic[true_timeouts])
+        torch.testing.assert_close(alg.storage.rewards[0, :, 0], expected_rewards, atol=1e-6, rtol=1e-6)
+        with torch.no_grad():
+            last_values = model.evaluate(next_critic).squeeze(-1)
+            expected_returns = expected_rewards + .99 * last_values * ~(timeouts | terminated)
+        alg.compute_returns(next_critic)
+        torch.testing.assert_close(alg.storage.returns[0, :, 0], expected_returns, atol=1e-6, rtol=1e-6)
+        torch.testing.assert_close(rewards, original_rewards)
+
+    def test_no_true_timeouts_skips_critic_forward_and_preserves_rewards(self):
+        for info in ({'time_outs': torch.zeros(4, dtype=torch.bool)},
+                     {'time_outs': torch.ones(4, dtype=torch.bool),
+                      'terminated': torch.ones(4, dtype=torch.bool)}):
+            model = make_model()
+            alg = HIMPPO(model)
+            alg.init_storage(4, 1, [270], [48], [12])
+            rewards = torch.tensor([-1., .25, .5, 3.])
+            alg.act(torch.zeros(4, 270), torch.zeros(4, 48))
+            with mock.patch.object(model, 'evaluate', side_effect=AssertionError('unexpected critic forward')):
+                alg.process_env_step(rewards, info['time_outs'], info, torch.ones(4, 48))
+            torch.testing.assert_close(alg.storage.rewards[0, :, 0], rewards)
+
+    def test_episode_logs_keep_tick_id_order_and_last_100_across_iterations(self):
+        class ScriptedEpisodes(FakeEnv):
+            def __init__(self):
+                self.num_envs = 64
+                super().__init__()
+                self.tick = 0
+
+            @staticmethod
+            def ended(tick):
+                ids = torch.arange(64)
+                if tick in (1, 6):
+                    return ids % 2 == 0
+                if tick == 2:
+                    return ids % 2 == 1
+                if tick in (3, 8):
+                    return torch.ones(64, dtype=torch.bool)
+                if tick == 5:
+                    return ids % 3 == 0
+                return torch.zeros(64, dtype=torch.bool)
+
+            @staticmethod
+            def reward(tick):
+                return torch.arange(64, dtype=torch.float) / 10. + 100. * tick + 1.
+
+            def step(self, actions):
+                self.tick += 1
+                dones = self.ended(self.tick)
+                ids = dones.nonzero(as_tuple=False).flatten()
+                return self.obs, self.critic, self.reward(self.tick), dones, {}, ids, self.critic[ids]
+
+        expected = []
+        reference_rewards, reference_lengths = torch.zeros(64), torch.zeros(64)
+        reward_deque, length_deque = deque(maxlen=100), deque(maxlen=100)
+        for tick in range(1, 9):
+            reference_rewards += ScriptedEpisodes.reward(tick)
+            reference_lengths += 1
+            ids = ScriptedEpisodes.ended(tick).nonzero(as_tuple=False).flatten()
+            reward_deque.extend(reference_rewards[ids].tolist())
+            length_deque.extend(reference_lengths[ids].tolist())
+            reference_rewards[ids], reference_lengths[ids] = 0, 0
+            if tick % 4 == 0:
+                expected.append((list(reward_deque), list(length_deque)))
+        with tempfile.TemporaryDirectory() as directory:
+            runner = make_runner(Path(directory), env=ScriptedEpisodes(), steps=4)
+            original_log, captured = runner.log, []
+            def record(locs):
+                captured.append((list(locs['rewbuffer']), list(locs['lenbuffer'])))
+                original_log(locs)
+            with mock.patch.object(runner, 'log', side_effect=record), contextlib.redirect_stdout(io.StringIO()):
+                runner.learn(2)
+            self.assertEqual(captured, expected)
+            self.assertEqual(len(captured[0][0]), 100)
+            self.assertEqual(runner.tot_timesteps, 2 * 4 * 64)
 
     def test_estimator_target_excludes_commands_and_includes_next_velocity(self):
         estimator = make_model().estimator

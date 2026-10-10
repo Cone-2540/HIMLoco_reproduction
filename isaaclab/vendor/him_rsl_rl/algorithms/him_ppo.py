@@ -109,9 +109,11 @@ class HIMPPO:
             time_outs = infos['time_outs'].to(self.device).bool()
             if 'terminated' in infos:
                 time_outs = time_outs & ~infos['terminated'].to(self.device).bool()
-            with torch.no_grad():
-                terminal_values = self.actor_critic.evaluate(next_critic_obs).squeeze(-1)
-            self.transition.rewards += self.gamma * terminal_values * time_outs
+            time_out_ids = time_outs.nonzero(as_tuple=False).flatten()
+            if time_out_ids.numel():
+                with torch.no_grad():
+                    terminal_values = self.actor_critic.evaluate(next_critic_obs[time_out_ids]).squeeze(-1)
+                self.transition.rewards.index_add_(0, time_out_ids, self.gamma * terminal_values)
 
         # Record the transition
         self.storage.add_transitions(self.transition)

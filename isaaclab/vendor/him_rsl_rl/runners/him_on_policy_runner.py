@@ -104,6 +104,7 @@ class HIMOnPolicyRunner:
         tot_iter = self.current_learning_iteration + num_learning_iterations
         for it in range(self.current_learning_iteration, tot_iter):
             start = time.time()
+            completed_episode_statistics = []
             # Rollout
             with torch.inference_mode():
                 for i in range(self.num_steps_per_env):
@@ -126,12 +127,20 @@ class HIMOnPolicyRunner:
                             ep_infos.append(infos['episode'])
                         cur_reward_sum += rewards
                         cur_episode_length += 1
-                        new_ids = (dones > 0).nonzero(as_tuple=False)
-                        rewbuffer.extend(cur_reward_sum[new_ids][:, 0].cpu().numpy().tolist())
-                        lenbuffer.extend(cur_episode_length[new_ids][:, 0].cpu().numpy().tolist())
+                        # The env already supplies these ended rows. Keep their
+                        # statistics on device in tick/id order, then copy once
+                        # per iteration instead of synchronizing every tick.
+                        new_ids = termination_ids.reshape(-1)
+                        if new_ids.numel():
+                            completed_episode_statistics.append(torch.stack(
+                                (cur_reward_sum[new_ids], cur_episode_length[new_ids]), dim=-1))
                         cur_reward_sum[new_ids] = 0
                         cur_episode_length[new_ids] = 0
 
+                if completed_episode_statistics:
+                    completed = torch.cat(completed_episode_statistics, dim=0).cpu().tolist()
+                    rewbuffer.extend(values[0] for values in completed)
+                    lenbuffer.extend(values[1] for values in completed)
                 stop = time.time()
                 collection_time = stop - start
 
