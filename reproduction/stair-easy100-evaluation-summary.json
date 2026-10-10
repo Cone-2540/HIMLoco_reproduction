@@ -1,0 +1,1566 @@
+{
+  "schema_version": 1,
+  "analysis_scope": "Read-only aggregation of frozen checkpoints; no additional simulation performed.",
+  "validation_scope": "3 reset RNG seeds (11, 29, 47), randomized initial pose/joints, 32 environments per case per seed, nominal dynamics. Startup terrain/material/dynamics are sampled once per environment construction.",
+  "aggregation_note": "Counts and mean maximum progress aggregate equally sized environment trials. Metric min/max/mean are summaries across the three seed-level aggregates; the mean is not pooled by active physics-sample duration.",
+  "cases": [
+    {
+      "schema_version": 1,
+      "direction": "asc",
+      "travel_sign": 1,
+      "num_steps": 6,
+      "step_height": 0.08,
+      "step_depth": 0.3,
+      "width": 1.2,
+      "nosing": 0.0,
+      "nosing_thickness": 0.02,
+      "landing_length": 2.0,
+      "start_x": 0.0,
+      "first_riser_x": 1.0,
+      "last_riser_x": 2.5,
+      "goal_platform_start_x": 2.8,
+      "goal_x": 3.4499999999999997,
+      "flight_end_x": 4.8,
+      "start_platform_z": 0.0,
+      "goal_platform_z": 0.48,
+      "lateral_center_y": 0.0,
+      "goal_dwell_s": 0.5,
+      "terrain_local_origin": [
+        2.1,
+        1.5,
+        0.0
+      ],
+      "terrain_size": [
+        8.0,
+        3.0
+      ],
+      "treads": [
+        {
+          "index": 1,
+          "x_min": 1.0,
+          "x_max": 1.3,
+          "top_z": 0.08
+        },
+        {
+          "index": 2,
+          "x_min": 1.3,
+          "x_max": 1.6,
+          "top_z": 0.16
+        },
+        {
+          "index": 3,
+          "x_min": 1.6,
+          "x_max": 1.9,
+          "top_z": 0.24
+        },
+        {
+          "index": 4,
+          "x_min": 1.9,
+          "x_max": 2.2,
+          "top_z": 0.32
+        },
+        {
+          "index": 5,
+          "x_min": 2.2,
+          "x_max": 2.5,
+          "top_z": 0.4
+        },
+        {
+          "index": 6,
+          "x_min": 2.5,
+          "x_max": 2.8,
+          "top_z": 0.48
+        }
+      ],
+      "collision_representation": "closed triangle meshes with physical overhang undersides",
+      "convert_to_heightfield": false
+    },
+    {
+      "schema_version": 1,
+      "direction": "desc",
+      "travel_sign": 1,
+      "num_steps": 6,
+      "step_height": 0.08,
+      "step_depth": 0.3,
+      "width": 1.2,
+      "nosing": 0.0,
+      "nosing_thickness": 0.02,
+      "landing_length": 2.0,
+      "start_x": 0.0,
+      "first_riser_x": 1.0,
+      "last_riser_x": 2.5,
+      "goal_platform_start_x": 2.8,
+      "goal_x": 3.4499999999999997,
+      "flight_end_x": 4.8,
+      "start_platform_z": 0.0,
+      "goal_platform_z": -0.48,
+      "lateral_center_y": 0.0,
+      "goal_dwell_s": 0.5,
+      "terrain_local_origin": [
+        2.1,
+        1.5,
+        0.48
+      ],
+      "terrain_size": [
+        8.0,
+        3.0
+      ],
+      "treads": [
+        {
+          "index": 1,
+          "x_min": 1.0,
+          "x_max": 1.3,
+          "top_z": -0.08
+        },
+        {
+          "index": 2,
+          "x_min": 1.3,
+          "x_max": 1.6,
+          "top_z": -0.16
+        },
+        {
+          "index": 3,
+          "x_min": 1.6,
+          "x_max": 1.9,
+          "top_z": -0.24
+        },
+        {
+          "index": 4,
+          "x_min": 1.9,
+          "x_max": 2.2,
+          "top_z": -0.32
+        },
+        {
+          "index": 5,
+          "x_min": 2.2,
+          "x_max": 2.5,
+          "top_z": -0.4
+        },
+        {
+          "index": 6,
+          "x_min": 2.5,
+          "x_max": 2.8,
+          "top_z": -0.48
+        }
+      ],
+      "collision_representation": "closed triangle meshes with physical overhang undersides",
+      "convert_to_heightfield": false
+    },
+    {
+      "schema_version": 1,
+      "direction": "asc",
+      "travel_sign": 1,
+      "num_steps": 6,
+      "step_height": 0.16,
+      "step_depth": 0.27,
+      "width": 1.2,
+      "nosing": 0.0,
+      "nosing_thickness": 0.02,
+      "landing_length": 2.0,
+      "start_x": 0.0,
+      "first_riser_x": 1.0,
+      "last_riser_x": 2.35,
+      "goal_platform_start_x": 2.62,
+      "goal_x": 3.27,
+      "flight_end_x": 4.62,
+      "start_platform_z": 0.0,
+      "goal_platform_z": 0.96,
+      "lateral_center_y": 0.0,
+      "goal_dwell_s": 0.5,
+      "terrain_local_origin": [
+        2.19,
+        1.5,
+        0.0
+      ],
+      "terrain_size": [
+        8.0,
+        3.0
+      ],
+      "treads": [
+        {
+          "index": 1,
+          "x_min": 1.0,
+          "x_max": 1.27,
+          "top_z": 0.16
+        },
+        {
+          "index": 2,
+          "x_min": 1.27,
+          "x_max": 1.54,
+          "top_z": 0.32
+        },
+        {
+          "index": 3,
+          "x_min": 1.54,
+          "x_max": 1.81,
+          "top_z": 0.48
+        },
+        {
+          "index": 4,
+          "x_min": 1.81,
+          "x_max": 2.08,
+          "top_z": 0.64
+        },
+        {
+          "index": 5,
+          "x_min": 2.08,
+          "x_max": 2.35,
+          "top_z": 0.8
+        },
+        {
+          "index": 6,
+          "x_min": 2.35,
+          "x_max": 2.62,
+          "top_z": 0.96
+        }
+      ],
+      "collision_representation": "closed triangle meshes with physical overhang undersides",
+      "convert_to_heightfield": false
+    },
+    {
+      "schema_version": 1,
+      "direction": "desc",
+      "travel_sign": 1,
+      "num_steps": 6,
+      "step_height": 0.16,
+      "step_depth": 0.27,
+      "width": 1.2,
+      "nosing": 0.0,
+      "nosing_thickness": 0.02,
+      "landing_length": 2.0,
+      "start_x": 0.0,
+      "first_riser_x": 1.0,
+      "last_riser_x": 2.35,
+      "goal_platform_start_x": 2.62,
+      "goal_x": 3.27,
+      "flight_end_x": 4.62,
+      "start_platform_z": 0.0,
+      "goal_platform_z": -0.96,
+      "lateral_center_y": 0.0,
+      "goal_dwell_s": 0.5,
+      "terrain_local_origin": [
+        2.19,
+        1.5,
+        0.96
+      ],
+      "terrain_size": [
+        8.0,
+        3.0
+      ],
+      "treads": [
+        {
+          "index": 1,
+          "x_min": 1.0,
+          "x_max": 1.27,
+          "top_z": -0.16
+        },
+        {
+          "index": 2,
+          "x_min": 1.27,
+          "x_max": 1.54,
+          "top_z": -0.32
+        },
+        {
+          "index": 3,
+          "x_min": 1.54,
+          "x_max": 1.81,
+          "top_z": -0.48
+        },
+        {
+          "index": 4,
+          "x_min": 1.81,
+          "x_max": 2.08,
+          "top_z": -0.64
+        },
+        {
+          "index": 5,
+          "x_min": 2.08,
+          "x_max": 2.35,
+          "top_z": -0.8
+        },
+        {
+          "index": 6,
+          "x_min": 2.35,
+          "x_max": 2.62,
+          "top_z": -0.96
+        }
+      ],
+      "collision_representation": "closed triangle meshes with physical overhang undersides",
+      "convert_to_heightfield": false
+    }
+  ],
+  "candidates": [
+    {
+      "updates": 60,
+      "source": "isaaclab/logs/2026-10-11_01-21-27_easy100-core-checkpoints/candidates/1_model_60/result.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_00-51-49_stairs-easy-faithful-100/model_60.pt",
+      "passed": false,
+      "independent_reset_validation_eligible": true,
+      "physics_failures": {
+        "nonfinite_envs": 0,
+        "invalid_physics_envs": 0,
+        "invalid_start_envs": 0
+      },
+      "cases": [
+        {
+          "case_index": 0,
+          "direction": "asc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.7256761789321899,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.7189834117889404
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.7121491432189941
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.7458959817886353
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.06667568043284881,
+              "max": 0.06977517864711337,
+              "arithmetic_mean": 0.06829287547378661
+            },
+            "flight_pause_fraction": {
+              "min": 0.7222783276105837,
+              "max": 0.7733359984009595,
+              "arithmetic_mean": 0.75575290626881
+            },
+            "longest_flight_pause_s": {
+              "min": 3.6599972248077393,
+              "max": 3.679997205734253,
+              "arithmetic_mean": 3.673330545425415
+            },
+            "action_second_delta_rms": {
+              "min": 0.050491111005484555,
+              "max": 0.05097799493094959,
+              "arithmetic_mean": 0.05076119389864144
+            },
+            "pitch_rms_rad": {
+              "min": 0.038965105517066945,
+              "max": 0.039717313084059805,
+              "arithmetic_mean": 0.03943140882937958
+            },
+            "roll_rms_rad": {
+              "min": 0.040310987113716425,
+              "max": 0.04392931469981698,
+              "arithmetic_mean": 0.04167647074433662
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 1,
+          "direction": "desc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 50,
+          "falls": 0,
+          "stalls": 46,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 2.725433111190796,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 20,
+              "falls": 0,
+              "stalls": 12,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 2.66084885597229
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 17,
+              "falls": 0,
+              "stalls": 15,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 2.9692468643188477
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 13,
+              "falls": 0,
+              "stalls": 19,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 2.54620361328125
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.16321525993809494,
+              "max": 0.17234239757752512,
+              "arithmetic_mean": 0.16923121352631595
+            },
+            "flight_pause_fraction": {
+              "min": 0.0576425855513308,
+              "max": 0.08378625954198474,
+              "arithmetic_mean": 0.06779827193974129
+            },
+            "longest_flight_pause_s": {
+              "min": 2.879997968673706,
+              "max": 3.5399973392486572,
+              "arithmetic_mean": 3.306664228439331
+            },
+            "action_second_delta_rms": {
+              "min": 0.09508847654344423,
+              "max": 0.09778719379000472,
+              "arithmetic_mean": 0.09635675099926246
+            },
+            "pitch_rms_rad": {
+              "min": 0.13939214491078472,
+              "max": 0.14184792305471217,
+              "arithmetic_mean": 0.14088731092787518
+            },
+            "roll_rms_rad": {
+              "min": 0.036414466353850046,
+              "max": 0.03977377329015312,
+              "arithmetic_mean": 0.03780707787390624
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.5208333333333334
+        },
+        {
+          "case_index": 2,
+          "direction": "asc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.7500512997309366,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.7832999229431152
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.7795915007591248
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.6872624754905701
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.06538870634968444,
+              "max": 0.07253774714011077,
+              "arithmetic_mean": 0.0697281584024168
+            },
+            "flight_pause_fraction": {
+              "min": 0.7342470630117479,
+              "max": 0.7880721830985915,
+              "arithmetic_mean": 0.7565716931478909
+            },
+            "longest_flight_pause_s": {
+              "min": 3.6599972248077393,
+              "max": 3.679997205734253,
+              "arithmetic_mean": 3.673330545425415
+            },
+            "action_second_delta_rms": {
+              "min": 0.049550720285838755,
+              "max": 0.05151786137098409,
+              "arithmetic_mean": 0.05081264801638222
+            },
+            "pitch_rms_rad": {
+              "min": 0.038964403631903656,
+              "max": 0.03971333293342064,
+              "arithmetic_mean": 0.039255756554718836
+            },
+            "roll_rms_rad": {
+              "min": 0.03971997502046592,
+              "max": 0.044978925846443536,
+              "arithmetic_mean": 0.04189437762471668
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 3,
+          "direction": "desc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 6,
+          "falls": 56,
+          "stalls": 34,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 1.7638850212097168,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 2,
+              "falls": 17,
+              "stalls": 13,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 1.5901753902435303
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 1,
+              "falls": 23,
+              "stalls": 8,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 1.8163282871246338
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 3,
+              "falls": 16,
+              "stalls": 13,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 1.8851513862609863
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.18815118173434203,
+              "max": 0.21173017375635916,
+              "arithmetic_mean": 0.1990172290615966
+            },
+            "flight_pause_fraction": {
+              "min": 0.003439240091713069,
+              "max": 0.015283420390791256,
+              "arithmetic_mean": 0.009991472856568482
+            },
+            "longest_flight_pause_s": {
+              "min": 0.15999998152256012,
+              "max": 0.7199998497962952,
+              "arithmetic_mean": 0.48666660487651825
+            },
+            "action_second_delta_rms": {
+              "min": 0.15965644381668995,
+              "max": 0.16999575981555176,
+              "arithmetic_mean": 0.165228883943007
+            },
+            "pitch_rms_rad": {
+              "min": 0.2797614675540889,
+              "max": 0.30123576050463796,
+              "arithmetic_mean": 0.2926561212658182
+            },
+            "roll_rms_rad": {
+              "min": 0.0479270332134259,
+              "max": 0.05538924144003222,
+              "arithmetic_mean": 0.05218315021561074
+            },
+            "torque_saturation_fraction": {
+              "min": 0.00019890020482788676,
+              "max": 0.0002255577495042968,
+              "arithmetic_mean": 0.00021140566662903
+            }
+          },
+          "completion_fraction": 0.0625
+        }
+      ]
+    },
+    {
+      "updates": 80,
+      "source": "isaaclab/logs/2026-10-11_01-21-27_easy100-core-checkpoints/candidates/0_model_80/result.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_00-51-49_stairs-easy-faithful-100/model_80.pt",
+      "passed": false,
+      "independent_reset_validation_eligible": true,
+      "physics_failures": {
+        "nonfinite_envs": 0,
+        "invalid_physics_envs": 0,
+        "invalid_start_envs": 0
+      },
+      "cases": [
+        {
+          "case_index": 0,
+          "direction": "asc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.8555373748143514,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8484727144241333
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8521085977554321
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8660308122634888
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.08639689173437944,
+              "max": 0.08871834647810853,
+              "arithmetic_mean": 0.087388038665095
+            },
+            "flight_pause_fraction": {
+              "min": 0.7343045959747672,
+              "max": 0.7691960252935862,
+              "arithmetic_mean": 0.7501224671338061
+            },
+            "longest_flight_pause_s": {
+              "min": 3.619997262954712,
+              "max": 3.6399972438812256,
+              "arithmetic_mean": 3.6333305835723877
+            },
+            "action_second_delta_rms": {
+              "min": 0.05143222079108806,
+              "max": 0.052158672030935695,
+              "arithmetic_mean": 0.05184285926767119
+            },
+            "pitch_rms_rad": {
+              "min": 0.040844693121849275,
+              "max": 0.0423927978982211,
+              "arithmetic_mean": 0.041401799933250834
+            },
+            "roll_rms_rad": {
+              "min": 0.014645721359584071,
+              "max": 0.021630494682126022,
+              "arithmetic_mean": 0.01918047231390198
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 1,
+          "direction": "desc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 79,
+          "falls": 0,
+          "stalls": 17,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 3.409708817799886,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 27,
+              "falls": 0,
+              "stalls": 5,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.389007329940796
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 26,
+              "falls": 0,
+              "stalls": 6,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.4315712451934814
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 26,
+              "falls": 0,
+              "stalls": 6,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.408547878265381
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.2189696896356623,
+              "max": 0.22142309443173566,
+              "arithmetic_mean": 0.22057421521112194
+            },
+            "flight_pause_fraction": {
+              "min": 0.05103554685181888,
+              "max": 0.06019641125121242,
+              "arithmetic_mean": 0.05656604117218838
+            },
+            "longest_flight_pause_s": {
+              "min": 2.879997968673706,
+              "max": 3.419997453689575,
+              "arithmetic_mean": 3.2266643047332764
+            },
+            "action_second_delta_rms": {
+              "min": 0.09950939852698207,
+              "max": 0.09993394772450846,
+              "arithmetic_mean": 0.09971464346492998
+            },
+            "pitch_rms_rad": {
+              "min": 0.1477634511463727,
+              "max": 0.1516187709708959,
+              "arithmetic_mean": 0.14974421282765946
+            },
+            "roll_rms_rad": {
+              "min": 0.03215809540449181,
+              "max": 0.0341369454096191,
+              "arithmetic_mean": 0.033435671657858664
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.8229166666666666
+        },
+        {
+          "case_index": 2,
+          "direction": "asc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.8616929252942404,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8611443042755127
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8571215867996216
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8668128848075867
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.08721807567425056,
+              "max": 0.0889136914466213,
+              "arithmetic_mean": 0.0878657461735038
+            },
+            "flight_pause_fraction": {
+              "min": 0.7192330558858502,
+              "max": 0.7565256525652565,
+              "arithmetic_mean": 0.7437814178367786
+            },
+            "longest_flight_pause_s": {
+              "min": 3.619997262954712,
+              "max": 3.6399972438812256,
+              "arithmetic_mean": 3.6333305835723877
+            },
+            "action_second_delta_rms": {
+              "min": 0.051441834742109206,
+              "max": 0.051975899702906427,
+              "arithmetic_mean": 0.05167085153777454
+            },
+            "pitch_rms_rad": {
+              "min": 0.04082441446668817,
+              "max": 0.04186998616409069,
+              "arithmetic_mean": 0.04145224436561314
+            },
+            "roll_rms_rad": {
+              "min": 0.019545937252506206,
+              "max": 0.022166737553324642,
+              "arithmetic_mean": 0.02067177608131029
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 3,
+          "direction": "desc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 74,
+          "falls": 8,
+          "stalls": 14,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 3.154385964075724,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 22,
+              "falls": 3,
+              "stalls": 7,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.0856997966766357
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 26,
+              "falls": 3,
+              "stalls": 3,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.1888952255249023
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 26,
+              "falls": 2,
+              "stalls": 4,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.1885628700256348
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.24491570292687143,
+              "max": 0.261760687495536,
+              "arithmetic_mean": 0.25500367601073437
+            },
+            "flight_pause_fraction": {
+              "min": 0.03707201889020071,
+              "max": 0.0865476452869003,
+              "arithmetic_mean": 0.056152519315261155
+            },
+            "longest_flight_pause_s": {
+              "min": 3.6599972248077393,
+              "max": 3.7199971675872803,
+              "arithmetic_mean": 3.6999971866607666
+            },
+            "action_second_delta_rms": {
+              "min": 0.15861941423975162,
+              "max": 0.1681957526019684,
+              "arithmetic_mean": 0.16455875738538842
+            },
+            "pitch_rms_rad": {
+              "min": 0.35000527341871013,
+              "max": 0.3578279513566906,
+              "arithmetic_mean": 0.3539747809067905
+            },
+            "roll_rms_rad": {
+              "min": 0.040905151065055545,
+              "max": 0.043502104980133356,
+              "arithmetic_mean": 0.0423089832841222
+            },
+            "torque_saturation_fraction": {
+              "min": 8.707312660452453e-06,
+              "max": 3.368534619447636e-05,
+              "arithmetic_mean": 2.1277950198324716e-05
+            }
+          },
+          "completion_fraction": 0.7708333333333334
+        }
+      ]
+    },
+    {
+      "updates": 100,
+      "source": "isaaclab/logs/2026-10-11_01-21-27_easy100-core-checkpoints/result.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_00-51-49_stairs-easy-faithful-100/model_100.pt",
+      "passed": false,
+      "independent_reset_validation_eligible": true,
+      "physics_failures": {
+        "nonfinite_envs": 0,
+        "invalid_physics_envs": 0,
+        "invalid_start_envs": 0
+      },
+      "cases": [
+        {
+          "case_index": 0,
+          "direction": "asc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.8964531421661377,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.891481876373291
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8995368480682373
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.8983407020568848
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.09519031700047224,
+              "max": 0.0963630221837144,
+              "arithmetic_mean": 0.0958472536506396
+            },
+            "flight_pause_fraction": {
+              "min": 0.7342278047387953,
+              "max": 0.7405421075518192,
+              "arithmetic_mean": 0.7377729958939317
+            },
+            "longest_flight_pause_s": {
+              "min": 3.619997262954712,
+              "max": 3.679997205734253,
+              "arithmetic_mean": 3.6466639041900635
+            },
+            "action_second_delta_rms": {
+              "min": 0.054544012027061065,
+              "max": 0.05490982482793212,
+              "arithmetic_mean": 0.054715065053115734
+            },
+            "pitch_rms_rad": {
+              "min": 0.024936904199991443,
+              "max": 0.026037866296526862,
+              "arithmetic_mean": 0.02564948493107813
+            },
+            "roll_rms_rad": {
+              "min": 0.049962244400911404,
+              "max": 0.05466843557901262,
+              "arithmetic_mean": 0.05307089231866732
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 1,
+          "direction": "desc",
+          "height_m": 0.08,
+          "num_trials": 96,
+          "completions": 85,
+          "falls": 0,
+          "stalls": 11,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 3.515078067779541,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 26,
+              "falls": 0,
+              "stalls": 6,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.515472412109375
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 30,
+              "falls": 0,
+              "stalls": 2,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.5254626274108887
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 29,
+              "falls": 0,
+              "stalls": 3,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.5042991638183594
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.24871871125965245,
+              "max": 0.26522676395724687,
+              "arithmetic_mean": 0.2569266592635258
+            },
+            "flight_pause_fraction": {
+              "min": 0.012675354269030834,
+              "max": 0.023329942353340117,
+              "arithmetic_mean": 0.018046184995386887
+            },
+            "longest_flight_pause_s": {
+              "min": 3.2799975872039795,
+              "max": 3.739997148513794,
+              "arithmetic_mean": 3.5333306789398193
+            },
+            "action_second_delta_rms": {
+              "min": 0.1051171405884712,
+              "max": 0.10799912188487712,
+              "arithmetic_mean": 0.10642639331379955
+            },
+            "pitch_rms_rad": {
+              "min": 0.14330686168791082,
+              "max": 0.1460210404548953,
+              "arithmetic_mean": 0.14491284135395002
+            },
+            "roll_rms_rad": {
+              "min": 0.03794466833457274,
+              "max": 0.04097585654767487,
+              "arithmetic_mean": 0.03931477848260307
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.8854166666666666
+        },
+        {
+          "case_index": 2,
+          "direction": "asc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 96,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 0.9022105733553568,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.898772656917572
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.9020661115646362
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 0,
+              "falls": 0,
+              "stalls": 32,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 0.9057929515838623
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.0957022377718253,
+              "max": 0.09726034214329633,
+              "arithmetic_mean": 0.09648406405260818
+            },
+            "flight_pause_fraction": {
+              "min": 0.7199087278950371,
+              "max": 0.7386769538505501,
+              "arithmetic_mean": 0.7280430533354855
+            },
+            "longest_flight_pause_s": {
+              "min": 3.559997320175171,
+              "max": 3.619997262954712,
+              "arithmetic_mean": 3.5933306217193604
+            },
+            "action_second_delta_rms": {
+              "min": 0.05436097818632609,
+              "max": 0.0553688748317108,
+              "arithmetic_mean": 0.05472261560673817
+            },
+            "pitch_rms_rad": {
+              "min": 0.0248464398019879,
+              "max": 0.025933668422995264,
+              "arithmetic_mean": 0.025565818498621662
+            },
+            "roll_rms_rad": {
+              "min": 0.053353489012510025,
+              "max": 0.05418225915640867,
+              "arithmetic_mean": 0.053656084571386035
+            },
+            "torque_saturation_fraction": {
+              "min": 0.0,
+              "max": 0.0,
+              "arithmetic_mean": 0.0
+            }
+          },
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 3,
+          "direction": "desc",
+          "height_m": 0.16,
+          "num_trials": 96,
+          "completions": 88,
+          "falls": 5,
+          "stalls": 3,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "mean_max_progress_m": 3.319985866546631,
+          "per_seed": [
+            {
+              "seed": 11,
+              "num_envs": 32,
+              "completions": 29,
+              "falls": 1,
+              "stalls": 2,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.335231304168701
+            },
+            {
+              "seed": 29,
+              "num_envs": 32,
+              "completions": 29,
+              "falls": 3,
+              "stalls": 0,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.2600626945495605
+            },
+            {
+              "seed": 47,
+              "num_envs": 32,
+              "completions": 30,
+              "falls": 1,
+              "stalls": 1,
+              "lateral_escapes": 0,
+              "mean_max_progress_m": 3.364663600921631
+            }
+          ],
+          "seed_metric_summaries": {
+            "measured_vx_m_s": {
+              "min": 0.2900980949984423,
+              "max": 0.29704593631805654,
+              "arithmetic_mean": 0.2935821178325198
+            },
+            "flight_pause_fraction": {
+              "min": 0.00042254711400321134,
+              "max": 0.019599836668027767,
+              "arithmetic_mean": 0.009487524021051392
+            },
+            "longest_flight_pause_s": {
+              "min": 0.05999999865889549,
+              "max": 3.3999974727630615,
+              "arithmetic_mean": 1.399999100714922
+            },
+            "action_second_delta_rms": {
+              "min": 0.14912717898319097,
+              "max": 0.15355707252734963,
+              "arithmetic_mean": 0.15152628670206877
+            },
+            "pitch_rms_rad": {
+              "min": 0.33621894329343394,
+              "max": 0.3391678339114681,
+              "arithmetic_mean": 0.33747670106400696
+            },
+            "roll_rms_rad": {
+              "min": 0.044347241387293346,
+              "max": 0.047362999267225994,
+              "arithmetic_mean": 0.04614239970286086
+            },
+            "torque_saturation_fraction": {
+              "min": 3.7335723932285037e-05,
+              "max": 4.8832895292622444e-05,
+              "arithmetic_mean": 4.268233521414949e-05
+            }
+          },
+          "completion_fraction": 0.9166666666666666
+        }
+      ]
+    }
+  ],
+  "first_riser_evidence": [
+    {
+      "seed": 11,
+      "case_index": 0,
+      "trace_env_id": 0,
+      "last_active_time_s": 7.0200000000000005,
+      "last_root_relative_xyz": [
+        0.8634295463562012,
+        -0.026998043060302734,
+        0.2878752052783966
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9766384363174438,
+          0.18628501892089844,
+          0.02294529229402542
+        ],
+        [
+          0.9799591302871704,
+          -0.19847440719604492,
+          0.023021936416625977
+        ],
+        [
+          0.5771414041519165,
+          0.17083024978637695,
+          0.022885918617248535
+        ],
+        [
+          0.5226194858551025,
+          -0.19394826889038086,
+          0.022530309855937958
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "last_measured_vx_m_s": -0.005332570523023605,
+      "last_action_second_delta_rms": 0.000552361540030688,
+      "maximum_recorded_foot_x_m": 0.9802565574645996,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.03762248158454895,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    },
+    {
+      "seed": 11,
+      "case_index": 2,
+      "trace_env_id": 64,
+      "last_active_time_s": 6.72,
+      "last_root_relative_xyz": [
+        0.8680890798568726,
+        -0.06957030296325684,
+        0.28533849120140076
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9776101112365723,
+          0.17187392711639404,
+          0.022830761969089508
+        ],
+        [
+          0.979728102684021,
+          -0.22771894931793213,
+          0.0229216068983078
+        ],
+        [
+          0.575852632522583,
+          0.13320398330688477,
+          0.03150708228349686
+        ],
+        [
+          0.5259170532226562,
+          -0.22887933254241943,
+          0.022527314722537994
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "last_measured_vx_m_s": -0.003227519802749157,
+      "last_action_second_delta_rms": 0.00270948838442564,
+      "maximum_recorded_foot_x_m": 0.9803093075752258,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.032645612955093384,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    },
+    {
+      "seed": 29,
+      "case_index": 0,
+      "trace_env_id": 0,
+      "last_active_time_s": 7.0200000000000005,
+      "last_root_relative_xyz": [
+        0.8966097831726074,
+        0.020678043365478516,
+        0.2896049916744232
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9801012277603149,
+          0.2536005973815918,
+          0.022585265338420868
+        ],
+        [
+          0.9794086217880249,
+          -0.1329483985900879,
+          0.02276400476694107
+        ],
+        [
+          0.601204514503479,
+          0.23359251022338867,
+          0.022800207138061523
+        ],
+        [
+          0.5191080570220947,
+          -0.14848899841308594,
+          0.02219313383102417
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "last_measured_vx_m_s": -9.829427290242165e-05,
+      "last_action_second_delta_rms": 1.0494152775208931e-05,
+      "maximum_recorded_foot_x_m": 0.980158805847168,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.023641012609004974,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    },
+    {
+      "seed": 29,
+      "case_index": 2,
+      "trace_env_id": 64,
+      "last_active_time_s": 6.5200000000000005,
+      "last_root_relative_xyz": [
+        0.8750210404396057,
+        -0.04414939880371094,
+        0.2782946825027466
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9282845258712769,
+          0.19387602806091309,
+          0.02238968014717102
+        ],
+        [
+          0.9797370433807373,
+          -0.21724295616149902,
+          0.022894732654094696
+        ],
+        [
+          0.5622323751449585,
+          0.15502965450286865,
+          0.022726796567440033
+        ],
+        [
+          0.547463059425354,
+          -0.21020686626434326,
+          0.022669538855552673
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "last_measured_vx_m_s": -0.007112592458724976,
+      "last_action_second_delta_rms": 0.0007376226130872965,
+      "maximum_recorded_foot_x_m": 0.9802423119544983,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.027997780591249466,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    },
+    {
+      "seed": 47,
+      "case_index": 0,
+      "trace_env_id": 0,
+      "last_active_time_s": 6.92,
+      "last_root_relative_xyz": [
+        0.8710789680480957,
+        -0.06464052200317383,
+        0.2832738757133484
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9554967880249023,
+          0.19086456298828125,
+          0.022556886076927185
+        ],
+        [
+          0.9801539778709412,
+          -0.2148280143737793,
+          0.02306336909532547
+        ],
+        [
+          0.5705181360244751,
+          0.13328838348388672,
+          0.022796981036663055
+        ],
+        [
+          0.5303206443786621,
+          -0.2321758270263672,
+          0.02254367619752884
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "last_measured_vx_m_s": 0.006714543327689171,
+      "last_action_second_delta_rms": 0.0036385818384587765,
+      "maximum_recorded_foot_x_m": 0.9801539778709412,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.03423558175563812,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    },
+    {
+      "seed": 47,
+      "case_index": 2,
+      "trace_env_id": 64,
+      "last_active_time_s": 6.82,
+      "last_root_relative_xyz": [
+        0.887829065322876,
+        -0.09268760681152344,
+        0.2835260033607483
+      ],
+      "last_feet_relative_xyz": [
+        [
+          0.9505682587623596,
+          0.14296185970306396,
+          0.02242279052734375
+        ],
+        [
+          0.9797356128692627,
+          -0.2549476623535156,
+          0.02284979075193405
+        ],
+        [
+          0.5830154418945312,
+          0.11237907409667969,
+          0.022757522761821747
+        ],
+        [
+          0.5287408828735352,
+          -0.2564767599105835,
+          0.022380352020263672
+        ]
+      ],
+      "last_foot_contacts": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "last_measured_vx_m_s": 0.004676575306802988,
+      "last_action_second_delta_rms": 3.275545168435201e-05,
+      "maximum_recorded_foot_x_m": 0.980236828327179,
+      "maximum_recorded_foot_z_after_root_x_0_65_m": 0.03109140694141388,
+      "evidence_scope": "One representative environment per case; .1 s trace cadence; not the exact maximum over all physics frames or all environments."
+    }
+  ],
+  "zero_action": {
+    "total_completions": 0,
+    "total_trials": 384
+  },
+  "findings": [
+    "All 3 candidates stall on both ascent cases: 0/96 complete per case and candidate, no falls or lateral escapes.",
+    "Ascent traces show front-foot link centers at x\u22480.980 m at the first vertical riser x=1.000 m; recorded foot height near the riser stays below both test step heights. This is physical first-step stall, not a final-goal threshold failure.",
+    "The 100-update candidate completes 85/96 of 8 cm descent and 88/96 of 16 cm descent; neither reaches the final 95% criterion.",
+    "All reported environments have finite physics, valid initial states and no base contact. Descent traces physically reach the expected negative-z landing, supporting origin/direction mapping.",
+    "Low action variation at rest does not demonstrate smooth stair traversal. Descent 16 cm pitch RMS is around 0.34 rad; visual review and a comparison baseline are still needed."
+  ],
+  "recommendations": [
+    "Preserve this faithful reward result as a baseline. Run a separately named, ascent-focused easier-step curriculum from the flat checkpoint, with a lower minimum step height and staged increases only after real first-riser traversal.",
+    "Inspect the body-relative foot-clearance reward and upward-velocity/orientation penalties as controlled reward ablations; do not assume their causal role without a matched run.",
+    "Evaluate selected checkpoints on the same four fixed cases and three reset seeds; require complete six-step flights and final-platform dwell. Include small-step ascent diagnostics to distinguish first-step acquisition from held-out 8/16 cm capability."
+  ]
+}
