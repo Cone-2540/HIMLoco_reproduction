@@ -193,8 +193,8 @@
       "changes": "Only lower command distribution0.25\u20130.65; same standardterrain/faithfulreward/checkpointAdamfixed3e-4/stdnooverride"
     }
   ],
-  "active_run": "standard370/340 matched.5evaluation",
-  "next_step": "Review continuous16cm .3 ascent/descent; preserve340and370; isolate hard0.08-.23/nosingfaithfulcontinuation, independenttuningmatrixthenrewardablationifneeded",
+  "active_run": "isaaclab/logs/2026-10-11_03-13-12_stairs-hard-faithful570",
+  "next_step": "Evaluatehard570/earliercheckpointandstandard370onnewcontactprovenance; completehardmatrixandmaterialchecks; candidatecontactrewardifactualscrapingpersists",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
   "schedule_initial": "fixed",
@@ -231,21 +231,38 @@
     "reward_profile": "faithful"
   },
   "current_changes": {
-    "from_checkpoint": "standard270/model_270.pt",
-    "stage": "standard",
+    "from_checkpoint": "standard370/model_370.pt",
+    "stage": "hard",
     "reward": "faithful",
-    "speed_range": [
+    "height_range_m": [
+      0.08,
+      0.23
+    ],
+    "treads_m": [
+      0.2,
+      0.25,
+      0.27,
+      0.3,
+      0.35,
+      0.4
+    ],
+    "nosing_m": [
+      0,
+      0.01,
+      0.02,
+      0.03
+    ],
+    "num_envs": 4096,
+    "additional_updates": 200,
+    "optimizer": "checkpointAdam/fixed3e-4 unchanged",
+    "speed_range_m_s": [
       0.25,
       0.65
     ],
-    "num_envs": 4096,
-    "additional_updates": 100,
-    "optimizer": "checkpointAdam/fixed3e-4 unchanged",
-    "exploration_std": "checkpoint std, no override",
-    "intent": "single command distribution change to reduce low-speed stop behavior"
+    "intent": "isolatehardterrainextensionbeforecontactrewardablation"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T03:05:55.902497+08:00",
+  "last_update_local": "2026-10-11T03:47:00+08:00",
   "verified_remote_commit": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
@@ -283,5 +300,44 @@
     "model370": "1152/1152;finaltraversalpassed;maxpause.12s",
     "model340": "1152/1152;finaltraversalpassed;maxpause.16s",
     "smoothness_verified": false
-  }
+  },
+  "hard440_interim": {
+    "run": "isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2",
+    "scope": "Intermediate diagnostic only, one resetseed29and32env/case; not finalthree-seed validation",
+    "model440_completed_by_case": [
+      32,
+      32,
+      23,
+      32,
+      29,
+      32
+    ],
+    "model370_completed_by_case": [
+      32,
+      32,
+      0,
+      32,
+      17,
+      32
+    ],
+    "cases": [
+      "16cm asc",
+      "16cm desc",
+      "17cm+nose2cm asc",
+      "17cm+nose2cm desc",
+      "20cm asc",
+      "20cm desc"
+    ],
+    "instantaneous_contact_metrics_runtime_verified": true
+  },
+  "contact_metric_review": "Resolvedpinnedhistoryeagerphysics5msdespitelazytrue; oldhistory3samplescurrentand5/10msprior. Newv2instantaneousmetricsliveverified.",
+  "planned_reward_ablation": {
+    "profile": "contact",
+    "change": "faithfulplus8thigh/calfundesiredcontactcountweight-.1threshold1N",
+    "control": "faithfulsamestartcheckpoint/updatebudget/terrain/command/optimizer",
+    "learning_rate": "planned1e-4explicitresumeoverriderecordsAdamretained; lowerKLtowardsrefinement",
+    "start_after": "hard570finishandfixedmatrixselection"
+  },
+  "active_evaluation": "isaaclab/logs/2026-10-11_03-43-07_hard520-interim-tuning",
+  "contact_reward_profile_source_commit": "e4c7df7"
 }

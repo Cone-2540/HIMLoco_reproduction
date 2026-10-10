@@ -2,6 +2,8 @@
 
 此入口复用本机已有的 Isaac Lab Docker 环境，使用 CUDA PhysX 仿真和原仓库的 HIMEstimator、HIMActorCritic、HIMPPO。旧版 Isaac Gym + PyTorch 1.10 不支持 RTX 5080 的 `sm_120`；原版软件栈、CPU 验收与 `original-cpu-baseline` 标签独立保留。
 
+Go2 楼梯训练入口与采样说明见 [STAIRS_zh.md](STAIRS_zh.md)。2026-10-11 的标准楼梯模型已经连同配置和 TorchScript 保存在 [artifacts](../artifacts/README_zh.md)，新克隆可直接加载；本页下面的平地 checkpoint 仍是本机历史训练输出。
+
 ## 本机实际结果：标称平地通过
 
 2026-10-10 完成 1024 环境、500 轮、51,200,000 个环境步，纯训练合计约 17.6 分钟。先训练 300 轮，再以 25% 纯转向指令恢复 200 轮。原始学习曲线见 [PNG](../reproduction/gpu-training.png) / [PDF](../reproduction/gpu-training.pdf)，第 300 轮的虚线标明采样变化。

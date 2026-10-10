@@ -2,6 +2,8 @@
 
 原版基线保存在 Git 标签 `original-cpu-baseline`。RTX 5080 的 GPU 迁移、训练与定量平地验收见 [isaaclab/README_zh.md](isaaclab/README_zh.md)，使用已有 Isaac Lab 容器。
 
+2026-10-11 的 Go2 GPU 楼梯迁移见 [楼梯入口](isaaclab/STAIRS_zh.md)和 [双速度独立验证](reproduction/stair-standard370-analysis.md)。标准模型在 8–17 cm 无边沿的六级楼梯上，0.3/0.5 m/s 各完成 1152/1152 次。可直接加载的完整 checkpoint、TorchScript 和配置保存在 [artifacts](artifacts/README_zh.md)。更高台阶、突出边沿、材质扰动和平滑性属于后续独立实验；此处下面记录的是原版 Isaac Gym 路线的历史结果。
+
 2026-10-10 已下载并安装原仓库的软件栈，完成 **CPU 平地 Go2 仿真、HIM/PPO 训练、模型导出和回放**。GPU 路线与复杂地形目前未通过；不能据此声称复现了论文中的敏捷越障性能。
 
 ## 环境与位置
