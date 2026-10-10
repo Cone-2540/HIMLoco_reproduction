@@ -191,9 +191,28 @@
         "peak_cuda_memory_bytes": 3702060032
       },
       "changes": "Only lower command distribution0.25\u20130.65; same standardterrain/faithfulreward/checkpointAdamfixed3e-4/stdnooverride"
+    },
+    {
+      "run": "isaaclab/logs/2026-10-11_03-13-12_stairs-hard-faithful570",
+      "complete": true,
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 200,
+        "completed_iterations": 570,
+        "num_envs": 4096,
+        "environment_steps_this_run": 81920000,
+        "training_seconds": 2343.354261635999,
+        "parameters_finite": true,
+        "checkpoint": "model_570.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.430511474609375e-06,
+        "peak_cuda_memory_bytes": 3702067200
+      },
+      "source_commit": "1072b1a56b5ba93109430ff10d5fce78be14438b"
     }
   ],
-  "active_run": "isaaclab/logs/2026-10-11_03-13-12_stairs-hard-faithful570",
+  "active_run": "Preparing matched100updatefaithful/contactablationfromhard570",
   "next_step": "Evaluatehard570/earliercheckpointandstandard370onnewcontactprovenance; completehardmatrixandmaterialchecks; candidatecontactrewardifactualscrapingpersists",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
@@ -262,7 +281,7 @@
     "intent": "isolatehardterrainextensionbeforecontactrewardablation"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T03:47:00+08:00",
+  "last_update_local": "2026-10-11T03:53:12+08:00",
   "verified_remote_commit": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
@@ -339,5 +358,46 @@
     "start_after": "hard570finishandfixedmatrixselection"
   },
   "active_evaluation": "isaaclab/logs/2026-10-11_03-43-07_hard520-interim-tuning",
-  "contact_reward_profile_source_commit": "e4c7df7"
+  "contact_reward_profile_source_commit": "e4c7df7",
+  "contact_reward_gpu_smoke": {
+    "run": "isaaclab/logs/2026-10-11_03-52-45_contact-smoke-resume-rate",
+    "result": {
+      "status": "smoke_passed",
+      "scope": "CUDA training and export; locomotion requires separate evaluation",
+      "iterations": 2,
+      "completed_iterations": 522,
+      "num_envs": 64,
+      "environment_steps_this_run": 12800,
+      "training_seconds": 4.302419341998757,
+      "parameters_finite": true,
+      "checkpoint": "model_522.pt",
+      "export": "policy.pt",
+      "export_max_abs_error": 1.9073486328125e-06,
+      "peak_cuda_memory_bytes": 88829952
+    },
+    "resolved_bodies": [
+      "FL_thigh",
+      "FL_calf",
+      "FR_thigh",
+      "FR_calf",
+      "RL_thigh",
+      "RL_calf",
+      "RR_thigh",
+      "RR_calf"
+    ],
+    "resume_learning_rate": {
+      "before": {
+        "ppo": [
+          0.0003
+        ],
+        "estimator": [
+          0.0003
+        ]
+      },
+      "after": 0.0001,
+      "optimizer_state": "retained",
+      "training_iteration": 520
+    },
+    "scope": "API/selection/training/exportnumericalsmokeonly; nosuccessinferred"
+  }
 }
