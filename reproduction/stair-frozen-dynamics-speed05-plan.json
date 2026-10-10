@@ -1,0 +1,21 @@
+{
+  "status": "supplementary_protocol_recorded_before_collection",
+  "scope": "Higher-speed sensitivity of the frozen primary to the same combined dynamics profile; distinct from the original final protocol",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "original_plan_sha256": "fd27265a2d714662a3d03404903537cf6abec3c13ae2f65f21b7edf38b5391ae",
+  "geometry": "reproduction/stair-heldout-final.json",
+  "geometry_sha256": "5fa2fc3b1bb58f2fb94f1f980e26a910d75f8b2c3037999c41369e5d706541c0",
+  "num_envs": 512,
+  "envs_per_case": 32,
+  "seconds": 40,
+  "speed_m_s": 0.5,
+  "construction_seeds": [71, 73, 79],
+  "reset_seeds": [101, 211, 307],
+  "domain_profile": "robust",
+  "eval_dynamics": true,
+  "foot_static_dynamic": [0.8, 0.6],
+  "heading": "Original proportional yaw controller, no lateral correction",
+  "selection": "No training, checkpoint promotion, reward adjustment or acceptance relaxation",
+  "limits": "Startup mass/COM and reset PD variability are combined; this is not a single-parameter causal experiment. It does not include measured hardware delay or motor-strength curves."
+}
