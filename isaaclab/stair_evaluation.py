@@ -84,11 +84,14 @@ def _command_cfg(command, seconds, speed):
     command.ranges.heading = None
 
 
-def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomized=False):
+def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomized=False,
+                               dynamics_randomized=False):
     """Configure before environment construction; randomized means reset perturbations.
 
     Ground/robot material choices remain those supplied by the caller. Startup
-    mass and COM randomization are disabled so repeated seeds only alter resets.
+    mass, COM and actuator gain randomization are disabled by default so repeated
+    seeds only alter resets. dynamics_randomized preserves caller-configured
+    startup events; it does not synthesize new randomization ranges.
     Friction-heldout cases require a separately constructed environment.
     """
     _validate_geometry(geometry)
@@ -102,7 +105,10 @@ def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomize
         cfg.curriculum.terrain_levels = None
     if hasattr(cfg.terminations, "stair_goal_reached"):
         cfg.terminations.stair_goal_reached = None
-    for name in ("push_robot", "add_base_mass", "base_com"):
+    events_to_remove = ("push_robot",) if dynamics_randomized else (
+        "push_robot", "add_base_mass", "base_com", "him_actuator_gains"
+    )
+    for name in events_to_remove:
         if hasattr(cfg.events, name):
             setattr(cfg.events, name, None)
     delta, yaw, vel = (0.08, 0.08, 0.03) if randomized else (0.0, 0.0, 0.0)
@@ -156,7 +162,9 @@ class StairStateCapture:
         self.foot_ids = torch.tensor(foot_ids, device=env.device, dtype=torch.long)
         sensor = env.scene.sensors["contact_forces"]
         self.sensor = sensor
-        self.sensor_foot_ids = torch.tensor(_body_ids(sensor.body_names, "_foot"), device=env.device, dtype=torch.long)
+        # Match by name instead of assuming sensor and robot body order agree.
+        self.sensor_foot_ids = torch.tensor([sensor.body_names.index(self.robot.body_names[index])
+                                            for index in foot_ids], device=env.device, dtype=torch.long)
         if self.sensor_foot_ids.numel() != 4:
             raise ValueError("Contact sensor must include four foot bodies")
         self.base_ids = [index for index, name in enumerate(sensor.body_names) if name.lower() == "base"]
@@ -268,7 +276,8 @@ def _finite_state(state):
 @torch.inference_mode()
 def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1,), randomized=False,
                     zero_action=False, heading_control=True, heading_gain=1.0, max_yaw_rate=0.5,
-                    thresholds=None, progress=None, record_envs=4, record_stride=5):
+                    thresholds=None, progress=None, record_envs=4, record_stride=5,
+                    dynamics_randomized=False):
     """Measure complete flights and first-episode smoothness across reset seeds.
 
     Call configure_stair_evaluation before constructing env. Reset seeds do not
@@ -530,11 +539,12 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                             "maximum_yaw_rate_rad_s": max_yaw_rate,
                             "inputs": "root yaw only; standard velocity-command channels"},
         "randomized_reset": bool(randomized), "command_forward_speed_m_s": speed,
+        "dynamics_randomized": bool(dynamics_randomized),
         "metrics_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
         "slip_metric_scope": "foot-link horizontal speed while recent physics-step normal-contact history peaks >1N; proxy, not exact contact-point tangential slip",
         "smoothness_passed": None,
         "smoothness_note": "Metrics are reported for comparison; no universal smoothness threshold has been calibrated",
-        "seed_scope": "reset RNG seeds; startup terrain and material remain fixed for this environment",
+        "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds",
         "validation_scope": "randomized reset cases" if randomized else "nominal deterministic repeated environments; not independent robustness trials",
         "independent_reset_validation_eligible": bool(randomized and len(set(seeds)) >= 3
             and all(trial["initial_reset_distribution"]["yaw_std_rad"] > 1e-6 for trial in trials)),

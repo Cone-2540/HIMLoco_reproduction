@@ -105,6 +105,8 @@ def main():
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
+    parser.add_argument("--eval_dynamics", action="store_true",
+                        help="Keep selected mass/COM/PD randomization in stair evaluation.")
     parser.add_argument("--open_loop_heading", action="store_true",
                         help="Stair evaluation with zero yaw command instead of external heading correction.")
     parser.add_argument("--friction", type=float, nargs=2, metavar=("STATIC", "DYNAMIC"))
@@ -221,7 +223,8 @@ def main():
     if args.terrain == "stairs" and args.mode in ("evaluate", "play"):
         from stair_evaluation import configure_stair_evaluation
         configure_stair_evaluation(cfg, stair_manifest["geometry"], seconds=args.eval_seconds,
-                                  speed=args.speed, randomized=args.eval_randomized)
+                                  speed=args.speed, randomized=args.eval_randomized,
+                                  dynamics_randomized=args.eval_dynamics)
     elif args.mode == "evaluate":
         from evaluation import configure_evaluation
         configure_evaluation(cfg, seconds=args.eval_seconds)
@@ -269,6 +272,7 @@ def main():
                      "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
                      "friction_override": args.friction, "stair_pushes": args.stair_pushes,
                      "evaluation_seeds": args.eval_seed, "evaluation_randomized": args.eval_randomized})
+    metadata["evaluation_dynamics_randomized"] = args.eval_dynamics
     (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
     print(f"RUN: {log_dir}", flush=True)
     with launch_simulation(cfg, args):
@@ -325,6 +329,7 @@ def main():
                     result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
                                                  seconds=args.eval_seconds, speed=args.speed,
                                                  seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
+                                                 dynamics_randomized=args.eval_dynamics,
                                                  heading_control=not args.open_loop_heading,
                                                  progress=lambda metrics: print(json.dumps(metrics), flush=True))
                     result["final_acceptance"] = assess_final(result)

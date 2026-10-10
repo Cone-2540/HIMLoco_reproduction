@@ -169,6 +169,22 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertIsNone(cfg.terminations.stair_goal_reached)
         self.assertIsNone(cfg.curriculum.terrain_levels)
 
+    def test_default_removes_gain_randomization_and_explicit_dynamics_keeps_events(self):
+        def cfg_factory():
+            return NS(observations=NS(policy=NS(), critic=NS()), curriculum=NS(), terminations=NS(),
+                      events=NS(push_robot=object(), add_base_mass=object(), base_com=object(), him_actuator_gains=object(),
+                                reset_base=NS(params={}), reset_robot_joints=NS(params={})),
+                      commands=NS(base_velocity=NS(ranges=NS())))
+        nominal = cfg_factory()
+        configure_stair_evaluation(nominal, GEOMETRY)
+        self.assertIsNone(nominal.events.him_actuator_gains)
+        dynamics = cfg_factory()
+        original_mass, original_gains = dynamics.events.add_base_mass, dynamics.events.him_actuator_gains
+        configure_stair_evaluation(dynamics, GEOMETRY, dynamics_randomized=True)
+        self.assertIs(dynamics.events.add_base_mass, original_mass)
+        self.assertIs(dynamics.events.him_actuator_gains, original_gains)
+        self.assertIsNone(dynamics.events.push_robot)
+
     def test_batch_keeps_failed_column_from_hiding_in_average(self):
         wrapped = FakeWrapped()
         wrapped.env.scene.terrain = NS(terrain_types=torch.tensor([0] * 16 + [1] * 16))
