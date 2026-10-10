@@ -182,10 +182,25 @@ class StairStateCapture:
                           if any(part in name.lower() for part in ("calf", "thigh", "shank"))]
         # Attribute the contact-reward bodies in robot order, independently of
         # the legacy aggregate shank selection and the sensor's body ordering.
-        self.leg_body_names = [name for name in self.robot.body_names
-                               if name.endswith(("_thigh", "_calf"))]
+        leg_ids = [index for index, name in enumerate(self.robot.body_names)
+                   if name.endswith(("_thigh", "_calf"))]
+        self.leg_ids = torch.tensor(leg_ids, device=env.device, dtype=torch.long)
+        self.leg_body_names = [self.robot.body_names[index] for index in leg_ids]
         self.sensor_leg_ids = torch.tensor([sensor.body_names.index(name) for name in self.leg_body_names],
                                            device=env.device, dtype=torch.long)
+        # Auxiliary trace-only fields are kept outside the measured state so
+        # optional pose availability never changes existing finite/active masks.
+        self.leg_trace_telemetry = {}
+        self.leg_trace_metadata = {
+            "body_order": "leg_body_names",
+            "leg_current_normal_force_w_n": {
+                "status": "available", "source": "contact_forces.data.net_normal_forces_w",
+                "frame": "world", "measurement": "net normal contact force XYZ vector [N]; tangential friction excluded"},
+            "leg_link_pos_w_m": {"source": "robot.data.body_link_pos_w", "frame": "world"},
+            "leg_link_quat_w_xyzw": {"source": "robot.data.body_link_quat_w", "frame": "world",
+                                     "quaternion_order": "xyzw"},
+            "scope": "trace-only at the existing pre-reset capture; null field means unavailable; no metric or validity-mask input",
+        }
         self.latest = None
 
     def snapshot(self):
@@ -201,6 +216,23 @@ class StairStateCapture:
         clipped = (computed - applied).abs() > 1e-4
         limits = _tensor(data.joint_effort_limits)
         near_limit = (applied.abs() >= 0.98 * limits.abs()) & torch.isfinite(limits) & (limits > 0)
+        self.leg_trace_telemetry["leg_current_normal_force_w_n"] = force[:, self.sensor_leg_ids].clone()
+        for field, attribute, width in (("leg_link_pos_w_m", "body_link_pos_w", 3),
+                                        ("leg_link_quat_w_xyzw", "body_link_quat_w", 4)):
+            metadata = self.leg_trace_metadata[field]
+            try:
+                value = getattr(data, attribute, None)
+                if value is None:
+                    raise AttributeError(f"{attribute} is unavailable")
+                tensor = _tensor(value)
+                if tensor.ndim != 3 or tensor.shape != (self.env.num_envs, len(self.robot.body_names), width):
+                    raise ValueError(f"{attribute} dimensions do not match robot body names")
+                self.leg_trace_telemetry[field] = tensor[:, self.leg_ids].clone()
+                metadata.update(status="available")
+                metadata.pop("reason", None)
+            except (AttributeError, NotImplementedError, RuntimeError, TypeError, ValueError) as error:
+                self.leg_trace_telemetry[field] = None
+                metadata.update(status="unavailable", reason=f"{type(error).__name__}: {error}")
         return {
             "root_pos_w": _tensor(data.root_pos_w).clone(),
             "root_quat_w": _tensor(data.root_quat_w).clone(),
@@ -570,6 +602,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                                   "current_sample_shank_force_n": state["current_shank_force_n"][trace_ids].tolist(),
                                   "leg_current_normal_force_norm_n": state["leg_current_normal_force_norm_n"][trace_ids].tolist(),
                                   "leg_history_peak_normal_force_norm_n": state["leg_history_peak_normal_force_norm_n"][trace_ids].tolist(),
+                                  **{name: value[trace_ids].tolist() if value is not None else None
+                                     for name, value in capture.leg_trace_telemetry.items()},
                                   "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[trace_ids].tolist()})
                 active &= ~(complete | falls | escapes | stalls | nonfinite | dones.bool())
                 if progress is not None and ((step + 1) % 200 == 0 or not bool(active.any())):
@@ -667,6 +701,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
         "foot_body_names": capture.foot_body_names,
         "leg_body_names": capture.leg_body_names,
         "leg_force_trace_scope": "per-leg arrays follow leg_body_names in robot body order, matched to sensor names; current policy-boundary normal-force norm and retained-history peak norm; sparse traces do not measure contact duration",
+        "leg_trace_telemetry": capture.leg_trace_metadata,
         "heading_control": {"enabled": heading_control, "target_yaw_rad": 0.0, "gain": heading_gain,
                             "maximum_yaw_rate_rad_s": max_yaw_rate,
                             "inputs": "root yaw only; standard velocity-command channels"},

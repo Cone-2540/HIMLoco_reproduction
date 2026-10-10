@@ -1,5 +1,6 @@
 """Regression tests for full traversal, pre-reset telemetry and motion reporting."""
 
+import math
 import unittest
 from types import SimpleNamespace as NS
 
@@ -272,13 +273,16 @@ class StairEvaluationTest(unittest.TestCase):
         current[:, 3, 2] = 1.  # Exact threshold does not count as contact.
         history[:, 0] = current
         history[:, 1, 0, 0] = 9.
-        state = StairStateCapture(wrapped.env).snapshot()
+        capture = StairStateCapture(wrapped.env)
+        state = capture.snapshot()
         self.assertEqual(state["current_foot_contacts"][0].tolist(), [False, False, False, True])
         self.assertEqual(float(state["current_base_force_n"][0]), 4.)
         self.assertEqual(float(state["current_shank_force_n"][0]), 3.)
         self.assertEqual(float(state["shank_force_n"][0]), 9.)
         self.assertEqual(state["leg_current_normal_force_norm_n"][0].tolist(), [3.])
         self.assertEqual(state["leg_history_peak_normal_force_norm_n"][0].tolist(), [9.])
+        self.assertEqual(capture.leg_trace_telemetry["leg_current_normal_force_w_n"][0].tolist(), [[0., 3., 0.]])
+        self.assertNotIn("leg_link_quat_w_xyzw", state)  # Trace-only fields cannot change the measured-state mask.
 
     def test_report_names_and_per_leg_trace_match_reordered_sensor_bodies(self):
         class PerLegWrapped(FakeWrapped):
@@ -292,6 +296,7 @@ class StairEvaluationTest(unittest.TestCase):
                 count = len(self.robot.body_names)
                 self.robot.data.body_link_pos_w = proxy(torch.zeros(32, count, 3))
                 self.robot.data.body_link_lin_vel_w = proxy(torch.zeros(32, count, 3))
+                self.robot.data.body_link_quat_w = proxy(torch.tensor([0., 0., 0., 1.]).repeat(32, count, 1))
                 self.sensor.data.net_normal_forces_w = proxy(torch.zeros(32, count, 3))
                 self.sensor.data.net_normal_forces_w_history = proxy(torch.zeros(32, 3, count, 3))
 
@@ -312,6 +317,10 @@ class StairEvaluationTest(unittest.TestCase):
                     force[:, index, 0] = float(number)  # Includes horizontal normal forces.
                     history[:, 0, index] = force[:, index]
                     history[:, 1, index, 1] = 10. + number
+                    body_index = self.robot.body_names.index(name)
+                    self.robot.data.body_link_pos_w.torch[:, body_index] = torch.tensor([x, number, number / 10.])
+                    self.robot.data.body_link_quat_w.torch[:, body_index] = torch.tensor(
+                        [0., 0., math.sin(number * .05), math.cos(number * .05)])
                 # Hip impacts must not enter these reward-body arrays.
                 hip_index = self.sensor.body_names.index("FL_hip")
                 force[:, hip_index, 2] = 100.
@@ -330,8 +339,33 @@ class StairEvaluationTest(unittest.TestCase):
             self.assertLessEqual(len(row["env_ids"]), 4)
             self.assertEqual(row["leg_current_normal_force_norm_n"], [list(range(1, 9))] * 4)
             self.assertEqual(row["leg_history_peak_normal_force_norm_n"], [list(range(11, 19))] * 4)
+            vectors = torch.tensor(row["leg_current_normal_force_w_n"])
+            torch.testing.assert_close(vectors.norm(dim=-1), torch.tensor(row["leg_current_normal_force_norm_n"]).float())
+            torch.testing.assert_close(vectors.norm(dim=-1).amax(dim=1), torch.tensor(row["current_sample_shank_force_n"]))
+            self.assertEqual(vectors[0].tolist(), [[float(number), 0., 0.] for number in range(1, 9)])
+            positions = torch.tensor(row["leg_link_pos_w_m"])
+            torch.testing.assert_close(positions[0, :, 1], torch.arange(1., 9.))
+            quaternions = torch.tensor(row["leg_link_quat_w_xyzw"])
+            expected = torch.tensor([[0., 0., math.sin(number * .05), math.cos(number * .05)] for number in range(1, 9)])
+            torch.testing.assert_close(quaternions[0], expected)
             self.assertTrue(all(all(flags) for flags in row["current_sample_contacts"]))
         self.assertIn("sparse traces do not measure contact duration", result["leg_force_trace_scope"])
+        self.assertEqual(result["leg_trace_telemetry"]["leg_link_quat_w_xyzw"]["quaternion_order"], "xyzw")
+        self.assertEqual(result["leg_trace_telemetry"]["leg_link_pos_w_m"]["status"], "available")
+
+    def test_optional_leg_pose_trace_is_null_when_missing_and_does_not_change_metrics(self):
+        unavailable = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=1, record_stride=1)
+        wrapped = FakeWrapped()
+        wrapped.robot.data.body_link_quat_w = proxy(torch.tensor([0., 0., 0., 1.]).repeat(32, 6, 1))
+        available = evaluate_stairs(wrapped, policy, GEOMETRY, seconds=8., record_envs=1, record_stride=1)
+        metadata = unavailable["leg_trace_telemetry"]["leg_link_quat_w_xyzw"]
+        self.assertEqual(metadata["status"], "unavailable")
+        self.assertIn("unavailable", metadata["reason"])
+        self.assertTrue(all(row["leg_link_quat_w_xyzw"] is None for row in unavailable["trials"][0]["trace"]))
+        self.assertEqual(unavailable["trials"][0]["metrics"], available["trials"][0]["metrics"])
+        self.assertEqual(unavailable["trials"][0]["per_env"], available["trials"][0]["per_env"])
+        self.assertEqual([row["active"] for row in unavailable["trials"][0]["trace"]],
+                         [row["active"] for row in available["trials"][0]["trace"]])
 
     def test_cadence_metadata_distinguishes_sample_age_from_count_window(self):
         result = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8., record_envs=0)
