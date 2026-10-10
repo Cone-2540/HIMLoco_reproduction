@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "review_method": "CPU ffmpeg full-stream decode and timestamped static-frame inspection, cross-checked against recorded policy/zero-action evaluation results and representative env0 first-episode telemetry. No new simulation.",
+  "ffmpeg": "/home/cone/isaaclab/data/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+  "video_capture_scope": "Video recorder captures one frame per policy env.step at 50 fps. Simulation-step time is approximately video PTS + .02 s; visualizer may retain a stale image for one frame.",
+  "smoothness_verified": false,
+  "smoothness_limitation": "Sampled frames cannot establish smoothness or exclude between-frame jitter/collision. No matched visual baseline was reviewed.",
+  "recording_option": {
+    "argument": "--video_policy_only",
+    "valid_only_with": [
+      "--video",
+      "evaluate",
+      "--terrain stairs"
+    ],
+    "effect": "Calls evaluate_stair_suite(include_zero_action=False). Default remains True.",
+    "continuity_scope": "Removes the zero-action control reset only. Multiple reset seeds or candidate checkpoints still start separate trials; use one seed and one checkpoint for a continuous single-flight recording. Initial reset and any physics termination remain unchanged.",
+    "metadata_fields": [
+      "video_policy_only",
+      "evaluation_include_zero_action",
+      "video_length",
+      "video_fps"
+    ],
+    "validation": "CPU source compile; isolated CLI parser checks over 18 mode/terrain/video combinations; default negative-control and suite/metadata flag association verified. No GPU runtime test."
+  },
+  "videos": [
+    {
+      "direction": "asc",
+      "video": "isaaclab/logs/2026-10-11_02-12-01_bootstrap120-8cm-asc-video/videos/go2_stairs_asc_0000.mp4",
+      "result": "isaaclab/logs/2026-10-11_02-12-01_bootstrap120-8cm-asc-video/result.json",
+      "config": "isaaclab/logs/2026-10-11_02-12-01_bootstrap120-8cm-asc-video/config.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_01-48-50_stairs-bootstrap-discovery120/model_120.pt",
+      "fps": 50,
+      "resolution": [
+        1280,
+        720
+      ],
+      "decoded_frames": 949,
+      "duration_s": 18.98,
+      "policy_batch_frames_zero_based": [
+        0,
+        747
+      ],
+      "policy_batch_video_interval_s": [
+        0,
+        14.96
+      ],
+      "control_frames_zero_based": [
+        748,
+        948
+      ],
+      "control_video_interval_s": [
+        14.96,
+        18.98
+      ],
+      "control_executed_steps": 201,
+      "first_visibly_reset_video_time_s": 14.98,
+      "camera_env_id": 0,
+      "camera_env_completion_simulation_time_s": 13.279999732971191,
+      "camera_env_valid_first_episode_measurement_interval_s": [
+        0,
+        13.279999732971191
+      ],
+      "camera_env_active_policy_video_end_s_approx": 13.259999732971192,
+      "camera_env_after_completion_scope": "After the evaluator marks env0 complete, env0 actions are zeroed while the batch finishes. This is distinct from the later reset-and-zero-action negative control.",
+      "policy_batch_counts": {
+        "num_envs": 32,
+        "completions": 30,
+        "falls": 0,
+        "stalls": 2,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0
+      },
+      "zero_action_batch_counts": {
+        "num_envs": 32,
+        "completions": 0,
+        "falls": 0,
+        "stalls": 32
+      },
+      "last_active_recorded_env0": {
+        "simulation_time_s": 13.22,
+        "root_relative_xyz": [
+          3.568849563598633,
+          0.02937173843383789,
+          0.7583410143852234
+        ],
+        "feet_relative_xyz": [
+          [
+            3.8009307384490967,
+            0.1654071807861328,
+            0.5036932229995728
+          ],
+          [
+            3.9444847106933594,
+            -0.11790704727172852,
+            0.5269613862037659
+          ],
+          [
+            3.339738368988037,
+            0.16764545440673828,
+            0.5034033060073853
+          ],
+          [
+            3.2917115688323975,
+            -0.1511530876159668,
+            0.5030253529548645
+          ]
+        ],
+        "yaw_roll_pitch_rad": [
+          0.0010805787751451135,
+          -0.02017000876367092,
+          -0.02423393353819847
+        ]
+      },
+      "recorded_flight_pose_peaks_degrees": {
+        "roll_absolute": 3.3106375138216086,
+        "pitch_absolute": 16.746860571231515
+      },
+      "visual_findings": "Sampled images show upright body and leg flexion through the flight, then all feet on the final landing. No visible overturning or belly-supported pose in reviewed samples; this is representative env0 only."
+    },
+    {
+      "direction": "desc",
+      "video": "isaaclab/logs/2026-10-11_02-14-22_bootstrap120-8cm-desc-video/videos/go2_stairs_desc_0000.mp4",
+      "result": "isaaclab/logs/2026-10-11_02-14-22_bootstrap120-8cm-desc-video/result.json",
+      "config": "isaaclab/logs/2026-10-11_02-14-22_bootstrap120-8cm-desc-video/config.json",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_01-48-50_stairs-bootstrap-discovery120/model_120.pt",
+      "fps": 50,
+      "resolution": [
+        1280,
+        720
+      ],
+      "decoded_frames": 901,
+      "duration_s": 18.02,
+      "policy_batch_frames_zero_based": [
+        0,
+        699
+      ],
+      "policy_batch_video_interval_s": [
+        0,
+        14.0
+      ],
+      "control_frames_zero_based": [
+        700,
+        900
+      ],
+      "control_video_interval_s": [
+        14.0,
+        18.02
+      ],
+      "control_executed_steps": 201,
+      "first_visibly_reset_video_time_s": 14.0,
+      "camera_env_id": 0,
+      "camera_env_completion_simulation_time_s": 13.859999656677246,
+      "camera_env_valid_first_episode_measurement_interval_s": [
+        0,
+        13.859999656677246
+      ],
+      "camera_env_active_policy_video_end_s_approx": 13.839999656677247,
+      "camera_env_after_completion_scope": "After the evaluator marks env0 complete, env0 actions are zeroed while the batch finishes. This is distinct from the later reset-and-zero-action negative control.",
+      "policy_batch_counts": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0
+      },
+      "zero_action_batch_counts": {
+        "num_envs": 32,
+        "completions": 0,
+        "falls": 0,
+        "stalls": 32
+      },
+      "last_active_recorded_env0": {
+        "simulation_time_s": 13.82,
+        "root_relative_xyz": [
+          3.5749053955078125,
+          0.05022430419921875,
+          -0.20117521286010742
+        ],
+        "feet_relative_xyz": [
+          [
+            3.790454387664795,
+            0.18311691284179688,
+            -0.45635950565338135
+          ],
+          [
+            3.981844425201416,
+            -0.10105657577514648,
+            -0.4399990141391754
+          ],
+          [
+            3.378518581390381,
+            0.1857585906982422,
+            -0.45640262961387634
+          ],
+          [
+            3.2818002700805664,
+            -0.1311497688293457,
+            -0.45709967613220215
+          ]
+        ],
+        "yaw_roll_pitch_rad": [
+          -0.0010258356342092156,
+          -0.03315214440226555,
+          -0.030982669442892075
+        ]
+      },
+      "recorded_flight_pose_peaks_degrees": {
+        "roll_absolute": 5.8131257643868395,
+        "pitch_absolute": 14.36184389042769
+      },
+      "visual_findings": "Sampled images show upright body and leg flexion through the flight, then all feet on the final landing. No visible overturning or belly-supported pose in reviewed samples; this is representative env0 only."
+    }
+  ]
+}

@@ -135,11 +135,15 @@ def main():
     parser.add_argument("--command", type=float, nargs=3, action="append", metavar=("VX", "VY", "YAW"),
                         help="Fixed command; repeat to choose evaluation cases.")
     parser.add_argument("--video", action="store_true", help="Record a headless Kit camera clip.")
+    parser.add_argument("--video_policy_only", action="store_true",
+                        help="Stair evaluation video without the zero-action control; requires --video.")
     parser.add_argument("--video_length", type=int, default=500)
     parser.add_argument("--shutdown_timeout", type=float, default=30.0,
                         help="After results are saved, exit if Isaac Sim teardown hangs; 0 disables.")
     add_launcher_args(parser)
     args = parser.parse_args()
+    if args.video_policy_only and not (args.video and args.mode == "evaluate" and args.terrain == "stairs"):
+        parser.error("--video_policy_only requires --video, evaluate mode, and --terrain stairs")
     if args.candidate_checkpoint and args.mode != "evaluate":
         parser.error("--candidate_checkpoint requires evaluate mode")
     if args.reset_noise_std is not None and (args.mode != "train" or args.reset_noise_std <= 0):
@@ -277,7 +281,12 @@ def main():
                 "reward_weights": {name: term.weight for name, term in vars(cfg.rewards).items()
                                    if term is not None and hasattr(term, "weight")},
                 "command_override": args.command, "evaluation_seconds": args.eval_seconds,
-                "video": args.video, "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
+                "video": args.video, "video_policy_only": args.video_policy_only,
+                "video_length": args.video_length if args.video else None,
+                "video_fps": 50 if args.video else None,
+                "evaluation_include_zero_action": not args.video_policy_only
+                    if args.mode == "evaluate" and args.terrain == "stairs" else None,
+                "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
     metadata.update({"exploration_std_override": args.reset_noise_std,
                      "stair_training_speed_range_m_s": list(args.stair_speed_range)})
     metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
@@ -299,6 +308,12 @@ def main():
         metadata["action_scale"] = cfg.actions.joint_pos.scale
         (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         runner = HIMOnPolicyRunner(wrapped, config, str(log_dir), args.device)
+        if args.terrain == "stairs":
+            from stair_randomization import capture_domain_parameters
+            (log_dir / "domain-parameters-initial.json").write_text(
+                json.dumps(capture_domain_parameters(wrapped.env), indent=2))
+            metadata["domain_parameter_initial_readback"] = "domain-parameters-initial.json"
+            (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         if args.terrain == "stairs" and args.reward_profile != "stock":
             from stair_rewards import validate_reward_frames
             metadata["reward_frame_validation"] = validate_reward_frames(wrapped.env)
@@ -345,6 +360,7 @@ def main():
                                                  seconds=args.eval_seconds, speed=args.speed,
                                                  seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
                                                  dynamics_randomized=args.eval_dynamics,
+                                                 include_zero_action=not args.video_policy_only,
                                                  heading_control=not args.open_loop_heading,
                                                  progress=lambda metrics: print(json.dumps(metrics), flush=True))
                     result["final_acceptance"] = assess_final(result)
@@ -393,6 +409,11 @@ def main():
                     if (step + 1) % 100 == 0:
                         print(f"Playback {step + 1}/{args.play_steps}, mean reward={rewards.mean().item():.4f}, resets={dones_total}", flush=True)
             (log_dir / "result.json").write_text(json.dumps({"status": "smoke_passed", "scope": "Playback numerical check", "play_steps": args.play_steps, "num_envs": args.num_envs, "resets": dones_total, "actions_finite": True, "export_max_abs_error": export_error}, indent=2))
+        if args.terrain == "stairs":
+            (log_dir / "domain-parameters-final.json").write_text(
+                json.dumps(capture_domain_parameters(wrapped.env), indent=2))
+            metadata["domain_parameter_final_readback"] = "domain-parameters-final.json"
+            (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
         print(f"RESULT: {log_dir}", flush=True)
         # Kit 6.1 can hang in teardown after a completed headless run. This only
         # terminates this CLI process after all artifacts have been saved.

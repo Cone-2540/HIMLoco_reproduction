@@ -11,6 +11,250 @@ from __future__ import annotations
 import copy
 
 
+def _domain_attempt(read):
+    """Keep a failed read visible without hiding independent measurements."""
+    try:
+        result = read()
+        return {"status": "available", **result}
+    except Exception as error:
+        return {"status": "unavailable", "reason": f"{type(error).__name__}: {error}"}
+
+
+def _domain_tensor(value):
+    import torch
+
+    tensor = getattr(value, "torch", value)
+    if not isinstance(tensor, torch.Tensor):
+        raise TypeError(f"Expected a Torch tensor or Lab ProxyArray, got {type(value).__name__}")
+    return tensor.detach()
+
+
+def _domain_summary(value):
+    """Small JSON-safe summaries; never edit the input tensor or use RNG."""
+    import torch
+
+    tensor = _domain_tensor(value).to(device="cpu", dtype=torch.float64)
+    if not tensor.numel():
+        raise ValueError("The selected tensor is empty")
+    finite = torch.isfinite(tensor)
+    valid = tensor[finite]
+    samples = tensor[:3] if tensor.ndim else tensor
+    # Avoid emitting NaN/Infinity, which are not valid JSON numbers.
+    samples = samples.tolist()
+
+    def safe(item):
+        import math
+
+        return [safe(v) for v in item] if isinstance(item, list) else (item if math.isfinite(item) else None)
+
+    return {"shape": list(tensor.shape), "finite": bool(finite.all()),
+            "nonfinite_count": int((~finite).sum()),
+            "min": float(valid.min()) if valid.numel() else None,
+            "max": float(valid.max()) if valid.numel() else None,
+            "mean": float(valid.mean()) if valid.numel() else None,
+            "std": float(valid.std(unbiased=False)) if valid.numel() else None,
+            "samples_first_envs": safe(samples)}
+
+
+def _domain_event(env, name):
+    term = env.event_manager.get_term_cfg(name)
+    if isinstance(term.func, (str, type)):
+        raise RuntimeError(f"Event {name!r} has not been instantiated")
+    return term
+
+
+def _domain_base_property(env, robot, body_ids, field, default_field):
+    actual = _domain_tensor(getattr(robot.data, field))[:, body_ids]
+    result = {"source": f"robot.data.{field}.torch", "observed": _domain_summary(actual)}
+
+    def baseline():
+        event = _domain_event(env, "add_base_mass")
+        value = getattr(event.func, default_field, None)
+        if value is None:
+            raise RuntimeError(f"add_base_mass has no cached {default_field}; capture after startup")
+        default = _domain_tensor(value)[:, body_ids]
+        return {"source": f"add_base_mass.func.{default_field}", "values": _domain_summary(default)}
+
+    result["default"] = _domain_attempt(baseline)
+    if field == "body_mass":
+        def mass_ratio():
+            event = _domain_event(env, "add_base_mass")
+            default = _domain_tensor(event.func.default_mass)[:, body_ids]
+            if (default <= 0).any():
+                raise ValueError("The cached default mass is not positive")
+            return {"values": _domain_summary(actual / default),
+                    "operation": event.params["operation"],
+                    "distribution": event.params.get("distribution", "uniform"),
+                    "distribution_parameters": list(event.params["mass_distribution_params"])}
+
+        result["observed_to_default_ratio"] = _domain_attempt(mass_ratio)
+    else:
+        def inertia_check():
+            event = _domain_event(env, "add_base_mass")
+            default_mass = _domain_tensor(event.func.default_mass)[:, body_ids]
+            default_inertia = _domain_tensor(event.func.default_inertia)[:, body_ids]
+            mass = _domain_tensor(robot.data.body_mass)[:, body_ids]
+            if (default_mass <= 0).any():
+                raise ValueError("The cached default mass is not positive")
+            expected = default_inertia * (mass / default_mass)[..., None]
+            return {"recompute_inertia": event.params.get("recompute_inertia", True),
+                    "max_abs_error_from_default_times_mass_ratio_kg_m2": float((actual - expected).abs().max())}
+
+        result["mass_scaled_inertia_check"] = _domain_attempt(inertia_check)
+    return result
+
+
+def _domain_base_com(env, robot, body_ids):
+    actual = _domain_tensor(robot.data.body_com_pose_b)[:, body_ids]
+    result = {"source": "robot.data.body_com_pose_b.torch",
+              "position_m": _domain_summary(actual[..., :3]),
+              "quaternion_xyzw": _domain_summary(actual[..., 3:])}
+
+    def baseline_and_offset():
+        event = _domain_event(env, "base_com")
+        if event.func.default_com is None:
+            raise RuntimeError("base_com has not cached its original COM; capture after startup")
+        default = _domain_tensor(event.func.default_com)[:, body_ids]
+        offset = actual[..., :3] - default[..., :3]
+        offset_cpu = offset.to(device="cpu")
+        return {"source": "base_com.func.default_com", "position_m": _domain_summary(default[..., :3]),
+                "offset_m": _domain_summary(offset),
+                "offset_min_xyz_m": offset_cpu.amin(dim=(0, 1)).tolist(),
+                "offset_max_xyz_m": offset_cpu.amax(dim=(0, 1)).tolist(),
+                "configured_offset_ranges_m": event.params["com_range"],
+                "max_abs_quaternion_change": float((actual[..., 3:] - default[..., 3:]).abs().max())}
+
+    result["default_and_offset"] = _domain_attempt(baseline_and_offset)
+    return result
+
+
+def _domain_actuator_gains(env, robot):
+    from isaaclab.actuators import IdealPDActuator
+    from isaaclab.actuators.actuator_base import resolve_joint_parameter
+
+    result = {}
+    for name, actuator in robot.actuators.items():
+        def read(actuator=actuator, name=name):
+            if not isinstance(actuator, IdealPDActuator):
+                raise TypeError(f"{type(actuator).__name__} is not a Lab IdealPD/DCMotor actuator")
+            gains = {"actuator_type": type(actuator).__name__, "joint_names": list(actuator.joint_names)}
+            for property_name in ("stiffness", "damping"):
+                def read_gain(property_name=property_name):
+                    actual = _domain_tensor(getattr(actuator, property_name))
+
+                    def baseline():
+                        try:
+                            event = _domain_event(env, "him_actuator_gains")
+                        except ValueError:
+                            # This is a configured reference, not a fabricated startup snapshot.
+                            value = getattr(actuator.cfg, property_name)
+                            if value is None:
+                                raise RuntimeError(f"No gain event baseline or explicit actuator.cfg.{property_name}")
+                            default = resolve_joint_parameter(value, None, actuator.joint_names,
+                                                              actual.shape[0], actual.device)
+                            source = f"actuator.cfg.{property_name} (configured reference)"
+                        else:
+                            default = getattr(event.func, f"default_actuator_{property_name}")[name]
+                            source = f"him_actuator_gains.func.default_actuator_{property_name}[{name!r}]"
+                        default = _domain_tensor(default)
+                        return {"source": source, "values": _domain_summary(default),
+                                "observed_to_default_ratio": _domain_summary(actual / default)
+                                if (default != 0).all() else {"status": "unavailable", "reason": "Default gains include zero"}}
+
+                    return {"source": f"robot.actuators[{name!r}].{property_name}",
+                            "observed": _domain_summary(actual), "default": _domain_attempt(baseline)}
+
+                gains[property_name] = _domain_attempt(read_gain)
+            return gains
+
+        result[name] = _domain_attempt(read)
+    if not result:
+        raise RuntimeError("The robot has no actuator groups")
+    return {"groups": result,
+            "note": "Explicit DCMotor gains live on the actuator; zero solver joint_stiffness is not a PD readback"}
+
+
+def _domain_foot_material(env, robot):
+    import torch
+    import warp as wp
+
+    foot_ids = [i for i, name in enumerate(robot.body_names) if name.endswith("_foot")]
+    if not foot_ids:
+        raise ValueError("No bodies ending in '_foot' were found")
+    backend_ids = [int(i) for i in robot.map_body_ids_to_backend(foot_ids)]
+    event = None
+    try:
+        event = _domain_event(env, "physics_material")
+    except ValueError:
+        pass  # Actual materials are still readable without a randomization event.
+    impl = getattr(event.func, "_impl", None) if event is not None else None
+    counts = getattr(impl, "num_shapes_per_body", None)
+    if counts is None:
+        counts = [robot._physics_sim_view.create_rigid_body_view(path).max_shapes
+                  for path in robot.root_view.link_paths[0]]
+    if sum(counts) != robot.root_view.max_shapes:
+        raise ValueError(f"Body shape counts sum to {sum(counts)}, root view has {robot.root_view.max_shapes}")
+    shape_ids = [shape for body in backend_ids
+                 for shape in range(sum(counts[:body]), sum(counts[:body + 1]))]
+    if not shape_ids:
+        raise ValueError("The foot bodies have no collision shapes")
+    materials = wp.to_torch(robot.root_view.get_material_properties())[:, shape_ids].detach().cpu()
+    result = {"source": "wp.to_torch(robot.root_view.get_material_properties())",
+              "body_names": [robot.body_names[i] for i in foot_ids],
+              "public_body_ids": foot_ids, "backend_body_ids": backend_ids, "shape_ids": shape_ids,
+              "static_friction": _domain_summary(materials[..., 0]),
+              "dynamic_friction": _domain_summary(materials[..., 1]),
+              "restitution": _domain_summary(materials[..., 2]),
+              "dynamic_le_static": bool((materials[..., 1] <= materials[..., 0]).all()),
+              "unique_material_count": int(torch.unique(materials.reshape(-1, 3), dim=0).shape[0]),
+              "default": {"status": "unavailable",
+                          "reason": "The PhysX material event does not retain pre-randomization materials"}}
+    if event is not None:
+        result["configured_ranges"] = {key: value for key, value in event.params.items() if key != "asset_cfg"}
+    else:
+        result["configured_ranges"] = {"status": "unavailable", "reason": "No physics_material event"}
+
+    def bucket_pool():
+        if impl is None or not hasattr(impl, "material_buckets"):
+            raise RuntimeError("No cached PhysX material buckets")
+        buckets = _domain_tensor(impl.material_buckets).cpu()
+        # Equality is appropriate: the backend stores these same float32 triples.
+        unique = torch.unique(materials.reshape(-1, 3), dim=0)
+        matches = (unique[:, None] == buckets[None]).all(dim=-1).any(dim=-1)
+        return {"source": "physics_material.func._impl.material_buckets",
+                "values": _domain_summary(buckets), "all_observed_materials_in_bucket_pool": bool(matches.all())}
+
+    result["bucket_pool"] = _domain_attempt(bucket_pool)
+    return result
+
+
+def capture_domain_parameters(env):
+    """Read current Go2 physical parameters after reset, without modifying them.
+
+    The JSON-safe report separates live values, cached original values and
+    configured references. It works with ``none`` too, and labels missing reads
+    (including absent default caches) ``unavailable`` with a reason. It neither
+    invokes events/setters nor consumes RNG; Lab getters may refresh read caches.
+    This implementation targets the pinned PhysX backend and explicit Go2 PD.
+    """
+    try:
+        robot = env.scene["robot"]
+        base_ids = [i for i, name in enumerate(robot.body_names) if name == "base"]
+        if not base_ids:
+            raise ValueError("No body named 'base' was found")
+    except Exception as error:
+        return {"status": "unavailable", "reason": f"{type(error).__name__}: {error}"}
+    return {"status": "captured", "scope": "current physical parameters; not a robustness validation",
+            "base_body_names": [robot.body_names[i] for i in base_ids], "base_body_ids": base_ids,
+            "base_mass_kg": _domain_attempt(lambda: _domain_base_property(
+                env, robot, base_ids, "body_mass", "default_mass")),
+            "base_inertia_kg_m2": _domain_attempt(lambda: _domain_base_property(
+                env, robot, base_ids, "body_inertia", "default_inertia")),
+            "base_com": _domain_attempt(lambda: _domain_base_com(env, robot, base_ids)),
+            "actuator_pd": _domain_attempt(lambda: _domain_actuator_gains(env, robot)),
+            "foot_material": _domain_attempt(lambda: _domain_foot_material(env, robot))}
+
+
 def _require_dc_actuators(cfg):
     from isaaclab.actuators import DCMotorCfg
 

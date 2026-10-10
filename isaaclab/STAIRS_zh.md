@@ -55,8 +55,22 @@ bash isaaclab/run.sh play --terrain stairs --stair_height 0.16 \
 
 省略 `--viz none`，将 `asc` 改为 `desc` 录制下楼。视频和模型在 Git 忽略的 `isaaclab/logs/` 内保留；源码、配置、汇总数据与选定图片放在 Git。
 
+需要评价结果与视频对应时，用 `evaluate --video --video_policy_only`，仅给一个
+`--eval_seed` 和一个 checkpoint。该选项关闭默认零动作负对照，避免策略片段之后的
+负对照重置被当成策略继续运行。成功后的 inactive 环境会置零动作，仍需用结果中
+该机器人的首次 episode 结束时间界定有效运动片段。常规无视频评价继续保留负对照。
+
+楼梯运行现在额外保存 `domain-parameters-initial.json` 与 `domain-parameters-final.json`，
+读取当前实际质量/惯量、COM、显式电机 PD 和足端摩擦，并区分缓存的默认值与配置参考值。
+缺少基准或字段时明确记录原因；这些读回本身不证明策略在动力学扰动下可靠。
+
 ## 首轮已观察到的局限
 
 2026-10-11 首轮 100 更新、6144 环境的随机初态验收，上楼 8/16 cm 都为 0/96，下楼分别 85/96、88/96。前脚碰到首阶立面后停止抬脚，尚未实现双向楼梯。详细失败数据和图见 `reproduction/stair-easy100-evaluation-summary.md`。后续结果需用新模型独立验收，不能用训练平均奖励替代。
 
 论文测试平台包括 A1、Aliengo，而本实验是 Go2 迁移。电机延迟、全部原始域随机化、真机部署和论文整体效果均需分别验证。
+
+降低训练课程到 2.5–8 cm 后，bootstrap120 独立随机初态评价取得 8 cm 上楼
+94/96、下楼 96/96；上楼最差 seed 为 30/32，仍未达到逐 seed 95% 验收，且有停顿。
+16 cm 仍未通过，见 `reproduction/stair-bootstrap120-analysis.md`。该结果是课程推进依据，
+不是完整论文复现或平滑运动认证。
