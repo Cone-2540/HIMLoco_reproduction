@@ -109,6 +109,8 @@ def main():
     parser.add_argument("--start_level", type=int, default=0)
     parser.add_argument("--stair_pushes", action="store_true")
     parser.add_argument("--stair_batch", type=Path, help="JSON list of fixed evaluation stair specifications.")
+    parser.add_argument("--domain_profile", choices=["none", "basic", "robust"], default="none")
+    parser.add_argument("--conservative_calf", action="store_true")
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--warm_start", choices=["reset", "expand"],
                         help="Explicit actor/HIM transfer with fresh optimizers; reset or extend critic.")
@@ -159,7 +161,7 @@ def main():
     if args.terrain in ("rough", "stairs"):
         from isaaclab.managers import SceneEntityCfg
         cfg.observations.critic.height_scan = ObservationTermCfg(func=MDP + "height_scan", params={"sensor_cfg": SceneEntityCfg("height_scanner")}, scale=5.0, clip=(-1.0, 1.0))
-    stair_manifest = reward_manifest = None
+    stair_manifest = reward_manifest = domain_manifest = calf_manifest = None
     if args.terrain == "stairs":
         from stair_terrain import configure_stair_terrain, configure_stair_batch
         from stair_rewards import configure_stair_rewards
@@ -191,6 +193,12 @@ def main():
         if not args.stair_pushes:
             cfg.events.push_robot = None
         cfg.events.base_com.params["com_range"] = {"x": (-0.02, 0.02), "y": (-0.02, 0.02), "z": (-0.01, 0.01)}
+        if args.domain_profile != "none":
+            from stair_randomization import configure_stair_randomization
+            domain_manifest = configure_stair_randomization(cfg, args.domain_profile)
+        if args.conservative_calf:
+            from stair_randomization import configure_conservative_calf_limits
+            calf_manifest = configure_conservative_calf_limits(cfg, args.mode)
     if args.friction:
         static, dynamic = args.friction
         if not 0 < dynamic <= static:
@@ -252,6 +260,7 @@ def main():
                 "command_override": args.command, "evaluation_seconds": args.eval_seconds,
                 "video": args.video, "training_turn_fraction": args.turn_fraction if args.mode == "train" else None}
     metadata.update({"terrain": args.terrain, "stairs": stair_manifest, "stair_reward": reward_manifest,
+                     "domain_randomization": domain_manifest, "calf_limit_sensitivity": calf_manifest,
                      "friction_override": args.friction, "stair_pushes": args.stair_pushes,
                      "evaluation_seeds": args.eval_seed, "evaluation_randomized": args.eval_randomized})
     (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))

@@ -1,0 +1,24 @@
+{
+  "scope": "Final fixed-case, repeated randomized-reset Go2 staircase validation",
+  "written_before_first_stair_training_validation": true,
+  "core_completion_fraction_each_case_each_seed": 0.95,
+  "maximum_fall_fraction_each_case_each_seed": 0.05,
+  "maximum_stall_fraction_each_case_each_seed": 0.05,
+  "maximum_lateral_escape_fraction_each_case_each_seed": 0.05,
+  "maximum_base_contact_envs": 0,
+  "minimum_distinct_reset_seeds": 3,
+  "minimum_environments_per_case_per_seed": 32,
+  "training_transition_completion_fraction": 0.90,
+  "smoothness": {
+    "requires_complete_continuous_video_review_both_directions": true,
+    "roll_rms_reference_rad": 0.15,
+    "roll_peak_reference_rad": 0.35,
+    "long_flight_pause_review_threshold_s": 1.0,
+    "contact_foot_link_slip_proxy_reference_fraction": 0.15,
+    "slip_proxy_is_not_contact_point_slip": true,
+    "pitch": "Report relative to staircase grade; do not impose flat-world horizontal posture",
+    "candidate_comparison": "Compare action second differences and root jerk at equal geometry/speed with a competent baseline; preserve completion and tracking",
+    "no_single_scalar_proves_smoothness": true
+  },
+  "limitations": "Reset randomization alone is not full dynamics or real-robot validation; material and actuator sensitivity reported separately"
+}
