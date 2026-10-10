@@ -314,11 +314,12 @@ def main():
         elif args.mode == "evaluate":
             policy = runner.get_inference_policy(device=args.device)
             if args.terrain == "stairs":
-                from stair_evaluation import evaluate_stair_suite
+                from stair_evaluation import evaluate_stair_suite, assess_final
                 result = evaluate_stair_suite(wrapped, policy, stair_manifest["geometry"],
                                              seconds=args.eval_seconds, speed=args.speed,
                                              seeds=tuple(args.eval_seed or [args.seed]), randomized=args.eval_randomized,
                                              progress=lambda metrics: print(json.dumps(metrics), flush=True))
+                result["final_acceptance"] = assess_final(result)
             else:
                 from evaluation import evaluate_suite
                 options = {"commands": args.command} if args.command else {}

@@ -5,7 +5,7 @@ from types import SimpleNamespace as NS
 
 import torch
 
-from stair_evaluation import (StairStateCapture, completion_mask,
+from stair_evaluation import (StairStateCapture, assess_final, completion_mask,
                               configure_stair_evaluation, evaluate_stair_suite, evaluate_stairs)
 
 
@@ -182,12 +182,50 @@ class StairEvaluationTest(unittest.TestCase):
         self.assertEqual(cases[0]["completion_fraction"], 1.0)
         self.assertEqual(cases[1]["completion_fraction"], 0.0)
 
+    def test_batch_trace_covers_each_geometry(self):
+        wrapped = FakeWrapped()
+        wrapped.env.scene.terrain = NS(terrain_types=torch.tensor([0] * 16 + [1] * 16))
+        result = evaluate_stairs(wrapped, policy, [GEOMETRY, GEOMETRY], seconds=8.,
+                                thresholds={"minimum_num_envs": 16}, record_envs=1)
+        trace = result["trials"][0]["trace"]
+        self.assertEqual(trace[0]["case_ids"], [0, 1])
+        self.assertEqual(trace[0]["env_ids"], [0, 16])
+        self.assertIn("actions", trace[0])
+        self.assertIn("linear_jerk_rms_m_s3", result["trials"][0]["cases"][1]["metrics"])
+
     def test_nominal_duplicate_poses_are_not_independent_validation(self):
         result = evaluate_stairs(FakeWrapped(), policy, GEOMETRY, seconds=8.,
                                  seeds=(1, 2, 3), randomized=True, record_envs=0)
         self.assertTrue(result["passed"])
         self.assertFalse(result["independent_reset_validation_eligible"])
         self.assertEqual(result["trials"][0]["initial_reset_distribution"]["yaw_std_rad"], 0.0)
+
+    def test_inactive_finished_environment_nonfinite_does_not_fail_active_trial(self):
+        class DifferentTimes(FakeWrapped):
+            def place(self, x, final=False):
+                super().place(x, final)
+                # First row finishes at step8, other rows only at step10.
+                if 8 <= self.number < 10:
+                    self.robot.data.root_pos_w.torch[1:, 0] = self.env.scene.env_origins[1:, 0] + 2.7
+                    self.robot.data.body_link_pos_w.torch[1:, 1:5, 0] = self.env.scene.env_origins[1:, None, 0] + 2.7
+                if self.number == 9:
+                    self.robot.data.root_pos_w.torch[0, 0] = float("nan")
+                    self.robot.data.body_link_pos_w.torch[0, :, 0] = float("nan")
+
+        result = evaluate_stairs(DifferentTimes(), policy, GEOMETRY, seconds=8., record_envs=0)
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["trials"][0]["nonfinite_envs"], 0)
+        self.assertGreaterEqual(result["trials"][0]["executed_steps"], 10)
+
+    def test_final_gate_does_not_change_existing_passed_and_flags_long_pause(self):
+        report = {"passed": True, "thresholds": {"minimum_num_envs": 32}, "trials": [
+            {"seed": 1, "failure_reason": None, "cases": [{"num_envs": 32,
+             "completion_fraction": 0.92, "falls": 0, "stalls": 0, "lateral_escapes": 0,
+             "base_contact_envs": 0, "metrics": {"longest_flight_pause_s": 1.3}}]}]}
+        assessment = assess_final(report)
+        self.assertFalse(assessment["traversal_passed"])
+        self.assertTrue(assessment["motion_improvement_needed"])
+        self.assertTrue(report["passed"])
 
 
 if __name__ == "__main__":

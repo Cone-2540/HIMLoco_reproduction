@@ -289,6 +289,8 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
     steps = math.ceil(seconds / dt)
     original_geometry = geometry
     geometry, case_ids, case_geometries = _geometry_for_envs(geometry, env)
+    trace_ids = torch.cat([(case_ids == index).nonzero(as_tuple=False).flatten()[:max(1, record_envs // len(case_geometries))]
+                          for index in range(len(case_geometries))]) if record_envs > 0 else case_ids[:0]
     capture = StairStateCapture(env)
     trials = []
 
@@ -309,6 +311,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             stalls = torch.zeros_like(active)
             timeouts = torch.zeros_like(active)
             nonfinite = torch.zeros_like(active)
+            invalid_physics = torch.zeros_like(active)
             base_contact = torch.zeros_like(active)
             shank_contact = torch.zeros_like(active)
             dwell = torch.zeros(n, device=device)
@@ -321,9 +324,14 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
             last_acceleration = torch.zeros_like(last_velocity)
             last_actions = torch.zeros(n, wrapped.num_actions, device=device)
             previous_action_delta = torch.zeros_like(last_actions)
+            last_angular_velocity = initial["root_ang_vel_b"]
+            pause_run = torch.zeros(n, device=device)
+            longest_pause = torch.zeros_like(pause_run)
+            roll_peak_per_env = torch.zeros_like(pause_run)
             statistics = {}
             counts = {}
             peaks = {}
+            peak_force_per_env = torch.zeros(n, device=device)
             trace = []
 
             def accumulate(name, value, mask, elements=1):
@@ -358,6 +366,11 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 valid = active & finite
                 active_steps += valid.long()
                 relative = state["root_pos_w"] - origins
+                goal_z = _parameter(geometry["goal_platform_z"], relative)
+                z_min = torch.minimum(goal_z, torch.zeros_like(goal_z)) - 1.0
+                z_max = torch.maximum(goal_z, torch.zeros_like(goal_z)) + 2.0
+                abnormal_physics = (relative[:, 2] < z_min) | (relative[:, 2] > z_max)
+                invalid_physics |= valid & abnormal_physics
                 y = relative[:, 1] - geometry.get("lateral_center_y", 0.0)
                 progress_m = relative[:, 0] - initial_relative[:, 0]
                 max_progress = torch.where(valid, torch.maximum(max_progress, progress_m), max_progress)
@@ -373,7 +386,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 shank_contact |= valid & shanks
                 terminated = _tensor(infos.get("terminated", env.reset_terminated)).bool()
                 truncated = _tensor(infos["time_outs"]).bool()
-                fallen = bases | (state["gravity"][:, 2] > -0.5) | (terminated & ~escaped)
+                fallen = bases | (state["gravity"][:, 2] > -0.5) | (terminated & ~escaped) | abnormal_physics
                 falls |= valid & fallen
                 timeouts |= valid & truncated
                 goal = completion_mask(state, origins, geometry, limits) & valid & ~fallen & ~escaped & ~terminated
@@ -386,12 +399,20 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 stalled = (relative[:, 0] - historical < limits["stall_progress_m"]) & (step >= window)
                 stalls |= valid & stalled & ~newly_complete
                 yaw, roll, pitch = _yaw_roll_pitch(state["root_quat_w"])
+                roll_peak_per_env = torch.where(valid, torch.maximum(roll_peak_per_env, roll.abs()), roll_peak_per_env)
                 velocity = state["root_lin_vel_b"]
                 acceleration = (state["root_lin_vel_w"] - last_velocity) / dt
                 jerk = (acceleration - last_acceleration) / dt
                 action_delta = actions - last_actions
                 action_second = action_delta - previous_action_delta
+                angular_acceleration = (state["root_ang_vel_b"] - last_angular_velocity) / dt
                 sample_mask = valid & (step >= math.ceil(1.0 / dt))
+                flight_mask = (sample_mask & (relative[:, 0] >= geometry.get("first_riser_x", geometry["start_x"]) - 0.25)
+                               & (relative[:, 0] <= geometry.get("goal_platform_start_x", geometry["goal_x"]) + 0.25))
+                paused = flight_mask & (state["root_lin_vel_w"][:, 0] < 0.05)
+                pause_run = torch.where(paused, pause_run + dt, torch.zeros_like(pause_run))
+                longest_pause = torch.maximum(longest_pause, pause_run)
+                accumulate("flight_pause_fraction", paused.float(), flight_mask)
                 xy_error = torch.linalg.vector_norm(velocity[:, :2] - velocity.new_tensor((speed, 0)), dim=-1)
                 for name, value in (
                     ("xy_tracking_mae_m_s", xy_error), ("xy_tracking_mse", xy_error.square()),
@@ -400,6 +421,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     ("heading_abs_error_rad", yaw.abs()), ("roll_mse", roll.square()), ("pitch_mse", pitch.square()),
                     ("lateral_abs_error_m", y.abs()), ("linear_acceleration_squared", acceleration.square().sum(-1)),
                     ("linear_jerk_squared", jerk.square().sum(-1)),
+                    ("body_angular_acceleration_squared", angular_acceleration.square().sum(-1)),
                     ("action_delta_squared", action_delta.square().mean(-1)),
                     ("action_second_delta_squared", action_second.square().mean(-1)),
                     ("applied_torque_squared", state["applied_effort"].square().mean(-1)),
@@ -414,16 +436,23 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 counts["contact_foot_horizontal_speed_m_s"] = counts.get("contact_foot_horizontal_speed_m_s", 0) + contact.sum(dim=1)
                 counts["foot_slip_fraction"] = counts["contact_foot_horizontal_speed_m_s"]
                 peaks["peak_contact_force_n"] = max(peaks.get("peak_contact_force_n", 0), float(state["peak_contact_force_n"][valid].max()) if bool(valid.any()) else 0)
+                peak_force_per_env = torch.where(valid, torch.maximum(peak_force_per_env, state["peak_contact_force_n"]), peak_force_per_env)
                 last_velocity, last_acceleration = state["root_lin_vel_w"], acceleration
                 last_actions, previous_action_delta = actions, action_delta
+                last_angular_velocity = state["root_ang_vel_b"]
                 if record_envs > 0 and step % record_stride == 0:
-                    count = min(record_envs, n)
-                    trace.append({"time_s": (step + 1) * dt, "active": valid[:count].tolist(),
-                                  "root_relative_xyz": relative[:count].tolist(),
-                                  "yaw_roll_pitch": torch.stack((yaw, roll, pitch), dim=-1)[:count].tolist(),
-                                  "feet_relative_xyz": (state["feet_pos_w"] - origins[:, None])[:count].tolist(),
-                                  "contacts": state["foot_contacts"][:count].tolist(),
-                                  "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[:count].tolist()})
+                    trace.append({"time_s": (step + 1) * dt, "env_ids": trace_ids.tolist(),
+                                  "case_ids": case_ids[trace_ids].tolist(), "active": valid[trace_ids].tolist(),
+                                  "root_relative_xyz": relative[trace_ids].tolist(),
+                                  "root_linear_velocity_w": state["root_lin_vel_w"][trace_ids].tolist(),
+                                  "yaw_roll_pitch": torch.stack((yaw, roll, pitch), dim=-1)[trace_ids].tolist(),
+                                  "feet_relative_xyz": (state["feet_pos_w"] - origins[:, None])[trace_ids].tolist(),
+                                  "foot_horizontal_speed_m_s": foot_speed[trace_ids].tolist(),
+                                  "contacts": state["foot_contacts"][trace_ids].tolist(),
+                                  "actions": actions[trace_ids].tolist(),
+                                  "base_force_n": state["base_force_n"][trace_ids].tolist(),
+                                  "shank_force_n": state["shank_force_n"][trace_ids].tolist(),
+                                  "command_vx_vy_yaw": torch.stack((yaw_command * 0 + speed, yaw_command * 0, yaw_command), -1)[trace_ids].tolist()})
                 active &= ~(complete | falls | escapes | stalls | nonfinite | dones.bool())
                 if progress is not None and ((step + 1) % 200 == 0 or not bool(active.any())):
                     progress({"seed": seed, "step": step + 1, "num_steps": steps, "zero_action": zero_action,
@@ -439,6 +468,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 for source, target in (("xy_tracking_mse", "xy_tracking_rmse_m_s"), ("roll_mse", "roll_rms_rad"),
                                    ("pitch_mse", "pitch_rms_rad"), ("linear_acceleration_squared", "linear_acceleration_rms_m_s2"),
                                    ("linear_jerk_squared", "linear_jerk_rms_m_s3"),
+                                   ("body_angular_acceleration_squared", "body_angular_acceleration_rms_rad_s2"),
                                    ("action_delta_squared", "action_delta_rms"),
                                    ("action_second_delta_squared", "action_second_delta_rms"),
                                    ("applied_torque_squared", "applied_torque_rms_nm")):
@@ -458,7 +488,11 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                     "passed": case_n >= limits["minimum_num_envs"] and fraction >= limits["completion_fraction"] and failure_reason is None,
                     "completion_fraction": fraction, "completions": int(complete[mask].sum()),
                     "falls": int(falls[mask].sum()), "stalls": int(stalls[mask].sum()),
-                    "lateral_escapes": int(escapes[mask].sum()), "metrics": metric_summary(mask),
+                    "lateral_escapes": int(escapes[mask].sum()), "base_contact_envs": int(base_contact[mask].sum()),
+                    "metrics": {**metric_summary(mask),
+                        "peak_contact_force_n": float(peak_force_per_env[mask].max()) if case_n else None,
+                        "roll_peak_rad": float(roll_peak_per_env[mask].max()) if case_n else None,
+                        "longest_flight_pause_s": float(longest_pause[mask].max()) if case_n else None},
                     "mean_max_progress_m": float(max_progress[mask].mean()) if case_n else None})
             initial_distribution = {"root_relative_xyz_min": initial_relative.amin(dim=0).tolist(),
                 "root_relative_xyz_max": initial_relative.amax(dim=0).tolist(),
@@ -473,13 +507,15 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                 "completion_fraction": completion_fraction, "completions": int(complete.sum()),
                 "falls": int(falls.sum()), "stalls": int(stalls.sum()), "lateral_escapes": int(escapes.sum()),
                 "timeouts_before_completion": int((timeouts & ~complete).sum()), "nonfinite_envs": int(nonfinite.sum()),
+                "invalid_physics_envs": int(invalid_physics.sum()),
                 "base_contact_envs": int(base_contact.sum()), "shank_contact_envs": int(shank_contact.sum()),
                 "invalid_start_envs": int((~start_valid).sum()),
                 "mean_completion_time_s": float(successful_times.mean()) if successful_times.numel() else None,
                 "mean_max_directed_progress_m": float(max_progress.mean()),
                 "mean_max_progress_fraction": float((max_progress / goal_distance).clamp(0, 1).mean()),
                 "mean_first_episode_measured_duration_s": float(active_steps.float().mean()) * dt,
-                "metrics": {**metrics, **peaks}, "failure_reason": failure_reason,
+                "metrics": {**metrics, **peaks, "roll_peak_rad": float(roll_peak_per_env.max()),
+                            "longest_flight_pause_s": float(longest_pause.max())}, "failure_reason": failure_reason,
                 "per_env": {"completed": complete.tolist(), "fall": falls.tolist(), "stall": stalls.tolist(),
                             "lateral_escape": escapes.tolist(), "max_progress_m": max_progress.tolist(),
                             "completion_time_s": [float(x) if math.isfinite(float(x)) else None for x in completion_time]},
@@ -495,7 +531,7 @@ def evaluate_stairs(wrapped, policy, geometry, seconds=30.0, speed=0.3, seeds=(1
                             "inputs": "root yaw only; standard velocity-command channels"},
         "randomized_reset": bool(randomized), "command_forward_speed_m_s": speed,
         "metrics_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
-        "slip_metric_scope": "foot-link horizontal speed while normal-contact force >1N; proxy, not exact contact-point tangential slip",
+        "slip_metric_scope": "foot-link horizontal speed while recent physics-step normal-contact history peaks >1N; proxy, not exact contact-point tangential slip",
         "smoothness_passed": None,
         "smoothness_note": "Metrics are reported for comparison; no universal smoothness threshold has been calibrated",
         "seed_scope": "reset RNG seeds; startup terrain and material remain fixed for this environment",
@@ -519,3 +555,35 @@ def evaluate_stair_suite(wrapped, policy, geometry, seconds=30.0, speed=0.3, see
             "zero_action": control, "geometry": geometry,
             "completion_improvement_fraction": sum(trial["completion_fraction"] for trial in learned["trials"]) / len(seeds)
                 - sum(trial["completion_fraction"] for trial in control["trials"]) / len(seeds) if control else None}
+
+
+def assess_final(report, completion_fraction=0.95, maximum_failure_fraction=0.05,
+                 maximum_flight_pause_s=1.0):
+    """Apply the separately declared final gate without changing training metrics.
+
+    Long pauses are a motion-quality flag. A final ``silky/smooth`` assertion
+    still needs video and comparison with an otherwise matching baseline.
+    """
+    policy = report.get("policy", report)
+    checks = []
+    for trial in policy["trials"]:
+        for case in trial.get("cases", [trial]):
+            n = case["num_envs"]
+            failures = {name: case[name] / n if n else 1.0
+                        for name in ("falls", "stalls", "lateral_escapes")}
+            traversed = (case["completion_fraction"] >= completion_fraction
+                         and n >= policy.get("thresholds", DEFAULT_THRESHOLDS)["minimum_num_envs"]
+                         and all(value <= maximum_failure_fraction for value in failures.values())
+                         and case.get("base_contact_envs", 0) == 0
+                         and trial.get("failure_reason") is None)
+            pause = case["metrics"].get("longest_flight_pause_s")
+            checks.append({"seed": trial["seed"], "case_index": case.get("case_index", 0),
+                           "traversal_passed": traversed, "failure_fractions": failures,
+                           "motion_improvement_needed": pause is not None and pause > maximum_flight_pause_s})
+    return {"traversal_passed": all(check["traversal_passed"] for check in checks),
+            "motion_improvement_needed": any(check["motion_improvement_needed"] for check in checks),
+            "smoothness_verified": False, "visual_review_required": True, "cases": checks,
+            "thresholds": {"completion_fraction": completion_fraction,
+                           "maximum_failure_fraction": maximum_failure_fraction,
+                           "maximum_flight_pause_s_for_motion_flag": maximum_flight_pause_s,
+                           "maximum_base_contact_envs": 0}}
