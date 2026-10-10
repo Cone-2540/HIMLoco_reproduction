@@ -18,14 +18,15 @@ cd -- "$repo_root"
 selected_checkpoint=$(realpath -- "$selected_checkpoint")
 freeze_plan="$repo_root/reproduction/stair-final-evaluation-plan.json"
 validate_freeze() {
-  python3 - "$repo_root" "$freeze_plan" "$selected_checkpoint" "$selected_profile" <<'PY'
+  python3 - "$repo_root" "$freeze_plan" "$selected_checkpoint" "$selected_profile" \
+    "${secondary_checkpoint-}" "${secondary_profile-}" "${1:-locked}" <<'PY'
 import hashlib
 import json
 from pathlib import Path
 import re
 import sys
 
-root, plan_file, checkpoint, profile = sys.argv[1:]
+root, plan_file, checkpoint, profile, expected_secondary, expected_secondary_profile, stage = sys.argv[1:]
 root = Path(root).resolve()
 
 def require(condition, message):
@@ -58,6 +59,20 @@ require(frozen_checkpoint == repo_file(checkpoint, "requested checkpoint"),
         "requested checkpoint differs from the frozen checkpoint")
 require(plan.get("reward_profile") == profile, "requested profile differs from the frozen profile")
 check_hash(frozen_checkpoint, plan.get("checkpoint_sha256"), "checkpoint")
+secondary_keys = ("secondary_checkpoint", "secondary_checkpoint_sha256", "secondary_reward_profile")
+has_secondary = any(plan.get(key) is not None for key in secondary_keys)
+secondary_path = secondary_profile = ""
+if has_secondary:
+    secondary_path = repo_file(plan.get("secondary_checkpoint"), "secondary checkpoint")
+    require(secondary_path != frozen_checkpoint, "secondary checkpoint must differ from primary")
+    secondary_profile = plan.get("secondary_reward_profile")
+    require(secondary_profile in ("faithful", "contact", "contact_force", "contact_slide"),
+            "missing or unsupported secondary reward profile")
+    check_hash(secondary_path, plan.get("secondary_checkpoint_sha256"), "secondary checkpoint")
+    require("\n" not in str(secondary_path), "secondary checkpoint path must not contain a newline")
+if stage != "initial":
+    require(str(secondary_path) == expected_secondary and secondary_profile == expected_secondary_profile,
+            "secondary checkpoint/profile changed after the initial freeze guard")
 for path_key, hash_key, required_relative in (
     ("final_geometry_file", "final_geometry_sha256", "reproduction/stair-heldout-final.json"),
     ("acceptance_file", "acceptance_sha256", "reproduction/stair-acceptance.json"),
@@ -108,9 +123,19 @@ require(flat.get("envs") == 64 and flat.get("seconds") == 20
         and flat.get("commands") == [[0.3, 0, 0], [0.5, 0, 0], [-0.5, 0, 0],
                                     [0, 0.3, 0], [0, 0, 0.5], [0, 0, -0.5]],
         "flat regression protocol differs from this script")
+if has_secondary:
+    print(secondary_path)
+    print(secondary_profile)
 PY
 }
-validate_freeze
+frozen_secondary=$(validate_freeze initial)
+secondary_checkpoint="" secondary_profile=""
+secondary_args=()
+if [[ -n $frozen_secondary ]]; then
+  secondary_checkpoint=${frozen_secondary%$'\n'*}
+  secondary_profile=${frozen_secondary##*$'\n'}
+  secondary_args=(--candidate_checkpoint "$secondary_checkpoint")
+fi
 mkdir -p -- "$validation_logs"
 cp -- "$freeze_plan" "$validation_logs/frozen-evaluation-plan.json"
 common=(evaluate --terrain stairs --checkpoint "$selected_checkpoint"
@@ -120,7 +145,7 @@ common=(evaluate --terrain stairs --checkpoint "$selected_checkpoint"
 run_checked() {
   local validation_name=$1
   shift
-  validate_freeze
+  validate_freeze > /dev/null
   local wall_start_ns wall_end_ns wall_elapsed_ns command_exit=0
   wall_start_ns=$(date +%s%N)
   printf 'Starting %s at %s\n' "$validation_name" "$(date --iso-8601=seconds)"
@@ -139,8 +164,8 @@ run_final() {
   shift
   run_checked "$validation_name" "${common[@]}" "$@"
 }
-run_final frozen-final-speed03 --speed 0.3 --domain_profile none
-run_final frozen-final-speed05 --speed 0.5 --domain_profile none
+run_final frozen-final-speed03 --speed 0.3 --domain_profile none "${secondary_args[@]}"
+run_final frozen-final-speed05 --speed 0.5 --domain_profile none "${secondary_args[@]}"
 run_final frozen-foot-nominal-speed03 --speed 0.3 --domain_profile basic --friction 0.8 0.6
 run_final frozen-foot-low-speed03 --speed 0.3 --domain_profile basic --friction 0.45 0.35
 run_final frozen-foot-high-speed03 --speed 0.3 --domain_profile basic --friction 1.0 0.8

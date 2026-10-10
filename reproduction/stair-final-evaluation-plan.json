@@ -1,8 +1,8 @@
 {
   "created_local": "2026-10-11T04:50:46.657604+08:00",
-  "status": "Planned before evaluating final geometry or reset seeds; checkpoint not yet frozen",
+  "status": "frozen",
   "planned_freeze_no_later_than_local": "2026-10-11T06:00:00+08:00",
-  "checkpoint": null,
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
   "no_retuning_from_final_matrix": true,
   "acceptance_file": "reproduction/stair-acceptance.json",
   "acceptance_sha256": "a435a41bb99717824c5c6692d97851de02c1781abfcdd50ccc610d3463c31b52",
@@ -163,5 +163,14 @@
     0.3
   ],
   "plan_amended_local": "2026-10-11T05:37:19.362174+08:00",
-  "plan_amendment": "Earlier freeze, runtime source hashes and heading matrix hashes; frozen candidate unchanged because not selected yet."
+  "plan_amendment": "Earlier freeze, runtime source hashes and heading matrix hashes; frozen candidate unchanged because not selected yet.",
+  "frozen_local": "2026-10-11T05:47:03.427901+08:00",
+  "reward_profile": "contact",
+  "secondary_checkpoint": "artifacts/go2-stairs-slide680/model_680.pt",
+  "secondary_reward_profile": "contact_slide",
+  "secondary_scope": "Predeclared fixed comparator for nominal heldout two speeds only; primary selection stayscontrol660 regardlessheldoutresults",
+  "selection_rationale": "Primarycontrol660 dualspeed2304/2304,zeroallfailurecounts,maxpause.56/.10s. Secondaryslide680 dualspeed2304/2304,zeroallfailurecounts,maxpause.84/.60s, lowercurrentfootXYslipproxyeverycase but someworsedescjerk/action/tracking. Samegeometryreusedtuningmatrix, nofinalseed/geometricresultsused.",
+  "source_git_commit_before_freeze": "81b1e88f02df38afe4cfc91508d2c2291bf60f0d",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "secondary_checkpoint_sha256": "bcbb5a2db6d034a798d26b0dddc6541f22e6cd0e59f88f8a6fa5ebed7401df75"
 }
