@@ -1,0 +1,1273 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2"
+  ],
+  "aggregation_scope": "Each evaluation retains its checkpoint, command speed, controller, cases and reset seeds. Pooled counts are descriptive; minima preserve worst cases/seeds. No model selection or threshold changes.",
+  "evaluations": [
+    {
+      "evaluation_id": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2:policy",
+      "run_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2",
+      "result_file": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/result.json",
+      "alternate_result_files": [
+        "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/primary-result.json"
+      ],
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_03-13-12_stairs-hard-faithful570/model_440.pt",
+      "checkpoint_source": "result",
+      "controller": "policy",
+      "config_file": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/config.json",
+      "config_inherited_from_parent_run": false,
+      "status": "failed",
+      "reported_passed": false,
+      "reported_final_traversal_passed": false,
+      "thresholds": {
+        "evaluation": {
+          "completion_fraction": 0.9,
+          "minimum_num_envs": 32,
+          "stall_window_s": 4.0,
+          "stall_progress_m": 0.05,
+          "contact_force_n": 1.0,
+          "slip_speed_m_s": 0.1,
+          "goal_foot_clearance_m": 0.1,
+          "goal_foot_height_tolerance_m": 0.12,
+          "minimum_base_clearance_m": 0.18,
+          "maximum_base_clearance_m": 0.6,
+          "upright_gravity_z": -0.8
+        },
+        "final_acceptance": {
+          "completion_fraction": 0.95,
+          "maximum_failure_fraction": 0.05,
+          "maximum_flight_pause_s_for_motion_flag": 1.0,
+          "maximum_base_contact_envs": 0
+        }
+      },
+      "scope": {
+        "command_forward_speed_m_s": 0.3,
+        "randomized_reset": true,
+        "dynamics_randomized": false,
+        "independent_reset_validation_eligible": false,
+        "heading_control": {
+          "enabled": true,
+          "target_yaw_rad": 0.0,
+          "gain": 1.0,
+          "maximum_yaw_rate_rad_s": 0.5,
+          "inputs": "root yaw only; standard velocity-command channels"
+        },
+        "validation_scope": "randomized reset cases",
+        "metrics_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
+        "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds",
+        "recorded_reset_seeds": [
+          29
+        ],
+        "configured_reset_seeds": [
+          29
+        ],
+        "missing_configured_reset_seeds": [],
+        "material": {
+          "domain_randomization_profile": null,
+          "foot_material": null,
+          "terrain_material": null,
+          "friction_override": null,
+          "parameter_scope": "Material parameter ranges not recorded; inherited environment materials are unknown",
+          "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds"
+        }
+      },
+      "observations_complete": true,
+      "minimum_case_completion_fraction": 0.71875,
+      "minimum_case_seed_completion_fraction": 0.71875,
+      "case_summaries": [
+        {
+          "case_index": 0,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 0.96,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.7599998116493225,
+          "observations_complete": true
+        },
+        {
+          "case_index": 1,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -0.96,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.0,
+          "observations_complete": true
+        },
+        {
+          "case_index": 2,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.02,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 23,
+          "falls": 0,
+          "stalls": 8,
+          "lateral_escapes": 1,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.71875,
+          "minimum_seed_completion_fraction": 0.71875,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.25,
+            "lateral_escapes": 0.03125,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 3.8399970531463623,
+          "observations_complete": true
+        },
+        {
+          "case_index": 3,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.02,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.0,
+          "observations_complete": true
+        },
+        {
+          "case_index": 4,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 29,
+          "falls": 0,
+          "stalls": 3,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.90625,
+          "minimum_seed_completion_fraction": 0.90625,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.09375,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 3.7199971675872803,
+          "observations_complete": true
+        },
+        {
+          "case_index": 5,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.05999999865889549,
+          "observations_complete": true
+        }
+      ],
+      "direction_summaries": [
+        {
+          "direction": "asc",
+          "num_envs": 96,
+          "completions": 84,
+          "falls": 0,
+          "stalls": 11,
+          "lateral_escapes": 1,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.875,
+          "minimum_case_completion_fraction": 0.71875,
+          "minimum_case_seed_completion_fraction": 0.71875
+        },
+        {
+          "direction": "desc",
+          "num_envs": 96,
+          "completions": 96,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_case_completion_fraction": 1.0,
+          "minimum_case_seed_completion_fraction": 1.0
+        }
+      ],
+      "trial_diagnostics": [
+        {
+          "seed": 29,
+          "nonfinite_envs": 0,
+          "invalid_physics_envs": 0,
+          "invalid_start_envs": 0,
+          "timeouts_before_completion": 0,
+          "failure_reason": null
+        }
+      ],
+      "case_seed_results": [
+        {
+          "case_index": 0,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 0.96,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 0,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.03887841658812441,
+          "longest_flight_pause_s": 0.7599998116493225,
+          "measured_vx_m_s": 0.28895456868614816,
+          "action_second_delta_rms": 0.1148729500085454,
+          "pitch_rms_rad": 0.3506460324901248,
+          "roll_rms_rad": 0.06068915564917564,
+          "torque_saturation_fraction": 1.3086265046617493e-05,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.422243595123291,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 1,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -0.96,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 1,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.0,
+          "longest_flight_pause_s": 0.0,
+          "measured_vx_m_s": 0.2716707455643735,
+          "action_second_delta_rms": 0.07589898335047279,
+          "pitch_rms_rad": 0.23670505609603382,
+          "roll_rms_rad": 0.03793868924596288,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.411068916320801,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 2,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.02,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": false,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 2,
+            "traversal_passed": false,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.25,
+              "lateral_escapes": 0.03125
+            },
+            "motion_improvement_needed": true
+          },
+          "completions": 23,
+          "falls": 0,
+          "stalls": 8,
+          "lateral_escapes": 1,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.15482558577563474,
+          "longest_flight_pause_s": 3.8399970531463623,
+          "measured_vx_m_s": 0.2601935263926582,
+          "action_second_delta_rms": 0.12843475943098098,
+          "pitch_rms_rad": 0.4056045622244181,
+          "roll_rms_rad": 0.09118662079178175,
+          "torque_saturation_fraction": 0.00020724201192615638,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.0408291816711426,
+          "completion_fraction": 0.71875
+        },
+        {
+          "case_index": 3,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.02,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 3,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.0,
+          "longest_flight_pause_s": 0.0,
+          "measured_vx_m_s": 0.272929597111423,
+          "action_second_delta_rms": 0.07773227858326566,
+          "pitch_rms_rad": 0.25447224338741703,
+          "roll_rms_rad": 0.03775377364782692,
+          "torque_saturation_fraction": 4.1593878620843625e-06,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.4033074378967285,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 4,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 4,
+            "traversal_passed": false,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.09375,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": true
+          },
+          "completions": 29,
+          "falls": 0,
+          "stalls": 3,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.052976289172608194,
+          "longest_flight_pause_s": 3.7199971675872803,
+          "measured_vx_m_s": 0.2912209499739048,
+          "action_second_delta_rms": 0.11929746097031738,
+          "pitch_rms_rad": 0.40420502491300236,
+          "roll_rms_rad": 0.06486423874394806,
+          "torque_saturation_fraction": 0.00011567277407711095,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.284604072570801,
+          "completion_fraction": 0.90625
+        },
+        {
+          "case_index": 5,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 5,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.00027862914460852607,
+          "longest_flight_pause_s": 0.05999999865889549,
+          "measured_vx_m_s": 0.27724516139456523,
+          "action_second_delta_rms": 0.09106788498605654,
+          "pitch_rms_rad": 0.2940761926240285,
+          "roll_rms_rad": 0.04041615553735042,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.401383876800537,
+          "completion_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "evaluation_id": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/candidates/0_model_370:policy",
+      "run_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/candidates/0_model_370",
+      "result_file": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/candidates/0_model_370/result.json",
+      "alternate_result_files": [],
+      "checkpoint": "/workspace/himloco/artifacts/go2-stairs-standard370/model_370.pt",
+      "checkpoint_source": "result",
+      "controller": "policy",
+      "config_file": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-11_03-26-44_hard440-interim-contact-v2/config.json",
+      "config_inherited_from_parent_run": true,
+      "status": "failed",
+      "reported_passed": false,
+      "reported_final_traversal_passed": false,
+      "thresholds": {
+        "evaluation": {
+          "completion_fraction": 0.9,
+          "minimum_num_envs": 32,
+          "stall_window_s": 4.0,
+          "stall_progress_m": 0.05,
+          "contact_force_n": 1.0,
+          "slip_speed_m_s": 0.1,
+          "goal_foot_clearance_m": 0.1,
+          "goal_foot_height_tolerance_m": 0.12,
+          "minimum_base_clearance_m": 0.18,
+          "maximum_base_clearance_m": 0.6,
+          "upright_gravity_z": -0.8
+        },
+        "final_acceptance": {
+          "completion_fraction": 0.95,
+          "maximum_failure_fraction": 0.05,
+          "maximum_flight_pause_s_for_motion_flag": 1.0,
+          "maximum_base_contact_envs": 0
+        }
+      },
+      "scope": {
+        "command_forward_speed_m_s": 0.3,
+        "randomized_reset": true,
+        "dynamics_randomized": false,
+        "independent_reset_validation_eligible": false,
+        "heading_control": {
+          "enabled": true,
+          "target_yaw_rad": 0.0,
+          "gain": 1.0,
+          "maximum_yaw_rate_rad_s": 0.5,
+          "inputs": "root yaw only; standard velocity-command channels"
+        },
+        "validation_scope": "randomized reset cases",
+        "metrics_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
+        "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds",
+        "recorded_reset_seeds": [
+          29
+        ],
+        "configured_reset_seeds": [
+          29
+        ],
+        "missing_configured_reset_seeds": [],
+        "material": {
+          "domain_randomization_profile": null,
+          "foot_material": null,
+          "terrain_material": null,
+          "friction_override": null,
+          "parameter_scope": "Material parameter ranges not recorded; inherited environment materials are unknown",
+          "seed_scope": "reset RNG seeds; startup terrain/material/dynamics are sampled once at environment construction and fixed across reset seeds"
+        }
+      },
+      "observations_complete": true,
+      "minimum_case_completion_fraction": 0.0,
+      "minimum_case_seed_completion_fraction": 0.0,
+      "case_summaries": [
+        {
+          "case_index": 0,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 0.96,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.0,
+          "observations_complete": true
+        },
+        {
+          "case_index": 1,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -0.96,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.0,
+          "observations_complete": true
+        },
+        {
+          "case_index": 2,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.02,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 0,
+          "falls": 0,
+          "stalls": 32,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.0,
+          "minimum_seed_completion_fraction": 0.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 1.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 3.7799971103668213,
+          "observations_complete": true
+        },
+        {
+          "case_index": 3,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.02,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.0,
+          "observations_complete": true
+        },
+        {
+          "case_index": 4,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 17,
+          "falls": 0,
+          "stalls": 15,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.53125,
+          "minimum_seed_completion_fraction": 0.53125,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.46875,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.7799997925758362,
+          "observations_complete": true
+        },
+        {
+          "case_index": 5,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "num_envs": 32,
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_seed_completion_fraction": 1.0,
+          "worst_completion_seeds": [
+            29
+          ],
+          "maximum_seed_failure_fractions": {
+            "falls": 0.0,
+            "stalls": 0.0,
+            "lateral_escapes": 0.0,
+            "base_contact_envs": 0.0
+          },
+          "maximum_flight_pause_s": 0.9399996399879456,
+          "observations_complete": true
+        }
+      ],
+      "direction_summaries": [
+        {
+          "direction": "asc",
+          "num_envs": 96,
+          "completions": 49,
+          "falls": 0,
+          "stalls": 47,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 0.5104166666666666,
+          "minimum_case_completion_fraction": 0.0,
+          "minimum_case_seed_completion_fraction": 0.0
+        },
+        {
+          "direction": "desc",
+          "num_envs": 96,
+          "completions": 96,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "completion_fraction": 1.0,
+          "minimum_case_completion_fraction": 1.0,
+          "minimum_case_seed_completion_fraction": 1.0
+        }
+      ],
+      "trial_diagnostics": [
+        {
+          "seed": 29,
+          "nonfinite_envs": 0,
+          "invalid_physics_envs": 0,
+          "invalid_start_envs": 0,
+          "timeouts_before_completion": 0,
+          "failure_reason": null
+        }
+      ],
+      "case_seed_results": [
+        {
+          "case_index": 0,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 0.96,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 0,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.0,
+          "longest_flight_pause_s": 0.0,
+          "measured_vx_m_s": 0.2915469209912752,
+          "action_second_delta_rms": 0.08829904141746338,
+          "pitch_rms_rad": 0.2865757310304061,
+          "roll_rms_rad": 0.056789922619102144,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.403580904006958,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 1,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.16,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -0.96,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 1,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.0,
+          "longest_flight_pause_s": 0.0,
+          "measured_vx_m_s": 0.2729146363889892,
+          "action_second_delta_rms": 0.07333392048577392,
+          "pitch_rms_rad": 0.2288298988611026,
+          "roll_rms_rad": 0.03627574029146623,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.3967418670654297,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 2,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.02,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": false,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 2,
+            "traversal_passed": false,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 1.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": true
+          },
+          "completions": 0,
+          "falls": 0,
+          "stalls": 32,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.7121080139372822,
+          "longest_flight_pause_s": 3.7799971103668213,
+          "measured_vx_m_s": 0.094741799710276,
+          "action_second_delta_rms": 0.10257128421402292,
+          "pitch_rms_rad": 0.07866271758014702,
+          "roll_rms_rad": 0.13809788533631476,
+          "torque_saturation_fraction": 0.00013608709979698593,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 0.906328022480011,
+          "completion_fraction": 0.0
+        },
+        {
+          "case_index": 3,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.17,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.02,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.02,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 3,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.0,
+          "longest_flight_pause_s": 0.0,
+          "measured_vx_m_s": 0.275660673880236,
+          "action_second_delta_rms": 0.07602197220765801,
+          "pitch_rms_rad": 0.24633954681244705,
+          "roll_rms_rad": 0.03615202252302729,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.389584541320801,
+          "completion_fraction": 1.0
+        },
+        {
+          "case_index": 4,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "asc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": 1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": false,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 4,
+            "traversal_passed": false,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.46875,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 17,
+          "falls": 0,
+          "stalls": 15,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.060787115209767505,
+          "longest_flight_pause_s": 0.7799997925758362,
+          "measured_vx_m_s": 0.21313827221443563,
+          "action_second_delta_rms": 0.11970590082496142,
+          "pitch_rms_rad": 0.33192790070559974,
+          "roll_rms_rad": 0.09230207878502392,
+          "torque_saturation_fraction": 0.0005295250478735019,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 2.131355047225952,
+          "completion_fraction": 0.53125
+        },
+        {
+          "case_index": 5,
+          "seed": 29,
+          "observation_available": true,
+          "geometry": {
+            "direction": "desc",
+            "step_height": 0.2,
+            "step_depth": 0.27,
+            "num_steps": 6,
+            "width": 1.2,
+            "nosing": 0.0,
+            "landing_length": 2.0,
+            "first_riser_x": 1.0,
+            "last_riser_x": 2.35,
+            "goal_platform_start_x": 2.62,
+            "goal_x": 3.27,
+            "goal_platform_z": -1.2000000000000002,
+            "goal_dwell_s": 0.5
+          },
+          "requested_duration_s": 25.0,
+          "num_envs": 32,
+          "reported_passed": true,
+          "failure_reason": null,
+          "final_acceptance": {
+            "seed": 29,
+            "case_index": 5,
+            "traversal_passed": true,
+            "failure_fractions": {
+              "falls": 0.0,
+              "stalls": 0.0,
+              "lateral_escapes": 0.0
+            },
+            "motion_improvement_needed": false
+          },
+          "completions": 32,
+          "falls": 0,
+          "stalls": 0,
+          "lateral_escapes": 0,
+          "base_contact_envs": 0,
+          "flight_pause_fraction": 0.007823819182845552,
+          "longest_flight_pause_s": 0.9399996399879456,
+          "measured_vx_m_s": 0.27825317887295625,
+          "action_second_delta_rms": 0.0933268541016924,
+          "pitch_rms_rad": 0.29667271807465684,
+          "roll_rms_rad": 0.03729677152678728,
+          "torque_saturation_fraction": 0.0,
+          "base_contact_step_fraction": 0.0,
+          "mean_max_progress_m": 3.3918375968933105,
+          "completion_fraction": 1.0
+        }
+      ]
+    }
+  ]
+}

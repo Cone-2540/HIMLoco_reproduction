@@ -15,7 +15,7 @@
     "material_limitation": "Startup material parameters are not recorded; separate environment constructions may have different material draws. Reset seeds do not resample startup material/dynamics.",
     "metrics_scope": "First measured episode until classification; motion statistics exclude first second.",
     "mean_definition": "Arithmetic mean of three seed-level aggregate metrics, not a sample-pooled RMS.",
-    "leg_contact_definition": "shank_contact_step_fraction covers calf/thigh/shank bodies; not a calf-only metric.",
+    "leg_contact_definition": "Policy-boundary existence fraction using three 5ms normal-force-norm history samples over calf/thigh/shank; oldest sample10ms, nominal count window15ms. Not sustained scraping duration or calf-only.",
     "coordinate_definition": "maximum_root_relative_x_m and last measured positions are course-relative coordinates; max_progress_m is displacement from randomized reset.",
     "foot_order": "Indexed F1..F4. F1/F2 front-positioned, F3/F4 rear-positioned in recorded body order; explicit body names are not stored in evaluation JSON.",
     "terminal_snapshot_limitation": "Last valid first-episode positions before auto-reset/classification. Not full trajectories/contact histories; cannot identify causal reward or swing mechanisms."

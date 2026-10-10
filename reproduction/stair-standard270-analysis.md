@@ -50,9 +50,9 @@ At 0.5 m/s, all remaining six failures (one model270 and five model240) occur at
 
 ## Pause, action variation, jerk and leg contact
 
-The following values are arithmetic means of three seed-level aggregate metrics, **not pooled sample RMS**. Maximum pause is the maximum across all three seeds/environments of that case. Motion statistics cover the first measured episode and exclude the first second. An immobilized stall can itself lower action RMS, so a lower scalar does not automatically describe a better gait. Action second-difference RMS is a discrete action smoothness proxy; root jerk is the physical root linear-jerk estimate. `shank_contact_step_fraction` includes **calf/thigh/shank** bodies and cannot be reported as calf-only contact.
+The following values are arithmetic means of three seed-level aggregate metrics, **not pooled sample RMS**. Maximum pause is the maximum across all three seeds/environments of that case. Motion statistics cover the first measured episode and exclude the first second. An immobilized stall can itself lower action RMS, so a lower scalar does not automatically describe a better gait. Action second-difference RMS is a discrete action smoothness proxy; root jerk is the physical root linear-jerk estimate. `shank_contact_step_fraction` includes **calf/thigh/shank** bodies. It is the proportion of policy boundaries whose three 5 ms physics-sample normal-force-norm history peak exceeds 1 N, with oldest sample age 10 ms and nominal count window 15 ms; it is not sustained scraping duration or calf-only contact. The pinned history-bearing sensor updates every physics step even with lazy mode.
 
-| Model / speed / rise-tread cm | Mean pause % | Max pause s | Action second RMS | Root jerk RMS m/s³ | Leg contact % |
+| Model / speed / rise-tread cm | Mean pause % | Max pause s | Action second RMS | Root jerk RMS m/s³ | Leg contact proxy % |
 |---|---:|---:|---:|---:|---:|
 | 270 / 0.3 / 8/30 asc | 16.23 | 2.02 | 0.0886 | 48.4 | 22.08 |
 | 240 / 0.3 / 8/30 asc | 22.89 | 3.60 | 0.0920 | 44.1 | 26.06 |

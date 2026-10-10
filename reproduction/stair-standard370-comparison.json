@@ -25,7 +25,7 @@
     "metric_mean": "Arithmetic mean of three seed-level aggregate metrics. Overall macro-means give each case equal weight; not pooled sample RMS.",
     "metric_scope": "first episode until completion/fall/stall/escape/timeout; physics captured before auto-reset; smoothness excludes first second",
     "slip_metric_scope": "foot-link horizontal speed while recent physics-step normal-contact history peaks >1N; proxy, not exact contact-point tangential slip",
-    "leg_contact_scope": "shank_contact_step_fraction combines calf/thigh/shank; not calf-only.",
+    "leg_contact_scope": "Policy-boundary existence fraction using three 5ms normal-force-norm history samples over calf/thigh/shank; oldest sample10ms, nominal count window15ms. Not sustained scraping duration or calf-only.",
     "acceptance_limitation": "False motion flag reflects only the 1s pause gate. smoothness_verified remains False and visual review is required."
   },
   "training_provenance": {

@@ -1,0 +1,970 @@
+{
+  "schema_version": 1,
+  "finding": "Sampled frames and first-episode traces support complete, consistently forward 16cm ascent/descent. Brief descending foot correction and action/leg-force peaks remain; smoothness is not certified.",
+  "visual_review_scope": "Original six-frame sheets per direction plus 16 denser selected stills and actual last frames. No continuous video playback claimed.",
+  "representative_scope": "One independently recorded environment per direction, seed29, nominal dynamics; not replacement for multi-case multi-seed traversal statistics.",
+  "sensor_provenance": {
+    "physics_dt_s": 0.005,
+    "policy_dt_s": 0.02,
+    "history_samples": 3,
+    "history_oldest_sample_age_s": 0.01,
+    "history_nominal_count_window_s": 0.015,
+    "history_times_at_policy_boundary": "T,T-.005,T-.010; does not cover first substep T-.015 of every .020s policy step.",
+    "base_sensor_update_source": "/home/cone/isaaclab/IsaacLab/source/isaaclab/isaaclab/sensors/contact_sensor/base_contact_sensor.py:65",
+    "physics_loop_source": "/home/cone/isaaclab/IsaacLab/source/isaaclab/isaaclab/envs/manager_based_rl_env.py:229",
+    "history_shift_source": "/home/cone/isaaclab/IsaacLab/source/isaaclab_physx/isaaclab_physx/sensors/contact_sensor/kernels.py:283",
+    "lazy_update_resolution": "Pinned BaseContactSensor.update force-updates history-bearing buffers each physics step; generic SensorBase lazy-only inference does not apply.",
+    "leg_metric_semantics": "Fraction of policy boundaries whose three-sample normal-force-norm history peak exceeds1N on any calf/thigh/shank body; not sustained scraping duration or calf-only.",
+    "slip_metric_semantics": "History-contact gate paired with current world-XY foot-link speed; can include early swing after contact, not contact-point tangential slip."
+  },
+  "recordings": {
+    "asc": {
+      "run": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370/model_370.pt",
+      "seed": 29,
+      "environment_id": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": 0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "video": "isaaclab/logs/2026-10-11_03-10-39_standard370-16cm-asc-speed03-video/videos/go2_stairs_asc_0000.mp4",
+      "fps": 50.0,
+      "frames": 635,
+      "video_frame_pts_interval_s": [
+        0,
+        12.68
+      ],
+      "sim_first_episode_duration_s": 12.699999809265137,
+      "completed": true,
+      "policy_only": true,
+      "negative_control_phase": false,
+      "simulation_time_mapping": "At one frame per post-step capture, simulation-step time is approximately frame PTS + 0.02s; first PTS is zero.",
+      "trace_cadence_s": 0.09999999999999964,
+      "trace_samples": 127,
+      "last_trace_time_s": 12.620000000000001,
+      "recorded_terminal_root_course_xyz_m": [
+        3.402833938598633,
+        0.07510232925415039,
+        1.205496907234192
+      ],
+      "recorded_terminal_feet_course_xyz_m": [
+        [
+          3.8109965324401855,
+          0.2236018180847168,
+          0.9839727878570557
+        ],
+        [
+          3.7298436164855957,
+          -0.052202701568603516,
+          0.9839507937431335
+        ],
+        [
+          3.1015706062316895,
+          0.21325302124023438,
+          0.982995867729187
+        ],
+        [
+          3.2344810962677,
+          -0.09333229064941406,
+          0.9837091565132141
+        ]
+      ],
+      "flight_trace_sample_scope": "Root x in [1.00,2.62), first active episode; trace cadence 0.1s, not every physics or policy update.",
+      "flight_root_x_strictly_increasing_in_trace": true,
+      "flight_vx_range_m_s": [
+        0.1703968048095703,
+        0.38293465971946716
+      ],
+      "flight_vz_range_m_s": [
+        -0.04466943070292473,
+        0.21388950943946838
+      ],
+      "flight_roll_range_deg": [
+        -6.503715946083074,
+        0.6962002216040477
+      ],
+      "flight_pitch_range_deg": [
+        -24.98915549365126,
+        -8.431955615292658
+      ],
+      "foot_course_x_passage_samples": [
+        {
+          "foot_index": 1,
+          "position_group": "front",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 3.3200000000000003,
+            "foot_course_xyz_m": [
+              1.0889534950256348,
+              0.20839738845825195,
+              0.28760257363319397
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 8.120000000000001,
+            "foot_course_xyz_m": [
+              2.5028464794158936,
+              0.24107646942138672,
+              1.015818476676941
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 9.02,
+            "foot_course_xyz_m": [
+              2.731996774673462,
+              0.23404788970947266,
+              1.0326175689697266
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": 0.0001201629638671875,
+          "delta_x_time_interval_s": [
+            9.22,
+            9.32
+          ]
+        },
+        {
+          "foot_index": 2,
+          "position_group": "front",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 3.12,
+            "foot_course_xyz_m": [
+              1.125232219696045,
+              -0.1647930145263672,
+              0.18392477929592133
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 7.62,
+            "foot_course_xyz_m": [
+              2.4523990154266357,
+              -0.14110660552978516,
+              1.031901240348816
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 8.620000000000001,
+            "foot_course_xyz_m": [
+              2.744628429412842,
+              -0.13722848892211914,
+              1.1779091358184814
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.005650997161865234,
+          "delta_x_time_interval_s": [
+            8.72,
+            8.82
+          ]
+        },
+        {
+          "foot_index": 3,
+          "position_group": "rear",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 4.82,
+            "foot_course_xyz_m": [
+              1.03554105758667,
+              0.15486669540405273,
+              0.19900289177894592
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 10.22,
+            "foot_course_xyz_m": [
+              2.4343454837799072,
+              0.21850156784057617,
+              1.0028785467147827
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 11.120000000000001,
+            "foot_course_xyz_m": [
+              2.656837224960327,
+              0.20544195175170898,
+              0.9827846884727478
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.0067865848541259766,
+          "delta_x_time_interval_s": [
+            9.52,
+            9.620000000000001
+          ]
+        },
+        {
+          "foot_index": 4,
+          "position_group": "rear",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 4.32,
+            "foot_course_xyz_m": [
+              1.034599781036377,
+              -0.06413841247558594,
+              0.1839531809091568
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 9.82,
+            "foot_course_xyz_m": [
+              2.396111011505127,
+              -0.09419631958007812,
+              1.0175377130508423
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 10.620000000000001,
+            "foot_course_xyz_m": [
+              2.6768081188201904,
+              -0.08962059020996094,
+              0.9837671518325806
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.00865793228149414,
+          "delta_x_time_interval_s": [
+            9.22,
+            9.32
+          ]
+        }
+      ],
+      "maximum_sampled_flight_action_second_rms": {
+        "value": 0.1795925498008728,
+        "time_s": 4.12,
+        "trace": {
+          "time_s": 4.12,
+          "env_ids": [
+            0
+          ],
+          "case_ids": [
+            0
+          ],
+          "active": [
+            true
+          ],
+          "root_relative_xyz": [
+            [
+              1.0312557220458984,
+              0.04592084884643555,
+              0.4111335277557373
+            ]
+          ],
+          "root_linear_velocity_w": [
+            [
+              0.2809109687805176,
+              0.03756941482424736,
+              0.20112884044647217
+            ]
+          ],
+          "yaw_roll_pitch": [
+            [
+              -0.004047244321554899,
+              -0.10252944380044937,
+              -0.39124855399131775
+            ]
+          ],
+          "feet_relative_xyz": [
+            [
+              [
+                1.2594594955444336,
+                0.21624422073364258,
+                0.392467200756073
+              ],
+              [
+                1.4161763191223145,
+                -0.1936478614807129,
+                0.34383413195610046
+              ],
+              [
+                0.8426675796508789,
+                0.13659334182739258,
+                0.023405171930789948
+              ],
+              [
+                0.8133749961853027,
+                -0.11933422088623047,
+                0.1091248020529747
+              ]
+            ]
+          ],
+          "foot_horizontal_speed_m_s": [
+            [
+              0.5575598478317261,
+              0.02055850625038147,
+              0.03358231112360954,
+              1.6039888858795166
+            ]
+          ],
+          "contacts": [
+            [
+              false,
+              true,
+              true,
+              false
+            ]
+          ],
+          "actions": [
+            [
+              1.013884425163269,
+              0.4971577823162079,
+              -1.4955838918685913,
+              0.3452756702899933,
+              1.1634204387664795,
+              0.12527158856391907,
+              1.5824739933013916,
+              1.689042091369629,
+              -4.4026899337768555,
+              1.2482118606567383,
+              2.56331467628479,
+              -2.039841651916504
+            ]
+          ],
+          "action_delta_rms": [
+            0.24315282702445984
+          ],
+          "action_second_delta_rms": [
+            0.1795925498008728
+          ],
+          "flight_paused": [
+            false
+          ],
+          "base_force_n": [
+            0.0
+          ],
+          "shank_force_n": [
+            0.0
+          ],
+          "command_vx_vy_yaw": [
+            [
+              0.30000001192092896,
+              0.0,
+              0.00449958723038435
+            ]
+          ]
+        }
+      },
+      "maximum_sampled_post_first_second_action_second_rms": {
+        "value": 0.3866370618343353,
+        "time_s": 3.12
+      },
+      "maximum_sampled_flight_leg_history_peak_n": {
+        "value": 73.20877075195312,
+        "time_s": 4.22
+      },
+      "recorded_metrics": {
+        "flight_pause_fraction": 0.0,
+        "xy_tracking_mae_m_s": 0.04520950769870263,
+        "yaw_tracking_mae_rad_s": 0.036480479418702076,
+        "measured_vx_m_s": 0.29331113836194717,
+        "measured_vy_m_s": 0.0022429531938137695,
+        "heading_abs_error_rad": 0.006465088857807225,
+        "lateral_abs_error_m": 0.056904573522062386,
+        "torque_saturation_fraction": 0.0,
+        "base_contact_step_fraction": 0.0,
+        "shank_contact_step_fraction": 0.15384615384615385,
+        "contact_foot_horizontal_speed_m_s": 0.11908674324532602,
+        "foot_slip_fraction": 0.1527472585439682,
+        "xy_tracking_rmse_m_s": 0.04986993943357467,
+        "roll_rms_rad": 0.05688573622733943,
+        "pitch_rms_rad": 0.28549017617582356,
+        "linear_acceleration_rms_m_s2": 0.9074687653305072,
+        "linear_jerk_rms_m_s3": 36.02038577527927,
+        "body_angular_acceleration_rms_rad_s2": 8.424854930123221,
+        "action_delta_rms": 0.1902933629282621,
+        "action_second_delta_rms": 0.08792454255682763,
+        "applied_torque_rms_nm": 6.017007860569429,
+        "peak_contact_force_n": 134.9170379638672,
+        "roll_peak_rad": 0.11351125687360764,
+        "longest_flight_pause_s": 0.0
+      },
+      "recorded_base_force_zero_in_all_trace_samples": true,
+      "failure_counts": {
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "nonfinite_envs": 0,
+        "invalid_physics_envs": 0,
+        "base_contact_envs": 0
+      },
+      "inspected_dense_frame_ids": [
+        150,
+        158,
+        166,
+        174,
+        498,
+        506,
+        514,
+        522
+      ]
+    },
+    "desc": {
+      "run": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video",
+      "checkpoint": "/workspace/himloco/isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370/model_370.pt",
+      "seed": 29,
+      "environment_id": 0,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.96
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": -0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": -0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": -0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": -0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": -0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": -0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "command_speed_m_s": 0.3,
+      "video": "isaaclab/logs/2026-10-11_03-11-42_standard370-16cm-desc-speed03-video/videos/go2_stairs_desc_0000.mp4",
+      "fps": 50.0,
+      "frames": 678,
+      "video_frame_pts_interval_s": [
+        0,
+        13.54
+      ],
+      "sim_first_episode_duration_s": 13.559999465942383,
+      "completed": true,
+      "policy_only": true,
+      "negative_control_phase": false,
+      "simulation_time_mapping": "At one frame per post-step capture, simulation-step time is approximately frame PTS + 0.02s; first PTS is zero.",
+      "trace_cadence_s": 0.09999999999999964,
+      "trace_samples": 136,
+      "last_trace_time_s": 13.52,
+      "recorded_terminal_root_course_xyz_m": [
+        3.4051623344421387,
+        0.0781702995300293,
+        -0.7152767181396484
+      ],
+      "recorded_terminal_feet_course_xyz_m": [
+        [
+          3.817152500152588,
+          0.22840404510498047,
+          -0.9360285997390747
+        ],
+        [
+          3.7350897789001465,
+          -0.048375606536865234,
+          -0.9360533952713013
+        ],
+        [
+          3.1015725135803223,
+          0.2155132293701172,
+          -0.937015950679779
+        ],
+        [
+          3.239454746246338,
+          -0.09269905090332031,
+          -0.9362888336181641
+        ]
+      ],
+      "flight_trace_sample_scope": "Root x in [1.00,2.62), first active episode; trace cadence 0.1s, not every physics or policy update.",
+      "flight_root_x_strictly_increasing_in_trace": true,
+      "flight_vx_range_m_s": [
+        0.1343642622232437,
+        0.3780606687068939
+      ],
+      "flight_vz_range_m_s": [
+        -0.19347421824932098,
+        -0.002582811051979661
+      ],
+      "flight_roll_range_deg": [
+        -4.202377620348365,
+        5.556122821392185
+      ],
+      "flight_pitch_range_deg": [
+        9.257713533116153,
+        20.271386739572545
+      ],
+      "foot_course_x_passage_samples": [
+        {
+          "foot_index": 1,
+          "position_group": "front",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 3.22,
+            "foot_course_xyz_m": [
+              1.1356377601623535,
+              0.2306509017944336,
+              -0.05018210411071777
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 9.120000000000001,
+            "foot_course_xyz_m": [
+              2.427572727203369,
+              0.260068416595459,
+              -0.8264846801757812
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 10.120000000000001,
+            "foot_course_xyz_m": [
+              2.7434420585632324,
+              0.22508811950683594,
+              -0.9362929463386536
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.0818490982055664,
+          "delta_x_time_interval_s": [
+            4.32,
+            4.42
+          ]
+        },
+        {
+          "foot_index": 2,
+          "position_group": "front",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 2.82,
+            "foot_course_xyz_m": [
+              1.093069076538086,
+              -0.06228351593017578,
+              0.016596555709838867
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 8.82,
+            "foot_course_xyz_m": [
+              2.408510208129883,
+              -0.0361638069152832,
+              -0.8176865577697754
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 10.22,
+            "foot_course_xyz_m": [
+              2.7069404125213623,
+              -0.06217145919799805,
+              -0.935660719871521
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.016869068145751953,
+          "delta_x_time_interval_s": [
+            8.02,
+            8.120000000000001
+          ]
+        },
+        {
+          "foot_index": 3,
+          "position_group": "rear",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 5.5200000000000005,
+            "foot_course_xyz_m": [
+              1.0490307807922363,
+              0.2660536766052246,
+              0.01573789119720459
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 11.120000000000001,
+            "foot_course_xyz_m": [
+              2.462245464324951,
+              0.21301507949829102,
+              -0.8421411514282227
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 12.120000000000001,
+            "foot_course_xyz_m": [
+              2.796757459640503,
+              0.20588064193725586,
+              -0.9364812970161438
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": -0.036063194274902344,
+          "delta_x_time_interval_s": [
+            9.92,
+            10.02
+          ]
+        },
+        {
+          "foot_index": 4,
+          "position_group": "rear",
+          "first_riser_plus_3cm": {
+            "sample_time_s": 5.92,
+            "foot_course_xyz_m": [
+              1.0846757888793945,
+              -0.20247745513916016,
+              -0.02932894229888916
+            ]
+          },
+          "last_riser_plus_3cm": {
+            "sample_time_s": 11.42,
+            "foot_course_xyz_m": [
+              2.5188279151916504,
+              -0.16911983489990234,
+              -0.8503724336624146
+            ]
+          },
+          "final_platform_plus_3cm": {
+            "sample_time_s": 11.52,
+            "foot_course_xyz_m": [
+              2.6808648109436035,
+              -0.11190605163574219,
+              -0.9188781976699829
+            ]
+          },
+          "minimum_sampled_flight_delta_x_m": 0.0011813640594482422,
+          "delta_x_time_interval_s": [
+            9.32,
+            9.42
+          ]
+        }
+      ],
+      "maximum_sampled_flight_action_second_rms": {
+        "value": 0.4260411262512207,
+        "time_s": 7.0200000000000005,
+        "trace": {
+          "time_s": 7.0200000000000005,
+          "env_ids": [
+            0
+          ],
+          "case_ids": [
+            0
+          ],
+          "active": [
+            true
+          ],
+          "root_relative_xyz": [
+            [
+              1.7197093963623047,
+              0.07219886779785156,
+              -0.18500900268554688
+            ]
+          ],
+          "root_linear_velocity_w": [
+            [
+              0.19904515147209167,
+              -0.051696356385946274,
+              -0.14389605820178986
+            ]
+          ],
+          "yaw_roll_pitch": [
+            [
+              -0.011355428956449032,
+              0.012376195751130581,
+              0.3061445653438568
+            ]
+          ],
+          "feet_relative_xyz": [
+            [
+              [
+                1.9075024127960205,
+                0.14896202087402344,
+                -0.6170613765716553
+              ],
+              [
+                1.9547233581542969,
+                -0.0009164810180664062,
+                -0.6168299317359924
+              ],
+              [
+                1.3927583694458008,
+                0.2816171646118164,
+                -0.29757630825042725
+              ],
+              [
+                1.3351664543151855,
+                -0.14882802963256836,
+                -0.29807358980178833
+              ]
+            ]
+          ],
+          "foot_horizontal_speed_m_s": [
+            [
+              0.009504173882305622,
+              0.020869126543402672,
+              1.0755653381347656,
+              0.01995648816227913
+            ]
+          ],
+          "contacts": [
+            [
+              true,
+              true,
+              true,
+              true
+            ]
+          ],
+          "actions": [
+            [
+              -1.025608777999878,
+              0.5831611156463623,
+              0.7709794640541077,
+              0.05924101918935776,
+              -2.9481983184814453,
+              -2.621469736099243,
+              0.7625975608825684,
+              -0.3688037395477295,
+              2.7109997272491455,
+              2.4164419174194336,
+              -1.605819821357727,
+              0.30118656158447266
+            ]
+          ],
+          "action_delta_rms": [
+            0.27748239040374756
+          ],
+          "action_second_delta_rms": [
+            0.4260411262512207
+          ],
+          "flight_paused": [
+            false
+          ],
+          "base_force_n": [
+            0.0
+          ],
+          "shank_force_n": [
+            59.78396987915039
+          ],
+          "command_vx_vy_yaw": [
+            [
+              0.30000001192092896,
+              0.0,
+              0.010548170655965805
+            ]
+          ]
+        }
+      },
+      "maximum_sampled_post_first_second_action_second_rms": {
+        "value": 0.4260411262512207,
+        "time_s": 7.0200000000000005
+      },
+      "maximum_sampled_flight_leg_history_peak_n": {
+        "value": 143.38900756835938,
+        "time_s": 4.42
+      },
+      "recorded_metrics": {
+        "flight_pause_fraction": 0.0,
+        "xy_tracking_mae_m_s": 0.05127162341351745,
+        "yaw_tracking_mae_rad_s": 0.034718344765800574,
+        "measured_vx_m_s": 0.2712147161601835,
+        "measured_vy_m_s": 0.004243182775840329,
+        "heading_abs_error_rad": 0.00926959263289776,
+        "lateral_abs_error_m": 0.06546976308154452,
+        "torque_saturation_fraction": 0.0,
+        "base_contact_step_fraction": 0.0,
+        "shank_contact_step_fraction": 0.25,
+        "contact_foot_horizontal_speed_m_s": 0.18610479921108275,
+        "foot_slip_fraction": 0.24653740227222443,
+        "xy_tracking_rmse_m_s": 0.05741894899909708,
+        "roll_rms_rad": 0.04127039791269904,
+        "pitch_rms_rad": 0.22769083565948267,
+        "linear_acceleration_rms_m_s2": 1.013712397972635,
+        "linear_jerk_rms_m_s3": 50.70564118151974,
+        "body_angular_acceleration_rms_rad_s2": 11.42695378688315,
+        "action_delta_rms": 0.15120655382324907,
+        "action_second_delta_rms": 0.07437270403086334,
+        "applied_torque_rms_nm": 4.9034049430692805,
+        "peak_contact_force_n": 408.6146240234375,
+        "roll_peak_rad": 0.11270297318696976,
+        "longest_flight_pause_s": 0.0
+      },
+      "recorded_base_force_zero_in_all_trace_samples": true,
+      "failure_counts": {
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "timeouts_before_completion": 0,
+        "nonfinite_envs": 0,
+        "invalid_physics_envs": 0,
+        "base_contact_envs": 0
+      },
+      "inspected_dense_frame_ids": [
+        212,
+        216,
+        220,
+        224,
+        344,
+        348,
+        352,
+        356
+      ]
+    }
+  },
+  "phase_windows": [
+    {
+      "direction": "asc",
+      "description": "Ascent: first front-foot riser crossing",
+      "frame_pts_s": [
+        3.0,
+        3.16,
+        3.32,
+        3.48
+      ],
+      "frame_ids": [
+        150,
+        158,
+        166,
+        174
+      ]
+    },
+    {
+      "direction": "asc",
+      "description": "Ascent: final rear-foot riser crossing",
+      "frame_pts_s": [
+        9.96,
+        10.12,
+        10.28,
+        10.44
+      ],
+      "frame_ids": [
+        498,
+        506,
+        514,
+        522
+      ]
+    },
+    {
+      "direction": "desc",
+      "description": "Descent: front-foot retraction / leg-contact window",
+      "frame_pts_s": [
+        4.24,
+        4.32,
+        4.4,
+        4.48
+      ],
+      "frame_ids": [
+        212,
+        216,
+        220,
+        224
+      ]
+    },
+    {
+      "direction": "desc",
+      "description": "Descent: local action-second-difference spike",
+      "frame_pts_s": [
+        6.88,
+        6.96,
+        7.04,
+        7.12
+      ],
+      "frame_ids": [
+        344,
+        348,
+        352,
+        356
+      ]
+    }
+  ]
+}
