@@ -7,7 +7,8 @@ from types import SimpleNamespace as NS
 
 from isaaclab.actuators import DCMotorCfg
 
-from stair_randomization import capture_domain_parameters, configure_conservative_calf_limits, configure_stair_randomization
+from stair_randomization import (_domain_terrain_material, capture_domain_parameters,
+                                 configure_conservative_calf_limits, configure_stair_randomization)
 
 
 def config():
@@ -211,6 +212,8 @@ class DomainReadbackTest(unittest.TestCase):
         self.assertEqual(report["base_com"]["default_and_offset"]["status"], "unavailable")
         self.assertEqual(report["foot_material"]["status"], "available")
         self.assertEqual(report["foot_material"]["bucket_pool"]["status"], "unavailable")
+        self.assertEqual(report["terrain_material"]["status"], "unavailable")
+        self.assertIn("scene.terrain", report["terrain_material"]["reason"])
         pd = report["actuator_pd"]["groups"]["base_legs"]
         self.assertIn("configured reference", pd["stiffness"]["default"]["source"])
         del robot.data.body_com_pose_b
@@ -230,6 +233,104 @@ class DomainReadbackTest(unittest.TestCase):
                 ratio = pd[name]["default"]["observed_to_default_ratio"]
                 self.assertGreaterEqual(ratio["min"], .9 - 1e-6)
                 self.assertLessEqual(ratio["max"], 1.1 + 1e-6)
+
+
+class TerrainMaterialReadbackTest(unittest.TestCase):
+    """Real CPU USD stages, physics-purpose resolution and authored attributes."""
+
+    def fixture(self):
+        from pxr import Sdf, Usd, UsdGeom, UsdPhysics, UsdShade
+
+        stage = Usd.Stage.CreateInMemory()
+        root = UsdGeom.Xform.Define(stage, "/World/ground").GetPrim()
+        mesh = UsdGeom.Mesh.Define(stage, "/World/ground/terrain/mesh").GetPrim()
+        UsdPhysics.CollisionAPI.Apply(mesh)
+        UsdGeom.Mesh.Define(stage, "/World/ground/visual_only")
+        material = UsdShade.Material.Define(stage, "/World/ground/terrain/physicsMaterial")
+        api = UsdPhysics.MaterialAPI.Apply(material.GetPrim())
+        api.CreateStaticFrictionAttr(1.)
+        api.CreateDynamicFrictionAttr(.9)
+        api.CreateRestitutionAttr(0.)
+        # The CPU environment lacks the optional PhysxSchema Python module.
+        # Authored token attributes use its verified installed schema names.
+        material.GetPrim().CreateAttribute("physxMaterial:frictionCombineMode", Sdf.ValueTypeNames.Token).Set("multiply")
+        material.GetPrim().CreateAttribute("physxMaterial:restitutionCombineMode", Sdf.ValueTypeNames.Token).Set("max")
+        UsdShade.MaterialBindingAPI.Apply(root).Bind(material, materialPurpose="physics")
+        visual = UsdShade.Material.Define(stage, "/World/ground/visualMaterial")
+        UsdShade.MaterialBindingAPI.Apply(mesh).Bind(visual)  # Wrong purpose must not win.
+        terrain = NS(cfg=NS(prim_path="/World/ground", physics_material=NS(
+            static_friction=.2, dynamic_friction=.1, friction_combine_mode="min")),
+            terrain_prim_paths=["/World/ground/terrain"])
+        return NS(scene=NS(terrain=terrain), sim=NS(stage=stage)), stage, root, mesh, material
+
+    def test_actual_inherited_physics_binding_ignores_visual_and_stale_config_without_mutation(self):
+        env, stage, root, mesh, material = self.fixture()
+        before = stage.GetRootLayer().ExportToString()
+        report = _domain_terrain_material(env)
+        self.assertEqual(before, stage.GetRootLayer().ExportToString())
+        json.dumps(report, allow_nan=False)
+        self.assertEqual(report["terrain_prim_path"], "/World/ground")
+        self.assertEqual(report["collision_mesh_count"], 1)
+        row = report["collision_meshes"][0]
+        self.assertEqual(row["mesh_prim_path"], "/World/ground/terrain/mesh")
+        binding = row["physics_binding"]
+        self.assertEqual(binding["status"], "available")
+        self.assertEqual(binding["material_prim_path"], str(material.GetPath()))
+        self.assertEqual(binding["binding_relationship_path"], "/World/ground.material:binding:physics")
+        self.assertEqual(binding["attributes"]["static_friction"]["value"], 1.)
+        self.assertAlmostEqual(binding["attributes"]["dynamic_friction"]["value"], .9)
+        self.assertEqual(binding["attributes"]["friction_combine_mode"]["value"], "multiply")
+        self.assertEqual(binding["attributes"]["restitution_combine_mode"]["value"], "max")
+        self.assertEqual(binding["attributes"]["damping_combine_mode"]["status"], "unavailable")
+        self.assertEqual(report["configured_reference"]["values"]["static_friction"], .2)
+        self.assertEqual(report["solver_effective_contact_coefficients"]["status"], "unavailable")
+
+    def test_missing_binding_and_authored_fields_are_independent_unavailable_values(self):
+        from pxr import UsdGeom, UsdPhysics, UsdShade
+
+        env, stage, root, mesh, material = self.fixture()
+        UsdShade.MaterialBindingAPI(root).UnbindDirectBinding(materialPurpose="physics")
+        empty = UsdShade.Material.Define(stage, "/World/ground/emptyMaterial")
+        UsdPhysics.MaterialAPI.Apply(empty.GetPrim())  # Schema defaults are not authored measurements.
+        UsdShade.MaterialBindingAPI(mesh).Bind(empty, materialPurpose="physics")
+        second = UsdGeom.Mesh.Define(stage, "/World/ground/unbound/mesh").GetPrim()
+        UsdPhysics.CollisionAPI.Apply(second)
+        report = _domain_terrain_material(env)
+        self.assertEqual(report["collision_mesh_count"], 2)
+        bound = report["collision_meshes"][0]["physics_binding"]
+        self.assertEqual(bound["status"], "available")
+        for field in bound["attributes"].values():
+            self.assertEqual(field["status"], "unavailable")
+        unbound = report["collision_meshes"][1]["physics_binding"]
+        self.assertEqual(unbound["status"], "unavailable")
+        self.assertIn("No resolved physics-purpose", unbound["reason"])
+
+    def test_mesh_override_and_subset_binding_are_resolved_independently(self):
+        from pxr import UsdGeom, UsdPhysics, UsdShade
+
+        env, stage, root, mesh, material = self.fixture()
+        override = UsdShade.Material.Define(stage, "/World/ground/override")
+        UsdPhysics.MaterialAPI.Apply(override.GetPrim()).CreateStaticFrictionAttr(.4)
+        UsdShade.MaterialBindingAPI(mesh).Bind(override, materialPurpose="physics")
+        subset = UsdGeom.Subset.Define(stage, "/World/ground/terrain/mesh/faceMaterial")
+        subset.CreateElementTypeAttr("face")
+        subset.CreateIndicesAttr([0])
+        UsdShade.MaterialBindingAPI.Apply(subset.GetPrim()).Bind(material, materialPurpose="physics")
+        report = _domain_terrain_material(env)
+        row = report["collision_meshes"][0]
+        self.assertAlmostEqual(row["physics_binding"]["attributes"]["static_friction"]["value"], .4)
+        self.assertEqual(row["geometry_subsets"][0]["physics_binding"]["material_prim_path"], str(material.GetPath()))
+        self.assertEqual(row["geometry_subsets"][0]["subset_prim_path"], str(subset.GetPath()))
+
+    def test_unavailable_stage_or_mesh_does_not_create_stage_or_use_config_as_measurement(self):
+        env, stage, root, mesh, material = self.fixture()
+        env.sim.stage = None
+        with self.assertRaisesRegex(RuntimeError, "env.sim.stage"):
+            _domain_terrain_material(env)
+        env.sim.stage = stage
+        env.scene.terrain.cfg.prim_path = "/World/missing"
+        with self.assertRaisesRegex(ValueError, "absent"):
+            _domain_terrain_material(env)
 
 
 if __name__ == "__main__":

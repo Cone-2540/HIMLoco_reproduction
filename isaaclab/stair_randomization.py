@@ -228,6 +228,94 @@ def _domain_foot_material(env, robot):
     return result
 
 
+def _terrain_authored_attribute(prim, name, numeric=False):
+    """Read composed authored USD values, never replace missing values with cfg."""
+    import math
+
+    attribute = prim.GetAttribute(name)
+    if not attribute or not attribute.HasAuthoredValueOpinion():
+        raise RuntimeError(f"No authored USD value for {name}; backend/schema fallback is not verified")
+    value = attribute.Get()
+    if value is None:
+        raise RuntimeError(f"Authored USD value for {name} is blocked or unresolved")
+    if numeric:
+        value = float(value)
+        if not math.isfinite(value):
+            raise ValueError(f"Non-finite USD value for {name}")
+    else:
+        value = str(value)
+    return {"value": value, "attribute": name, "has_authored_value_opinion": True,
+            "source": "composed authored USD attribute, not solver effective contact coefficient"}
+
+
+def _domain_terrain_material(env):
+    """Resolve real terrain mesh physics bindings from this env's existing USD stage."""
+    from pxr import Usd, UsdGeom, UsdPhysics, UsdShade
+
+    terrain = getattr(env.scene, "terrain", None)
+    if terrain is None:
+        raise RuntimeError("The environment has no scene.terrain")
+    prim_path = getattr(getattr(terrain, "cfg", None), "prim_path", None)
+    if not prim_path:
+        raise RuntimeError("scene.terrain.cfg.prim_path is unavailable")
+    stage = getattr(getattr(env, "sim", None), "stage", None)
+    if stage is None:
+        raise RuntimeError("env.sim.stage is unavailable; no alternate stage was created or attached")
+    root = stage.GetPrimAtPath(prim_path)
+    if not root.IsValid():
+        raise ValueError(f"Terrain USD prim {prim_path!r} is absent from env.sim.stage")
+    meshes = [prim for prim in Usd.PrimRange(root)
+              if prim.IsA(UsdGeom.Mesh) and prim.HasAPI(UsdPhysics.CollisionAPI)]
+    if not meshes:
+        raise RuntimeError(f"No USD collision meshes under terrain prim {prim_path!r}")
+
+    def bound_material(prim):
+        material, relationship = UsdShade.MaterialBindingAPI(prim).ComputeBoundMaterial(materialPurpose="physics")
+        if not material or not material.GetPrim().IsValid():
+            raise RuntimeError(f"No resolved physics-purpose material binding for {prim.GetPath()}")
+        material_prim = material.GetPrim()
+        if not material_prim.HasAPI(UsdPhysics.MaterialAPI):
+            raise RuntimeError(f"Bound USD material {material.GetPath()} has no PhysicsMaterialAPI")
+        fields = {}
+        for key, name, numeric in (
+            ("static_friction", "physics:staticFriction", True),
+            ("dynamic_friction", "physics:dynamicFriction", True),
+            ("restitution", "physics:restitution", True),
+            ("friction_combine_mode", "physxMaterial:frictionCombineMode", False),
+            ("restitution_combine_mode", "physxMaterial:restitutionCombineMode", False),
+            ("damping_combine_mode", "physxMaterial:dampingCombineMode", False),
+        ):
+            fields[key] = _domain_attempt(lambda name=name, numeric=numeric:
+                                          _terrain_authored_attribute(material_prim, name, numeric))
+        return {"material_prim_path": str(material.GetPath()),
+                "binding_relationship_path": str(relationship.GetPath()) if relationship else None,
+                "binding_relationship_targets": [str(path) for path in relationship.GetTargets()] if relationship else [],
+                "material_applied_schemas": list(material_prim.GetAppliedSchemas()),
+                "attributes": fields}
+
+    def mesh_report(prim):
+        subsets = UsdGeom.Subset.GetAllGeomSubsets(UsdGeom.Imageable(prim))
+        return {"mesh_prim_path": str(prim.GetPath()),
+                "collision_enabled": UsdPhysics.CollisionAPI(prim).GetCollisionEnabledAttr().Get(),
+                "physics_binding": _domain_attempt(lambda: bound_material(prim)),
+                "geometry_subsets": [{"subset_prim_path": str(subset.GetPath()),
+                    "physics_binding": _domain_attempt(lambda subset=subset: bound_material(subset.GetPrim()))}
+                    for subset in subsets]}
+
+    configured = getattr(terrain.cfg, "physics_material", None)
+    return {"source": "env.sim.stage; UsdShade.MaterialBindingAPI.ComputeBoundMaterial(materialPurpose='physics')",
+            "scope": "actual composed terrain USD mesh bindings and authored material attributes; not solver contact-pair coefficients",
+            "stage_root_layer_identifier": str(stage.GetRootLayer().identifier),
+            "terrain_prim_path": str(prim_path),
+            "imported_terrain_prim_paths": [str(path) for path in getattr(terrain, "terrain_prim_paths", [])],
+            "collision_mesh_count": len(meshes), "collision_meshes": [mesh_report(prim) for prim in meshes],
+            "configured_reference": {"source": "scene.terrain.cfg.physics_material; configuration only",
+                "values": {name: getattr(configured, name, None) for name in (
+                    "static_friction", "dynamic_friction", "restitution", "friction_combine_mode", "restitution_combine_mode")}},
+            "solver_effective_contact_coefficients": {"status": "unavailable",
+                "reason": "No solver contact-pair material readback is performed; effective coefficients also depend on the other shape, combine-mode priority and backend state"}}
+
+
 def capture_domain_parameters(env):
     """Read current Go2 physical parameters after reset, without modifying them.
 
@@ -252,7 +340,8 @@ def capture_domain_parameters(env):
                 env, robot, base_ids, "body_inertia", "default_inertia")),
             "base_com": _domain_attempt(lambda: _domain_base_com(env, robot, base_ids)),
             "actuator_pd": _domain_attempt(lambda: _domain_actuator_gains(env, robot)),
-            "foot_material": _domain_attempt(lambda: _domain_foot_material(env, robot))}
+            "foot_material": _domain_attempt(lambda: _domain_foot_material(env, robot)),
+            "terrain_material": _domain_attempt(lambda: _domain_terrain_material(env))}
 
 
 def _require_dc_actuators(cfg):
