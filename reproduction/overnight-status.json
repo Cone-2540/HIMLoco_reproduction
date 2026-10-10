@@ -171,7 +171,7 @@
       },
       "source_commit": "aba595b",
       "source_dirty": false,
-      "changes": "standardstage,5\u201317cm,20\u201340cmtreads,no nosing; originalreward;resumeAdam3e-4fixed;resetstd.4;commands.4\u2013.8;actualgoalpromotionfix"
+      "changes": "standardstage,5–17cm,20–40cmtreads,no nosing; originalreward;resumeAdam3e-4fixed;resetstd.4;commands.4–.8;actualgoalpromotionfix"
     },
     {
       "run": "isaaclab/logs/2026-10-11_02-45-21_stairs-standard-low-speed370",
@@ -190,7 +190,7 @@
         "export_max_abs_error": 1.2069940567016602e-06,
         "peak_cuda_memory_bytes": 3702060032
       },
-      "changes": "Only lower command distribution0.25\u20130.65; same standardterrain/faithfulreward/checkpointAdamfixed3e-4/stdnooverride"
+      "changes": "Only lower command distribution0.25–0.65; same standardterrain/faithfulreward/checkpointAdamfixed3e-4/stdnooverride"
     },
     {
       "run": "isaaclab/logs/2026-10-11_03-13-12_stairs-hard-faithful570",
@@ -212,7 +212,7 @@
       "source_commit": "1072b1a56b5ba93109430ff10d5fce78be14438b"
     }
   ],
-  "active_run": "Preparing matched100updatefaithful/contactablationfromhard570",
+  "active_run": "isaaclab/logs/2026-10-11_03-53-36_stairs-hard-contact670",
   "next_step": "Evaluatehard570/earliercheckpointandstandard370onnewcontactprovenance; completehardmatrixandmaterialchecks; candidatecontactrewardifactualscrapingpersists",
   "chosen_num_envs": 4096,
   "learning_rate_initial": 0.0003,
@@ -281,8 +281,8 @@
     "intent": "isolatehardterrainextensionbeforecontactrewardablation"
   },
   "early_bootstrap_diagnostic": "Up goal fraction around0.38 after21 updates, on the lowest training rows; independent fixed-height evaluation pending",
-  "last_update_local": "2026-10-11T03:53:12+08:00",
-  "verified_remote_commit": "d3c68f70d993c583c6d4329121e766a8a9bad7fa",
+  "last_update_local": "2026-10-11T04:09:29+08:00",
+  "verified_remote_commit": "84b98164f7dae26fdd873c5f62c36930afac4f5c",
   "intermediate_standard_evaluation": {
     "run": "isaaclab/logs/2026-10-11_02-29-54_standard200-core-progress",
     "model": "standard/model_200.pt",
@@ -357,7 +357,7 @@
     "learning_rate": "planned1e-4explicitresumeoverriderecordsAdamretained; lowerKLtowardsrefinement",
     "start_after": "hard570finishandfixedmatrixselection"
   },
-  "active_evaluation": "isaaclab/logs/2026-10-11_03-43-07_hard520-interim-tuning",
+  "active_evaluation": "contact620-interim-regression",
   "contact_reward_profile_source_commit": "e4c7df7",
   "contact_reward_gpu_smoke": {
     "run": "isaaclab/logs/2026-10-11_03-52-45_contact-smoke-resume-rate",
@@ -399,5 +399,17 @@
       "training_iteration": 520
     },
     "scope": "API/selection/training/exportnumericalsmokeonly; nosuccessinferred"
-  }
+  },
+  "hard570_24case_tuning": {
+    "run": "isaaclab/logs/2026-10-11_03-53-37_hard570-regression-and-tuning",
+    "checkpoint570_completions": 2189,
+    "episodes": 2304,
+    "checkpoint570_falls": 8,
+    "checkpoint570_lateral_escapes": 33,
+    "checkpoint520_completions": 2151,
+    "checkpoint520_falls": 0,
+    "checkpoint520_lateral_escapes": 0,
+    "note": "Low stair regression; failure flags can overlap. Same named fixed scene/three reused tuning reset seeds; not final heldout."
+  },
+  "next_action": "Complete contact100 then faithful100 matched from hard570 with retained Adam/fixed1e-4/start_level4/same seed; compare standard+hard matrix and both speeds."
 }

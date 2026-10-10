@@ -1,0 +1,42 @@
+{
+  "status": "Intermediate Go2 simulation candidate; not smoothness accepted or deployable",
+  "checkpoint_completed_updates": 620,
+  "continuation_updates_from_hard570": 50,
+  "training_run": "isaaclab/logs/2026-10-11_03-53-36_stairs-hard-contact670",
+  "training_config_scope": "Requested 100 continuation updates; saved checkpoint at 50 updates. Training was ongoing when archived.",
+  "evaluation_run": "isaaclab/logs/2026-10-11_04-07-03_contact620-interim-regression",
+  "training_changes": "Faithful plus eight thigh/calf contact-count terms with weight -0.1, retained Adam at fixed 1e-4, start level 4, same HIM actor and observations.",
+  "evaluation": {
+    "speed_m_s": 0.3,
+    "cases": 24,
+    "reset_seeds": [
+      11,
+      29,
+      47
+    ],
+    "environments_each_case_seed": 32,
+    "completions": 2302,
+    "episodes": 2304,
+    "falls": 0,
+    "base_contact_envs": 0,
+    "lateral_escapes": 0,
+    "traversal_gate": true,
+    "motion_improvement_needed": true,
+    "smoothness_verified": false,
+    "scope": "Reused tuning geometries and reset seeds with nominal dynamics; not final heldout."
+  },
+  "files": {
+    "policy.pt": {
+      "bytes": 992060,
+      "sha256": "c44a7ccacd63a9223785d04d58e9a4dbceefab4c12dd960f8807eda80e9f6664"
+    },
+    "training-config.json": {
+      "bytes": 18497,
+      "sha256": "8b385c539e450c85c0d17cab1432e5e7b5d54f170b2af800e412c8d2632b3256"
+    },
+    "model_620.pt": {
+      "bytes": 6566347,
+      "sha256": "5329afdf0f0366724f62dd6d5991e6a27a1b8f8b298a177b720c61841887292c"
+    }
+  }
+}
