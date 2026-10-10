@@ -14,7 +14,7 @@ args = parser.parse_args()
 accumulator = EventAccumulator(str(args.run), size_guidance={"scalars": 0})
 accumulator.Reload()
 tags = accumulator.Tags()["scalars"]
-selected = [tag for tag in tags if tag.startswith(("Loss/", "Perf/", "Policy/", "Train/"))
+selected = [tag for tag in tags if tag.startswith(("Loss/", "Perf/", "Policy/", "PPO/", "Train/"))
             or any(key in tag for key in ("terrain_levels", "stair_goal_reached", "base_contact", "stair_corridor_exit", "error_vel"))]
 series = {tag: [{"update": event.step + 1, "value": event.value} for event in accumulator.Scalars(tag)]
           for tag in selected}
