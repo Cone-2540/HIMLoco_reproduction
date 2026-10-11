@@ -308,6 +308,57 @@ def planned_jobs(stage, baseline, candidate, prefix):
     return jobs
 
 
+def validate_summary_collection(summary, stage):
+    """Validate only this stage's collected controllers; preserve unrun reports.
+
+    The unchanged summarizer always emits both controllers. Development's
+    optional zero-yaw report is an explicitly empty INCOMPLETE placeholder,
+    never collected evidence or a substitute for the complete heading matrix.
+    """
+    require(stage in ("development", "final"), "Unknown collection stage")
+    plan = read(ROOT / PLAN)
+    matrix = plan["geometry_sets"][stage]
+    count = len(read(ROOT / matrix["file"]))
+    expected_keys = {(speed, seed, index) for speed in plan["evaluation"]["speeds_m_s"]
+                     for seed in matrix["reset_seeds"] for index in range(count)}
+    reports = summary["controllers"]
+    require(all(isinstance(r.get("heading_control_enabled"), bool) for r in reports)
+            and len({r["heading_control_enabled"] for r in reports}) == len(reports),
+            "Duplicate or invalid controller summary identity")
+    by_controller = {r["heading_control_enabled"]: r for r in reports}
+    required = {True} if stage == "development" else {True, False}
+    require(required.issubset(by_controller) and set(by_controller).issubset({True, False}),
+            "Collection controller missing")
+    require(not summary["duplicate_case_seed_speed_controller_rows"], "Duplicate actual collection rows")
+    cases = summary["cases"]
+    require(all(isinstance(row.get("heading_control_enabled"), bool) for row in cases),
+            "Invalid actual collection row controller")
+    for heading in required:
+        report = by_controller[heading]
+        rows = [row for row in cases if row["heading_control_enabled"] is heading]
+        keys = [(row["speed_m_s"], row["reset_seed"], row["case_index"]) for row in rows]
+        require(report["matrix_complete"] is True and report["missing_case_seed_speed_rows"] == 0
+                and len(keys) == len(expected_keys) and set(keys) == expected_keys,
+                "Required collection matrix incomplete; preserve failures")
+    if stage == "development":
+        require(not any(row["heading_control_enabled"] is False for row in cases),
+                "Development zero-yaw placeholder contains actual rows")
+        if False in by_controller:
+            placeholder = by_controller[False]
+            require(placeholder["matrix_complete"] is False and placeholder["numeric_verdict"] == "INCOMPLETE"
+                    and placeholder["missing_case_seed_speed_rows"] == len(expected_keys)
+                    and set(placeholder["groups"]) == {"core", "moderate", "long"}
+                    and all(group["observed_case_seed_speed_rows"] == 0 and group["num_envs"] == 0
+                            and group["completions"] == 0 and group["failed_rows"] == []
+                            for group in placeholder["groups"].values()),
+                    "Development zero-yaw placeholder must be entirely unobserved and INCOMPLETE")
+    missing = summary["missing_case_seed_speed_controller_rows"]
+    expected_missing = {(speed, False, seed, index) for speed, seed, index in expected_keys} if stage == "development" else set()
+    actual_missing = [(row["speed_m_s"], row["heading_control_enabled"], row["reset_seed"], row["case_index"]) for row in missing]
+    require(len(actual_missing) == len(expected_missing) and set(actual_missing) == expected_missing,
+            "Collection missing-row declaration differs from intended stage")
+
+
 def summarize_policy(identity, candidate, records, output, stage):
     paths = []
     for record in records:
@@ -326,9 +377,7 @@ def summarize_policy(identity, candidate, records, output, stage):
     summary_path = prefix.with_suffix(".json")
     summary = read(summary_path)
     require(summary["checkpoint_sha256"] == identity["checkpoint_sha256"], "Summary model identity differs")
-    expected_controllers = {True} if stage == "development" else {True, False}
-    require({r["heading_control_enabled"] for r in summary["controllers"]} == expected_controllers
-            and all(r["matrix_complete"] is True for r in summary["controllers"]), "Collection matrix incomplete; preserve failures")
+    validate_summary_collection(summary, stage)
     sidecar = {"status": stage + "_collection_completed_actual_training_identity_attached", "identity": identity,
                "shared_evaluation_reward_profile": "faithful", "source_result_paths": list(map(str, paths)),
                "raw_result_sha256": {str(p): digest(p) for p in paths}, "summary": str(summary_path), "summary_sha256": digest(summary_path),

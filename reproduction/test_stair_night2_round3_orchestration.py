@@ -93,6 +93,58 @@ class Round3Guards(unittest.TestCase):
     def test_preregistered_protocol_bound(self):
         self.assertEqual(runner.protocol_identity(), runner.PREREGISTERED_PROTOCOL_SHA256)
 
+    def collection_fixture(self, stage, include_empty_zero_yaw=True):
+        plan = runner.read(runner.ROOT / runner.PLAN)
+        matrix = plan["geometry_sets"][stage]
+        count = len(runner.read(runner.ROOT / matrix["file"]))
+        keys = [(s, seed, i) for s in plan["evaluation"]["speeds_m_s"] for seed in matrix["reset_seeds"] for i in range(count)]
+        headings = [True] if stage == "development" else [True, False]
+        cases = [{"heading_control_enabled": h, "speed_m_s": s, "reset_seed": seed, "case_index": i}
+                 for h in headings for s, seed, i in keys]
+        controllers = [{"heading_control_enabled": h, "matrix_complete": True,
+                        "missing_case_seed_speed_rows": 0, "numeric_verdict": "FAIL"} for h in headings]
+        missing = []
+        if stage == "development":
+            missing = [{"speed_m_s": s, "heading_control_enabled": False, "reset_seed": seed, "case_index": i}
+                       for s, seed, i in keys]
+            if include_empty_zero_yaw:
+                controllers.append({"heading_control_enabled": False, "matrix_complete": False,
+                                    "numeric_verdict": "INCOMPLETE", "missing_case_seed_speed_rows": len(keys),
+                                    "groups": {name: {"observed_case_seed_speed_rows": 0, "num_envs": 0, "completions": 0, "failed_rows": []}
+                                               for name in ("core", "moderate", "long")}})
+        return {"controllers": controllers, "cases": cases, "duplicate_case_seed_speed_controller_rows": [],
+                "missing_case_seed_speed_controller_rows": missing}
+
+    def test_development_accepts_only_complete_heading_and_empty_zero_yaw_placeholder(self):
+        fixture = self.collection_fixture("development")
+        self.assertEqual(len(fixture["cases"]), 108)
+        runner.validate_summary_collection(fixture, "development")
+        runner.validate_summary_collection(self.collection_fixture("development", False), "development")
+        fixture["controllers"][0]["matrix_complete"] = False
+        with self.assertRaisesRegex(ValueError, "Required collection matrix incomplete"):
+            runner.validate_summary_collection(fixture, "development")
+
+    def test_final_requires_both_complete_actual_matrices(self):
+        fixture = self.collection_fixture("final")
+        runner.validate_summary_collection(fixture, "final")
+        fixture["controllers"][1]["matrix_complete"] = False
+        with self.assertRaisesRegex(ValueError, "Required collection matrix incomplete"):
+            runner.validate_summary_collection(fixture, "final")
+        fixture = self.collection_fixture("final")
+        fixture["cases"].pop()
+        with self.assertRaisesRegex(ValueError, "Required collection matrix incomplete"):
+            runner.validate_summary_collection(fixture, "final")
+
+    def test_development_zero_yaw_with_actual_rows_or_observed_counts_is_rejected(self):
+        fixture = self.collection_fixture("development")
+        fixture["cases"].append({**fixture["cases"][0], "heading_control_enabled": False})
+        with self.assertRaisesRegex(ValueError, "placeholder contains actual rows"):
+            runner.validate_summary_collection(fixture, "development")
+        fixture = self.collection_fixture("development")
+        fixture["controllers"][1]["groups"]["core"]["observed_case_seed_speed_rows"] = 1
+        with self.assertRaisesRegex(ValueError, "entirely unobserved"):
+            runner.validate_summary_collection(fixture, "development")
+
 
 if __name__ == "__main__":
     unittest.main()

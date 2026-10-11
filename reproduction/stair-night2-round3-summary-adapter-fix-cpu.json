@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T06:17:46.565098+08:00",
+  "status": "round3_development_collection_guard_bug_CPU_fixed",
+  "problem": "Unchanged summarizer emits both controller summaries, including development zero-yaw INCOMPLETE with zero actual rows; old runner incorrectly required controller set exactly True and every emitted controller complete.",
+  "fix": "Validate required actual heading matrix108 exactunique rows and complete/missing0; optional zero-yaw only entirely unobserved INCOMPLETE/missing108; final remains both complete actual96-row matrices.",
+  "host_tests_passed": 12,
+  "meaningful_rejections": [
+    "required heading incomplete",
+    "final missing controller/matrix",
+    "final actual row missing",
+    "development zero-yaw actual row present",
+    "development zero-yaw nonzero observed counts"
+  ],
+  "exact_saved_baseline_summary": "/home/cone/robotics/logs/night2-round3-development-20261012/baseline-faithful1213-development-summary.json",
+  "exact_saved_baseline_summary_sha256": "fffd05ba73cdebc74601a29b1ca27d037f5b00bac7e5ecc4dc71f34a5e835b5d",
+  "baseline_actual_heading_rows": 108,
+  "baseline_controller_reports": [
+    {
+      "heading_control_enabled": true,
+      "matrix_complete": true,
+      "numeric_verdict": "PASS",
+      "missing_case_seed_speed_rows": 0
+    },
+    {
+      "heading_control_enabled": false,
+      "matrix_complete": false,
+      "numeric_verdict": "INCOMPLETE",
+      "missing_case_seed_speed_rows": 108
+    }
+  ],
+  "source_sha256": {
+    "reproduction/run-stair-night2-round3-comparison.py": "55b400c4083aaa5809e76e8159468a9390ecec182f19e61fe005605afc23719e",
+    "reproduction/test_stair_night2_round3_orchestration.py": "e8ea0abc54a55a0d3d0a120e87de72f6d57e8aeda4da3979dee5b66d57876b92",
+    "reproduction/summarize-stair-night2.py": "6783978b59f668e20bf1a9d771c10ec664b131618e5ceb2aa621df889a51f66f"
+  },
+  "protocol_sha256": {
+    "reproduction/stair-night2-round3-evaluation-proposal.json": "24f646160c5e3aeeddd7fe193582132f07b32490eb2f5056da1cfb62a15b53f3",
+    "reproduction/stair-night2-round3-training-proposal.json": "45d0190ff0e931331ad0d128390e5cca6e4d2c0812030d38a6af3f37e579cc6f",
+    "reproduction/stair-night2-development-geometries.json": "dd98558974995a8c409491c11aef6a89be2e0953813a76412cb088279a322a98",
+    "reproduction/stair-night2-round3-reserved-geometries.json": "d7132ecd85f0ca9ab6fc37cb312fafc612d9c8513efecbba7ab7007c76f763e1"
+  },
+  "original_development_failure_preserved": true,
+  "GPU_work_started": false,
+  "summarizer_or_runtime_or_gate_changed": false,
+  "policy_selection_performed": false,
+  "scope": "CPU stage collection adapter correction only, not locomotion improvement. Root must separately recover summaries/identity sidecars from exact saved two GPU job records; no evaluation rerun or original summary overwrite."
+}
