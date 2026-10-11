@@ -1,0 +1,41 @@
+{
+  "recorded_local": "2026-10-12T00:28:29.793124+08:00",
+  "scope": "GPU simulator/training preflight only, no locomotion validation",
+  "pilot_excluded_from_selection": true,
+  "log_dir": "isaaclab/logs/2026-10-12_00-26-15_night2-pilot-vertical",
+  "result": {
+    "status": "smoke_passed",
+    "scope": "CUDA training and export; locomotion requires separate evaluation",
+    "iterations": 3,
+    "completed_iterations": 663,
+    "num_envs": 128,
+    "environment_steps_this_run": 38400,
+    "training_seconds": 8.317520281000043,
+    "parameters_finite": true,
+    "checkpoint": "model_663.pt",
+    "export": "policy.pt",
+    "export_max_abs_error": 1.430511474609375e-06,
+    "peak_cuda_memory_bytes": 147562496
+  },
+  "before_learning": {
+    "completed_updates": 660,
+    "ppo_learning_rate": 0.0001,
+    "ppo_adam_group_rates": [
+      0.0001
+    ],
+    "him_learning_rate": 0.0001,
+    "him_adam_group_rates": [
+      0.0001
+    ],
+    "exploration_std_min": 0.17175649106502533,
+    "exploration_std_max": 0.29638275504112244,
+    "optimizer_state": "checkpoint Adam retained"
+  },
+  "physics_critic_shape": [
+    128,
+    235
+  ],
+  "result_sha256": "6a31f60de9bd2472d43256bb40947bcc386454a6ee5301178a39666f327d205f",
+  "reward_runtime_body_readback_limitation": "First pilot omitted new-profile leg-body selection audit; source guard now extended before formal jobs",
+  "status": "PASS_NUMERICAL_AND_RESUME_PREFLIGHT"
+}

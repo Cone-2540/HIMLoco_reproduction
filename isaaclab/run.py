@@ -379,7 +379,7 @@ def main():
                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
             }
         robot = wrapped.env.scene["robot"]
-        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force", "contact_slide"):
+        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
                               for part in ("thigh", "calf")}
             term_names = ["leg_contacts"]

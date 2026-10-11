@@ -38,7 +38,7 @@ for directory in os.listdir('/proc'):
     except (FileNotFoundError, ProcessLookupError, PermissionError):
         pass
 """
-    return subprocess.run(["docker", "exec", "isaaclab-local-lab-1", "python3", "-c", script, name],
+    return subprocess.run(["docker", "exec", "isaaclab-local-lab-1", "/isaac-sim/kit/python/bin/python3", "-c", script, name],
                           capture_output=True, text=True, timeout=20)
 
 
