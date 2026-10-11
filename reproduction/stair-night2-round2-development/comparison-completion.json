@@ -1,0 +1,335 @@
+{
+  "status": "development_collection_and_cpu_summaries_completed",
+  "records": [
+    {
+      "name": "night2-devcompare-20261012-042554-8f6858-speed03-heading",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-042554_night2-devcompare-20261012-042554-8f6858-speed03-heading",
+      "wrapper_stdout": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/night2-devcompare-20261012-042554-8f6858-speed03-heading-wrapper.stdout.txt",
+      "launch_record_sha256": "e9275b2f52549dc084c38fb558cd8e144723e39751179832fa56faedecb985e3",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-25-57_night2-devcompare-20261012-042554-8f6858-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "pre_scene_idle_check": {
+        "container": "isaaclab-local-lab-1",
+        "checked_local": "2026-10-12T04:25:54.580867+08:00",
+        "live_run_py": []
+      }
+    },
+    {
+      "name": "night2-devcompare-20261012-042554-8f6858-speed05-heading",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-043453_night2-devcompare-20261012-042554-8f6858-speed05-heading",
+      "wrapper_stdout": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/night2-devcompare-20261012-042554-8f6858-speed05-heading-wrapper.stdout.txt",
+      "launch_record_sha256": "ff4a9bfe176a65765631297b45ad5832e2eae3862ae3a29828c1298bf2fad2a8",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-34-55_night2-devcompare-20261012-042554-8f6858-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "pre_scene_idle_check": {
+        "container": "isaaclab-local-lab-1",
+        "checked_local": "2026-10-12T04:34:53.068346+08:00",
+        "live_run_py": []
+      }
+    }
+  ],
+  "policies": [
+    {
+      "label": "baseline-control660",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/baseline-control660-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/baseline-control660-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1532,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "fall_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                }
+              ]
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 743,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "faithful",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/faithful-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/faithful-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "PASS",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 768,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "tracking",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/tracking-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-042554-8f6858/tracking-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 748,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "automatic_candidate_selection": false,
+  "immutable_manifest_sha256": "7427dd2a602746e536cd8b5a3c854ba3d7cfacdad746f520bbc567b59f019b50",
+  "scientific_acceptance": "independent_root_review_required"
+}
