@@ -1,0 +1,1352 @@
+{
+  "schema_version": 1,
+  "recorded_local": "2026-10-12T05:27:39.896683+08:00",
+  "status": "failed",
+  "gradient_updates": 0,
+  "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "selection_sha256": "3b24931d4a727d44eabf5a87de8e958441348a8006f4052e20ccf2749c627a8a",
+  "run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-22-23_night2-flat7-faithful1213-760",
+  "wrapper": "/home/cone/robotics/logs/20261012-052220_night2-flat7-faithful1213-760",
+  "source_hashes": {
+    "result": "b700923910b821059dbe3f0b6fa65dad55e75afa82f8818ca0dcc1f914c1f4fa",
+    "config": "ca3ef1d354310f2aa407445eb61f91b0a2e460032719f5a66365d0e3dab8d72b",
+    "launch": "ed218376ad1552709d0259f7dd879535af6d92359a4a604d45543e5cb3f297a4",
+    "transfer_audit": "2f2e1e45fc444d5ff33743544478383070aaf0cb4926a94b41da34a7184e2316"
+  },
+  "thresholds": {
+    "xy_mae_m_s": 0.2,
+    "yaw_mae_rad_s": 0.3,
+    "first_episode_survival_fraction": 0.95,
+    "minimum_duration_s": 20.0,
+    "minimum_num_envs": 64
+  },
+  "policy_passed_commands": 2,
+  "policy_commands": 7,
+  "zero_action_commands": 7,
+  "independent_case_audits": [
+    {
+      "controller": "policy",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.02043140160308288,
+      "xy_rmse_m_s": 0.022640593425800257,
+      "yaw_mae_rad_s": 0.018234700491823838,
+      "yaw_rmse_rad_s": 0.022000256521648946,
+      "mean_measured_vx_vy_yaw": [
+        0.30980616837429503,
+        0.00518303884811606,
+        -0.006217646183324127
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.24384516410636317,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": true,
+      "failed_gate_terms": []
+    },
+    {
+      "controller": "policy",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.018610261538204515,
+      "xy_rmse_m_s": 0.020260301276362653,
+      "yaw_mae_rad_s": 0.024878599856344927,
+      "yaw_rmse_rad_s": 0.031088997761983587,
+      "mean_measured_vx_vy_yaw": [
+        0.5017331197795769,
+        0.0007175876236321225,
+        0.010625177805999518
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.23461357133257907,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": true,
+      "failed_gate_terms": []
+    },
+    {
+      "controller": "policy",
+      "command": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.499853116258358,
+      "xy_rmse_m_s": 0.49986499019954506,
+      "yaw_mae_rad_s": 0.012713877590060083,
+      "yaw_rmse_rad_s": 0.02123282454834644,
+      "mean_measured_vx_vy_yaw": [
+        -0.00019236199502882542,
+        -0.0023955499067108096,
+        -0.012425604480663086
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.22320231088660905,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "policy",
+      "command": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "survivors": 0,
+      "first_episode_falls": 64,
+      "xy_mae_m_s": null,
+      "xy_rmse_m_s": null,
+      "yaw_mae_rad_s": null,
+      "yaw_rmse_rad_s": null,
+      "mean_measured_vx_vy_yaw": null,
+      "upright_fraction": null,
+      "mean_root_height_m": null,
+      "nominal_height_fraction": null,
+      "tracking_samples": 0,
+      "height_tracking_samples": 0,
+      "mean_first_episode_duration_s": 1.56,
+      "finite_physics": true,
+      "all_episode_falls": 768,
+      "first_episode_timeouts": 0,
+      "all_episode_timeouts": 0,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE",
+        "yaw_MAE",
+        "first_episode_survival"
+      ]
+    },
+    {
+      "controller": "policy",
+      "command": [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      "survivors": 5,
+      "first_episode_falls": 59,
+      "xy_mae_m_s": 0.29974792560938224,
+      "xy_rmse_m_s": 0.325146584218008,
+      "yaw_mae_rad_s": 0.13388347028879566,
+      "yaw_rmse_rad_s": 0.43741191963515436,
+      "mean_measured_vx_vy_yaw": [
+        0.014530213102033167,
+        -0.03460611411018017,
+        -0.006349511658034932
+      ],
+      "upright_fraction": 0.866158664226532,
+      "mean_root_height_m": 0.2688046295282919,
+      "nominal_height_fraction": 0.8939276337623596,
+      "tracking_samples": 29789,
+      "height_tracking_samples": 29725,
+      "mean_first_episode_duration_s": 11.3090625,
+      "finite_physics": true,
+      "all_episode_falls": 63,
+      "first_episode_timeouts": 5,
+      "all_episode_timeouts": 5,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE",
+        "first_episode_survival"
+      ]
+    },
+    {
+      "controller": "policy",
+      "command": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "survivors": 13,
+      "first_episode_falls": 51,
+      "xy_mae_m_s": 0.13423472020334362,
+      "xy_rmse_m_s": 0.23853560575856494,
+      "yaw_mae_rad_s": 0.39734016445379594,
+      "yaw_rmse_rad_s": 0.5065134821381051,
+      "mean_measured_vx_vy_yaw": [
+        0.00970263844986948,
+        0.08468654725945017,
+        0.188010702392982
+      ],
+      "upright_fraction": 0.9042733311653137,
+      "mean_root_height_m": 0.23040880921617263,
+      "nominal_height_fraction": 0.8939685225486755,
+      "tracking_samples": 17738,
+      "height_tracking_samples": 17674,
+      "mean_first_episode_duration_s": 7.543125,
+      "finite_physics": true,
+      "all_episode_falls": 213,
+      "first_episode_timeouts": 13,
+      "all_episode_timeouts": 13,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "yaw_MAE",
+        "first_episode_survival"
+      ]
+    },
+    {
+      "controller": "policy",
+      "command": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.0013909265444924763,
+      "xy_rmse_m_s": 0.00907729087194609,
+      "yaw_mae_rad_s": 0.49828221379054916,
+      "yaw_rmse_rad_s": 0.4983892683004958,
+      "mean_measured_vx_vy_yaw": [
+        0.0008438097371894464,
+        0.00020758726067569838,
+        -0.0017177862253350642
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.29575054883103286,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "yaw_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.3010045793823277,
+      "xy_rmse_m_s": 0.3015149670024473,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.5010045660318186,
+      "xy_rmse_m_s": 0.5013113739849865,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.4989954359477593,
+      "xy_rmse_m_s": 0.49930347838550543,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.3005016858606703,
+      "xy_rmse_m_s": 0.3005064882037231,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.300516339921289,
+      "xy_rmse_m_s": 0.3005210872632983,
+      "yaw_mae_rad_s": 6.430986556959774e-05,
+      "yaw_rmse_rad_s": 0.00010953505521539191,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "XY_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.007864668624859707,
+      "xy_rmse_m_s": 0.01756501611074232,
+      "yaw_mae_rad_s": 0.5000100841538774,
+      "yaw_rmse_rad_s": 0.5000100960498776,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "yaw_MAE"
+      ]
+    },
+    {
+      "controller": "zero_action",
+      "command": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "survivors": 64,
+      "first_episode_falls": 0,
+      "xy_mae_m_s": 0.007864668624859707,
+      "xy_rmse_m_s": 0.01756501611074232,
+      "yaw_mae_rad_s": 0.49998991569400664,
+      "yaw_rmse_rad_s": 0.4999899275904558,
+      "mean_measured_vx_vy_yaw": [
+        -0.0010045650388595308,
+        7.3120460146220024e-06,
+        -1.0084251939059294e-05
+      ],
+      "upright_fraction": 1.0,
+      "mean_root_height_m": 0.28377942603187134,
+      "nominal_height_fraction": 0.9999999403953552,
+      "tracking_samples": 57600,
+      "height_tracking_samples": 57536,
+      "mean_first_episode_duration_s": 20.0,
+      "finite_physics": true,
+      "all_episode_falls": 0,
+      "first_episode_timeouts": 64,
+      "all_episode_timeouts": 64,
+      "independent_passed": false,
+      "failed_gate_terms": [
+        "yaw_MAE"
+      ]
+    }
+  ],
+  "raw_result": {
+    "status": "failed",
+    "passed": false,
+    "thresholds": {
+      "xy_mae_m_s": 0.2,
+      "yaw_mae_rad_s": 0.3,
+      "first_episode_survival_fraction": 0.95,
+      "minimum_duration_s": 20.0,
+      "minimum_num_envs": 64
+    },
+    "metrics_scope": "first episode only; pre-reset terminal velocities; survival includes warmup",
+    "moving_command_tested": true,
+    "cases": [
+      {
+        "command_m_s_m_s_rad_s": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "controller": "HIM_policy",
+        "passed": true,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.02043140160308288,
+        "xy_rmse_m_s": 0.022640593425800257,
+        "yaw_mae_rad_s": 0.018234700491823838,
+        "yaw_rmse_rad_s": 0.022000256521648946,
+        "mean_measured_vx_vy_yaw": [
+          0.30980616837429503,
+          0.00518303884811606,
+          -0.006217646183324127
+        ],
+        "mean_root_height_m": 0.24384516410636317,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.2351110279560089,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "controller": "HIM_policy",
+        "passed": true,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.018610261538204515,
+        "xy_rmse_m_s": 0.020260301276362653,
+        "yaw_mae_rad_s": 0.024878599856344927,
+        "yaw_rmse_rad_s": 0.031088997761983587,
+        "mean_measured_vx_vy_yaw": [
+          0.5017331197795769,
+          0.0007175876236321225,
+          0.010625177805999518
+        ],
+        "mean_root_height_m": 0.23461357133257907,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.23164932429790497,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "controller": "HIM_policy",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.499853116258358,
+        "xy_rmse_m_s": 0.49986499019954506,
+        "yaw_mae_rad_s": 0.012713877590060083,
+        "yaw_rmse_rad_s": 0.02123282454834644,
+        "mean_measured_vx_vy_yaw": [
+          -0.00019236199502882542,
+          -0.0023955499067108096,
+          -0.012425604480663086
+        ],
+        "mean_root_height_m": 0.22320231088660905,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.21827976405620575,
+        "maximum_root_height_m": 0.40003061294555664,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "controller": "HIM_policy",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 0,
+        "tracking_env_count": 0,
+        "xy_mae_m_s": null,
+        "xy_rmse_m_s": null,
+        "yaw_mae_rad_s": null,
+        "yaw_rmse_rad_s": null,
+        "mean_measured_vx_vy_yaw": null,
+        "mean_root_height_m": null,
+        "nominal_height_fraction": null,
+        "upright_fraction": null,
+        "height_tracking_samples": 0,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 0.0,
+        "first_episode_falls": 64,
+        "first_episode_timeouts": 0,
+        "all_episode_falls": 768,
+        "all_episode_timeouts": 0,
+        "mean_first_episode_duration_s": 1.56,
+        "minimum_root_height_m": 0.08133522421121597,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          -0.3,
+          0.0
+        ],
+        "controller": "HIM_policy",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 29789,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.29974792560938224,
+        "xy_rmse_m_s": 0.325146584218008,
+        "yaw_mae_rad_s": 0.13388347028879566,
+        "yaw_rmse_rad_s": 0.43741191963515436,
+        "mean_measured_vx_vy_yaw": [
+          0.014530213102033167,
+          -0.03460611411018017,
+          -0.006349511658034932
+        ],
+        "mean_root_height_m": 0.2688046295282919,
+        "nominal_height_fraction": 0.8939276337623596,
+        "upright_fraction": 0.866158664226532,
+        "height_tracking_samples": 29725,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 0.078125,
+        "first_episode_falls": 59,
+        "first_episode_timeouts": 5,
+        "all_episode_falls": 63,
+        "all_episode_timeouts": 5,
+        "mean_first_episode_duration_s": 11.3090625,
+        "minimum_root_height_m": 0.07026161998510361,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "controller": "HIM_policy",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 17738,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.13423472020334362,
+        "xy_rmse_m_s": 0.23853560575856494,
+        "yaw_mae_rad_s": 0.39734016445379594,
+        "yaw_rmse_rad_s": 0.5065134821381051,
+        "mean_measured_vx_vy_yaw": [
+          0.00970263844986948,
+          0.08468654725945017,
+          0.188010702392982
+        ],
+        "mean_root_height_m": 0.23040880921617263,
+        "nominal_height_fraction": 0.8939685225486755,
+        "upright_fraction": 0.9042733311653137,
+        "height_tracking_samples": 17674,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 0.203125,
+        "first_episode_falls": 51,
+        "first_episode_timeouts": 13,
+        "all_episode_falls": 213,
+        "all_episode_timeouts": 13,
+        "mean_first_episode_duration_s": 7.543125,
+        "minimum_root_height_m": 0.06603073328733444,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "controller": "HIM_policy",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.0013909265444924763,
+        "xy_rmse_m_s": 0.00907729087194609,
+        "yaw_mae_rad_s": 0.49828221379054916,
+        "yaw_rmse_rad_s": 0.4983892683004958,
+        "mean_measured_vx_vy_yaw": [
+          0.0008438097371894464,
+          0.00020758726067569838,
+          -0.0017177862253350642
+        ],
+        "mean_root_height_m": 0.29575054883103286,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.2681007981300354,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      }
+    ],
+    "zero_action_cases": [
+      {
+        "command_m_s_m_s_rad_s": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.3010045793823277,
+        "xy_rmse_m_s": 0.3015149670024473,
+        "yaw_mae_rad_s": 6.430986556959774e-05,
+        "yaw_rmse_rad_s": 0.00010953505521539191,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.5010045660318186,
+        "xy_rmse_m_s": 0.5013113739849865,
+        "yaw_mae_rad_s": 6.430986556959774e-05,
+        "yaw_rmse_rad_s": 0.00010953505521539191,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.4989954359477593,
+        "xy_rmse_m_s": 0.49930347838550543,
+        "yaw_mae_rad_s": 6.430986556959774e-05,
+        "yaw_rmse_rad_s": 0.00010953505521539191,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.3005016858606703,
+        "xy_rmse_m_s": 0.3005064882037231,
+        "yaw_mae_rad_s": 6.430986556959774e-05,
+        "yaw_rmse_rad_s": 0.00010953505521539191,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          -0.3,
+          0.0
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.300516339921289,
+        "xy_rmse_m_s": 0.3005210872632983,
+        "yaw_mae_rad_s": 6.430986556959774e-05,
+        "yaw_rmse_rad_s": 0.00010953505521539191,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.007864668624859707,
+        "xy_rmse_m_s": 0.01756501611074232,
+        "yaw_mae_rad_s": 0.5000100841538774,
+        "yaw_rmse_rad_s": 0.5000100960498776,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "controller": "zero_action",
+        "passed": false,
+        "sample_eligible": true,
+        "num_envs": 64,
+        "requested_duration_s": 20.0,
+        "executed_steps": 1000,
+        "warmup_steps": 100,
+        "tracking_samples": 57600,
+        "tracking_env_count": 64,
+        "xy_mae_m_s": 0.007864668624859707,
+        "xy_rmse_m_s": 0.01756501611074232,
+        "yaw_mae_rad_s": 0.49998991569400664,
+        "yaw_rmse_rad_s": 0.4999899275904558,
+        "mean_measured_vx_vy_yaw": [
+          -0.0010045650388595308,
+          7.3120460146220024e-06,
+          -1.0084251939059294e-05
+        ],
+        "mean_root_height_m": 0.28377942603187134,
+        "nominal_height_fraction": 0.9999999403953552,
+        "upright_fraction": 1.0,
+        "height_tracking_samples": 57536,
+        "posture_metrics_scope": "first episode after warmup; gravity_z < -0.8 includes terminal critic; 0.2 < height < 0.6 and mean height omit auto-reset terminal rows",
+        "first_episode_survival_fraction": 1.0,
+        "first_episode_falls": 0,
+        "first_episode_timeouts": 64,
+        "all_episode_falls": 0,
+        "all_episode_timeouts": 64,
+        "mean_first_episode_duration_s": 20.0,
+        "minimum_root_height_m": 0.233189657330513,
+        "maximum_root_height_m": 0.4000000059604645,
+        "finite_physics": true,
+        "failure_reasons": []
+      }
+    ],
+    "baseline_comparison": [
+      {
+        "command_m_s_m_s_rad_s": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "xy_mae_improvement_m_s": 0.28057317777924484,
+        "yaw_mae_improvement_rad_s": -0.01817039062625424
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "xy_mae_improvement_m_s": 0.48239430449361415,
+        "yaw_mae_improvement_rad_s": -0.02481428999077533
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "xy_mae_improvement_m_s": -0.0008576803105986852,
+        "yaw_mae_improvement_rad_s": -0.012649567724490485
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "xy_mae_improvement_m_s": null,
+        "yaw_mae_improvement_rad_s": null
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          -0.3,
+          0.0
+        ],
+        "xy_mae_improvement_m_s": 0.0007684143119067732,
+        "yaw_mae_improvement_rad_s": -0.13381916042322606
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "xy_mae_improvement_m_s": -0.1263700515784839,
+        "yaw_mae_improvement_rad_s": 0.10266991970008144
+      },
+      {
+        "command_m_s_m_s_rad_s": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "xy_mae_improvement_m_s": 0.006473742080367231,
+        "yaw_mae_improvement_rad_s": 0.0017077019034574814
+      }
+    ],
+    "export_max_abs_error": 3.5762786865234375e-07
+  },
+  "actual_config": {
+    "task": "Isaac-Velocity-Flat-UnitreeGo2",
+    "seed": 907,
+    "num_envs": 64,
+    "train": {
+      "runner": {
+        "policy_class_name": "HIMActorCritic",
+        "algorithm_class_name": "HIMPPO",
+        "num_steps_per_env": 100,
+        "save_interval": 20
+      },
+      "policy": {
+        "actor_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "critic_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "init_noise_std": 1.0
+      },
+      "algorithm": {
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "entropy_coef": 0.01,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0
+      }
+    },
+    "source_commit": "95e00457bda766ca67bb5a947a687eb0e59e212f",
+    "source_tracked_files_dirty": false,
+    "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+    "physics": "isaacsim_physx",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "python": "3.12.13 (tags/v3.12.13-dirty:3bb231a, Apr 22 2026, 14:10:08) [GCC 11.4.0]",
+    "algorithm_source": "vendored original HIMLoco at ef289ac",
+    "mode": "evaluate",
+    "checkpoint": "/workspace/himloco/artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+    "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+    "robot_usd_source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.1/Isaac/IsaacLab/Robots/Unitree/Go2/go2.usd",
+    "physics_dt": 0.005,
+    "policy_decimation": 4,
+    "episode_length_s": 20.0,
+    "reward_weights": {
+      "track_lin_vel_xy_exp": 1.5,
+      "track_ang_vel_z_exp": 0.75,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_torques_l2": -0.0002,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "feet_air_time": 0.25,
+      "flat_orientation_l2": -2.5,
+      "dof_pos_limits": 0.0
+    },
+    "command_override": [
+      [
+        0.3,
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.0,
+        0.0
+      ],
+      [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.3,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5
+      ]
+    ],
+    "evaluation_seconds": 20.0,
+    "evaluation_trace_stride_policy_steps": 5,
+    "video": false,
+    "video_policy_only": false,
+    "video_length": null,
+    "video_fps": null,
+    "video_environment_index": null,
+    "video_isolate_environment": false,
+    "video_camera_eye_relative_xyz": null,
+    "video_camera_lookat_relative_xyz": null,
+    "evaluation_include_zero_action": null,
+    "training_turn_fraction": null,
+    "exploration_std_override": null,
+    "resume_learning_rate_override": null,
+    "requested_additional_training_updates": null,
+    "terrain_start_level": null,
+    "stair_training_speed_range_m_s": [
+      0.2,
+      0.6
+    ],
+    "terrain": "flat",
+    "stairs": null,
+    "stair_reward": null,
+    "domain_randomization": null,
+    "calf_limit_sensitivity": null,
+    "friction_override": null,
+    "stair_pushes": false,
+    "evaluation_seeds": null,
+    "evaluation_randomized": false,
+    "flat_replay": {
+      "requested_terrain_fraction": 0.0,
+      "all_direction_commands": false,
+      "standing_fraction": null,
+      "moving_categories": null,
+      "positive_magnitude_ranges": null,
+      "actor_terrain_inputs_added": false
+    },
+    "evaluation_dynamics_randomized": false,
+    "joint_names": [
+      "FL_hip_joint",
+      "FR_hip_joint",
+      "RL_hip_joint",
+      "RR_hip_joint",
+      "FL_thigh_joint",
+      "FR_thigh_joint",
+      "RL_thigh_joint",
+      "RR_thigh_joint",
+      "FL_calf_joint",
+      "FR_calf_joint",
+      "RL_calf_joint",
+      "RR_calf_joint"
+    ],
+    "default_joint_positions": [
+      0.10000000149011612,
+      -0.10000000149011612,
+      0.10000000149011612,
+      -0.10000000149011612,
+      0.800000011920929,
+      0.800000011920929,
+      1.0,
+      1.0,
+      -1.5,
+      -1.5,
+      -1.5,
+      -1.5
+    ],
+    "action_scale": 0.25,
+    "transfer": {
+      "source_iteration": 760,
+      "critic_mode": "reset",
+      "copied": [
+        "std",
+        "estimator.encoder.0.weight",
+        "estimator.encoder.0.bias",
+        "estimator.encoder.2.weight",
+        "estimator.encoder.2.bias",
+        "estimator.encoder.4.weight",
+        "estimator.encoder.4.bias",
+        "estimator.target.0.weight",
+        "estimator.target.0.bias",
+        "estimator.target.2.weight",
+        "estimator.target.2.bias",
+        "estimator.target.4.weight",
+        "estimator.target.4.bias",
+        "estimator.proto.weight",
+        "actor.0.weight",
+        "actor.0.bias",
+        "actor.2.weight",
+        "actor.2.bias",
+        "actor.4.weight",
+        "actor.4.bias",
+        "actor.6.weight",
+        "actor.6.bias"
+      ],
+      "new_initialization": [
+        "critic.0.weight",
+        "critic.0.bias",
+        "critic.2.weight",
+        "critic.2.bias",
+        "critic.4.weight",
+        "critic.4.bias",
+        "critic.6.weight",
+        "critic.6.bias"
+      ],
+      "optimizer": "fresh",
+      "training_iteration": 0
+    }
+  },
+  "limits": [
+    "One nominal flat reset seed907; no dynamics/material robustness claim.",
+    "Only first episodes count; tracking excludes first2s, survival includes startup and terminal step.",
+    "Aggregate gates recomputed from saved values; source has no per-environment flat trajectory for independent velocity reconstruction.",
+    "Upright fraction combines roll/pitch; per-axis roll RMS/peak and flat jerk are not recorded.",
+    "Height metrics omit done rows; all-episode counters include later reset episodes and do not replace first-episode survival.",
+    "Critic235→48 reset preserves frozen actor/HIM and performs no learning; successful tensor transfer does not imply flat motion passes.",
+    "Flat omnidirectional results remain separate from staircase geometry acceptance and real-robot deployment."
+  ]
+}
