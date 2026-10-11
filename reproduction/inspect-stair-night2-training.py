@@ -294,6 +294,8 @@ def inspect_job(wrapper_directory, log_directory, stdout_path, last_updates, exp
     expected_rewards = dict(EXPECTED_FAITHFUL)
     if profile in ("contact", "contact_vertical", "contact_clearance"):
         expected_rewards["leg_contacts"] = -.1
+    if profile == "contact_light":
+        expected_rewards["leg_contacts"] = -.02
     if profile == "contact_vertical":
         expected_rewards["lin_vel_z_l2"] = -1.
     if profile == "contact_clearance":
@@ -304,7 +306,7 @@ def inspect_job(wrapper_directory, log_directory, stdout_path, last_updates, exp
     def check(name, actual, expected):
         checks.append({"name": name, "status": "unknown" if actual is None or expected is None else
                        "pass" if actual == expected else "fail", "actual": actual, "expected": expected})
-    if profile in ("faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance"):
+    if profile in ("faithful", "faithful_tracking", "contact", "contact_light", "contact_vertical", "contact_clearance"):
         check("exact_known_profile_weights", config.get("reward_weights"), expected_rewards)
     check("config_source_matches_launch", config.get("source_commit"), launch.get("source_commit"))
     check("starting_checkpoint_sha256", checkpoint_sha, expected_start_sha256)
@@ -317,7 +319,7 @@ def inspect_job(wrapper_directory, log_directory, stdout_path, last_updates, exp
     if initial_domain:
         for name in ("base_mass_kg", "base_inertia_kg_m2"):
             check("initial_" + name + "_finite", initial_domain.get(name, {}).get("observed", {}).get("finite"), True)
-        if profile in ("contact", "contact_vertical", "contact_clearance"):
+        if profile in ("contact", "contact_light", "contact_vertical", "contact_clearance"):
             check("leg_reward_resolved_eight_bodies", sorted(config.get("resolved_contact_reward_bodies", [])),
                   sorted(f"{leg}_{part}" for leg in ("FL", "FR", "RL", "RR") for part in ("thigh", "calf")))
     if physics_diagnostic:

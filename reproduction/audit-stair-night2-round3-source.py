@@ -8,7 +8,7 @@ The predeclared proposal hashes are mandatory, never inferred from current files
 
 import argparse
 import ast
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 import hashlib
 import importlib.util
 import json
@@ -16,7 +16,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC_FILES = (
@@ -154,7 +153,7 @@ def audit(output):
     require(not torch.cuda.is_initialized(), "CUDA initialized during configuration audit")
     value = {
         "schema_version": 1, "status": "actual_applied_contact_light_source_compatibility_CPU_verified",
-        "created_local": datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+        "created_local": datetime.now(timezone(timedelta(hours=8))).isoformat(),
         "baseline_checkpoint": BASELINE, "baseline_checkpoint_sha256": digest(ROOT / BASELINE),
         "baseline_manifest_sha256": digest(manifest_path), "baseline_training_commit": commit,
         "proposal_file": str(proposal_path.relative_to(ROOT)), "proposal_sha256": digest(proposal_path),

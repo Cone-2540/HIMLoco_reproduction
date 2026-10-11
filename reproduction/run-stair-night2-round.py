@@ -12,7 +12,7 @@ import sys
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=1201)
-    parser.add_argument("--profiles", nargs="+", choices=["faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance"],
+    parser.add_argument("--profiles", nargs="+", choices=["faithful", "faithful_tracking", "contact", "contact_light", "contact_vertical", "contact_clearance"],
                         default=["faithful", "contact", "contact_vertical", "contact_clearance"])
     parser.add_argument("--iterations", type=int, default=100)
     parser.add_argument("--plan", type=Path,

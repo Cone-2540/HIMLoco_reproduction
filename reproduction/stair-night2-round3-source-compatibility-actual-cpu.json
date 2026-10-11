@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "status": "actual_applied_contact_light_source_compatibility_CPU_verified",
+  "created_local": "2026-10-12T05:31:24.159837+08:00",
+  "baseline_checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "baseline_checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "baseline_manifest_sha256": "9cf77261cfc949ece62d6e20577d6f2aba38abd928eea4c57cdfb33091936ea3",
+  "baseline_training_commit": "f3c8a7e00fba941ec3497a40350be284ebc30a33",
+  "proposal_file": "reproduction/stair-night2-round3-training-proposal.json",
+  "proposal_sha256": "45d0190ff0e931331ad0d128390e5cca6e4d2c0812030d38a6af3f37e579cc6f",
+  "applied_patch_file_sha256": {
+    "isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+    "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+    "reproduction/run-stair-night2-round.py": "6ffec55ab5293a25b62f896ec26defb4a1db99dbaa38326f26dd4d2745aa4be0",
+    "reproduction/inspect-stair-night2-training.py": "e31c55bd085d11f41e0afa56b62e5b167ff2774bd002b8f93cefd0d5f6edc759"
+  },
+  "current_runtime_sha256": {
+    "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+    "isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+  },
+  "baseline_archived_runtime_sha256": {
+    "isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+    "isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+  },
+  "unchanged_nonreward_files": {
+    "isaaclab/adapter.py": {
+      "archived_training_commit_sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+      "current_sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+      "equal": true
+    },
+    "isaaclab/checkpoint_transfer.py": {
+      "archived_training_commit_sha256": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+      "current_sha256": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+      "equal": true
+    },
+    "isaaclab/stair_terrain.py": {
+      "archived_training_commit_sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "current_sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "equal": true
+    },
+    "isaaclab/stair_evaluation.py": {
+      "archived_training_commit_sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "current_sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "equal": true
+    },
+    "isaaclab/stair_randomization.py": {
+      "archived_training_commit_sha256": "1cdbca365f44be304c3dc37467002ef2f5f0a2b17a002476d1dc88489f486561",
+      "current_sha256": "1cdbca365f44be304c3dc37467002ef2f5f0a2b17a002476d1dc88489f486561",
+      "equal": true
+    },
+    "isaaclab/vendor/him_rsl_rl/modules/him_actor_critic.py": {
+      "archived_training_commit_sha256": "89b6ac3556620ace9b7531ab98337b83e64ad135f33efa2f0699e0d41dfd1acb",
+      "current_sha256": "89b6ac3556620ace9b7531ab98337b83e64ad135f33efa2f0699e0d41dfd1acb",
+      "equal": true
+    },
+    "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py": {
+      "archived_training_commit_sha256": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2",
+      "current_sha256": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2",
+      "equal": true
+    },
+    "isaaclab/vendor/him_rsl_rl/algorithms/him_ppo.py": {
+      "archived_training_commit_sha256": "b5b78c8251117ca32582b3370f028c405fbf500a21098c3d81102e9e8c15f760",
+      "current_sha256": "b5b78c8251117ca32582b3370f028c405fbf500a21098c3d81102e9e8c15f760",
+      "equal": true
+    },
+    "isaaclab/vendor/him_rsl_rl/runners/him_on_policy_runner.py": {
+      "archived_training_commit_sha256": "6af7f43e4ab9015b20c27c34644820fbfff7c048886357dc46be7420d061692f",
+      "current_sha256": "6af7f43e4ab9015b20c27c34644820fbfff7c048886357dc46be7420d061692f",
+      "equal": true
+    }
+  },
+  "preserved_reward_helper_AST_sha256": {
+    "_tensor": "2d0698f58a3ca371a087dbdf7447078c84912dcbe46786eeca1cc6c93e7ce347",
+    "_inverse_rotate": "6c0c2f094f0ff2e007f9c741dbc2634c532ceefdf5eac4d363113a9f79e23c8d",
+    "validate_reward_frames": "80746ea70503cab3e5b1071a960982dd9348cd864e7e947c75e46eebe66013de",
+    "joint_power_l1": "e760d00b958341c4a1a45bbd5ab3edf2db3138ad1127b363a76821e9c721c510",
+    "foot_clearance_body_l2": "2cbb43ca843b1401a7c6875cd8d98ffd0f9536eed79d0a6018ae461abc0f2986",
+    "terrain_relative_base_height_l2": "699409e228ca872c8fb2fcda3c097435102f58f0323a5b0bcad890df466dc069",
+    "_step_history": "702ce202a24a538ff7b22cb3236fbe611729c6caef5d421871c13ede3a06ad69",
+    "action_smoothness_l2": "23169da5b69718be8f3e376a497f65be898c22d4936dff01bef6658e58fba579",
+    "policy_joint_acceleration_l2": "07ba7b9a60511ff46b115dd9db91b010a527ead9500f7cfb707383d43d495b3f",
+    "feet_slide_l2": "5b300eb9cef7a6a95585178930567314de40ccc35a9e1a3f7e393ba7741f5746",
+    "leg_contact_force_proxy": "a542e33ed03575984d69fea9eb7855077adc5bd3ec3921fd2cdae79ad5c6e9e4"
+  },
+  "old_profiles": {
+    "stock": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "221b9809d9492fbec478ff53bfb03dd16b8d962f6c8ee5ef87589b5c3ecc89b5",
+      "manifest_sha256": "3d08e3963e629b13cbcb67b2c7af263420dc46bced1c1eda60c52e6538fa0815"
+    },
+    "faithful": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "2a17d1eb5f91c92df677c1a939c763e9321364c3e9d4ae34c2cb4e1d2a9ebd77",
+      "manifest_sha256": "fa6d907df2d88837ba840ccf02c93d63ef3bf020b6b7339e2a04bba4581d4569"
+    },
+    "faithful_tracking": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "55147d47df88d1fa14d3623a26874f528f100f188b68d12f3bb7d55b5c9afbe5",
+      "manifest_sha256": "6392212bc7af31d00bbd6da36fd18068c2a68b9c4e9120a9543750117b053f23"
+    },
+    "tuned": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "7a4ef2fb578f5d2e54b45d30acbdf70ed278f4a3b516c5c804a654500187366d",
+      "manifest_sha256": "297f4abc92d8c0d57cd27bde9405b5906e2b4a72062a99dab87489fff493f5cc"
+    },
+    "contact": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "cb13278e0c4b4c5ddbd157e6410ac2c3f484a06a9a113735c68102b70c08b198",
+      "manifest_sha256": "6852b75d8ae6f7da4024843747c7a00a6a32ec5407d56e5197fc86aa8c20c43e"
+    },
+    "contact_force": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "ab6e0f954bd104aa0046459b9ae34916ae94af6bfa80d437c53008074e862f2a",
+      "manifest_sha256": "42b03bbffcae4ebfbe2c86d30e88049a317f6932ae005cb2e5b9a6106c928292"
+    },
+    "contact_slide": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "418b2faa63d1b90417fe152e21bef66e3b750c7e15a76b3cab1e800777fccf10",
+      "manifest_sha256": "8ccb6f9042345e8c86130415f13349c62c7f1ead70750db396fce625b120889d"
+    },
+    "contact_vertical": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "825d3be43eafb5563a862f8610c923eea5097750b520b811a7b4bd09e7b3d9ef",
+      "manifest_sha256": "d5b088418fbf5589712fb8c465bb57965f2736068f4afe0060e5af6bbee63275"
+    },
+    "contact_clearance": {
+      "full_actual_go2_configuration_equal": true,
+      "manifest_equal": true,
+      "configuration_sha256": "e64254471d3448d1601fca9ef47e25f312198fe4875703b7dfbc8f09b5221787",
+      "manifest_sha256": "bb64b7725abe01ab8578da80aaa5a700313ff133d429a09689d47134014330d6"
+    }
+  },
+  "faithful_reward_manifest": {
+    "profile": "faithful",
+    "source": "released HIMLoco Go1 config/reward code at ef289ac",
+    "base_height_sensor": "base_height_scanner",
+    "height_target_m": 0.3,
+    "body_foot_height_target_m": -0.2,
+    "joint_acceleration_interval": "policy step",
+    "physics_quaternion_order": "xyzw",
+    "weights": {
+      "track_lin_vel_xy_exp": 1.0,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01
+    },
+    "tuned_changes": [],
+    "adaptation_changes": [],
+    "contact_penalty": null,
+    "force_proxy_penalty": null,
+    "slide_proxy_penalty": null
+  },
+  "light_reward_manifest": {
+    "profile": "contact_light",
+    "source": "released HIMLoco Go1 config/reward code at ef289ac",
+    "base_height_sensor": "base_height_scanner",
+    "height_target_m": 0.3,
+    "body_foot_height_target_m": -0.2,
+    "joint_acceleration_interval": "policy step",
+    "physics_quaternion_order": "xyzw",
+    "weights": {
+      "track_lin_vel_xy_exp": 1.0,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01,
+      "leg_contacts": -0.02
+    },
+    "tuned_changes": [],
+    "adaptation_changes": [
+      "faithful plus existing leg_contacts -0.02; no other faithful term changes"
+    ],
+    "contact_penalty": {
+      "baseline_profile": "faithful",
+      "term": "leg_contacts",
+      "function": "isaaclab.envs.mdp:undesired_contacts",
+      "body_name_patterns": [
+        ".*_thigh",
+        ".*_calf"
+      ],
+      "expected_selected_go2_bodies": 8,
+      "excluded_bodies": "feet, base and hips",
+      "threshold_n": 1.0,
+      "measurement": "count of selected bodies with retained-history net-normal-force vector norm strictly above threshold",
+      "weight_scaling": "Isaac Lab reward manager multiplies -0.02 by policy dt",
+      "reproduction_scope": "added Go2 adaptation; released Go1 collision weight is zero; one-fifth existing contact profile weight"
+    },
+    "force_proxy_penalty": null,
+    "slide_proxy_penalty": null,
+    "reward_weight_ablation": {
+      "baseline_profile": "faithful",
+      "term": "leg_contacts",
+      "original_weight": 0.0,
+      "weight": -0.02,
+      "function_and_parameters": "existing contact undesired_contacts retained-history count, same eight thigh/calf bodies, strict threshold 1N",
+      "all_other_faithful_terms": "unchanged",
+      "interpretation": "weak existing leg-contact count penalty; not force severity, scrape duration or impact impulse",
+      "actor_observations_and_collision_geometry": "unchanged"
+    }
+  },
+  "light_only_difference": {
+    "term": "leg_contacts",
+    "weight": -0.02,
+    "function_and_parameters_equal_existing_contact": true,
+    "all_other_actual_configuration_equal": true
+  },
+  "audit_script_sha256": "41e8900059097b2531af0afbd4069cb6d27c8f6e702bb279f112089397bd55c7",
+  "cuda_initialized": false,
+  "simulation_started": false,
+  "training_started": false,
+  "scope": "Actual installed Go2 cfg and RewardTermCfg; compatibility proof for this exact preregistered patch only. Does not prove equivalent future training trajectories or stair performance."
+}

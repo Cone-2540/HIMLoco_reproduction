@@ -105,7 +105,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -379,7 +379,7 @@ def main():
                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
             }
         robot = wrapped.env.scene["robot"]
-        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
+        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
                               for part in ("thigh", "calf")}
             term_names = ["leg_contacts"]

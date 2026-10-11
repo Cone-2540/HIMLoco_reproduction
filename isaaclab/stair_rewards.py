@@ -214,9 +214,9 @@ def configure_stair_rewards(cfg, profile="faithful"):
     penalty; this does not turn that reward into terrain-relative swing clearance.
     ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
     """
-    contact_profiles = ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
+    contact_profiles = ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
     if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "stock"):
-        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
+        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
@@ -264,7 +264,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
         add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
     if profile in contact_profiles:
-        add("leg_contacts", mdp + "undesired_contacts", -0.1, threshold=1.0,
+        add("leg_contacts", mdp + "undesired_contacts", -0.02 if profile == "contact_light" else -0.1, threshold=1.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
     if profile == "contact_force":
         add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
@@ -375,6 +375,22 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "function_and_parameters": "unchanged from faithful and released HIMLoco; body XY error, variance 0.25",
             "all_other_faithful_terms": "unchanged; no added contact terms",
             "interpretation": "increase existing commanded body XY velocity tracking reward; no added lateral controller or world-position target",
+            "actor_observations_and_collision_geometry": "unchanged",
+        }
+    if profile == "contact_light":
+        manifest["adaptation_changes"] = [
+            "faithful plus existing leg_contacts -0.02; no other faithful term changes"
+        ]
+        manifest["contact_penalty"]["weight_scaling"] = "Isaac Lab reward manager multiplies -0.02 by policy dt"
+        manifest["contact_penalty"]["reproduction_scope"] = "added Go2 adaptation; released Go1 collision weight is zero; one-fifth existing contact profile weight"
+        manifest["reward_weight_ablation"] = {
+            "baseline_profile": "faithful",
+            "term": "leg_contacts",
+            "original_weight": 0.0,
+            "weight": -0.02,
+            "function_and_parameters": "existing contact undesired_contacts retained-history count, same eight thigh/calf bodies, strict threshold 1N",
+            "all_other_faithful_terms": "unchanged",
+            "interpretation": "weak existing leg-contact count penalty; not force severity, scrape duration or impact impulse",
             "actor_observations_and_collision_geometry": "unchanged",
         }
     return manifest
