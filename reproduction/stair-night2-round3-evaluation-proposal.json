@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "status": "CPU_round3_proposal_preregistered_not_executed",
+  "created_local": "2026-10-12T05:12:28.530720+08:00",
+  "training_deadline_local": "2026-10-12T07:20:00+08:00",
+  "scope": "Go2 EDU model in existing Isaac Lab; paper-corresponding stair dimensions plus moderate geometry variation, both ascent and descent",
+  "user_authorization": "2026-10-12: prioritize paper-consistent algorithm, mainly adjust rewards; extreme stairs need not be required; stop early if adequate after evidence review",
+  "old_evidence_immutable": true,
+  "old_global_acceptance_remains": "All historical verdicts including night2 selected final remain unchanged; oldfinal is now known diagnostic and not fresh holdout.",
+  "driver_and_system_cuda_graphics_changes_allowed": false,
+  "algorithm_invariants": {
+    "algorithm": "released HIM with HIMPPO and contrastive estimator; no new teacher, map-conditioned actor or planner",
+    "actor_history_shape": [
+      6,
+      45
+    ],
+    "actor_history_flattened": 270,
+    "critic_dimensions": 235,
+    "critic_only_height_dimensions": 187,
+    "reward_preference": "single small reward-weight/term change first; same reset, command, terrain, optimizer and environment-step budget when attributing reward effects",
+    "exact_training_updates": "root records measured saved updates and environment steps per candidate; not fixed by this evaluation plan"
+  },
+  "paper_reference": {
+    "file": "assets/HIMLocomotion.pdf",
+    "sections": [
+      "3.4",
+      "Appendix A.1 Table 5",
+      "Appendix A.3",
+      "Appendix B.1",
+      "Table 2"
+    ],
+    "short_real_world": "A1: two sets of five stairs, 0.16m rise/0.27m tread, 100% over 20 trials",
+    "long_real_world": "Aliengo: hundreds of stairs, 0.17m rise/0.25m tread, 176.5 +/- 7.81 stairs over 20 trials",
+    "training_range": "0.05-0.23m rise, 0.20-0.40m tread",
+    "comparison_limit": "Five/six/twelve-riser Go2 simulation matches selected dimensions and one five-riser flight, not original robot/software, two-flight short setup or hundreds-step real-world result; no direct numerical superiority claim"
+  },
+  "geometry_sets": {
+    "development": {
+      "file": "reproduction/stair-night2-development-geometries.json",
+      "cases": 18,
+      "num_envs": 576,
+      "core_case_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "moderate_case_indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "long_case_indices": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "reset_seeds": [
+        11,
+        29,
+        47
+      ],
+      "purpose": "Existing night2 development set reused for newround3 reward tuning; oldnight2final may be referenced only as known diagnostic"
+    },
+    "final": {
+      "file": "reproduction/stair-night2-round3-reserved-geometries.json",
+      "cases": 16,
+      "num_envs": 512,
+      "core_case_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "moderate_case_indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "long_case_indices": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "reset_seeds": [
+        1301,
+        1303,
+        1307
+      ],
+      "purpose": "Round3 after new candidate/source/gate freeze only; six shared known paper core plus10newexactgeometry combinations",
+      "novelty_limit": "Ten exact combinations disjoint from old development/final; training range interpolation and12steplength extrapolation, not unseen distribution, all share same straight-stair generator.",
+      "no_retuning_or_selection_from_final": true
+    },
+    "fixed_defaults": {
+      "width_m": 1.2,
+      "landing_length_m": 2.0,
+      "nosing_thickness_m": 0.02
+    },
+    "extreme_required_cases": [],
+    "not_required": [
+      "0.23m rise / 0.20m tread stretch",
+      "maximum-friction + severe overhang combinations"
+    ],
+    "old_extreme_results_preserved": true
+  },
+  "evaluation": {
+    "construction_seed": 1,
+    "construction_seed_scope": "fixed deterministic geometry and nominal dynamics; three reset seeds do not mean three training seeds or three randomized construction scenes",
+    "envs_each_case_each_reset_seed": 32,
+    "speeds_m_s": [
+      0.3,
+      0.5
+    ],
+    "seconds": 40,
+    "eval_randomized": true,
+    "domain_profile": "none",
+    "eval_dynamics": false,
+    "controllers": {
+      "primary": "default external root-yaw feedback: yaw-rate=clamp(-yaw,-0.5,0.5)rad/s, target0; no external lateral correction",
+      "mandatory_report": "same cases/seeds/speeds with --open_loop_heading (constant zero yaw command); no external root-yaw correction",
+      "separate_verdicts": true,
+      "claim_limit_if_zero_yaw_fails": "successful under declared heading feedback; actor-only global-heading/smooth traversal not established"
+    },
+    "physics_dt_s": 0.005,
+    "policy_dt_s": 0.02,
+    "dense_trace_stride_policy_steps": 1,
+    "first_episode_only": true,
+    "metrics_warmup_s": 1.0,
+    "source_internal_completion_gate": 0.9,
+    "source_assess_final_gate": "95% completion / <=5% fall-stall-escape / zero base contact; does not implement new strict core fall or numerical roll gates",
+    "independent_recomputation_required": true,
+    "source_exit_code_zero_means": "collection/export completed; not traversal or smoothness acceptance"
+  },
+  "acceptance": {
+    "all_cases_each_reset_seed": {
+      "minimum_environments": 32,
+      "minimum_completion_fraction": 0.95,
+      "minimum_completions_at_32": 31,
+      "maximum_base_contact_envs": 0,
+      "maximum_current_sample_base_contact_envs": 0,
+      "maximum_nonfinite_envs": 0,
+      "maximum_invalid_physics_envs": 0,
+      "maximum_invalid_start_envs": 0,
+      "trial_failure_reason": null
+    },
+    "core": {
+      "maximum_falls": 0,
+      "maximum_stall_fraction": 0.05,
+      "maximum_lateral_escape_fraction": 0.05
+    },
+    "moderate_and_long": {
+      "maximum_fall_fraction": 0.05,
+      "maximum_stall_fraction": 0.05,
+      "maximum_lateral_escape_fraction": 0.05
+    },
+    "motion_screen_each_case_seed": {
+      "maximum_roll_rms_rad": 0.15,
+      "maximum_roll_peak_rad": 0.35,
+      "maximum_longest_flight_pause_s": 1.0
+    },
+    "quality_evidence": {
+      "complete_continuous_video_both_directions": true,
+      "no_single_scalar_certifies_smoothness": true,
+      "foot_link_slip_fraction_reference": 0.15,
+      "slip_reference_is_diagnostic_not_hard_gate": true,
+      "slip_is_not_measured_contact_point_tangential_slip": true,
+      "matched_baseline_checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+      "matched_comparison_fields": [
+        "completions",
+        "falls",
+        "base_contact_envs",
+        "roll_rms_rad",
+        "roll_peak_rad",
+        "longest_flight_pause_s",
+        "action_second_delta_rms",
+        "linear_jerk_rms_m_s3",
+        "xy_tracking_rmse_m_s",
+        "current_sample_shank_contact_step_fraction",
+        "current_sample_foot_slip_fraction"
+      ],
+      "comparison_scope": "Only compare competent traversal at equal case/speed/seed/controller and matching physical readbacks; failed/short episodes cannot win by lower motion magnitude",
+      "unqualified_smooth_wording": "requires completion of source-specific video review plus numerical screen and failure-free recorded episodes; report population failures separately"
+    },
+    "paper_short_success_reference": "Aim for observed 100% completion in core simulation; practical95% acceptance alone cannot be described as matching the paper's100% result"
+  },
+  "candidate_freeze": {
+    "written_before_final_scene_launch": true,
+    "required": [
+      "selected checkpoint path and sha256",
+      "selected reward profile and effective weights",
+      "source Git commit and source hashes",
+      "geometry file hashes",
+      "evaluation plan hash",
+      "training saved-update counts/environment steps/seed",
+      "selection based only on development results",
+      "fixed baseline comparator identity"
+    ],
+    "after_final_failure": "Keep round3 failure; no selection/retuning on round3 reserved evidence. A later round would require another explicitly fresh protocol.",
+    "old_selected_freeze_immutable": "reproduction/stair-night2-selected-final-freeze.json"
+  },
+  "flat_regression": {
+    "required_report": true,
+    "blocks_stair_core_acceptance": false,
+    "num_envs": 64,
+    "seconds": 20,
+    "seed": 1301,
+    "commands": [
+      [
+        0.3,
+        0,
+        0
+      ],
+      [
+        0.5,
+        0,
+        0
+      ],
+      [
+        -0.5,
+        0,
+        0
+      ],
+      [
+        0,
+        0.3,
+        0
+      ],
+      [
+        0,
+        -0.3,
+        0
+      ],
+      [
+        0,
+        0,
+        0.5
+      ],
+      [
+        0,
+        0,
+        -0.5
+      ]
+    ],
+    "scope": "Selected stair checkpoint, ordinary actor/HIM inference on plane with explicit reset transfer for235-to48 critic shape if needed; no training updates",
+    "claim_limit": "Flat all-direction failures must stay visible; stair success does not imply general locomotion reproduction"
+  },
+  "video": {
+    "fps": 50,
+    "seconds": 40,
+    "video_length_policy_steps": 2000,
+    "policy_only": true,
+    "complete_first_episode_to_goal_dwell_or_failure": true,
+    "clip_to_measured_first_episode": true,
+    "telemetry_env_id_must_match_camera": true,
+    "selection_rule_before_render": "Each direction and speed on both core dimensions, with five-riser16/27 included in at least one speed; additionally one moderate nosing pair and one long pair. Choose declared representative successful env, plus any failing/most-paused case where available; preserve all metrics",
+    "visual_review_notes_required": [
+      "entry/exit transition",
+      "repeated calf/thigh support or scraping",
+      "foot placement/retraction and visible sliding",
+      "body wobble/pauses",
+      "goal reached and dwell",
+      "telemetry alignment/time interval",
+      "limitations and failures"
+    ],
+    "frame_contact_sheets_are_insufficient_alone": true
+  },
+  "optional_robustness": {
+    "only_after_core_and_moderate_validation_and_with_budget": true,
+    "geometry_subset": "predeclare core pairs plus one moderate nosing pair; do not extrapolate to the full set",
+    "material_sensitivity": "basic domain with fresh matched nominal foot-friction scene0.8/0.6, then0.6/0.45 and1.0/0.8; source USD readback required; other randomized events removed",
+    "combined_dynamics": "separate optional report; never required to overturn current declared nominal success and never substitute for nominal evidence"
+  },
+  "optional_paper_long_progress": {
+    "required_for_promotion": false,
+    "decision_by_root_if_budget_remains": true,
+    "geometry": {
+      "direction": "asc",
+      "height": 0.17,
+      "depth": 0.25,
+      "num_steps": 100,
+      "width": 1.2
+    },
+    "num_envs": 32,
+    "seconds_range": [
+      200,
+      250
+    ],
+    "speed_m_s": 0.3,
+    "scope": "long-flight progress diagnostic; nominal Go2 simulation, not matching original Aliengo real-world176.5-step score",
+    "progress_limit": "Root directed progress and risers-passed estimates cannot replace full four-foot goal dwell completion; keep failures, completion times, pause and abnormal-state flags"
+  },
+  "early_stop": {
+    "decision_by_root_from_evidence": true,
+    "requires": [
+      "development-core and moderate no critical unresolved failures",
+      "candidate freeze",
+      "completed final mandatory controller/speed/reset matrices or explicit narrowed verified claim",
+      "numeric motion screens",
+      "complete video reviews",
+      "flat regression reported",
+      "model/config/results/videos/Git saved"
+    ],
+    "report_incomplete_instead_of_claiming_success": true
+  },
+  "report_fields": [
+    "checkpoint_sha256",
+    "source_commit",
+    "reward_weights",
+    "saved_updates",
+    "environment_steps",
+    "training_seed",
+    "construction_seed",
+    "reset_seed",
+    "case_name",
+    "geometry",
+    "speed_m_s",
+    "heading_control_enabled",
+    "num_envs",
+    "completions",
+    "completion_fraction",
+    "falls",
+    "stalls",
+    "lateral_escapes",
+    "base_contact_envs",
+    "current_sample_base_contact_envs",
+    "roll_rms_rad",
+    "roll_peak_rad",
+    "longest_flight_pause_s",
+    "action_second_delta_rms",
+    "linear_jerk_rms_m_s3",
+    "xy_tracking_rmse_m_s",
+    "current_sample_shank_contact_step_fraction",
+    "current_sample_foot_slip_fraction",
+    "numeric_core_gate",
+    "numeric_motion_screen",
+    "continuous_video_review_status",
+    "failure_episode_ids",
+    "flat_regression",
+    "limitations"
+  ],
+  "proposal_training_plan": "reproduction/stair-night2-round3-training-proposal.json",
+  "round3_controllers_required": [
+    "default_heading",
+    "constant_zero_yaw"
+  ],
+  "new_reset_seed_not_training_seed": [
+    1301,
+    1303,
+    1307
+  ],
+  "training_seeds": [
+    1213,
+    1229
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "recorded_local": "2026-10-12T05:13:37.837204+08:00",
+  "superseded_report": "reproduction/stair-night2-selected-flat-transfer-cpu.json",
+  "superseded_sha256": "3f4e189a4946a543ad85ccb1edb9b2f99d7d5a59ad1b8361046c9e24435b1275",
+  "authoritative_report": "reproduction/stair-night2-selected-flat-transfer-cpu-corrected-inputs.json",
+  "authoritative_sha256": "be53ad927c0881ce69328beeecc88d75e93a24e4b217c1d327a7e8fa04c5dd14",
+  "correction": "Initial synthetic command-labelled histories used frame slice6:9 copied from old audit. Current PolicyObservations uses0:3. Original tensor/output-equality checks remain valid for their synthetic inputs; corrected report uses true0:3 command input layout and is authoritative.",
+  "incorrect_command_slice": [
+    6,
+    9
+  ],
+  "corrected_command_slice": [
+    0,
+    3
+  ],
+  "source_and_frozen_model_unchanged": true,
+  "old_report_bytes_restored_before_sidecar": true,
+  "both_reports_transfer_equivalence_passed": true,
+  "corrected_maximum_absolute_action_differences": {
+    "transferred_vs_full_stair_model": 0.0,
+    "transferred_vs_archived_stair_export": 0.0,
+    "deterministic_repeat": 0.0,
+    "critic_and_std_counterfactual": 0.0
+  },
+  "locomotion_acceptance_claim": false
+}

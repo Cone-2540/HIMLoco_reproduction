@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T05:12:28.530297+08:00",
+  "branch": "feature/stair-rewards-night2-20261012",
+  "user_authorization": "2026-10-12 latest message: autonomous reward-focused training until07:20, earlier stop allowed when sufficiently good",
+  "deadline_local": "2026-10-12T07:20:00+08:00",
+  "stop_new_training_by_local": "2026-10-12T06:20:00+08:00",
+  "aim": "Explicit round3 weak existing contact-count reward followup; previous selected freeze and final failures preserved, old final is known diagnostic.",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "common": {
+    "num_envs": 7680,
+    "steps_per_env": 100,
+    "additional_updates_per_job": 100,
+    "save_interval": 20,
+    "stair_stage": "paper_mixed",
+    "start_level": 4,
+    "stair_speed_range": [
+      0.25,
+      0.65
+    ],
+    "ppo_learning_rate": 0.0001,
+    "him_learning_rate": 0.0001,
+    "lr_schedule": "fixed",
+    "domain_profile": "none",
+    "turn_fraction": 0.0,
+    "flat_replay_fraction": 0.0,
+    "warm_start": null,
+    "reset_noise_std": null,
+    "restore_optimizers": true,
+    "actor_history": 270,
+    "critic": 235,
+    "actor_privileged_heights": false,
+    "environment_steps_per_100_update_job": 76800000,
+    "num_envs_parameter_difference": "7680 environments after sustained8192 allocation reached15825MiB; released4096 batch differs"
+  },
+  "pilot": {
+    "profile": "contact_vertical",
+    "num_envs": 128,
+    "steps_per_env": 100,
+    "additional_updates": 3,
+    "seed": 1200,
+    "excluded_from_selection": true
+  },
+  "arms": [
+    {
+      "id": "contact_light",
+      "profile": "contact_light",
+      "difference": "Faithful plus only existing leg_contacts count at-0.02; original contact is-0.1"
+    },
+    {
+      "id": "faithful",
+      "profile": "faithful",
+      "difference": "Existing faithful1213 archived100updates, equal commoncontrol660 origin; no new faithful1213 GPU required if actual-source equivalence audit passes"
+    }
+  ],
+  "initial_paired_training_seed": 1213,
+  "planned_confirmation_seed": 1229,
+  "experimental_rules": [
+    "Never alter previous selected/freezes/protocol/results; oldfinal results stay known diagnostics and cannot be reused as new heldout.",
+    "This is a new development round explicitly prompted by observed calf/thigh contact and old reserved failures, not continued tuning under old final freeze.",
+    "New arm startscontrol660:7680env100steps100updates, same1213seed, samepaper_mixed,L Rfixed1e-4, Adam restored, no new observation/action/asset/physics/formula changes.",
+    "Compare with faithful1213 only after exact oldprofile actualLab manifest+RewardTermCfg, 11reward helperAST and original HIM/adapter AST/content equivalence audit; commit hashes alone differ.",
+    "If new reward does not improve competent traversal and contact/video quality without material regression, keep failure and do not promote.",
+    "New reserved geometry/reset seeds are preregistered data before any new model is trained or selected; core6 deliberately reused, exact10variants not prior development/final, interpolation not distribution isolation.",
+    "At root stop/07:20 closeout preserve partials, never mark unfinished validation passed."
+  ],
+  "resource_limits": {
+    "gpu_memory_preferred_max_mib": 15360,
+    "host_gpu_configuration_changes": false,
+    "driver_changes": false
+  },
+  "status": "CPU_proposal_not_executed_root_decision_required",
+  "resource_calibration_file": "reproduction/stair-night2-resource-calibration.json",
+  "sustained_memory_revision": {
+    "local_time": "2026-10-12T00:56:27.830903+08:00",
+    "excluded_job": "night2-faithful-seed1201-plus100 started00:50:16 at8192",
+    "peak_total_gpu_mib": 15825,
+    "reason": "above preferred15GiB/15360MiB total occupancy; restart all arms fromcontrol660 at7680",
+    "candidate_use": false,
+    "initial_preflight_remains_valid_only_for_short3updates": true,
+    "subsequent_diagnosis": "15825MiB includes1440MiB baseline-dev05 residual compute process; flat plateau, not allocator growth. Exact baseline job was cleaned after result preservation. Keep7680 for margin and add exact per-job post-exit cleanup."
+  },
+  "domain_semantics": {
+    "train_none": "Existing startup base mass log_uniform0.8–1.25 and COMxy±0.02m/z±0.01m remain; no additional robust profile.",
+    "default_stair_evaluation": "eval_dynamics=false removes mass/COM/gain randomization; nominal mass6.921kg, PD25/0.5 and foot friction0.8/0.6 verified.",
+    "evidence": "reproduction/stair-night2-domain-semantics.json"
+  },
+  "decision_basis": {
+    "old_final_status": "Preserve original numeric result and separate controller verdicts; proposal does not overturn any FAIL",
+    "trigger": "Core video contact hints:FLcalf98N,FRthigh33N; root still reviews continuous visual support/scrape; force peaks alone do not establish repeated support",
+    "hypothesis": "-0.02 may discourage contact with less progress/lateral compromise than-0.1; no monotonic improvement guarantee",
+    "execution_condition": "Root after05:24 continuous-video review and budget decision; no GPU execution authorized by this proposal itself"
+  },
+  "execution_priority": {
+    "primary_new_job": {
+      "profile": "contact_light",
+      "seed": 1213,
+      "additional_updates": 100
+    },
+    "already_completed_matched_control": {
+      "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "source_equivalence_required": true
+    },
+    "optional_future_jobs": [
+      {
+        "profile": "contact_light",
+        "seed": 1229,
+        "additional_updates": 100
+      },
+      {
+        "profile": "faithful",
+        "seed": 1229,
+        "additional_updates": 100
+      }
+    ],
+    "three_jobs_tonight_recommended": false,
+    "latest_preferred_start_local": "2026-10-12T05:30:00+08:00"
+  },
+  "patch_proposal": {
+    "file": "reproduction/stair-night2-round3-contact-light-unapplied.patch",
+    "sha256": "fa8394941c57455501df5ca6937f320bf843a74c256e5c2a1e70cc48e5133581",
+    "applied": false,
+    "current_source_sha256": {
+      "isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+      "isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+      "reproduction/run-stair-night2-round.py": "4d686effdf0709b542bdf7a0768d7bf3b8ce0187ffacb178ea65833882dbd902",
+      "reproduction/inspect-stair-night2-training.py": "40e86070077a3dbe7ff317df86e972bb6acc02ddc6ec8d2368a28e273976e262"
+    },
+    "proposed_source_sha256": {
+      "isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+      "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+      "reproduction/run-stair-night2-round.py": "6ffec55ab5293a25b62f896ec26defb4a1db99dbaa38326f26dd4d2745aa4be0",
+      "reproduction/inspect-stair-night2-training.py": "e31c55bd085d11f41e0afa56b62e5b167ff2774bd002b8f93cefd0d5f6edc759"
+    },
+    "runtime_mutations_allowed_if_root_decides": [
+      "newcontact_light profile admission",
+      "existingleg_contacts weightconditional",
+      "effective provenance and CLI/bodyselector recognition"
+    ],
+    "frozen_runtime_currently_unchanged": true
+  }
+}

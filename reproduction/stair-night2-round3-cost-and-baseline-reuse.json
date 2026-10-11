@@ -1,0 +1,260 @@
+{
+  "recorded_local": "2026-10-12T05:14:33.715926+08:00",
+  "scope": "CPU planning costs from exact completed launch/result readbacks; projected jobs not run. Same environment count does not guarantee identical future runtime.",
+  "complete_training_readbacks": [
+    {
+      "artifact": "artifacts/go2-stairs-night2-clearance-seed1201-760",
+      "profile": "contact_clearance",
+      "seed": 1201,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1671.1801946709993,
+      "wrapper_elapsed_seconds": 1780.1684950730005,
+      "source_launch_sha256": "0cdca13686f257ea78cf497c9b768f9b10f1332e2759061d88a68c7590043b8d",
+      "source_result_sha256": "287ab2481a0f00dd23956b79eeaea871e7b3c4fa49cbf647239febaa77b75ae8"
+    },
+    {
+      "artifact": "artifacts/go2-stairs-night2-contact-seed1201-760",
+      "profile": "contact",
+      "seed": 1201,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1669.5090726119997,
+      "wrapper_elapsed_seconds": 1759.5819484190006,
+      "source_launch_sha256": "903aea170ebc088f7df67d151a1798a09057af8022aaad94bd6c8e9d59f64a1d",
+      "source_result_sha256": "3855ab7e20c3edd71e5ffc502da2823bd1b6df96a5017519a0aee0dad913587f"
+    },
+    {
+      "artifact": "artifacts/go2-stairs-night2-faithful-seed1201-760",
+      "profile": "faithful",
+      "seed": 1201,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1731.4803190440002,
+      "wrapper_elapsed_seconds": 1819.3405848089997,
+      "source_launch_sha256": "b34ac122aed7d17ea463e8db498961dc351d25bc159b8873b447dc1ad5abdfc5",
+      "source_result_sha256": "197118a74ded104c601b122ac33625c4f33fb483bb25d2c0590415aca01e47a3"
+    },
+    {
+      "artifact": "artifacts/go2-stairs-night2-faithful-seed1213-760",
+      "profile": "faithful",
+      "seed": 1213,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1718.2515734169992,
+      "wrapper_elapsed_seconds": 1806.7663603870005,
+      "source_launch_sha256": "8df3f3877f82ee714d3e34bfdb7eb6fac774c73987e89eea84df3cf1b4fc3347",
+      "source_result_sha256": "7c20d5a95c243dde0895d03b45c181bbd70aa3619d1aece82adc7153966896dd"
+    },
+    {
+      "artifact": "artifacts/go2-stairs-night2-tracking-seed1213-760",
+      "profile": "faithful_tracking",
+      "seed": 1213,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1737.5647934780009,
+      "wrapper_elapsed_seconds": 1825.873643361001,
+      "source_launch_sha256": "28c01a85750001ed7d2ce53244333b301674d58d3eeb9d95cffe7d965c36fe0a",
+      "source_result_sha256": "067c599256c5d6b74c7bf6a20fb7a170b5d3b7072d287247d9a12f23f8077da6"
+    },
+    {
+      "artifact": "artifacts/go2-stairs-night2-vertical-seed1201-760",
+      "profile": "contact_vertical",
+      "seed": 1201,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "saved_updates": 100,
+      "training_seconds": 1668.1824346160001,
+      "wrapper_elapsed_seconds": 1757.8355042639996,
+      "source_launch_sha256": "94177eae1b47ae5164966a0d963e32d8b64a35deab5ba64fdedb10c3986d892c",
+      "source_result_sha256": "745a262d49bd80b7b4d9bbd1102df82d596d27c4805245d4fbf555875407c138"
+    }
+  ],
+  "train_wrapper_min_seconds": 1757.8355042639996,
+  "train_wrapper_max_seconds": 1825.873643361001,
+  "complete_evaluation_readbacks": [
+    {
+      "role": "development",
+      "name": "night2-devcompare-20261012-042554-8f6858-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "wrapper_elapsed_seconds": 536.8934297060005,
+      "wrapper": "/home/cone/robotics/logs/20261012-042554_night2-devcompare-20261012-042554-8f6858-speed03-heading",
+      "wrapper_launch_sha256": "e9275b2f52549dc084c38fb558cd8e144723e39751179832fa56faedecb985e3",
+      "evaluated_policy_count": 3
+    },
+    {
+      "role": "development",
+      "name": "night2-devcompare-20261012-042554-8f6858-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "wrapper_elapsed_seconds": 358.8110407919994,
+      "wrapper": "/home/cone/robotics/logs/20261012-043453_night2-devcompare-20261012-042554-8f6858-speed05-heading",
+      "wrapper_launch_sha256": "ff4a9bfe176a65765631297b45ad5832e2eae3862ae3a29828c1298bf2fad2a8",
+      "evaluated_policy_count": 3
+    },
+    {
+      "role": "final",
+      "name": "night2-finalcompare-20261012-044206-aa9acc-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "wrapper_elapsed_seconds": 366.45618620000096,
+      "wrapper": "/home/cone/robotics/logs/20261012-044206_night2-finalcompare-20261012-044206-aa9acc-speed03-heading",
+      "wrapper_launch_sha256": "a53804b84037a7c690bc39587715fdd698922771e9ee7b5c7c77d8579fb39fe2",
+      "evaluated_policy_count": 2
+    },
+    {
+      "role": "final",
+      "name": "night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": false,
+      "wrapper_elapsed_seconds": 408.3877637459991,
+      "wrapper": "/home/cone/robotics/logs/20261012-044814_night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw",
+      "wrapper_launch_sha256": "b406a19d60b5148fbd4dac5b3ff8c12773b8cb812c8cca48c5ce33ee046f10bc",
+      "evaluated_policy_count": 2
+    },
+    {
+      "role": "final",
+      "name": "night2-finalcompare-20261012-044206-aa9acc-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "wrapper_elapsed_seconds": 244.06395675100066,
+      "wrapper": "/home/cone/robotics/logs/20261012-045504_night2-finalcompare-20261012-044206-aa9acc-speed05-heading",
+      "wrapper_launch_sha256": "0f3d8c119e84692b494f9f8afd3f3e8b3fc96a1757403ff418576221c12245c3",
+      "evaluated_policy_count": 2
+    },
+    {
+      "role": "final",
+      "name": "night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": false,
+      "wrapper_elapsed_seconds": 266.99722807500075,
+      "wrapper": "/home/cone/robotics/logs/20261012-045909_night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw",
+      "wrapper_launch_sha256": "bc564b6be03fe24d83299368bcec6794d0665be3ce9bb5fcaef860a7ae668565",
+      "evaluated_policy_count": 2
+    }
+  ],
+  "observed_development_two_speed_three_policy_seconds": 895.7044704979999,
+  "observed_final_four_scene_two_policy_seconds": 1285.9051347720015,
+  "completed_video_wrapper_readbacks": [
+    {
+      "name": "night2-video-core-five-asc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 58.228079134001746,
+      "wrapper": "/home/cone/robotics/logs/20261012-050424_night2-video-core-five-asc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six16-desc-speed05-20261012050424486048",
+      "wrapper_elapsed_seconds": 44.37207460100035,
+      "wrapper": "/home/cone/robotics/logs/20261012-050957_night2-video-core-six16-desc-speed05-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six17-desc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 60.71758561599927,
+      "wrapper": "/home/cone/robotics/logs/20261012-051200_night2-video-core-six17-desc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six17-asc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 59.74757126300028,
+      "wrapper": "/home/cone/robotics/logs/20261012-051050_night2-video-core-six17-asc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six17-asc-speed05-20261012050424486048",
+      "wrapper_elapsed_seconds": 44.25615848899906,
+      "wrapper": "/home/cone/robotics/logs/20261012-051312_night2-video-core-six17-asc-speed05-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-five-desc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 58.33487101799983,
+      "wrapper": "/home/cone/robotics/logs/20261012-050532_night2-video-core-five-desc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six16-desc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 61.453388942001766,
+      "wrapper": "/home/cone/robotics/logs/20261012-050751_night2-video-core-six16-desc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six16-asc-speed03-20261012050424486048",
+      "wrapper_elapsed_seconds": 60.091709800999524,
+      "wrapper": "/home/cone/robotics/logs/20261012-050641_night2-video-core-six16-asc-speed03-20261012050424486048"
+    },
+    {
+      "name": "night2-video-core-six16-asc-speed05-20261012050424486048",
+      "wrapper_elapsed_seconds": 45.42294327700074,
+      "wrapper": "/home/cone/robotics/logs/20261012-050905_night2-video-core-six16-asc-speed05-20261012050424486048"
+    }
+  ],
+  "single_arm_0530_projection": {
+    "train_done_local": "2026-10-12T06:00:25.873643+08:00",
+    "after_old_measured_dev_and_final_local": "2026-10-12T06:36:47.483249+08:00",
+    "seconds_reserved_before0720": 2592.516751,
+    "excluded_from_projection": [
+      "CPU summarization/modelfreeze",
+      "complete newmodel videos",
+      "flat7 command evaluation",
+      "I/O jitter or failures",
+      "additional construction/cleanup beyond observed wrappers"
+    ],
+    "conclusion": "Feasible only conditional on timely GPU idle/newprofile launch and efficient review; not guaranteed. Existing final four-scene cost is two policies, upcoming scene policies may differ."
+  },
+  "three_new_arm_projection": {
+    "after_train_dev_final_local": "2026-10-12T07:37:39.230535+08:00",
+    "recommendation": "Do not execute all3tonight; light1213primary only, seed1229pair future optional."
+  },
+  "baseline_reuse_source_checks": {
+    "baseline_original_commit": "f3c8a7e00fba941ec3497a40350be284ebc30a33",
+    "unchanged_file_checks": [
+      {
+        "file": "isaaclab/adapter.py",
+        "sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/checkpoint_transfer.py",
+        "sha256": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/stair_terrain.py",
+        "sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/stair_evaluation.py",
+        "sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/stair_randomization.py",
+        "sha256": "1cdbca365f44be304c3dc37467002ef2f5f0a2b17a002476d1dc88489f486561",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/vendor/him_rsl_rl/modules/him_actor_critic.py",
+        "sha256": "89b6ac3556620ace9b7531ab98337b83e64ad135f33efa2f0699e0d41dfd1acb",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py",
+        "sha256": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/vendor/him_rsl_rl/algorithms/him_ppo.py",
+        "sha256": "b5b78c8251117ca32582b3370f028c405fbf500a21098c3d81102e9e8c15f760",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      },
+      {
+        "file": "isaaclab/vendor/him_rsl_rl/runners/him_on_policy_runner.py",
+        "sha256": "6af7f43e4ab9015b20c27c34644820fbfff7c048886357dc46be7420d061692f",
+        "bitwise_equal_to_faithful1213_launch_commit": true
+      }
+    ],
+    "reward_profile_equivalence": "Unapplied proposed source compared with current actual Lab configs/manifests for9profiles; faithful unchanged. 11 reward helper ASTs preserved in proposal CPU evidence.",
+    "future_actual_launch_requirement": "After application, repeat actual prelaunch CPU config/AST/hash equivalence and archive new source provenance; current proposal alone does not attest future source."
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "status": "passed",
+  "scope": "Host syntax compilation and unchanged-gate recomputation of12 existing historical aggregate cases; no new final/flat results read. No GPU or simulation.",
+  "compiled": [
+    "reproduction/audit-stair-night2-flat-transfer.py",
+    "reproduction/summarize-stair-night2-selected-flat.py"
+  ],
+  "existing_historical_result": "isaaclab/logs/2026-10-11_06-09-35_frozen-stair-policy-flat-regression/result.json",
+  "audited_rows": [
+    {
+      "role": "cases",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "source_passed": true,
+      "audited_passed": true
+    },
+    {
+      "role": "cases",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "source_passed": true,
+      "audited_passed": true
+    },
+    {
+      "role": "cases",
+      "command": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "cases",
+      "command": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "cases",
+      "command": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "source_passed": true,
+      "audited_passed": true
+    },
+    {
+      "role": "cases",
+      "command": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    },
+    {
+      "role": "zero_action_cases",
+      "command": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "source_passed": false,
+      "audited_passed": false
+    }
+  ],
+  "old_control660_not_current_selected_model": true,
+  "thresholds": {
+    "xy_mae_m_s": 0.2,
+    "yaw_mae_rad_s": 0.3,
+    "first_episode_survival_fraction": 0.95,
+    "minimum_duration_s": 20.0,
+    "minimum_num_envs": 64
+  }
+}

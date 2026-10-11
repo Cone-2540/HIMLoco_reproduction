@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "recorded_local": "2026-10-12T05:04:26.898766+08:00",
+  "status": "CPU_transfer_verified",
+  "checkpoint": "/workspace/himloco/artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "selection_file": "/workspace/himloco/reproduction/stair-night2-selected-final-freeze.json",
+  "selection_file_sha256": "3b24931d4a727d44eabf5a87de8e958441348a8006f4052e20ccf2749c627a8a",
+  "source_iteration": 760,
+  "torch": "2.11.0+cu128",
+  "cuda_initialized": false,
+  "simulator_started": false,
+  "gradient_updates": 0,
+  "critic_dimensions": {
+    "source": 235,
+    "target": 48
+  },
+  "transfer_record": {
+    "source_iteration": 760,
+    "critic_mode": "reset",
+    "copied": [
+      "std",
+      "estimator.encoder.0.weight",
+      "estimator.encoder.0.bias",
+      "estimator.encoder.2.weight",
+      "estimator.encoder.2.bias",
+      "estimator.encoder.4.weight",
+      "estimator.encoder.4.bias",
+      "estimator.target.0.weight",
+      "estimator.target.0.bias",
+      "estimator.target.2.weight",
+      "estimator.target.2.bias",
+      "estimator.target.4.weight",
+      "estimator.target.4.bias",
+      "estimator.proto.weight",
+      "actor.0.weight",
+      "actor.0.bias",
+      "actor.2.weight",
+      "actor.2.bias",
+      "actor.4.weight",
+      "actor.4.bias",
+      "actor.6.weight",
+      "actor.6.bias"
+    ],
+    "new_initialization": [
+      "critic.0.weight",
+      "critic.0.bias",
+      "critic.2.weight",
+      "critic.2.bias",
+      "critic.4.weight",
+      "critic.4.bias",
+      "critic.6.weight",
+      "critic.6.bias"
+    ],
+    "optimizer": "fresh",
+    "training_iteration": 0
+  },
+  "tensor_audits": [
+    {
+      "name": "std",
+      "shape": [
+        12
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "c6e17251d9ea90a2b04b9a7805e9fea95e0da0db53721532b6511c474e3562e7"
+    },
+    {
+      "name": "estimator.encoder.0.weight",
+      "shape": [
+        128,
+        270
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "f2b0a3141d97e9969014591cc4801f1ed8e139054f9b4b1c7b7471a705e80200"
+    },
+    {
+      "name": "estimator.encoder.0.bias",
+      "shape": [
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "46e7dbecef62fefa47b1cd7a5e224ab7afc93de4b1096748066bafc1d9d1638b"
+    },
+    {
+      "name": "estimator.encoder.2.weight",
+      "shape": [
+        64,
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "743125ddc8a01c4e083cb8abab232dbb27e7de8ea005683994d051f5fa550db6"
+    },
+    {
+      "name": "estimator.encoder.2.bias",
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "5551455c160e9bedb02a8bd6f0cf8382550c16adb055fc95d8bde5db5ffa067e"
+    },
+    {
+      "name": "estimator.encoder.4.weight",
+      "shape": [
+        19,
+        64
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "e252700a96c2f71556b5de07d72f0ca0d41ecbbb836f03bfd27212e20d606bce"
+    },
+    {
+      "name": "estimator.encoder.4.bias",
+      "shape": [
+        19
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "4d981bf948139f7a30b44a88bb585377eb61c7e0b7f2089f53c34d1e3061212f"
+    },
+    {
+      "name": "estimator.target.0.weight",
+      "shape": [
+        128,
+        45
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "75fe94eb99f2a450ef9e928b20f0a8387f8748c17fe03f699281829d1fb16a66"
+    },
+    {
+      "name": "estimator.target.0.bias",
+      "shape": [
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "31329cb094af9eb29c7d3f8757673ad0ca8ebd6d8350e2b1694f7c663c6c503a"
+    },
+    {
+      "name": "estimator.target.2.weight",
+      "shape": [
+        64,
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "f021a0341461da6f36c3e3214b6f2d4f7844e620a1bd85e374ebcfd3dba0e46d"
+    },
+    {
+      "name": "estimator.target.2.bias",
+      "shape": [
+        64
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "cba1e787aa37ee6ced6700f7b1478f0e8dca3589bc537208bed7ea8720c1df77"
+    },
+    {
+      "name": "estimator.target.4.weight",
+      "shape": [
+        16,
+        64
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "fe2d5515e51a0a0dff2a9c561c1d8c30938a5039e9b8243c378e512e0ec154a6"
+    },
+    {
+      "name": "estimator.target.4.bias",
+      "shape": [
+        16
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "945499981c206328ed771877c394de67afafb1fbb3cfb0ef2da6b8e4d01c88f0"
+    },
+    {
+      "name": "estimator.proto.weight",
+      "shape": [
+        32,
+        16
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "2f8967a88e87569c0334cd74aebaa1304a9464f3efe8cf96ad58fe8ed99b3cf4"
+    },
+    {
+      "name": "actor.0.weight",
+      "shape": [
+        512,
+        64
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "1e50bd61aafeece3a196b96175048f360fe612a8de5db94c90fe7a465d394994"
+    },
+    {
+      "name": "actor.0.bias",
+      "shape": [
+        512
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "2da298d474ee4bbcc7c8bc5671aae1ee46673aa3f44106d79750f98519039524"
+    },
+    {
+      "name": "actor.2.weight",
+      "shape": [
+        256,
+        512
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "51f78e19948b6d4add5aad28f9f28e38d8d65bedb7142531c9a68ae5c33fdb1b"
+    },
+    {
+      "name": "actor.2.bias",
+      "shape": [
+        256
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "afef6ea370e31b4026f79ba42b4d3e51390e3af474524c124c87deb24484b764"
+    },
+    {
+      "name": "actor.4.weight",
+      "shape": [
+        128,
+        256
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "c597e6ba5cd780c207f1c0bb6be2ccaf39081cff4cbc8332a26c70cab7162918"
+    },
+    {
+      "name": "actor.4.bias",
+      "shape": [
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "3b77138c68c1d56e3fd2d2e791a09b72d6f18ef77cc170f85521681ee61a411e"
+    },
+    {
+      "name": "actor.6.weight",
+      "shape": [
+        12,
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "09be701922c49aa8f4f9a431889c211c7b8b699811afe7bcaf574b6a72874157"
+    },
+    {
+      "name": "actor.6.bias",
+      "shape": [
+        12
+      ],
+      "dtype": "torch.float32",
+      "source": "exact checkpoint tensor",
+      "bitwise_equal": true,
+      "sha256": "cb036f25d490eb2dddc8e4351115854e926dfbec69a660295592f6bb96fff486"
+    },
+    {
+      "name": "critic.0.weight",
+      "shape": [
+        512,
+        48
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "15bb4325dcc54bb0a98829890be19675588c48154d25645c99fa25187835694b"
+    },
+    {
+      "name": "critic.0.bias",
+      "shape": [
+        512
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "9ac28d40b1325dd35e7e928afd613f9c011a7161c0f07c710c822e2d705d1ca0"
+    },
+    {
+      "name": "critic.2.weight",
+      "shape": [
+        256,
+        512
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "64d3616a256b9d5b683ab76ca358c89f2f6ddc68eb0e2f2688c5288b1a40217e"
+    },
+    {
+      "name": "critic.2.bias",
+      "shape": [
+        256
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "a6e8ed47f2f22197b99732b7db65188b147bac8b58ae41eaa8423de99c525317"
+    },
+    {
+      "name": "critic.4.weight",
+      "shape": [
+        128,
+        256
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "c3b30e671de3b644d597069dfe52cd265430f4092cfdef22d9511023b0278d14"
+    },
+    {
+      "name": "critic.4.bias",
+      "shape": [
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "a1edd9c3adc86bd2acf382bc0e2e10c8787b62f81c0ae61d5b5b8f98b7f28325"
+    },
+    {
+      "name": "critic.6.weight",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "a380609dc898ffd3b93b9af4d54394609ea46d4e0c16d0022642be5408ff0a7c"
+    },
+    {
+      "name": "critic.6.bias",
+      "shape": [
+        1
+      ],
+      "dtype": "torch.float32",
+      "source": "fresh critic initialization",
+      "bitwise_equal": true,
+      "sha256": "e09d791c6d7f4dc0b680812405d2c975d1576092835d2649ef26382df7e59941"
+    }
+  ],
+  "actor_HIM_std_exact_copies": 22,
+  "fresh_critic_tensors_preserved": 8,
+  "all_source_and_target_tensors_finite": true,
+  "fresh_optimizer_state_empty": true,
+  "deterministic_inference_rng_unchanged": true,
+  "model_tensors_restored_and_unchanged": true,
+  "input_shape": [
+    140,
+    270
+  ],
+  "input_sha256": "dc2a2d08cadac50fef2c9a49fa3aff03a8ddf2ec331721278aea4d65a51fd385",
+  "fixed_inputs": {
+    "noise_seed": 1709,
+    "random_scales": [
+      0.01,
+      0.1,
+      1.0,
+      3.0
+    ],
+    "command_histories": [
+      [
+        0.3,
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.0,
+        0.0
+      ],
+      [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.3,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5
+      ]
+    ],
+    "command_scales": [
+      2.0,
+      2.0,
+      0.25
+    ],
+    "command_slice_in_each_frame": [
+      0,
+      3
+    ],
+    "other_inputs": "zero history and four fixed newest/oldest-frame impulses"
+  },
+  "maximum_absolute_action_differences": {
+    "transferred_vs_full_stair_model": 0.0,
+    "transferred_vs_archived_stair_export": 0.0,
+    "deterministic_repeat": 0.0,
+    "critic_and_std_counterfactual": 0.0
+  },
+  "archived_stair_export_sha256": "31b894529d38b6ab76bbc18dab90b151684db20865f29751ce0c9753505459a3",
+  "actual_flat_run": null,
+  "source_sha256": {
+    "isaaclab/checkpoint_transfer.py": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+    "isaaclab/vendor/him_rsl_rl/modules/him_actor_critic.py": "89b6ac3556620ace9b7531ab98337b83e64ad135f33efa2f0699e0d41dfd1acb",
+    "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2"
+  },
+  "limits": "Fixed synthetic CPU inputs verify tensor transfer and deterministic actor/export synchronization. They do not verify actual sensor histories, locomotion quality, flat command gates, real-robot interfaces, or the cause of any flat failures. No final-model reselection or retuning."
+}

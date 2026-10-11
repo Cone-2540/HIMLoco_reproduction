@@ -1,0 +1,104 @@
+--- a/isaaclab/stair_rewards.py
++++ b/isaaclab/stair_rewards.py
+@@ -214,9 +214,9 @@
+     penalty; this does not turn that reward into terrain-relative swing clearance.
+     ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
+     """
+-    contact_profiles = ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
++    contact_profiles = ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
+     if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "stock"):
+-        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
++        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
+     if profile == "stock":
+         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
+     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
+@@ -264,7 +264,7 @@
+         add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
+             sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
+     if profile in contact_profiles:
+-        add("leg_contacts", mdp + "undesired_contacts", -0.1, threshold=1.0,
++        add("leg_contacts", mdp + "undesired_contacts", -0.02 if profile == "contact_light" else -0.1, threshold=1.0,
+             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
+     if profile == "contact_force":
+         add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
+@@ -377,4 +377,20 @@
+             "interpretation": "increase existing commanded body XY velocity tracking reward; no added lateral controller or world-position target",
+             "actor_observations_and_collision_geometry": "unchanged",
+         }
++    if profile == "contact_light":
++        manifest["adaptation_changes"] = [
++            "faithful plus existing leg_contacts -0.02; no other faithful term changes"
++        ]
++        manifest["contact_penalty"]["weight_scaling"] = "Isaac Lab reward manager multiplies -0.02 by policy dt"
++        manifest["contact_penalty"]["reproduction_scope"] = "added Go2 adaptation; released Go1 collision weight is zero; one-fifth existing contact profile weight"
++        manifest["reward_weight_ablation"] = {
++            "baseline_profile": "faithful",
++            "term": "leg_contacts",
++            "original_weight": 0.0,
++            "weight": -0.02,
++            "function_and_parameters": "existing contact undesired_contacts retained-history count, same eight thigh/calf bodies, strict threshold 1N",
++            "all_other_faithful_terms": "unchanged",
++            "interpretation": "weak existing leg-contact count penalty; not force severity, scrape duration or impact impulse",
++            "actor_observations_and_collision_geometry": "unchanged",
++        }
+     return manifest
+--- a/isaaclab/run.py
++++ b/isaaclab/run.py
+@@ -105,7 +105,7 @@
+     parser.add_argument("--stair_depth", type=float, default=0.27)
+     parser.add_argument("--stair_nosing", type=float, default=0.0)
+     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
+-    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
++    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
+     parser.add_argument("--speed", type=float, default=0.3)
+     parser.add_argument("--eval_seed", type=int, action="append")
+     parser.add_argument("--eval_randomized", action="store_true")
+@@ -379,7 +379,7 @@
+                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
+             }
+         robot = wrapped.env.scene["robot"]
+-        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
++        if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
+             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
+                               for part in ("thigh", "calf")}
+             term_names = ["leg_contacts"]
+--- a/reproduction/run-stair-night2-round.py
++++ b/reproduction/run-stair-night2-round.py
+@@ -12,7 +12,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--seed", type=int, default=1201)
+-    parser.add_argument("--profiles", nargs="+", choices=["faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance"],
++    parser.add_argument("--profiles", nargs="+", choices=["faithful", "faithful_tracking", "contact", "contact_light", "contact_vertical", "contact_clearance"],
+                         default=["faithful", "contact", "contact_vertical", "contact_clearance"])
+     parser.add_argument("--iterations", type=int, default=100)
+     parser.add_argument("--plan", type=Path,
+--- a/reproduction/inspect-stair-night2-training.py
++++ b/reproduction/inspect-stair-night2-training.py
+@@ -294,6 +294,8 @@
+     expected_rewards = dict(EXPECTED_FAITHFUL)
+     if profile in ("contact", "contact_vertical", "contact_clearance"):
+         expected_rewards["leg_contacts"] = -.1
++    if profile == "contact_light":
++        expected_rewards["leg_contacts"] = -.02
+     if profile == "contact_vertical":
+         expected_rewards["lin_vel_z_l2"] = -1.
+     if profile == "contact_clearance":
+@@ -304,7 +306,7 @@
+     def check(name, actual, expected):
+         checks.append({"name": name, "status": "unknown" if actual is None or expected is None else
+                        "pass" if actual == expected else "fail", "actual": actual, "expected": expected})
+-    if profile in ("faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance"):
++    if profile in ("faithful", "faithful_tracking", "contact", "contact_light", "contact_vertical", "contact_clearance"):
+         check("exact_known_profile_weights", config.get("reward_weights"), expected_rewards)
+     check("config_source_matches_launch", config.get("source_commit"), launch.get("source_commit"))
+     check("starting_checkpoint_sha256", checkpoint_sha, expected_start_sha256)
+@@ -317,7 +319,7 @@
+     if initial_domain:
+         for name in ("base_mass_kg", "base_inertia_kg_m2"):
+             check("initial_" + name + "_finite", initial_domain.get(name, {}).get("observed", {}).get("finite"), True)
+-        if profile in ("contact", "contact_vertical", "contact_clearance"):
++        if profile in ("contact", "contact_light", "contact_vertical", "contact_clearance"):
+             check("leg_reward_resolved_eight_bodies", sorted(config.get("resolved_contact_reward_bodies", [])),
+                   sorted(f"{leg}_{part}" for leg in ("FL", "FR", "RL", "RR") for part in ("thigh", "calf")))
+     if physics_diagnostic:

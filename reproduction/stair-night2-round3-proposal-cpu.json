@@ -1,0 +1,1582 @@
+{
+  "status": "CPU_proposal_verified_not_applied",
+  "old_profiles_exactly_preserved": [
+    "stock",
+    "faithful",
+    "faithful_tracking",
+    "tuned",
+    "contact",
+    "contact_force",
+    "contact_slide",
+    "contact_vertical",
+    "contact_clearance"
+  ],
+  "only_new_config_difference": {
+    "baseline": "faithful",
+    "term": "existing undesired_contacts leg_contacts",
+    "weight": -0.02,
+    "threshold_n": 1.0,
+    "all_other_faithful_terms_equal": true
+  },
+  "contact_numeric_fixture": {
+    "selected_bodies": [
+      "FL_thigh",
+      "FL_calf",
+      "FR_thigh",
+      "FR_calf",
+      "RL_thigh",
+      "RL_calf",
+      "RR_thigh",
+      "RR_calf"
+    ],
+    "raw_counts": [
+      1,
+      1,
+      0,
+      0,
+      2
+    ],
+    "weighted_light_per20ms": [
+      -0.00039999998989515007,
+      -0.00039999998989515007,
+      -0.0,
+      -0.0,
+      -0.0007999999797903001
+    ],
+    "weighted_strong_per20ms": [
+      -0.0020000000949949026,
+      -0.0020000000949949026,
+      -0.0,
+      -0.0,
+      -0.004000000189989805
+    ],
+    "ratio": 0.2,
+    "limitations": "retained-history count; not contact severity/duration/impulse. Lower reward weight cannot predict gait improvement."
+  },
+  "reserved_geometry_mesh_checks": [
+    {
+      "name": "core_asc_16cm_27cm_5",
+      "meshes": 7,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.325,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 5,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.08,
+        "goal_platform_start_x": 2.35,
+        "goal_x": 3.0,
+        "flight_end_x": 4.35,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.8,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.325,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "core_desc_16cm_27cm_5",
+      "meshes": 6,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.325,
+        1.5,
+        0.8
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 5,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.08,
+        "goal_platform_start_x": 2.35,
+        "goal_x": 3.0,
+        "flight_end_x": 4.35,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.8,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.325,
+          1.5,
+          0.8
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": -0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": -0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": -0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": -0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": -0.8
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "core_asc_16cm_27cm_6",
+      "meshes": 8,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.19,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": 0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "core_desc_16cm_27cm_6",
+      "meshes": 7,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.19,
+        1.5,
+        0.96
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.35,
+        "goal_platform_start_x": 2.62,
+        "goal_x": 3.27,
+        "flight_end_x": 4.62,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.96,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.19,
+          1.5,
+          0.96
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": -0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": -0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": -0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": -0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": -0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": -0.96
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "core_asc_17cm_25cm_6",
+      "meshes": 8,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.25,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.25,
+        "goal_platform_start_x": 2.5,
+        "goal_x": 3.15,
+        "flight_end_x": 4.5,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.02,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.25,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": 0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": 0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": 0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": 0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": 0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": 1.02
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "core_desc_17cm_25cm_6",
+      "meshes": 7,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.25,
+        1.5,
+        1.02
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.25,
+        "goal_platform_start_x": 2.5,
+        "goal_x": 3.15,
+        "flight_end_x": 4.5,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.02,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.25,
+          1.5,
+          1.02
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": -0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": -0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": -0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": -0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": -0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": -1.02
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_asc_moderate145_32_6",
+      "meshes": 8,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.04,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.145,
+        "step_depth": 0.32,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.6,
+        "goal_platform_start_x": 2.92,
+        "goal_x": 3.57,
+        "flight_end_x": 4.92,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 0.8699999999999999,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.04,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.32,
+            "top_z": 0.145
+          },
+          {
+            "index": 2,
+            "x_min": 1.32,
+            "x_max": 1.6400000000000001,
+            "top_z": 0.29
+          },
+          {
+            "index": 3,
+            "x_min": 1.6400000000000001,
+            "x_max": 1.96,
+            "top_z": 0.43499999999999994
+          },
+          {
+            "index": 4,
+            "x_min": 1.96,
+            "x_max": 2.2800000000000002,
+            "top_z": 0.58
+          },
+          {
+            "index": 5,
+            "x_min": 2.2800000000000002,
+            "x_max": 2.6,
+            "top_z": 0.725
+          },
+          {
+            "index": 6,
+            "x_min": 2.6,
+            "x_max": 2.92,
+            "top_z": 0.8699999999999999
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_desc_moderate145_32_6",
+      "meshes": 7,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.04,
+        1.5,
+        0.8699999999999999
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.145,
+        "step_depth": 0.32,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.6,
+        "goal_platform_start_x": 2.92,
+        "goal_x": 3.57,
+        "flight_end_x": 4.92,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -0.8699999999999999,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.04,
+          1.5,
+          0.8699999999999999
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.32,
+            "top_z": -0.145
+          },
+          {
+            "index": 2,
+            "x_min": 1.32,
+            "x_max": 1.6400000000000001,
+            "top_z": -0.29
+          },
+          {
+            "index": 3,
+            "x_min": 1.6400000000000001,
+            "x_max": 1.96,
+            "top_z": -0.43499999999999994
+          },
+          {
+            "index": 4,
+            "x_min": 1.96,
+            "x_max": 2.2800000000000002,
+            "top_z": -0.58
+          },
+          {
+            "index": 5,
+            "x_min": 2.2800000000000002,
+            "x_max": 2.6,
+            "top_z": -0.725
+          },
+          {
+            "index": 6,
+            "x_min": 2.6,
+            "x_max": 2.92,
+            "top_z": -0.8699999999999999
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_asc_moderate175_29_lip12_6",
+      "meshes": 14,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.13,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.175,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.012,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.45,
+        "goal_platform_start_x": 2.7399999999999998,
+        "goal_x": 3.3899999999999997,
+        "flight_end_x": 4.74,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.0499999999999998,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.13,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": 0.175
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": 0.35
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": 0.5249999999999999
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": 0.7
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": 0.875
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": 1.0499999999999998
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_desc_moderate175_29_lip12_6",
+      "meshes": 13,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        2.13,
+        1.5,
+        1.0499999999999998
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.175,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.012,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.45,
+        "goal_platform_start_x": 2.7399999999999998,
+        "goal_x": 3.3899999999999997,
+        "flight_end_x": 4.74,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.0499999999999998,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.13,
+          1.5,
+          1.0499999999999998
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": -0.175
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": -0.35
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": -0.5249999999999999
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": -0.7
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": -0.875
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": -1.0499999999999998
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_asc_moderate190_31_lip15_8",
+      "meshes": 18,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        1.7599999999999998,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 8,
+        "step_height": 0.19,
+        "step_depth": 0.31,
+        "width": 1.2,
+        "nosing": 0.015,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 3.17,
+        "goal_platform_start_x": 3.48,
+        "goal_x": 4.13,
+        "flight_end_x": 5.48,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.52,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          1.7599999999999998,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.31,
+            "top_z": 0.19
+          },
+          {
+            "index": 2,
+            "x_min": 1.31,
+            "x_max": 1.62,
+            "top_z": 0.38
+          },
+          {
+            "index": 3,
+            "x_min": 1.62,
+            "x_max": 1.93,
+            "top_z": 0.5700000000000001
+          },
+          {
+            "index": 4,
+            "x_min": 1.93,
+            "x_max": 2.24,
+            "top_z": 0.76
+          },
+          {
+            "index": 5,
+            "x_min": 2.24,
+            "x_max": 2.55,
+            "top_z": 0.95
+          },
+          {
+            "index": 6,
+            "x_min": 2.55,
+            "x_max": 2.86,
+            "top_z": 1.1400000000000001
+          },
+          {
+            "index": 7,
+            "x_min": 2.86,
+            "x_max": 3.17,
+            "top_z": 1.33
+          },
+          {
+            "index": 8,
+            "x_min": 3.17,
+            "x_max": 3.48,
+            "top_z": 1.52
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_desc_moderate190_31_lip15_8",
+      "meshes": 17,
+      "size": [
+        8.0,
+        3.0
+      ],
+      "origin": [
+        1.7599999999999998,
+        1.5,
+        1.52
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 8,
+        "step_height": 0.19,
+        "step_depth": 0.31,
+        "width": 1.2,
+        "nosing": 0.015,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 3.17,
+        "goal_platform_start_x": 3.48,
+        "goal_x": 4.13,
+        "flight_end_x": 5.48,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.52,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          1.7599999999999998,
+          1.5,
+          1.52
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.31,
+            "top_z": -0.19
+          },
+          {
+            "index": 2,
+            "x_min": 1.31,
+            "x_max": 1.62,
+            "top_z": -0.38
+          },
+          {
+            "index": 3,
+            "x_min": 1.62,
+            "x_max": 1.93,
+            "top_z": -0.5700000000000001
+          },
+          {
+            "index": 4,
+            "x_min": 1.93,
+            "x_max": 2.24,
+            "top_z": -0.76
+          },
+          {
+            "index": 5,
+            "x_min": 2.24,
+            "x_max": 2.55,
+            "top_z": -0.95
+          },
+          {
+            "index": 6,
+            "x_min": 2.55,
+            "x_max": 2.86,
+            "top_z": -1.1400000000000001
+          },
+          {
+            "index": 7,
+            "x_min": 2.86,
+            "x_max": 3.17,
+            "top_z": -1.33
+          },
+          {
+            "index": 8,
+            "x_min": 3.17,
+            "x_max": 3.48,
+            "top_z": -1.52
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_asc_long165_29_12",
+      "meshes": 14,
+      "size": [
+        10.0,
+        3.0
+      ],
+      "origin": [
+        2.2600000000000002,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 12,
+        "step_height": 0.165,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 4.1899999999999995,
+        "goal_platform_start_x": 4.4799999999999995,
+        "goal_x": 5.13,
+        "flight_end_x": 6.4799999999999995,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.98,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.2600000000000002,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          10.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": 0.165
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": 0.33
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": 0.495
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": 0.66
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": 0.8250000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": 0.99
+          },
+          {
+            "index": 7,
+            "x_min": 2.7399999999999998,
+            "x_max": 3.03,
+            "top_z": 1.155
+          },
+          {
+            "index": 8,
+            "x_min": 3.03,
+            "x_max": 3.32,
+            "top_z": 1.32
+          },
+          {
+            "index": 9,
+            "x_min": 3.32,
+            "x_max": 3.61,
+            "top_z": 1.485
+          },
+          {
+            "index": 10,
+            "x_min": 3.61,
+            "x_max": 3.9,
+            "top_z": 1.6500000000000001
+          },
+          {
+            "index": 11,
+            "x_min": 3.9,
+            "x_max": 4.1899999999999995,
+            "top_z": 1.8150000000000002
+          },
+          {
+            "index": 12,
+            "x_min": 4.1899999999999995,
+            "x_max": 4.4799999999999995,
+            "top_z": 1.98
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_desc_long165_29_12",
+      "meshes": 13,
+      "size": [
+        10.0,
+        3.0
+      ],
+      "origin": [
+        2.2600000000000002,
+        1.5,
+        1.98
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 12,
+        "step_height": 0.165,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 4.1899999999999995,
+        "goal_platform_start_x": 4.4799999999999995,
+        "goal_x": 5.13,
+        "flight_end_x": 6.4799999999999995,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.98,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.2600000000000002,
+          1.5,
+          1.98
+        ],
+        "terrain_size": [
+          10.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": -0.165
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": -0.33
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": -0.495
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": -0.66
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": -0.8250000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": -0.99
+          },
+          {
+            "index": 7,
+            "x_min": 2.7399999999999998,
+            "x_max": 3.03,
+            "top_z": -1.155
+          },
+          {
+            "index": 8,
+            "x_min": 3.03,
+            "x_max": 3.32,
+            "top_z": -1.32
+          },
+          {
+            "index": 9,
+            "x_min": 3.32,
+            "x_max": 3.61,
+            "top_z": -1.485
+          },
+          {
+            "index": 10,
+            "x_min": 3.61,
+            "x_max": 3.9,
+            "top_z": -1.6500000000000001
+          },
+          {
+            "index": 11,
+            "x_min": 3.9,
+            "x_max": 4.1899999999999995,
+            "top_z": -1.8150000000000002
+          },
+          {
+            "index": 12,
+            "x_min": 4.1899999999999995,
+            "x_max": 4.4799999999999995,
+            "top_z": -1.98
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_asc_long180_31_lip12_12",
+      "meshes": 26,
+      "size": [
+        10.0,
+        3.0
+      ],
+      "origin": [
+        2.14,
+        1.5,
+        0.0
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 12,
+        "step_height": 0.18,
+        "step_depth": 0.31,
+        "width": 1.2,
+        "nosing": 0.012,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 4.41,
+        "goal_platform_start_x": 4.72,
+        "goal_x": 5.37,
+        "flight_end_x": 6.72,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 2.16,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.14,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          10.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.31,
+            "top_z": 0.18
+          },
+          {
+            "index": 2,
+            "x_min": 1.31,
+            "x_max": 1.62,
+            "top_z": 0.36
+          },
+          {
+            "index": 3,
+            "x_min": 1.62,
+            "x_max": 1.93,
+            "top_z": 0.54
+          },
+          {
+            "index": 4,
+            "x_min": 1.93,
+            "x_max": 2.24,
+            "top_z": 0.72
+          },
+          {
+            "index": 5,
+            "x_min": 2.24,
+            "x_max": 2.55,
+            "top_z": 0.8999999999999999
+          },
+          {
+            "index": 6,
+            "x_min": 2.55,
+            "x_max": 2.86,
+            "top_z": 1.08
+          },
+          {
+            "index": 7,
+            "x_min": 2.86,
+            "x_max": 3.17,
+            "top_z": 1.26
+          },
+          {
+            "index": 8,
+            "x_min": 3.17,
+            "x_max": 3.48,
+            "top_z": 1.44
+          },
+          {
+            "index": 9,
+            "x_min": 3.48,
+            "x_max": 3.79,
+            "top_z": 1.6199999999999999
+          },
+          {
+            "index": 10,
+            "x_min": 3.79,
+            "x_max": 4.1,
+            "top_z": 1.7999999999999998
+          },
+          {
+            "index": 11,
+            "x_min": 4.1,
+            "x_max": 4.41,
+            "top_z": 1.98
+          },
+          {
+            "index": 12,
+            "x_min": 4.41,
+            "x_max": 4.72,
+            "top_z": 2.16
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    },
+    {
+      "name": "round3_reserved_desc_long180_31_lip12_12",
+      "meshes": 25,
+      "size": [
+        10.0,
+        3.0
+      ],
+      "origin": [
+        2.14,
+        1.5,
+        2.16
+      ],
+      "all_closed_positive_volume": true,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 12,
+        "step_height": 0.18,
+        "step_depth": 0.31,
+        "width": 1.2,
+        "nosing": 0.012,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 4.41,
+        "goal_platform_start_x": 4.72,
+        "goal_x": 5.37,
+        "flight_end_x": 6.72,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -2.16,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.14,
+          1.5,
+          2.16
+        ],
+        "terrain_size": [
+          10.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.31,
+            "top_z": -0.18
+          },
+          {
+            "index": 2,
+            "x_min": 1.31,
+            "x_max": 1.62,
+            "top_z": -0.36
+          },
+          {
+            "index": 3,
+            "x_min": 1.62,
+            "x_max": 1.93,
+            "top_z": -0.54
+          },
+          {
+            "index": 4,
+            "x_min": 1.93,
+            "x_max": 2.24,
+            "top_z": -0.72
+          },
+          {
+            "index": 5,
+            "x_min": 2.24,
+            "x_max": 2.55,
+            "top_z": -0.8999999999999999
+          },
+          {
+            "index": 6,
+            "x_min": 2.55,
+            "x_max": 2.86,
+            "top_z": -1.08
+          },
+          {
+            "index": 7,
+            "x_min": 2.86,
+            "x_max": 3.17,
+            "top_z": -1.26
+          },
+          {
+            "index": 8,
+            "x_min": 3.17,
+            "x_max": 3.48,
+            "top_z": -1.44
+          },
+          {
+            "index": 9,
+            "x_min": 3.48,
+            "x_max": 3.79,
+            "top_z": -1.6199999999999999
+          },
+          {
+            "index": 10,
+            "x_min": 3.79,
+            "x_max": 4.1,
+            "top_z": -1.7999999999999998
+          },
+          {
+            "index": 11,
+            "x_min": 4.1,
+            "x_max": 4.41,
+            "top_z": -1.98
+          },
+          {
+            "index": 12,
+            "x_min": 4.41,
+            "x_max": 4.72,
+            "top_z": -2.16
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "simulation_started": false,
+  "training_started": false,
+  "recorded_local": "2026-10-12T05:13:19.849655+08:00",
+  "unapplied_patch_sha256": "fa8394941c57455501df5ca6937f320bf843a74c256e5c2a1e70cc48e5133581",
+  "runtime_source_not_modified": true,
+  "fresh_geometry_combinations": 10,
+  "core_geometries_deliberately_reused": 6
+}
