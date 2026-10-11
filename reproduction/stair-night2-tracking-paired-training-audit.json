@@ -2309,5 +2309,60 @@
       "faithful_tracking"
     ],
     "scope": "Configuration, exact starting checkpoint hash and selected source hashes; differing reward profiles/weights are intentional. No claim of identical GPU trajectories, all physical tensors, initial RNG state or causal effect across training seeds."
-  }
+  },
+  "independent_checkpoint_archives": {
+    "faithful": {
+      "artifact_directory": "artifacts/go2-stairs-night2-faithful-seed1213-760",
+      "manifest_sha256": "9cf77261cfc949ece62d6e20577d6f2aba38abd928eea4c57cdfb33091936ea3",
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "member_hashes_checked": 19,
+      "origin_iteration": 660,
+      "final_iteration": 760,
+      "saved_updates": 100,
+      "environment_steps_this_run": 76800000,
+      "cuda_initialized_CPU_audit": false,
+      "optimizer_step_deltas": {
+        "optimizer_state_dict": [
+          2000.0
+        ],
+        "estimator_optimizer_state_dict": [
+          2000.0
+        ]
+      },
+      "scientific_status": "not-evaluated"
+    },
+    "tracking": {
+      "artifact_directory": "artifacts/go2-stairs-night2-tracking-seed1213-760",
+      "manifest_sha256": "66ecc755556a91953cad23645d77b3ee97a5a47fbe2af78337b044507e7988b7",
+      "checkpoint_sha256": "6491652569ee8a449de5dbd878e5db07de8b6a34da71a1f0d83dcb0126d4a18a",
+      "member_hashes_checked": 19,
+      "origin_iteration": 660,
+      "final_iteration": 760,
+      "saved_updates": 100,
+      "environment_steps_this_run": 76800000,
+      "cuda_initialized_CPU_audit": false,
+      "optimizer_step_deltas": {
+        "optimizer_state_dict": [
+          2000.0
+        ],
+        "estimator_optimizer_state_dict": [
+          2000.0
+        ]
+      },
+      "scientific_status": "not-evaluated"
+    }
+  },
+  "reward_only_difference_checked": {
+    "baseline_profile": "faithful",
+    "modified_profile": "faithful_tracking",
+    "changed_term": "track_lin_vel_xy_exp",
+    "baseline_weight": 1.0,
+    "modified_weight": 1.5,
+    "no_added_leg_contacts": true,
+    "all_other_weights_identical": true,
+    "reward_formulas_and_params_source": "Actual installed Lab CPU configuration checked before launch in reproduction/stair-night2-tracking-cpu-config.json; exact common runtime source hashes verified for both arms."
+  },
+  "source_commit_difference_interpretation": "Original config/launch commits and dirty flags retained verbatim; exact selected runtime source hashes and normalized initial physical readbacks match. This does not verify all initial tensors or deterministic CUDA trajectories.",
+  "completion_conclusion": "Both seed1213 reward arms independently CPU-verified660→760, 100savedupdates, 7680env*100steps*100=76.8M new environment steps each; unchanged30 model shapes and continuous Adam +2000 steps. One paired training seed; no traversal or smoothness acceptance claim.",
+  "audit_postprocessing_note": "First CPU-only watcher had already successfully archived both jobs and produced base inspector audit, then used checks instead of completion_checks in final report assertion. Corrected field and repeated all final archive/hash/budget assertions; no training, simulation or archived artifact modified."
 }
