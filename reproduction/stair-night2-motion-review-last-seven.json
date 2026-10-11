@@ -1,0 +1,4037 @@
+{
+  "schema_version": 1,
+  "reviewed_local": "2026-10-12T05:35:55.611963+08:00",
+  "reviewer_scope": "CPU review of the last seven declared video jobs; no GPU, policy, source-program, raw result, frozen selection or manifest changes",
+  "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+  "continuous_video_reviewed": false,
+  "declared_jobs": [
+    "core-six17-desc-speed03",
+    "core-six17-asc-speed05",
+    "core-six17-desc-speed05",
+    "moderate-nosing-asc-speed03",
+    "moderate-nosing-desc-speed03",
+    "long12-asc-speed03",
+    "long12-desc-speed03"
+  ],
+  "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "judgment_scope": "Selected env0 first episode of each single-geometry 32-env video run, randomized reset seed907, construction seed1, faithful reward, external heading yaw feedback and no lateral correction. Does not replace the 512-env final matrix or establish original-paper/real-robot equivalence.",
+  "measurement_limits": [
+    "Continuous intervals here mean consecutive 20 ms policy-boundary samples over 1 N, not instrumented uninterrupted physics contacts.",
+    "Exposure equals sample count times 20 ms; endpoint span is reported separately.",
+    "History peaks are not contact durations.",
+    "Foot link world-XY speed under current contact is a proxy; true contact point tangential slip is not measured.",
+    "Frame/physics timing is nominal PTS +20 ms; exact synchronization was not instrumented.",
+    "Single-geometry 32-env video subsets are not the 512-env final matrix.",
+    "All retained frames are reviewed in chronological row-major contact sheets, using 320x180 thumbnails. Foot/leg occlusion and geometry overlap limit contact-point and fine-slip judgments.",
+    "No realtime playback was performed. No unverified video is silently repaired, frame-dropped or assigned a physics-time alignment.",
+    "No failure, numeric acceptance threshold, reserved final evidence or frozen checkpoint selection is revised by this descriptive review."
+  ],
+  "full_telemetry_analysis": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/motion-telemetry-last-seven.json",
+  "full_telemetry_analysis_sha256": "53e339b86aa036c2431b6f403c942e362b67ff8d24527eabeb522a5e455c19a1",
+  "visual_observations": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/last-seven-visual-observations.json",
+  "visual_observations_sha256": "f120d012978795205112646b846b9caa5bbb70a5079850c5fc7eea28292b490d",
+  "jobs": [
+    {
+      "label": "core-six17-desc-speed03",
+      "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+      "continuous_video_reviewed": false,
+      "material_directory": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03",
+      "visual_frames_reviewed": 635,
+      "frame_indices_reviewed_inclusive": [
+        0,
+        634
+      ],
+      "nominal_simulation_times_s": [
+        0.02,
+        12.699999809265137
+      ],
+      "reviewed_pages": [
+        {
+          "page": 1,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-01.png",
+          "frame_indices_inclusive": [
+            0,
+            59
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            0.0,
+            1.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            0.02,
+            1.2
+          ],
+          "sha256": "001b49f2aa4a6ee211aaa03501a507e516a140ae0358b6bd1a8d860b52385742"
+        },
+        {
+          "page": 2,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-02.png",
+          "frame_indices_inclusive": [
+            60,
+            119
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            1.2,
+            2.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            1.22,
+            2.4
+          ],
+          "sha256": "d5f1edae36beea0ad5a0ce5561dd02a0d53b68c13919592f9e919b014a8a73b7"
+        },
+        {
+          "page": 3,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-03.png",
+          "frame_indices_inclusive": [
+            120,
+            179
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            2.4,
+            3.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            2.42,
+            3.6
+          ],
+          "sha256": "153330e708295c43c87a5c3178e91f026042a10fc777762b9ccf2468050b25fa"
+        },
+        {
+          "page": 4,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-04.png",
+          "frame_indices_inclusive": [
+            180,
+            239
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            3.6,
+            4.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            3.62,
+            4.8
+          ],
+          "sha256": "8ff898a0e5b4bb237b0028c24cb13debc8652df223d0cc80c0da14b17518446f"
+        },
+        {
+          "page": 5,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-05.png",
+          "frame_indices_inclusive": [
+            240,
+            299
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            4.8,
+            5.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            4.82,
+            6.0
+          ],
+          "sha256": "4f188288ec111855da1ad2ed7f67f1c4ac77e6f0644d2f9e71b1eef893c63cbb"
+        },
+        {
+          "page": 6,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-06.png",
+          "frame_indices_inclusive": [
+            300,
+            359
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            6.0,
+            7.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            6.0200000000000005,
+            7.2
+          ],
+          "sha256": "976ceeccf4ffb12e6e58a00c79d6921bb6a8d1d76598ba1bbe961c56f2356d86"
+        },
+        {
+          "page": 7,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-07.png",
+          "frame_indices_inclusive": [
+            360,
+            419
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            7.2,
+            8.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            7.22,
+            8.4
+          ],
+          "sha256": "948c6ce4ff158902c420b606e2fdfb47884313c1a8be0e1bffc71d40bf086196"
+        },
+        {
+          "page": 8,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-08.png",
+          "frame_indices_inclusive": [
+            420,
+            479
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            8.4,
+            9.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            8.42,
+            9.6
+          ],
+          "sha256": "f56cea8d9384a027171ed8637c57237e81a381e53f822041fc91d39f12773097"
+        },
+        {
+          "page": 9,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-09.png",
+          "frame_indices_inclusive": [
+            480,
+            539
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            9.6,
+            10.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            9.620000000000001,
+            10.8
+          ],
+          "sha256": "c94ca95c2e61bf93bc080ad703989fe12abafaecf31377bd314ded85cbc7190d"
+        },
+        {
+          "page": 10,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-10.png",
+          "frame_indices_inclusive": [
+            540,
+            599
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            10.8,
+            11.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            10.82,
+            12.0
+          ],
+          "sha256": "ae57210207b9b70735781fa01248bab6d83b040e378a51af68cf53be58b2c3cf"
+        },
+        {
+          "page": 11,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed03/selected-all-frames/page-11.png",
+          "frame_indices_inclusive": [
+            600,
+            634
+          ],
+          "frame_count": 35,
+          "encoded_pts_s_inclusive": [
+            12.0,
+            12.68
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            12.02,
+            12.700000000000001
+          ],
+          "sha256": "059c7272e73a83ae2851d5767d870084f0f11f119df4542c560b114f0b8e5b12"
+        }
+      ],
+      "no_retained_frame_gap": true,
+      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
+      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "source_binding": {
+        "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-12-03_night2-video-core-six17-desc-speed03-20261012050424486048",
+        "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+        "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+        "source_tracked_files_dirty": false,
+        "config_sha256": "f58c77d8c42d0f4281100f9e4d9ea0c361d945079a4e62f132de733359792212",
+        "result_sha256": "654e408db732466261c007c74a547adfbd6018d32169ea16bab230971189dca3",
+        "clip_sha256": "fdef1f122b1020900f1f9ecb4144f2e19ab8ced0981528aa4c4b7ab9eb393c0f",
+        "clip_provenance_sha256": "676c08d712026a55cbdfb268443c8be68156545a7f82e2742512b9b07ef85652",
+        "all_frames_index_sha256": "66e1a89f2cd867faa945dcc16875e77eaa0be8fefa692baaa861c90d19c66531",
+        "telemetry_csv_sha256": "d832c874ced4dd3f163a83ca30698f6fe1a46b94d8ab9787d5076a8107769745",
+        "telemetry_summary_sha256": "48f0ff7b7aa7f0a5676407dc38c4d8db10cdf6222ee94402b645ee2d9fc69c68",
+        "materials_sha256": "06bb5699b3e20524e28239ee4fe6fb0224b72713b69140c45cb10c8277105c88"
+      },
+      "source_video_binding": {
+        "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-12-03_night2-video-core-six17-desc-speed03-20261012050424486048/videos/go2_stairs_asc_0000.mp4",
+        "sha256": "9012160da6de7c98c4dc5d758b76f2496ce4917e6774ab5117dba28586805b1d",
+        "source_video_info": {
+          "fps": 50.0,
+          "reported_frame_count": 641,
+          "width": 1280,
+          "height": 720,
+          "decoded_frame_count": 641
+        }
+      },
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "reset_seed": 907,
+      "camera_environment_id": 0,
+      "command_forward_speed_m_s": 0.3,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.25,
+        "goal_platform_start_x": 2.5,
+        "goal_x": 3.15,
+        "flight_end_x": 4.5,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.02,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.25,
+          1.5,
+          1.02
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": -0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": -0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": -0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": -0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": -0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": -1.02
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "population": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0,
+        "current_sample_base_contact_envs": 0,
+        "failure_reason": null
+      },
+      "phase_telemetry": {
+        "root_first_riser_cross": {
+          "frame": 199,
+          "time_s": 4.0,
+          "root_x": 1.0017155408859253
+        },
+        "feet_first_riser_cross": {
+          "FL": {
+            "frame": 162,
+            "time_s": 3.2600000000000002,
+            "root_x": 0.8079140782356262
+          },
+          "FR": {
+            "frame": 129,
+            "time_s": 2.6,
+            "root_x": 0.6227456331253052
+          },
+          "RL": {
+            "frame": 262,
+            "time_s": 5.26,
+            "root_x": 1.3070855140686035
+          },
+          "RR": {
+            "frame": 289,
+            "time_s": 5.8,
+            "root_x": 1.4306131601333618
+          }
+        },
+        "root_goal_platform_cross": {
+          "frame": 502,
+          "time_s": 10.06,
+          "root_x": 2.502556324005127
+        },
+        "all_feet_enter_goal_platform": {
+          "frame": 570,
+          "time_s": 11.42,
+          "root_x": 2.906938314437866
+        },
+        "root_goal_cross": {
+          "frame": 610,
+          "time_s": 12.22,
+          "root_x": 3.1536011695861816
+        },
+        "last_25_boundary_samples": {
+          "frames": [
+            610,
+            634
+          ],
+          "times_s": [
+            12.22,
+            12.700000000000001
+          ],
+          "sample_exposure_s": 0.5,
+          "endpoint_span_s": 0.48,
+          "all_feet_beyond_goal_platform_03m": true,
+          "root_at_or_beyond_goal": true,
+          "minimum_history_contact_feet": 3
+        }
+      },
+      "movement_telemetry": {
+        "root_y_range_m": [
+          0.02412692829966545,
+          0.10536856204271317
+        ],
+        "root_yaw_absolute_peak_rad": 0.02149549312889576,
+        "root_roll_absolute_peak_rad": 0.0897616446018219,
+        "base_current_peak_n": 0.0,
+        "flight_pause_spans": [],
+        "any_leg_contact_fraction_all_frames": 0.24251968503937008
+      },
+      "leg_contact_measurement": "Current contact-sensor normal force norm >1 N at consecutive20ms boundaries. Samples*20ms exposure is distinct from endpoint-span and does not prove uninterrupted within-step support.",
+      "significant_leg_contacts": {
+        "FL_calf": {
+          "contact_samples": 4,
+          "peak_current_n": 118.97465515136719,
+          "history_peak_n": 118.97465515136719,
+          "longest_boundary_sample_exposure_s": 0.04,
+          "interval_count": 2,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                234,
+                235
+              ],
+              "times_s_inclusive": [
+                4.7,
+                4.72
+              ],
+              "samples": 2,
+              "boundary_sample_exposure_s": 0.04,
+              "sample_endpoint_span_s": 0.02,
+              "peak_force_n": 118.97465515136719,
+              "peak_frame": 234,
+              "peak_time_s": 4.7,
+              "peak_force_w_xyz_n": [
+                80.82233428955078,
+                3.972143858277377e-08,
+                87.30818939208984
+              ],
+              "peak_root_xyz_m": [
+                1.1875256299972534,
+                0.07906810194253922,
+                0.1127920150756836
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.503244936466217,
+                0.17553533613681793,
+                0.8756571412086487
+              ],
+              "minimum_force_n": 27.125627517700195,
+              "mean_force_n": 73.05014133453369
+            },
+            {
+              "frames_inclusive": [
+                243,
+                244
+              ],
+              "times_s_inclusive": [
+                4.88,
+                4.9
+              ],
+              "samples": 2,
+              "boundary_sample_exposure_s": 0.04,
+              "sample_endpoint_span_s": 0.02,
+              "peak_force_n": 23.07941246032715,
+              "peak_frame": 243,
+              "peak_time_s": 4.88,
+              "peak_force_w_xyz_n": [
+                15.686753273010254,
+                -0.017359517514705658,
+                16.92881202697754
+              ],
+              "peak_root_xyz_m": [
+                1.2284948825836182,
+                0.07970443367958069,
+                0.08195459842681885
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.5030396580696106,
+                0.17726697027683258,
+                0.8755666613578796
+              ],
+              "minimum_force_n": 5.164753437042236,
+              "mean_force_n": 14.122082948684692
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              234,
+              235
+            ],
+            "times_s_inclusive": [
+              4.7,
+              4.72
+            ],
+            "samples": 2,
+            "boundary_sample_exposure_s": 0.04,
+            "sample_endpoint_span_s": 0.02,
+            "peak_force_n": 118.97465515136719,
+            "peak_frame": 234,
+            "peak_time_s": 4.7,
+            "peak_force_w_xyz_n": [
+              80.82233428955078,
+              3.972143858277377e-08,
+              87.30818939208984
+            ],
+            "peak_root_xyz_m": [
+              1.1875256299972534,
+              0.07906810194253922,
+              0.1127920150756836
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.503244936466217,
+              0.17553533613681793,
+              0.8756571412086487
+            ],
+            "minimum_force_n": 27.125627517700195,
+            "mean_force_n": 73.05014133453369
+          }
+        },
+        "FR_calf": {
+          "contact_samples": 150,
+          "peak_current_n": 107.30321502685547,
+          "history_peak_n": 218.3601837158203,
+          "longest_boundary_sample_exposure_s": 0.76,
+          "interval_count": 13,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                255,
+                292
+              ],
+              "times_s_inclusive": [
+                5.12,
+                5.86
+              ],
+              "samples": 38,
+              "boundary_sample_exposure_s": 0.76,
+              "sample_endpoint_span_s": 0.74,
+              "peak_force_n": 102.13107299804688,
+              "peak_frame": 285,
+              "peak_time_s": 5.72,
+              "peak_force_w_xyz_n": [
+                13.236055374145508,
+                0.022796466946601868,
+                101.26974487304688
+              ],
+              "peak_root_xyz_m": [
+                1.4047486782073975,
+                0.07403827458620071,
+                -0.04173547029495239
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.33506467938423157,
+                0.003159882500767708,
+                0.7669727802276611
+              ],
+              "minimum_force_n": 12.9909029006958,
+              "mean_force_n": 60.064184490003086
+            },
+            {
+              "frames_inclusive": [
+                203,
+                232
+              ],
+              "times_s_inclusive": [
+                4.08,
+                4.66
+              ],
+              "samples": 30,
+              "boundary_sample_exposure_s": 0.6,
+              "sample_endpoint_span_s": 0.58,
+              "peak_force_n": 107.30321502685547,
+              "peak_frame": 222,
+              "peak_time_s": 4.46,
+              "peak_force_w_xyz_n": [
+                3.6928813457489014,
+                -1.0449671128398563e-09,
+                107.2396469116211
+              ],
+              "peak_root_xyz_m": [
+                1.1236376762390137,
+                0.06768155097961426,
+                0.1490095853805542
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.5812250971794128,
+                -0.011876342818140984,
+                0.9401839971542358
+              ],
+              "minimum_force_n": 17.798900604248047,
+              "mean_force_n": 74.51218382517497
+            },
+            {
+              "frames_inclusive": [
+                153,
+                169
+              ],
+              "times_s_inclusive": [
+                3.08,
+                3.4
+              ],
+              "samples": 17,
+              "boundary_sample_exposure_s": 0.34,
+              "sample_endpoint_span_s": 0.32,
+              "peak_force_n": 92.6864013671875,
+              "peak_frame": 169,
+              "peak_time_s": 3.4,
+              "peak_force_w_xyz_n": [
+                61.62773895263672,
+                1.2678492922191253e-08,
+                69.22998046875
+              ],
+              "peak_root_xyz_m": [
+                0.8483879566192627,
+                0.05590074136853218,
+                0.2619706392288208
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.7525690197944641,
+                -0.04720292612910271,
+                1.0419968366622925
+              ],
+              "minimum_force_n": 28.388572692871094,
+              "mean_force_n": 54.29473899392521
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              203,
+              232
+            ],
+            "times_s_inclusive": [
+              4.08,
+              4.66
+            ],
+            "samples": 30,
+            "boundary_sample_exposure_s": 0.6,
+            "sample_endpoint_span_s": 0.58,
+            "peak_force_n": 107.30321502685547,
+            "peak_frame": 222,
+            "peak_time_s": 4.46,
+            "peak_force_w_xyz_n": [
+              3.6928813457489014,
+              -1.0449671128398563e-09,
+              107.2396469116211
+            ],
+            "peak_root_xyz_m": [
+              1.1236376762390137,
+              0.06768155097961426,
+              0.1490095853805542
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.5812250971794128,
+              -0.011876342818140984,
+              0.9401839971542358
+            ],
+            "minimum_force_n": 17.798900604248047,
+            "mean_force_n": 74.51218382517497
+          }
+        },
+        "RL_calf": {
+          "contact_samples": 14,
+          "peak_current_n": 30.520952224731445,
+          "history_peak_n": 53.06549835205078,
+          "longest_boundary_sample_exposure_s": 0.14,
+          "interval_count": 2,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                274,
+                280
+              ],
+              "times_s_inclusive": [
+                5.5,
+                5.62
+              ],
+              "samples": 7,
+              "boundary_sample_exposure_s": 0.14,
+              "sample_endpoint_span_s": 0.12,
+              "peak_force_n": 22.876352310180664,
+              "peak_frame": 274,
+              "peak_time_s": 5.5,
+              "peak_force_w_xyz_n": [
+                15.871049880981445,
+                -1.0973987940587904e-08,
+                16.47535514831543
+              ],
+              "peak_root_xyz_m": [
+                1.3456447124481201,
+                0.07265681773424149,
+                -0.014054417610168457
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.7968815565109253,
+                0.21899989247322083,
+                1.0861715078353882
+              ],
+              "minimum_force_n": 12.191155433654785,
+              "mean_force_n": 18.214705875941686
+            },
+            {
+              "frames_inclusive": [
+                327,
+                333
+              ],
+              "times_s_inclusive": [
+                6.5600000000000005,
+                6.68
+              ],
+              "samples": 7,
+              "boundary_sample_exposure_s": 0.14,
+              "sample_endpoint_span_s": 0.12,
+              "peak_force_n": 30.520952224731445,
+              "peak_frame": 327,
+              "peak_time_s": 6.5600000000000005,
+              "peak_force_w_xyz_n": [
+                20.194129943847656,
+                0.00040817554690875113,
+                22.885053634643555
+              ],
+              "peak_root_xyz_m": [
+                1.5955970287322998,
+                0.0975675880908966,
+                -0.1823725700378418
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.546271026134491,
+                0.2445215880870819,
+                0.9104906320571899
+              ],
+              "minimum_force_n": 12.792471885681152,
+              "mean_force_n": 20.319102696010045
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              327,
+              333
+            ],
+            "times_s_inclusive": [
+              6.5600000000000005,
+              6.68
+            ],
+            "samples": 7,
+            "boundary_sample_exposure_s": 0.14,
+            "sample_endpoint_span_s": 0.12,
+            "peak_force_n": 30.520952224731445,
+            "peak_frame": 327,
+            "peak_time_s": 6.5600000000000005,
+            "peak_force_w_xyz_n": [
+              20.194129943847656,
+              0.00040817554690875113,
+              22.885053634643555
+            ],
+            "peak_root_xyz_m": [
+              1.5955970287322998,
+              0.0975675880908966,
+              -0.1823725700378418
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.546271026134491,
+              0.2445215880870819,
+              0.9104906320571899
+            ],
+            "minimum_force_n": 12.792471885681152,
+            "mean_force_n": 20.319102696010045
+          }
+        }
+      },
+      "notes_zh": "首轮0–634帧逐页按行检查：起步与平台接近连续；约3.1 s前脚临近边缘后进入下楼姿态，6级下降没有明显长停、猛烈侧摆或跌落；前腿较低姿态随台阶前进，末级过渡到平台后四脚跟进并满足停留。图像几何遮挡和320×180缩略图不能排除小腿贴靠。当前遥测表明FR calf反复且有0.60/0.76 s连续边界采样、约100 N垂向主导接触，因此不能写无擦碰或无撑腿。",
+      "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
+      "very_silky_certified": false
+    },
+    {
+      "label": "core-six17-asc-speed05",
+      "motion_quality_review_mode": "alignment_unverified",
+      "visual_frames_reviewed": 0,
+      "reviewed_pages": [],
+      "motion_quality_verdict": "not_assessed_alignment_unverified",
+      "notes_zh": "原视频帧数比 trial executed_steps 多1；严格对齐保护拒绝生成首轮 clip/pages/20 ms帧映射，未进行错误对齐图像审查。原始 MP4 与遥测保存，未删帧或假定尾帧重复。",
+      "attempts": [
+        {
+          "material_directory": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-asc-speed05",
+          "materials_status": "CPU_processing_error; original_video_preserved",
+          "materials_sha256": "ecc17270ef4c2549a73eb2f14554d73be31f17419f401d6b9b1dd8187c116bae",
+          "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-13-15_night2-video-core-six17-asc-speed05-20261012050424486048",
+          "source_config_sha256": "0f82ae3c2b9fe81c560237597503ac41a9213a805a260a56a318ffe345b7fadf",
+          "source_result_sha256": "641a8bcf1c2cc52994e3b2dba739319dc17785ef29ba6de2fc9875bfe54f0ec7",
+          "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+          "source_tracked_files_dirty": false,
+          "command_forward_speed_m_s": 0.5,
+          "selected_env_completed": true,
+          "selected_env_first_episode_duration_s": 8.019999504089355,
+          "source_video": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-13-15_night2-video-core-six17-asc-speed05-20261012050424486048/videos/go2_stairs_asc_0000.mp4",
+          "source_video_sha256": "57bbc04d665d5287cae41bd113cab953b904f4101f157e9784a06a9f81a49c81",
+          "source_video_info_cpu_decode": {
+            "fps": 50.0,
+            "reported_frame_count": 403,
+            "width": 1280,
+            "height": 720,
+            "decoded_frame_count": 403
+          },
+          "executed_policy_steps": 402,
+          "guard_failure": "clip-first-episode-video: Source frame count does not match recorder length/executed steps; cannot verify phase alignment",
+          "guard_failure_log_sha256": "fc1a7a36191970f16dd7b1f39053ef00f850181258bbd832fb8b1dd5fae4ad6b",
+          "population": {
+            "num_envs": 32,
+            "completions": 32,
+            "falls": 0,
+            "stalls": 0,
+            "lateral_escapes": 0,
+            "base_contact_envs": 0,
+            "current_sample_base_contact_envs": 0,
+            "failure_reason": null
+          }
+        },
+        {
+          "material_directory": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/core-six17-asc-speed05",
+          "materials_status": "CPU_processing_error; original_video_preserved",
+          "materials_sha256": "308bdb70eb0f59900cd1b28de7164f5ee46969eb183c36675c696c9b0dbd2330",
+          "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-17-59_night2-video-core-six17-asc-speed05-20261012051756241513",
+          "source_config_sha256": "0f82ae3c2b9fe81c560237597503ac41a9213a805a260a56a318ffe345b7fadf",
+          "source_result_sha256": "641a8bcf1c2cc52994e3b2dba739319dc17785ef29ba6de2fc9875bfe54f0ec7",
+          "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+          "source_tracked_files_dirty": false,
+          "command_forward_speed_m_s": 0.5,
+          "selected_env_completed": true,
+          "selected_env_first_episode_duration_s": 8.019999504089355,
+          "source_video": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-17-59_night2-video-core-six17-asc-speed05-20261012051756241513/videos/go2_stairs_asc_0000.mp4",
+          "source_video_sha256": "57bbc04d665d5287cae41bd113cab953b904f4101f157e9784a06a9f81a49c81",
+          "source_video_info_cpu_decode": {
+            "fps": 50.0,
+            "reported_frame_count": 403,
+            "width": 1280,
+            "height": 720,
+            "decoded_frame_count": 403
+          },
+          "executed_policy_steps": 402,
+          "guard_failure": "clip-first-episode-video: Source frame count does not match recorder length/executed steps; cannot verify phase alignment",
+          "guard_failure_log_sha256": "fc1a7a36191970f16dd7b1f39053ef00f850181258bbd832fb8b1dd5fae4ad6b",
+          "population": {
+            "num_envs": 32,
+            "completions": 32,
+            "falls": 0,
+            "stalls": 0,
+            "lateral_escapes": 0,
+            "base_contact_envs": 0,
+            "current_sample_base_contact_envs": 0,
+            "failure_reason": null
+          }
+        }
+      ]
+    },
+    {
+      "label": "core-six17-desc-speed05",
+      "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+      "continuous_video_reviewed": false,
+      "material_directory": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05",
+      "visual_frames_reviewed": 387,
+      "frame_indices_reviewed_inclusive": [
+        0,
+        386
+      ],
+      "nominal_simulation_times_s": [
+        0.02,
+        7.739999771118164
+      ],
+      "reviewed_pages": [
+        {
+          "page": 1,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-01.png",
+          "frame_indices_inclusive": [
+            0,
+            59
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            0.0,
+            1.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            0.02,
+            1.2
+          ],
+          "sha256": "e2ddf9bb2fdb0616884c7b080eeb688429c90f0ada273e612576b86b8e3c87ee"
+        },
+        {
+          "page": 2,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-02.png",
+          "frame_indices_inclusive": [
+            60,
+            119
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            1.2,
+            2.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            1.22,
+            2.4
+          ],
+          "sha256": "3911e62ad4614ab999e29b9755afa4860d083a2b4bb490efc4f051ee3976d99b"
+        },
+        {
+          "page": 3,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-03.png",
+          "frame_indices_inclusive": [
+            120,
+            179
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            2.4,
+            3.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            2.42,
+            3.6
+          ],
+          "sha256": "2b4983637d63e7f7f4a2b74ae99996484183dc56a1e21ebbefcb2b9ca3c5fe6e"
+        },
+        {
+          "page": 4,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-04.png",
+          "frame_indices_inclusive": [
+            180,
+            239
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            3.6,
+            4.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            3.62,
+            4.8
+          ],
+          "sha256": "0d37a327806dd5643ed82c83184ee8794c50695395f7cb1d5c50f709a10061fd"
+        },
+        {
+          "page": 5,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-05.png",
+          "frame_indices_inclusive": [
+            240,
+            299
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            4.8,
+            5.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            4.82,
+            6.0
+          ],
+          "sha256": "302a9993c61596f4c566c3be0b2cd26d57c83ac34cf781e5ace8a26772a4016f"
+        },
+        {
+          "page": 6,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-06.png",
+          "frame_indices_inclusive": [
+            300,
+            359
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            6.0,
+            7.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            6.0200000000000005,
+            7.2
+          ],
+          "sha256": "7e6131eb33e5a8ab56189b117413d42f845d951986629cbd6e86f51e7d97c04b"
+        },
+        {
+          "page": 7,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/core-six17-desc-speed05/selected-all-frames/page-07.png",
+          "frame_indices_inclusive": [
+            360,
+            386
+          ],
+          "frame_count": 27,
+          "encoded_pts_s_inclusive": [
+            7.2,
+            7.72
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            7.22,
+            7.74
+          ],
+          "sha256": "f32dba51b7ff2167c91563f941d2b4b4546a253e5096db37c74f682b53d3a86e"
+        }
+      ],
+      "no_retained_frame_gap": true,
+      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
+      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "source_binding": {
+        "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-00_night2-video-core-six17-desc-speed05-20261012050424486048",
+        "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+        "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+        "source_tracked_files_dirty": false,
+        "config_sha256": "f58c77d8c42d0f4281100f9e4d9ea0c361d945079a4e62f132de733359792212",
+        "result_sha256": "ac9f83abd8d029c3c190788f95979ac2ff92fe961855a362b3917464d37dac35",
+        "clip_sha256": "aeb4caacad5aeafcd554f8f10d0e602c1d9813f9031f537da8a986752df091d0",
+        "clip_provenance_sha256": "27373fd9ceda4033b9f28355f5a869c744f01e87a76594cd2294d716c83207e3",
+        "all_frames_index_sha256": "9530a364b512bf68a23d74e48f22b0467feeb8940afdda53401dd190704bbd32",
+        "telemetry_csv_sha256": "68ddb6466103292e047a3a65042b71766d976329c591ba2d364393bdb6f7948e",
+        "telemetry_summary_sha256": "27875d60a306321145298be7aca15a79fcfe69c652317e416d10c4afc08a6dac",
+        "materials_sha256": "56eeb0e346aa3e17e666b4e49ef5bf91210e37833153de50a06f08dde5409bdf"
+      },
+      "source_video_binding": {
+        "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-00_night2-video-core-six17-desc-speed05-20261012050424486048/videos/go2_stairs_asc_0000.mp4",
+        "sha256": "1f5181558ac967b2e3d400990ae6f37bdb578575d0cc4c4be3b03eba15a6bfea",
+        "source_video_info": {
+          "fps": 50.0,
+          "reported_frame_count": 392,
+          "width": 1280,
+          "height": 720,
+          "decoded_frame_count": 392
+        }
+      },
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "reset_seed": 907,
+      "camera_environment_id": 0,
+      "command_forward_speed_m_s": 0.5,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.25,
+        "goal_platform_start_x": 2.5,
+        "goal_x": 3.15,
+        "flight_end_x": 4.5,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.02,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.25,
+          1.5,
+          1.02
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": -0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": -0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": -0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": -0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": -0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": -1.02
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "population": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0,
+        "current_sample_base_contact_envs": 0,
+        "failure_reason": null
+      },
+      "phase_telemetry": {
+        "root_first_riser_cross": {
+          "frame": 115,
+          "time_s": 2.32,
+          "root_x": 1.0023133754730225
+        },
+        "feet_first_riser_cross": {
+          "FL": {
+            "frame": 84,
+            "time_s": 1.7,
+            "root_x": 0.6850605010986328
+          },
+          "FR": {
+            "frame": 67,
+            "time_s": 1.36,
+            "root_x": 0.524644136428833
+          },
+          "RL": {
+            "frame": 157,
+            "time_s": 3.16,
+            "root_x": 1.3396804332733154
+          },
+          "RR": {
+            "frame": 172,
+            "time_s": 3.46,
+            "root_x": 1.4691331386566162
+          }
+        },
+        "root_goal_platform_cross": {
+          "frame": 296,
+          "time_s": 5.94,
+          "root_x": 2.5029380321502686
+        },
+        "all_feet_enter_goal_platform": {
+          "frame": 329,
+          "time_s": 6.6000000000000005,
+          "root_x": 2.8244447708129883
+        },
+        "root_goal_cross": {
+          "frame": 362,
+          "time_s": 7.26,
+          "root_x": 3.151263952255249
+        },
+        "last_25_boundary_samples": {
+          "frames": [
+            362,
+            386
+          ],
+          "times_s": [
+            7.26,
+            7.74
+          ],
+          "sample_exposure_s": 0.5,
+          "endpoint_span_s": 0.48,
+          "all_feet_beyond_goal_platform_03m": true,
+          "root_at_or_beyond_goal": true,
+          "minimum_history_contact_feet": 2
+        }
+      },
+      "movement_telemetry": {
+        "root_y_range_m": [
+          -0.0986577495932579,
+          0.04892555996775627
+        ],
+        "root_yaw_absolute_peak_rad": 0.0503181517124176,
+        "root_roll_absolute_peak_rad": 0.07451950758695602,
+        "base_current_peak_n": 0.0,
+        "flight_pause_spans": [],
+        "any_leg_contact_fraction_all_frames": 0.34108527131782945
+      },
+      "leg_contact_measurement": "Current contact-sensor normal force norm >1 N at consecutive20ms boundaries. Samples*20ms exposure is distinct from endpoint-span and does not prove uninterrupted within-step support.",
+      "significant_leg_contacts": {
+        "FL_calf": {
+          "contact_samples": 109,
+          "peak_current_n": 151.80174255371094,
+          "history_peak_n": 151.80174255371094,
+          "longest_boundary_sample_exposure_s": 0.46,
+          "interval_count": 8,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                178,
+                200
+              ],
+              "times_s_inclusive": [
+                3.58,
+                4.0200000000000005
+              ],
+              "samples": 23,
+              "boundary_sample_exposure_s": 0.46,
+              "sample_endpoint_span_s": 0.44,
+              "peak_force_n": 151.80174255371094,
+              "peak_frame": 184,
+              "peak_time_s": 3.7,
+              "peak_force_w_xyz_n": [
+                25.315101623535156,
+                -0.1900993287563324,
+                149.6759033203125
+              ],
+              "peak_root_xyz_m": [
+                1.5822117328643799,
+                -0.002698233351111412,
+                -0.12861573696136475
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.08090978115797043,
+                0.09076341241598129,
+                0.6017448306083679
+              ],
+              "minimum_force_n": 18.260774612426758,
+              "mean_force_n": 68.70013228706692
+            },
+            {
+              "frames_inclusive": [
+                212,
+                232
+              ],
+              "times_s_inclusive": [
+                4.26,
+                4.66
+              ],
+              "samples": 21,
+              "boundary_sample_exposure_s": 0.42,
+              "sample_endpoint_span_s": 0.4,
+              "peak_force_n": 100.59294891357422,
+              "peak_frame": 221,
+              "peak_time_s": 4.44,
+              "peak_force_w_xyz_n": [
+                41.281978607177734,
+                -0.0037762774154543877,
+                91.73188781738281
+              ],
+              "peak_root_xyz_m": [
+                1.87606680393219,
+                -0.034519121050834656,
+                -0.34212636947631836
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.16218993067741394,
+                0.055048394948244095,
+                0.42577144503593445
+              ],
+              "minimum_force_n": 5.767396926879883,
+              "mean_force_n": 70.14945175534203
+            },
+            {
+              "frames_inclusive": [
+                116,
+                135
+              ],
+              "times_s_inclusive": [
+                2.34,
+                2.72
+              ],
+              "samples": 20,
+              "boundary_sample_exposure_s": 0.4,
+              "sample_endpoint_span_s": 0.38,
+              "peak_force_n": 113.36651611328125,
+              "peak_frame": 129,
+              "peak_time_s": 2.6,
+              "peak_force_w_xyz_n": [
+                8.23519515991211,
+                2.2619013329006066e-09,
+                113.06700897216797
+              ],
+              "peak_root_xyz_m": [
+                1.1296653747558594,
+                0.024342413991689682,
+                0.15179216861724854
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.5767829418182373,
+                0.11527270078659058,
+                0.9439219832420349
+              ],
+              "minimum_force_n": 6.367650508880615,
+              "mean_force_n": 61.667636442184445
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              178,
+              200
+            ],
+            "times_s_inclusive": [
+              3.58,
+              4.0200000000000005
+            ],
+            "samples": 23,
+            "boundary_sample_exposure_s": 0.46,
+            "sample_endpoint_span_s": 0.44,
+            "peak_force_n": 151.80174255371094,
+            "peak_frame": 184,
+            "peak_time_s": 3.7,
+            "peak_force_w_xyz_n": [
+              25.315101623535156,
+              -0.1900993287563324,
+              149.6759033203125
+            ],
+            "peak_root_xyz_m": [
+              1.5822117328643799,
+              -0.002698233351111412,
+              -0.12861573696136475
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.08090978115797043,
+              0.09076341241598129,
+              0.6017448306083679
+            ],
+            "minimum_force_n": 18.260774612426758,
+            "mean_force_n": 68.70013228706692
+          }
+        },
+        "FR_calf": {
+          "contact_samples": 26,
+          "peak_current_n": 65.52439880371094,
+          "history_peak_n": 146.52703857421875,
+          "longest_boundary_sample_exposure_s": 0.36,
+          "interval_count": 2,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                74,
+                91
+              ],
+              "times_s_inclusive": [
+                1.5,
+                1.84
+              ],
+              "samples": 18,
+              "boundary_sample_exposure_s": 0.36,
+              "sample_endpoint_span_s": 0.34,
+              "peak_force_n": 65.52439880371094,
+              "peak_frame": 86,
+              "peak_time_s": 1.74,
+              "peak_force_w_xyz_n": [
+                25.584169387817383,
+                -4.166908595948371e-09,
+                60.323272705078125
+              ],
+              "peak_root_xyz_m": [
+                0.704569935798645,
+                0.04809946566820145,
+                0.2662304639816284
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.9064748287200928,
+                -0.057175710797309875,
+                1.0694231986999512
+              ],
+              "minimum_force_n": 16.535486221313477,
+              "mean_force_n": 46.28710630204942
+            },
+            {
+              "frames_inclusive": [
+                162,
+                169
+              ],
+              "times_s_inclusive": [
+                3.2600000000000002,
+                3.4
+              ],
+              "samples": 8,
+              "boundary_sample_exposure_s": 0.16,
+              "sample_endpoint_span_s": 0.14,
+              "peak_force_n": 62.15740966796875,
+              "peak_frame": 165,
+              "peak_time_s": 3.3200000000000003,
+              "peak_force_w_xyz_n": [
+                49.43329620361328,
+                3.094519129831497e-08,
+                37.68146514892578
+              ],
+              "peak_root_xyz_m": [
+                1.4098197221755981,
+                1.7258513253182173e-05,
+                -0.015272855758666992
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.2623378038406372,
+                -0.08139453828334808,
+                0.7209893465042114
+              ],
+              "minimum_force_n": 10.29336929321289,
+              "mean_force_n": 37.04858446121216
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              74,
+              91
+            ],
+            "times_s_inclusive": [
+              1.5,
+              1.84
+            ],
+            "samples": 18,
+            "boundary_sample_exposure_s": 0.36,
+            "sample_endpoint_span_s": 0.34,
+            "peak_force_n": 65.52439880371094,
+            "peak_frame": 86,
+            "peak_time_s": 1.74,
+            "peak_force_w_xyz_n": [
+              25.584169387817383,
+              -4.166908595948371e-09,
+              60.323272705078125
+            ],
+            "peak_root_xyz_m": [
+              0.704569935798645,
+              0.04809946566820145,
+              0.2662304639816284
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.9064748287200928,
+              -0.057175710797309875,
+              1.0694231986999512
+            ],
+            "minimum_force_n": 16.535486221313477,
+            "mean_force_n": 46.28710630204942
+          }
+        }
+      },
+      "notes_zh": "首轮0–386帧逐页完整检查。起步、入阶、六级下降与离阶持续前进，前腿伸向低一级而后脚跟进，身体保持前俯下楼姿态；没有明显长停或失衡跳落，末尾平台足端继续平地步态并完成停留。前小腿常贴近台阶边缘，缩略画面不宜判为完全无碰擦；FL calf当前采样峰152 N、最长0.46 s暴露，需明确有反复小腿接触。",
+      "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
+      "very_silky_certified": false
+    },
+    {
+      "label": "moderate-nosing-asc-speed03",
+      "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+      "continuous_video_reviewed": false,
+      "material_directory": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03",
+      "visual_frames_reviewed": 654,
+      "frame_indices_reviewed_inclusive": [
+        0,
+        653
+      ],
+      "nominal_simulation_times_s": [
+        0.02,
+        13.079999923706055
+      ],
+      "reviewed_pages": [
+        {
+          "page": 1,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-01.png",
+          "frame_indices_inclusive": [
+            0,
+            59
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            0.0,
+            1.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            0.02,
+            1.2
+          ],
+          "sha256": "6777da99d974d2a2c83cb939d2a3469e38bd269369138a12f9844e93b3a3fe52"
+        },
+        {
+          "page": 2,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-02.png",
+          "frame_indices_inclusive": [
+            60,
+            119
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            1.2,
+            2.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            1.22,
+            2.4
+          ],
+          "sha256": "e5a4513397c1f112c0e674510ede159b17bf31782ab720d5841eb13877ad28a6"
+        },
+        {
+          "page": 3,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-03.png",
+          "frame_indices_inclusive": [
+            120,
+            179
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            2.4,
+            3.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            2.42,
+            3.6
+          ],
+          "sha256": "f16e8fd6a23af5a302c1f277055ffb5852d2038d23ecbf22b2e97450b77eefc6"
+        },
+        {
+          "page": 4,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-04.png",
+          "frame_indices_inclusive": [
+            180,
+            239
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            3.6,
+            4.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            3.62,
+            4.8
+          ],
+          "sha256": "2d3bb4d3986ef704a38b9f642c4e4f7d3463268ae2a64b67e799b159b787c854"
+        },
+        {
+          "page": 5,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-05.png",
+          "frame_indices_inclusive": [
+            240,
+            299
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            4.8,
+            5.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            4.82,
+            6.0
+          ],
+          "sha256": "882db7c3ac7c51597fcadb4b434db35602cd58a5732978026d263b10a1f18909"
+        },
+        {
+          "page": 6,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-06.png",
+          "frame_indices_inclusive": [
+            300,
+            359
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            6.0,
+            7.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            6.0200000000000005,
+            7.2
+          ],
+          "sha256": "d1721e6788e97f7a8fef207460848e9275304872bf60da13fd2674a2aa19bb58"
+        },
+        {
+          "page": 7,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-07.png",
+          "frame_indices_inclusive": [
+            360,
+            419
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            7.2,
+            8.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            7.22,
+            8.4
+          ],
+          "sha256": "77021f1ea6251a3c47480a2c961ca8dd6a56e236da37068748613b3daf51d2b6"
+        },
+        {
+          "page": 8,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-08.png",
+          "frame_indices_inclusive": [
+            420,
+            479
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            8.4,
+            9.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            8.42,
+            9.6
+          ],
+          "sha256": "c8c202c17d4b05266941f14a5d579e7b4ecc688ca4e052d5d1a58e42cfb47bf1"
+        },
+        {
+          "page": 9,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-09.png",
+          "frame_indices_inclusive": [
+            480,
+            539
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            9.6,
+            10.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            9.620000000000001,
+            10.8
+          ],
+          "sha256": "4b19e70f589b2570d6ffb878380e7093c1faa38e2f03b2e646ed5c783619875f"
+        },
+        {
+          "page": 10,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-10.png",
+          "frame_indices_inclusive": [
+            540,
+            599
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            10.8,
+            11.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            10.82,
+            12.0
+          ],
+          "sha256": "379454d386e8caff97034e35da88ff234c42da43977b2591b0eafdd7c2daa3da"
+        },
+        {
+          "page": 11,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/moderate-nosing-asc-speed03/selected-all-frames/page-11.png",
+          "frame_indices_inclusive": [
+            600,
+            653
+          ],
+          "frame_count": 54,
+          "encoded_pts_s_inclusive": [
+            12.0,
+            13.06
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            12.02,
+            13.08
+          ],
+          "sha256": "50c5eb4988923548a13ef21c8f579012fa216d2ec53a8044e5a2cacfcc5178bf"
+        }
+      ],
+      "no_retained_frame_gap": true,
+      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
+      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "source_binding": {
+        "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-51_night2-video-moderate-nosing-asc-speed03-20261012050424486048",
+        "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+        "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+        "source_tracked_files_dirty": false,
+        "config_sha256": "3b3f03f25d2f52e289757ce7816771969e81e31828ac1937c6e63d6b869443ba",
+        "result_sha256": "e21de77f6bd4f235f8162e16106e4e4005e556f57aa3b51eeedad6dbc8a5fdc5",
+        "clip_sha256": "e953cea7255315365987e5382507206ae1fe75289bbb157c99f397c855c55042",
+        "clip_provenance_sha256": "6bfd40fc7146f5d04a34420d1fbacb57580aeb8d3a4b5cae097849f906db7422",
+        "all_frames_index_sha256": "ea676edec805f2c32b893441b63533680614eaad66cc07caff4b90ed2d433837",
+        "telemetry_csv_sha256": "3cf9a58700f50382f38bdfc8f59cf9411d6f0fe4131795f76ce4e6d52b531242",
+        "telemetry_summary_sha256": "2a83599271ac7678621ff6d6708ec9cc625d5f5ddd3c425bf41e0a0a8b7d584a",
+        "materials_sha256": "62cfb30ab25b62f50fb8a38b4a45aa44526b17a8ccf74b4bf9ffd874f105cd2c"
+      },
+      "source_video_binding": {
+        "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-51_night2-video-moderate-nosing-asc-speed03-20261012050424486048/videos/go2_stairs_asc_0000.mp4",
+        "sha256": "0a7c710c319eae6c6119ea95e06f92514917ebbc82a97f8a25242fb84d8acc21",
+        "source_video_info": {
+          "fps": 50.0,
+          "reported_frame_count": 656,
+          "width": 1280,
+          "height": 720,
+          "decoded_frame_count": 656
+        }
+      },
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "reset_seed": 907,
+      "camera_environment_id": 0,
+      "command_forward_speed_m_s": 0.3,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.185,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.015,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.45,
+        "goal_platform_start_x": 2.7399999999999998,
+        "goal_x": 3.3899999999999997,
+        "flight_end_x": 4.74,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.1099999999999999,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.13,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": 0.185
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": 0.37
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": 0.5549999999999999
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": 0.74
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": 0.925
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": 1.1099999999999999
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "population": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0,
+        "current_sample_base_contact_envs": 0,
+        "failure_reason": null
+      },
+      "phase_telemetry": {
+        "root_first_riser_cross": {
+          "frame": 205,
+          "time_s": 4.12,
+          "root_x": 1.0026841163635254
+        },
+        "feet_first_riser_cross": {
+          "FL": {
+            "frame": 162,
+            "time_s": 3.2600000000000002,
+            "root_x": 0.7857503890991211
+          },
+          "FR": {
+            "frame": 149,
+            "time_s": 3.0,
+            "root_x": 0.7244839668273926
+          },
+          "RL": {
+            "frame": 240,
+            "time_s": 4.82,
+            "root_x": 1.2006756067276
+          },
+          "RR": {
+            "frame": 212,
+            "time_s": 4.26,
+            "root_x": 1.042588710784912
+          }
+        },
+        "root_goal_platform_cross": {
+          "frame": 525,
+          "time_s": 10.52,
+          "root_x": 2.744231700897217
+        },
+        "all_feet_enter_goal_platform": {
+          "frame": 578,
+          "time_s": 11.58,
+          "root_x": 3.0763678550720215
+        },
+        "root_goal_cross": {
+          "frame": 629,
+          "time_s": 12.6,
+          "root_x": 3.3952083587646484
+        },
+        "last_25_boundary_samples": {
+          "frames": [
+            629,
+            653
+          ],
+          "times_s": [
+            12.6,
+            13.08
+          ],
+          "sample_exposure_s": 0.5,
+          "endpoint_span_s": 0.48,
+          "all_feet_beyond_goal_platform_03m": true,
+          "root_at_or_beyond_goal": true,
+          "minimum_history_contact_feet": 4
+        }
+      },
+      "movement_telemetry": {
+        "root_y_range_m": [
+          0.02412692829966545,
+          0.14323341846466064
+        ],
+        "root_yaw_absolute_peak_rad": 0.022244323045015335,
+        "root_roll_absolute_peak_rad": 0.09892617911100388,
+        "base_current_peak_n": 0.0,
+        "flight_pause_spans": [],
+        "any_leg_contact_fraction_all_frames": 0.19724770642201836
+      },
+      "leg_contact_measurement": "Current contact-sensor normal force norm >1 N at consecutive20ms boundaries. Samples*20ms exposure is distinct from endpoint-span and does not prove uninterrupted within-step support.",
+      "significant_leg_contacts": {
+        "FR_thigh": {
+          "contact_samples": 1,
+          "peak_current_n": 23.65150260925293,
+          "history_peak_n": 23.65150260925293,
+          "longest_boundary_sample_exposure_s": 0.02,
+          "interval_count": 1,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                440,
+                440
+              ],
+              "times_s_inclusive": [
+                8.82,
+                8.82
+              ],
+              "samples": 1,
+              "boundary_sample_exposure_s": 0.02,
+              "sample_endpoint_span_s": 0.0,
+              "peak_force_n": 23.65150260925293,
+              "peak_frame": 440,
+              "peak_time_s": 8.82,
+              "peak_force_w_xyz_n": [
+                -23.65148162841797,
+                5.004333161195973e-07,
+                -0.032092947512865067
+              ],
+              "peak_root_xyz_m": [
+                2.247603178024292,
+                0.12380963563919067,
+                1.220529556274414
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.5475741624832153,
+                -0.01260648388415575,
+                1.3196098804473877
+              ],
+              "minimum_force_n": 23.65150260925293,
+              "mean_force_n": 23.65150260925293
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              440,
+              440
+            ],
+            "times_s_inclusive": [
+              8.82,
+              8.82
+            ],
+            "samples": 1,
+            "boundary_sample_exposure_s": 0.02,
+            "sample_endpoint_span_s": 0.0,
+            "peak_force_n": 23.65150260925293,
+            "peak_frame": 440,
+            "peak_time_s": 8.82,
+            "peak_force_w_xyz_n": [
+              -23.65148162841797,
+              5.004333161195973e-07,
+              -0.032092947512865067
+            ],
+            "peak_root_xyz_m": [
+              2.247603178024292,
+              0.12380963563919067,
+              1.220529556274414
+            ],
+            "peak_leg_link_world_xyz_m": [
+              0.5475741624832153,
+              -0.01260648388415575,
+              1.3196098804473877
+            ],
+            "minimum_force_n": 23.65150260925293,
+            "mean_force_n": 23.65150260925293
+          }
+        },
+        "FL_calf": {
+          "contact_samples": 22,
+          "peak_current_n": 48.47317886352539,
+          "history_peak_n": 76.36627960205078,
+          "longest_boundary_sample_exposure_s": 0.08,
+          "interval_count": 6,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                211,
+                214
+              ],
+              "times_s_inclusive": [
+                4.24,
+                4.3
+              ],
+              "samples": 4,
+              "boundary_sample_exposure_s": 0.08,
+              "sample_endpoint_span_s": 0.06,
+              "peak_force_n": 48.47317886352539,
+              "peak_frame": 211,
+              "peak_time_s": 4.24,
+              "peak_force_w_xyz_n": [
+                -24.20108413696289,
+                2.3436625085082596e-08,
+                41.999481201171875
+              ],
+              "peak_root_xyz_m": [
+                1.0363543033599854,
+                0.06169966235756874,
+                0.44753897190093994
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.696784257888794,
+                0.24157306551933289,
+                0.32999593019485474
+              ],
+              "minimum_force_n": 7.956830978393555,
+              "mean_force_n": 28.530550718307495
+            },
+            {
+              "frames_inclusive": [
+                262,
+                265
+              ],
+              "times_s_inclusive": [
+                5.26,
+                5.32
+              ],
+              "samples": 4,
+              "boundary_sample_exposure_s": 0.08,
+              "sample_endpoint_span_s": 0.06,
+              "peak_force_n": 35.35421371459961,
+              "peak_frame": 262,
+              "peak_time_s": 5.26,
+              "peak_force_w_xyz_n": [
+                -35.35421371459961,
+                0.0,
+                0.0
+              ],
+              "peak_root_xyz_m": [
+                1.3012713193893433,
+                0.07598834484815598,
+                0.6189999580383301
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.4159083366394043,
+                0.2556164264678955,
+                0.5053637623786926
+              ],
+              "minimum_force_n": 7.857223987579346,
+              "mean_force_n": 20.302242636680603
+            },
+            {
+              "frames_inclusive": [
+                316,
+                319
+              ],
+              "times_s_inclusive": [
+                6.34,
+                6.4
+              ],
+              "samples": 4,
+              "boundary_sample_exposure_s": 0.08,
+              "sample_endpoint_span_s": 0.06,
+              "peak_force_n": 24.308137893676758,
+              "peak_frame": 316,
+              "peak_time_s": 6.34,
+              "peak_force_w_xyz_n": [
+                -12.749105453491211,
+                -0.0032092391047626734,
+                20.696517944335938
+              ],
+              "peak_root_xyz_m": [
+                1.582643747329712,
+                0.09144691377878189,
+                0.8051759004592896
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.12502053380012512,
+                0.27298504114151,
+                0.6924160718917847
+              ],
+              "minimum_force_n": 5.474281311035156,
+              "mean_force_n": 15.379793882369995
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              211,
+              214
+            ],
+            "times_s_inclusive": [
+              4.24,
+              4.3
+            ],
+            "samples": 4,
+            "boundary_sample_exposure_s": 0.08,
+            "sample_endpoint_span_s": 0.06,
+            "peak_force_n": 48.47317886352539,
+            "peak_frame": 211,
+            "peak_time_s": 4.24,
+            "peak_force_w_xyz_n": [
+              -24.20108413696289,
+              2.3436625085082596e-08,
+              41.999481201171875
+            ],
+            "peak_root_xyz_m": [
+              1.0363543033599854,
+              0.06169966235756874,
+              0.44753897190093994
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.696784257888794,
+              0.24157306551933289,
+              0.32999593019485474
+            ],
+            "minimum_force_n": 7.956830978393555,
+            "mean_force_n": 28.530550718307495
+          }
+        },
+        "FR_calf": {
+          "contact_samples": 106,
+          "peak_current_n": 58.20194625854492,
+          "history_peak_n": 138.1506805419922,
+          "longest_boundary_sample_exposure_s": 0.16,
+          "interval_count": 35,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                243,
+                250
+              ],
+              "times_s_inclusive": [
+                4.88,
+                5.0200000000000005
+              ],
+              "samples": 8,
+              "boundary_sample_exposure_s": 0.16,
+              "sample_endpoint_span_s": 0.14,
+              "peak_force_n": 28.204757690429688,
+              "peak_frame": 250,
+              "peak_time_s": 5.0200000000000005,
+              "peak_force_w_xyz_n": [
+                -8.640302658081055,
+                5.301516559086394e-09,
+                26.84871482849121
+              ],
+              "peak_root_xyz_m": [
+                1.2395360469818115,
+                0.06813216209411621,
+                0.5769791603088379
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.3464297354221344,
+                -0.1480197310447693,
+                0.5579096674919128
+              ],
+              "minimum_force_n": 2.0275256633758545,
+              "mean_force_n": 13.867214292287827
+            },
+            {
+              "frames_inclusive": [
+                269,
+                276
+              ],
+              "times_s_inclusive": [
+                5.4,
+                5.54
+              ],
+              "samples": 8,
+              "boundary_sample_exposure_s": 0.16,
+              "sample_endpoint_span_s": 0.14,
+              "peak_force_n": 6.553801536560059,
+              "peak_frame": 274,
+              "peak_time_s": 5.5,
+              "peak_force_w_xyz_n": [
+                -4.391120433807373,
+                -5.648871370667052e-10,
+                4.8652215003967285
+              ],
+              "peak_root_xyz_m": [
+                1.3738657236099243,
+                0.07335853576660156,
+                0.6597180366516113
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.32412368059158325,
+                -0.12064002454280853,
+                0.5578702688217163
+              ],
+              "minimum_force_n": 2.8037757873535156,
+              "mean_force_n": 4.814679056406021
+            },
+            {
+              "frames_inclusive": [
+                297,
+                303
+              ],
+              "times_s_inclusive": [
+                5.96,
+                6.08
+              ],
+              "samples": 7,
+              "boundary_sample_exposure_s": 0.14,
+              "sample_endpoint_span_s": 0.12,
+              "peak_force_n": 25.703794479370117,
+              "peak_frame": 303,
+              "peak_time_s": 6.08,
+              "peak_force_w_xyz_n": [
+                -8.392264366149902,
+                -0.03943401575088501,
+                24.29513168334961
+              ],
+              "peak_root_xyz_m": [
+                1.5154943466186523,
+                0.08424601703882217,
+                0.7597858309745789
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.060680314898490906,
+                -0.12618893384933472,
+                0.7405851483345032
+              ],
+              "minimum_force_n": 1.8059231042861938,
+              "mean_force_n": 13.668730752808708
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              361,
+              363
+            ],
+            "times_s_inclusive": [
+              7.24,
+              7.28
+            ],
+            "samples": 3,
+            "boundary_sample_exposure_s": 0.06,
+            "sample_endpoint_span_s": 0.04,
+            "peak_force_n": 58.20194625854492,
+            "peak_frame": 361,
+            "peak_time_s": 7.24,
+            "peak_force_w_xyz_n": [
+              -16.789093017578125,
+              -0.13845612108707428,
+              55.7276725769043
+            ],
+            "peak_root_xyz_m": [
+              1.8175723552703857,
+              0.1045277938246727,
+              0.9555786848068237
+            ],
+            "peak_leg_link_world_xyz_m": [
+              0.2277732640504837,
+              -0.10692039132118225,
+              0.9264034032821655
+            ],
+            "minimum_force_n": 5.803095817565918,
+            "mean_force_n": 24.938207626342773
+          }
+        }
+      },
+      "notes_zh": "首轮0–653帧完整逐页检查：平台接近与首阶抬脚正常，18.5 cm六级带15 mm边沿上楼时前腿反复伸向上一踏面，后脚交替跟进；没有长停、跌倒或明显大幅横摆。中梯段画面前小腿贴近黄色边沿，存在较低前躯姿态与贴靠，但多数接触段较短；遥测FR calf 35段，最长8采样/0.16 s、峰58 N，FR thigh单采样24 N。离阶后姿态恢复、四脚进入平台、完整dwell，称稳定连续较合适，不能称完全无擦碰。",
+      "motion_quality_verdict": "stable_continuous_ascent_with_short_repeated_leg_contacts",
+      "very_silky_certified": false
+    },
+    {
+      "label": "moderate-nosing-desc-speed03",
+      "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+      "continuous_video_reviewed": false,
+      "material_directory": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03",
+      "visual_frames_reviewed": 681,
+      "frame_indices_reviewed_inclusive": [
+        0,
+        680
+      ],
+      "nominal_simulation_times_s": [
+        0.02,
+        13.619999885559082
+      ],
+      "reviewed_pages": [
+        {
+          "page": 1,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-01.png",
+          "frame_indices_inclusive": [
+            0,
+            59
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            0.0,
+            1.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            0.02,
+            1.2
+          ],
+          "sha256": "1e7af639616868ca16a4b2c60ed1b0dbca4ba1ba1c83e8c02b509240d2f94a66"
+        },
+        {
+          "page": 2,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-02.png",
+          "frame_indices_inclusive": [
+            60,
+            119
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            1.2,
+            2.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            1.22,
+            2.4
+          ],
+          "sha256": "04b06ac0792b7df7215c24d7847012238c5890cc1c47d4d3ad38a47a9b371b5a"
+        },
+        {
+          "page": 3,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-03.png",
+          "frame_indices_inclusive": [
+            120,
+            179
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            2.4,
+            3.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            2.42,
+            3.6
+          ],
+          "sha256": "def6b55778628fa548f55923fc80b1caacad8273fab6a9bad8b103d36dedf18d"
+        },
+        {
+          "page": 4,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-04.png",
+          "frame_indices_inclusive": [
+            180,
+            239
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            3.6,
+            4.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            3.62,
+            4.8
+          ],
+          "sha256": "39f168e7b0f718d3dca0fcc04960c8c98cd29d6fbc19eb785fcedbbc27448c43"
+        },
+        {
+          "page": 5,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-05.png",
+          "frame_indices_inclusive": [
+            240,
+            299
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            4.8,
+            5.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            4.82,
+            6.0
+          ],
+          "sha256": "555da0a266d81ecdb49a8e0a11417f6242f27a2e5a3ca6cf943154ed317e9e11"
+        },
+        {
+          "page": 6,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-06.png",
+          "frame_indices_inclusive": [
+            300,
+            359
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            6.0,
+            7.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            6.0200000000000005,
+            7.2
+          ],
+          "sha256": "7e2a78fa382d3024c05b09f80908de51af404ef2642f06a1b28371b3b8d0bf9b"
+        },
+        {
+          "page": 7,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-07.png",
+          "frame_indices_inclusive": [
+            360,
+            419
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            7.2,
+            8.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            7.22,
+            8.4
+          ],
+          "sha256": "5fbdb0cb4bdf9221e93395f02d5ec23847dd6ecf601dbbf7779d92ddbee561fb"
+        },
+        {
+          "page": 8,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-08.png",
+          "frame_indices_inclusive": [
+            420,
+            479
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            8.4,
+            9.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            8.42,
+            9.6
+          ],
+          "sha256": "72e6aa39af6038ac2ebfb5d53974c022dbb6b2912b0ab137bd939fddab73097c"
+        },
+        {
+          "page": 9,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-09.png",
+          "frame_indices_inclusive": [
+            480,
+            539
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            9.6,
+            10.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            9.620000000000001,
+            10.8
+          ],
+          "sha256": "0df4b91b732ee9f842467dc83879d29821bcb27fc19e265a363d89fe42796c5f"
+        },
+        {
+          "page": 10,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-10.png",
+          "frame_indices_inclusive": [
+            540,
+            599
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            10.8,
+            11.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            10.82,
+            12.0
+          ],
+          "sha256": "ecfc62cd4736c3b0553c0b91a62b7d712cce19ce9c4d8d4466bcc92fdb09c25b"
+        },
+        {
+          "page": 11,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-11.png",
+          "frame_indices_inclusive": [
+            600,
+            659
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            12.0,
+            13.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            12.02,
+            13.200000000000001
+          ],
+          "sha256": "378d5802e5584211cac9625b56b2bae72473cb3c2bbd1c7263d1179fe27ddd45"
+        },
+        {
+          "page": 12,
+          "path": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/cpu-recovery-moderate-nosing-desc-speed03/selected-all-frames/page-12.png",
+          "frame_indices_inclusive": [
+            660,
+            680
+          ],
+          "frame_count": 21,
+          "encoded_pts_s_inclusive": [
+            13.2,
+            13.6
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            13.22,
+            13.620000000000001
+          ],
+          "sha256": "e8835903adc35eb0662e3af6877c235a76e76e9cb94a605852f72d93926022f1"
+        }
+      ],
+      "no_retained_frame_gap": true,
+      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
+      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "source_binding": {
+        "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-16-04_night2-video-moderate-nosing-desc-speed03-20261012050424486048",
+        "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+        "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+        "source_tracked_files_dirty": false,
+        "config_sha256": "6d7e56dedf9e02131785e3b2483d1c532b1c8dfcf6db9a7de8f8cf8f4e31e7de",
+        "result_sha256": "d00c1a77bc49efb3469b46718e49eef988558d39c7b58c0b9e685ab4594ecfae",
+        "clip_sha256": "3ed16f776ad218177e349c839c2f2934bffaec77564d6136323c5a68c88c7458",
+        "clip_provenance_sha256": "3ac7c31907f52f7aca57c3fac08243cb1aae21127d726bac893d564f8009aae4",
+        "all_frames_index_sha256": "63c870cbb792df4c9255a35c539dbf512b42d1e448509cc59e8f9ae8893aa399",
+        "telemetry_csv_sha256": "8ab918f5a35e92da6702b811ea495463064a3df672181274a3323489f5352d16",
+        "telemetry_summary_sha256": "37600af336a6f5bc8432468b095f17d3fc6cbbb8d4c9c550aa22f4f4c99338d3",
+        "materials_sha256": "5f6ccd04efe4c4f8affe6c384268eac2d064c94c274b5d621e993bac4a4fd334"
+      },
+      "source_video_binding": {
+        "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-16-04_night2-video-moderate-nosing-desc-speed03-20261012050424486048/videos/go2_stairs_asc_0000.mp4",
+        "sha256": "e7990aff287daa13350ef2bc7d6197c7ad176ef2c0111a93f214f10f116bc44e",
+        "source_video_info": {
+          "fps": 50.0,
+          "reported_frame_count": 682,
+          "width": 1280,
+          "height": 720,
+          "decoded_frame_count": 682
+        }
+      },
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "reset_seed": 907,
+      "camera_environment_id": 0,
+      "command_forward_speed_m_s": 0.3,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 6,
+        "step_height": 0.185,
+        "step_depth": 0.29,
+        "width": 1.2,
+        "nosing": 0.015,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 2.45,
+        "goal_platform_start_x": 2.7399999999999998,
+        "goal_x": 3.3899999999999997,
+        "flight_end_x": 4.74,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -1.1099999999999999,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.13,
+          1.5,
+          1.1099999999999999
+        ],
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.29,
+            "top_z": -0.185
+          },
+          {
+            "index": 2,
+            "x_min": 1.29,
+            "x_max": 1.58,
+            "top_z": -0.37
+          },
+          {
+            "index": 3,
+            "x_min": 1.58,
+            "x_max": 1.8699999999999999,
+            "top_z": -0.5549999999999999
+          },
+          {
+            "index": 4,
+            "x_min": 1.8699999999999999,
+            "x_max": 2.16,
+            "top_z": -0.74
+          },
+          {
+            "index": 5,
+            "x_min": 2.16,
+            "x_max": 2.45,
+            "top_z": -0.925
+          },
+          {
+            "index": 6,
+            "x_min": 2.45,
+            "x_max": 2.7399999999999998,
+            "top_z": -1.1099999999999999
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "population": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0,
+        "current_sample_base_contact_envs": 0,
+        "failure_reason": null
+      },
+      "phase_telemetry": {
+        "root_first_riser_cross": {
+          "frame": 195,
+          "time_s": 3.92,
+          "root_x": 1.003821849822998
+        },
+        "feet_first_riser_cross": {
+          "FL": {
+            "frame": 161,
+            "time_s": 3.24,
+            "root_x": 0.8066151142120361
+          },
+          "FR": {
+            "frame": 128,
+            "time_s": 2.58,
+            "root_x": 0.6190991401672363
+          },
+          "RL": {
+            "frame": 267,
+            "time_s": 5.36,
+            "root_x": 1.3577314615249634
+          },
+          "RR": {
+            "frame": 293,
+            "time_s": 5.88,
+            "root_x": 1.4842191934585571
+          }
+        },
+        "root_goal_platform_cross": {
+          "frame": 549,
+          "time_s": 11.0,
+          "root_x": 2.742746114730835
+        },
+        "all_feet_enter_goal_platform": {
+          "frame": 605,
+          "time_s": 12.120000000000001,
+          "root_x": 3.0860157012939453
+        },
+        "root_goal_cross": {
+          "frame": 656,
+          "time_s": 13.14,
+          "root_x": 3.3946285247802734
+        },
+        "last_25_boundary_samples": {
+          "frames": [
+            656,
+            680
+          ],
+          "times_s": [
+            13.14,
+            13.620000000000001
+          ],
+          "sample_exposure_s": 0.5,
+          "endpoint_span_s": 0.48,
+          "all_feet_beyond_goal_platform_03m": true,
+          "root_at_or_beyond_goal": true,
+          "minimum_history_contact_feet": 3
+        }
+      },
+      "movement_telemetry": {
+        "root_y_range_m": [
+          0.024126926437020302,
+          0.0861436203122139
+        ],
+        "root_yaw_absolute_peak_rad": 0.03706102445721626,
+        "root_roll_absolute_peak_rad": 0.09626923501491547,
+        "base_current_peak_n": 0.0,
+        "flight_pause_spans": [],
+        "any_leg_contact_fraction_all_frames": 0.2687224669603524
+      },
+      "leg_contact_measurement": "Current contact-sensor normal force norm >1 N at consecutive20ms boundaries. Samples*20ms exposure is distinct from endpoint-span and does not prove uninterrupted within-step support.",
+      "significant_leg_contacts": {
+        "FL_calf": {
+          "contact_samples": 15,
+          "peak_current_n": 238.8348388671875,
+          "history_peak_n": 380.312255859375,
+          "longest_boundary_sample_exposure_s": 0.16,
+          "interval_count": 7,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                226,
+                233
+              ],
+              "times_s_inclusive": [
+                4.54,
+                4.68
+              ],
+              "samples": 8,
+              "boundary_sample_exposure_s": 0.16,
+              "sample_endpoint_span_s": 0.14,
+              "peak_force_n": 80.3543472290039,
+              "peak_frame": 230,
+              "peak_time_s": 4.62,
+              "peak_force_w_xyz_n": [
+                57.41183090209961,
+                -1.166573504463031e-08,
+                56.220130920410156
+              ],
+              "peak_root_xyz_m": [
+                1.178652286529541,
+                0.04457010701298714,
+                0.1420532464981079
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.6332549452781677,
+                0.12176018208265305,
+                1.0187129974365234
+              ],
+              "minimum_force_n": 15.079996109008789,
+              "mean_force_n": 56.366694688797
+            },
+            {
+              "frames_inclusive": [
+                175,
+                176
+              ],
+              "times_s_inclusive": [
+                3.52,
+                3.54
+              ],
+              "samples": 2,
+              "boundary_sample_exposure_s": 0.04,
+              "sample_endpoint_span_s": 0.02,
+              "peak_force_n": 7.939274787902832,
+              "peak_frame": 175,
+              "peak_time_s": 3.52,
+              "peak_force_w_xyz_n": [
+                7.939274787902832,
+                0.0,
+                0.0
+              ],
+              "peak_root_xyz_m": [
+                0.9054363369941711,
+                0.06312774866819382,
+                0.2471073865890503
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.8443386554718018,
+                0.20452828705310822,
+                1.1203813552856445
+              ],
+              "minimum_force_n": 2.1516284942626953,
+              "mean_force_n": 5.045451641082764
+            },
+            {
+              "frames_inclusive": [
+                167,
+                167
+              ],
+              "times_s_inclusive": [
+                3.36,
+                3.36
+              ],
+              "samples": 1,
+              "boundary_sample_exposure_s": 0.02,
+              "sample_endpoint_span_s": 0.0,
+              "peak_force_n": 18.805469512939453,
+              "peak_frame": 167,
+              "peak_time_s": 3.36,
+              "peak_force_w_xyz_n": [
+                9.899888038635254,
+                2.7806574820488095e-09,
+                15.988680839538574
+              ],
+              "peak_root_xyz_m": [
+                0.8399534225463867,
+                0.05581928417086601,
+                0.26716840267181396
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.9002037048339844,
+                0.20342779159545898,
+                1.158408761024475
+              ],
+              "minimum_force_n": 18.805469512939453,
+              "mean_force_n": 18.805469512939453
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              235,
+              235
+            ],
+            "times_s_inclusive": [
+              4.72,
+              4.72
+            ],
+            "samples": 1,
+            "boundary_sample_exposure_s": 0.02,
+            "sample_endpoint_span_s": 0.0,
+            "peak_force_n": 238.8348388671875,
+            "peak_frame": 235,
+            "peak_time_s": 4.72,
+            "peak_force_w_xyz_n": [
+              185.2225799560547,
+              -7.513815347692798e-08,
+              150.7802276611328
+            ],
+            "peak_root_xyz_m": [
+              1.2042429447174072,
+              0.04113542661070824,
+              0.11497771739959717
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.5626373887062073,
+              0.11354511976242065,
+              0.9473992586135864
+            ],
+            "minimum_force_n": 238.8348388671875,
+            "mean_force_n": 238.8348388671875
+          }
+        },
+        "FR_calf": {
+          "contact_samples": 168,
+          "peak_current_n": 106.41207885742188,
+          "history_peak_n": 386.1476745605469,
+          "longest_boundary_sample_exposure_s": 0.72,
+          "interval_count": 11,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                386,
+                421
+              ],
+              "times_s_inclusive": [
+                7.74,
+                8.44
+              ],
+              "samples": 36,
+              "boundary_sample_exposure_s": 0.72,
+              "sample_endpoint_span_s": 0.7,
+              "peak_force_n": 106.41207885742188,
+              "peak_frame": 411,
+              "peak_time_s": 8.24,
+              "peak_force_w_xyz_n": [
+                1.1970618963241577,
+                -0.0025313361547887325,
+                106.40534973144531
+              ],
+              "peak_root_xyz_m": [
+                2.064551591873169,
+                0.03875691071152687,
+                -0.42971324920654297
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.2198755145072937,
+                -0.033317964524030685,
+                0.45656800270080566
+              ],
+              "minimum_force_n": 10.558653831481934,
+              "mean_force_n": 63.25955475701226
+            },
+            {
+              "frames_inclusive": [
+                446,
+                481
+              ],
+              "times_s_inclusive": [
+                8.94,
+                9.64
+              ],
+              "samples": 36,
+              "boundary_sample_exposure_s": 0.72,
+              "sample_endpoint_span_s": 0.7,
+              "peak_force_n": 105.05288696289062,
+              "peak_frame": 471,
+              "peak_time_s": 9.44,
+              "peak_force_w_xyz_n": [
+                7.223435401916504,
+                0.2970934510231018,
+                104.8038330078125
+              ],
+              "peak_root_xyz_m": [
+                2.352487802505493,
+                0.043008580803871155,
+                -0.6145279407501221
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.5094882845878601,
+                -0.029096169397234917,
+                0.27116474509239197
+              ],
+              "minimum_force_n": 11.025659561157227,
+              "mean_force_n": 62.715548276901245
+            },
+            {
+              "frames_inclusive": [
+                328,
+                361
+              ],
+              "times_s_inclusive": [
+                6.58,
+                7.24
+              ],
+              "samples": 34,
+              "boundary_sample_exposure_s": 0.68,
+              "sample_endpoint_span_s": 0.66,
+              "peak_force_n": 105.10459899902344,
+              "peak_frame": 352,
+              "peak_time_s": 7.0600000000000005,
+              "peak_force_w_xyz_n": [
+                4.829543113708496,
+                0.024640029296278954,
+                104.99357604980469
+              ],
+              "peak_root_xyz_m": [
+                1.7793397903442383,
+                0.036430999636650085,
+                -0.24141669273376465
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.06699757277965546,
+                -0.03829014301300049,
+                0.6445294618606567
+              ],
+              "minimum_force_n": 13.840839385986328,
+              "mean_force_n": 65.5627363990335
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              386,
+              421
+            ],
+            "times_s_inclusive": [
+              7.74,
+              8.44
+            ],
+            "samples": 36,
+            "boundary_sample_exposure_s": 0.72,
+            "sample_endpoint_span_s": 0.7,
+            "peak_force_n": 106.41207885742188,
+            "peak_frame": 411,
+            "peak_time_s": 8.24,
+            "peak_force_w_xyz_n": [
+              1.1970618963241577,
+              -0.0025313361547887325,
+              106.40534973144531
+            ],
+            "peak_root_xyz_m": [
+              2.064551591873169,
+              0.03875691071152687,
+              -0.42971324920654297
+            ],
+            "peak_leg_link_world_xyz_m": [
+              0.2198755145072937,
+              -0.033317964524030685,
+              0.45656800270080566
+            ],
+            "minimum_force_n": 10.558653831481934,
+            "mean_force_n": 63.25955475701226
+          }
+        },
+        "RL_calf": {
+          "contact_samples": 5,
+          "peak_current_n": 51.09349822998047,
+          "history_peak_n": 53.7265510559082,
+          "longest_boundary_sample_exposure_s": 0.06,
+          "interval_count": 2,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                565,
+                567
+              ],
+              "times_s_inclusive": [
+                11.32,
+                11.36
+              ],
+              "samples": 3,
+              "boundary_sample_exposure_s": 0.06,
+              "sample_endpoint_span_s": 0.04,
+              "peak_force_n": 20.988393783569336,
+              "peak_frame": 567,
+              "peak_time_s": 11.36,
+              "peak_force_w_xyz_n": [
+                16.058189392089844,
+                1.0205765121895638e-08,
+                13.514701843261719
+              ],
+              "peak_root_xyz_m": [
+                2.851499080657959,
+                0.0628005862236023,
+                -0.8197638988494873
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.587074875831604,
+                0.1838972121477127,
+                0.21958385407924652
+              ],
+              "minimum_force_n": 4.311605930328369,
+              "mean_force_n": 10.795961538950602
+            },
+            {
+              "frames_inclusive": [
+                517,
+                518
+              ],
+              "times_s_inclusive": [
+                10.36,
+                10.38
+              ],
+              "samples": 2,
+              "boundary_sample_exposure_s": 0.04,
+              "sample_endpoint_span_s": 0.02,
+              "peak_force_n": 51.09349822998047,
+              "peak_frame": 517,
+              "peak_time_s": 10.36,
+              "peak_force_w_xyz_n": [
+                35.161624908447266,
+                4.76137973492996e-09,
+                37.070281982421875
+              ],
+              "peak_root_xyz_m": [
+                2.56669282913208,
+                0.05838529020547867,
+                -0.7544475793838501
+              ],
+              "peak_leg_link_world_xyz_m": [
+                0.2961396276950836,
+                0.1924135982990265,
+                0.3996438980102539
+              ],
+              "minimum_force_n": 2.355314016342163,
+              "mean_force_n": 26.724406123161316
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              517,
+              518
+            ],
+            "times_s_inclusive": [
+              10.36,
+              10.38
+            ],
+            "samples": 2,
+            "boundary_sample_exposure_s": 0.04,
+            "sample_endpoint_span_s": 0.02,
+            "peak_force_n": 51.09349822998047,
+            "peak_frame": 517,
+            "peak_time_s": 10.36,
+            "peak_force_w_xyz_n": [
+              35.161624908447266,
+              4.76137973492996e-09,
+              37.070281982421875
+            ],
+            "peak_root_xyz_m": [
+              2.56669282913208,
+              0.05838529020547867,
+              -0.7544475793838501
+            ],
+            "peak_leg_link_world_xyz_m": [
+              0.2961396276950836,
+              0.1924135982990265,
+              0.3996438980102539
+            ],
+            "minimum_force_n": 2.355314016342163,
+            "mean_force_n": 26.724406123161316
+          }
+        }
+      },
+      "notes_zh": "首轮0–680帧逐页完整检查，绑定 CPU recovery 目录。接近首阶后前脚先下一级，前躯保持较低下楼姿态，后脚逐阶跟进；全段持续前进，未见明显卡住、踉跄、大横摆或跌落。约11–12 s离阶后四脚进入平台并完成停留。前小腿贴近台阶鼻沿；遥测 FR calf 有最长0.72 s边界采样暴露，FL calf瞬时峰239 N，不能标非常丝滑或无撑腿。",
+      "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
+      "very_silky_certified": false
+    },
+    {
+      "label": "long12-asc-speed03",
+      "motion_quality_review_mode": "frame_sequence_reviewed_not_realtime_playback",
+      "continuous_video_reviewed": false,
+      "material_directory": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03",
+      "visual_frames_reviewed": 957,
+      "frame_indices_reviewed_inclusive": [
+        0,
+        956
+      ],
+      "nominal_simulation_times_s": [
+        0.02,
+        19.139999389648438
+      ],
+      "reviewed_pages": [
+        {
+          "page": 1,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-01.png",
+          "frame_indices_inclusive": [
+            0,
+            59
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            0.0,
+            1.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            0.02,
+            1.2
+          ],
+          "sha256": "dde7ead7e4b04cc2625784884053b81ffb48483fe9e1a726899467b428bb5d48"
+        },
+        {
+          "page": 2,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-02.png",
+          "frame_indices_inclusive": [
+            60,
+            119
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            1.2,
+            2.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            1.22,
+            2.4
+          ],
+          "sha256": "8acd37952fcaf1f3136db5d4c301277418fe259cfe8c7bfea6faa937001527b9"
+        },
+        {
+          "page": 3,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-03.png",
+          "frame_indices_inclusive": [
+            120,
+            179
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            2.4,
+            3.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            2.42,
+            3.6
+          ],
+          "sha256": "a1d4171c88fa57d9671668808b718e43e2b451dc310ee0eb0a3d690bb8aa9224"
+        },
+        {
+          "page": 4,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-04.png",
+          "frame_indices_inclusive": [
+            180,
+            239
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            3.6,
+            4.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            3.62,
+            4.8
+          ],
+          "sha256": "a5b3acd73b56a830c970eb8665f168c49c0fe065daa20c07260e5f8ffd3b640d"
+        },
+        {
+          "page": 5,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-05.png",
+          "frame_indices_inclusive": [
+            240,
+            299
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            4.8,
+            5.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            4.82,
+            6.0
+          ],
+          "sha256": "304d4737d7633b6713e3b18a698c13f00ed07d85b35234a2a1d29cdeea513ca4"
+        },
+        {
+          "page": 6,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-06.png",
+          "frame_indices_inclusive": [
+            300,
+            359
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            6.0,
+            7.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            6.0200000000000005,
+            7.2
+          ],
+          "sha256": "5f68eab8e7ec021070e6b5ad17ae4bb865d5fe93bbb878041057b216a010af89"
+        },
+        {
+          "page": 7,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-07.png",
+          "frame_indices_inclusive": [
+            360,
+            419
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            7.2,
+            8.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            7.22,
+            8.4
+          ],
+          "sha256": "766d58d3f47f8f5f5f8d0bf975bdfe41f5a136ebdf9285162752a6b440e5e2b0"
+        },
+        {
+          "page": 8,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-08.png",
+          "frame_indices_inclusive": [
+            420,
+            479
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            8.4,
+            9.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            8.42,
+            9.6
+          ],
+          "sha256": "a78418d7dd9de2eed87d27822d40cef2806c2643d342648c39d958371aacff1f"
+        },
+        {
+          "page": 9,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-09.png",
+          "frame_indices_inclusive": [
+            480,
+            539
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            9.6,
+            10.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            9.620000000000001,
+            10.8
+          ],
+          "sha256": "4c119e9889997aa0fdb29665920b43299b6b557e3d0d574ab3eacb690ec6c5a6"
+        },
+        {
+          "page": 10,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-10.png",
+          "frame_indices_inclusive": [
+            540,
+            599
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            10.8,
+            11.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            10.82,
+            12.0
+          ],
+          "sha256": "8f02e06348253ec19fe9e1988281ea20d4dfbda233971847a77fde44ef457ab7"
+        },
+        {
+          "page": 11,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-11.png",
+          "frame_indices_inclusive": [
+            600,
+            659
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            12.0,
+            13.18
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            12.02,
+            13.200000000000001
+          ],
+          "sha256": "4e4f7d01c3ba0aa117392f1152e47ef2330e16b8e86ae97c0677e5d6522c7b13"
+        },
+        {
+          "page": 12,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-12.png",
+          "frame_indices_inclusive": [
+            660,
+            719
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            13.2,
+            14.38
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            13.22,
+            14.4
+          ],
+          "sha256": "86d4dab37f1e0dd3cf595fa9514588f9c41d6477ce7845dd5ab53a84c1ed2e3e"
+        },
+        {
+          "page": 13,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-13.png",
+          "frame_indices_inclusive": [
+            720,
+            779
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            14.4,
+            15.58
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            14.42,
+            15.6
+          ],
+          "sha256": "ea298331b6738fa0046cadd132a77624ecff4d4e7cf9fe000e00f64ea95e5bdb"
+        },
+        {
+          "page": 14,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-14.png",
+          "frame_indices_inclusive": [
+            780,
+            839
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            15.6,
+            16.78
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            15.620000000000001,
+            16.8
+          ],
+          "sha256": "2437c0886cde16db06316e1d2d927a1cf9fea44611e9370e9d12d8c7eff0af8b"
+        },
+        {
+          "page": 15,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-15.png",
+          "frame_indices_inclusive": [
+            840,
+            899
+          ],
+          "frame_count": 60,
+          "encoded_pts_s_inclusive": [
+            16.8,
+            17.98
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            16.82,
+            18.0
+          ],
+          "sha256": "a94cc4af89ef1783b1805d4d388b4c16c0ead485c216b207b03d6053314adccb"
+        },
+        {
+          "page": 16,
+          "path": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-asc-speed03/selected-all-frames/page-16.png",
+          "frame_indices_inclusive": [
+            900,
+            956
+          ],
+          "frame_count": 57,
+          "encoded_pts_s_inclusive": [
+            18.0,
+            19.12
+          ],
+          "nominal_simulation_time_s_inclusive": [
+            18.02,
+            19.14
+          ],
+          "sha256": "9b259e1d2a18326fc5c97444c56544659381fb29b1d1190b6d4abcb80e64575d"
+        }
+      ],
+      "no_retained_frame_gap": true,
+      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
+      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "source_binding": {
+        "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-18-44_night2-video-long12-asc-speed03-20261012051756241513",
+        "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+        "source_commit": "74811b0d5139185d4e3887ab7e87b4083ea45f8e",
+        "source_tracked_files_dirty": false,
+        "config_sha256": "456eeac119785cf889d2a342f051b01e6803ecaaf3438054cb6421694732a53b",
+        "result_sha256": "7ac9eb0daeb9bdb669c75249691759480742aac06fbab3f32acc5155a005bab3",
+        "clip_sha256": "f44adf2f891f9d8ab20924edc8faaca23c146abc979e0276f98edd948ada5a92",
+        "clip_provenance_sha256": "89e44cbdb6fb8decd2c8f96bf4acf5ec348718b850945082ea1b575b5d7ce1f2",
+        "all_frames_index_sha256": "855640646e01ccf3ec509bb295ff9a3a095bec80b5649f8e51c9aa14e2dbf2da",
+        "telemetry_csv_sha256": "b96d439f164f7370616d58bf0bee00fb0f82d37b0a57feb2d9aa7d01ea0b21b5",
+        "telemetry_summary_sha256": "b033c615f8a6dca3477b29625c3c6ce2cfe5363ce673ff901d08afafef38767e",
+        "materials_sha256": "1d81d59c49da20c0d5bb19236517159ccf9e26dc4648c15e1766a67523fed332"
+      },
+      "source_video_binding": {
+        "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-18-44_night2-video-long12-asc-speed03-20261012051756241513/videos/go2_stairs_asc_0000.mp4",
+        "sha256": "23ecb6cc725cad5e10e83876487308edd684cbcf2bb4957167d8f407099648ad",
+        "source_video_info": {
+          "fps": 50.0,
+          "reported_frame_count": 957,
+          "width": 1280,
+          "height": 720,
+          "decoded_frame_count": 957
+        }
+      },
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "reset_seed": 907,
+      "camera_environment_id": 0,
+      "command_forward_speed_m_s": 0.3,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 12,
+        "step_height": 0.16,
+        "step_depth": 0.27,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 3.97,
+        "goal_platform_start_x": 4.24,
+        "goal_x": 4.890000000000001,
+        "flight_end_x": 6.24,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 1.92,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          2.38,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          10.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.27,
+            "top_z": 0.16
+          },
+          {
+            "index": 2,
+            "x_min": 1.27,
+            "x_max": 1.54,
+            "top_z": 0.32
+          },
+          {
+            "index": 3,
+            "x_min": 1.54,
+            "x_max": 1.81,
+            "top_z": 0.48
+          },
+          {
+            "index": 4,
+            "x_min": 1.81,
+            "x_max": 2.08,
+            "top_z": 0.64
+          },
+          {
+            "index": 5,
+            "x_min": 2.08,
+            "x_max": 2.35,
+            "top_z": 0.8
+          },
+          {
+            "index": 6,
+            "x_min": 2.35,
+            "x_max": 2.62,
+            "top_z": 0.96
+          },
+          {
+            "index": 7,
+            "x_min": 2.62,
+            "x_max": 2.89,
+            "top_z": 1.12
+          },
+          {
+            "index": 8,
+            "x_min": 2.89,
+            "x_max": 3.16,
+            "top_z": 1.28
+          },
+          {
+            "index": 9,
+            "x_min": 3.16,
+            "x_max": 3.43,
+            "top_z": 1.44
+          },
+          {
+            "index": 10,
+            "x_min": 3.43,
+            "x_max": 3.7,
+            "top_z": 1.6
+          },
+          {
+            "index": 11,
+            "x_min": 3.7,
+            "x_max": 3.97,
+            "top_z": 1.76
+          },
+          {
+            "index": 12,
+            "x_min": 3.97,
+            "x_max": 4.24,
+            "top_z": 1.92
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "population": {
+        "num_envs": 32,
+        "completions": 32,
+        "falls": 0,
+        "stalls": 0,
+        "lateral_escapes": 0,
+        "base_contact_envs": 0,
+        "current_sample_base_contact_envs": 0,
+        "failure_reason": null
+      },
+      "phase_telemetry": {
+        "root_first_riser_cross": {
+          "frame": 202,
+          "time_s": 4.0600000000000005,
+          "root_x": 1.0025813579559326
+        },
+        "feet_first_riser_cross": {
+          "FL": {
+            "frame": 161,
+            "time_s": 3.24,
+            "root_x": 0.7882291078567505
+          },
+          "FR": {
+            "frame": 146,
+            "time_s": 2.94,
+            "root_x": 0.7066360712051392
+          },
+          "RL": {
+            "frame": 246,
+            "time_s": 4.94,
+            "root_x": 1.2381178140640259
+          },
+          "RR": {
+            "frame": 216,
+            "time_s": 4.34,
+            "root_x": 1.077549695968628
+          }
+        },
+        "root_goal_platform_cross": {
+          "frame": 827,
+          "time_s": 16.56,
+          "root_x": 4.2409210205078125
+        },
+        "all_feet_enter_goal_platform": {
+          "frame": 883,
+          "time_s": 17.68,
+          "root_x": 4.5903449058532715
+        },
+        "root_goal_cross": {
+          "frame": 932,
+          "time_s": 18.66,
+          "root_x": 4.893199443817139
+        },
+        "last_25_boundary_samples": {
+          "frames": [
+            932,
+            956
+          ],
+          "times_s": [
+            18.66,
+            19.14
+          ],
+          "sample_exposure_s": 0.5,
+          "endpoint_span_s": 0.48,
+          "all_feet_beyond_goal_platform_03m": true,
+          "root_at_or_beyond_goal": true,
+          "minimum_history_contact_feet": 3
+        }
+      },
+      "movement_telemetry": {
+        "root_y_range_m": [
+          0.02412692829966545,
+          0.10940955579280853
+        ],
+        "root_yaw_absolute_peak_rad": 0.014793343842029572,
+        "root_roll_absolute_peak_rad": 0.054765161126852036,
+        "base_current_peak_n": 0.0,
+        "flight_pause_spans": [],
+        "any_leg_contact_fraction_all_frames": 0.11180773249738767
+      },
+      "leg_contact_measurement": "Current contact-sensor normal force norm >1 N at consecutive20ms boundaries. Samples*20ms exposure is distinct from endpoint-span and does not prove uninterrupted within-step support.",
+      "significant_leg_contacts": {
+        "FR_thigh": {
+          "contact_samples": 7,
+          "peak_current_n": 62.04234313964844,
+          "history_peak_n": 62.04234313964844,
+          "longest_boundary_sample_exposure_s": 0.02,
+          "interval_count": 7,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                253,
+                253
+              ],
+              "times_s_inclusive": [
+                5.08,
+                5.08
+              ],
+              "samples": 1,
+              "boundary_sample_exposure_s": 0.02,
+              "sample_endpoint_span_s": 0.0,
+              "peak_force_n": 32.58897399902344,
+              "peak_frame": 253,
+              "peak_time_s": 5.08,
+              "peak_force_w_xyz_n": [
+                7.674389962630812e-06,
+                -1.7951780364455772e-06,
+                32.58897399902344
+              ],
+              "peak_root_xyz_m": [
+                1.2691928148269653,
+                0.054175760596990585,
+                0.5312158465385437
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -1.1892889738082886,
+                -0.08050772547721863,
+                0.6445048451423645
+              ],
+              "minimum_force_n": 32.58897399902344,
+              "mean_force_n": 32.58897399902344
+            },
+            {
+              "frames_inclusive": [
+                306,
+                306
+              ],
+              "times_s_inclusive": [
+                6.140000000000001,
+                6.140000000000001
+              ],
+              "samples": 1,
+              "boundary_sample_exposure_s": 0.02,
+              "sample_endpoint_span_s": 0.0,
+              "peak_force_n": 62.04234313964844,
+              "peak_frame": 306,
+              "peak_time_s": 6.140000000000001,
+              "peak_force_w_xyz_n": [
+                -1.3395484529610258e-05,
+                4.987965894542867e-06,
+                62.04234313964844
+              ],
+              "peak_root_xyz_m": [
+                1.540924072265625,
+                0.058925092220306396,
+                0.6925497055053711
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.9169729351997375,
+                -0.07726026326417923,
+                0.8037693500518799
+              ],
+              "minimum_force_n": 62.04234313964844,
+              "mean_force_n": 62.04234313964844
+            },
+            {
+              "frames_inclusive": [
+                360,
+                360
+              ],
+              "times_s_inclusive": [
+                7.22,
+                7.22
+              ],
+              "samples": 1,
+              "boundary_sample_exposure_s": 0.02,
+              "sample_endpoint_span_s": 0.0,
+              "peak_force_n": 33.118507385253906,
+              "peak_frame": 360,
+              "peak_time_s": 7.22,
+              "peak_force_w_xyz_n": [
+                4.39643827121472e-06,
+                -4.979848426955868e-07,
+                33.118507385253906
+              ],
+              "peak_root_xyz_m": [
+                1.816114902496338,
+                0.06387217342853546,
+                0.8516931533813477
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.6414100527763367,
+                -0.07170448452234268,
+                0.9629484415054321
+              ],
+              "minimum_force_n": 33.118507385253906,
+              "mean_force_n": 33.118507385253906
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              306,
+              306
+            ],
+            "times_s_inclusive": [
+              6.140000000000001,
+              6.140000000000001
+            ],
+            "samples": 1,
+            "boundary_sample_exposure_s": 0.02,
+            "sample_endpoint_span_s": 0.0,
+            "peak_force_n": 62.04234313964844,
+            "peak_frame": 306,
+            "peak_time_s": 6.140000000000001,
+            "peak_force_w_xyz_n": [
+              -1.3395484529610258e-05,
+              4.987965894542867e-06,
+              62.04234313964844
+            ],
+            "peak_root_xyz_m": [
+              1.540924072265625,
+              0.058925092220306396,
+              0.6925497055053711
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.9169729351997375,
+              -0.07726026326417923,
+              0.8037693500518799
+            ],
+            "minimum_force_n": 62.04234313964844,
+            "mean_force_n": 62.04234313964844
+          }
+        },
+        "FL_calf": {
+          "contact_samples": 51,
+          "peak_current_n": 72.22753143310547,
+          "history_peak_n": 121.73377227783203,
+          "longest_boundary_sample_exposure_s": 0.1,
+          "interval_count": 11,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                216,
+                220
+              ],
+              "times_s_inclusive": [
+                4.34,
+                4.42
+              ],
+              "samples": 5,
+              "boundary_sample_exposure_s": 0.1,
+              "sample_endpoint_span_s": 0.08,
+              "peak_force_n": 33.69228744506836,
+              "peak_frame": 217,
+              "peak_time_s": 4.36,
+              "peak_force_w_xyz_n": [
+                -12.849834442138672,
+                -3.968989581437654e-09,
+                31.14565658569336
+              ],
+              "peak_root_xyz_m": [
+                1.0834615230560303,
+                0.05370413511991501,
+                0.4293534755706787
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -1.409841537475586,
+                0.23598453402519226,
+                0.31464406847953796
+              ],
+              "minimum_force_n": 6.66481351852417,
+              "mean_force_n": 16.524258518218993
+            },
+            {
+              "frames_inclusive": [
+                268,
+                272
+              ],
+              "times_s_inclusive": [
+                5.38,
+                5.46
+              ],
+              "samples": 5,
+              "boundary_sample_exposure_s": 0.1,
+              "sample_endpoint_span_s": 0.08,
+              "peak_force_n": 37.12491226196289,
+              "peak_frame": 268,
+              "peak_time_s": 5.38,
+              "peak_force_w_xyz_n": [
+                -19.364986419677734,
+                1.595194731862648e-08,
+                31.67422103881836
+              ],
+              "peak_root_xyz_m": [
+                1.3463728427886963,
+                0.05307144299149513,
+                0.5798553824424744
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -1.1331559419631958,
+                0.23754508793354034,
+                0.46825140714645386
+              ],
+              "minimum_force_n": 5.2679972648620605,
+              "mean_force_n": 15.831828784942626
+            },
+            {
+              "frames_inclusive": [
+                483,
+                487
+              ],
+              "times_s_inclusive": [
+                9.68,
+                9.76
+              ],
+              "samples": 5,
+              "boundary_sample_exposure_s": 0.1,
+              "sample_endpoint_span_s": 0.08,
+              "peak_force_n": 72.22753143310547,
+              "peak_frame": 483,
+              "peak_time_s": 9.68,
+              "peak_force_w_xyz_n": [
+                -40.27280044555664,
+                0.0003057659196201712,
+                59.95763397216797
+              ],
+              "peak_root_xyz_m": [
+                2.4324262142181396,
+                0.0722808912396431,
+                1.2216113805770874
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.04200172424316406,
+                0.2597321569919586,
+                1.1125097274780273
+              ],
+              "minimum_force_n": 7.692451000213623,
+              "mean_force_n": 23.70627603530884
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              483,
+              487
+            ],
+            "times_s_inclusive": [
+              9.68,
+              9.76
+            ],
+            "samples": 5,
+            "boundary_sample_exposure_s": 0.1,
+            "sample_endpoint_span_s": 0.08,
+            "peak_force_n": 72.22753143310547,
+            "peak_frame": 483,
+            "peak_time_s": 9.68,
+            "peak_force_w_xyz_n": [
+              -40.27280044555664,
+              0.0003057659196201712,
+              59.95763397216797
+            ],
+            "peak_root_xyz_m": [
+              2.4324262142181396,
+              0.0722808912396431,
+              1.2216113805770874
+            ],
+            "peak_leg_link_world_xyz_m": [
+              -0.04200172424316406,
+              0.2597321569919586,
+              1.1125097274780273
+            ],
+            "minimum_force_n": 7.692451000213623,
+            "mean_force_n": 23.70627603530884
+          }
+        },
+        "FR_calf": {
+          "contact_samples": 49,
+          "peak_current_n": 32.474334716796875,
+          "history_peak_n": 57.30350112915039,
+          "longest_boundary_sample_exposure_s": 0.12,
+          "interval_count": 22,
+          "three_longest_boundary_sample_intervals": [
+            {
+              "frames_inclusive": [
+                243,
+                248
+              ],
+              "times_s_inclusive": [
+                4.88,
+                4.98
+              ],
+              "samples": 6,
+              "boundary_sample_exposure_s": 0.12,
+              "sample_endpoint_span_s": 0.1,
+              "peak_force_n": 31.64645767211914,
+              "peak_frame": 243,
+              "peak_time_s": 4.88,
+              "peak_force_w_xyz_n": [
+                -26.64434814453125,
+                -0.0010637948289513588,
+                17.075626373291016
+              ],
+              "peak_root_xyz_m": [
+                1.224361538887024,
+                0.04921511560678482,
+                0.4960130751132965
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -1.1109097003936768,
+                -0.16944344341754913,
+                0.4601668119430542
+              ],
+              "minimum_force_n": 1.3016120195388794,
+              "mean_force_n": 9.253111898899078
+            },
+            {
+              "frames_inclusive": [
+                313,
+                318
+              ],
+              "times_s_inclusive": [
+                6.28,
+                6.38
+              ],
+              "samples": 6,
+              "boundary_sample_exposure_s": 0.12,
+              "sample_endpoint_span_s": 0.1,
+              "peak_force_n": 15.083087921142578,
+              "peak_frame": 313,
+              "peak_time_s": 6.28,
+              "peak_force_w_xyz_n": [
+                0.0,
+                0.0,
+                15.083087921142578
+              ],
+              "peak_root_xyz_m": [
+                1.574415922164917,
+                0.058323558419942856,
+                0.7166306972503662
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.7737601399421692,
+                -0.14528486132621765,
+                0.6544707417488098
+              ],
+              "minimum_force_n": 1.0904474258422852,
+              "mean_force_n": 7.871286352475484
+            },
+            {
+              "frames_inclusive": [
+                418,
+                422
+              ],
+              "times_s_inclusive": [
+                8.38,
+                8.46
+              ],
+              "samples": 5,
+              "boundary_sample_exposure_s": 0.1,
+              "sample_endpoint_span_s": 0.08,
+              "peak_force_n": 14.127113342285156,
+              "peak_frame": 418,
+              "peak_time_s": 8.38,
+              "peak_force_w_xyz_n": [
+                0.0,
+                0.0,
+                14.127113342285156
+              ],
+              "peak_root_xyz_m": [
+                2.104764223098755,
+                0.0674336850643158,
+                1.0288196802139282
+              ],
+              "peak_leg_link_world_xyz_m": [
+                -0.23325881361961365,
+                -0.13532701134681702,
+                0.974373459815979
+              ],
+              "minimum_force_n": 1.1043034791946411,
+              "mean_force_n": 5.8923832178115845
+            }
+          ],
+          "maximum_current_force_interval": {
+            "frames_inclusive": [
+              527,
+              528
+            ],
+            "times_s_inclusive": [
+              10.56,
+              10.58
+            ],
+            "samples": 2,
+            "boundary_sample_exposure_s": 0.04,
+            "sample_endpoint_span_s": 0.02,
+            "peak_force_n": 32.474334716796875,
+            "peak_frame": 527,
+            "peak_time_s": 10.56,
+            "peak_force_w_xyz_n": [
+              0.0,
+              0.0,
+              32.474334716796875
+            ],
+            "peak_root_xyz_m": [
+              2.653780937194824,
+              0.07629694044589996,
+              1.3533834218978882
+            ],
+            "peak_leg_link_world_xyz_m": [
+              0.30671006441116333,
+              -0.12941528856754303,
+              1.2943741083145142
+            ],
+            "minimum_force_n": 2.1251304149627686,
+            "mean_force_n": 17.299732565879822
+          }
+        }
+      },
+      "notes_zh": "首轮0–956帧16页完整按行检查：接近与首阶抬脚连续，前脚约3.1–3.4 s伸上首阶，随后身体前倾并逐级上升。十二级全梯段前腿反复伸向上一踏面、后脚交替跟进，未见明显长停、突发跌落或大幅横摆；前躯较低，前小腿常靠近阶沿。约14.7 s前脚开始进入顶平台，后脚随后跟进，最后完整平台停留。遥测前 calf 接触多为短段，FL最长0.10 s、FR最长0.12 s，FR thigh有7个单采样；连续稳定可确认，但不能据遮挡缩略图宣布无擦碰或论文同等丝滑。",
+      "motion_quality_verdict": "stable_continuous_long_ascent_with_short_repeated_leg_contacts",
+      "very_silky_certified": false
+    },
+    {
+      "label": "long12-desc-speed03",
+      "motion_quality_review_mode": "alignment_unverified",
+      "visual_frames_reviewed": 0,
+      "reviewed_pages": [],
+      "motion_quality_verdict": "not_assessed_alignment_unverified",
+      "notes_zh": "原视频帧数比 trial executed_steps 多1；严格对齐保护拒绝生成首轮 clip/pages/20 ms帧映射，未进行错误对齐图像审查。原始 MP4 与遥测保存，未删帧或假定尾帧重复。",
+      "attempts": [
+        {
+          "material_directory": "/home/cone/robotics/logs/20261012-051756-241513_night2-video-review/long12-desc-speed03",
+          "materials_status": "CPU_processing_error; original_video_preserved",
+          "materials_sha256": "c044425dfa8f09a7d4bfedd73127555a94529c43777723e2d1c9ab64e9e6a7f6",
+          "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-20-24_night2-video-long12-desc-speed03-20261012051756241513",
+          "source_config_sha256": "707369e3e3644df2cc278c18410da1b3ab4b9055448058229e25549516296770",
+          "source_result_sha256": "6af05dbd2808f8c4d187feec867bd86e0fee65874c5ce48a1de9addacde20c05",
+          "source_commit": "95e00457bda766ca67bb5a947a687eb0e59e212f",
+          "source_tracked_files_dirty": false,
+          "command_forward_speed_m_s": 0.3,
+          "selected_env_completed": true,
+          "selected_env_first_episode_duration_s": 19.19999885559082,
+          "source_video": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-20-24_night2-video-long12-desc-speed03-20261012051756241513/videos/go2_stairs_asc_0000.mp4",
+          "source_video_sha256": "429025048163c58734892270fbbaaf98071d4acb47e3076f536130f9f0d4bc04",
+          "source_video_info_cpu_decode": {
+            "fps": 50.0,
+            "reported_frame_count": 964,
+            "width": 1280,
+            "height": 720,
+            "decoded_frame_count": 964
+          },
+          "executed_policy_steps": 963,
+          "guard_failure": "clip-first-episode-video: Source frame count does not match recorder length/executed steps; cannot verify phase alignment",
+          "guard_failure_log_sha256": "fc1a7a36191970f16dd7b1f39053ef00f850181258bbd832fb8b1dd5fae4ad6b",
+          "population": {
+            "num_envs": 32,
+            "completions": 32,
+            "falls": 0,
+            "stalls": 0,
+            "lateral_escapes": 0,
+            "base_contact_envs": 0,
+            "current_sample_base_contact_envs": 0,
+            "failure_reason": null
+          }
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "declared_jobs": 7,
+    "fully_reviewed_aligned_jobs": 5,
+    "alignment_unverified_jobs": 2,
+    "visual_frames_reviewed": 3314,
+    "visual_pages_reviewed": 57
+  },
+  "motion_quality_verdict": "All reviewed env0 episodes traverse continuously without an obvious long stop, large sway or fall and complete final dwell. Repeated calf/occasional thigh contact is measured, with prolonged boundary-sampled calf exposure on descents; very silky locomotion is not certified. Two declared jobs currently lack verified phase alignment."
+}
