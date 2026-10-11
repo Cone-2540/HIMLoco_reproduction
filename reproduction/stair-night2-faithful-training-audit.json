@@ -1,0 +1,1161 @@
+{
+  "schema_version": 1,
+  "inspected_local": "2026-10-12T01:27:24.481521+08:00",
+  "scope": "CPU read-only training evidence; no simulator/Torch import or GPU calls. Training reward, curriculum and successful exit are not stair/smoothness acceptance.",
+  "plan_path": "/home/cone/Research/HIMLoco/reproduction/stair-night2-training-plan.json",
+  "plan_read_issues": [],
+  "jobs": [
+    {
+      "name": "night2-faithful-seed1201-plus100",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-005628_night2-faithful-seed1201-plus100",
+      "simulator_log_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_00-56-30_night2-faithful-seed1201-plus100",
+      "declared_wrapper_status": "exited",
+      "wrapper_exit_code": 0,
+      "host_process_handle": {
+        "pid": 13435,
+        "verified_live": false,
+        "reason": "Recorded host process handle is absent"
+      },
+      "reward_profile": "faithful",
+      "starting_checkpoint": "/home/cone/Research/HIMLoco/artifacts/go2-stairs-control660/model_660.pt",
+      "starting_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+      "source_commit": "d63529326843d8af276c078d0d7018e715998718",
+      "source_checks_against_current_files": [
+        {
+          "path": "isaaclab/run.py",
+          "launch_sha256": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "current_sha256": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "matches_launch": true
+        },
+        {
+          "path": "isaaclab/stair_rewards.py",
+          "launch_sha256": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "current_sha256": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "matches_launch": true
+        },
+        {
+          "path": "isaaclab/stair_terrain.py",
+          "launch_sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "current_sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "matches_launch": true
+        },
+        {
+          "path": "isaaclab/stair_evaluation.py",
+          "launch_sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "current_sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "matches_launch": true
+        },
+        {
+          "path": "isaaclab/adapter.py",
+          "launch_sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+          "current_sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+          "matches_launch": true
+        }
+      ],
+      "runtime_training_state_before_learning": {
+        "completed_updates": 660,
+        "ppo_learning_rate": 0.0001,
+        "ppo_adam_group_rates": [
+          0.0001
+        ],
+        "him_learning_rate": 0.0001,
+        "him_adam_group_rates": [
+          0.0001
+        ],
+        "exploration_std_min": 0.17175649106502533,
+        "exploration_std_max": 0.29638275504112244,
+        "optimizer_state": "checkpoint Adam retained"
+      },
+      "completion_checks": [
+        {
+          "name": "exact_known_profile_weights",
+          "status": "pass",
+          "actual": {
+            "track_lin_vel_xy_exp": 1.0,
+            "track_ang_vel_z_exp": 0.5,
+            "lin_vel_z_l2": -2.0,
+            "ang_vel_xy_l2": -0.05,
+            "dof_acc_l2": -2.5e-07,
+            "action_rate_l2": -0.01,
+            "flat_orientation_l2": -0.2,
+            "joint_power": -2e-05,
+            "base_height": -1.0,
+            "foot_clearance": -0.01,
+            "action_smoothness": -0.01
+          },
+          "expected": {
+            "track_lin_vel_xy_exp": 1.0,
+            "track_ang_vel_z_exp": 0.5,
+            "lin_vel_z_l2": -2.0,
+            "ang_vel_xy_l2": -0.05,
+            "flat_orientation_l2": -0.2,
+            "dof_acc_l2": -2.5e-07,
+            "joint_power": -2e-05,
+            "base_height": -1.0,
+            "foot_clearance": -0.01,
+            "action_rate_l2": -0.01,
+            "action_smoothness": -0.01
+          }
+        },
+        {
+          "name": "config_source_matches_launch",
+          "status": "pass",
+          "actual": "d63529326843d8af276c078d0d7018e715998718",
+          "expected": "d63529326843d8af276c078d0d7018e715998718"
+        },
+        {
+          "name": "starting_checkpoint_sha256",
+          "status": "pass",
+          "actual": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+          "expected": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+        },
+        {
+          "name": "request_num_envs",
+          "status": "pass",
+          "actual": 7680,
+          "expected": 7680
+        },
+        {
+          "name": "request_requested_additional_training_updates",
+          "status": "pass",
+          "actual": 100,
+          "expected": 100
+        },
+        {
+          "name": "request_seed",
+          "status": "pass",
+          "actual": 1201,
+          "expected": 1201
+        },
+        {
+          "name": "request_steps_per_env",
+          "status": "pass",
+          "actual": 100,
+          "expected": 100
+        },
+        {
+          "name": "initial_Adam_restore_metadata",
+          "status": "pass",
+          "actual": "checkpoint Adam retained",
+          "expected": "checkpoint Adam retained"
+        },
+        {
+          "name": "initial_base_mass_kg_finite",
+          "status": "pass",
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "initial_base_inertia_kg_m2_finite",
+          "status": "pass",
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "critic_runtime_dimensions",
+          "status": "pass",
+          "actual": [
+            7680,
+            235
+          ],
+          "expected": [
+            7680,
+            235
+          ]
+        },
+        {
+          "name": "result_num_envs",
+          "status": "pass",
+          "actual": 7680,
+          "expected": 7680
+        },
+        {
+          "name": "result_requested_updates",
+          "status": "pass",
+          "actual": 100,
+          "expected": 100
+        },
+        {
+          "name": "result_completed_updates",
+          "status": "pass",
+          "actual": 760,
+          "expected": 760
+        },
+        {
+          "name": "result_environment_steps",
+          "status": "pass",
+          "actual": 76800000,
+          "expected": 76800000
+        },
+        {
+          "name": "final_parameters_finite",
+          "status": "pass",
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "final_checkpoint_file_exists_nonempty",
+          "status": "pass",
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "initial_domain_readback_scope": "current physical parameters; not a robustness validation",
+      "domain_profile_interpretation": "In train mode, domain_profile=none disables the additional robust profile but retains existing startup mass/COM events. Default stair evaluation with eval_dynamics=false removes mass/COM/gain randomization. Use mode, flags and saved physical readbacks to determine the actual setup.",
+      "initial_mass_kg_summary": {
+        "shape": [
+          7680,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 5.5372633934021,
+        "max": 8.650269508361816,
+        "mean": 6.967297316218416,
+        "std": 0.9025385523772036
+      },
+      "physics_diagnostic": {
+        "root_pos_w": [
+          [
+            -5.750535488128662,
+            -40.61358642578125,
+            0.4000000059604645
+          ],
+          [
+            -21.831911087036133,
+            -40.53400421142578,
+            0.4000000059604645
+          ],
+          [
+            -37.70100402832031,
+            -40.49094772338867,
+            0.4000000059604645
+          ],
+          [
+            -5.739729881286621,
+            -40.464908599853516,
+            0.4000000059604645
+          ]
+        ],
+        "root_quat_w_xyzw": [
+          [
+            0.0,
+            5.587935447692871e-08,
+            0.01155310869216919,
+            0.9999332427978516
+          ],
+          [
+            0.0,
+            4.563480615615845e-08,
+            0.015023887157440186,
+            0.9998871088027954
+          ],
+          [
+            0.0,
+            3.725290298461914e-08,
+            0.05239158868789673,
+            0.9986265897750854
+          ],
+          [
+            -5.960464477539063e-08,
+            6.51925802230835e-09,
+            0.005681216716766357,
+            0.9999839067459106
+          ]
+        ],
+        "projected_gravity_b": [
+          [
+            1.1175124825513194e-07,
+            -1.2911605118404168e-09,
+            -0.9999999403953552
+          ],
+          [
+            9.125930944264837e-08,
+            -1.3712243562835624e-09,
+            -0.9999998807907104
+          ],
+          [
+            7.440348070986147e-08,
+            -3.903477541200573e-09,
+            -0.9999998807907104
+          ],
+          [
+            1.371556024309939e-08,
+            1.1913329700519171e-07,
+            -1.000000238418579
+          ]
+        ],
+        "critic_shape": [
+          7680,
+          235
+        ],
+        "scanner_pos_w": [
+          [
+            -5.750535488128662,
+            -40.61358642578125,
+            0.4000000059604645
+          ],
+          [
+            -21.831911087036133,
+            -40.53400421142578,
+            0.4000000059604645
+          ],
+          [
+            -37.70100402832031,
+            -40.49094772338867,
+            0.4000000059604645
+          ],
+          [
+            -5.739729881286621,
+            -40.464908599853516,
+            0.4000000059604645
+          ]
+        ],
+        "ray_hits_z_quantiles": [
+          -3.814697265625e-06,
+          0.0,
+          0.0,
+          0.7730026245117188,
+          1.0200042724609375
+        ],
+        "scan_quantiles": [
+          -1.3499908447265625,
+          -0.5000001192092896,
+          -0.4999999701976776,
+          -0.4999959468841553,
+          4.600009441375732
+        ],
+        "scan_unsaturated_fraction": 1.0
+      },
+      "saved_model_file_labels": [
+        680,
+        700,
+        720,
+        740,
+        760
+      ],
+      "checkpoint_scope": "File labels/existence and simulator result metadata only; Torch checkpoint iter/Adam tensors are not independently decoded.",
+      "result": {
+        "status": "smoke_passed",
+        "scope": "CUDA training and export; locomotion requires separate evaluation",
+        "iterations": 100,
+        "completed_iterations": 760,
+        "num_envs": 7680,
+        "environment_steps_this_run": 76800000,
+        "training_seconds": 1731.4803190440002,
+        "parameters_finite": true,
+        "checkpoint": "model_760.pt",
+        "export": "policy.pt",
+        "export_max_abs_error": 1.5497207641601562e-06,
+        "peak_cuda_memory_bytes": 6907938816
+      },
+      "console": {
+        "path": "/home/cone/robotics/logs/20261012-005628_night2-faithful-seed1201-plus100/stdout.log",
+        "exists": true,
+        "bytes": 254722,
+        "simulator_log_dir": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_00-56-30_night2-faithful-seed1201-plus100",
+        "dimensions": {
+          "actor": 270,
+          "frame": 45,
+          "critic": 235,
+          "actions": 12
+        },
+        "updates": [
+          {
+            "completed_update_label": 758,
+            "target_update_label": 760,
+            "metrics": {
+              "Value function loss": 0.0002,
+              "Surrogate loss": 0.0016,
+              "Estimation loss": 0.0041,
+              "Swap loss": 0.1044,
+              "Mean action noise std": 0.16,
+              "Mean reward": 12.66,
+              "Mean episode length": 467.92,
+              "Mean episode Episode_Reward/track_lin_vel_xy_exp": 0.4343,
+              "Mean episode Episode_Reward/track_ang_vel_z_exp": 0.2111,
+              "Mean episode Episode_Reward/lin_vel_z_l2": -0.0053,
+              "Mean episode Episode_Reward/ang_vel_xy_l2": -0.0088,
+              "Mean episode Episode_Reward/dof_acc_l2": -0.0087,
+              "Mean episode Episode_Reward/action_rate_l2": -0.0062,
+              "Mean episode Episode_Reward/flat_orientation_l2": -0.0072,
+              "Mean episode Episode_Reward/joint_power": -0.0005,
+              "Mean episode Episode_Reward/base_height": -0.0006,
+              "Mean episode Episode_Reward/foot_clearance": -0.0001,
+              "Mean episode Episode_Reward/action_smoothness": -0.0087,
+              "Mean episode Curriculum/terrain_levels/levels_mean": 5.983,
+              "Mean episode Curriculum/terrain_levels/flat_reset_count": 0.0,
+              "Mean episode Curriculum/terrain_levels/asc_levels_mean": 6.0032,
+              "Mean episode Curriculum/terrain_levels/asc_goal_fraction": 1.0,
+              "Mean episode Curriculum/terrain_levels/asc_terminated_fraction": 0.0,
+              "Mean episode Curriculum/terrain_levels/asc_reset_count": 9.03,
+              "Mean episode Curriculum/terrain_levels/desc_levels_mean": 5.9627,
+              "Mean episode Curriculum/terrain_levels/desc_goal_fraction": 1.0,
+              "Mean episode Curriculum/terrain_levels/desc_terminated_fraction": 0.0,
+              "Mean episode Curriculum/terrain_levels/desc_reset_count": 8.16,
+              "Mean episode Metrics/success_rate": 1.0,
+              "Mean episode Metrics/base_velocity/error_vel_xy": 0.0659,
+              "Mean episode Metrics/base_velocity/error_vel_yaw": 0.0941,
+              "Mean episode Episode_Termination/time_out": 0.0003,
+              "Mean episode Episode_Termination/base_contact": 0.0008,
+              "Mean episode Episode_Termination/stair_corridor_exit": 0.0005,
+              "Mean episode Episode_Termination/stair_goal_reached": 0.9984,
+              "Total timesteps": 345600000.0,
+              "Iteration time": 17.29,
+              "Total time": 8428.61,
+              "ETA": 34.6
+            },
+            "steps_per_second": 44431,
+            "collection_seconds": 14.788,
+            "learning_seconds": 2.497,
+            "iteration_seconds": 17.29,
+            "console_block_complete": true
+          },
+          {
+            "completed_update_label": 759,
+            "target_update_label": 760,
+            "metrics": {
+              "Value function loss": 0.0003,
+              "Surrogate loss": 0.0001,
+              "Estimation loss": 0.0042,
+              "Swap loss": 0.1,
+              "Mean action noise std": 0.16,
+              "Mean reward": 12.22,
+              "Mean episode length": 452.44,
+              "Mean episode Episode_Reward/track_lin_vel_xy_exp": 0.4365,
+              "Mean episode Episode_Reward/track_ang_vel_z_exp": 0.2121,
+              "Mean episode Episode_Reward/lin_vel_z_l2": -0.0054,
+              "Mean episode Episode_Reward/ang_vel_xy_l2": -0.0089,
+              "Mean episode Episode_Reward/dof_acc_l2": -0.0087,
+              "Mean episode Episode_Reward/action_rate_l2": -0.0061,
+              "Mean episode Episode_Reward/flat_orientation_l2": -0.0069,
+              "Mean episode Episode_Reward/joint_power": -0.0005,
+              "Mean episode Episode_Reward/base_height": -0.0006,
+              "Mean episode Episode_Reward/foot_clearance": -0.0001,
+              "Mean episode Episode_Reward/action_smoothness": -0.0087,
+              "Mean episode Curriculum/terrain_levels/levels_mean": 5.9968,
+              "Mean episode Curriculum/terrain_levels/flat_reset_count": 0.0,
+              "Mean episode Curriculum/terrain_levels/asc_levels_mean": 6.0191,
+              "Mean episode Curriculum/terrain_levels/asc_goal_fraction": 0.9978,
+              "Mean episode Curriculum/terrain_levels/asc_terminated_fraction": 0.0022,
+              "Mean episode Curriculum/terrain_levels/asc_reset_count": 8.04,
+              "Mean episode Curriculum/terrain_levels/desc_levels_mean": 5.9746,
+              "Mean episode Curriculum/terrain_levels/desc_goal_fraction": 1.0,
+              "Mean episode Curriculum/terrain_levels/desc_terminated_fraction": 0.0,
+              "Mean episode Curriculum/terrain_levels/desc_reset_count": 8.47,
+              "Mean episode Metrics/success_rate": 1.0,
+              "Mean episode Metrics/base_velocity/error_vel_xy": 0.0657,
+              "Mean episode Metrics/base_velocity/error_vel_yaw": 0.0943,
+              "Mean episode Episode_Termination/time_out": 0.0003,
+              "Mean episode Episode_Termination/base_contact": 0.0008,
+              "Mean episode Episode_Termination/stair_corridor_exit": 0.0004,
+              "Mean episode Episode_Termination/stair_goal_reached": 0.9985,
+              "Total timesteps": 346368000.0,
+              "Iteration time": 17.46,
+              "Total time": 8446.07,
+              "ETA": 17.5
+            },
+            "steps_per_second": 43976,
+            "collection_seconds": 14.981,
+            "learning_seconds": 2.482,
+            "iteration_seconds": 17.46,
+            "console_block_complete": true
+          },
+          {
+            "completed_update_label": 760,
+            "target_update_label": 760,
+            "metrics": {
+              "Value function loss": 0.0004,
+              "Surrogate loss": -0.0004,
+              "Estimation loss": 0.0042,
+              "Swap loss": 0.1012,
+              "Mean action noise std": 0.16,
+              "Mean reward": 12.52,
+              "Mean episode length": 461.42,
+              "Mean episode Episode_Reward/track_lin_vel_xy_exp": 0.4372,
+              "Mean episode Episode_Reward/track_ang_vel_z_exp": 0.2124,
+              "Mean episode Episode_Reward/lin_vel_z_l2": -0.0054,
+              "Mean episode Episode_Reward/ang_vel_xy_l2": -0.0088,
+              "Mean episode Episode_Reward/dof_acc_l2": -0.0086,
+              "Mean episode Episode_Reward/action_rate_l2": -0.006,
+              "Mean episode Episode_Reward/flat_orientation_l2": -0.0069,
+              "Mean episode Episode_Reward/joint_power": -0.0005,
+              "Mean episode Episode_Reward/base_height": -0.0006,
+              "Mean episode Episode_Reward/foot_clearance": -0.0001,
+              "Mean episode Episode_Reward/action_smoothness": -0.0087,
+              "Mean episode Curriculum/terrain_levels/levels_mean": 6.0057,
+              "Mean episode Curriculum/terrain_levels/flat_reset_count": 0.0,
+              "Mean episode Curriculum/terrain_levels/asc_levels_mean": 6.0473,
+              "Mean episode Curriculum/terrain_levels/asc_goal_fraction": 0.9968,
+              "Mean episode Curriculum/terrain_levels/asc_terminated_fraction": 0.0032,
+              "Mean episode Curriculum/terrain_levels/asc_reset_count": 8.29,
+              "Mean episode Curriculum/terrain_levels/desc_levels_mean": 5.964,
+              "Mean episode Curriculum/terrain_levels/desc_goal_fraction": 1.0,
+              "Mean episode Curriculum/terrain_levels/desc_terminated_fraction": 0.0,
+              "Mean episode Curriculum/terrain_levels/desc_reset_count": 8.52,
+              "Mean episode Metrics/success_rate": 1.0,
+              "Mean episode Metrics/base_velocity/error_vel_xy": 0.065,
+              "Mean episode Metrics/base_velocity/error_vel_yaw": 0.094,
+              "Mean episode Episode_Termination/time_out": 0.0003,
+              "Mean episode Episode_Termination/base_contact": 0.0008,
+              "Mean episode Episode_Termination/stair_corridor_exit": 0.0002,
+              "Mean episode Episode_Termination/stair_goal_reached": 0.9987,
+              "Total timesteps": 347136000.0,
+              "Iteration time": 17.38,
+              "Total time": 8463.45,
+              "ETA": 0.0
+            },
+            "steps_per_second": 44180,
+            "collection_seconds": 14.89,
+            "learning_seconds": 2.493,
+            "iteration_seconds": 17.38,
+            "console_block_complete": true
+          }
+        ],
+        "significant_warnings": []
+      },
+      "tensorboard": {
+        "files": [
+          {
+            "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_00-56-30_night2-faithful-seed1201-plus100/events.out.tfevents.1791737869.Cone.1319.0",
+            "bytes": 356488,
+            "complete_records": 5001,
+            "trailing_record_incomplete": false
+          }
+        ],
+        "latest_scalars": {
+          "Loss/value_function": {
+            "update": 760,
+            "value": 0.0003605148522183299
+          },
+          "Loss/surrogate": {
+            "update": 760,
+            "value": -0.0004300394793972373
+          },
+          "Loss/Estimation Loss": {
+            "update": 760,
+            "value": 0.0041847266256809235
+          },
+          "Loss/Swap Loss": {
+            "update": 760,
+            "value": 0.10120616853237152
+          },
+          "Loss/learning_rate": {
+            "update": 760,
+            "value": 9.999999747378752e-05
+          },
+          "PPO/kl_mean": {
+            "update": 760,
+            "value": 0.006469096522778273
+          },
+          "PPO/kl_max_minibatch_mean": {
+            "update": 760,
+            "value": 0.00996345467865467
+          },
+          "PPO/clip_fraction": {
+            "update": 760,
+            "value": 0.07709219306707382
+          },
+          "PPO/std_min": {
+            "update": 760,
+            "value": 0.11429943144321442
+          },
+          "PPO/std_max": {
+            "update": 760,
+            "value": 0.2060379832983017
+          },
+          "PPO/learning_rate": {
+            "update": 760,
+            "value": 9.999999747378752e-05
+          },
+          "PPO/learning_rate_min": {
+            "update": 760,
+            "value": 9.999999747378752e-05
+          },
+          "PPO/learning_rate_max": {
+            "update": 760,
+            "value": 9.999999747378752e-05
+          },
+          "PPO/learning_rate_mean": {
+            "update": 760,
+            "value": 9.999999747378752e-05
+          },
+          "Policy/mean_noise_std": {
+            "update": 760,
+            "value": 0.16391855478286743
+          },
+          "Perf/total_fps": {
+            "update": 760,
+            "value": 44180.0
+          },
+          "Perf/collection time": {
+            "update": 760,
+            "value": 14.889939308166504
+          },
+          "Perf/learning_time": {
+            "update": 760,
+            "value": 2.493241310119629
+          },
+          "Train/mean_reward": {
+            "update": 760,
+            "value": 12.52402114868164
+          },
+          "Train/mean_episode_length": {
+            "update": 760,
+            "value": 461.4200134277344
+          },
+          "Train/mean_reward/time": {
+            "update": 8464,
+            "value": 12.52402114868164
+          },
+          "Train/mean_episode_length/time": {
+            "update": 8464,
+            "value": 461.4200134277344
+          }
+        },
+        "updates": [
+          {
+            "update": 8429,
+            "scalars": {
+              "Train/mean_reward/time": 12.661718368530273,
+              "Train/mean_episode_length/time": 467.9200134277344
+            }
+          },
+          {
+            "update": 8447,
+            "scalars": {
+              "Train/mean_reward/time": 12.218520164489746,
+              "Train/mean_episode_length/time": 452.44000244140625
+            }
+          },
+          {
+            "update": 8464,
+            "scalars": {
+              "Train/mean_reward/time": 12.52402114868164,
+              "Train/mean_episode_length/time": 461.4200134277344
+            }
+          }
+        ],
+        "nonfinite_scalars": [],
+        "read_scope": "Standard-library TFRecord/protobuf simple_value reader; incomplete trailing records skipped, CRC32C not validated. Tensor summaries are not decoded. Event step is upstream zero-based update index; reported update=step+1."
+      },
+      "gpu": {
+        "path": "/home/cone/robotics/logs/20261012-005628_night2-faithful-seed1201-plus100/gpu-resource.csv",
+        "exists": true,
+        "samples": 182,
+        "invalid_or_partial_rows": 0,
+        "first_sample_local": "2026-10-12T00:56:28.069482+08:00",
+        "last_sample_local": "2026-10-12T01:26:45.845838+08:00",
+        "maxima": {
+          "memory_used_mib": 13595.0,
+          "temperature_c": 65.0,
+          "power_w": 81.45,
+          "utilization_percent": 99.0
+        },
+        "driver_versions": [
+          "595.104.02"
+        ],
+        "scope": "All host GPU processes at approximately 10-second cadence; neither whole-run instantaneous peak nor training-only allocated memory."
+      },
+      "common_parameter_signature": {
+        "task": "Isaac-Velocity-Rough-UnitreeGo2",
+        "seed": 1201,
+        "num_envs": 7680,
+        "train": {
+          "runner": {
+            "policy_class_name": "HIMActorCritic",
+            "algorithm_class_name": "HIMPPO",
+            "num_steps_per_env": 100,
+            "save_interval": 20
+          },
+          "policy": {
+            "actor_hidden_dims": [
+              512,
+              256,
+              128
+            ],
+            "critic_hidden_dims": [
+              512,
+              256,
+              128
+            ],
+            "activation": "elu",
+            "init_noise_std": 1.0
+          },
+          "algorithm": {
+            "value_loss_coef": 1.0,
+            "use_clipped_value_loss": true,
+            "clip_param": 0.2,
+            "entropy_coef": 0.01,
+            "num_learning_epochs": 5,
+            "num_mini_batches": 4,
+            "learning_rate": 0.0001,
+            "schedule": "fixed",
+            "gamma": 0.99,
+            "lam": 0.95,
+            "desired_kl": 0.01,
+            "max_grad_norm": 1.0
+          }
+        },
+        "physics": "isaacsim_physx",
+        "torch": "2.11.0+cu128",
+        "cuda": "12.8",
+        "gpu_capability": [
+          12,
+          0
+        ],
+        "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+        "physics_dt": 0.005,
+        "policy_decimation": 4,
+        "episode_length_s": 20.0,
+        "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+        "command_override": null,
+        "training_turn_fraction": 0.0,
+        "exploration_std_override": null,
+        "resume_learning_rate_override": 0.0001,
+        "requested_additional_training_updates": 100,
+        "terrain_start_level": 4,
+        "stair_training_speed_range_m_s": [
+          0.25,
+          0.65
+        ],
+        "terrain": "stairs",
+        "stairs": {
+          "stage": "paper_mixed",
+          "seed": 1201,
+          "heldout": false,
+          "num_rows": 10,
+          "num_cols": 28,
+          "terrain_size": [
+            8.0,
+            3.0
+          ],
+          "num_steps": 6,
+          "width": 1.2,
+          "landing_length": 2.0,
+          "convert_to_heightfield": false,
+          "geometry_reference": "relative to scene.env_origins; positive x travel",
+          "height_scanner_samples": 187,
+          "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+          "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+          "variants": [
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            }
+          ]
+        },
+        "domain_randomization": null,
+        "calf_limit_sensitivity": null,
+        "friction_override": null,
+        "stair_pushes": false,
+        "flat_replay": {
+          "requested_terrain_fraction": 0.0,
+          "all_direction_commands": false,
+          "standing_fraction": null,
+          "moving_categories": null,
+          "positive_magnitude_ranges": null,
+          "actor_terrain_inputs_added": false
+        },
+        "joint_names": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "default_joint_positions": [
+          0.10000000149011612,
+          -0.10000000149011612,
+          0.10000000149011612,
+          -0.10000000149011612,
+          0.800000011920929,
+          0.800000011920929,
+          1.0,
+          1.0,
+          -1.5,
+          -1.5,
+          -1.5,
+          -1.5
+        ],
+        "action_scale": 0.25,
+        "runtime_training_state_before_learning": {
+          "completed_updates": 660,
+          "ppo_learning_rate": 0.0001,
+          "ppo_adam_group_rates": [
+            0.0001
+          ],
+          "him_learning_rate": 0.0001,
+          "him_adam_group_rates": [
+            0.0001
+          ],
+          "exploration_std_min": 0.17175649106502533,
+          "exploration_std_max": 0.29638275504112244,
+          "optimizer_state": "checkpoint Adam retained"
+        },
+        "reward_frame_validation": {
+          "quaternion_order": "xyzw",
+          "checked_physics_quaternions": 8,
+          "root_position": "root link origin",
+          "root_velocity": "root COM",
+          "foot_position": "foot link origin",
+          "foot_velocity": "foot COM"
+        },
+        "starting_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+        "source_sha256_at_launch": {
+          "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+        },
+        "initial_domain_readback_sha256_normalized": "bf11e503f1d91c4031ee34e69f0e8bf43c26c6bdc6cbb5926c667ca4bd618103"
+      },
+      "issues": []
+    }
+  ],
+  "matched_arm_comparison": {
+    "status": "insufficient_started_jobs",
+    "configured_jobs": 1,
+    "scope": "Needs at least two actual training configurations; plans alone do not establish a matched comparison."
+  }
+}

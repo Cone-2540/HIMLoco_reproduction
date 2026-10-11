@@ -1,0 +1,25 @@
+{
+  "created_local": "2026-10-12T01:44:42.835069+08:00",
+  "script": "reproduction/run-stair-night2-development-comparison.py",
+  "sha256": "df61ae18b94bb5e739054663e4fbb63960c3f3765caf84b83e62ff7a4ffe9713",
+  "scope": "syntax/archive validation/dry command construction/busy-check mock only",
+  "AST": "PASS",
+  "dry_fixture": "PASS",
+  "actual_existing_archive_checked": "artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt",
+  "same_checkpoint_two_labels_used_only_for_fixture": true,
+  "execute_rejects_duplicate_models": true,
+  "candidate_budget_checked": {
+    "saved_additional_updates": 100,
+    "num_envs": 7680,
+    "steps_per_env": 100,
+    "environment_steps": 76800000,
+    "cpu_checkpoint_actual_timesteps_delta": 76800000
+  },
+  "mock_live_run_py_refused": true,
+  "manifest_read_only_mode": "0444",
+  "fixture_manifest": "/tmp/himloco-night2-devcomparison-cpu-k55usdx0/exclusive-output/immutable-manifest.json",
+  "docker_contacted": false,
+  "gpu_started": false,
+  "final_holdout_read": false,
+  "execute_not_tested": "Actual wrapper/simulation/CPU-summary chain intentionally awaits root execution with real distinct candidates"
+}

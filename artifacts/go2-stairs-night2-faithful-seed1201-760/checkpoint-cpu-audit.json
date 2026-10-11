@@ -1,0 +1,376 @@
+{
+  "status": "CPU_checkpoint_audit_passed",
+  "origin_iteration": 660,
+  "final_iteration": 760,
+  "saved_additional_updates": 100,
+  "checkpoint_schema_version": 2,
+  "model_state_tensor_count": 30,
+  "model_state_shapes": {
+    "std": [
+      12
+    ],
+    "estimator.encoder.0.weight": [
+      128,
+      270
+    ],
+    "estimator.encoder.0.bias": [
+      128
+    ],
+    "estimator.encoder.2.weight": [
+      64,
+      128
+    ],
+    "estimator.encoder.2.bias": [
+      64
+    ],
+    "estimator.encoder.4.weight": [
+      19,
+      64
+    ],
+    "estimator.encoder.4.bias": [
+      19
+    ],
+    "estimator.target.0.weight": [
+      128,
+      45
+    ],
+    "estimator.target.0.bias": [
+      128
+    ],
+    "estimator.target.2.weight": [
+      64,
+      128
+    ],
+    "estimator.target.2.bias": [
+      64
+    ],
+    "estimator.target.4.weight": [
+      16,
+      64
+    ],
+    "estimator.target.4.bias": [
+      16
+    ],
+    "estimator.proto.weight": [
+      32,
+      16
+    ],
+    "actor.0.weight": [
+      512,
+      64
+    ],
+    "actor.0.bias": [
+      512
+    ],
+    "actor.2.weight": [
+      256,
+      512
+    ],
+    "actor.2.bias": [
+      256
+    ],
+    "actor.4.weight": [
+      128,
+      256
+    ],
+    "actor.4.bias": [
+      128
+    ],
+    "actor.6.weight": [
+      12,
+      128
+    ],
+    "actor.6.bias": [
+      12
+    ],
+    "critic.0.weight": [
+      512,
+      235
+    ],
+    "critic.0.bias": [
+      512
+    ],
+    "critic.2.weight": [
+      256,
+      512
+    ],
+    "critic.2.bias": [
+      256
+    ],
+    "critic.4.weight": [
+      128,
+      256
+    ],
+    "critic.4.bias": [
+      128
+    ],
+    "critic.6.weight": [
+      1,
+      128
+    ],
+    "critic.6.bias": [
+      1
+    ]
+  },
+  "all_model_tensors_finite": true,
+  "network_shapes_preserved": true,
+  "optimizers": {
+    "optimizer_state_dict": {
+      "state_count": 17,
+      "parameter_groups": [
+        {
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "weight_decay": 0,
+          "amsgrad": false,
+          "maximize": false,
+          "foreach": null,
+          "capturable": false,
+          "differentiable": false,
+          "fused": null,
+          "decoupled_weight_decay": false,
+          "parameter_count": 30
+        }
+      ],
+      "per_state_step_continuation": [
+        {
+          "parameter_state_id": 0,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 14,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 15,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 16,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 17,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 18,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 19,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 20,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 21,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 22,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 23,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 24,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 25,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 26,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 27,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 28,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 29,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        }
+      ],
+      "all_state_tensors_finite": true,
+      "continuation_scope": "State keys/groups/shapes preserved and every updated Adam step advanced exactly updates*epochs*minibatches. Final tensors differ after learning; this does not independently reconstruct initial moments before the live first update."
+    },
+    "estimator_optimizer_state_dict": {
+      "state_count": 13,
+      "parameter_groups": [
+        {
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "weight_decay": 0,
+          "amsgrad": false,
+          "maximize": false,
+          "foreach": null,
+          "capturable": false,
+          "differentiable": false,
+          "fused": null,
+          "decoupled_weight_decay": false,
+          "parameter_count": 13
+        }
+      ],
+      "per_state_step_continuation": [
+        {
+          "parameter_state_id": 0,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 1,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 2,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 3,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 4,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 5,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 6,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 7,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 8,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 9,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 10,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 11,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        },
+        {
+          "parameter_state_id": 12,
+          "origin_step": 13200.0,
+          "final_step": 15200.0,
+          "delta": 2000.0
+        }
+      ],
+      "all_state_tensors_finite": true,
+      "continuation_scope": "State keys/groups/shapes preserved and every updated Adam step advanced exactly updates*epochs*minibatches. Final tensors differ after learning; this does not independently reconstruct initial moments before the live first update."
+    }
+  },
+  "std": {
+    "values": [
+      0.12081025540828705,
+      0.11429943144321442,
+      0.11707121133804321,
+      0.12000449001789093,
+      0.2060379832983017,
+      0.1982536017894745,
+      0.18253646790981293,
+      0.156685009598732,
+      0.1767013818025589,
+      0.18695488572120667,
+      0.19658203423023224,
+      0.19108593463897705
+    ],
+    "min": 0.11429943144321442,
+    "max": 0.2060379832983017,
+    "finite": true,
+    "all_positive": true
+  },
+  "origin_tot_timesteps": 270336000,
+  "final_tot_timesteps": 347136000,
+  "cuda_initialized": false,
+  "torch_version": "2.11.0+cu128",
+  "scope": "Existing trusted task checkpoints loaded with weights_only=True/map_location=cpu/CUDA hidden; no simulator or live training access."
+}

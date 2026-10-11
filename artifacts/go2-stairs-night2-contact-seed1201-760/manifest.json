@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "recorded_local": "2026-10-12T01:56:54.593339+08:00",
+  "status": "not-evaluated",
+  "training_status": "completed_and_CPU_checkpoint_verified",
+  "scope": "Archived Go2/Isaac Lab HIM continuation; training completion/export/finite tensors do not establish locomotion or smoothness.",
+  "reward_profile": "contact",
+  "training_seed": 1201,
+  "checkpoint_completed_updates": 760,
+  "saved_additional_updates": 100,
+  "num_envs": 7680,
+  "steps_per_env": 100,
+  "environment_steps_this_run": 76800000,
+  "origin_checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "origin_checkpoint_completed_updates": 660,
+  "training_run": "isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100",
+  "training_wrapper_directory": "/home/cone/robotics/logs/20261012-012647_night2-contact-seed1201-plus100",
+  "source_provenance": {
+    "config_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+    "config_tracked_files_dirty": false,
+    "wrapper_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+    "wrapper_source_dirty": false,
+    "verified_runtime_source_sha256": {
+      "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+      "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+      "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+    },
+    "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+  },
+  "export_max_abs_error": 1.6689300537109375e-06,
+  "training_seconds": 1669.5090726119997,
+  "independent_evaluation_pending": true,
+  "smoothness_verified": false,
+  "hardware_deployment_ready": false,
+  "cpu_checkpoint_audit": "checkpoint-cpu-audit.json",
+  "files": {
+    "model_760.pt": {
+      "bytes": 6566347,
+      "sha256": "a9a249d58cf8b24d76821a401819733173f75d131a56960220dd9043514f8a5a",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/model_760.pt"
+    },
+    "policy.pt": {
+      "bytes": 992060,
+      "sha256": "b17eacf59a5d40e83de70259d1c585ac614af4be3adcf922e80373bf11e8b6cf",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/policy.pt"
+    },
+    "config.json": {
+      "bytes": 14343,
+      "sha256": "89281e0ced3a6941fbfe9bcb06d7f3fb5fbca92d4488e13ed9e59688c99067cc",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/config.json"
+    },
+    "result.json": {
+      "bytes": 442,
+      "sha256": "3855ab7e20c3edd71e5ffc502da2823bd1b6df96a5017519a0aee0dad913587f",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/result.json"
+    },
+    "launch-record.json": {
+      "bytes": 2153,
+      "sha256": "903aea170ebc088f7df67d151a1798a09057af8022aaad94bd6c8e9d59f64a1d",
+      "source": "/home/cone/robotics/logs/20261012-012647_night2-contact-seed1201-plus100/launch-record.json"
+    },
+    "training-plan.json": {
+      "bytes": 4578,
+      "sha256": "e8f6e718faa405aab1fffd6f7795d62b3eb40c04ffc45c6b388a935801e65e48",
+      "source": "/home/cone/Research/HIMLoco/reproduction/stair-night2-training-plan.json"
+    },
+    "domain-parameters-initial.json": {
+      "bytes": 25096,
+      "sha256": "a84f89503d63281ebe567231bd8d1dd332c69f978a25eb74e7569ae85a19b114",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/domain-parameters-initial.json"
+    },
+    "domain-parameters-final.json": {
+      "bytes": 25121,
+      "sha256": "8cba19e3142191190c09c59d935dc110548584621381a1a7d0e54f434563cb9a",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/domain-parameters-final.json"
+    },
+    "physics-diagnostic.json": {
+      "bytes": 2017,
+      "sha256": "40e01a639081544a3ccc9cce40e39f20164e7607f8c6a7eff3cb04fbbd9c2207",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/physics-diagnostic.json"
+    },
+    "stdout.log": {
+      "bytes": 259771,
+      "sha256": "8f9b6db5e04bce4d61e8fedb2b80564a686d99862f1a31b4c51c784c33a4249f",
+      "source": "/home/cone/robotics/logs/20261012-012647_night2-contact-seed1201-plus100/stdout.log"
+    },
+    "gpu-resource.csv": {
+      "bytes": 19265,
+      "sha256": "cfb787f890876701b9e108d6282a7e03a8a8ecb7f5b847ed2b3876fcee5522d3",
+      "source": "/home/cone/robotics/logs/20261012-012647_night2-contact-seed1201-plus100/gpu-resource.csv"
+    },
+    "events.out.tfevents.1791739691.Cone.1621.0": {
+      "bytes": 363888,
+      "sha256": "9fdb3ac2b882cfb4872fec1545c89016dba84b2cece5f3e2f62cb7f084c72f3c",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_01-26-50_night2-contact-seed1201-plus100/events.out.tfevents.1791739691.Cone.1621.0"
+    },
+    "source/isaaclab/run.py": {
+      "bytes": 39505,
+      "sha256": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/run.py"
+    },
+    "source/isaaclab/stair_rewards.py": {
+      "bytes": 20330,
+      "sha256": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/stair_rewards.py"
+    },
+    "source/isaaclab/stair_terrain.py": {
+      "bytes": 32402,
+      "sha256": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/stair_terrain.py"
+    },
+    "source/isaaclab/stair_evaluation.py": {
+      "bytes": 50817,
+      "sha256": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/stair_evaluation.py"
+    },
+    "source/isaaclab/adapter.py": {
+      "bytes": 2128,
+      "sha256": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+      "source": "/home/cone/Research/HIMLoco/isaaclab/adapter.py"
+    },
+    "checkpoint-cpu-audit.json": {
+      "bytes": 8790,
+      "sha256": "e69ff230f20e854c1e8bb6fb995893afed5336dfabeaea01d0f8af8352bd5866",
+      "source": "Generated exclusively from verified saved checkpoint/config"
+    },
+    "stair-manifest.json": {
+      "bytes": 6839,
+      "sha256": "af6c5ff02e3adb752f4ede1adf64dbec318728e1662f4ae321ea21638047c172",
+      "source": "Generated exclusively from verified saved checkpoint/config"
+    }
+  }
+}
