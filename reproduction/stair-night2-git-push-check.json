@@ -1,0 +1,89 @@
+{
+  "started_utc": "2026-10-11 17:58:50 UTC",
+  "branch": "feature/stair-rewards-night2-20261012",
+  "target_sha": "410b8d51b53b157d16b23287f1c9434bf582c0b4",
+  "attempts": [
+    {
+      "ipv4": "140.82.114.4",
+      "http": "HTTP/1.1",
+      "push_exit": 1,
+      "reason": "curl28 low-speed timeout; remote must be checked",
+      "remote_check": {
+        "ipv4": "140.82.116.4",
+        "exit": 124,
+        "sha": null
+      }
+    },
+    {
+      "ipv4": "140.82.116.4",
+      "http": "HTTP/1.1",
+      "push_exit": 124,
+      "reason": "55 second timeout"
+    },
+    {
+      "ipv4": "140.82.112.4",
+      "http": "HTTP/1.1",
+      "push_exit": 128,
+      "reason": "curl28 low-speed timeout"
+    }
+  ],
+  "completed_utc": "2026-10-11 18:02:33 UTC",
+  "remote_checks": [
+    {
+      "ipv4": "140.82.114.4",
+      "exit": 124,
+      "remote_sha": null
+    },
+    {
+      "ipv4": "140.82.114.3",
+      "exit": 0,
+      "remote_sha": "1dac8e0df0386a6b43788aadb467be441f98ee04"
+    },
+    {
+      "ipv4": "140.82.116.4",
+      "exit": 124,
+      "remote_sha": null
+    }
+  ],
+  "remote_sha": "1dac8e0df0386a6b43788aadb467be441f98ee04",
+  "remote_exact_target": false,
+  "status": "three_push_attempts_failed; independent_remote_check_confirms_previous_commit",
+  "scope": "Process-only IPv4 routing. No DNS, proxy, driver, credential, system or Git configuration changes.",
+  "followup_results": [
+    {
+      "started_utc": "2026-10-11 18:03:39 UTC",
+      "completed_utc": "2026-10-11 18:06:23 UTC",
+      "target_sha": "410b8d51b53b157d16b23287f1c9434bf582c0b4",
+      "attempts": [
+        {
+          "ipv4": "140.82.114.3",
+          "http": "HTTP/1.1",
+          "push_exit": 124,
+          "reason": "55 second timeout"
+        },
+        {
+          "ipv4": "140.82.114.3",
+          "http": "HTTP/1.1",
+          "push_exit": 124,
+          "reason": "55 second timeout"
+        }
+      ],
+      "remote_check": {
+        "ipv4": "140.82.114.3",
+        "exit": 124,
+        "remote_sha": null,
+        "exact_target_verified": false
+      },
+      "last_successful_remote_check_sha": "1dac8e0df0386a6b43788aadb467be441f98ee04",
+      "status": "two_additional_push_attempts_failed; latest_remote_read_timed_out; no_success_claim",
+      "local_backup": {
+        "path": "/home/cone/robotics/backups/HIMLoco-stair-night2-410b8d5-20261012.bundle",
+        "sha256": "061397df8a18a09fb6762f7d9ecf5d3dbbb73a225add816b3f2fd2e8dfd8074f",
+        "bytes": 192998536,
+        "bundle_verify_exit": 0,
+        "contains_complete_branch_history": true,
+        "contained_sha": "410b8d51b53b157d16b23287f1c9434bf582c0b4"
+      }
+    }
+  ]
+}

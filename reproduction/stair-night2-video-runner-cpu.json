@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "test_count": 6,
+  "exit_code": 0,
+  "command": [
+    "python3",
+    "-B",
+    "reproduction/test-stair-night2-video-review.py"
+  ],
+  "scope": "host CPU tests only; synthetic6frame1280x72050fps MP4 and mock20ms trace, mocked busy-container guard; no Docker, AppLauncher, simulation, GPU, or actual policy inference",
+  "synthetic_data_is_locomotion_evidence": false,
+  "gpu_video_execution": "not_started",
+  "default_dry_run": {
+    "declared_case_count": 14,
+    "selected_case_count": 1,
+    "unselected_case_count": 13,
+    "case_label": "core-five-asc-speed03",
+    "video_env_id": 0,
+    "viz_none_present": false,
+    "container_calls": false
+  },
+  "stdout": "reproduction/stair-night2-video-runner-cpu.stdout.log",
+  "source_sha256": {
+    "reproduction/run-stair-night2-video-review.py": "40238a3b4f34e8ca1653b64f55b8ed13d6d1ac71796ec98030aa77ef34ba79a7",
+    "reproduction/test-stair-night2-video-review.py": "009c8146f0379a73cc9186da837fbb102a21a6520232e1457812ad50d8312dbd"
+  },
+  "meaningful_checks": [
+    "clean selectedfirstepisodeallframes plusdense20msCSV integration",
+    "failedenv0preservedno reselection; terminal2framesexcluded; remaining4framesdensepaired",
+    "lowresolutioncontinuousMP4allretainedframes",
+    "busyguardrejectspecificlivejob via mock",
+    "freezecheckpoint hash/profilemismatch rejected",
+    "14casecoverage subset omitted explicitly"
+  ]
+}
