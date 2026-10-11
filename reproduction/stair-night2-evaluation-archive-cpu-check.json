@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-11T22:02:30.288761+00:00",
+  "script": "reproduction/archive-stair-night2-evidence.py",
+  "script_sha256": "bb23b7edd4a19b4b9f0e65870fb33fd87fb38853e760f7743851b6aebdfcd079",
+  "scope": "CPU-only explicit archival preparation. Old round1/2/final/video paths read and streamed for SHA256; no round3 paths supplied or results read; no final raw archive packed; no GPU, installation, commit/push or original evidence changes.",
+  "checks": [
+    {
+      "command": "python3 -B reproduction/archive-stair-night2-evidence.py --self-test",
+      "exit": 0,
+      "tests": 2,
+      "scope": "Synthetic temp archive only; original data not packed",
+      "verified_guards": [
+        "Repository/external member mappings and root safety",
+        "No final archive without explicit round3 dev/final/video directories",
+        "Every member SHA/size roundtrip and same-byte hardlink dedup",
+        "Existing output overwrite refused",
+        "Changed source after snapshot refused"
+      ]
+    },
+    {
+      "command": "python3 -B reproduction/archive-stair-night2-evidence.py --manifest reproduction/stair-night2-evaluation-archive-plan-v3.json",
+      "exit": 0,
+      "status": "PRELIMINARY_round3_paths_not_all_supplied_no_final_archive",
+      "included_files": 491,
+      "logical_source_bytes": 15057600768,
+      "unique_content_bytes_before_gzip": 14272472530,
+      "external_original_full_video_count": 15,
+      "first_episode_clip_count": 13,
+      "rebuild_commands": 10,
+      "required_models_not_embedded": 7,
+      "final_archive_created": false
+    }
+  ],
+  "preliminary_source_manifest": "reproduction/stair-night2-evaluation-archive-plan-v3.json",
+  "preliminary_source_manifest_sha256": "e86c70c9ab50e0ba2796db9206a3550caea1d728ea93d93805ab7368d9632aef",
+  "target_external_archive": "/home/cone/robotics/artifacts/night2-20261012-evaluation-data.tar.gz",
+  "pending_root_inputs": [
+    "completed round3 development directory",
+    "completed round3 final directory",
+    "completed round3 video directory",
+    "any explicit corrected-video/review extra directories/files"
+  ],
+  "video_limit": "Hashes preserve bytes/provenance; they do not certify MoviePy/NumPy2 old videos input coverage or physical timestamp alignment."
+}

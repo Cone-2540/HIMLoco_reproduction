@@ -2,7 +2,9 @@
 
 记录时间：2026-10-12T05:35:55.611963+08:00。方式：`frame_sequence_reviewed_not_realtime_playback`。未实时连续播放。
 
-当前完成 5/7 项严格对齐首轮审查，共 3314 帧、57 页。每页按行从左到右、按页时序检查，覆盖初态、首阶、全梯段、离阶和终点停留。另两项原始视频保存，但未通过帧数对齐保护，未作为运动质量证据。
+录像索引审计补充：旧writer的精确物理帧对应关系不成立，见`stair-night2-old-video-writer-index-cpu.json`。以下画面结论只针对完整保留编码序列；接触段数值来自独立20 ms物理遥测，不能通过旧编码帧时间精确定位接触点。项目隔离overlay已用392/402/957/963/2000帧实际CPU libx264编码→解码frameID验证修复，但不追溯修改任何旧视频、结果或材料。
+
+当前已检查5/7项首轮保留编码帧序列（旧writer仅通过长度guard，物理逐步严格对齐未验证），共 3314 帧、57 页。每页按行从左到右、按页时序检查，编码序列覆盖初态、首阶、全梯段、离阶和终点停留。另两项原始视频保存，但未通过帧数对齐保护，未作为运动质量证据。
 
 已审的5项均能连续完成 env0 首轮，未见明显长停、大幅横摆或跌落。下降时反复较长的小腿接触是当前主要不足，不能据高通过率称为“非常丝滑”。这份描述不改变冻结的数值判定、候选选择或任何原始结果。
 
@@ -52,7 +54,7 @@
 
 - 可复核 JSON 包含每页实际路径、SHA256、连续帧区间、原MP4/clip/config/result/20 ms CSV绑定、进入/离阶/dwell时刻与接触段。所有已审项current base force峰为0，遥测flight_paused无区间；这是当前声明的样本条件，不是全部final环境无碰撞的结论。
 - 320×180缩略图及腿部遮挡不能排除细小擦碰、踩沿或滑动。foot-link水平速度只是真滑移的代理，不能宣称测得接触点切向滑移。
-- encoded PTS+20 ms仅为名义仿真时间映射；没有独立检测renderer与physics真实同步。
+- encoded PTS+20 ms仅为名义仿真时间映射；没有独立检测renderer与physics真实同步。实际容器CPU复现发现旧MoviePy+NumPy2时间索引会重复/跳过RGB缓存项，因此即使帧数与executed一致也不能声称每个physics boundary的原始画面被完整保留或接触时刻精确对齐。已看完的是保留MP4的所有编码帧，20 ms遥测自身完整。
 - core-six17-asc-speed05两次均403 decoded vs402 executed；long12-desc-speed03为964 decoded vs963 executed。未放宽保护、删尾帧或假定重复；这些项保持alignment_unverified。
 - moderate-nosing-desc-speed03原batch CPU处理被中断；审查绑定同一原run的新CPU recovery目录，没有覆盖原材料。
 

@@ -25,7 +25,8 @@
     "Single-geometry 32-env video subsets are not the 512-env final matrix.",
     "All retained frames are reviewed in chronological row-major contact sheets, using 320x180 thumbnails. Foot/leg occlusion and geometry overlap limit contact-point and fine-slip judgments.",
     "No realtime playback was performed. No unverified video is silently repaired, frame-dropped or assigned a physics-time alignment.",
-    "No failure, numeric acceptance threshold, reserved final evidence or frozen checkpoint selection is revised by this descriptive review."
+    "No failure, numeric acceptance threshold, reserved final evidence or frozen checkpoint selection is revised by this descriptive review.",
+    "The old MoviePy+NumPy2 writer duplicates/skips RGB cache entries even when encoded count equals executed_steps. All retained encoded frames were reviewed; exact cache/physics-frame coverage and nominal frame-to-20ms-trace alignment are not established."
   ],
   "full_telemetry_analysis": "/home/cone/robotics/logs/20261012-050424-486048_night2-video-review/motion-telemetry-last-seven.json",
   "full_telemetry_analysis_sha256": "53e339b86aa036c2431b6f403c942e362b67ff8d24527eabeb522a5e455c19a1",
@@ -247,8 +248,8 @@
         }
       ],
       "no_retained_frame_gap": true,
-      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
-      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "automatic_reset_frame_excluded_by_clean_clip_guard": false,
+      "frame_sequence_coverage": "Every retained encoded frame was reviewed chronological row-major; old writer repetition/omission prevents complete original cached-frame coverage.",
       "source_binding": {
         "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-12-03_night2-video-core-six17-desc-speed03-20261012050424486048",
         "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
@@ -791,7 +792,12 @@
       },
       "notes_zh": "首轮0–634帧逐页按行检查：起步与平台接近连续；约3.1 s前脚临近边缘后进入下楼姿态，6级下降没有明显长停、猛烈侧摆或跌落；前腿较低姿态随台阶前进，末级过渡到平台后四脚跟进并满足停留。图像几何遮挡和320×180缩略图不能排除小腿贴靠。当前遥测表明FR calf反复且有0.60/0.76 s连续边界采样、约100 N垂向主导接触，因此不能写无擦碰或无撑腿。",
       "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
-      "very_silky_certified": false
+      "very_silky_certified": false,
+      "known_old_writer_mapping_defect": true,
+      "encoded_retained_frame_coverage_complete": true,
+      "precise_frame_to_trace_mapping_verified": false,
+      "each_cached_policy_boundary_frame_retained": false,
+      "physical_terminal_frame_exactly_verified": false
     },
     {
       "label": "core-six17-asc-speed05",
@@ -1016,8 +1022,8 @@
         }
       ],
       "no_retained_frame_gap": true,
-      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
-      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "automatic_reset_frame_excluded_by_clean_clip_guard": false,
+      "frame_sequence_coverage": "Every retained encoded frame was reviewed chronological row-major; old writer repetition/omission prevents complete original cached-frame coverage.",
       "source_binding": {
         "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-00_night2-video-core-six17-desc-speed05-20261012050424486048",
         "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
@@ -1452,7 +1458,12 @@
       },
       "notes_zh": "首轮0–386帧逐页完整检查。起步、入阶、六级下降与离阶持续前进，前腿伸向低一级而后脚跟进，身体保持前俯下楼姿态；没有明显长停或失衡跳落，末尾平台足端继续平地步态并完成停留。前小腿常贴近台阶边缘，缩略画面不宜判为完全无碰擦；FL calf当前采样峰152 N、最长0.46 s暴露，需明确有反复小腿接触。",
       "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
-      "very_silky_certified": false
+      "very_silky_certified": false,
+      "known_old_writer_mapping_defect": true,
+      "encoded_retained_frame_coverage_complete": true,
+      "precise_frame_to_trace_mapping_verified": false,
+      "each_cached_policy_boundary_frame_retained": false,
+      "physical_terminal_frame_exactly_verified": false
     },
     {
       "label": "moderate-nosing-asc-speed03",
@@ -1669,8 +1680,8 @@
         }
       ],
       "no_retained_frame_gap": true,
-      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
-      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "automatic_reset_frame_excluded_by_clean_clip_guard": false,
+      "frame_sequence_coverage": "Every retained encoded frame was reviewed chronological row-major; old writer repetition/omission prevents complete original cached-frame coverage.",
       "source_binding": {
         "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-14-51_night2-video-moderate-nosing-asc-speed03-20261012050424486048",
         "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
@@ -2213,7 +2224,12 @@
       },
       "notes_zh": "首轮0–653帧完整逐页检查：平台接近与首阶抬脚正常，18.5 cm六级带15 mm边沿上楼时前腿反复伸向上一踏面，后脚交替跟进；没有长停、跌倒或明显大幅横摆。中梯段画面前小腿贴近黄色边沿，存在较低前躯姿态与贴靠，但多数接触段较短；遥测FR calf 35段，最长8采样/0.16 s、峰58 N，FR thigh单采样24 N。离阶后姿态恢复、四脚进入平台、完整dwell，称稳定连续较合适，不能称完全无擦碰。",
       "motion_quality_verdict": "stable_continuous_ascent_with_short_repeated_leg_contacts",
-      "very_silky_certified": false
+      "very_silky_certified": false,
+      "known_old_writer_mapping_defect": true,
+      "encoded_retained_frame_coverage_complete": true,
+      "precise_frame_to_trace_mapping_verified": false,
+      "each_cached_policy_boundary_frame_retained": false,
+      "physical_terminal_frame_exactly_verified": false
     },
     {
       "label": "moderate-nosing-desc-speed03",
@@ -2448,8 +2464,8 @@
         }
       ],
       "no_retained_frame_gap": true,
-      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
-      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "automatic_reset_frame_excluded_by_clean_clip_guard": false,
+      "frame_sequence_coverage": "Every retained encoded frame was reviewed chronological row-major; old writer repetition/omission prevents complete original cached-frame coverage.",
       "source_binding": {
         "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-16-04_night2-video-moderate-nosing-desc-speed03-20261012050424486048",
         "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
@@ -3025,7 +3041,12 @@
       },
       "notes_zh": "首轮0–680帧逐页完整检查，绑定 CPU recovery 目录。接近首阶后前脚先下一级，前躯保持较低下楼姿态，后脚逐阶跟进；全段持续前进，未见明显卡住、踉跄、大横摆或跌落。约11–12 s离阶后四脚进入平台并完成停留。前小腿贴近台阶鼻沿；遥测 FR calf 有最长0.72 s边界采样暴露，FL calf瞬时峰239 N，不能标非常丝滑或无撑腿。",
       "motion_quality_verdict": "continuous_traversal_with_repeated_calf_contacts_not_certified_silky",
-      "very_silky_certified": false
+      "very_silky_certified": false,
+      "known_old_writer_mapping_defect": true,
+      "encoded_retained_frame_coverage_complete": true,
+      "precise_frame_to_trace_mapping_verified": false,
+      "each_cached_policy_boundary_frame_retained": false,
+      "physical_terminal_frame_exactly_verified": false
     },
     {
       "label": "long12-asc-speed03",
@@ -3332,8 +3353,8 @@
         }
       ],
       "no_retained_frame_gap": true,
-      "automatic_reset_frame_excluded_by_clean_clip_guard": true,
-      "frame_sequence_coverage": "Every retained frame exactly once; chronological row-major review through terminal dwell",
+      "automatic_reset_frame_excluded_by_clean_clip_guard": false,
+      "frame_sequence_coverage": "Every retained encoded frame was reviewed chronological row-major; old writer repetition/omission prevents complete original cached-frame coverage.",
       "source_binding": {
         "source_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-18-44_night2-video-long12-asc-speed03-20261012051756241513",
         "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
@@ -3978,7 +3999,12 @@
       },
       "notes_zh": "首轮0–956帧16页完整按行检查：接近与首阶抬脚连续，前脚约3.1–3.4 s伸上首阶，随后身体前倾并逐级上升。十二级全梯段前腿反复伸向上一踏面、后脚交替跟进，未见明显长停、突发跌落或大幅横摆；前躯较低，前小腿常靠近阶沿。约14.7 s前脚开始进入顶平台，后脚随后跟进，最后完整平台停留。遥测前 calf 接触多为短段，FL最长0.10 s、FR最长0.12 s，FR thigh有7个单采样；连续稳定可确认，但不能据遮挡缩略图宣布无擦碰或论文同等丝滑。",
       "motion_quality_verdict": "stable_continuous_long_ascent_with_short_repeated_leg_contacts",
-      "very_silky_certified": false
+      "very_silky_certified": false,
+      "known_old_writer_mapping_defect": true,
+      "encoded_retained_frame_coverage_complete": true,
+      "precise_frame_to_trace_mapping_verified": false,
+      "each_cached_policy_boundary_frame_retained": false,
+      "physical_terminal_frame_exactly_verified": false
     },
     {
       "label": "long12-desc-speed03",
@@ -4028,10 +4054,19 @@
   ],
   "coverage": {
     "declared_jobs": 7,
-    "fully_reviewed_aligned_jobs": 5,
-    "alignment_unverified_jobs": 2,
     "visual_frames_reviewed": 3314,
-    "visual_pages_reviewed": 57
+    "visual_pages_reviewed": 57,
+    "fully_reviewed_retained_encoded_clips": 5,
+    "count_guard_failed_jobs": 2,
+    "precise_physics_alignment_certified_jobs": 0
   },
-  "motion_quality_verdict": "All reviewed env0 episodes traverse continuously without an obvious long stop, large sway or fall and complete final dwell. Repeated calf/occasional thigh contact is measured, with prolonged boundary-sampled calf exposure on descents; very silky locomotion is not certified. Two declared jobs currently lack verified phase alignment."
+  "motion_quality_verdict": "All reviewed env0 episodes traverse continuously without an obvious long stop, large sway or fall and complete final dwell. Repeated calf/occasional thigh contact is measured, with prolonged boundary-sampled calf exposure on descents; very silky locomotion is not certified. Two declared jobs currently lack verified phase alignment.",
+  "writer_audit": {
+    "source": "reproduction/stair-night2-old-video-writer-index-cpu.json",
+    "conclusion": "The old MoviePy+NumPy2 writer duplicates/skips RGB cache entries even when encoded count equals executed_steps. All retained encoded frames were reviewed; exact cache/physics-frame coverage and nominal frame-to-20ms-trace alignment are not established.",
+    "encoded_frames_all_reviewed": true,
+    "each_cached_policy_boundary_frame_retained": false,
+    "precise_frame_to_trace_mapping_verified": false,
+    "originals_changed": false
+  }
 }

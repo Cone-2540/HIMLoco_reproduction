@@ -1,0 +1,1992 @@
+{
+  "schema_version": 1,
+  "round": 3,
+  "created_local": "2026-10-12T06:02:32.096311+08:00",
+  "status": "matched_reward_only_training_CPU_archived_and_verified",
+  "actual_training_wrapper": "/home/cone/robotics/logs/20261012-053223_night2-round3-contact-light-seed1213-plus100",
+  "actual_training_run": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_05-32-27_night2-round3-contact-light-seed1213-plus100",
+  "launch_record_sha256": "9f8fcb3b4a37f501f73351c0a5edb9be10c0cb09aa2ade5824f68b56a13f8a3f",
+  "training_source_commit": "a29e1980cb1cdb393ef5e76eb521dc80eb9cb34b",
+  "training_source_dirty_original": false,
+  "source_proof_file": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-source-compatibility-actual-cpu.json",
+  "source_proof_sha256": "1b9903d22e81b9a8b3952f8bfec5e2dd5fbebef27f79f6612339b264207ffa59",
+  "candidate_manifest_sha256": "6662a6453cf693b442b7caf29f74d9f264fa94a5299d4f9f02b4251006d468db",
+  "baseline": {
+    "label": "baseline-faithful1213",
+    "training_reward_profile": "faithful",
+    "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+    "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+    "training_manifest": "artifacts/go2-stairs-night2-faithful-seed1213-760/manifest.json",
+    "training_manifest_sha256": "9cf77261cfc949ece62d6e20577d6f2aba38abd928eea4c57cdfb33091936ea3",
+    "training_config_sha256": "92ef99b336ed5369965da8990f74e45a6459a629f5d90534b18b526340c51827",
+    "training_result_sha256": "7c20d5a95c243dde0895d03b45c181bbd70aa3619d1aece82adc7153966896dd",
+    "archive_member_sha256": {
+      "model_760.pt": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "policy.pt": "31b894529d38b6ab76bbc18dab90b151684db20865f29751ce0c9753505459a3",
+      "config.json": "92ef99b336ed5369965da8990f74e45a6459a629f5d90534b18b526340c51827",
+      "result.json": "7c20d5a95c243dde0895d03b45c181bbd70aa3619d1aece82adc7153966896dd",
+      "launch-record.json": "8df3f3877f82ee714d3e34bfdb7eb6fac774c73987e89eea84df3cf1b4fc3347",
+      "training-plan.json": "f792814d1b9908d2db114d207c95536551cbec30cf3beacab468343ba553c4da",
+      "domain-parameters-initial.json": "0ca18752a94b92cecaf6340fa2139e46a2d23b91de8df943056093af74a72d59",
+      "domain-parameters-final.json": "7244031dad2e4ba53cdd3d55191773efcdf705973cc173b5e7c37dd9e80fda41",
+      "physics-diagnostic.json": "f9d61219536cdc32485c44ddd913ddde1e0dbae306a48d085e3b4a3e4f1ef879",
+      "stdout.log": "4352f2f20647a476e9a187a2d9f6d3a0b1ca939a537244b6327666c7a9f99e09",
+      "gpu-resource.csv": "f6d53eff21c5cc4b63e0b787d4855c5e424c2cef56aa61b71843f7497250a6ad",
+      "events.out.tfevents.1791746755.Cone.2738.0": "33bc00aba4e1bff0a3cdf8ab895ffd6432c0f3b8921a3cea9bd50c670abcd8a7",
+      "source/isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+      "source/isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+      "source/isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "source/isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "source/isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+      "checkpoint-cpu-audit.json": "d74b237c45629af814293528a1404120a56dfeeec1cc9853de976dc4ba150673",
+      "stair-manifest.json": "14b0546ce3ed26b6b31b05ae864d2bdcc8da3f0e5ac28c4dbcd26740c731d8ba"
+    },
+    "training_budget": {
+      "saved_additional_updates": 100,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "environment_steps_this_run": 76800000
+    },
+    "training_seed": 1213,
+    "training_reward_weights": {
+      "track_lin_vel_xy_exp": 1.0,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01
+    },
+    "training_source_provenance": {
+      "config_commit": "f3c8a7e00fba941ec3497a40350be284ebc30a33",
+      "config_tracked_files_dirty": false,
+      "wrapper_commit": "f3c8a7e00fba941ec3497a40350be284ebc30a33",
+      "wrapper_source_dirty": false,
+      "verified_runtime_source_sha256": {
+        "isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+        "isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+        "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+        "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+        "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+      },
+      "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+    },
+    "source_compatibility": "fixed_old_faithful_exact_configuration_and_nine_file_compatibility_proof",
+    "training_hyperparameters": {
+      "runner": {
+        "policy_class_name": "HIMActorCritic",
+        "algorithm_class_name": "HIMPPO",
+        "num_steps_per_env": 100,
+        "save_interval": 20
+      },
+      "policy": {
+        "actor_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "critic_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "init_noise_std": 1.0
+      },
+      "algorithm": {
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "entropy_coef": 0.01,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.0001,
+        "schedule": "fixed",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0
+      }
+    },
+    "training_state_before_learning": {
+      "completed_updates": 660,
+      "ppo_learning_rate": 0.0001,
+      "ppo_adam_group_rates": [
+        0.0001
+      ],
+      "him_learning_rate": 0.0001,
+      "him_adam_group_rates": [
+        0.0001
+      ],
+      "exploration_std_min": 0.17175649106502533,
+      "exploration_std_max": 0.29638275504112244,
+      "optimizer_state": "checkpoint Adam retained"
+    },
+    "training_common_parameter_configuration": {
+      "task": "Isaac-Velocity-Rough-UnitreeGo2",
+      "seed": 1213,
+      "num_envs": 7680,
+      "train": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "physics": "isaacsim_physx",
+      "torch": "2.11.0+cu128",
+      "cuda": "12.8",
+      "gpu_capability": [
+        12,
+        0
+      ],
+      "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+      "physics_dt": 0.005,
+      "policy_decimation": 4,
+      "episode_length_s": 20.0,
+      "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+      "command_override": null,
+      "training_turn_fraction": 0.0,
+      "exploration_std_override": null,
+      "resume_learning_rate_override": 0.0001,
+      "requested_additional_training_updates": 100,
+      "terrain_start_level": 4,
+      "stair_training_speed_range_m_s": [
+        0.25,
+        0.65
+      ],
+      "terrain": "stairs",
+      "stairs": {
+        "stage": "paper_mixed",
+        "seed": 1213,
+        "heldout": false,
+        "num_rows": 10,
+        "num_cols": 28,
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0,
+        "convert_to_heightfield": false,
+        "geometry_reference": "relative to scene.env_origins; positive x travel",
+        "height_scanner_samples": 187,
+        "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+        "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+        "variants": [
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          }
+        ]
+      },
+      "domain_randomization": null,
+      "calf_limit_sensitivity": null,
+      "friction_override": null,
+      "stair_pushes": false,
+      "flat_replay": {
+        "requested_terrain_fraction": 0.0,
+        "all_direction_commands": false,
+        "standing_fraction": null,
+        "moving_categories": null,
+        "positive_magnitude_ranges": null,
+        "actor_terrain_inputs_added": false
+      },
+      "joint_names": [
+        "FL_hip_joint",
+        "FR_hip_joint",
+        "RL_hip_joint",
+        "RR_hip_joint",
+        "FL_thigh_joint",
+        "FR_thigh_joint",
+        "RL_thigh_joint",
+        "RR_thigh_joint",
+        "FL_calf_joint",
+        "FR_calf_joint",
+        "RL_calf_joint",
+        "RR_calf_joint"
+      ],
+      "default_joint_positions": [
+        0.10000000149011612,
+        -0.10000000149011612,
+        0.10000000149011612,
+        -0.10000000149011612,
+        0.800000011920929,
+        0.800000011920929,
+        1.0,
+        1.0,
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5
+      ],
+      "action_scale": 0.25,
+      "runtime_training_state_before_learning": {
+        "completed_updates": 660,
+        "ppo_learning_rate": 0.0001,
+        "ppo_adam_group_rates": [
+          0.0001
+        ],
+        "him_learning_rate": 0.0001,
+        "him_adam_group_rates": [
+          0.0001
+        ],
+        "exploration_std_min": 0.17175649106502533,
+        "exploration_std_max": 0.29638275504112244,
+        "optimizer_state": "checkpoint Adam retained"
+      },
+      "reward_frame_validation": {
+        "quaternion_order": "xyzw",
+        "checked_physics_quaternions": 8,
+        "root_position": "root link origin",
+        "root_velocity": "root COM",
+        "foot_position": "foot link origin",
+        "foot_velocity": "foot COM"
+      }
+    },
+    "training_initial_physical_readback_sha256_normalized": "45e4e81bf8f046bde2ebeff89da5f709d9323e058e1805764f730b62e6f5579a",
+    "physical_comparison_scope": "Saved readback values/statistics with only anonymous USD layer identifier removed; not all initial tensors or deterministic CUDA trajectories.",
+    "training_sampling_configuration": {
+      "terrain": "stairs",
+      "stairs": {
+        "stage": "paper_mixed",
+        "seed": 1213,
+        "heldout": false,
+        "num_rows": 10,
+        "num_cols": 28,
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0,
+        "convert_to_heightfield": false,
+        "geometry_reference": "relative to scene.env_origins; positive x travel",
+        "height_scanner_samples": 187,
+        "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+        "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+        "variants": [
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          }
+        ]
+      },
+      "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+      "domain_randomization": null,
+      "friction_override": null,
+      "terrain_start_level": 4,
+      "stair_training_speed_range_m_s": [
+        0.25,
+        0.65
+      ],
+      "training_turn_fraction": 0.0,
+      "stair_pushes": false,
+      "flat_replay": {
+        "requested_terrain_fraction": 0.0,
+        "all_direction_commands": false,
+        "standing_fraction": null,
+        "moving_categories": null,
+        "positive_magnitude_ranges": null,
+        "actor_terrain_inputs_added": false
+      }
+    },
+    "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+  },
+  "candidate": {
+    "label": "contact-light1213",
+    "training_reward_profile": "contact_light",
+    "checkpoint": "artifacts/go2-stairs-night2-round3-contact-light-seed1213-760/model_760.pt",
+    "checkpoint_sha256": "25fd0a1df2f79de4fdfc07a0906b36b113e39d352299df7724c8e600ba611551",
+    "training_manifest": "artifacts/go2-stairs-night2-round3-contact-light-seed1213-760/manifest.json",
+    "training_manifest_sha256": "6662a6453cf693b442b7caf29f74d9f264fa94a5299d4f9f02b4251006d468db",
+    "training_config_sha256": "debb29ea4d5300d5165c6aaae28bd4c126a71a285efd446879ec689adb25c092",
+    "training_result_sha256": "8e7caa1f62e2d2beab90ee35dd57fc507b545a47e777ac10186fffd3b00552c1",
+    "archive_member_sha256": {
+      "model_760.pt": "25fd0a1df2f79de4fdfc07a0906b36b113e39d352299df7724c8e600ba611551",
+      "policy.pt": "f82a1fbfabc558c91180fbb7ca60e2795421616704611b89b4498b8284f6b579",
+      "config.json": "debb29ea4d5300d5165c6aaae28bd4c126a71a285efd446879ec689adb25c092",
+      "result.json": "8e7caa1f62e2d2beab90ee35dd57fc507b545a47e777ac10186fffd3b00552c1",
+      "launch-record.json": "9f8fcb3b4a37f501f73351c0a5edb9be10c0cb09aa2ade5824f68b56a13f8a3f",
+      "training-plan.json": "45d0190ff0e931331ad0d128390e5cca6e4d2c0812030d38a6af3f37e579cc6f",
+      "domain-parameters-initial.json": "28a813fa82f9c52273de0010e15fbad8c8a77bdd00a9b6fa15439c2ee011e486",
+      "domain-parameters-final.json": "53bb3e70988ac6f231b20c05cd395d1c04ab9ad81a7ea68851b2c5d4aad1c06c",
+      "physics-diagnostic.json": "f9d61219536cdc32485c44ddd913ddde1e0dbae306a48d085e3b4a3e4f1ef879",
+      "stdout.log": "ef8b93acc89840f0793d5aeb7401ba047b07e18182c6dd904828ed8595af0947",
+      "gpu-resource.csv": "9cdcb262c789018dc9941e67c281ece184df0dfa57ac756d04ae92ce4ffa9064",
+      "events.out.tfevents.1791754427.Cone.11580.0": "5e06f0ad8596a4ebdc4364dfe50245b5ecb5a20521574be0cff39ac694dba3d5",
+      "source/isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+      "source/isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+      "source/isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "source/isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+      "source/isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+      "checkpoint-cpu-audit.json": "47520bb92f0e6382ec0b0d83a71e8f8cd729c8fa8688ec30011b5ced37e0a8dc",
+      "stair-manifest.json": "14b0546ce3ed26b6b31b05ae864d2bdcc8da3f0e5ac28c4dbcd26740c731d8ba"
+    },
+    "training_budget": {
+      "saved_additional_updates": 100,
+      "num_envs": 7680,
+      "steps_per_env": 100,
+      "environment_steps_this_run": 76800000
+    },
+    "training_seed": 1213,
+    "training_reward_weights": {
+      "track_lin_vel_xy_exp": 1.0,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01,
+      "leg_contacts": -0.02
+    },
+    "training_source_provenance": {
+      "config_commit": "a29e1980cb1cdb393ef5e76eb521dc80eb9cb34b",
+      "config_tracked_files_dirty": false,
+      "wrapper_commit": "a29e1980cb1cdb393ef5e76eb521dc80eb9cb34b",
+      "wrapper_source_dirty": false,
+      "verified_runtime_source_sha256": {
+        "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+        "isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+        "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+        "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+        "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+      },
+      "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+    },
+    "source_compatibility": "new_light_exact_current_runtime_source",
+    "training_hyperparameters": {
+      "runner": {
+        "policy_class_name": "HIMActorCritic",
+        "algorithm_class_name": "HIMPPO",
+        "num_steps_per_env": 100,
+        "save_interval": 20
+      },
+      "policy": {
+        "actor_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "critic_hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "init_noise_std": 1.0
+      },
+      "algorithm": {
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "entropy_coef": 0.01,
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.0001,
+        "schedule": "fixed",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0
+      }
+    },
+    "training_state_before_learning": {
+      "completed_updates": 660,
+      "ppo_learning_rate": 0.0001,
+      "ppo_adam_group_rates": [
+        0.0001
+      ],
+      "him_learning_rate": 0.0001,
+      "him_adam_group_rates": [
+        0.0001
+      ],
+      "exploration_std_min": 0.17175649106502533,
+      "exploration_std_max": 0.29638275504112244,
+      "optimizer_state": "checkpoint Adam retained"
+    },
+    "training_common_parameter_configuration": {
+      "task": "Isaac-Velocity-Rough-UnitreeGo2",
+      "seed": 1213,
+      "num_envs": 7680,
+      "train": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "physics": "isaacsim_physx",
+      "torch": "2.11.0+cu128",
+      "cuda": "12.8",
+      "gpu_capability": [
+        12,
+        0
+      ],
+      "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+      "physics_dt": 0.005,
+      "policy_decimation": 4,
+      "episode_length_s": 20.0,
+      "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+      "command_override": null,
+      "training_turn_fraction": 0.0,
+      "exploration_std_override": null,
+      "resume_learning_rate_override": 0.0001,
+      "requested_additional_training_updates": 100,
+      "terrain_start_level": 4,
+      "stair_training_speed_range_m_s": [
+        0.25,
+        0.65
+      ],
+      "terrain": "stairs",
+      "stairs": {
+        "stage": "paper_mixed",
+        "seed": 1213,
+        "heldout": false,
+        "num_rows": 10,
+        "num_cols": 28,
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0,
+        "convert_to_heightfield": false,
+        "geometry_reference": "relative to scene.env_origins; positive x travel",
+        "height_scanner_samples": 187,
+        "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+        "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+        "variants": [
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          }
+        ]
+      },
+      "domain_randomization": null,
+      "calf_limit_sensitivity": null,
+      "friction_override": null,
+      "stair_pushes": false,
+      "flat_replay": {
+        "requested_terrain_fraction": 0.0,
+        "all_direction_commands": false,
+        "standing_fraction": null,
+        "moving_categories": null,
+        "positive_magnitude_ranges": null,
+        "actor_terrain_inputs_added": false
+      },
+      "joint_names": [
+        "FL_hip_joint",
+        "FR_hip_joint",
+        "RL_hip_joint",
+        "RR_hip_joint",
+        "FL_thigh_joint",
+        "FR_thigh_joint",
+        "RL_thigh_joint",
+        "RR_thigh_joint",
+        "FL_calf_joint",
+        "FR_calf_joint",
+        "RL_calf_joint",
+        "RR_calf_joint"
+      ],
+      "default_joint_positions": [
+        0.10000000149011612,
+        -0.10000000149011612,
+        0.10000000149011612,
+        -0.10000000149011612,
+        0.800000011920929,
+        0.800000011920929,
+        1.0,
+        1.0,
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5
+      ],
+      "action_scale": 0.25,
+      "runtime_training_state_before_learning": {
+        "completed_updates": 660,
+        "ppo_learning_rate": 0.0001,
+        "ppo_adam_group_rates": [
+          0.0001
+        ],
+        "him_learning_rate": 0.0001,
+        "him_adam_group_rates": [
+          0.0001
+        ],
+        "exploration_std_min": 0.17175649106502533,
+        "exploration_std_max": 0.29638275504112244,
+        "optimizer_state": "checkpoint Adam retained"
+      },
+      "reward_frame_validation": {
+        "quaternion_order": "xyzw",
+        "checked_physics_quaternions": 8,
+        "root_position": "root link origin",
+        "root_velocity": "root COM",
+        "foot_position": "foot link origin",
+        "foot_velocity": "foot COM"
+      }
+    },
+    "training_initial_physical_readback_sha256_normalized": "45e4e81bf8f046bde2ebeff89da5f709d9323e058e1805764f730b62e6f5579a",
+    "physical_comparison_scope": "Saved readback values/statistics with only anonymous USD layer identifier removed; not all initial tensors or deterministic CUDA trajectories.",
+    "training_sampling_configuration": {
+      "terrain": "stairs",
+      "stairs": {
+        "stage": "paper_mixed",
+        "seed": 1213,
+        "heldout": false,
+        "num_rows": 10,
+        "num_cols": 28,
+        "terrain_size": [
+          8.0,
+          3.0
+        ],
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0,
+        "convert_to_heightfield": false,
+        "geometry_reference": "relative to scene.env_origins; positive x travel",
+        "height_scanner_samples": 187,
+        "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+        "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+        "variants": [
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "asc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.3,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.01,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.11,
+              0.2
+            ],
+            "step_depth": 0.35,
+            "nosing": 0.02,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.16,
+              0.16
+            ],
+            "step_depth": 0.27,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          },
+          {
+            "direction": "desc",
+            "step_height_range": [
+              0.17,
+              0.17
+            ],
+            "step_depth": 0.25,
+            "nosing": 0.0,
+            "num_steps": 6,
+            "width": 1.2,
+            "landing_length": 2.0
+          }
+        ]
+      },
+      "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+      "domain_randomization": null,
+      "friction_override": null,
+      "terrain_start_level": 4,
+      "stair_training_speed_range_m_s": [
+        0.25,
+        0.65
+      ],
+      "training_turn_fraction": 0.0,
+      "stair_pushes": false,
+      "flat_replay": {
+        "requested_terrain_fraction": 0.0,
+        "all_direction_commands": false,
+        "standing_fraction": null,
+        "moving_categories": null,
+        "positive_magnitude_ranges": null,
+        "actor_terrain_inputs_added": false
+      }
+    },
+    "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+  },
+  "archive_members_verified_each": 19,
+  "common_control660_origin": true,
+  "same_saved_100updates_7680env_100steps_76_8M": true,
+  "same_full_training_configuration_except_declared_reward": true,
+  "same_initial_physical_readbacks_except_anonymous_USD_layer_identifier": true,
+  "sole_reward_change_from_faithful": {
+    "leg_contacts": -0.02
+  },
+  "both_Adam_states_retained_delta_steps": 2000,
+  "unchanged_model_tensor_shapes": 30,
+  "cuda_initialized_by_checkpoint_audit": false,
+  "GPU_work_launched_by_watcher": false,
+  "automatic_policy_selection": false,
+  "stair_performance_assessed": false,
+  "limits": "One paired training seed1213, reused narrowly source-compatible faithful baseline. Saved config and sampled physical readbacks do not prove every initial tensor, deterministic CUDA trajectories or reward causality. No traversal/smoothness acceptance implied."
+}

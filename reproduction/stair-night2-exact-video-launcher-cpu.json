@@ -1,0 +1,17 @@
+{
+  "positive_activation_and_argv": {
+    "chunk_id": "813e87",
+    "wall_time_seconds": 0.138501043,
+    "exit_code": 0,
+    "original_token_count": 471,
+    "output": "[HIMVideoCompat] RGB cache frames use exact integer indices (project overlay)\nHIM_VIDEO_COMPAT_ACTIVE {\"ffmpeg\": {\"path\": \"/workspace/isaaclab/data_storage/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2\", \"sha256\": \"e7e7fb30477f717e6f55f9180a70386c62677ef8a4d4d1a5d948f4098aa3eb99\"}, \"launcher\": {\"path\": \"/workspace/himloco/isaaclab/video_compat/launch_exact_video.py\", \"sha256\": \"1d981e0c04919d063e4a4013fa9809e07f66429582c8c1281361c7d4f3d3b123\"}, \"launcher_sha256\": \"1d981e0c04919d063e4a4013fa9809e07f66429582c8c1281361c7d4f3d3b123\", \"method\": \"integer_index_rgb_v1\", \"moviepy_clip\": {\"path\": \"/workspace/isaaclab/data_storage/python-extras/video/moviepy/Clip.py\", \"sha256\": \"4f9278920713ace951b6944e1145ad3646667876a74ce1d67005ed68dd7527cf\"}, \"moviepy_image_sequence\": {\"path\": \"/workspace/isaaclab/data_storage/python-extras/video/moviepy/video/io/ImageSequenceClip.py\", \"sha256\": \"1f8c990549b329777151e02537c945e76b111b749780d529fb981ec96119a7bf\"}, \"numpy\": \"2.5.3\", \"overlay\": {\"path\": \"/workspace/himloco/isaaclab/video_compat/sitecustomize.py\", \"sha256\": \"930434c808071f9e1c328dbaaec37ce839b8bf03d16b9dc08cdf83a93343637d\"}, \"overlay_sha256\": \"930434c808071f9e1c328dbaaec37ce839b8bf03d16b9dc08cdf83a93343637d\", \"patched\": true, \"python\": \"3.12.13 (tags/v3.12.13-dirty:3bb231a, Apr 22 2026, 14:10:08) [GCC 11.4.0]\", \"schema_version\": 1}\nHIM_VIDEO_COMPAT_ARGV {\"prepared_runtime_argv\": [\"/workspace/himloco/isaaclab/run.py\", \"evaluate\", \"--terrain\", \"stairs\", \"--video\", \"--run_name\", \"cpu-argv-check\"], \"process_cmdline\": [\"/isaac-sim/kit/python/bin/python3\", \"-u\", \"/workspace/himloco/isaaclab/video_compat/launch_exact_video.py\", \"/workspace/himloco/isaaclab/run.py\", \"--video-compat-verify-only\", \"evaluate\", \"--terrain\", \"stairs\", \"--video\", \"--run_name\", \"cpu-argv-check\"], \"scope\": \"CPU-only argv and activation inspection; runtime not executed\"}\n"
+  },
+  "negative_missing_overlay": {
+    "chunk_id": "0db455",
+    "wall_time_seconds": 0.143280268,
+    "exit_code": 1,
+    "original_token_count": 86,
+    "output": "Traceback (most recent call last):\n  File \"/workspace/himloco/isaaclab/video_compat/launch_exact_video.py\", line 17, in <module>\n    raise RuntimeError(\"Exact-video overlay failed to activate; simulator startup is refused\")\nRuntimeError: Exact-video overlay failed to activate; simulator startup is refused\nThere was an error running python\n"
+  },
+  "scope": "CPU-only launcher checks; original run.py never executed; no simulator or GPU."
+}

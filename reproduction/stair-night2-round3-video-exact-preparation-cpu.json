@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "recorded_local": "2026-10-12T06:03:26.972814+08:00",
+  "status": "round3_exact_RGB_video_CPU_preparation_passed",
+  "host_tests_passed": 14,
+  "actual_existing_container_CPU_index_proof": {
+    "status": "real_CPU_encoding_decoding_all_index_IDs_verified",
+    "file": "/home/cone/Research/HIMLoco/reproduction/stair-night2-exact-video-cache-cpu.json",
+    "sha256": "88651e35dc6d9cca16969de8850a5ccc5be4418adc7dbb73fdb26fb4c577683a",
+    "overlay": {
+      "path": "/workspace/himloco/isaaclab/video_compat/sitecustomize.py",
+      "sha256": "930434c808071f9e1c328dbaaec37ce839b8bf03d16b9dc08cdf83a93343637d"
+    },
+    "verifier": {
+      "path": "/workspace/himloco/reproduction/verify-exact-video-cache.py",
+      "sha256": "01fc18829cf8b6f6ac83116a02d5d840ce48d71d7e38495dffe2b74708a841cf"
+    },
+    "environment": {
+      "python": "3.12.13 (tags/v3.12.13-dirty:3bb231a, Apr 22 2026, 14:10:08) [GCC 11.4.0]",
+      "numpy": "2.5.3"
+    },
+    "writer_dependencies": {
+      "moviepy_image_sequence": {
+        "path": "/workspace/isaaclab/data_storage/python-extras/video/moviepy/video/io/ImageSequenceClip.py",
+        "sha256": "1f8c990549b329777151e02537c945e76b111b749780d529fb981ec96119a7bf"
+      },
+      "moviepy_clip": {
+        "path": "/workspace/isaaclab/data_storage/python-extras/video/moviepy/Clip.py",
+        "sha256": "4f9278920713ace951b6944e1145ad3646667876a74ce1d67005ed68dd7527cf"
+      },
+      "ffmpeg": {
+        "path": "/workspace/isaaclab/data_storage/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+        "sha256": "e7e7fb30477f717e6f55f9180a70386c62677ef8a4d4d1a5d948f4098aa3eb99"
+      }
+    },
+    "cases": [
+      {
+        "cache_frames": 392,
+        "all_decoded_frame_ids_verified": true,
+        "encoded_mp4": "/home/cone/Research/HIMLoco/isaaclab/logs/20261012-exact-video-cache-cpu-fixture-final/exact-cache-392.mp4",
+        "encoded_mp4_sha256": "f3e27e53b14daecba7722017cc0ef736e5b5b61df4811486a3763f035267418e"
+      },
+      {
+        "cache_frames": 402,
+        "all_decoded_frame_ids_verified": true,
+        "encoded_mp4": "/home/cone/Research/HIMLoco/isaaclab/logs/20261012-exact-video-cache-cpu-fixture-final/exact-cache-402.mp4",
+        "encoded_mp4_sha256": "5a7dde3812983b98dad320c261c5d267cd66ff1610645bed5bfbba9c893f656c"
+      },
+      {
+        "cache_frames": 957,
+        "all_decoded_frame_ids_verified": true,
+        "encoded_mp4": "/home/cone/Research/HIMLoco/isaaclab/logs/20261012-exact-video-cache-cpu-fixture-final/exact-cache-957.mp4",
+        "encoded_mp4_sha256": "8c40b75a493404b1cb98ecbb23762b01ae0e3ad921d2655c7c2b9ce1a98b67df"
+      },
+      {
+        "cache_frames": 963,
+        "all_decoded_frame_ids_verified": true,
+        "encoded_mp4": "/home/cone/Research/HIMLoco/isaaclab/logs/20261012-exact-video-cache-cpu-fixture-final/exact-cache-963.mp4",
+        "encoded_mp4_sha256": "87e03bc9441dee80e074a19498622fcda52d8460b4617274d74c30e262381be2"
+      },
+      {
+        "cache_frames": 2000,
+        "all_decoded_frame_ids_verified": true,
+        "encoded_mp4": "/home/cone/Research/HIMLoco/isaaclab/logs/20261012-exact-video-cache-cpu-fixture-final/exact-cache-2000.mp4",
+        "encoded_mp4_sha256": "af998be673da05a5e8038b70cb072f83874f8f563f6d23be3c5467bee4660585"
+      }
+    ],
+    "scope": "Actual existing container CPU RGB cache index and libx264 ordering proof; no GPU/locomotion acceptance"
+  },
+  "markers_required": [
+    "HIM_VIDEO_COMPAT_ACTIVE",
+    "HIM_VIDEO_COMPAT_EMITTED",
+    "[INFO]: [VideoRecorder] Wrote N frames to actual_source_mp4"
+  ],
+  "source_paths_sha256": {
+    "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+    "isaaclab/run.sh": "fd3462c86b45c3106948638ca4b996e76510df3912171673fefd1eeddd07a873",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/video_compat/sitecustomize.py": "930434c808071f9e1c328dbaaec37ce839b8bf03d16b9dc08cdf83a93343637d",
+    "isaaclab/video_compat/launch_exact_video.py": "1d981e0c04919d063e4a4013fa9809e07f66429582c8c1281361c7d4f3d3b123",
+    "reproduction/verify-exact-video-cache.py": "01fc18829cf8b6f6ac83116a02d5d840ce48d71d7e38495dffe2b74708a841cf",
+    "reproduction/stair-night2-exact-video-cache-cpu.json": "88651e35dc6d9cca16969de8850a5ccc5be4418adc7dbb73fdb26fb4c577683a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/stair_rewards.py": "2013246defe25471745b89f53bf37d4038e19966d9f4ae20ba9e639cbcd4ef83",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+    "reproduction/run-stair-night2-job.py": "2c61b889b2a77f6f996d9cbe27dde364af767caea0751f9588889712dfeb948d",
+    "reproduction/clip-first-episode-video.py": "5b065325e9ddf73eec90f34effde3e54359b6a57d82097810674715531d4e79d",
+    "reproduction/clip-pre-failure-video.py": "1e2da6bca2a38cd317bab42cb7fc8ae0f5fc869ee411a3579c3352169df3cfe5",
+    "reproduction/inspect-first-episode-frames.py": "8c4573b16dd2b4fb5f0ee1349dfe86af274ab03a1a6a2e464d1801c002f0865b",
+    "reproduction/inspect-pre-failure-frames.py": "971698a212904e59c11abb445bc6a8d7f840a05dff06f09a03c6878705e2d5b0",
+    "reproduction/run-stair-night2-video-review.py": "40238a3b4f34e8ca1653b64f55b8ed13d6d1ac71796ec98030aa77ef34ba79a7",
+    "reproduction/run-stair-night2-round3-video-review.py": "c1402b6e351940bcd8cc6c2511471f74305f72e254cfa35047735dd7c6b83a59",
+    "reproduction/run-stair-night2-round3-comparison.py": "4b864dcac2f0ebcbbd54d7dcb9a646995b9767e50a027b71ac4cb38da0eb9b46",
+    "reproduction/audit-stair-night2-round3-source.py": "41e8900059097b2531af0afbd4069cb6d27c8f6e702bb279f112089397bd55c7"
+  },
+  "test_source_sha256": "bb587a7285729ec2240a46bc07f6f7a5f3c1cf765a2c062938ac12d82d5d036d",
+  "runtime_binding": "Require exact overlay+launcher hashes/paths, Python/NumPy and MoviePy/FFmpeg fingerprints; emitted cache=yielded=LabWrote=fullCPUdecoded=min(executed_steps,video_length); 50Hz and policy20ms. Source/proof/static workflow committed before launch; full round3 freeze mandatory.",
+  "negative_cases": [
+    "legacy writer without markers",
+    "patched false",
+    "overlay hash altered",
+    "yield/cache counts differ",
+    "wrong source MP4 path",
+    "duplicate markers",
+    "complete CPU decoded count differs",
+    "FFmpeg fingerprint differs",
+    "CPU frame ID duplicated/reordered",
+    "oldseed907 or oldflattenedfreeze"
+  ],
+  "coverage_count": 14,
+  "explicit_subsets_preserve_missing_cases": true,
+  "camera_env0_seed1301_retained_on_failure": true,
+  "unchanged_old_video_runner_and_clipguards": true,
+  "GPU_work_started": false,
+  "physical_video_recorded": false,
+  "continuous_physical_video_reviewed": false,
+  "limits": "CPU synthetic frame fixtures and tooling only. No new round3 statistical, flat, locomotion or smoothness verdict implied."
+}

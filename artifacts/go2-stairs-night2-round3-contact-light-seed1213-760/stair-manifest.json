@@ -1,0 +1,357 @@
+{
+  "stage": "paper_mixed",
+  "seed": 1213,
+  "heldout": false,
+  "num_rows": 10,
+  "num_cols": 28,
+  "terrain_size": [
+    8.0,
+    3.0
+  ],
+  "num_steps": 6,
+  "width": 1.2,
+  "landing_length": 2.0,
+  "convert_to_heightfield": false,
+  "geometry_reference": "relative to scene.env_origins; positive x travel",
+  "height_scanner_samples": 187,
+  "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+  "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+  "variants": [
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.16,
+        0.16
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "asc",
+      "step_height_range": [
+        0.17,
+        0.17
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.3,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.01,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.11,
+        0.2
+      ],
+      "step_depth": 0.35,
+      "nosing": 0.02,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.16,
+        0.16
+      ],
+      "step_depth": 0.27,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    },
+    {
+      "direction": "desc",
+      "step_height_range": [
+        0.17,
+        0.17
+      ],
+      "step_depth": 0.25,
+      "nosing": 0.0,
+      "num_steps": 6,
+      "width": 1.2,
+      "landing_length": 2.0
+    }
+  ]
+}
