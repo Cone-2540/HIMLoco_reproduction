@@ -66,7 +66,9 @@ def main():
     directory = Path.home() / "robotics/logs" / (stamp + "_" + args.name)
     directory.mkdir(parents=True, exist_ok=False)
     command = ["bash", str(root / "isaaclab/run.sh"), *forwarded,
-               "--run_name", args.name, "--shutdown_timeout", "20", "--viz", "none"]
+               "--run_name", args.name, "--shutdown_timeout", "20"]
+    if "--video" not in forwarded:
+        command.extend(["--viz", "none"])
     source = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     source_dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True).strip())
     source_paths = ["isaaclab/run.py", "isaaclab/stair_rewards.py", "isaaclab/stair_terrain.py",
@@ -126,6 +128,23 @@ def main():
         finally:
             stop.set()
             thread.join(timeout=12)
+            # The Kit teardown watchdog may exit its parent while a simulator
+            # subprocess still owns CUDA memory. Only clean this exact job.
+            try:
+                cleanup = stop_exact_container_job(args.name)
+                record["post_exit_task_cleanup"] = {
+                    "exit_code": cleanup.returncode,
+                    "stdout": cleanup.stdout, "stderr": cleanup.stderr,
+                }
+                if cleanup.stdout.strip():
+                    time.sleep(2)
+                    forced = stop_exact_container_job(args.name, force=True)
+                    record["post_exit_task_force_cleanup"] = {
+                        "exit_code": forced.returncode,
+                        "stdout": forced.stdout, "stderr": forced.stderr,
+                    }
+            except (OSError, subprocess.TimeoutExpired) as error:
+                record["post_exit_task_cleanup_error"] = str(error)
             record.update(exit_code=process.returncode,
                           ended_local=datetime.now().astimezone().isoformat(),
                           elapsed_seconds=time.monotonic() - started)
