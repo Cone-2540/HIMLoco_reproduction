@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "audited_local": "2026-10-12T00:30:37.224218+08:00",
+  "source_commit_reviewed": "d1c4fcc",
+  "scope": "Independent static source comparison with repository released rsl_rl; standard-library-only inspection of existing pilot JSON/stdout. No GPU simulation, training, Torch checkpoint load, repeated tests or reserved evaluation by this audit.",
+  "conclusion": "HIM hybrid velocity/latent estimator and PPO loss/network structure remain the released algorithm, with documented preexisting Isaac Lab portability corrections. Night2 changes reward weights and stair curriculum, not the HIM/PPO implementation. This is a Go2/Isaac Lab reproduction route, not identical original-paper hardware/software/observation distribution.",
+  "night2_algorithm_source_changed_since_ffb6f8c": [],
+  "checks": [
+    {
+      "item": "Actor input",
+      "status": "preserved_structure",
+      "evidence": [
+        "isaaclab/run.py PolicyObservations",
+        "isaaclab/adapter.py HIMVecEnv"
+      ],
+      "detail": "45-dimensional frame: scaled command3, angular velocity3, gravity3, joint position12, joint velocity12, previous action12. Six newest-first frames give270. The actor never receives terrain heights, true linear velocity or disturbance forces; estimator emits velocity3 plus normalized latent16, combined with current45 for64-dimensional actor MLP input."
+    },
+    {
+      "item": "Privileged critic and velocity supervision",
+      "status": "preserved_HIM_target_with_migration_difference",
+      "evidence": [
+        "isaaclab/run.py CriticObservations and height_scan",
+        "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py update",
+        "legged_gym/legged_gym/envs/base/legged_robot_config.py env",
+        "legged_gym/legged_gym/envs/base/legged_robot.py compute_observations"
+      ],
+      "detail": "Lab critic235=45+true body linear velocity3+height187; velocity remains45:48 scaled by2. Estimator target keeps next_critic_obs[:,3:48] and velocity45:48. Original released critic238 includes an additional3 disturbance-force channels, omitted in Lab. Lab critic corruption is disabled; original critic inherited noisy current observations and noisy heights. These differences predate Night2."
+    },
+    {
+      "item": "Height privileged information",
+      "status": "retained_only_in_critic",
+      "evidence": [
+        "isaaclab/run.py resolve_task_config",
+        "isaaclab/stair_terrain.py height_scanner pattern",
+        "pinned Lab observations.py height_scan and observation_manager.py"
+      ],
+      "detail": "17x11 grid=187 at0.1m; term offset0.5, clip[-1,1] before scale5 matches released operation ordering. Raycaster and original terrain-sampling physics differ. No terrain channel is added to actor/HIM encoder."
+    },
+    {
+      "item": "HIM network and objectives",
+      "status": "retained",
+      "evidence": [
+        "rsl_rl/rsl_rl/modules/him_estimator.py",
+        "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py"
+      ],
+      "detail": "Encoder270->128->64->19; velocity3 plus normalized latent16. Target45->128->64->16;32 normalized prototypes. Velocity MSE plus symmetric swapped prototype loss -0.5*mean(q_s*log_p_t+q_t*log_p_s). Temperature3, Sinkhorn eps0.05/3iterations; assignments computed under no_grad. Policy consumes detached estimator outputs; supervised velocity/target observations are detached. Separate HIM Adam is updated per PPO minibatch. Additional nonfinite-loss/gradient guards preserve finite-update formulas.",
+      "sinkhorn_ast_identical_to_original": true,
+      "estimator_constructor_ast_identical_to_original": true
+    },
+    {
+      "item": "Actor/critic MLP and PPO losses",
+      "status": "retained_with_documented_guards",
+      "evidence": [
+        "rsl_rl/rsl_rl/modules/him_actor_critic.py",
+        "isaaclab/vendor/him_rsl_rl/modules/him_actor_critic.py",
+        "rsl_rl/rsl_rl/algorithms/him_ppo.py",
+        "isaaclab/vendor/him_rsl_rl/algorithms/him_ppo.py"
+      ],
+      "detail": "Actor/critic hidden layers512/256/128, ELU; Gaussian policy with learned12-vector std. Clipped likelihood-ratio surrogate, clipped value loss, entropy bonus, GAE remain released formulas. Vendor clamps std>=1e-3 and rejects nonfinite losses/gradients; read-only KL/clip/std logging and corrected loss averages are portability instrumentation, not identical byte-for-byte original source."
+    },
+    {
+      "item": "PPO hyperparameters and rollout",
+      "status": "mostly_original_with_explicit_continuation_difference",
+      "evidence": [
+        "legged_gym/legged_gym/envs/base/legged_robot_config.py LeggedRobotCfgPPO",
+        "isaaclab/run.py train_config",
+        "reproduction/stair-night2-training-plan.json",
+        "pilot config.json"
+      ],
+      "detail": "100steps/env,original4096envs (Night2 formal8192 after memory calibration),5epochs,4minibatches,clip0.2,value coefficient1,clipped value=true,entropy0.01,gamma0.99,lambda0.95,desired KL0.01,max grad norm1 match released settings. Night2 continuation uses fixed PPO/HIM LR1e-4 versus released adaptive initial1e-3. Formal save interval20;128env/3update pilot uses save1 and cannot stand for paper training budget or locomotion success.",
+      "batch_size_difference": "Root resource calibration selects8192formal environments, doubling the original4096 batch; original algorithm losses/network and epochs/minibatches preserved."
+    },
+    {
+      "item": "Terminal observations and bootstrap",
+      "status": "preexisting_portability_correction",
+      "evidence": [
+        "isaaclab/adapter.py step",
+        "isaaclab/vendor/him_rsl_rl/runners/him_on_policy_runner.py learn",
+        "isaaclab/vendor/him_rsl_rl/algorithms/him_ppo.py process_env_step"
+      ],
+      "detail": "HIM targets receive saved pre-reset terminal critic observations. Timeout value bootstrap uses next terminal state and genuine termination overrides timeout; released code used current transition value. This changes terminal handling and must be disclosed, although ordinary PPO/HIM objectives are retained."
+    },
+    {
+      "item": "Full checkpoint/Adam resume",
+      "status": "source_path_and_runtime_metadata_verified_tensor_identity_not_independently_checked",
+      "evidence": [
+        "isaaclab/vendor/him_rsl_rl/runners/him_on_policy_runner.py load",
+        "isaaclab/checkpoint_transfer.py override_resume_learning_rate",
+        "pilot config.json runtime_training_state_before_learning"
+      ],
+      "detail": "No warm_start or std reset requested. Loader strictly restores model and both PPO/HIM Adam state dicts; LR override changes groups only. Pilot before-learning metadata reports iteration660, both groups1e-4 and checkpoint Adam retained; std min0.171756491/max0.296382755. Source/runtime metadata supports actual resume path but is not an independent tensor-by-tensor Adam comparison."
+    }
+  ],
+  "night2_reward_changes": {
+    "faithful": "Released Go1 reward formulas/weights; common checkpoint was previously contact-trained, so not a from-scratch original-paper baseline.",
+    "contact": "Faithful plus existing eight thigh/calf undesired-contact count weight-0.1; original released collision weight0.",
+    "contact_vertical": "Contact with only lin_vel_z_l2 -2 -> -1.",
+    "contact_clearance": "Contact with only body-relative foot_clearance -0.01 -> -0.02 at original target-0.20m; not terrain-relative swing clearance.",
+    "unchanged_profiles_evidence": "reproduction/stair-night2-cpu-rewards.json"
+  },
+  "remaining_reproduction_differences": [
+    "Unitree Go2 replaces released Go1/paper robot assets; pinned Isaac Lab3 EA/Isaac Sim6.1 replaces original Isaac Gym.",
+    "USD collision geometry, DC motors, joint mapping and physical runtime differ; no driver/system GPU configuration change.",
+    "Prior bootstrap/contact training plus new paper_mixed stair curriculum and forward-command coverage are migration choices, not original mixed-terrain from-scratch training.",
+    "Actor observation semantics retain released structure; critic disturbance channels/noise and sensor/terminal details differ as disclosed.",
+    "Measured traversal/smoothness and new held-out geometry results remain unproven by this source audit or pilot."
+  ],
+  "pilot_evidence": {
+    "directory": "isaaclab/logs/2026-10-12_00-26-15_night2-pilot-vertical",
+    "config_sha256": "d108b4aea1523a86fd3289fc3d5ab2b606ce5fa0daad7a659c804ab8fba4bdac",
+    "result_sha256": "6a31f60de9bd2472d43256bb40947bcc386454a6ee5301178a39666f327d205f",
+    "result": {
+      "status": "smoke_passed",
+      "scope": "CUDA training and export; locomotion requires separate evaluation",
+      "iterations": 3,
+      "completed_iterations": 663,
+      "num_envs": 128,
+      "environment_steps_this_run": 38400,
+      "training_seconds": 8.317520281000043,
+      "parameters_finite": true,
+      "checkpoint": "model_663.pt",
+      "export": "policy.pt",
+      "export_max_abs_error": 1.430511474609375e-06,
+      "peak_cuda_memory_bytes": 147562496
+    },
+    "runtime_training_state_before_learning": {
+      "completed_updates": 660,
+      "ppo_learning_rate": 0.0001,
+      "ppo_adam_group_rates": [
+        0.0001
+      ],
+      "him_learning_rate": 0.0001,
+      "him_adam_group_rates": [
+        0.0001
+      ],
+      "exploration_std_min": 0.17175649106502533,
+      "exploration_std_max": 0.29638275504112244,
+      "optimizer_state": "checkpoint Adam retained"
+    },
+    "training_algorithm": {
+      "value_loss_coef": 1.0,
+      "use_clipped_value_loss": true,
+      "clip_param": 0.2,
+      "entropy_coef": 0.01,
+      "num_learning_epochs": 5,
+      "num_mini_batches": 4,
+      "learning_rate": 0.0001,
+      "schedule": "fixed",
+      "gamma": 0.99,
+      "lam": 0.95,
+      "desired_kl": 0.01,
+      "max_grad_norm": 1.0
+    },
+    "scientific_scope": "GPU resume/update/export smoke test only; excludes locomotion acceptance, reward causality and full Adam tensor identity."
+  },
+  "source_sha256": {
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+    "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+    "isaaclab/checkpoint_transfer.py": "d80afb0cd25f17a0b13657c94fb5f9707b625f7f1bea125110c9ea554bf8ac98",
+    "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2",
+    "isaaclab/vendor/him_rsl_rl/modules/him_actor_critic.py": "89b6ac3556620ace9b7531ab98337b83e64ad135f33efa2f0699e0d41dfd1acb",
+    "isaaclab/vendor/him_rsl_rl/algorithms/him_ppo.py": "b5b78c8251117ca32582b3370f028c405fbf500a21098c3d81102e9e8c15f760",
+    "isaaclab/vendor/him_rsl_rl/runners/him_on_policy_runner.py": "6af7f43e4ab9015b20c27c34644820fbfff7c048886357dc46be7420d061692f",
+    "isaaclab/vendor/him_rsl_rl/storage/him_rollout_storage.py": "59863bf08b2da304245b938faa4b1ce2f9691139ca35c7759328f51bc1818c26",
+    "rsl_rl/rsl_rl/modules/him_estimator.py": "a0cb97016fce9714168f357358dd50d0fb2eaba0017fe37ed5bbc469727024d2",
+    "rsl_rl/rsl_rl/algorithms/him_ppo.py": "65ba76bfd9145c55a2b3c8df47b280fa38e76e3004c9a149f4913a8a6a7fb20b",
+    "legged_gym/legged_gym/envs/base/legged_robot_config.py": "a0230fa99691a3dd28f077bf30a2432efb998def950b2be98f623fd1b303d55b",
+    "legged_gym/legged_gym/envs/base/legged_robot.py": "a4d17f05c52d41c1b60583b0155f3452bb48351864e3b5ea0654f517c684190b"
+  }
+}

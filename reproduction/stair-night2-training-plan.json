@@ -9,7 +9,7 @@
   "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
   "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
   "common": {
-    "num_envs": 4096,
+    "num_envs": 8192,
     "steps_per_env": 100,
     "additional_updates_per_job": 100,
     "save_interval": 20,
@@ -30,7 +30,9 @@
     "restore_optimizers": true,
     "actor_history": 270,
     "critic": 235,
-    "actor_privileged_heights": false
+    "actor_privileged_heights": false,
+    "environment_steps_per_100_update_job": 81920000,
+    "num_envs_parameter_difference": "8192 doubles the released4096 environment batch after explicit memory preflight"
   },
   "pilot": {
     "profile": "contact_vertical",
@@ -79,5 +81,6 @@
     "host_gpu_configuration_changes": false,
     "driver_changes": false
   },
-  "status": "prepared_before_GPU_pilot"
+  "status": "GPU_preflight_passed_formal_rewards_pending",
+  "resource_calibration_file": "reproduction/stair-night2-resource-calibration.json"
 }

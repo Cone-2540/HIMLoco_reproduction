@@ -21,9 +21,10 @@ import time
 DEADLINE = datetime.fromisoformat("2026-10-12T07:20:00+08:00")
 
 
-def stop_exact_container_job(name):
+def stop_exact_container_job(name, force=False):
     script = """import os, signal, sys
 name = sys.argv[1]
+requested_signal = signal.SIGKILL if sys.argv[2] == 'kill' else signal.SIGTERM
 for directory in os.listdir('/proc'):
     if not directory.isdigit() or int(directory) == os.getpid():
         continue
@@ -33,12 +34,13 @@ for directory in os.listdir('/proc'):
         if '/workspace/himloco/isaaclab/run.py' in args and '--run_name' in args:
             index = args.index('--run_name')
             if index + 1 < len(args) and args[index + 1] == name:
-                os.kill(int(directory), signal.SIGTERM)
+                os.kill(int(directory), requested_signal)
                 print('terminated task process', directory)
     except (FileNotFoundError, ProcessLookupError, PermissionError):
         pass
 """
-    return subprocess.run(["docker", "exec", "isaaclab-local-lab-1", "/isaac-sim/kit/python/bin/python3", "-c", script, name],
+    return subprocess.run(["docker", "exec", "isaaclab-local-lab-1", "/isaac-sim/kit/python/bin/python3", "-c", script, name,
+                           "kill" if force else "terminate"],
                           capture_output=True, text=True, timeout=20)
 
 
@@ -116,6 +118,9 @@ def main():
             try:
                 process.wait(timeout=10)
             except subprocess.TimeoutExpired:
+                cleanup = stop_exact_container_job(args.name, force=True)
+                record["task_force_cleanup"] = {"exit_code": cleanup.returncode,
+                                                 "stdout": cleanup.stdout, "stderr": cleanup.stderr}
                 os.killpg(process.pid, signal.SIGKILL)
                 process.wait(timeout=10)
         finally:
@@ -124,8 +129,8 @@ def main():
             record.update(exit_code=process.returncode,
                           ended_local=datetime.now().astimezone().isoformat(),
                           elapsed_seconds=time.monotonic() - started)
-            text = (directory / "stdout.log").read_text(errors="replace")
-            run_lines = [line[5:] for line in text.splitlines() if line.startswith("RUN: ")]
+            with (directory / "stdout.log").open(errors="replace") as stream:
+                run_lines = [line[5:].strip() for line in stream if line.startswith("RUN: ")]
             if run_lines:
                 path = Path(run_lines[-1].replace("/workspace/himloco", str(root), 1))
                 record["simulator_log_dir"] = str(path)

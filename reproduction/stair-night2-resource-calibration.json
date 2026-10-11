@@ -1,0 +1,36 @@
+{
+  "recorded_local": "2026-10-12T00:36:54.150719+08:00",
+  "scope": "Resource and numerical calibration only, not gait performance",
+  "benchmarks": [
+    {
+      "num_envs": 6144,
+      "pilot_excluded_from_selection": true,
+      "saved_updates": 3,
+      "result_path": "isaaclab/logs/2026-10-12_00-29-04_night2-bench6144/result.json",
+      "monitor_dir": "/home/cone/robotics/logs/20261012-002901_night2-bench6144",
+      "sampled_total_gpu_peak_mib": 11527.0,
+      "sampled_peak_temperature_c": 57.0,
+      "environment_steps_per_training_second": 41003.287742181914,
+      "training_seconds": 44.95249287299998,
+      "parameters_finite": true,
+      "export_max_abs_error": 1.7881393432617188e-06,
+      "pytorch_peak_allocated_bytes": 5534445568
+    },
+    {
+      "num_envs": 8192,
+      "pilot_excluded_from_selection": true,
+      "saved_updates": 3,
+      "result_path": "isaaclab/logs/2026-10-12_00-32-11_night2-bench8192/result.json",
+      "monitor_dir": "/home/cone/robotics/logs/20261012-003207_night2-bench8192",
+      "sampled_total_gpu_peak_mib": 14381.0,
+      "sampled_peak_temperature_c": 59.0,
+      "environment_steps_per_training_second": 40775.904619616005,
+      "training_seconds": 60.27088848000017,
+      "parameters_finite": true,
+      "export_max_abs_error": 1.430511474609375e-06,
+      "pytorch_peak_allocated_bytes": 7359199232
+    }
+  ],
+  "selected_formal_num_envs": 8192,
+  "note": "Measured throughput is similar;8192 uses the permitted GPU memory to double released4096 rollout batch, increasing samples per update; disclose parameter difference. Ten-second sampling can miss short peaks; PyTorch allocation is not whole GPU memory."
+}
