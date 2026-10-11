@@ -96,7 +96,7 @@ def main():
     parser.add_argument("--steps_per_env", type=int, default=100)
     parser.add_argument("--play_steps", type=int, default=500)
     parser.add_argument("--terrain", choices=["flat", "rough", "stairs"], default="flat")
-    parser.add_argument("--stair_stage", choices=["bootstrap", "easy", "standard", "hard"], default="easy")
+    parser.add_argument("--stair_stage", choices=["bootstrap", "easy", "standard", "hard", "paper_mixed"], default="easy")
     parser.add_argument("--flat_replay_fraction", type=float, choices=[0.0, 0.25], default=0.0,
                         help="Training-only fraction of true flat columns mixed with staircase curriculum.")
     parser.add_argument("--flat_replay_all_directions", action="store_true",
@@ -105,7 +105,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "contact_force", "contact_slide", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")

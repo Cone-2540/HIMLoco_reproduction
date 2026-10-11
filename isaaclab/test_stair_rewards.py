@@ -168,6 +168,93 @@ class StairRewardTest(unittest.TestCase):
             self.assertEqual(tuned["weights"]["lin_vel_z_l2"], -.5)
             self.assertIn("feet_slide", tuned["weights"])
 
+    def test_faithful_weights_match_full_released_go1_objective(self):
+        cfg = NS(scene=NS(base_height_scanner=object()), rewards=NS())
+        manifest = configure_stair_rewards(cfg, "faithful")
+        self.assertEqual(manifest["weights"], {
+            "track_lin_vel_xy_exp": 1., "track_ang_vel_z_exp": .5,
+            "lin_vel_z_l2": -2., "ang_vel_xy_l2": -.05,
+            "flat_orientation_l2": -.2, "dof_acc_l2": -2.5e-7,
+            "joint_power": -2e-5, "base_height": -1.,
+            "foot_clearance": -.01, "action_rate_l2": -.01,
+            "action_smoothness": -.01,
+        })
+        self.assertEqual(cfg.rewards.track_lin_vel_xy_exp.params["std"], .5)
+        self.assertEqual(cfg.rewards.track_ang_vel_z_exp.params["std"], .5)
+        self.assertEqual(cfg.rewards.base_height.params["target_height"], .30)
+        self.assertEqual(cfg.rewards.foot_clearance.params["target_height"], -.20)
+
+    def test_new_weight_ablations_change_exactly_one_contact_term(self):
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()),
+                      rewards=NS(feet_air_time=NS(weight=.01)))
+        baseline = config()
+        original = configure_stair_rewards(baseline, "contact")
+        for profile, changed_term, old_weight, new_weight in (
+            ("contact_vertical", "lin_vel_z_l2", -2., -1.),
+            ("contact_clearance", "foot_clearance", -.01, -.02),
+        ):
+            with self.subTest(profile=profile):
+                modified = config()
+                manifest = configure_stair_rewards(modified, profile)
+                self.assertEqual(set(manifest["weights"]), set(original["weights"]))
+                self.assertEqual(manifest["weights"], {
+                    **original["weights"], changed_term: new_weight,
+                })
+                for name in original["weights"]:
+                    expected = getattr(baseline.rewards, name).to_dict()
+                    actual = getattr(modified.rewards, name).to_dict()
+                    if name == changed_term:
+                        expected["weight"] = new_weight
+                    self.assertEqual(actual, expected, name)
+                self.assertIsNone(modified.rewards.feet_air_time)
+                self.assertFalse(hasattr(modified.rewards, "feet_slide"))
+                self.assertFalse(hasattr(modified.rewards, "leg_contact_force_proxy"))
+                self.assertEqual(manifest["contact_penalty"], original["contact_penalty"])
+                self.assertIsNone(manifest["force_proxy_penalty"])
+                self.assertIsNone(manifest["slide_proxy_penalty"])
+                self.assertEqual(manifest["tuned_changes"], [])
+                self.assertEqual(len(manifest["adaptation_changes"]), 2)
+                ablation = manifest["reward_weight_ablation"]
+                self.assertEqual(ablation["baseline_profile"], "contact")
+                self.assertEqual(ablation["term"], changed_term)
+                self.assertEqual(ablation["original_weight"], old_weight)
+                self.assertEqual(ablation["weight"], new_weight)
+
+    def test_new_ablations_require_contact_sensor_before_mutating_rewards(self):
+        for profile in ("contact_vertical", "contact_clearance"):
+            with self.subTest(profile=profile):
+                old = NS(weight=-.0002)
+                cfg = NS(scene=NS(base_height_scanner=object()), rewards=NS(old=old))
+                with self.assertRaisesRegex(ValueError, "contact_forces sensor"):
+                    configure_stair_rewards(cfg, profile)
+                self.assertIs(cfg.rewards.old, old)
+
+    def test_new_ablations_keep_finite_signed_velocity_and_height_penalties(self):
+        from isaaclab.envs.mdp import lin_vel_z_l2
+        env = make_env()
+        velocity = torch.tensor([[0., 0., .3], [0., 0., -.4]])
+        env.scene["robot"].data.root_lin_vel_b = NS(torch=velocity)
+        velocity_before = velocity.clone()
+        raw_vertical = lin_vel_z_l2(env)
+        raw_clearance = foot_clearance_body_l2(env, ASSET)
+        torch.testing.assert_close(raw_vertical, torch.tensor([.09, .16]))
+        torch.testing.assert_close(raw_clearance, torch.tensor([.01, .01]))
+        results = {}
+        for profile in ("contact", "contact_vertical", "contact_clearance"):
+            cfg = NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+            weights = configure_stair_rewards(cfg, profile)["weights"]
+            weighted = torch.stack((raw_vertical * weights["lin_vel_z_l2"],
+                                    raw_clearance * weights["foot_clearance"]))
+            self.assertTrue(torch.isfinite(weighted).all())
+            self.assertTrue((weighted <= 0).all())
+            results[profile] = weighted
+        torch.testing.assert_close(results["contact_vertical"][0], results["contact"][0] * .5)
+        torch.testing.assert_close(results["contact_vertical"][1], results["contact"][1])
+        torch.testing.assert_close(results["contact_clearance"][0], results["contact"][0])
+        torch.testing.assert_close(results["contact_clearance"][1], results["contact"][1] * 2.)
+        torch.testing.assert_close(velocity, velocity_before)
+
     def test_contact_profile_changes_exactly_one_term_from_faithful(self):
         def config():
             return NS(scene=NS(base_height_scanner=object(), contact_forces=object()),

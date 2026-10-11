@@ -5,6 +5,8 @@ The ``faithful`` profile uses the released Go1 weights; ``tuned`` is an explicit
 small stair ablation, and ``contact`` adds only a leg-contact penalty to faithful.
 ``contact_force`` retains contact and adds a bounded high-force contact proxy.
 ``contact_slide`` retains contact and adds the existing foot XY-speed proxy.
+``contact_vertical`` and ``contact_clearance`` each change only one original
+reward weight from contact; both preserve the released reward formulas.
 The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
@@ -205,9 +207,13 @@ def configure_stair_rewards(cfg, profile="faithful"):
     ``contact`` preserves every faithful term and adds one Go2 adaptation.
     ``contact_force`` retains all contact terms and adds one bounded force proxy.
     ``contact_slide`` retains all contact terms and adds only the tuned foot proxy.
+    ``contact_vertical`` halves the original vertical-velocity penalty.
+    ``contact_clearance`` doubles only the original body-relative foot-height
+    penalty; this does not turn that reward into terrain-relative swing clearance.
     """
-    if profile not in ("faithful", "tuned", "contact", "contact_force", "contact_slide", "stock"):
-        raise ValueError("reward profile must be faithful, tuned, contact, contact_force, contact_slide, or stock")
+    contact_profiles = ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
+    if profile not in ("faithful", "tuned", *contact_profiles, "stock"):
+        raise ValueError("reward profile must be faithful, tuned, contact, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
@@ -217,7 +223,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
         sensor_name = "height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
-    if profile in ("contact", "contact_force", "contact_slide") and getattr(cfg.scene, "contact_forces", None) is None:
+    if profile in contact_profiles and getattr(cfg.scene, "contact_forces", None) is None:
         raise ValueError("Contact reward requires the contact_forces sensor")
 
     # Prevent residual stock torque/air-time/position-limit rewards from silently
@@ -238,28 +244,30 @@ def configure_stair_rewards(cfg, profile="faithful"):
         command_name="base_velocity", std=math.sqrt(0.25))
     add("track_ang_vel_z_exp", mdp + "track_ang_vel_z_exp", 0.5,
         command_name="base_velocity", std=math.sqrt(0.25))
-    add("lin_vel_z_l2", mdp + "lin_vel_z_l2", -0.5 if profile == "tuned" else -2.0)
+    add("lin_vel_z_l2", mdp + "lin_vel_z_l2",
+        -0.5 if profile == "tuned" else (-1.0 if profile == "contact_vertical" else -2.0))
     add("ang_vel_xy_l2", mdp + "ang_vel_xy_l2", -0.05)
     add("flat_orientation_l2", mdp + "flat_orientation_l2", -0.1 if profile == "tuned" else -0.2)
     add("dof_acc_l2", custom + "policy_joint_acceleration_l2", -2.5e-7, asset_cfg=robot)
     add("joint_power", custom + "joint_power_l1", -2e-5, asset_cfg=robot)
     add("base_height", custom + "terrain_relative_base_height_l2", -1.0,
         asset_cfg=robot, sensor_cfg=scan, target_height=0.30)
-    add("foot_clearance", custom + "foot_clearance_body_l2", -0.01,
+    add("foot_clearance", custom + "foot_clearance_body_l2",
+        -0.02 if profile == "contact_clearance" else -0.01,
         asset_cfg=feet, target_height=-0.20)
     add("action_rate_l2", mdp + "action_rate_l2", -0.01)
     add("action_smoothness", custom + "action_smoothness_l2", -0.01)
     if profile in ("tuned", "contact_slide"):
         add("feet_slide", custom + "feet_slide_l2", -0.05, asset_cfg=feet,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=".*_foot", preserve_order=True))
-    if profile in ("contact", "contact_force", "contact_slide"):
+    if profile in contact_profiles:
         add("leg_contacts", mdp + "undesired_contacts", -0.1, threshold=1.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
     if profile == "contact_force":
         add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
             threshold_n=50.0, force_scale_n=50.0, cap_per_body=4.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
-    return {
+    manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
         "base_height_sensor": sensor_name,
@@ -278,7 +286,11 @@ def configure_stair_rewards(cfg, profile="faithful"):
             + (["contact plus bounded leg_contact_force_proxy -0.02; no other contact term changes"]
                if profile == "contact_force" else [])
             + (["contact plus feet_slide -0.05; no other contact term changes"]
-               if profile == "contact_slide" else [])) if profile in ("contact", "contact_force", "contact_slide") else [],
+               if profile == "contact_slide" else [])
+            + (["contact lin_vel_z_l2 -2 -> -1; no other contact term changes"]
+               if profile == "contact_vertical" else [])
+            + (["contact foot_clearance -0.01 -> -0.02; no other contact term changes"]
+               if profile == "contact_clearance" else [])) if profile in contact_profiles else [],
         "contact_penalty": {
             "baseline_profile": "faithful",
             "term": "leg_contacts",
@@ -290,7 +302,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "measurement": "count of selected bodies with retained-history net-normal-force vector norm strictly above threshold",
             "weight_scaling": "Isaac Lab reward manager multiplies -0.1 by policy dt",
             "reproduction_scope": "added Go2 adaptation; released Go1 collision weight is zero",
-        } if profile in ("contact", "contact_force", "contact_slide") else None,
+        } if profile in contact_profiles else None,
         "force_proxy_penalty": {
             "baseline_profile": "contact",
             "term": "leg_contact_force_proxy",
@@ -333,3 +345,20 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "actor_observations_and_collision_geometry": "unchanged",
         } if profile == "contact_slide" else None,
     }
+    if profile in ("contact_vertical", "contact_clearance"):
+        vertical = profile == "contact_vertical"
+        manifest["reward_weight_ablation"] = {
+            "baseline_profile": "contact",
+            "term": "lin_vel_z_l2" if vertical else "foot_clearance",
+            "original_weight": -2.0 if vertical else -0.01,
+            "weight": -1.0 if vertical else -0.02,
+            "function_and_parameters": "unchanged from contact and released HIMLoco",
+            "all_other_contact_terms": "unchanged",
+            "interpretation": (
+                "reduce cost of required vertical base motion on stairs; does not directly penalize bounce amplitude"
+                if vertical else
+                "stronger original body-relative moving-foot height target at -0.20m; not terrain-relative swing clearance"
+            ),
+            "actor_observations_and_collision_geometry": "unchanged",
+        }
+    return manifest

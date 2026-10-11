@@ -1,0 +1,34 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-m",
+    "unittest",
+    "-v",
+    "test_stair_terrain"
+  ],
+  "scope": "Isaac Lab actual CPU TerrainGenerator and tensor manager unit tests only; CUDA_VISIBLE_DEVICES is empty; no AppLauncher, simulation, PhysX, inference, or training",
+  "start_utc": "2026-10-11T16:22:52.526787+00:00",
+  "end_utc": "2026-10-11T16:22:59.063476+00:00",
+  "exit_code": 0,
+  "stdout": "reproduction/stair-night2-cpu-terrain.stdout.log",
+  "new_stage": "paper_mixed",
+  "training_columns": 28,
+  "optional_flat_replay_columns": 112,
+  "gpu_validation": "not_performed_by_this_check",
+  "test_count": 23,
+  "result": "PASS",
+  "source_sha256": {
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/test_stair_terrain.py": "f2737cedca4d39b670a531df56f37fd016c67be2e0f062eb03b95cfd8b0eb53e"
+  },
+  "cuda_mask_warning": "Warp reports no CUDA-capable device because CUDA_VISIBLE_DEVICES was intentionally empty; all tests used CPU."
+}

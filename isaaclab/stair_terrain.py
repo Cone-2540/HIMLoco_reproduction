@@ -31,6 +31,12 @@ STAGES = {
     "easy": {"height_range": (0.05, 0.12), "depths": (0.28, 0.30, 0.32, 0.36), "nosings": (0.0,)},
     "standard": {"height_range": (0.05, 0.17), "depths": (0.20, 0.25, 0.27, 0.30, 0.35, 0.40), "nosings": (0.0,)},
     "hard": {"height_range": (0.08, 0.23), "depths": (0.20, 0.25, 0.27, 0.30, 0.35, 0.40), "nosings": (0.0, 0.01, 0.02, 0.03)},
+    # Keep the published stair dimensions as exact training columns, while the
+    # other columns interpolate only a moderate six-riser curriculum. This is
+    # a new distribution; it does not revise any old stage or held-out case.
+    "paper_mixed": {"height_range": (0.11, 0.20), "depths": (0.25, 0.27, 0.30, 0.35),
+                    "nosings": (0.0, 0.01, 0.02),
+                    "fixed_paper_geometries": ((0.16, 0.27), (0.17, 0.25))},
 }
 
 
@@ -179,7 +185,7 @@ def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, 
     Its other columns retain every original stair variant with equal exposure.
     """
     if stage not in STAGES:
-        raise ValueError("stage must be easy, standard or hard")
+        raise ValueError(f"stage must be one of {', '.join(STAGES)}")
     if num_rows < 1 or num_cols < 1:
         raise ValueError("Terrain grid dimensions must be positive")
     if not math.isfinite(float(flat_fraction)) or flat_fraction not in (0.0, 0.25):
@@ -200,6 +206,10 @@ def build_stair_generator(stage="easy", *, spec=None, num_rows=10, num_cols=24, 
                     key = f"{direction}_tread_{depth:.2f}_nosing_{nose:.2f}"
                     variants[key] = StraightStairTerrainCfg(direction=direction,
                         step_height_range=selected["height_range"], step_depth=depth, nosing=nose)
+            for height, depth in selected.get("fixed_paper_geometries", ()):
+                key = f"{direction}_paper_height_{height:.2f}_tread_{depth:.2f}"
+                variants[key] = StraightStairTerrainCfg(direction=direction,
+                    step_height_range=(height, height), step_depth=depth, nosing=0.0)
         curriculum = True
         # Columns must represent every type; never silently omit a tread/nosing.
         num_cols = max(num_cols, len(variants))

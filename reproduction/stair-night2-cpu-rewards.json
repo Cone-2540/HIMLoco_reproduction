@@ -1,0 +1,76 @@
+{
+  "started_utc": "2026-10-11T16:22:52.593592+00:00",
+  "finished_utc": "2026-10-11T16:22:54.375998+00:00",
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-m",
+    "unittest",
+    "-v",
+    "test_stair_rewards"
+  ],
+  "exit_code": 0,
+  "cuda_visible_devices": "",
+  "scope": "Actual installed Isaac Lab CPU tests for reward functions/configuration; no AppLauncher, GPU simulation, training or new holdout evaluation.",
+  "stdout_log": "reproduction/stair-night2-cpu-rewards.stdout.log",
+  "attempts": [
+    {
+      "started_utc": "2026-10-11T16:22:33.047129+00:00",
+      "finished_utc": "2026-10-11T16:22:35.783723+00:00",
+      "command": [
+        "docker",
+        "exec",
+        "-e",
+        "CUDA_VISIBLE_DEVICES=",
+        "-e",
+        "OMP_NUM_THREADS=2",
+        "-w",
+        "/workspace/himloco/isaaclab",
+        "isaaclab-local-lab-1",
+        "/isaac-sim/python.sh",
+        "-m",
+        "unittest",
+        "-v",
+        "test_stair_rewards"
+      ],
+      "exit_code": 1,
+      "cuda_visible_devices": "",
+      "scope": "Actual installed Isaac Lab CPU tests for reward functions/configuration; no AppLauncher, GPU simulation, training or new holdout evaluation.",
+      "stdout_log": "reproduction/stair-night2-cpu-rewards.stdout.log"
+    },
+    {
+      "started_utc": "2026-10-11T16:22:52.593592+00:00",
+      "exit_code": 0,
+      "correction": "New numerical-test fixture uses pinned Lab root_lin_vel_b.torch wrapper; reward implementation unchanged."
+    }
+  ],
+  "old_profile_regression_comparison": {
+    "checked_utc": "2026-10-11T16:23:31.195173+00:00",
+    "original_git_revision": "ffb6f8c",
+    "original_source_sha256": "452d8597a99061f5e44d74bce7530de5ae262d5fb29707489803565001af4e67",
+    "exit_code": 0,
+    "scope": "Six old profiles: exact actual Lab reward configuration and manifest comparison to frozen Git source; all preexisting reward helper ASTs identical.",
+    "unchanged_helper_functions": [
+      "_tensor",
+      "_inverse_rotate",
+      "validate_reward_frames",
+      "joint_power_l1",
+      "foot_clearance_body_l2",
+      "terrain_relative_base_height_l2",
+      "_step_history",
+      "action_smoothness_l2",
+      "policy_joint_acceleration_l2",
+      "feet_slide_l2",
+      "leg_contact_force_proxy"
+    ],
+    "stdout": "{\"old_profiles_exactly_preserved\": [\"stock\", \"faithful\", \"tuned\", \"contact\", \"contact_force\", \"contact_slide\"], \"original_git_revision\": \"ffb6f8c\", \"comparison\": \"Actual installed Isaac Lab RewardTermCfg.to_dict including function, weight, parameters; complete provenance manifests.\"}\n"
+  }
+}

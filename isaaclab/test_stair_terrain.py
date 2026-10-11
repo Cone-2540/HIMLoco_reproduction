@@ -26,6 +26,81 @@ def covered_by_box_union(meshes, point):
 
 
 class StairGeometryTest(unittest.TestCase):
+    def test_paper_mixed_actual_lab_grid_contains_every_variant_and_exact_paper_stairs(self):
+        class RecordingGenerator(TerrainGenerator):
+            def __init__(self, cfg):
+                self.generated = []
+                super().__init__(cfg, device="cpu")
+
+            def _get_terrain_mesh(self, difficulty, cfg):
+                self.generated.append((cfg.direction, cfg.step_height_range, cfg.step_depth,
+                                       cfg.nosing, cfg.num_steps))
+                return super()._get_terrain_mesh(difficulty, cfg)
+
+        cfg = build_stair_generator("paper_mixed", num_rows=2, num_cols=12, seed=71)
+        self.assertEqual(cfg.num_cols, 28)
+        self.assertTrue(cfg.curriculum)
+        expected = {(direction, (.11, .20), depth, nose, 6)
+                    for direction in ("asc", "desc")
+                    for depth in (.25, .27, .30, .35) for nose in (0., .01, .02)}
+        expected.update((direction, (height, height), depth, 0., 6)
+                        for direction in ("asc", "desc")
+                        for height, depth in ((.16, .27), (.17, .25)))
+        actual = RecordingGenerator(cfg)
+        columns = [actual.generated[2 * index:2 * index + 2] for index in range(cfg.num_cols)]
+        self.assertTrue(all(column[0] == column[1] for column in columns))
+        self.assertEqual({column[0] for column in columns}, expected)
+        self.assertEqual(len(columns), len(expected))
+        self.assertEqual(actual.terrain_origins.shape, (2, 28, 3))
+        self.assertTrue(np.isfinite(actual.terrain_origins).all())
+        self.assertTrue(np.isfinite(actual.terrain_mesh.vertices).all())
+
+    def test_paper_mixed_physical_lips_and_height_endpoints_do_not_change_fixed_eval(self):
+        cfg = build_stair_generator("paper_mixed")
+        for term in cfg.sub_terrains.values():
+            for difficulty in (0., 1.):
+                meshes, origin = stair_meshes(difficulty, term.replace(size=cfg.size))
+                geometry = meshes[0].metadata["stair_geometry"]
+                self.assertAlmostEqual(geometry["step_height"], term.step_height_range[int(difficulty)])
+                self.assertEqual(len(geometry["treads"]), 6)
+                self.assertTrue(all(mesh.is_watertight and mesh.is_winding_consistent
+                                    and np.isfinite(mesh.vertices).all() for mesh in meshes))
+                if term.nosing:
+                    riser = origin[0] + geometry["first_riser_x"]
+                    x = riser - term.nosing / 2 if term.direction == "asc" else riser + term.nosing / 2
+                    top = geometry["step_height"] if term.direction == "asc" else 6 * geometry["step_height"]
+                    self.assertTrue(covered_by_box_union(meshes, (x, origin[1], top - .01)))
+                    self.assertFalse(covered_by_box_union(meshes, (x, origin[1], top - .03)))
+        # Removing an extreme case from this training stage must not silently
+        # narrow or mutate previously saved arbitrary fixed-evaluation inputs.
+        fixed = build_stair_generator("paper_mixed", spec={"height": .23, "depth": .20,
+                                                            "nosing": .03, "direction": "desc"},
+                                      num_rows=1, num_cols=1)
+        self.assertFalse(fixed.curriculum)
+        term = fixed.sub_terrains["heldout"]
+        self.assertEqual((term.step_height_range, term.step_depth, term.nosing, term.direction),
+                         ((.23, .23), .20, .03, "desc"))
+
+    def test_paper_mixed_flat_replay_has_exact_fraction_and_equal_stair_exposure(self):
+        class RecordingGenerator(TerrainGenerator):
+            def __init__(self, cfg):
+                self.generated = []
+                super().__init__(cfg, device="cpu")
+
+            def _get_terrain_mesh(self, difficulty, cfg):
+                self.generated.append(None if isinstance(cfg, MeshPlaneTerrainCfg) else
+                                      (cfg.direction, cfg.step_height_range, cfg.step_depth, cfg.nosing))
+                return super()._get_terrain_mesh(difficulty, cfg)
+
+        cfg = build_stair_generator("paper_mixed", num_rows=1, flat_fraction=.25, seed=73)
+        self.assertEqual(cfg.num_cols, 112)
+        actual = RecordingGenerator(cfg)
+        self.assertEqual(actual.generated[:28], [None] * 28)
+        stairs = actual.generated[28:]
+        self.assertEqual(len(set(stairs)), 28)
+        self.assertTrue(all(stairs.count(term) == 3 for term in set(stairs)))
+        self.assertEqual(len(stairs), 84)
+
     def test_true_flat_replay_preserves_every_hard_variant_and_actual_lab_columns(self):
         class RecordingGenerator(TerrainGenerator):
             def __init__(self, cfg):
