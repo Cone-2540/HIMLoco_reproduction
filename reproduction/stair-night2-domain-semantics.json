@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T01:02:21.896462+08:00",
+  "scope": "Read-only CPU analysis of existing source and already saved physical readbacks; no simulation or source changes",
+  "domain_none_meaning": "run.py does not call configure_stair_randomization for none; it does not mean all preexisting event terms are absent",
+  "training_none": {
+    "mass_event": {
+      "name": "add_base_mass",
+      "mode": "startup",
+      "body": "base",
+      "operation": "scale",
+      "distribution": "log_uniform",
+      "multipliers": [
+        0.8,
+        1.25
+      ]
+    },
+    "com_event": {
+      "name": "base_com",
+      "mode": "startup",
+      "offset_m": {
+        "x": [
+          -0.02,
+          0.02
+        ],
+        "y": [
+          -0.02,
+          0.02
+        ],
+        "z": [
+          -0.01,
+          0.01
+        ]
+      }
+    },
+    "material_event": {
+      "name": "physics_material",
+      "mode": "startup",
+      "scope": "all robot bodies inherited from Lab task",
+      "fixed_ranges": {
+        "static": [
+          0.8,
+          0.8
+        ],
+        "dynamic": [
+          0.6,
+          0.6
+        ],
+        "restitution": [
+          0,
+          0
+        ]
+      }
+    },
+    "pd": "configured DCMotor25/0.5, no optional gain randomization in none",
+    "construction_seed_scope": "startup mass/COM sampled once per construction; regular resets do not resample these startup parameters"
+  },
+  "evaluation_none_without_eval_dynamics": {
+    "removed_events": [
+      "push_robot",
+      "add_base_mass",
+      "base_com",
+      "him_actuator_gains"
+    ],
+    "before_scene_construction": true,
+    "material_event_retained": true,
+    "effective_material_event": "fixed inherited all-body0.8/0.6, not a random range",
+    "mass_com_gains_randomized": false,
+    "reset_seed_scope": "root pose/velocity/joints only; startup mass does not change across reset seeds",
+    "nominal_word_limit": "defaults from pinned Go2 asset/config; COM need not be zero and physical calibration to real Go2 is not proven"
+  },
+  "evaluation_with_eval_dynamics": {
+    "removed_events": [
+      "push_robot"
+    ],
+    "startup_mass_com_events_preserved": true,
+    "robust_pd_event_if_configured": "reset-mode resamples from original defaults",
+    "three_reset_seeds_are_not_three_startup_draws": true,
+    "not_used_by_baselines_or_planned_reward_comparison": true
+  },
+  "baseline_scenes": [
+    {
+      "directory": "isaaclab/logs/2026-10-12_00-36-57_night2-baseline-dev03",
+      "construction_seed": 1,
+      "eval_dynamics": false,
+      "startup_mass_randomization_observed": false,
+      "initial_readback_sha256": "47e7f6b4daeb56f08e7e684af31f615b27deba001f28a0aaf9502f8a5765ed75",
+      "final_readback_sha256": "47e7f6b4daeb56f08e7e684af31f615b27deba001f28a0aaf9502f8a5765ed75",
+      "config_sha256": "e4c772312d3f3d6ccdbbf5924ed9f759c8e19fa76d68e42e308698ce8dd367f0",
+      "mass_observed": {
+        "shape": [
+          576,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 6.9210004806518555,
+        "max": 6.9210004806518555,
+        "mean": 6.9210004806518555,
+        "std": 0.0,
+        "samples_first_envs": [
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ]
+        ]
+      },
+      "mass_default_ratio_status": {
+        "status": "unavailable",
+        "reason": "ValueError: Event term 'add_base_mass' not found."
+      },
+      "base_com_first_three_xyz": [
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ],
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ],
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ]
+      ],
+      "base_com_offsets_status": {
+        "status": "unavailable",
+        "reason": "ValueError: Event term 'base_com' not found."
+      },
+      "pd_stiffness_min_max": [
+        25.0,
+        25.0
+      ],
+      "pd_damping_min_max": [
+        0.5,
+        0.5
+      ],
+      "foot_static_min_max": [
+        0.800000011920929,
+        0.800000011920929
+      ],
+      "foot_dynamic_min_max": [
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "terrain_authored_physics_material": {
+        "static_friction": 1.0,
+        "dynamic_friction": 1.0,
+        "restitution": 0.0,
+        "friction_combine_mode": "multiply",
+        "restitution_combine_mode": "multiply"
+      },
+      "initial_final_exact_readback_equal": {
+        "base_mass_kg": true,
+        "base_inertia_kg_m2": true,
+        "base_com": true,
+        "actuator_pd": true,
+        "foot_material": true
+      }
+    },
+    {
+      "directory": "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05",
+      "construction_seed": 1,
+      "eval_dynamics": false,
+      "startup_mass_randomization_observed": false,
+      "initial_readback_sha256": "cd22b9818d7773b9aaa5c95b5dfd5a2dd4a36b00c986720cb243ab5b46a537b1",
+      "final_readback_sha256": "cd22b9818d7773b9aaa5c95b5dfd5a2dd4a36b00c986720cb243ab5b46a537b1",
+      "config_sha256": "e4c772312d3f3d6ccdbbf5924ed9f759c8e19fa76d68e42e308698ce8dd367f0",
+      "mass_observed": {
+        "shape": [
+          576,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 6.9210004806518555,
+        "max": 6.9210004806518555,
+        "mean": 6.9210004806518555,
+        "std": 0.0,
+        "samples_first_envs": [
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ]
+        ]
+      },
+      "mass_default_ratio_status": {
+        "status": "unavailable",
+        "reason": "ValueError: Event term 'add_base_mass' not found."
+      },
+      "base_com_first_three_xyz": [
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ],
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ],
+        [
+          [
+            0.021111996844410896,
+            0.0,
+            -0.005365999881178141
+          ]
+        ]
+      ],
+      "base_com_offsets_status": {
+        "status": "unavailable",
+        "reason": "ValueError: Event term 'base_com' not found."
+      },
+      "pd_stiffness_min_max": [
+        25.0,
+        25.0
+      ],
+      "pd_damping_min_max": [
+        0.5,
+        0.5
+      ],
+      "foot_static_min_max": [
+        0.800000011920929,
+        0.800000011920929
+      ],
+      "foot_dynamic_min_max": [
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "terrain_authored_physics_material": {
+        "static_friction": 1.0,
+        "dynamic_friction": 1.0,
+        "restitution": 0.0,
+        "friction_combine_mode": "multiply",
+        "restitution_combine_mode": "multiply"
+      },
+      "initial_final_exact_readback_equal": {
+        "base_mass_kg": true,
+        "base_inertia_kg_m2": true,
+        "base_com": true,
+        "actuator_pd": true,
+        "foot_material": true
+      }
+    }
+  ],
+  "baseline_speed03_speed05_readbacks_exact_equal": {
+    "base_mass_kg": true,
+    "base_inertia_kg_m2": true,
+    "base_com": true,
+    "actuator_pd": true,
+    "foot_material": true
+  },
+  "training_scene_example": {
+    "directory": "isaaclab/logs/2026-10-12_00-56-30_night2-faithful-seed1201-plus100",
+    "seed": 1201,
+    "num_envs": 7680,
+    "readback_sha256": "09d7e05f5d3de53c6c46755391ee6b2514f957dab8131724bbcf75c8a8710d1e",
+    "mass_observed": {
+      "shape": [
+        7680,
+        1
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": 5.5372633934021,
+      "max": 8.650269508361816,
+      "mean": 6.967297316218416,
+      "std": 0.9025385523772036,
+      "samples_first_envs": [
+        [
+          5.667179107666016
+        ],
+        [
+          6.507167339324951
+        ],
+        [
+          6.3853302001953125
+        ]
+      ]
+    },
+    "mass_ratio": {
+      "status": "available",
+      "values": {
+        "shape": [
+          7680,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 0.8000668883323669,
+        "max": 1.2498582601547241,
+        "mean": 1.0066893271636217,
+        "std": 0.130405792459913,
+        "samples_first_envs": [
+          [
+            0.8188381195068359
+          ],
+          [
+            0.9402061700820923
+          ],
+          [
+            0.9226021766662598
+          ]
+        ]
+      },
+      "operation": "scale",
+      "distribution": "log_uniform",
+      "distribution_parameters": [
+        0.8,
+        1.25
+      ]
+    },
+    "com_offsets": {
+      "status": "available",
+      "source": "base_com.func.default_com",
+      "position_m": {
+        "shape": [
+          7680,
+          1,
+          3
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": -0.005365999881178141,
+        "max": 0.021111996844410896,
+        "mean": 0.005248665654410918,
+        "std": 0.011428982048983693,
+        "samples_first_envs": [
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ],
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ],
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ]
+        ]
+      },
+      "offset_m": {
+        "shape": [
+          7680,
+          1,
+          3
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": -0.019998041912913322,
+        "max": 0.01999715529382229,
+        "mean": 3.59779380839124e-05,
+        "std": 0.009988028796647614,
+        "samples_first_envs": [
+          [
+            [
+              0.01508365385234356,
+              -0.0017292946577072144,
+              -0.0027082073502242565
+            ]
+          ],
+          [
+            [
+              0.007044605910778046,
+              0.0024815797805786133,
+              -0.007324900012463331
+            ]
+          ],
+          [
+            [
+              0.009155886247754097,
+              -0.016093004494905472,
+              -0.0011842874810099602
+            ]
+          ]
+        ]
+      },
+      "offset_min_xyz_m": [
+        -0.019998041912913322,
+        -0.019995950162410736,
+        -0.009996557608246803
+      ],
+      "offset_max_xyz_m": [
+        0.01999715529382229,
+        0.01999197155237198,
+        0.00999985821545124
+      ],
+      "configured_offset_ranges_m": {
+        "x": [
+          -0.02,
+          0.02
+        ],
+        "y": [
+          -0.02,
+          0.02
+        ],
+        "z": [
+          -0.01,
+          0.01
+        ]
+      },
+      "max_abs_quaternion_change": 0.0
+    },
+    "completion_not_asserted": "readback demonstrates construction events only; training process completion/quality is separate"
+  },
+  "same_scene_candidate_comparison": {
+    "cli": "--candidate_checkpoint repeated four times after baseline --checkpoint",
+    "same_scene_material_mass_com": true,
+    "reset_seeds_reapplied_for_each_candidate": true,
+    "reward_manager_in_evaluation": "same scene reward profile for all inference policies; record each candidate training profile separately",
+    "source_metadata": "construction config belongs to primary; each candidate result preserves candidate checkpoint, not candidate training profile"
+  },
+  "source_sha256": {
+    "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/stair_randomization.py": "1cdbca365f44be304c3dc37467002ef2f5f0a2b17a002476d1dc88489f486561",
+    "/home/cone/isaaclab/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/core/velocity/velocity_env_cfg.py": "1e88e244a643178aade10993389ac8c2f6c7884969e47e4e92e8554d1166de9a",
+    "/home/cone/isaaclab/IsaacLab/source/isaaclab/isaaclab/managers/event_manager.py": "e29960173b398f8e79c026b74e50c5d02f57fc0a0a1fea4f7dad7237e41fda75"
+  },
+  "limitations": [
+    "Saved summaries and first-three samples cannot establish full per-env initialization identity",
+    "Terrain authored and robot material properties are not a measured effective solver contact-pair coefficient",
+    "No new full-dynamics robustness outcome is produced",
+    "No simulator, system configuration or driver change occurred"
+  ]
+}

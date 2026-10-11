@@ -367,7 +367,7 @@ def inspect_job(wrapper_directory, log_directory, stdout_path, last_updates, exp
             "source_commit": config.get("source_commit"), "source_checks_against_current_files": source_checks,
             "runtime_training_state_before_learning": runtime, "completion_checks": checks,
             "initial_domain_readback_scope": initial_domain.get("scope") if initial_domain else None,
-            "domain_profile_interpretation": "domain_profile=none disables the additional robust profile; existing Isaac Lab startup mass/COM/material events remain active. Actual saved readbacks determine their realized distribution; this is not a nominal unrandomized setup.",
+            "domain_profile_interpretation": "In train mode, domain_profile=none disables the additional robust profile but retains existing startup mass/COM events. Default stair evaluation with eval_dynamics=false removes mass/COM/gain randomization. Use mode, flags and saved physical readbacks to determine the actual setup.",
             "initial_mass_kg_summary": {key: value for key, value in initial_domain.get("base_mass_kg", {}).get("observed", {}).items()
                                         if key != "samples_first_envs"} if initial_domain else None,
             "physics_diagnostic": physics_diagnostic,
