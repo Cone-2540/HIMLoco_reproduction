@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-11T22:25:14.293810+00:00",
+  "scope": "CPU-only explicit recovered round3 development inclusion; final/video paths not supplied/read, no final tar.gz created. New adapter leaves tracked base source unchanged.",
+  "adapter": "reproduction/archive-stair-night2-evidence-recovery.py",
+  "adapter_sha256": "44f03ec1c3adfc1040414b9ff4ecafde7da7d17e60126d3d0598d5bfbce1a853",
+  "command": "python3 -B reproduction/archive-stair-night2-evidence-recovery.py --round3-original-development-directory /home/cone/robotics/logs/night2-round3-development-20261012 --round3-development-directory /home/cone/robotics/logs/night2-round3-development-recovery-20261012 --manifest reproduction/stair-night2-evaluation-archive-plan-round3-dev.json",
+  "exit": 0,
+  "manifest": "reproduction/stair-night2-evaluation-archive-plan-round3-dev.json",
+  "manifest_sha256": "c42cbc65eec9d882eadac3eda7d9cb50faa43e29b4d8450c49ec316ff782ae16",
+  "status": "PRELIMINARY_round3_paths_not_all_supplied_no_final_archive",
+  "included_files": 533,
+  "logical_source_bytes": 17933344351,
+  "unique_content_bytes_before_gzip": 17147549480,
+  "development_recovery_provenance": {
+    "recovered_directory": "/home/cone/robotics/logs/night2-round3-development-recovery-20261012",
+    "original_gpu_directory": "/home/cone/robotics/logs/night2-round3-development-20261012",
+    "original_immutable_manifest": "/home/cone/robotics/logs/night2-round3-development-20261012/immutable-manifest.json",
+    "preserved_status": "development_collection_and_separate_cpu_summaries_recovered_without_new_gpu",
+    "both_original_gpu_wrapper_exit0_and_launch_hashes_verified": true,
+    "no_missing_manifest_fabricated_or_original_status_changed": true
+  },
+  "rebuild_command_count": 12,
+  "original_gpu_failure_record_embedded": true,
+  "original_manifest_not_fabricated_into_recovery_directory": true,
+  "tracked_worktree_clean": true
+}

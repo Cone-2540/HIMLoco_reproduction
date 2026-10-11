@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "cpu_only": true,
+  "row_count": 192,
+  "unique_rows": 192,
+  "independent_aggregate_mismatches": 0,
+  "new_controller_totals": [
+    {
+      "controller": "heading",
+      "num_envs": 3072,
+      "completions": 3072,
+      "falls": 0,
+      "stalls": 0,
+      "lateral_escapes": 0,
+      "base_contact_envs": 0,
+      "rows": 96,
+      "failed_rows": 0,
+      "passed_rows": 96,
+      "completion_fraction": 1.0,
+      "numeric_verdict": "PASS"
+    },
+    {
+      "controller": "zero_yaw",
+      "num_envs": 3072,
+      "completions": 2632,
+      "falls": 116,
+      "stalls": 8,
+      "lateral_escapes": 331,
+      "base_contact_envs": 102,
+      "rows": 96,
+      "failed_rows": 36,
+      "passed_rows": 60,
+      "completion_fraction": 0.8567708333333334,
+      "numeric_verdict": "FAIL"
+    }
+  ],
+  "old_controller_totals": [
+    {
+      "controller": "heading",
+      "num_envs": 3072,
+      "completions": 3069,
+      "falls": 0,
+      "stalls": 0,
+      "lateral_escapes": 3,
+      "base_contact_envs": 0,
+      "rows": 96,
+      "failed_rows": 1,
+      "passed_rows": 95,
+      "completion_fraction": 0.9990234375,
+      "numeric_verdict": "FAIL"
+    },
+    {
+      "controller": "zero_yaw",
+      "num_envs": 3072,
+      "completions": 2677,
+      "falls": 83,
+      "stalls": 6,
+      "lateral_escapes": 316,
+      "base_contact_envs": 78,
+      "rows": 96,
+      "failed_rows": 38,
+      "passed_rows": 58,
+      "completion_fraction": 0.8714192708333334,
+      "numeric_verdict": "FAIL"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reproduction/stair-night2-round3-final-conditions.png",
+      "bytes": 403277,
+      "sha256": "d888caebc115d225d3db9210dea988315e5c383ae64199d2ce4641bbbf3786f0"
+    },
+    {
+      "path": "reproduction/stair-night2-round3-final-conditions.pdf",
+      "bytes": 105606,
+      "sha256": "55b431c7ef9270021c82f46d39c26b8353ab5aa9e68fce21e757800d1de28322"
+    },
+    {
+      "path": "reproduction/stair-night2-round3-final-conditions.json",
+      "bytes": 7498,
+      "sha256": "ae655ea732db6ddf4b3751e988d219145371301e6caef16e011387bbe30b20f1"
+    }
+  ],
+  "script_sha256": "da655bf31cbc8aa9ca03224273e595cbd07a2f709ecd66a3685651dd51c3dcbe"
+}

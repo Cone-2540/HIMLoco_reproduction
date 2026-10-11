@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "status": "optional_preregistered_not_run",
+  "created_local": "2026-10-12T06:29:21.986773+08:00",
+  "scope": "Go2 nominal100-riser ascent and descent diagnostic; no new training and no final candidate selection",
+  "geometry_file": "reproduction/stair-night2-round3-optional-long100-both-geometries.json",
+  "geometry_sha256": "9ba71312687d61a340639837869e71fbd8cef1bb736a09e0dbc2348d8fa2b90a",
+  "cpu_mesh_proof_file": "reproduction/stair-night2-round3-optional-long100-both-cpu.json",
+  "cpu_mesh_proof_sha256": "0bc0da9c5656712150c77aa50813279cfd69a583b734c76793f1afcb55b219c3",
+  "old_single_ascent_optional_files_preserved": true,
+  "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "frozen_selection_file": "reproduction/stair-night2-round3-selected-final-freeze.json",
+  "environment": {
+    "num_envs": 64,
+    "envs_per_case": 32,
+    "construction_seed": 1,
+    "reset_seeds": [
+      1301
+    ],
+    "speed_m_s": 0.3,
+    "evaluation_seconds": 250,
+    "physics_dt_s": 0.005,
+    "policy_dt_s": 0.02,
+    "trace_stride_policy_steps": 1,
+    "domain_profile": "none",
+    "dynamics_randomized": false,
+    "heading_feedback_enabled": true,
+    "no_lateral_correction": true,
+    "common_evaluation_reward_profile": "faithful",
+    "episode_length_s": 250,
+    "command_resampling_time_s": 251
+  },
+  "runtime_compatibility": {
+    "ordered_spec_batch_supported": true,
+    "equal_column_groups": true,
+    "terrain_common_size": [
+      30.0,
+      3.0
+    ],
+    "runtime_curriculum": false,
+    "goal_termination_disabled_for_measured_dwell": true,
+    "desc_start_platform_world_z_m": 17.0,
+    "desc_spawn_base_world_z_expected_m": 17.4,
+    "desc_goal_platform_world_z_m": 0.0,
+    "desc_goal_platform_origin_relative_z_m": -17.0,
+    "ascent_goal_platform_world_z_m": 17.0,
+    "configuration_scope": "static inspection of configure_stair_batch/_geometry_for_envs/configure_stair_evaluation plus actual CPU meshes; no constructed simulator tested",
+    "source_sha256": {
+      "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+      "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+      "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba"
+    }
+  },
+  "acceptance_each_case_seed": {
+    "minimum_environments": 32,
+    "minimum_completions": 31,
+    "minimum_completion_fraction": 0.95,
+    "maximum_fall_fraction": 0.05,
+    "maximum_stall_fraction": 0.05,
+    "maximum_lateral_escape_fraction": 0.05,
+    "maximum_base_contact_envs": 0,
+    "maximum_current_sample_base_contact_envs": 0,
+    "maximum_roll_rms_rad": 0.15,
+    "maximum_roll_peak_rad": 0.35,
+    "maximum_longest_flight_pause_s": 1.0,
+    "nonfinite_envs": 0,
+    "invalid_physics_envs": 0,
+    "invalid_start_envs": 0,
+    "trial_failure_reason": null,
+    "full_completion_requires": [
+      "root reachesgoal26.65m",
+      "all four feet beyond last riser and within goal platform/corridor",
+      "four foot heights at target landing tolerance",
+      "upright base with allowed height clearance",
+      "at least two foot contacts",
+      "continuous goal dwell0.5s within first episode"
+    ],
+    "full_failure_free_descriptive_target": "32/32,zero fall/stall/escape/base; practical31/32 gate must not be described as100% or very silky"
+  },
+  "required_diagnostics": [
+    "case counts of completion/fall/stall/escape/base/current-base",
+    "anomaly flags and failure_reason",
+    "completion time and first measured episode duration",
+    "maximum directed root progress from its initial reset and terminal root/feet positions",
+    "root progress and risers-passed estimate explicitly distinct from success",
+    "roll/pause/action2/jerk/tracking/current leg contacts",
+    "material/mass/inertia/COM/PD readback and actual checkpoint/config/result hashes"
+  ],
+  "execution_priority": "root explicit decision only after mandatory final/video/flat and remainingtime; no automatic GPU launch",
+  "deadline_local": "2026-10-12T07:20:00+08:00",
+  "fallback": "If video consumes budget, root may explicitly choose old singleasc or leave both unassessed; preserve declared-but-unrun cases",
+  "paper_comparison_limits": [
+    "dimensions17cm/25cm correspond to paper long stairs but100-riser Go2 nominal simulation is not original Aliengo hundreds-step realworld176.5+/-7.81 score",
+    "single resetseed1301 and one deterministic construction scene; no robustness or independent trainingseed claim",
+    "root directedprogress or estimated passedrisers cannot replace full four-foot completion/dwell",
+    "collector90% and process exit0 cannot certify this independent95% gate or smoothness"
+  ]
+}

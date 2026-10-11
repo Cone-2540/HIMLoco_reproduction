@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "recorded_local": "2026-10-12T06:53:00+08:00",
+  "scope": "Preserve unexpected video orchestrator interruption and explicit CPU-only recovery; no policy or result reselection",
+  "original_directory": "/home/cone/robotics/logs/night2-round3-video-review-20261012",
+  "original_manifest": "/home/cone/robotics/logs/night2-round3-video-review-20261012/video-review-manifest.json",
+  "original_manifest_sha256": "bdcea3932093dad469c3df0679f8f6f661d8078aa8d501b81174fe20c8dce507",
+  "original_orchestrator_exit_code": 143,
+  "cause": "Undetermined. No attribution from exit code alone.",
+  "original_evidence_modified": false,
+  "original_complete_materials": 10,
+  "interrupted_manifest_case": "moderate-nosing-asc-speed03",
+  "case11_GPU_wrapper_ended_local": "2026-10-12T06:44:09.673924+08:00",
+  "case11_GPU_wrapper_exit_code": 0,
+  "case11_GPU_replayed": false,
+  "CPU_recovery": {
+    "new_directory": "/home/cone/robotics/logs/night2-round3-video-review-recovery-20261012",
+    "new_manifest": "/home/cone/robotics/logs/night2-round3-video-review-recovery-20261012/video-review-manifest.json",
+    "original_first10_referenced_unchanged": true,
+    "case11_source": "Existing successful launch-record/result/config/raw MP4, checked with unchanged verify_recorded_identity/verify_exact_encoding/materialize",
+    "case11_material_status": "complete_clean_first_episode_materials"
+  },
+  "remaining_GPU_subset": {
+    "new_directory": "/home/cone/robotics/logs/night2-round3-video-review-tail-20261012",
+    "new_manifest": "/home/cone/robotics/logs/night2-round3-video-review-tail-20261012/video-review-manifest.json",
+    "labels": ["moderate-nosing-desc-speed03", "long12-asc-speed03", "long12-desc-speed03"],
+    "command": ["python3", "reproduction/run-stair-night2-round3-video-review.py", "--selection-file", "reproduction/stair-night2-round3-selected-final-freeze.json", "--output-dir", "/home/cone/robotics/logs/night2-round3-video-review-tail-20261012", "--labels", "moderate-nosing-desc-speed03", "long12-asc-speed03", "long12-desc-speed03", "--execute"],
+    "orchestrator_exit_code": 0,
+    "all3_material_status": "complete_clean_first_episode_materials",
+    "env0_reset1301_preserved": true
+  },
+  "total_distinct_declared_cases_with_complete_materials": 14,
+  "total_materials_is_not_visual_or_smoothness_certification": true
+}

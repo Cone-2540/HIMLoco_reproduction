@@ -2,6 +2,8 @@
 
 2026-10-11 夜间楼梯训练与独立验证见 [中文报告](reproduction/stair-overnight-report_zh.md)。已归档上下楼模型和完整本地录像；论文对应楼梯几何通过，但长梯、陡梯及摩擦条件仍存在失败，完整最终矩阵未通过，流畅性和真机迁移尚未验证。
 
+2026-10-12 第二晚 [奖励实验与完整验证报告](reproduction/stair-night2-report_zh.md)：保留 HIM/PPO，七组同预算续训后选用原奖励策略。新保留楼梯在外部航向反馈下3072/3072完成；恒定zero-yaw、全向平地和百级长梯仍失败，下楼仍有重复腿段接触。附[14项本机录像入口](reproduction/stair-night2-round3-video-index_zh.md)，尚未完成论文全部效果或真机复现。
+
 后续 [平地回放与指令覆盖阶段](reproduction/stair-generalization-phase1_zh.md) 已准备 A/B/C 配置和 CPU 检查，尚未进行 GPU 训练；原冻结结果保留在 `go2-stairs-overnight-20261011` 标签。
 
 ## Learning-based Locomotion Control from OpenRobotLab

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "CPU_PLAN_REVIEW_PASS_SIMULATION_NOT_RUN",
+  "created_local": "2026-10-12T06:22:26.788662+08:00",
+  "scope": "existing100-riser optional diagnostic; no Torch/simulator imports, no GPU, no frozen source change",
+  "plan_sha256": "03e854ebc1b9575abe99364bb8c89156fc3b40400b40ebc4bb86e0e44d31d418",
+  "geometry_sha256": "82a96c2274d15ec07dbce8b66668c7d11f7e6850ea70bfefb8d2674088ab1a2b",
+  "old_cpu_mesh_proof_sha256": "815c445799aa00e304d59257bcd627477656ba9477c7ed28d5fb2787b422e5ee",
+  "source_sha256": {
+    "isaaclab/run.py": "fe454b4f969c3619af187007dc4b4ba4b64a974ec0ccbc66303893572677ff51",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "reproduction/run-stair-night2-job.py": "2c61b889b2a77f6f996d9cbe27dde364af767caea0751f9588889712dfeb948d"
+  },
+  "geometry": {
+    "name": "optional_long100_asc_17cm_25cm",
+    "direction": "asc",
+    "height": 0.17,
+    "depth": 0.25,
+    "num_steps": 100,
+    "width": 1.2,
+    "nosing": 0.0
+  },
+  "old_cpu_mesh_evidence": {
+    "scope": "closed-mesh geometry validation only; no simulator or GPU",
+    "terrain_size": [
+      30.0,
+      3.0
+    ],
+    "num_steps": 100,
+    "goal_x_m": 26.65,
+    "goal_platform_z_m": 17.0,
+    "mesh_count": 102,
+    "all_meshes_closed": true,
+    "origin": [
+      1.5,
+      1.5,
+      0.0
+    ]
+  },
+  "protocol": {
+    "num_envs": 32,
+    "seconds": 250,
+    "speed_m_s": 0.3,
+    "construction_seed": 1,
+    "reset_seed": 1301,
+    "dynamics_randomized": false,
+    "heading_feedback_enabled": true,
+    "dense_trace_stride_policy_steps": 1,
+    "training_updates": 0
+  },
+  "duration_check": {
+    "ideal_root_goal_time_s": 88.83333333333333,
+    "selected_seconds": 250,
+    "episode_length_matches_eval_seconds": "configure_stair_evaluation assigns cfg.episode_length_s=float(seconds), not default20s",
+    "command_resample_seconds": 251,
+    "12500_policy_steps_maximum": true
+  },
+  "completion_checks_from_existing_source": [
+    "root beyond26.65m",
+    "all four feet beyond last riser and on goal platform with correct height",
+    "upright base within height bounds and corridor",
+    "at least two current foot contacts",
+    "goal dwell0.5s",
+    "first measured episode only; timeout/stall/fall/escape do not count as completion"
+  ],
+  "result_limits": [
+    "Go2100 risers17m vertical; selected paper dimensions, not original Aliengo hundreds-step real-world176.5-step score",
+    "nominal construction and one reset seed1301 only; external yaw feedback, no lateral correction",
+    "root max directed progress / risers-passed estimates cannot replace all-four-feet full completion",
+    "collector90% is not independent95% acceptance or smoothness",
+    "independent motion gate and complete-frame review not provided by CPU plan review"
+  ],
+  "priority": "optional after mandatory matrix/video workflow; root decides from remaining time, existing job wrapper enforces deadline"
+}

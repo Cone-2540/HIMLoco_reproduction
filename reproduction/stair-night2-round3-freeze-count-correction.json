@@ -1,0 +1,23 @@
+{
+  "created_local": "2026-10-12T06:22:19.157276+08:00",
+  "scope": "Correction to human-authored ablation counts only; frozen selected faithful identity and development selection unchanged; original freeze preserved during reserved evaluation",
+  "freeze_file": "reproduction/stair-night2-round3-selected-final-freeze.json",
+  "freeze_sha256": "661742513963616a4b4d1c32e5563e6dbda625583ef6a3880f78441b91d086ec",
+  "incorrect_counts_in_reason": {
+    "completions": 3448,
+    "lateral_escapes": 6
+  },
+  "correct_counts": {
+    "completions": 3447,
+    "num_envs": 3456,
+    "falls": 2,
+    "lateral_escapes": 7,
+    "failed_rows": 3
+  },
+  "cause": "Reason counted only six escapes in two FAIL rows and omitted one escape in admissible31/32 seed47 longdesc row. Raw summaries were correct.",
+  "source_summary": "reproduction/stair-night2-round3-development/contact-light1213-development-summary.json",
+  "source_summary_sha256": "51cb5bf667febb8889bb4f51b24fa86d7be0626df47ad92117e4bbb021585265",
+  "final_data_used_for_correction": false,
+  "model_reselected": false,
+  "acceptance_gates_changed": false
+}

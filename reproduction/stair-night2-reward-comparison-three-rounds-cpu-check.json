@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-11T22:22:41.406414+00:00",
+  "scope": "CPU-only explicit round3 recovered DEVELOPMENT data. No unfinished final read, GPU, tracked-file/source/config changes, local commit or push.",
+  "command": "python3 -B reproduction/render-stair-night2-reward-three-rounds.py --round3-directory /home/cone/robotics/logs/night2-round3-development-recovery-20261012 --overwrite",
+  "exit": 0,
+  "tracked_worktree_after": "clean",
+  "source_directory": "/home/cone/robotics/logs/night2-round3-development-recovery-20261012",
+  "policies": [
+    {
+      "label": "baseline-faithful1213",
+      "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+      "training_reward_profile": "faithful",
+      "training_seed": 1213,
+      "passed_case_seed_speed_rows": 108,
+      "declared_case_seed_speed_rows": 108,
+      "completions": 3456,
+      "declared_traversals": 3456,
+      "numeric_development_verdict": "PASS",
+      "core_contact": {
+        "asc": {
+          "case_seed_speed_rows": 18,
+          "mean_current_shank_contact_fraction": 0.06296526404944022,
+          "all_episodes_completed": true,
+          "all_numeric_rows_passed": true
+        },
+        "desc": {
+          "case_seed_speed_rows": 18,
+          "mean_current_shank_contact_fraction": 0.27985635802256303,
+          "all_episodes_completed": true,
+          "all_numeric_rows_passed": true
+        }
+      }
+    },
+    {
+      "label": "contact-light1213",
+      "checkpoint_sha256": "25fd0a1df2f79de4fdfc07a0906b36b113e39d352299df7724c8e600ba611551",
+      "training_reward_profile": "contact_light",
+      "training_seed": 1213,
+      "passed_case_seed_speed_rows": 105,
+      "declared_case_seed_speed_rows": 108,
+      "completions": 3447,
+      "declared_traversals": 3456,
+      "numeric_development_verdict": "FAIL",
+      "core_contact": {
+        "asc": {
+          "case_seed_speed_rows": 18,
+          "mean_current_shank_contact_fraction": 0.05383456498404694,
+          "all_episodes_completed": true,
+          "all_numeric_rows_passed": true
+        },
+        "desc": {
+          "case_seed_speed_rows": 18,
+          "mean_current_shank_contact_fraction": 0.2545687046282292,
+          "all_episodes_completed": true,
+          "all_numeric_rows_passed": true
+        }
+      }
+    }
+  ],
+  "root_message_count_correction": "Actual archived contact-light CSV completion sum3447/3456, not anticipated3448; 9incomplete episodes and3failed rows; one31/32 row remainsPASS.",
+  "presentation_check": "Viewed standalone PNG; moved legend to upper right through NEW adapter so faithful35.1% descent annotation remains visible. Base tracked plot script unchanged.",
+  "artifacts": {
+    "reproduction/stair-night2-reward-comparison-three-rounds.png": {
+      "bytes": 370048,
+      "sha256": "abce2eba835fcf48dd82b0361eeed73fcf96266c3c6dc18c5c9808f3e87a971b"
+    },
+    "reproduction/stair-night2-reward-comparison-three-rounds.pdf": {
+      "bytes": 25912,
+      "sha256": "e26016db1dda4584c855209204df7738df76b66d568d352908aed219d9db51d6"
+    },
+    "reproduction/stair-night2-reward-comparison-three-rounds.json": {
+      "bytes": 18462,
+      "sha256": "5629b9b37a2da7a2fa2649c165c0db6b4c2803876594993f518fcea33b09c12a"
+    }
+  }
+}

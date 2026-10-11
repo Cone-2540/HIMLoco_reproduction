@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T06:29:21.986773+08:00",
+  "scope": "existing-container CPU closed meshes, no AppLauncher or PhysX; no GPU",
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-c",
+    "import json, torch\nfrom stair_terrain import build_stair_generator, stair_meshes\nresults=[]\nfor direction in ('asc','desc'):\n spec={'height':.17,'depth':.25,'num_steps':100,'width':1.2,'direction':direction}\n cfg=build_stair_generator(spec=spec,num_rows=1,num_cols=1,seed=1)\n term=cfg.sub_terrains['heldout'];meshes,origin=stair_meshes(.5,term.replace(size=cfg.size));meta=meshes[0].metadata['stair_geometry']\n assert cfg.size==(30.,3.) and len(meta['treads'])==100\n assert all(m.is_watertight and m.is_winding_consistent for m in meshes)\n assert meta['start_x']==0 and abs(meta['goal_x']-26.65)<1e-9 and meta['goal_dwell_s']==.5\n assert abs(float(origin[2])-(0. if direction=='asc' else 17.))<1e-9\n assert abs(meta['goal_platform_z']-(17. if direction=='asc' else -17.))<1e-9\n assert abs(float(origin[2])+meta['goal_platform_z']-(17. if direction=='asc' else 0.))<1e-9\n results.append({'direction':direction,'terrain_size':cfg.size,'mesh_count':len(meshes),'all_meshes_closed_and_winding_consistent':True,'origin_world_z_m':float(origin[2]),'goal_platform_z_relative_to_origin_m':meta['goal_platform_z'],'terminal_platform_world_z_m':float(origin[2])+meta['goal_platform_z'],'goal_x_relative_m':meta['goal_x'],'num_steps':meta['num_steps'],'goal_dwell_s':meta['goal_dwell_s']})\nassert not torch.cuda.is_initialized()\nprint(json.dumps({'status':'CPU_GEOMETRY_PASS_NO_SIMULATION','cuda_initialized':torch.cuda.is_initialized(),'cases':results}))\n"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"CPU_GEOMETRY_PASS_NO_SIMULATION\", \"cuda_initialized\": false, \"cases\": [{\"direction\": \"asc\", \"terrain_size\": [30.0, 3.0], \"mesh_count\": 102, \"all_meshes_closed_and_winding_consistent\": true, \"origin_world_z_m\": 0.0, \"goal_platform_z_relative_to_origin_m\": 17.0, \"terminal_platform_world_z_m\": 17.0, \"goal_x_relative_m\": 26.65, \"num_steps\": 100, \"goal_dwell_s\": 0.5}, {\"direction\": \"desc\", \"terrain_size\": [30.0, 3.0], \"mesh_count\": 101, \"all_meshes_closed_and_winding_consistent\": true, \"origin_world_z_m\": 17.0, \"goal_platform_z_relative_to_origin_m\": -17.0, \"terminal_platform_world_z_m\": 0.0, \"goal_x_relative_m\": 26.65, \"num_steps\": 100, \"goal_dwell_s\": 0.5}]}\n",
+  "stderr": "",
+  "geometry_file": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-optional-long100-both-geometries.json",
+  "geometry_sha256": "9ba71312687d61a340639837869e71fbd8cef1bb736a09e0dbc2348d8fa2b90a",
+  "actual_cpu_geometry": {
+    "status": "CPU_GEOMETRY_PASS_NO_SIMULATION",
+    "cuda_initialized": false,
+    "cases": [
+      {
+        "direction": "asc",
+        "terrain_size": [
+          30.0,
+          3.0
+        ],
+        "mesh_count": 102,
+        "all_meshes_closed_and_winding_consistent": true,
+        "origin_world_z_m": 0.0,
+        "goal_platform_z_relative_to_origin_m": 17.0,
+        "terminal_platform_world_z_m": 17.0,
+        "goal_x_relative_m": 26.65,
+        "num_steps": 100,
+        "goal_dwell_s": 0.5
+      },
+      {
+        "direction": "desc",
+        "terrain_size": [
+          30.0,
+          3.0
+        ],
+        "mesh_count": 101,
+        "all_meshes_closed_and_winding_consistent": true,
+        "origin_world_z_m": 17.0,
+        "goal_platform_z_relative_to_origin_m": -17.0,
+        "terminal_platform_world_z_m": 0.0,
+        "goal_x_relative_m": 26.65,
+        "num_steps": 100,
+        "goal_dwell_s": 0.5
+      }
+    ]
+  }
+}
