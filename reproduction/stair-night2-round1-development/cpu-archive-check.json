@@ -1,0 +1,33 @@
+{
+  "runner_syntax": "PASS",
+  "runner_sha256": "4d23abf3c5b8cb205b561b6c32088cd5fde0b3078a65f36e48b9a26b5f1a9dfa",
+  "profile_enum_only_extension": "faithful_tracking",
+  "runtime_source_hash_checks_unchanged": true,
+  "copied_small_files": 24,
+  "copy_sha256_all_equal": true,
+  "combined_rows": 540,
+  "failed_rows": 33,
+  "fair_motion_rows_each": 51,
+  "gpu_started": false,
+  "final_holdout_read": false,
+  "old_candidate_with_new_runtime_source_dry_run": {
+    "status": "EXPECTED_REJECTION",
+    "exit_code": 2,
+    "reason": "Current runtime source differs from archived candidate: faithful",
+    "execute_flag": false,
+    "docker_contacted": false,
+    "gpu_started": false,
+    "command_argv": [
+      "python3",
+      "reproduction/run-stair-night2-development-comparison.py",
+      "--candidate",
+      "faithful",
+      "faithful",
+      "artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt",
+      "--candidate",
+      "contact",
+      "contact",
+      "artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt"
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "status": "passed",
+  "compiled_without_executing": [
+    "isaaclab/run.py",
+    "isaaclab/stair_rewards.py",
+    "reproduction/run-stair-night2-round.py",
+    "reproduction/archive-stair-night2-model.py",
+    "reproduction/inspect-stair-night2-training.py"
+  ],
+  "run_py_cli_profile_accepted_by_choices": [
+    "faithful",
+    "faithful_tracking",
+    "tuned",
+    "contact",
+    "contact_force",
+    "contact_slide",
+    "contact_vertical",
+    "contact_clearance",
+    "stock"
+  ],
+  "round_runner": {
+    "subprocess_calls_mocked": true,
+    "no_training_executed": true,
+    "plan_fixture": "existing first-round JSON; root will freeze new tracking plan separately",
+    "captured_commands": [
+      [
+        "/usr/bin/python3",
+        "/home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py",
+        "--name",
+        "night2-faithful-seed1213-plus100",
+        "--max-seconds",
+        "3600",
+        "--",
+        "train",
+        "--terrain",
+        "stairs",
+        "--stair_stage",
+        "paper_mixed",
+        "--reward_profile",
+        "faithful",
+        "--checkpoint",
+        "artifacts/go2-stairs-control660/model_660.pt",
+        "--num_envs",
+        "7680",
+        "--steps_per_env",
+        "100",
+        "--max_iterations",
+        "100",
+        "--save_interval",
+        "20",
+        "--learning_rate",
+        "0.0001",
+        "--resume_learning_rate",
+        "0.0001",
+        "--lr_schedule",
+        "fixed",
+        "--start_level",
+        "4",
+        "--stair_speed_range",
+        "0.25",
+        "0.65",
+        "--turn_fraction",
+        "0.0",
+        "--domain_profile",
+        "none",
+        "--seed",
+        "1213"
+      ],
+      [
+        "/usr/bin/python3",
+        "/home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py",
+        "--name",
+        "night2-faithful_tracking-seed1213-plus100",
+        "--max-seconds",
+        "3600",
+        "--",
+        "train",
+        "--terrain",
+        "stairs",
+        "--stair_stage",
+        "paper_mixed",
+        "--reward_profile",
+        "faithful_tracking",
+        "--checkpoint",
+        "artifacts/go2-stairs-control660/model_660.pt",
+        "--num_envs",
+        "7680",
+        "--steps_per_env",
+        "100",
+        "--max_iterations",
+        "100",
+        "--save_interval",
+        "20",
+        "--learning_rate",
+        "0.0001",
+        "--resume_learning_rate",
+        "0.0001",
+        "--lr_schedule",
+        "fixed",
+        "--start_level",
+        "4",
+        "--stair_speed_range",
+        "0.25",
+        "0.65",
+        "--turn_fraction",
+        "0.0",
+        "--domain_profile",
+        "none",
+        "--seed",
+        "1213"
+      ]
+    ]
+  },
+  "archive_plan_check": {
+    "actual_existing_faithful_config_passed": true,
+    "next_round_schema_fixture_passed": true,
+    "rejected_mismatches": [
+      {
+        "field": "num_envs",
+        "reason": "Actual num_envs differs from frozen training plan"
+      },
+      {
+        "field": "steps_per_env",
+        "reason": "Actual steps_per_env differs from frozen training plan"
+      },
+      {
+        "field": "updates",
+        "reason": "Actual additional_updates differs from frozen training plan"
+      },
+      {
+        "field": "seed",
+        "reason": "Training seed is outside the frozen training plan"
+      },
+      {
+        "field": "profile",
+        "reason": "Reward profile is outside the frozen training plan arms"
+      }
+    ],
+    "no_docker_or_output_directory_created": true
+  }
+}

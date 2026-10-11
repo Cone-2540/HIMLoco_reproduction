@@ -12,12 +12,14 @@ import sys
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=1201)
-    parser.add_argument("--profiles", nargs="+", choices=["faithful", "contact", "contact_vertical", "contact_clearance"],
+    parser.add_argument("--profiles", nargs="+", choices=["faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance"],
                         default=["faithful", "contact", "contact_vertical", "contact_clearance"])
     parser.add_argument("--iterations", type=int, default=100)
+    parser.add_argument("--plan", type=Path,
+                        default=Path(__file__).resolve().parent / "stair-night2-training-plan.json")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    plan = json.loads((root / "reproduction/stair-night2-training-plan.json").read_text())
+    plan = json.loads(args.plan.expanduser().resolve().read_text())
     common = plan["common"]
     for profile in args.profiles:
         now = datetime.now().astimezone()

@@ -105,7 +105,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "tuned", "contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "stock"], default="faithful")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")

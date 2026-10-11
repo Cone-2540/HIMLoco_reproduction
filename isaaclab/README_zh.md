@@ -4,6 +4,8 @@
 
 Go2 楼梯训练入口与采样说明见 [STAIRS_zh.md](STAIRS_zh.md)。2026-10-11 的标准楼梯模型已经连同配置和 TorchScript 保存在 [artifacts](../artifacts/README_zh.md)，新克隆可直接加载；本页下面的平地 checkpoint 仍是本机历史训练输出。
 
+楼梯奖励 `--reward_profile faithful_tracking` 是与原公式一致的单项权重实验：在 `faithful` 基础仅将机身 XY 速度跟踪权重从 1 调为 1.5，指数方差仍为 0.25，其余权重、参数、观测与 HIM/PPO 保持。该配置不增加大腿/小腿接触项，也不增加侧向控制器；是否改善长楼梯横移与通关须另行定量评测。
+
 ## 本机实际结果：标称平地通过
 
 2026-10-10 完成 1024 环境、500 轮、51,200,000 个环境步，纯训练合计约 17.6 分钟。先训练 300 轮，再以 25% 纯转向指令恢复 200 轮。原始学习曲线见 [PNG](../reproduction/gpu-training.png) / [PDF](../reproduction/gpu-training.pdf)，第 300 轮的虚线标明采样变化。

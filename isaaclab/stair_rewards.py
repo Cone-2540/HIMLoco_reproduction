@@ -7,6 +7,8 @@ small stair ablation, and ``contact`` adds only a leg-contact penalty to faithfu
 ``contact_slide`` retains contact and adds the existing foot XY-speed proxy.
 ``contact_vertical`` and ``contact_clearance`` each change only one original
 reward weight from contact; both preserve the released reward formulas.
+``faithful_tracking`` changes only the original XY velocity tracking weight
+from faithful, without adding contact or lateral-controller terms.
 The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
@@ -210,10 +212,11 @@ def configure_stair_rewards(cfg, profile="faithful"):
     ``contact_vertical`` halves the original vertical-velocity penalty.
     ``contact_clearance`` doubles only the original body-relative foot-height
     penalty; this does not turn that reward into terrain-relative swing clearance.
+    ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
     """
     contact_profiles = ("contact", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
-    if profile not in ("faithful", "tuned", *contact_profiles, "stock"):
-        raise ValueError("reward profile must be faithful, tuned, contact, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
+    if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "stock"):
+        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
@@ -240,7 +243,7 @@ def configure_stair_rewards(cfg, profile="faithful"):
     def add(name, function, weight, **params):
         setattr(cfg.rewards, name, RewardTermCfg(func=function, weight=weight, params=params))
 
-    add("track_lin_vel_xy_exp", mdp + "track_lin_vel_xy_exp", 1.0,
+    add("track_lin_vel_xy_exp", mdp + "track_lin_vel_xy_exp", 1.5 if profile == "faithful_tracking" else 1.0,
         command_name="base_velocity", std=math.sqrt(0.25))
     add("track_ang_vel_z_exp", mdp + "track_ang_vel_z_exp", 0.5,
         command_name="base_velocity", std=math.sqrt(0.25))
@@ -290,7 +293,9 @@ def configure_stair_rewards(cfg, profile="faithful"):
             + (["contact lin_vel_z_l2 -2 -> -1; no other contact term changes"]
                if profile == "contact_vertical" else [])
             + (["contact foot_clearance -0.01 -> -0.02; no other contact term changes"]
-               if profile == "contact_clearance" else [])) if profile in contact_profiles else [],
+               if profile == "contact_clearance" else [])) if profile in contact_profiles else (
+            ["faithful track_lin_vel_xy_exp 1 -> 1.5; no other faithful term changes"]
+            if profile == "faithful_tracking" else []),
         "contact_penalty": {
             "baseline_profile": "faithful",
             "term": "leg_contacts",
@@ -359,6 +364,17 @@ def configure_stair_rewards(cfg, profile="faithful"):
                 if vertical else
                 "stronger original body-relative moving-foot height target at -0.20m; not terrain-relative swing clearance"
             ),
+            "actor_observations_and_collision_geometry": "unchanged",
+        }
+    if profile == "faithful_tracking":
+        manifest["reward_weight_ablation"] = {
+            "baseline_profile": "faithful",
+            "term": "track_lin_vel_xy_exp",
+            "original_weight": 1.0,
+            "weight": 1.5,
+            "function_and_parameters": "unchanged from faithful and released HIMLoco; body XY error, variance 0.25",
+            "all_other_faithful_terms": "unchanged; no added contact terms",
+            "interpretation": "increase existing commanded body XY velocity tracking reward; no added lateral controller or world-position target",
             "actor_observations_and_collision_geometry": "unchanged",
         }
     return manifest

@@ -1,0 +1,24 @@
+{
+  "started_utc": "2026-10-11T19:23:37.090267+00:00",
+  "finished_utc": "2026-10-11T19:23:38.770216+00:00",
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-m",
+    "unittest",
+    "-v",
+    "test_stair_rewards"
+  ],
+  "exit_code": 0,
+  "test_count": 25,
+  "scope": "Existing 25 reward CPU tests unchanged; no simulation/GPU training.",
+  "stdout_log": "reproduction/stair-night2-tracking-25tests.stdout.log"
+}

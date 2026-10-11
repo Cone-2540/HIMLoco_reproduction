@@ -122,6 +122,22 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def validate_training_plan(config, result, plan):
+    """Check actual arm identity and saved budget against its explicit plan."""
+    common = plan['common']
+    for name, actual, expected in (
+        ('num_envs', config['num_envs'], common['num_envs']),
+        ('steps_per_env', config['train']['runner']['num_steps_per_env'], common['steps_per_env']),
+        ('additional_updates', result['iterations'], common['additional_updates_per_job']),
+    ):
+        require(actual == expected, 'Actual ' + name + ' differs from frozen training plan')
+    profiles = {arm['profile'] for arm in plan['arms']}
+    require(config['stair_reward']['profile'] in profiles, 'Reward profile is outside the frozen training plan arms')
+    seeds = {plan[key] for key in ('initial_paired_training_seed', 'planned_confirmation_seed') if key in plan}
+    if seeds:
+        require(config['seed'] in seeds, 'Training seed is outside the frozen training plan')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--log-dir',type=Path,required=True)
@@ -139,6 +155,7 @@ def main():
     require(config.get('mode')=='train','Only a completed training run can be archived by this tool')
     require(launch.get('status')=='exited' and launch.get('exit_code')==0,'Wrapper did not finish successfully')
     require(result.get('status')=='smoke_passed' and result.get('parameters_finite') is True,'Training result is not finite/completed')
+    validate_training_plan(config, result, plan)
     origin=path_on_host(config['checkpoint']);final=log/result['checkpoint'];policy=log/result['export']
     updates=result['iterations'];num_envs=result['num_envs'];steps=config['train']['runner']['num_steps_per_env']
     require(isinstance(updates,int) and updates>0,'Unsupported update count')

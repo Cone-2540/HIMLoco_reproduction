@@ -1,0 +1,1998 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T02:56:12.448470+08:00",
+  "status": "immutable_launch_plan",
+  "stage": "development",
+  "baseline": {
+    "label": "baseline-control660",
+    "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+    "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+    "training_reward_profile": "contact"
+  },
+  "candidates_in_parameter_order": [
+    {
+      "label": "faithful",
+      "training_reward_profile": "faithful",
+      "checkpoint": "artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt",
+      "checkpoint_sha256": "67bf2e37d1886c49959e00a005bc6ec0f549127a2267c0db69c43dfe69861f6e",
+      "training_manifest": "artifacts/go2-stairs-night2-faithful-seed1201-760/manifest.json",
+      "training_manifest_sha256": "6b9ca46e9d9d13325c6de3e5a8c12073b637765f7def69f819c961f5b51c5fd9",
+      "training_config": "artifacts/go2-stairs-night2-faithful-seed1201-760/config.json",
+      "training_config_sha256": "f2f319ee0564d34f167dbf4e9ffdc101628eb4ea96c18aaa58ab33c1f4eb777c",
+      "training_result": "artifacts/go2-stairs-night2-faithful-seed1201-760/result.json",
+      "training_result_sha256": "197118a74ded104c601b122ac33625c4f33fb483bb25d2c0590415aca01e47a3",
+      "cpu_audit_sha256": "0e2bcbd843669f7c7bf11278685c407377826cf2c215785dc75b48d64877dbad",
+      "training_budget": {
+        "saved_additional_updates": 100,
+        "num_envs": 7680,
+        "steps_per_env": 100,
+        "environment_steps_this_run": 76800000
+      },
+      "training_seed": 1201,
+      "training_reward_weights": {
+        "track_lin_vel_xy_exp": 1.0,
+        "track_ang_vel_z_exp": 0.5,
+        "lin_vel_z_l2": -2.0,
+        "ang_vel_xy_l2": -0.05,
+        "dof_acc_l2": -2.5e-07,
+        "action_rate_l2": -0.01,
+        "flat_orientation_l2": -0.2,
+        "joint_power": -2e-05,
+        "base_height": -1.0,
+        "foot_clearance": -0.01,
+        "action_smoothness": -0.01
+      },
+      "training_source_provenance": {
+        "config_commit": "d63529326843d8af276c078d0d7018e715998718",
+        "config_tracked_files_dirty": false,
+        "wrapper_commit": "d63529326843d8af276c078d0d7018e715998718",
+        "wrapper_source_dirty": true,
+        "verified_runtime_source_sha256": {
+          "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+        },
+        "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+      },
+      "training_hyperparameters": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "training_sampling_configuration": {
+        "terrain": "stairs",
+        "stairs": {
+          "stage": "paper_mixed",
+          "seed": 1201,
+          "heldout": false,
+          "num_rows": 10,
+          "num_cols": 28,
+          "terrain_size": [
+            8.0,
+            3.0
+          ],
+          "num_steps": 6,
+          "width": 1.2,
+          "landing_length": 2.0,
+          "convert_to_heightfield": false,
+          "geometry_reference": "relative to scene.env_origins; positive x travel",
+          "height_scanner_samples": 187,
+          "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+          "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+          "variants": [
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            }
+          ]
+        },
+        "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+        "domain_randomization": null,
+        "friction_override": null,
+        "terrain_start_level": 4,
+        "stair_training_speed_range_m_s": [
+          0.25,
+          0.65
+        ],
+        "training_turn_fraction": 0.0,
+        "stair_pushes": false,
+        "flat_replay": {
+          "requested_terrain_fraction": 0.0,
+          "all_direction_commands": false,
+          "standing_fraction": null,
+          "moving_categories": null,
+          "positive_magnitude_ranges": null,
+          "actor_terrain_inputs_added": false
+        }
+      },
+      "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+    },
+    {
+      "label": "contact",
+      "training_reward_profile": "contact",
+      "checkpoint": "artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt",
+      "checkpoint_sha256": "a9a249d58cf8b24d76821a401819733173f75d131a56960220dd9043514f8a5a",
+      "training_manifest": "artifacts/go2-stairs-night2-contact-seed1201-760/manifest.json",
+      "training_manifest_sha256": "fdb1c4f71af5586024dcf5484a1c052bcab0a13b08ae6d5e5f4a4e84cf809998",
+      "training_config": "artifacts/go2-stairs-night2-contact-seed1201-760/config.json",
+      "training_config_sha256": "89281e0ced3a6941fbfe9bcb06d7f3fb5fbca92d4488e13ed9e59688c99067cc",
+      "training_result": "artifacts/go2-stairs-night2-contact-seed1201-760/result.json",
+      "training_result_sha256": "3855ab7e20c3edd71e5ffc502da2823bd1b6df96a5017519a0aee0dad913587f",
+      "cpu_audit_sha256": "e69ff230f20e854c1e8bb6fb995893afed5336dfabeaea01d0f8af8352bd5866",
+      "training_budget": {
+        "saved_additional_updates": 100,
+        "num_envs": 7680,
+        "steps_per_env": 100,
+        "environment_steps_this_run": 76800000
+      },
+      "training_seed": 1201,
+      "training_reward_weights": {
+        "track_lin_vel_xy_exp": 1.0,
+        "track_ang_vel_z_exp": 0.5,
+        "lin_vel_z_l2": -2.0,
+        "ang_vel_xy_l2": -0.05,
+        "dof_acc_l2": -2.5e-07,
+        "action_rate_l2": -0.01,
+        "flat_orientation_l2": -0.2,
+        "joint_power": -2e-05,
+        "base_height": -1.0,
+        "foot_clearance": -0.01,
+        "action_smoothness": -0.01,
+        "leg_contacts": -0.1
+      },
+      "training_source_provenance": {
+        "config_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+        "config_tracked_files_dirty": false,
+        "wrapper_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+        "wrapper_source_dirty": false,
+        "verified_runtime_source_sha256": {
+          "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+        },
+        "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+      },
+      "training_hyperparameters": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "training_sampling_configuration": {
+        "terrain": "stairs",
+        "stairs": {
+          "stage": "paper_mixed",
+          "seed": 1201,
+          "heldout": false,
+          "num_rows": 10,
+          "num_cols": 28,
+          "terrain_size": [
+            8.0,
+            3.0
+          ],
+          "num_steps": 6,
+          "width": 1.2,
+          "landing_length": 2.0,
+          "convert_to_heightfield": false,
+          "geometry_reference": "relative to scene.env_origins; positive x travel",
+          "height_scanner_samples": 187,
+          "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+          "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+          "variants": [
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            }
+          ]
+        },
+        "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+        "domain_randomization": null,
+        "friction_override": null,
+        "terrain_start_level": 4,
+        "stair_training_speed_range_m_s": [
+          0.25,
+          0.65
+        ],
+        "training_turn_fraction": 0.0,
+        "stair_pushes": false,
+        "flat_replay": {
+          "requested_terrain_fraction": 0.0,
+          "all_direction_commands": false,
+          "standing_fraction": null,
+          "moving_categories": null,
+          "positive_magnitude_ranges": null,
+          "actor_terrain_inputs_added": false
+        }
+      },
+      "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+    },
+    {
+      "label": "vertical",
+      "training_reward_profile": "contact_vertical",
+      "checkpoint": "artifacts/go2-stairs-night2-vertical-seed1201-760/model_760.pt",
+      "checkpoint_sha256": "2f4c18b56d2c4db92769b4a3145e563928deb74f370911669f8f8384d4890948",
+      "training_manifest": "artifacts/go2-stairs-night2-vertical-seed1201-760/manifest.json",
+      "training_manifest_sha256": "41d9752b4a010360b57ded67d73974ee24cdf987fef2605b0426d2a62d181d4d",
+      "training_config": "artifacts/go2-stairs-night2-vertical-seed1201-760/config.json",
+      "training_config_sha256": "d2756185be699e96ef3078e2dc1e31d1915fdc7ba19273caea24e44383b3e0b1",
+      "training_result": "artifacts/go2-stairs-night2-vertical-seed1201-760/result.json",
+      "training_result_sha256": "745a262d49bd80b7b4d9bbd1102df82d596d27c4805245d4fbf555875407c138",
+      "cpu_audit_sha256": "54ac1d9265a9d077dea5f7262cb17430b0c2581a85c81fd89499577dd4df2d71",
+      "training_budget": {
+        "saved_additional_updates": 100,
+        "num_envs": 7680,
+        "steps_per_env": 100,
+        "environment_steps_this_run": 76800000
+      },
+      "training_seed": 1201,
+      "training_reward_weights": {
+        "track_lin_vel_xy_exp": 1.0,
+        "track_ang_vel_z_exp": 0.5,
+        "lin_vel_z_l2": -1.0,
+        "ang_vel_xy_l2": -0.05,
+        "dof_acc_l2": -2.5e-07,
+        "action_rate_l2": -0.01,
+        "flat_orientation_l2": -0.2,
+        "joint_power": -2e-05,
+        "base_height": -1.0,
+        "foot_clearance": -0.01,
+        "action_smoothness": -0.01,
+        "leg_contacts": -0.1
+      },
+      "training_source_provenance": {
+        "config_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+        "config_tracked_files_dirty": false,
+        "wrapper_commit": "f960dfd39cc5de959cfdae44c93845e97f928e93",
+        "wrapper_source_dirty": true,
+        "verified_runtime_source_sha256": {
+          "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+        },
+        "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+      },
+      "training_hyperparameters": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "training_sampling_configuration": {
+        "terrain": "stairs",
+        "stairs": {
+          "stage": "paper_mixed",
+          "seed": 1201,
+          "heldout": false,
+          "num_rows": 10,
+          "num_cols": 28,
+          "terrain_size": [
+            8.0,
+            3.0
+          ],
+          "num_steps": 6,
+          "width": 1.2,
+          "landing_length": 2.0,
+          "convert_to_heightfield": false,
+          "geometry_reference": "relative to scene.env_origins; positive x travel",
+          "height_scanner_samples": 187,
+          "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+          "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+          "variants": [
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            }
+          ]
+        },
+        "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+        "domain_randomization": null,
+        "friction_override": null,
+        "terrain_start_level": 4,
+        "stair_training_speed_range_m_s": [
+          0.25,
+          0.65
+        ],
+        "training_turn_fraction": 0.0,
+        "stair_pushes": false,
+        "flat_replay": {
+          "requested_terrain_fraction": 0.0,
+          "all_direction_commands": false,
+          "standing_fraction": null,
+          "moving_categories": null,
+          "positive_magnitude_ranges": null,
+          "actor_terrain_inputs_added": false
+        }
+      },
+      "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+    },
+    {
+      "label": "clearance",
+      "training_reward_profile": "contact_clearance",
+      "checkpoint": "artifacts/go2-stairs-night2-clearance-seed1201-760/model_760.pt",
+      "checkpoint_sha256": "49a89d02dffa477ebc00ab295fc85d2b4ba51a479cdbb09dbc5bf5dddffc02ec",
+      "training_manifest": "artifacts/go2-stairs-night2-clearance-seed1201-760/manifest.json",
+      "training_manifest_sha256": "4c6cb6422928ca7c59c53b1efdaaaeb9cb1feba4def1536ca55d6988f37a77d9",
+      "training_config": "artifacts/go2-stairs-night2-clearance-seed1201-760/config.json",
+      "training_config_sha256": "db5e0373102814eea0ee6e3a45cff7696c53b826e3a2357f587498ac32afe974",
+      "training_result": "artifacts/go2-stairs-night2-clearance-seed1201-760/result.json",
+      "training_result_sha256": "287ab2481a0f00dd23956b79eeaea871e7b3c4fa49cbf647239febaa77b75ae8",
+      "cpu_audit_sha256": "d3dccd115617680b5e8ba4baa3869c43b2ad1bfb1084cf298ad91320d882070c",
+      "training_budget": {
+        "saved_additional_updates": 100,
+        "num_envs": 7680,
+        "steps_per_env": 100,
+        "environment_steps_this_run": 76800000
+      },
+      "training_seed": 1201,
+      "training_reward_weights": {
+        "track_lin_vel_xy_exp": 1.0,
+        "track_ang_vel_z_exp": 0.5,
+        "lin_vel_z_l2": -2.0,
+        "ang_vel_xy_l2": -0.05,
+        "dof_acc_l2": -2.5e-07,
+        "action_rate_l2": -0.01,
+        "flat_orientation_l2": -0.2,
+        "joint_power": -2e-05,
+        "base_height": -1.0,
+        "foot_clearance": -0.02,
+        "action_smoothness": -0.01,
+        "leg_contacts": -0.1
+      },
+      "training_source_provenance": {
+        "config_commit": "410b8d51b53b157d16b23287f1c9434bf582c0b4",
+        "config_tracked_files_dirty": false,
+        "wrapper_commit": "410b8d51b53b157d16b23287f1c9434bf582c0b4",
+        "wrapper_source_dirty": true,
+        "verified_runtime_source_sha256": {
+          "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+          "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+          "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+          "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+          "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+        },
+        "scope": "Both original dirty flags retained; exact selected runtime files verified and copied, no claim of an entirely clean launch worktree."
+      },
+      "training_hyperparameters": {
+        "runner": {
+          "policy_class_name": "HIMActorCritic",
+          "algorithm_class_name": "HIMPPO",
+          "num_steps_per_env": 100,
+          "save_interval": 20
+        },
+        "policy": {
+          "actor_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "critic_hidden_dims": [
+            512,
+            256,
+            128
+          ],
+          "activation": "elu",
+          "init_noise_std": 1.0
+        },
+        "algorithm": {
+          "value_loss_coef": 1.0,
+          "use_clipped_value_loss": true,
+          "clip_param": 0.2,
+          "entropy_coef": 0.01,
+          "num_learning_epochs": 5,
+          "num_mini_batches": 4,
+          "learning_rate": 0.0001,
+          "schedule": "fixed",
+          "gamma": 0.99,
+          "lam": 0.95,
+          "desired_kl": 0.01,
+          "max_grad_norm": 1.0
+        }
+      },
+      "training_sampling_configuration": {
+        "terrain": "stairs",
+        "stairs": {
+          "stage": "paper_mixed",
+          "seed": 1201,
+          "heldout": false,
+          "num_rows": 10,
+          "num_cols": 28,
+          "terrain_size": [
+            8.0,
+            3.0
+          ],
+          "num_steps": 6,
+          "width": 1.2,
+          "landing_length": 2.0,
+          "convert_to_heightfield": false,
+          "geometry_reference": "relative to scene.env_origins; positive x travel",
+          "height_scanner_samples": 187,
+          "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+          "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+          "variants": [
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "asc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.3,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.01,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.11,
+                0.2
+              ],
+              "step_depth": 0.35,
+              "nosing": 0.02,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.16,
+                0.16
+              ],
+              "step_depth": 0.27,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            },
+            {
+              "direction": "desc",
+              "step_height_range": [
+                0.17,
+                0.17
+              ],
+              "step_depth": 0.25,
+              "nosing": 0.0,
+              "num_steps": 6,
+              "width": 1.2,
+              "landing_length": 2.0
+            }
+          ]
+        },
+        "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+        "domain_randomization": null,
+        "friction_override": null,
+        "terrain_start_level": 4,
+        "stair_training_speed_range_m_s": [
+          0.25,
+          0.65
+        ],
+        "training_turn_fraction": 0.0,
+        "stair_pushes": false,
+        "flat_replay": {
+          "requested_terrain_fraction": 0.0,
+          "all_direction_commands": false,
+          "standing_fraction": null,
+          "moving_categories": null,
+          "positive_magnitude_ranges": null,
+          "actor_terrain_inputs_added": false
+        }
+      },
+      "origin_checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
+    }
+  ],
+  "seeds": [
+    11,
+    29,
+    47
+  ],
+  "speeds": [
+    0.3,
+    0.5
+  ],
+  "heading_control_enabled": true,
+  "common_evaluation_reward_profile": "contact",
+  "training_reward_profiles_separate_from_evaluation_label": true,
+  "deadline_local": "2026-10-12T07:20:00+08:00",
+  "per_scene_max_seconds": 3000,
+  "initial_container_idle_check": {
+    "container": "isaaclab-local-lab-1",
+    "checked_local": "2026-10-12T02:56:12.448203+08:00",
+    "live_run_py": []
+  },
+  "jobs": [
+    {
+      "name": "night2-devcompare-20261012-025612-a5d978-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "wrapper_argv": [
+        "/usr/bin/python3",
+        "/home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py",
+        "--name",
+        "night2-devcompare-20261012-025612-a5d978-speed03-heading",
+        "--max-seconds",
+        "3000",
+        "--",
+        "evaluate",
+        "--terrain",
+        "stairs",
+        "--checkpoint",
+        "artifacts/go2-stairs-control660/model_660.pt",
+        "--reward_profile",
+        "contact",
+        "--stair_batch",
+        "reproduction/stair-night2-development-geometries.json",
+        "--num_envs",
+        "576",
+        "--speed",
+        "0.3",
+        "--eval_seconds",
+        "40",
+        "--eval_randomized",
+        "--seed",
+        "1",
+        "--domain_profile",
+        "none",
+        "--eval_trace_stride",
+        "1",
+        "--eval_seed",
+        "11",
+        "--eval_seed",
+        "29",
+        "--eval_seed",
+        "47",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-vertical-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-clearance-seed1201-760/model_760.pt"
+      ],
+      "shell_command": "/usr/bin/python3 /home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py --name night2-devcompare-20261012-025612-a5d978-speed03-heading --max-seconds 3000 -- evaluate --terrain stairs --checkpoint artifacts/go2-stairs-control660/model_660.pt --reward_profile contact --stair_batch reproduction/stair-night2-development-geometries.json --num_envs 576 --speed 0.3 --eval_seconds 40 --eval_randomized --seed 1 --domain_profile none --eval_trace_stride 1 --eval_seed 11 --eval_seed 29 --eval_seed 47 --candidate_checkpoint artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-vertical-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-clearance-seed1201-760/model_760.pt"
+    },
+    {
+      "name": "night2-devcompare-20261012-025612-a5d978-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "wrapper_argv": [
+        "/usr/bin/python3",
+        "/home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py",
+        "--name",
+        "night2-devcompare-20261012-025612-a5d978-speed05-heading",
+        "--max-seconds",
+        "3000",
+        "--",
+        "evaluate",
+        "--terrain",
+        "stairs",
+        "--checkpoint",
+        "artifacts/go2-stairs-control660/model_660.pt",
+        "--reward_profile",
+        "contact",
+        "--stair_batch",
+        "reproduction/stair-night2-development-geometries.json",
+        "--num_envs",
+        "576",
+        "--speed",
+        "0.5",
+        "--eval_seconds",
+        "40",
+        "--eval_randomized",
+        "--seed",
+        "1",
+        "--domain_profile",
+        "none",
+        "--eval_trace_stride",
+        "1",
+        "--eval_seed",
+        "11",
+        "--eval_seed",
+        "29",
+        "--eval_seed",
+        "47",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-vertical-seed1201-760/model_760.pt",
+        "--candidate_checkpoint",
+        "artifacts/go2-stairs-night2-clearance-seed1201-760/model_760.pt"
+      ],
+      "shell_command": "/usr/bin/python3 /home/cone/Research/HIMLoco/reproduction/run-stair-night2-job.py --name night2-devcompare-20261012-025612-a5d978-speed05-heading --max-seconds 3000 -- evaluate --terrain stairs --checkpoint artifacts/go2-stairs-control660/model_660.pt --reward_profile contact --stair_batch reproduction/stair-night2-development-geometries.json --num_envs 576 --speed 0.5 --eval_seconds 40 --eval_randomized --seed 1 --domain_profile none --eval_trace_stride 1 --eval_seed 11 --eval_seed 29 --eval_seed 47 --candidate_checkpoint artifacts/go2-stairs-night2-faithful-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-contact-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-vertical-seed1201-760/model_760.pt --candidate_checkpoint artifacts/go2-stairs-night2-clearance-seed1201-760/model_760.pt"
+    }
+  ],
+  "source_sha256": {
+    "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+    "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+  },
+  "geometry_sha256": "dd98558974995a8c409491c11aef6a89be2e0953813a76412cb088279a322a98",
+  "evaluation_plan_sha256": "03e854ebc1b9575abe99364bb8c89156fc3b40400b40ebc4bb86e0e44d31d418",
+  "automatic_candidate_selection": false
+}

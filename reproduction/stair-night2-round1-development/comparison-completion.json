@@ -1,0 +1,740 @@
+{
+  "status": "development_collection_and_cpu_summaries_completed",
+  "records": [
+    {
+      "name": "night2-devcompare-20261012-025612-a5d978-speed03-heading",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-025612_night2-devcompare-20261012-025612-a5d978-speed03-heading",
+      "wrapper_stdout": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/night2-devcompare-20261012-025612-a5d978-speed03-heading-wrapper.stdout.txt",
+      "launch_record_sha256": "1ac05d6faa9853ad0f92b3ee63a8fdca059641d793e32824c39eef51b089a837",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_02-56-15_night2-devcompare-20261012-025612-a5d978-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "pre_scene_idle_check": {
+        "container": "isaaclab-local-lab-1",
+        "checked_local": "2026-10-12T02:56:12.510524+08:00",
+        "live_run_py": []
+      }
+    },
+    {
+      "name": "night2-devcompare-20261012-025612-a5d978-speed05-heading",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-031005_night2-devcompare-20261012-025612-a5d978-speed05-heading",
+      "wrapper_stdout": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/night2-devcompare-20261012-025612-a5d978-speed05-heading-wrapper.stdout.txt",
+      "launch_record_sha256": "9642b51aaa1a748d20876ada2d4f6e598ec9dc72f4cd5fccafb3cb3da8e88c41",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_03-10-08_night2-devcompare-20261012-025612-a5d978-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "pre_scene_idle_check": {
+        "container": "isaaclab-local-lab-1",
+        "checked_local": "2026-10-12T03:10:05.336493+08:00",
+        "live_run_py": []
+      }
+    }
+  ],
+  "policies": [
+    {
+      "label": "baseline-control660",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/baseline-control660-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/baseline-control660-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1532,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "moderate_desc_20cm_30cm_lip10mm_6",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "fall_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [
+                    "exceeds_reference:roll_peak_rad"
+                  ],
+                  "source_protocol_errors": []
+                }
+              ]
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 743,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "faithful",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/faithful-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/faithful-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 713,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "contact",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/contact-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/contact-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 648,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "vertical",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/vertical-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/vertical-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 664,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "clearance",
+      "summary": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/clearance-development-summary.json",
+      "training_identity": "/home/cone/robotics/logs/night2-devcompare-20261012-025612-a5d978/clearance-training-identity.json",
+      "controller_numeric_verdicts": [
+        {
+          "heading_control_enabled": true,
+          "matrix_complete": true,
+          "numeric_verdict": "FAIL",
+          "missing_case_seed_speed_rows": 0,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 36,
+              "completions": 1152,
+              "num_envs": 1152,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 48,
+              "completions": 1536,
+              "num_envs": 1536,
+              "all_observed_numeric_acceptance_passed": true,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 24,
+              "completions": 615,
+              "num_envs": 768,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": [
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "base_contact",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [
+                    "exceeds_reference:longest_flight_pause_s"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "base_contact",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [
+                    "exceeds_reference:longest_flight_pause_s"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.3,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [
+                    "exceeds_reference:longest_flight_pause_s"
+                  ],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 11,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 29,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_17cm_25cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                },
+                {
+                  "case_name": "long_desc_18cm_28cm_12",
+                  "reset_seed": 47,
+                  "speed_m_s": 0.5,
+                  "traversal_failed_terms": [
+                    "completion_below_95pct",
+                    "lateral_escapes_fraction_above_5pct"
+                  ],
+                  "motion_failed_terms": [],
+                  "source_protocol_errors": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "heading_control_enabled": false,
+          "matrix_complete": false,
+          "numeric_verdict": "INCOMPLETE",
+          "missing_case_seed_speed_rows": 108,
+          "groups": {
+            "core": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "moderate": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            },
+            "long": {
+              "observed_case_seed_speed_rows": 0,
+              "completions": 0,
+              "num_envs": 0,
+              "all_observed_numeric_acceptance_passed": false,
+              "failed_rows": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "automatic_candidate_selection": false,
+  "immutable_manifest_sha256": "adbd31bb04084b485eca7a2411c632b20bbb47f5bb92bade74b36783f4938024",
+  "scientific_acceptance": "independent_root_review_required"
+}

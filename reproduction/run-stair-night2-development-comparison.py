@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ZONE = ZoneInfo("Asia/Shanghai")
 EXPECTED_ORIGIN_SHA256 = "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61"
 DEADLINE = datetime.fromisoformat("2026-10-12T07:20:00+08:00")
-PROFILES = ("faithful", "contact", "contact_vertical", "contact_clearance")
+PROFILES = ("faithful", "faithful_tracking", "contact", "contact_vertical", "contact_clearance")
 SOURCE_FILES = ("isaaclab/run.py", "isaaclab/stair_rewards.py", "isaaclab/stair_terrain.py",
                 "isaaclab/stair_evaluation.py", "isaaclab/adapter.py")
 

@@ -1,0 +1,112 @@
+{
+  "started_utc": "2026-10-11T19:22:56.991874+00:00",
+  "finished_utc": "2026-10-11T19:22:58.631573+00:00",
+  "status": "passed",
+  "scope": "Actual installed Lab CPU reward configuration and signed body XY tracking values; no AppLauncher, GPU simulation or training. Traversal improvements unproven.",
+  "old_git_revision": "78992a78847cff50384a119ab5096255ac6ed75d",
+  "old_source_sha256": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+  "runtime_source_sha256": {
+    "isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+    "isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+    "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29"
+  },
+  "unchanged_helper_ASTs": [
+    "_tensor",
+    "_inverse_rotate",
+    "validate_reward_frames",
+    "joint_power_l1",
+    "foot_clearance_body_l2",
+    "terrain_relative_base_height_l2",
+    "_step_history",
+    "action_smoothness_l2",
+    "policy_joint_acceleration_l2",
+    "feet_slide_l2",
+    "leg_contact_force_proxy"
+  ],
+  "cpu_reward_verification": {
+    "status": "passed",
+    "old_profiles_exactly_preserved": [
+      "stock",
+      "faithful",
+      "tuned",
+      "contact",
+      "contact_force",
+      "contact_slide",
+      "contact_vertical",
+      "contact_clearance"
+    ],
+    "actual_lab_config_diff": {
+      "term": "track_lin_vel_xy_exp",
+      "old_weight": 1.0,
+      "new_weight": 1.5,
+      "functions_and_params": "identical",
+      "other_terms": "identical",
+      "contact_sensor_required": false,
+      "added_leg_contacts": false
+    },
+    "actual_installed_function_numeric_checks": {
+      "command_body_xy": [
+        0.5,
+        0.0
+      ],
+      "sample_body_xyz": [
+        [
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          -0.20000000298023224,
+          0.0
+        ],
+        [
+          0.5,
+          0.20000000298023224,
+          0.0
+        ],
+        [
+          0.30000001192092896,
+          0.0,
+          0.0
+        ],
+        [
+          0.4000000059604645,
+          -0.20000000298023224,
+          0.0
+        ]
+      ],
+      "raw": [
+        1.0,
+        0.8521437644958496,
+        0.8521437644958496,
+        0.8521438241004944,
+        0.8187307715415955
+      ],
+      "variance": 0.25,
+      "policy_dt": 0.02,
+      "faithful_weighted": [
+        0.019999999552965164,
+        0.017042875289916992,
+        0.017042875289916992,
+        0.017042875289916992,
+        0.01637461595237255
+      ],
+      "tracking_weighted": [
+        0.029999999329447746,
+        0.02556431293487549,
+        0.02556431293487549,
+        0.025564314797520638,
+        0.024561921134591103
+      ],
+      "signed_lateral_error_symmetry": true,
+      "input_tensors_unmodified": true
+    },
+    "cuda_initialized": false,
+    "torch_version": "2.11.0+cu128"
+  },
+  "stdout_log": "reproduction/stair-night2-tracking-cpu-config.stdout.log",
+  "exit_code": 0
+}
