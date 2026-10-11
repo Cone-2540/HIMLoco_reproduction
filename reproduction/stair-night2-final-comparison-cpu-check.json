@@ -1,0 +1,49 @@
+{
+  "created_local": "2026-10-12T03:35:23.656951+08:00",
+  "scripts": {
+    "reproduction/run-stair-night2-final-comparison.py": "628578b1e826635a479091350d164080fe58a82129f1b118a3905c271936bb4d",
+    "reproduction/test-stair-night2-final-comparison.py": "bf0b3b63f643f32b039c6a27c9cc4dde126cbabfd1177c9ddac2317ebbdb7800"
+  },
+  "AST": "PASS",
+  "contract_tests": {
+    "count": 15,
+    "status": "PASS",
+    "capture": "reproduction/stair-night2-final-comparison-cpu-tests.txt"
+  },
+  "help": "PASS",
+  "missing_required_selection_file": "EXPECTED_REJECTION",
+  "uncommitted_evaluation_tool_cannot_freeze": "EXPECTED_REJECTION",
+  "matrix": {
+    "cases": 16,
+    "num_envs": 512,
+    "seeds": [
+      907,
+      911,
+      919
+    ],
+    "speeds": [
+      0.3,
+      0.5
+    ],
+    "controllers": [
+      true,
+      false
+    ],
+    "seconds": 40,
+    "trace_stride": 1,
+    "selected_models": 1
+  },
+  "mock_boundaries": [
+    "archive/Git identity for synthetic freeze",
+    "Docker busy/execute gate",
+    "CPU summarizer with synthetic result-path files"
+  ],
+  "real_evidence_read": [
+    "round1 already-collected development summaries and identities",
+    "preregistered plan and geometry declarations"
+  ],
+  "real_final_result_read": false,
+  "docker_contacted": false,
+  "gpu_started": false,
+  "execution_not_tested": "Actual frozen new candidate and wrapper/simulator/summary chain await root execution; CPU contracts are not a final success claim"
+}
