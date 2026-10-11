@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "audited_local": "2026-10-12T01:05:22.939392+08:00",
+  "source_git_head_at_audit": "1dac8e0df0386a6b43788aadb467be441f98ee04",
+  "scope": "Read-only targeted source and saved baseline05 review, not a new simulation, mirror rollout, checkpoint inference or reward intervention. Installed files read with CUDA_VISIBLE_DEVICES empty and standard library only.",
+  "conclusion": "No definite joint-order, left/right default-pose, quaternion-order or velocity-frame implementation bug found in the reviewed path. Sideways drift remains an observed policy/physics outcome; this audit does not prove its unique cause or rule out unmeasured estimator/asset effects.",
+  "checks": [
+    {
+      "item": "Observation/action joint mapping",
+      "status": "no_mismatch_found",
+      "detail": "Native order is FL/FR/RL/RR hip, then FL/FR/RL/RR thigh, then FL/FR/RL/RR calf. JointPositionAction uses joint_names=[.*], preserve_order default false, all-joint slice; joint_pos_rel/joint_vel_rel also use all-joint native slice. Adapter does no joint permutation, scales/actions only clamp to100 before task action manager. Checkpoint660 was trained in this existing Lab convention, not a directly loaded original Go1 Gym actor. This is source/config consistency, not new physical joint-pulse validation."
+    },
+    {
+      "item": "Left/right default pose",
+      "status": "mirrored_configuration",
+      "detail": "Left hips+0.1, right hips-0.1; both front thighs0.8, both rear thighs1.0; all calves-1.5. Uniform action scale0.25 and configured PD25/0.5 apply to both sides. Front/rear stance difference is symmetric across left/right. This does not prove entire USD collision/inertia geometry has perfect mirror symmetry."
+    },
+    {
+      "item": "XY reward and HIM velocity supervision frames",
+      "status": "consistent_body_frame",
+      "detail": "Actual installed track_lin_vel_xy_exp subtracts root_lin_vel_b[:2] from body command[:2], std0.5 gives original denominator0.25. Critic base_lin_vel reads the same root_lin_vel_b with observation scale2; HIM supervision45:48 therefore learns scaled body linear velocity. Estimated velocity is concatenated directly to actor, preserving original trained scale. Reward uses unscaled physical velocity as expected. Pinned PhysX root_com_lin_vel_b inverse-rotates world COM velocity using root_link_quat_w. No world/body or2x mismatch found."
+    },
+    {
+      "item": "Yaw tracking and heading sign",
+      "status": "consistent_body_angular_velocity_and_yaw_sign",
+      "detail": "Actual track_ang_vel_z_exp compares body yaw-rate command with root_ang_vel_b.z; actor angular velocity observes the same field scaled0.25. Evaluator reads xyzw quaternion, sends clamp(-yaw,+/-0.5) at gain1, disables parent heading/standing overwrite and updates current actor/critic command slots. Training uses stock heading stiffness0.5 and heading target0; this known gain difference is not an axis/sign inversion. Logged yaw command is based on pre-step yaw; small discrepancy from post-step trace yaw is expected."
+    },
+    {
+      "item": "Baseline physical asymmetry from random COM",
+      "status": "no_extra_COM_randomization_in_this_baseline",
+      "detail": "Standard stair evaluation removes startup add_base_mass/base_com/gain randomization unless eval_dynamics is enabled. Baseline05 base mass6.92100048065kg is constant; saved base COM y=0 for checked first rows. Material events remain caller supplied. Thus observed baseline drift cannot be attributed to the extra training COM randomization solely from domain_profile=none. Training domain none retains stock startup events; evaluation must use its flag/readbacks."
+    },
+    {
+      "item": "Trace frame spot check",
+      "status": "observed_drift_without_frame_mismatch",
+      "detail": "Four saved seed11/case15/env480 rows show both yaw and recomputed body lateral speed negative during descent; at6s yaw=-0.06344, worldvy=-0.07353, bodyvy=-0.05537, yawcmd=+0.06235. Recomputed bodyvy uses full Euler inverse rotation from saved yaw/roll/pitch, not a yaw-only approximation. Env480 succeeded; its trace is representative, not any of the25 failed individual episodes. Trace contains no estimated velocity or encoder latent, so this audit cannot measure estimator bias."
+    }
+  ],
+  "native_joint_names": [
+    "FL_hip_joint",
+    "FR_hip_joint",
+    "RL_hip_joint",
+    "RR_hip_joint",
+    "FL_thigh_joint",
+    "FR_thigh_joint",
+    "RL_thigh_joint",
+    "RR_thigh_joint",
+    "FL_calf_joint",
+    "FR_calf_joint",
+    "RL_calf_joint",
+    "RR_calf_joint"
+  ],
+  "default_joint_positions": [
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.800000011920929,
+    0.800000011920929,
+    1.0,
+    1.0,
+    -1.5,
+    -1.5,
+    -1.5,
+    -1.5
+  ],
+  "baseline_reference": "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05",
+  "baseline_long_descent_case15": [
+    {
+      "completions": 22,
+      "falls": 0,
+      "lateral_escapes": 10,
+      "reset_seed": 11
+    },
+    {
+      "completions": 23,
+      "falls": 0,
+      "lateral_escapes": 9,
+      "reset_seed": 29
+    },
+    {
+      "completions": 26,
+      "falls": 0,
+      "lateral_escapes": 6,
+      "reset_seed": 47
+    }
+  ],
+  "representative_trace_rows": [
+    {
+      "seed": 11,
+      "case_index": 15,
+      "env": 480,
+      "time_s": 1.0,
+      "yaw_rad": -0.00929679162800312,
+      "world_vy_m_s": -0.003682170994579792,
+      "body_vy_recomputed_m_s": 0.0026184430004033703,
+      "yaw_command_rad_s": 0.009987547062337399,
+      "root_y_m": 0.02077484130859375
+    },
+    {
+      "seed": 11,
+      "case_index": 15,
+      "env": 480,
+      "time_s": 3.0,
+      "yaw_rad": 0.001049429178237915,
+      "world_vy_m_s": -0.008760090917348862,
+      "body_vy_recomputed_m_s": -0.0071702112659306535,
+      "yaw_command_rad_s": -0.0009088504011742771,
+      "root_y_m": 0.03254508972167969
+    },
+    {
+      "seed": 11,
+      "case_index": 15,
+      "env": 480,
+      "time_s": 6.0,
+      "yaw_rad": -0.06344258785247803,
+      "world_vy_m_s": -0.07352720946073532,
+      "body_vy_recomputed_m_s": -0.05537373013000363,
+      "yaw_command_rad_s": 0.06235414370894432,
+      "root_y_m": -0.1538562774658203
+    },
+    {
+      "seed": 11,
+      "case_index": 15,
+      "env": 480,
+      "time_s": 9.0,
+      "yaw_rad": -0.05455533787608147,
+      "world_vy_m_s": -0.07181760668754578,
+      "body_vy_recomputed_m_s": -0.04829909232561259,
+      "yaw_command_rad_s": 0.054615650326013565,
+      "root_y_m": -0.3151531219482422
+    }
+  ],
+  "unimplemented_reward_options": [
+    {
+      "option": "XY tracking weight1.0 ->1.5 only",
+      "preserves": "Original exponential formula, std0.5, observations/controller/algorithm/physics",
+      "rationale": "Body lateral drift exists in representative traces, so changing yaw alone may not remove it.1.5 is also the stock Go2 tracking weight, but is not released Go1 paper weight.",
+      "risks": "Also increases forward-speed incentive; possible descent impacts, no direct world lateral-position constraint.",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "option": "Yaw tracking weight0.5 ->0.75 only",
+      "preserves": "Original exponential formula, std0.5, observations/controller/algorithm/physics",
+      "rationale": "Persistent negative yaw contributes world lateral drift alongside bodyvy.0.75 is stock Go2 weight, but not released Go1 paper weight.",
+      "risks": "More frequent/stronger turning correction can disturb gait; cannot by itself eliminate nonzero bodyvy.",
+      "status": "NOT_IMPLEMENTED"
+    }
+  ],
+  "evidence_limit": "Compare each option independently to a common control and budget after the four planned arms. No claim that either change causes better smoothness/completion; no new external lateral controller is proposed.",
+  "source_sha256": {
+    "isaaclab/run.py": "043338e05d2071f76405cc3f0b358f94332d694d2408e829a7342a4b1157c384",
+    "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+    "isaaclab/stair_rewards.py": "a50652eeda881f4d22b88b5bcc8dedec741786d23f0a97836db0375280b38c27",
+    "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+    "isaaclab/vendor/him_rsl_rl/modules/him_estimator.py": "c4f87bb486325ef966dd81ec35e262e21c03bac30bc652041d78ba380528bcd2"
+  },
+  "installed_Lab_source_sha256": {
+    "/workspace/isaaclab/source/isaaclab/isaaclab/envs/mdp/observations.py": "65aa6079a369be2f2f3ed8edccef15709a17cafe69668d73d3506b209a4070e8",
+    "/workspace/isaaclab/source/isaaclab/isaaclab/envs/mdp/rewards.py": "2aef8c1ea395b7dfc8a893f7a2d33a2187ad06507134c9198ca34911f8b56b28",
+    "/workspace/isaaclab/source/isaaclab/isaaclab/envs/mdp/actions/joint_actions.py": "ccbed556176d39442eedf5fd15d2f151c0ad28ebbd76076507a7cf636aac7414",
+    "/workspace/isaaclab/source/isaaclab_assets/isaaclab_assets/robots/unitree.py": "d3b677e2d919a15c73b82d33b434aee3e6e1ca6b16821896284d7045dc0be27d",
+    "/workspace/isaaclab/source/isaaclab_tasks/isaaclab_tasks/core/velocity/config/go2/rough_env_cfg.py": "ece7824fa264a036b6f69bcc17843f5e6b7bdf24da3cb375dd7e9afa62cc03a2",
+    "/workspace/isaaclab/source/isaaclab_tasks/isaaclab_tasks/core/velocity/velocity_env_cfg.py": "1e88e244a643178aade10993389ac8c2f6c7884969e47e4e92e8554d1166de9a",
+    "/workspace/isaaclab/source/isaaclab_physx/isaaclab_physx/assets/articulation/articulation_data.py": "9f25446dff165278af62147c50d5153cc1a1236ccc308cb83a316892cdeb54bf",
+    "/workspace/isaaclab/source/isaaclab/isaaclab/envs/mdp/commands/velocity_command.py": "47ca7426190cbab810c5d2197ec0412fe33db80270400b5a25ef08ab3a4e4f26"
+  },
+  "saved_baseline_evidence_sha256": {
+    "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05/config.json": "e4c772312d3f3d6ccdbbf5924ed9f759c8e19fa76d68e42e308698ce8dd367f0",
+    "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05/domain-parameters-initial.json": "cd22b9818d7773b9aaa5c95b5dfd5a2dd4a36b00c986720cb243ab5b46a537b1",
+    "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05/physics-diagnostic.json": "32acaf7ef8628f171f39a4daafaf0af21096d1e72d760a7200eb23b20712aa93",
+    "isaaclab/logs/2026-10-12_00-40-53_night2-baseline-dev05/result.json": "8e02a4bb3e4b93a3e989c785f0806817b0516fb008dad093855253fb6ff3ee99"
+  }
+}
