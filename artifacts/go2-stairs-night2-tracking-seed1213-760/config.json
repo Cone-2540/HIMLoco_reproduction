@@ -1,0 +1,573 @@
+{
+  "task": "Isaac-Velocity-Rough-UnitreeGo2",
+  "seed": 1213,
+  "num_envs": 7680,
+  "train": {
+    "runner": {
+      "policy_class_name": "HIMActorCritic",
+      "algorithm_class_name": "HIMPPO",
+      "num_steps_per_env": 100,
+      "save_interval": 20
+    },
+    "policy": {
+      "actor_hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "critic_hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "activation": "elu",
+      "init_noise_std": 1.0
+    },
+    "algorithm": {
+      "value_loss_coef": 1.0,
+      "use_clipped_value_loss": true,
+      "clip_param": 0.2,
+      "entropy_coef": 0.01,
+      "num_learning_epochs": 5,
+      "num_mini_batches": 4,
+      "learning_rate": 0.0001,
+      "schedule": "fixed",
+      "gamma": 0.99,
+      "lam": 0.95,
+      "desired_kl": 0.01,
+      "max_grad_norm": 1.0
+    }
+  },
+  "source_commit": "2a9a15254bd25ed0f6fd325217b25b7e44703078",
+  "source_tracked_files_dirty": false,
+  "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+  "physics": "isaacsim_physx",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
+  "gpu_capability": [
+    12,
+    0
+  ],
+  "python": "3.12.13 (tags/v3.12.13-dirty:3bb231a, Apr 22 2026, 14:10:08) [GCC 11.4.0]",
+  "algorithm_source": "vendored original HIMLoco at ef289ac",
+  "mode": "train",
+  "checkpoint": "/workspace/himloco/artifacts/go2-stairs-control660/model_660.pt",
+  "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+  "robot_usd_source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.1/Isaac/IsaacLab/Robots/Unitree/Go2/go2.usd",
+  "physics_dt": 0.005,
+  "policy_decimation": 4,
+  "episode_length_s": 20.0,
+  "reward_weights": {
+    "track_lin_vel_xy_exp": 1.5,
+    "track_ang_vel_z_exp": 0.5,
+    "lin_vel_z_l2": -2.0,
+    "ang_vel_xy_l2": -0.05,
+    "dof_acc_l2": -2.5e-07,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": -0.2,
+    "joint_power": -2e-05,
+    "base_height": -1.0,
+    "foot_clearance": -0.01,
+    "action_smoothness": -0.01
+  },
+  "command_override": null,
+  "evaluation_seconds": 20.0,
+  "evaluation_trace_stride_policy_steps": 5,
+  "video": false,
+  "video_policy_only": false,
+  "video_length": null,
+  "video_fps": null,
+  "video_environment_index": null,
+  "video_isolate_environment": false,
+  "video_camera_eye_relative_xyz": null,
+  "video_camera_lookat_relative_xyz": null,
+  "evaluation_include_zero_action": null,
+  "training_turn_fraction": 0.0,
+  "exploration_std_override": null,
+  "resume_learning_rate_override": 0.0001,
+  "requested_additional_training_updates": 100,
+  "terrain_start_level": 4,
+  "stair_training_speed_range_m_s": [
+    0.25,
+    0.65
+  ],
+  "terrain": "stairs",
+  "stairs": {
+    "stage": "paper_mixed",
+    "seed": 1213,
+    "heldout": false,
+    "num_rows": 10,
+    "num_cols": 28,
+    "terrain_size": [
+      8.0,
+      3.0
+    ],
+    "num_steps": 6,
+    "width": 1.2,
+    "landing_length": 2.0,
+    "convert_to_heightfield": false,
+    "geometry_reference": "relative to scene.env_origins; positive x travel",
+    "height_scanner_samples": 187,
+    "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+    "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+    "variants": [
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      }
+    ]
+  },
+  "stair_reward": {
+    "profile": "faithful_tracking",
+    "source": "released HIMLoco Go1 config/reward code at ef289ac",
+    "base_height_sensor": "base_height_scanner",
+    "height_target_m": 0.3,
+    "body_foot_height_target_m": -0.2,
+    "joint_acceleration_interval": "policy step",
+    "physics_quaternion_order": "xyzw",
+    "weights": {
+      "track_lin_vel_xy_exp": 1.5,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01
+    },
+    "tuned_changes": [],
+    "adaptation_changes": [
+      "faithful track_lin_vel_xy_exp 1 -> 1.5; no other faithful term changes"
+    ],
+    "contact_penalty": null,
+    "force_proxy_penalty": null,
+    "slide_proxy_penalty": null,
+    "reward_weight_ablation": {
+      "baseline_profile": "faithful",
+      "term": "track_lin_vel_xy_exp",
+      "original_weight": 1.0,
+      "weight": 1.5,
+      "function_and_parameters": "unchanged from faithful and released HIMLoco; body XY error, variance 0.25",
+      "all_other_faithful_terms": "unchanged; no added contact terms",
+      "interpretation": "increase existing commanded body XY velocity tracking reward; no added lateral controller or world-position target",
+      "actor_observations_and_collision_geometry": "unchanged"
+    }
+  },
+  "domain_randomization": null,
+  "calf_limit_sensitivity": null,
+  "friction_override": null,
+  "stair_pushes": false,
+  "evaluation_seeds": null,
+  "evaluation_randomized": false,
+  "flat_replay": {
+    "requested_terrain_fraction": 0.0,
+    "all_direction_commands": false,
+    "standing_fraction": null,
+    "moving_categories": null,
+    "positive_magnitude_ranges": null,
+    "actor_terrain_inputs_added": false
+  },
+  "evaluation_dynamics_randomized": false,
+  "joint_names": [
+    "FL_hip_joint",
+    "FR_hip_joint",
+    "RL_hip_joint",
+    "RR_hip_joint",
+    "FL_thigh_joint",
+    "FR_thigh_joint",
+    "RL_thigh_joint",
+    "RR_thigh_joint",
+    "FL_calf_joint",
+    "FR_calf_joint",
+    "RL_calf_joint",
+    "RR_calf_joint"
+  ],
+  "default_joint_positions": [
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.800000011920929,
+    0.800000011920929,
+    1.0,
+    1.0,
+    -1.5,
+    -1.5,
+    -1.5,
+    -1.5
+  ],
+  "action_scale": 0.25,
+  "domain_parameter_initial_readback": "domain-parameters-initial.json",
+  "reward_frame_validation": {
+    "quaternion_order": "xyzw",
+    "checked_physics_quaternions": 8,
+    "root_position": "root link origin",
+    "root_velocity": "root COM",
+    "foot_position": "foot link origin",
+    "foot_velocity": "foot COM"
+  },
+  "resume_learning_rate_applied": {
+    "before": {
+      "ppo": [
+        0.0001
+      ],
+      "estimator": [
+        0.0001
+      ]
+    },
+    "after": 0.0001,
+    "optimizer_state": "retained",
+    "training_iteration": 660
+  },
+  "runtime_training_state_before_learning": {
+    "completed_updates": 660,
+    "ppo_learning_rate": 0.0001,
+    "ppo_adam_group_rates": [
+      0.0001
+    ],
+    "him_learning_rate": 0.0001,
+    "him_adam_group_rates": [
+      0.0001
+    ],
+    "exploration_std_min": 0.17175649106502533,
+    "exploration_std_max": 0.29638275504112244,
+    "optimizer_state": "checkpoint Adam retained"
+  },
+  "domain_parameter_final_readback": "domain-parameters-final.json"
+}

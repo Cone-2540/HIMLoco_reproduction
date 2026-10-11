@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T03:21:31.070574+08:00",
+  "branch": "feature/stair-rewards-night2-20261012",
+  "user_authorization": "2026-10-12 latest message: autonomous reward-focused training until07:20, earlier stop allowed when sufficiently good",
+  "deadline_local": "2026-10-12T07:20:00+08:00",
+  "stop_new_training_by_local": "2026-10-12T06:20:00+08:00",
+  "aim": "Paper-corresponding Go2 simulation ascent/descent and moderate variations; no extreme23/20 required. Success and smoothness both checked. This does not reproduce original A1/Aliengo hardware stack.",
+  "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
+  "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
+  "common": {
+    "num_envs": 7680,
+    "steps_per_env": 100,
+    "additional_updates_per_job": 100,
+    "save_interval": 20,
+    "stair_stage": "paper_mixed",
+    "start_level": 4,
+    "stair_speed_range": [
+      0.25,
+      0.65
+    ],
+    "ppo_learning_rate": 0.0001,
+    "him_learning_rate": 0.0001,
+    "lr_schedule": "fixed",
+    "domain_profile": "none",
+    "turn_fraction": 0.0,
+    "flat_replay_fraction": 0.0,
+    "warm_start": null,
+    "reset_noise_std": null,
+    "restore_optimizers": true,
+    "actor_history": 270,
+    "critic": 235,
+    "actor_privileged_heights": false,
+    "environment_steps_per_100_update_job": 76800000,
+    "num_envs_parameter_difference": "7680 environments after sustained8192 allocation reached15825MiB; released4096 batch differs"
+  },
+  "pilot": {
+    "profile": "contact_vertical",
+    "num_envs": 128,
+    "steps_per_env": 100,
+    "additional_updates": 3,
+    "seed": 1200,
+    "excluded_from_selection": true
+  },
+  "arms": [
+    {
+      "id": "faithful",
+      "profile": "faithful",
+      "difference": "Original reward continuation control from exactcontrol660; no leg contact penalty"
+    },
+    {
+      "id": "tracking",
+      "profile": "faithful_tracking",
+      "difference": "Only original XY body velocity tracking reward weight1to1.5; std0.5 unchanged; no contact penalty"
+    }
+  ],
+  "initial_paired_training_seed": 1213,
+  "planned_confirmation_seed": 1231,
+  "experimental_rules": [
+    "All two arms start from same exactcontrol660checkpoint at7680env100steps100savedupdates withseed1213.",
+    "Only track_lin_vel_xy_exp weight1→1.5 differs, no contact term.",
+    "Comparedevelopmentthree resetseeds two speeds aftertraining, no finalgeometry used.",
+    "If inadequate, retainfailures and consider matchedlongstairs curriculum as separate change; do not loosenbounds.",
+    "If prospectivecandidateexists, freeze beforefinal and report singletrainingseed limitation unless confirmation accomplished.",
+    "GPU and deadline remain same."
+  ],
+  "resource_limits": {
+    "gpu_memory_preferred_max_mib": 15360,
+    "host_gpu_configuration_changes": false,
+    "driver_changes": false
+  },
+  "status": "preregistered_reward_followup_pending",
+  "resource_calibration_file": "reproduction/stair-night2-resource-calibration.json",
+  "sustained_memory_revision": {
+    "local_time": "2026-10-12T00:56:27.830903+08:00",
+    "excluded_job": "night2-faithful-seed1201-plus100 started00:50:16 at8192",
+    "peak_total_gpu_mib": 15825,
+    "reason": "above preferred15GiB/15360MiB total occupancy; restart all arms fromcontrol660 at7680",
+    "candidate_use": false,
+    "initial_preflight_remains_valid_only_for_short3updates": true,
+    "subsequent_diagnosis": "15825MiB includes1440MiB baseline-dev05 residual compute process; flat plateau, not allocator growth. Exact baseline job was cleaned after result preservation. Keep7680 for margin and add exact per-job post-exit cleanup."
+  },
+  "domain_semantics": {
+    "train_none": "Existing startup base mass log_uniform0.8–1.25 and COMxy±0.02m/z±0.01m remain; no additional robust profile.",
+    "default_stair_evaluation": "eval_dynamics=false removes mass/COM/gain randomization; nominal mass6.921kg, PD25/0.5 and foot friction0.8/0.6 verified.",
+    "evidence": "reproduction/stair-night2-domain-semantics.json"
+  },
+  "decision_basis": {
+    "development_round": "reproduction/stair-night2-round1-development",
+    "evidence": "All four paper-size short/mild core+moderate passed2688/2688 across bothspeeds but long-desc foot escapes remain; faithful.3long384/384, .5long329/384. Representative trace showsnegativebodyvy andyaw; no joint/frame implementation bug found.",
+    "choice": "Restorefaithful reward and test one original trackingweight; not modifyalgorithm/actor/terrain/gates."
+  }
+}
