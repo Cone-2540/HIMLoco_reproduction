@@ -1,0 +1,52 @@
+{
+  "recorded_local": "2026-10-12T05:01:23.116404+08:00",
+  "result": "PASS",
+  "scope": "CPU preparation and package metadata only; no video/physics/training/GPU initiated",
+  "identity_file": "reproduction/stair-night2-video-selection-identity.json",
+  "identity_sha256": "86eb843aee307b148a29f1fcd0a5de8e95ec8a6e04a0938f44e5eff92b4281ba",
+  "immutable_candidate_freeze_file": "reproduction/stair-night2-selected-final-freeze.json",
+  "immutable_candidate_freeze_sha256": "3b24931d4a727d44eabf5a87de8e958441348a8006f4052e20ccf2749c627a8a",
+  "dry_manifest": "reproduction/stair-night2-video14-dry-manifest.json",
+  "dry_manifest_sha256": "cb1a0e4308275c3bc5b504422bb39ac4b934f256ad1625cdbbcf2a9496faf0d7",
+  "declared_jobs": 14,
+  "selected_jobs": 14,
+  "all_declared_camera_env_ids": 0,
+  "reset_seed": 907,
+  "renderer_repeated_physics_scope": "single-case32env scenes; distinct RNG layout from frozen512env matrix",
+  "frozen_runtime_workflow_hashes_unchanged": true,
+  "host_cpu_dependencies": {
+    "cv2": "4.5.4",
+    "PIL": "9.0.1",
+    "numpy": "1.21.5",
+    "matplotlib": "3.5.1",
+    "ffmpeg": "/home/cone/isaaclab/data/python-extras/video/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
+  },
+  "container_metadata_only_dependencies": {
+    "moviepy": "1.0.3",
+    "imageio": "2.37.2",
+    "imageio-ffmpeg": "0.6.0",
+    "decorator": "4.4.2",
+    "proglog": "0.1.12"
+  },
+  "timing_estimate": {
+    "actual_new_renderer_benchmark_available": false,
+    "fourteen_jobs_optimistic_seconds": 2100,
+    "fourteen_jobs_conservative_seconds": 4200,
+    "assumed_each_job_seconds_range": [
+      150,
+      300
+    ],
+    "CPU_materials_reserve_seconds_range": [
+      300,
+      1200
+    ],
+    "total_estimated_minutes_range": [
+      40,
+      90
+    ],
+    "hard_per_job_timeout_seconds": 900,
+    "hard14job_timeout_sum_minutes": 210,
+    "note": "Estimate only, not a measured guarantee. After first video use actual elapsed to replan declared subset; unexecuted coverage must remain explicit."
+  },
+  "gpu_video_execution": "not_started_by_this_check"
+}

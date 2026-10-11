@@ -1,0 +1,90 @@
+{
+  "stage": "final",
+  "selected_checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "selected_checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "freeze_sha256": "3b24931d4a727d44eabf5a87de8e958441348a8006f4052e20ccf2749c627a8a",
+  "freeze_git_commit": "57aa053a43279651c2bdeac92ab0c937b4070bc7",
+  "fixed_cases": 16,
+  "num_envs_each_scene": 512,
+  "envs_per_case_each_seed": 32,
+  "reset_seeds": [
+    907,
+    911,
+    919
+  ],
+  "speeds_m_s": [
+    0.3,
+    0.5
+  ],
+  "controllers": [
+    true,
+    false
+  ],
+  "observed_rows_each_policy": 192,
+  "complete_declared_numeric_protocol_each_policy": true,
+  "all_four_wrapper_exit_zero": true,
+  "jobs": [
+    {
+      "job": "night2-finalcompare-20261012-044206-aa9acc-speed03-heading",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": true,
+      "wrapper_exit_code": 0,
+      "wrapper_status": "exited",
+      "elapsed_seconds": 366.45618620000096,
+      "started_local": "2026-10-12T04:42:06.266392+08:00",
+      "ended_local": "2026-10-12T04:48:12.726965+08:00",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-044206_night2-finalcompare-20261012-044206-aa9acc-speed03-heading",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-42-09_night2-finalcompare-20261012-044206-aa9acc-speed03-heading",
+      "baseline_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-42-09_night2-finalcompare-20261012-044206-aa9acc-speed03-heading/result.json",
+      "selected_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-42-09_night2-finalcompare-20261012-044206-aa9acc-speed03-heading/candidates/0_model_760/result.json",
+      "launch_record_sha256": "a53804b84037a7c690bc39587715fdd698922771e9ee7b5c7c77d8579fb39fe2"
+    },
+    {
+      "job": "night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw",
+      "speed_m_s": 0.3,
+      "heading_control_enabled": false,
+      "wrapper_exit_code": 0,
+      "wrapper_status": "exited",
+      "elapsed_seconds": 408.3877637459991,
+      "started_local": "2026-10-12T04:48:14.199990+08:00",
+      "ended_local": "2026-10-12T04:55:02.592990+08:00",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-044814_night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-48-17_night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw",
+      "baseline_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-48-17_night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw/result.json",
+      "selected_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-48-17_night2-finalcompare-20261012-044206-aa9acc-speed03-zero-yaw/candidates/0_model_760/result.json",
+      "launch_record_sha256": "b406a19d60b5148fbd4dac5b3ff8c12773b8cb812c8cca48c5ce33ee046f10bc"
+    },
+    {
+      "job": "night2-finalcompare-20261012-044206-aa9acc-speed05-heading",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": true,
+      "wrapper_exit_code": 0,
+      "wrapper_status": "exited",
+      "elapsed_seconds": 244.06395675100066,
+      "started_local": "2026-10-12T04:55:04.186145+08:00",
+      "ended_local": "2026-10-12T04:59:08.254889+08:00",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-045504_night2-finalcompare-20261012-044206-aa9acc-speed05-heading",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-55-07_night2-finalcompare-20261012-044206-aa9acc-speed05-heading",
+      "baseline_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-55-07_night2-finalcompare-20261012-044206-aa9acc-speed05-heading/result.json",
+      "selected_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-55-07_night2-finalcompare-20261012-044206-aa9acc-speed05-heading/candidates/0_model_760/result.json",
+      "launch_record_sha256": "0f3d8c119e84692b494f9f8afd3f3e8b3fc96a1757403ff418576221c12245c3"
+    },
+    {
+      "job": "night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw",
+      "speed_m_s": 0.5,
+      "heading_control_enabled": false,
+      "wrapper_exit_code": 0,
+      "wrapper_status": "exited",
+      "elapsed_seconds": 266.99722807500075,
+      "started_local": "2026-10-12T04:59:09.304404+08:00",
+      "ended_local": "2026-10-12T05:03:36.307408+08:00",
+      "wrapper_directory": "/home/cone/robotics/logs/20261012-045909_night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw",
+      "simulator_directory": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-59-12_night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw",
+      "baseline_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-59-12_night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw/result.json",
+      "selected_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-59-12_night2-finalcompare-20261012-044206-aa9acc-speed05-zero-yaw/candidates/0_model_760/result.json",
+      "launch_record_sha256": "bc564b6be03fe24d83299368bcec6794d0665be3ce9bb5fcaef860a7ae668565"
+    }
+  ],
+  "no_retuning_or_model_change_after_freeze": true,
+  "scientific_scope": "Default-heading core+moderate numeric PASS; default-heading long and all-case matrix FAIL; constant-zero-yaw all-case matrix FAIL; motion/flat review separate"
+}

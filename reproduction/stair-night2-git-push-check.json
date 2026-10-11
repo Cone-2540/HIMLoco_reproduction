@@ -108,6 +108,53 @@
       },
       "status": "push_success_with_independent_exact_sha_verification",
       "scope": "Process-only routing and Git flags. No persistent system, credential, driver, proxy, DNS or Git configuration changes."
+    },
+    {
+      "started_utc": "2026-10-11 21:03:12 UTC",
+      "completed_utc": "2026-10-11 21:04:40 UTC",
+      "target_sha": "1292d5519eced7d4c63c0f1c81fca7aa0f7849ff",
+      "scope": "Independent read-only ls-remote verification; no push or commit performed by this audit.",
+      "parent_reported_push": {
+        "actor": "root",
+        "session_id": 41657,
+        "exit": 0,
+        "reported_output": "78992a7..1292d55 -> feature/stair-rewards-night2-20261012"
+      },
+      "remote_checks": [
+        {
+          "ipv4": "140.82.114.3",
+          "http": "HTTP/1.1",
+          "exit": 124,
+          "remote_sha": null
+        },
+        {
+          "ipv4": "140.82.114.4",
+          "http": "HTTP/1.1",
+          "exit": 124,
+          "remote_sha": null
+        },
+        {
+          "ipv4": "140.82.116.4",
+          "http": "HTTP/2",
+          "exit": 124,
+          "remote_sha": null
+        },
+        {
+          "ipv4": "140.82.112.4",
+          "http": "HTTP/2",
+          "exit": 124,
+          "remote_sha": null
+        },
+        {
+          "ipv4": "140.82.121.4",
+          "http": "HTTP/1.1",
+          "exit": 124,
+          "remote_sha": null
+        }
+      ],
+      "independent_exact_target_verified": false,
+      "status": "root_reported_push_exit0; independent_remote_read_all_15s_timeouts; no_exact_sha_claim",
+      "configuration_changes": false
     }
   ]
 }

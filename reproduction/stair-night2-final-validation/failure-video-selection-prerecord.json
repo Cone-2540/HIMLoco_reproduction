@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "status": "data_only_supplementary_failure_video_preregistered_not_executed",
+  "created_local": "2026-10-12T05:08:35.027448+08:00",
+  "scope": "Supplementary visualization of a fixed failed environment from the already-frozen final model; no retuning, model selection, gate modification or outcome replacement",
+  "selection_rule": "In final default-heading speed0.5 case13 resetseed911, take lowest global environment ID among original incomplete episodes. Record one attempt; mismatch stays visible and never resample to obtain preferred outcome.",
+  "original_failure_global_env_ids_in_ascending_order": [
+    437,
+    445
+  ],
+  "selected_global_environment_id": 437,
+  "selected_case_index": 13,
+  "selected_case_name": "long_reserved_desc_16cm_27cm_12",
+  "reset_seed": 911,
+  "speed_m_s": 0.5,
+  "heading_control_enabled": true,
+  "scene": {
+    "num_envs": 512,
+    "geometry_file": "reproduction/stair-night2-final-geometries.json",
+    "geometry_sha256": "51d698a9a4a18b8b7d31af68fb7b69490d80ea07c02785085544e3f818c3933b",
+    "geometry": {
+      "schema_version": 1,
+      "direction": "desc",
+      "travel_sign": 1,
+      "num_steps": 12,
+      "step_height": 0.16,
+      "step_depth": 0.27,
+      "width": 1.2,
+      "nosing": 0.0,
+      "nosing_thickness": 0.02,
+      "landing_length": 2.0,
+      "start_x": 0.0,
+      "first_riser_x": 1.0,
+      "last_riser_x": 3.97,
+      "goal_platform_start_x": 4.24,
+      "goal_x": 4.890000000000001,
+      "flight_end_x": 6.24,
+      "start_platform_z": 0.0,
+      "goal_platform_z": -1.92,
+      "lateral_center_y": 0.0,
+      "goal_dwell_s": 0.5,
+      "terrain_local_origin": [
+        2.38,
+        1.5,
+        1.92
+      ],
+      "terrain_size": [
+        10.0,
+        3.0
+      ],
+      "treads": [
+        {
+          "index": 1,
+          "x_min": 1.0,
+          "x_max": 1.27,
+          "top_z": -0.16
+        },
+        {
+          "index": 2,
+          "x_min": 1.27,
+          "x_max": 1.54,
+          "top_z": -0.32
+        },
+        {
+          "index": 3,
+          "x_min": 1.54,
+          "x_max": 1.81,
+          "top_z": -0.48
+        },
+        {
+          "index": 4,
+          "x_min": 1.81,
+          "x_max": 2.08,
+          "top_z": -0.64
+        },
+        {
+          "index": 5,
+          "x_min": 2.08,
+          "x_max": 2.35,
+          "top_z": -0.8
+        },
+        {
+          "index": 6,
+          "x_min": 2.35,
+          "x_max": 2.62,
+          "top_z": -0.96
+        },
+        {
+          "index": 7,
+          "x_min": 2.62,
+          "x_max": 2.89,
+          "top_z": -1.12
+        },
+        {
+          "index": 8,
+          "x_min": 2.89,
+          "x_max": 3.16,
+          "top_z": -1.28
+        },
+        {
+          "index": 9,
+          "x_min": 3.16,
+          "x_max": 3.43,
+          "top_z": -1.44
+        },
+        {
+          "index": 10,
+          "x_min": 3.43,
+          "x_max": 3.7,
+          "top_z": -1.6
+        },
+        {
+          "index": 11,
+          "x_min": 3.7,
+          "x_max": 3.97,
+          "top_z": -1.76
+        },
+        {
+          "index": 12,
+          "x_min": 3.97,
+          "x_max": 4.24,
+          "top_z": -1.92
+        }
+      ],
+      "collision_representation": "closed triangle meshes with physical overhang undersides",
+      "convert_to_heightfield": false
+    },
+    "construction_seed": 1,
+    "domain_profile": "none",
+    "eval_dynamics": false,
+    "friction_override": null,
+    "seconds": 40,
+    "video_length_policy_steps": 2000,
+    "video_fps": 50,
+    "camera_env_index": 437,
+    "USD_visibility_only_isolation": true,
+    "camera_eye_relative_xyz": [
+      -1.6,
+      -1.8,
+      1.1
+    ],
+    "camera_lookat_relative_xyz": [
+      0,
+      0,
+      0.15
+    ]
+  },
+  "selected_checkpoint": "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "selected_checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "actual_training_reward_profile": "faithful",
+  "shared_original_scene_reward_profile": "contact",
+  "video_scene_reward_profile": "contact",
+  "binding": {
+    "selection_freeze_file": "/home/cone/Research/HIMLoco/reproduction/stair-night2-selected-final-freeze.json",
+    "selection_freeze_sha256": "3b24931d4a727d44eabf5a87de8e958441348a8006f4052e20ccf2749c627a8a",
+    "immutable_manifest_file": "/home/cone/robotics/logs/night2-finalcompare-20261012-044206-aa9acc/immutable-manifest.json",
+    "immutable_manifest_sha256": "30c3f1c6466884a9078188d3484803dafc0dc113308f1c8b279cad816edd3acb",
+    "original_selected_result": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-55-07_night2-finalcompare-20261012-044206-aa9acc-speed05-heading/candidates/0_model_760/result.json",
+    "original_selected_result_sha256": "693b264556bdd0bb1dfde733501bc554200f3de9aaadc6ebdb9aa6ff920ddf3c",
+    "original_shared_scene_config": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_04-55-07_night2-finalcompare-20261012-044206-aa9acc-speed05-heading/config.json",
+    "original_shared_scene_config_sha256": "6a52fdafd84005246d223a8e90427981048e8da4df5295e16f584300a1a607c4",
+    "source": {
+      "git_commit": "57aa053a43279651c2bdeac92ab0c937b4070bc7",
+      "code_files_clean": true,
+      "runtime_sha256": {
+        "isaaclab/run.py": "f4a324c50b5da1bf341330b6680ab8d779114808ef4d6e2873e2b9b5328211b9",
+        "isaaclab/stair_rewards.py": "01e9b509a8d932f5880ed41582be211b82190b180c355e518dbbda2a80e41157",
+        "isaaclab/stair_terrain.py": "ac0723699333fcb4cc2459b52bb85f0d3041176f30c3c193513380c3085d134a",
+        "isaaclab/stair_evaluation.py": "c58e0ecd6b37e1ac9050f8f494424dd083aa95bac71fde654adaafbb14c7abba",
+        "isaaclab/adapter.py": "2fdff02660665a86693fb9edc701732cf6105a335c8948c6bdbcc2e2ef02ab29",
+        "isaaclab/stair_randomization.py": "1cdbca365f44be304c3dc37467002ef2f5f0a2b17a002476d1dc88489f486561"
+      },
+      "workflow_sha256": {
+        "isaaclab/run.sh": "f6af02cf10737a9a53eb26401045558370dc3ab10bc964ecf185adcea1eae2f4",
+        "isaaclab/compose.override.yaml": "76a2ab1bef00523df64af4dfdeef80edb95b25619b943cc06f580c0d60a7b895",
+        "reproduction/run-stair-night2-job.py": "2c61b889b2a77f6f996d9cbe27dde364af767caea0751f9588889712dfeb948d",
+        "reproduction/run-stair-night2-development-comparison.py": "4d23abf3c5b8cb205b561b6c32088cd5fde0b3078a65f36e48b9a26b5f1a9dfa",
+        "reproduction/run-stair-night2-final-comparison.py": "628578b1e826635a479091350d164080fe58a82129f1b118a3905c271936bb4d",
+        "reproduction/summarize-stair-night2.py": "6783978b59f668e20bf1a9d771c10ec664b131618e5ceb2aa621df889a51f66f"
+      },
+      "commit_scope": "Data-only later commits are allowed; every declared runtime/workflow file must match this commit and the frozen content hashes."
+    }
+  },
+  "original_failed_environment_records": [
+    {
+      "global_env_id": 437,
+      "case_index": 13,
+      "case_local_environment_index": 21,
+      "completed": false,
+      "fall": false,
+      "stall": false,
+      "lateral_escape": true,
+      "initial_root_relative_xyz_m": [
+        -0.029734373092651367,
+        -0.066192626953125,
+        0.3999999761581421
+      ],
+      "last_measured_root_relative_xyz_m": [
+        4.338039398193359,
+        -0.3841571807861328,
+        -1.6612505912780762
+      ],
+      "last_measured_feet_relative_xyz_m_by_name": {
+        "FL_foot": [
+          4.635044097900391,
+          -0.255523681640625,
+          -1.8959951400756836
+        ],
+        "FR_foot": [
+          4.716761589050293,
+          -0.4932384490966797,
+          -1.8960275650024414
+        ],
+        "RL_foot": [
+          3.9378209114074707,
+          -0.2427959442138672,
+          -1.7381724119186401
+        ],
+        "RR_foot": [
+          3.937925100326538,
+          -0.6507120132446289,
+          -1.8375669717788696
+        ]
+      },
+      "first_episode_measured_duration_s": 10.039999961853027,
+      "longest_flight_pause_s": 0.0,
+      "completion_time_s": null
+    },
+    {
+      "global_env_id": 445,
+      "case_index": 13,
+      "case_local_environment_index": 29,
+      "completed": false,
+      "fall": false,
+      "stall": false,
+      "lateral_escape": true,
+      "initial_root_relative_xyz_m": [
+        -0.033005475997924805,
+        -0.06241035461425781,
+        0.3999999761581421
+      ],
+      "last_measured_root_relative_xyz_m": [
+        4.0455641746521,
+        -0.37602806091308594,
+        -1.5605289936065674
+      ],
+      "last_measured_feet_relative_xyz_m_by_name": {
+        "FL_foot": [
+          4.286675453186035,
+          -0.27768516540527344,
+          -1.8961982727050781
+        ],
+        "FR_foot": [
+          4.313238143920898,
+          -0.46460914611816406,
+          -1.8950574398040771
+        ],
+        "RL_foot": [
+          3.6395435333251953,
+          -0.19861412048339844,
+          -1.5784168243408203
+        ],
+        "RR_foot": [
+          3.6433253288269043,
+          -0.654728889465332,
+          -1.6663278341293335
+        ]
+      },
+      "first_episode_measured_duration_s": 9.380000114440918,
+      "longest_flight_pause_s": 0.0,
+      "completion_time_s": null
+    }
+  ],
+  "original_trace_availability": {
+    "trace_stride_policy_steps": 1,
+    "policy_dt_s": 0.02,
+    "recorded_global_env_ids": [
+      0,
+      32,
+      64,
+      96,
+      128,
+      160,
+      192,
+      224,
+      256,
+      288,
+      320,
+      352,
+      384,
+      416,
+      448,
+      480
+    ],
+    "selected_env437_dense_trace_available": false,
+    "other_failed_env445_dense_trace_available": false,
+    "same_case_trace_representative_global_env_id": 416,
+    "replay_trace_scope_with_unchanged_source": "512 batch continues to trace first env per case only; video437 does not automatically add437 to dense trace. Only per-env start/terminal positions and failure flags are matched to437; never imply a437 dense-contact trace exists."
+  },
+  "expected_replay_difference_declarations": [
+    "Only selected checkpoint evaluated as primary, no baseline/candidate switching",
+    "One original reset seed911, full original512env/16case geometry retained for RNG shape",
+    "Video policy only removes zero-action control; first original candidate-policy episode remains comparator",
+    "Camera and USD visibility change rendering only; physics source/geometry/profile/dynamics unchanged",
+    "GPU/video scene recreation can differ numerically; readbacks, selected initial state and terminal flag/time are compared, no forced equality claim"
+  ],
+  "outcome_policy": {
+    "replay_original_fail_to_fail": "Original failure remains and supplemental observed episode stored separately",
+    "replay_original_fail_to_success": "Original failure remains; mark non-identical replay explicitly without replacing aggregate final verdict",
+    "replay_error_or_missing_video": "Preserve record; report not reproduced/visual evidence unavailable; no automatic redraw"
+  },
+  "wrapper_name": "night2-final-supplement-failed-env437-seed911-speed05-video",
+  "wrapper_argv": [
+    "python3",
+    "reproduction/run-stair-night2-job.py",
+    "--name",
+    "night2-final-supplement-failed-env437-seed911-speed05-video",
+    "--max-seconds",
+    "1800",
+    "--",
+    "evaluate",
+    "--terrain",
+    "stairs",
+    "--checkpoint",
+    "artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+    "--reward_profile",
+    "contact",
+    "--stair_batch",
+    "reproduction/stair-night2-final-geometries.json",
+    "--num_envs",
+    "512",
+    "--speed",
+    "0.5",
+    "--eval_seconds",
+    "40",
+    "--eval_randomized",
+    "--eval_seed",
+    "911",
+    "--seed",
+    "1",
+    "--domain_profile",
+    "none",
+    "--eval_trace_stride",
+    "1",
+    "--video",
+    "--video_policy_only",
+    "--video_length",
+    "2000",
+    "--video_isolate_env",
+    "--video_env_index",
+    "437",
+    "--video_eye",
+    "-1.6",
+    "-1.8",
+    "1.1",
+    "--video_lookat",
+    "0",
+    "0",
+    "0.15"
+  ],
+  "shell_command": "python3 reproduction/run-stair-night2-job.py --name night2-final-supplement-failed-env437-seed911-speed05-video --max-seconds 1800 -- evaluate --terrain stairs --checkpoint artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt --reward_profile contact --stair_batch reproduction/stair-night2-final-geometries.json --num_envs 512 --speed 0.5 --eval_seconds 40 --eval_randomized --eval_seed 911 --seed 1 --domain_profile none --eval_trace_stride 1 --video --video_policy_only --video_length 2000 --video_isolate_env --video_env_index 437 --video_eye -1.6 -1.8 1.1 --video_lookat 0 0 0.15",
+  "execution_by_this_cpu_preparation": false,
+  "gpu_started": false
+}
