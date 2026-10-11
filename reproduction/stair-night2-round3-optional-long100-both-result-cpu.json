@@ -1,0 +1,6139 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-10-12T07:19:51.011196+08:00",
+  "reviewer": "/root/closeout_cpu",
+  "audit_mode": "CPU_only_saved_result_no_simulation",
+  "status": "FAIL",
+  "scientific_acceptance": "FAIL",
+  "scope": "Go2 nominal100-riser ascent and descent diagnostic; no new training and no final candidate selection",
+  "source_inputs": [
+    {
+      "path": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-optional-long100-both-plan.json",
+      "sha256": "be31702324b4c41727822025572daefa7a59cee2291c929591fb4d1a7d8eaabd",
+      "bytes": 4874
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-optional-long100-both-geometries.json",
+      "sha256": "9ba71312687d61a340639837869e71fbd8cef1bb736a09e0dbc2348d8fa2b90a",
+      "bytes": 371
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-optional-long100-both-cpu.json",
+      "sha256": "0bc0da9c5656712150c77aa50813279cfd69a583b734c76793f1afcb55b219c3",
+      "bytes": 3825
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/reproduction/stair-night2-round3-selected-final-freeze.json",
+      "sha256": "661742513963616a4b4d1c32e5563e6dbda625583ef6a3880f78441b91d086ec",
+      "bytes": 63058
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_06-57-27_night2-round3-long100-both-selected-seed1301/config.json",
+      "sha256": "10fb1f45198c186f3dc0ab89e5b4d336a21fe9bb8b78f8e6ff68a93db9b55c31",
+      "bytes": 67794
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_06-57-27_night2-round3-long100-both-selected-seed1301/result.json",
+      "sha256": "83a85ee0798e6c7a07537abed33401450d610b9bd64de728f3e1c9c8280be527",
+      "bytes": 159787198
+    },
+    {
+      "path": "/home/cone/robotics/logs/20261012-065724_night2-round3-long100-both-selected-seed1301/launch-record.json",
+      "sha256": "8fdfbbd197089e9a14ea84a1d2c6614ad91c203e1c28b55f7c7206e35a65a33e",
+      "bytes": 2097
+    },
+    {
+      "path": "/home/cone/Research/HIMLoco/reproduction/summarize-stair-night2.py",
+      "sha256": "6783978b59f668e20bf1a9d771c10ec664b131618e5ceb2aa621df889a51f66f",
+      "bytes": 24711
+    }
+  ],
+  "checkpoint_sha256": "039dfefe4798751b378342b792c1442d9025bfe76749572fa1a70eabae7b2472",
+  "configuration_identity_checks": {
+    "checkpoint_sha256_matches_plan": true,
+    "config_checkpoint_path_matches_plan": true,
+    "geometry_file_hash_matches_plan": true,
+    "config_and_launch_source_commit_match": true,
+    "config_tracked_source_clean": true,
+    "runtime_source_hashes_match_launch": true,
+    "runtime_source_hashes_match_preregistered_plan": true,
+    "exit0_saved_result": true,
+    "eval_scope": true,
+    "cadence": true,
+    "reward_domain_controller": true,
+    "trial_scope": true,
+    "geometry_case_0": true,
+    "counts_case_0": true,
+    "directed_progress_env_0": true,
+    "directed_progress_env_1": true,
+    "directed_progress_env_2": true,
+    "directed_progress_env_3": true,
+    "directed_progress_env_4": true,
+    "directed_progress_env_5": true,
+    "directed_progress_env_6": true,
+    "directed_progress_env_7": true,
+    "directed_progress_env_8": true,
+    "directed_progress_env_9": true,
+    "directed_progress_env_10": true,
+    "directed_progress_env_11": true,
+    "directed_progress_env_12": true,
+    "directed_progress_env_13": true,
+    "directed_progress_env_14": true,
+    "directed_progress_env_15": true,
+    "directed_progress_env_16": true,
+    "directed_progress_env_17": true,
+    "directed_progress_env_18": true,
+    "directed_progress_env_19": true,
+    "directed_progress_env_20": true,
+    "directed_progress_env_21": true,
+    "directed_progress_env_22": true,
+    "directed_progress_env_23": true,
+    "directed_progress_env_24": true,
+    "directed_progress_env_25": true,
+    "directed_progress_env_26": true,
+    "directed_progress_env_27": true,
+    "directed_progress_env_28": true,
+    "directed_progress_env_29": true,
+    "directed_progress_env_30": true,
+    "directed_progress_env_31": true,
+    "geometry_case_1": true,
+    "counts_case_1": true,
+    "directed_progress_env_32": true,
+    "directed_progress_env_33": true,
+    "directed_progress_env_34": true,
+    "directed_progress_env_35": true,
+    "directed_progress_env_36": true,
+    "directed_progress_env_37": true,
+    "directed_progress_env_38": true,
+    "directed_progress_env_39": true,
+    "directed_progress_env_40": true,
+    "directed_progress_env_41": true,
+    "directed_progress_env_42": true,
+    "directed_progress_env_43": true,
+    "directed_progress_env_44": true,
+    "directed_progress_env_45": true,
+    "directed_progress_env_46": true,
+    "directed_progress_env_47": true,
+    "directed_progress_env_48": true,
+    "directed_progress_env_49": true,
+    "directed_progress_env_50": true,
+    "directed_progress_env_51": true,
+    "directed_progress_env_52": true,
+    "directed_progress_env_53": true,
+    "directed_progress_env_54": true,
+    "directed_progress_env_55": true,
+    "directed_progress_env_56": true,
+    "directed_progress_env_57": true,
+    "directed_progress_env_58": true,
+    "directed_progress_env_59": true,
+    "directed_progress_env_60": true,
+    "directed_progress_env_61": true,
+    "directed_progress_env_62": true,
+    "directed_progress_env_63": true,
+    "trial_count_totals": true
+  },
+  "source_commit": "a5ee33d4df1fbf34bc7e32c07b742a65c04a1b58",
+  "source_tracked_files_dirty": false,
+  "launch_source_dirty": true,
+  "launch_source_dirty_semantics": "Launch flag may include untracked artifacts; tracked runtime source cleanliness is recorded separately in config and runtime bytes match launch/preregistered hashes.",
+  "process_exit_code": 0,
+  "requested_duration_s": 250,
+  "requested_policy_steps": 12500,
+  "executed_policy_steps": 5842,
+  "collector_stop_reason": "all measured first episodes ended; process success is distinct from scientific acceptance",
+  "all_first_episode_durations_max_s": 116.83999633789062,
+  "aggregate_counts": {
+    "completions": 7,
+    "falls": 23,
+    "stalls": 3,
+    "lateral_escapes": 31,
+    "base_contact_envs": 23,
+    "current_sample_base_contact_envs": 14
+  },
+  "aggregate_anomalies": {
+    "nonfinite_envs": 0,
+    "invalid_physics_envs": 0,
+    "invalid_start_envs": 0,
+    "failure_reason": null
+  },
+  "preregistered_acceptance": {
+    "minimum_environments": 32,
+    "minimum_completions": 31,
+    "minimum_completion_fraction": 0.95,
+    "maximum_fall_fraction": 0.05,
+    "maximum_stall_fraction": 0.05,
+    "maximum_lateral_escape_fraction": 0.05,
+    "maximum_base_contact_envs": 0,
+    "maximum_current_sample_base_contact_envs": 0,
+    "maximum_roll_rms_rad": 0.15,
+    "maximum_roll_peak_rad": 0.35,
+    "maximum_longest_flight_pause_s": 1.0,
+    "nonfinite_envs": 0,
+    "invalid_physics_envs": 0,
+    "invalid_start_envs": 0,
+    "trial_failure_reason": null,
+    "full_completion_requires": [
+      "root reachesgoal26.65m",
+      "all four feet beyond last riser and within goal platform/corridor",
+      "four foot heights at target landing tolerance",
+      "upright base with allowed height clearance",
+      "at least two foot contacts",
+      "continuous goal dwell0.5s within first episode"
+    ],
+    "full_failure_free_descriptive_target": "32/32,zero fall/stall/escape/base; practical31/32 gate must not be described as100% or very silky"
+  },
+  "gate_helper": "/home/cone/Research/HIMLoco/reproduction/summarize-stair-night2.py",
+  "gate_plan_adapter": {
+    "acceptance": {
+      "all_cases_each_reset_seed": {
+        "minimum_environments": 32,
+        "minimum_completion_fraction": 0.95
+      },
+      "moderate_and_long": {
+        "maximum_fall_fraction": 0.05,
+        "maximum_stall_fraction": 0.05,
+        "maximum_lateral_escape_fraction": 0.05
+      },
+      "motion_screen_each_case_seed": {
+        "maximum_roll_rms_rad": 0.15,
+        "maximum_roll_peak_rad": 0.35,
+        "maximum_longest_flight_pause_s": 1.0
+      }
+    }
+  },
+  "gate_adapter_semantics": "Map optional preregistered thresholds to existing pure case_gate schema; 31/32 minimum follows >=95% with n32. All zero base/current-base thresholds are enforced by helper.",
+  "cases": [
+    {
+      "case_index": 0,
+      "num_envs": 32,
+      "passed": false,
+      "completion_fraction": 0.0,
+      "completions": 0,
+      "falls": 20,
+      "stalls": 3,
+      "lateral_escapes": 9,
+      "base_contact_envs": 20,
+      "current_sample_base_contact_envs": 12,
+      "current_sample_shank_contact_envs": 32,
+      "contact_sample_counts": {
+        "environment_samples": 76662,
+        "history_contact_foot_samples": 200429,
+        "current_contact_foot_samples": 197206
+      },
+      "metrics": {
+        "flight_pause_fraction": 0.02770671166512438,
+        "xy_tracking_mae_m_s": 0.058675493716078046,
+        "yaw_tracking_mae_rad_s": 0.04802023684785675,
+        "measured_vx_m_s": 0.2676894244382898,
+        "measured_vy_m_s": 0.00990238426409577,
+        "heading_abs_error_rad": 0.00983856009738231,
+        "lateral_abs_error_m": 0.18475623810534803,
+        "torque_saturation_fraction": 0.0002152304987052036,
+        "base_contact_step_fraction": 0.0002608854452010122,
+        "shank_contact_step_fraction": 0.290208969241606,
+        "current_sample_base_contact_step_fraction": 0.00015653126712060735,
+        "current_sample_shank_contact_step_fraction": 0.24998043359160993,
+        "contact_foot_horizontal_speed_m_s": 0.07695567773964185,
+        "foot_slip_fraction": 0.13640740513801575,
+        "current_sample_contact_foot_horizontal_speed_m_s": 0.0696207231028461,
+        "current_sample_foot_slip_fraction": 0.12323154509067535,
+        "xy_tracking_rmse_m_s": 0.08855248698498507,
+        "roll_rms_rad": 0.06644069666520275,
+        "pitch_rms_rad": 0.44368712200840055,
+        "linear_acceleration_rms_m_s2": 1.510834321726983,
+        "linear_jerk_rms_m_s3": 66.57081321266098,
+        "body_angular_acceleration_rms_rad_s2": 13.32838943737687,
+        "action_delta_rms": 0.24411023990031736,
+        "action_second_delta_rms": 0.12016257577935725,
+        "applied_torque_rms_nm": 6.4048655876450935,
+        "peak_contact_force_n": 1758.9757080078125,
+        "roll_peak_rad": 0.5285600423812866,
+        "longest_flight_pause_s": 3.739997148513794
+      },
+      "mean_max_progress_m": 11.047832489013672,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "asc",
+        "travel_sign": 1,
+        "num_steps": 100,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 25.75,
+        "goal_platform_start_x": 26.0,
+        "goal_x": 26.65,
+        "flight_end_x": 28.0,
+        "start_platform_z": 0.0,
+        "goal_platform_z": 17.0,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          1.5,
+          1.5,
+          0.0
+        ],
+        "terrain_size": [
+          30.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": 0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": 0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": 0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": 0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": 0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": 1.02
+          },
+          {
+            "index": 7,
+            "x_min": 2.5,
+            "x_max": 2.75,
+            "top_z": 1.1900000000000002
+          },
+          {
+            "index": 8,
+            "x_min": 2.75,
+            "x_max": 3.0,
+            "top_z": 1.36
+          },
+          {
+            "index": 9,
+            "x_min": 3.0,
+            "x_max": 3.25,
+            "top_z": 1.53
+          },
+          {
+            "index": 10,
+            "x_min": 3.25,
+            "x_max": 3.5,
+            "top_z": 1.7000000000000002
+          },
+          {
+            "index": 11,
+            "x_min": 3.5,
+            "x_max": 3.75,
+            "top_z": 1.87
+          },
+          {
+            "index": 12,
+            "x_min": 3.75,
+            "x_max": 4.0,
+            "top_z": 2.04
+          },
+          {
+            "index": 13,
+            "x_min": 4.0,
+            "x_max": 4.25,
+            "top_z": 2.21
+          },
+          {
+            "index": 14,
+            "x_min": 4.25,
+            "x_max": 4.5,
+            "top_z": 2.3800000000000003
+          },
+          {
+            "index": 15,
+            "x_min": 4.5,
+            "x_max": 4.75,
+            "top_z": 2.5500000000000003
+          },
+          {
+            "index": 16,
+            "x_min": 4.75,
+            "x_max": 5.0,
+            "top_z": 2.72
+          },
+          {
+            "index": 17,
+            "x_min": 5.0,
+            "x_max": 5.25,
+            "top_z": 2.89
+          },
+          {
+            "index": 18,
+            "x_min": 5.25,
+            "x_max": 5.5,
+            "top_z": 3.06
+          },
+          {
+            "index": 19,
+            "x_min": 5.5,
+            "x_max": 5.75,
+            "top_z": 3.2300000000000004
+          },
+          {
+            "index": 20,
+            "x_min": 5.75,
+            "x_max": 6.0,
+            "top_z": 3.4000000000000004
+          },
+          {
+            "index": 21,
+            "x_min": 6.0,
+            "x_max": 6.25,
+            "top_z": 3.5700000000000003
+          },
+          {
+            "index": 22,
+            "x_min": 6.25,
+            "x_max": 6.5,
+            "top_z": 3.74
+          },
+          {
+            "index": 23,
+            "x_min": 6.5,
+            "x_max": 6.75,
+            "top_z": 3.91
+          },
+          {
+            "index": 24,
+            "x_min": 6.75,
+            "x_max": 7.0,
+            "top_z": 4.08
+          },
+          {
+            "index": 25,
+            "x_min": 7.0,
+            "x_max": 7.25,
+            "top_z": 4.25
+          },
+          {
+            "index": 26,
+            "x_min": 7.25,
+            "x_max": 7.5,
+            "top_z": 4.42
+          },
+          {
+            "index": 27,
+            "x_min": 7.5,
+            "x_max": 7.75,
+            "top_z": 4.590000000000001
+          },
+          {
+            "index": 28,
+            "x_min": 7.75,
+            "x_max": 8.0,
+            "top_z": 4.760000000000001
+          },
+          {
+            "index": 29,
+            "x_min": 8.0,
+            "x_max": 8.25,
+            "top_z": 4.930000000000001
+          },
+          {
+            "index": 30,
+            "x_min": 8.25,
+            "x_max": 8.5,
+            "top_z": 5.1000000000000005
+          },
+          {
+            "index": 31,
+            "x_min": 8.5,
+            "x_max": 8.75,
+            "top_z": 5.2700000000000005
+          },
+          {
+            "index": 32,
+            "x_min": 8.75,
+            "x_max": 9.0,
+            "top_z": 5.44
+          },
+          {
+            "index": 33,
+            "x_min": 9.0,
+            "x_max": 9.25,
+            "top_z": 5.61
+          },
+          {
+            "index": 34,
+            "x_min": 9.25,
+            "x_max": 9.5,
+            "top_z": 5.78
+          },
+          {
+            "index": 35,
+            "x_min": 9.5,
+            "x_max": 9.75,
+            "top_z": 5.95
+          },
+          {
+            "index": 36,
+            "x_min": 9.75,
+            "x_max": 10.0,
+            "top_z": 6.12
+          },
+          {
+            "index": 37,
+            "x_min": 10.0,
+            "x_max": 10.25,
+            "top_z": 6.29
+          },
+          {
+            "index": 38,
+            "x_min": 10.25,
+            "x_max": 10.5,
+            "top_z": 6.460000000000001
+          },
+          {
+            "index": 39,
+            "x_min": 10.5,
+            "x_max": 10.75,
+            "top_z": 6.630000000000001
+          },
+          {
+            "index": 40,
+            "x_min": 10.75,
+            "x_max": 11.0,
+            "top_z": 6.800000000000001
+          },
+          {
+            "index": 41,
+            "x_min": 11.0,
+            "x_max": 11.25,
+            "top_z": 6.970000000000001
+          },
+          {
+            "index": 42,
+            "x_min": 11.25,
+            "x_max": 11.5,
+            "top_z": 7.140000000000001
+          },
+          {
+            "index": 43,
+            "x_min": 11.5,
+            "x_max": 11.75,
+            "top_z": 7.3100000000000005
+          },
+          {
+            "index": 44,
+            "x_min": 11.75,
+            "x_max": 12.0,
+            "top_z": 7.48
+          },
+          {
+            "index": 45,
+            "x_min": 12.0,
+            "x_max": 12.25,
+            "top_z": 7.65
+          },
+          {
+            "index": 46,
+            "x_min": 12.25,
+            "x_max": 12.5,
+            "top_z": 7.82
+          },
+          {
+            "index": 47,
+            "x_min": 12.5,
+            "x_max": 12.75,
+            "top_z": 7.99
+          },
+          {
+            "index": 48,
+            "x_min": 12.75,
+            "x_max": 13.0,
+            "top_z": 8.16
+          },
+          {
+            "index": 49,
+            "x_min": 13.0,
+            "x_max": 13.25,
+            "top_z": 8.33
+          },
+          {
+            "index": 50,
+            "x_min": 13.25,
+            "x_max": 13.5,
+            "top_z": 8.5
+          },
+          {
+            "index": 51,
+            "x_min": 13.5,
+            "x_max": 13.75,
+            "top_z": 8.67
+          },
+          {
+            "index": 52,
+            "x_min": 13.75,
+            "x_max": 14.0,
+            "top_z": 8.84
+          },
+          {
+            "index": 53,
+            "x_min": 14.0,
+            "x_max": 14.25,
+            "top_z": 9.01
+          },
+          {
+            "index": 54,
+            "x_min": 14.25,
+            "x_max": 14.5,
+            "top_z": 9.180000000000001
+          },
+          {
+            "index": 55,
+            "x_min": 14.5,
+            "x_max": 14.75,
+            "top_z": 9.350000000000001
+          },
+          {
+            "index": 56,
+            "x_min": 14.75,
+            "x_max": 15.0,
+            "top_z": 9.520000000000001
+          },
+          {
+            "index": 57,
+            "x_min": 15.0,
+            "x_max": 15.25,
+            "top_z": 9.690000000000001
+          },
+          {
+            "index": 58,
+            "x_min": 15.25,
+            "x_max": 15.5,
+            "top_z": 9.860000000000001
+          },
+          {
+            "index": 59,
+            "x_min": 15.5,
+            "x_max": 15.75,
+            "top_z": 10.030000000000001
+          },
+          {
+            "index": 60,
+            "x_min": 15.75,
+            "x_max": 16.0,
+            "top_z": 10.200000000000001
+          },
+          {
+            "index": 61,
+            "x_min": 16.0,
+            "x_max": 16.25,
+            "top_z": 10.370000000000001
+          },
+          {
+            "index": 62,
+            "x_min": 16.25,
+            "x_max": 16.5,
+            "top_z": 10.540000000000001
+          },
+          {
+            "index": 63,
+            "x_min": 16.5,
+            "x_max": 16.75,
+            "top_z": 10.71
+          },
+          {
+            "index": 64,
+            "x_min": 16.75,
+            "x_max": 17.0,
+            "top_z": 10.88
+          },
+          {
+            "index": 65,
+            "x_min": 17.0,
+            "x_max": 17.25,
+            "top_z": 11.05
+          },
+          {
+            "index": 66,
+            "x_min": 17.25,
+            "x_max": 17.5,
+            "top_z": 11.22
+          },
+          {
+            "index": 67,
+            "x_min": 17.5,
+            "x_max": 17.75,
+            "top_z": 11.39
+          },
+          {
+            "index": 68,
+            "x_min": 17.75,
+            "x_max": 18.0,
+            "top_z": 11.56
+          },
+          {
+            "index": 69,
+            "x_min": 18.0,
+            "x_max": 18.25,
+            "top_z": 11.73
+          },
+          {
+            "index": 70,
+            "x_min": 18.25,
+            "x_max": 18.5,
+            "top_z": 11.9
+          },
+          {
+            "index": 71,
+            "x_min": 18.5,
+            "x_max": 18.75,
+            "top_z": 12.07
+          },
+          {
+            "index": 72,
+            "x_min": 18.75,
+            "x_max": 19.0,
+            "top_z": 12.24
+          },
+          {
+            "index": 73,
+            "x_min": 19.0,
+            "x_max": 19.25,
+            "top_z": 12.41
+          },
+          {
+            "index": 74,
+            "x_min": 19.25,
+            "x_max": 19.5,
+            "top_z": 12.58
+          },
+          {
+            "index": 75,
+            "x_min": 19.5,
+            "x_max": 19.75,
+            "top_z": 12.750000000000002
+          },
+          {
+            "index": 76,
+            "x_min": 19.75,
+            "x_max": 20.0,
+            "top_z": 12.920000000000002
+          },
+          {
+            "index": 77,
+            "x_min": 20.0,
+            "x_max": 20.25,
+            "top_z": 13.090000000000002
+          },
+          {
+            "index": 78,
+            "x_min": 20.25,
+            "x_max": 20.5,
+            "top_z": 13.260000000000002
+          },
+          {
+            "index": 79,
+            "x_min": 20.5,
+            "x_max": 20.75,
+            "top_z": 13.430000000000001
+          },
+          {
+            "index": 80,
+            "x_min": 20.75,
+            "x_max": 21.0,
+            "top_z": 13.600000000000001
+          },
+          {
+            "index": 81,
+            "x_min": 21.0,
+            "x_max": 21.25,
+            "top_z": 13.770000000000001
+          },
+          {
+            "index": 82,
+            "x_min": 21.25,
+            "x_max": 21.5,
+            "top_z": 13.940000000000001
+          },
+          {
+            "index": 83,
+            "x_min": 21.5,
+            "x_max": 21.75,
+            "top_z": 14.110000000000001
+          },
+          {
+            "index": 84,
+            "x_min": 21.75,
+            "x_max": 22.0,
+            "top_z": 14.280000000000001
+          },
+          {
+            "index": 85,
+            "x_min": 22.0,
+            "x_max": 22.25,
+            "top_z": 14.450000000000001
+          },
+          {
+            "index": 86,
+            "x_min": 22.25,
+            "x_max": 22.5,
+            "top_z": 14.620000000000001
+          },
+          {
+            "index": 87,
+            "x_min": 22.5,
+            "x_max": 22.75,
+            "top_z": 14.790000000000001
+          },
+          {
+            "index": 88,
+            "x_min": 22.75,
+            "x_max": 23.0,
+            "top_z": 14.96
+          },
+          {
+            "index": 89,
+            "x_min": 23.0,
+            "x_max": 23.25,
+            "top_z": 15.13
+          },
+          {
+            "index": 90,
+            "x_min": 23.25,
+            "x_max": 23.5,
+            "top_z": 15.3
+          },
+          {
+            "index": 91,
+            "x_min": 23.5,
+            "x_max": 23.75,
+            "top_z": 15.47
+          },
+          {
+            "index": 92,
+            "x_min": 23.75,
+            "x_max": 24.0,
+            "top_z": 15.64
+          },
+          {
+            "index": 93,
+            "x_min": 24.0,
+            "x_max": 24.25,
+            "top_z": 15.81
+          },
+          {
+            "index": 94,
+            "x_min": 24.25,
+            "x_max": 24.5,
+            "top_z": 15.98
+          },
+          {
+            "index": 95,
+            "x_min": 24.5,
+            "x_max": 24.75,
+            "top_z": 16.150000000000002
+          },
+          {
+            "index": 96,
+            "x_min": 24.75,
+            "x_max": 25.0,
+            "top_z": 16.32
+          },
+          {
+            "index": 97,
+            "x_min": 25.0,
+            "x_max": 25.25,
+            "top_z": 16.490000000000002
+          },
+          {
+            "index": 98,
+            "x_min": 25.25,
+            "x_max": 25.5,
+            "top_z": 16.66
+          },
+          {
+            "index": 99,
+            "x_min": 25.5,
+            "x_max": 25.75,
+            "top_z": 16.830000000000002
+          },
+          {
+            "index": 100,
+            "x_min": 25.75,
+            "x_max": 26.0,
+            "top_z": 17.0
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "independent_gate": {
+        "completion_fraction_recomputed": 0.0,
+        "traversal_assessable": true,
+        "motion_assessable": true,
+        "traversal_gate_passed": false,
+        "traversal_failed_terms": [
+          "completion_below_95pct",
+          "base_contact",
+          "fall_fraction_above_5pct",
+          "stalls_fraction_above_5pct",
+          "lateral_escapes_fraction_above_5pct"
+        ],
+        "motion_screen_passed": false,
+        "motion_failed_terms": [
+          "exceeds_reference:roll_peak_rad",
+          "exceeds_reference:longest_flight_pause_s"
+        ],
+        "numeric_screens_passed": false
+      },
+      "assessment": "FAIL",
+      "maximum_directed_progress_m": 19.14729881286621,
+      "maximum_estimated_root_risers_passed": 73,
+      "per_env": [
+        {
+          "environment_id": 0,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.06262588500976562,
+            -0.0464475154876709,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.802824974060059,
+          "max_directed_progress_from_initial_m": 10.865450859069824,
+          "estimated_root_risers_passed": 40,
+          "last_measured_root_relative_xyz_m": [
+            10.802824974060059,
+            0.4643421173095703,
+            7.032899379730225
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.026507377624512,
+              0.6565274000167847,
+              7.021242618560791
+            ],
+            [
+              11.224383354187012,
+              0.17422401905059814,
+              6.99373722076416
+            ],
+            [
+              10.61839485168457,
+              0.49661946296691895,
+              6.653392791748047
+            ],
+            [
+              10.67093276977539,
+              0.3251621723175049,
+              6.807893753051758
+            ]
+          ],
+          "first_episode_measured_duration_s": 45.05999755859375,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 1,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.002593994140625,
+            -0.04839885234832764,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 19.149892807006836,
+          "max_directed_progress_from_initial_m": 19.14729881286621,
+          "estimated_root_risers_passed": 73,
+          "last_measured_root_relative_xyz_m": [
+            19.12196159362793,
+            0.46002352237701416,
+            12.646049499511719
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              19.347061157226562,
+              0.6596032977104187,
+              12.383367538452148
+            ],
+            [
+              19.542177200317383,
+              0.28109073638916016,
+              12.781314849853516
+            ],
+            [
+              18.974063873291016,
+              0.5366256237030029,
+              12.26362133026123
+            ],
+            [
+              19.015060424804688,
+              0.30607080459594727,
+              12.43403148651123
+            ]
+          ],
+          "first_episode_measured_duration_s": 78.77999877929688,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 2,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.006590843200683594,
+            -0.02442145347595215,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.169544219970703,
+          "max_directed_progress_from_initial_m": 10.16295337677002,
+          "estimated_root_risers_passed": 37,
+          "last_measured_root_relative_xyz_m": [
+            10.150303840637207,
+            0.5279314517974854,
+            6.5093512535095215
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.402618408203125,
+              0.6218186020851135,
+              6.146810054779053
+            ],
+            [
+              10.545291900634766,
+              0.2687556743621826,
+              6.654259204864502
+            ],
+            [
+              9.925505638122559,
+              0.5441142320632935,
+              6.1431403160095215
+            ],
+            [
+              9.904571533203125,
+              0.36415600776672363,
+              6.395265579223633
+            ]
+          ],
+          "first_episode_measured_duration_s": 42.57999801635742,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 3,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.06606578826904297,
+            -0.078887939453125,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 13.653719902038574,
+          "max_directed_progress_from_initial_m": 13.587654113769531,
+          "estimated_root_risers_passed": 51,
+          "last_measured_root_relative_xyz_m": [
+            13.652323722839355,
+            0.4916987419128418,
+            8.889392852783203
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              13.888644218444824,
+              0.6219336986541748,
+              8.525374412536621
+            ],
+            [
+              13.9776611328125,
+              0.2717478275299072,
+              8.90323257446289
+            ],
+            [
+              13.391660690307617,
+              0.5715916156768799,
+              8.520785331726074
+            ],
+            [
+              13.500524520874023,
+              0.32861125469207764,
+              8.691841125488281
+            ]
+          ],
+          "first_episode_measured_duration_s": 70.76000213623047,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 4,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.043476104736328125,
+            0.059424400329589844,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 6.492371559143066,
+          "max_directed_progress_from_initial_m": 6.448895454406738,
+          "estimated_root_risers_passed": 22,
+          "last_measured_root_relative_xyz_m": [
+            6.492371559143066,
+            0.398189902305603,
+            4.056949138641357
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              6.676163673400879,
+              0.6555295586585999,
+              3.8064637184143066
+            ],
+            [
+              6.910452842712402,
+              0.24080991744995117,
+              4.230833053588867
+            ],
+            [
+              6.190950870513916,
+              0.351096510887146,
+              3.576551675796509
+            ],
+            [
+              6.405463695526123,
+              0.2550846338272095,
+              3.752087354660034
+            ]
+          ],
+          "first_episode_measured_duration_s": 34.15999984741211,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 5,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.060359954833984375,
+            -0.0732879638671875,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.668253898620605,
+          "max_directed_progress_from_initial_m": 10.607893943786621,
+          "estimated_root_risers_passed": 39,
+          "last_measured_root_relative_xyz_m": [
+            10.633941650390625,
+            0.525574803352356,
+            6.842088222503662
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.851814270019531,
+              0.6217542886734009,
+              6.483267784118652
+            ],
+            [
+              11.046504974365234,
+              0.256306529045105,
+              6.9949517250061035
+            ],
+            [
+              10.433808326721191,
+              0.5464816093444824,
+              6.483217716217041
+            ],
+            [
+              10.316367149353027,
+              0.3831838369369507,
+              6.597231864929199
+            ]
+          ],
+          "first_episode_measured_duration_s": 44.73999786376953,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 6,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.042334556579589844,
+            0.0006834268569946289,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 9.889610290527344,
+          "max_directed_progress_from_initial_m": 9.847275733947754,
+          "estimated_root_risers_passed": 36,
+          "last_measured_root_relative_xyz_m": [
+            9.889610290527344,
+            0.43121886253356934,
+            6.416820526123047
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.114974975585938,
+              0.6505236625671387,
+              6.152522087097168
+            ],
+            [
+              10.227659225463867,
+              0.20774853229522705,
+              6.376345634460449
+            ],
+            [
+              9.63874626159668,
+              0.4996678829193115,
+              5.976627349853516
+            ],
+            [
+              9.84909439086914,
+              0.32835185527801514,
+              6.143918514251709
+            ]
+          ],
+          "first_episode_measured_duration_s": 40.87999725341797,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 7,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.060782432556152344,
+            -0.0476994514465332,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 15.150813102722168,
+          "max_directed_progress_from_initial_m": 15.090030670166016,
+          "estimated_root_risers_passed": 57,
+          "last_measured_root_relative_xyz_m": [
+            15.150813102722168,
+            0.48473548889160156,
+            9.907517433166504
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              15.358245849609375,
+              0.6220555901527405,
+              9.5404691696167
+            ],
+            [
+              15.477538108825684,
+              0.28070032596588135,
+              9.92169189453125
+            ],
+            [
+              14.897673606872559,
+              0.5364381074905396,
+              9.542171478271484
+            ],
+            [
+              15.01382064819336,
+              0.3023371696472168,
+              9.713546752929688
+            ]
+          ],
+          "first_episode_measured_duration_s": 62.959999084472656,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 8,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.07958793640136719,
+            0.017618179321289062,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.31126594543457,
+          "max_directed_progress_from_initial_m": 11.231678009033203,
+          "estimated_root_risers_passed": 42,
+          "last_measured_root_relative_xyz_m": [
+            11.31126594543457,
+            0.49775397777557373,
+            7.32703971862793
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.56742000579834,
+              0.6221455931663513,
+              6.97624397277832
+            ],
+            [
+              11.70411205291748,
+              0.26899921894073486,
+              7.393856048583984
+            ],
+            [
+              11.092808723449707,
+              0.4931166172027588,
+              6.992325782775879
+            ],
+            [
+              11.153520584106445,
+              0.28627634048461914,
+              7.1819329261779785
+            ]
+          ],
+          "first_episode_measured_duration_s": 46.7599983215332,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 9,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.048562049865722656,
+            0.04680907726287842,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 8.670215606689453,
+          "max_directed_progress_from_initial_m": 8.62165355682373,
+          "estimated_root_risers_passed": 31,
+          "last_measured_root_relative_xyz_m": [
+            8.647378921508789,
+            0.5251554846763611,
+            5.488920211791992
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.896050453186035,
+              0.6217854619026184,
+              5.126262664794922
+            ],
+            [
+              9.045783042907715,
+              0.265008807182312,
+              5.634354591369629
+            ],
+            [
+              8.39902400970459,
+              0.5402762293815613,
+              5.122143268585205
+            ],
+            [
+              8.389548301696777,
+              0.36491596698760986,
+              5.330331325531006
+            ]
+          ],
+          "first_episode_measured_duration_s": 36.459999084472656,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 10,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.017607688903808594,
+            0.017936348915100098,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.054242134094238,
+          "max_directed_progress_from_initial_m": 10.071849822998047,
+          "estimated_root_risers_passed": 37,
+          "last_measured_root_relative_xyz_m": [
+            10.054242134094238,
+            0.4632089138031006,
+            6.525589466094971
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.291731834411621,
+              0.65450519323349,
+              6.51804780960083
+            ],
+            [
+              10.475113868713379,
+              0.17816221714019775,
+              6.4837493896484375
+            ],
+            [
+              9.872329711914062,
+              0.49632322788238525,
+              6.143405437469482
+            ],
+            [
+              9.930582046508789,
+              0.3226100206375122,
+              6.308351993560791
+            ]
+          ],
+          "first_episode_measured_duration_s": 41.65999984741211,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 11,
+          "completed": false,
+          "fall": false,
+          "stall": true,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.03641510009765625,
+            -0.03859353065490723,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.788335800170898,
+          "max_directed_progress_from_initial_m": 11.751920700073242,
+          "estimated_root_risers_passed": 44,
+          "last_measured_root_relative_xyz_m": [
+            11.783636093139648,
+            0.4985771179199219,
+            7.620298862457275
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              12.005598068237305,
+              0.621717631816864,
+              7.316749572753906
+            ],
+            [
+              12.164462089538574,
+              0.25799667835235596,
+              7.785857200622559
+            ],
+            [
+              11.454439163208008,
+              0.4836699962615967,
+              7.161718368530273
+            ],
+            [
+              11.56518268585205,
+              0.33517634868621826,
+              7.358482360839844
+            ]
+          ],
+          "first_episode_measured_duration_s": 64.68000030517578,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 12,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.04806709289550781,
+            -0.012181758880615234,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 17.268672943115234,
+          "max_directed_progress_from_initial_m": 17.316740036010742,
+          "estimated_root_risers_passed": 66,
+          "last_measured_root_relative_xyz_m": [
+            17.268190383911133,
+            0.5204640030860901,
+            11.320452690124512
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              17.43484115600586,
+              0.6215937733650208,
+              11.036640167236328
+            ],
+            [
+              17.624128341674805,
+              0.1950223445892334,
+              11.478864669799805
+            ],
+            [
+              17.14566421508789,
+              0.6213471293449402,
+              10.798294067382812
+            ],
+            [
+              16.95561408996582,
+              0.44519829750061035,
+              10.90207290649414
+            ]
+          ],
+          "first_episode_measured_duration_s": 89.13999938964844,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 13,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.07841300964355469,
+            -0.019939899444580078,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.400028228759766,
+          "max_directed_progress_from_initial_m": 11.321615219116211,
+          "estimated_root_risers_passed": 42,
+          "last_measured_root_relative_xyz_m": [
+            11.400028228759766,
+            0.48176121711730957,
+            7.3572564125061035
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.60903263092041,
+              0.622200071811676,
+              6.991026401519775
+            ],
+            [
+              11.727415084838867,
+              0.2863203287124634,
+              7.382491588592529
+            ],
+            [
+              11.163735389709473,
+              0.533458948135376,
+              6.992161750793457
+            ],
+            [
+              11.245285034179688,
+              0.2951235771179199,
+              7.163319110870361
+            ]
+          ],
+          "first_episode_measured_duration_s": 47.21999740600586,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 14,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.04221820831298828,
+            0.026842951774597168,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 8.79966926574707,
+          "max_directed_progress_from_initial_m": 8.757451057434082,
+          "estimated_root_risers_passed": 32,
+          "last_measured_root_relative_xyz_m": [
+            8.79965591430664,
+            0.5049026608467102,
+            5.626857757568359
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              9.038235664367676,
+              0.6220909357070923,
+              5.265523433685303
+            ],
+            [
+              9.18669319152832,
+              0.28745150566101074,
+              5.706327438354492
+            ],
+            [
+              8.579164505004883,
+              0.5127856135368347,
+              5.29331636428833
+            ],
+            [
+              8.593757629394531,
+              0.3109414577484131,
+              5.522341728210449
+            ]
+          ],
+          "first_episode_measured_duration_s": 36.47999954223633,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 15,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.042893409729003906,
+            -0.07551813125610352,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 15.046784400939941,
+          "max_directed_progress_from_initial_m": 15.089677810668945,
+          "estimated_root_risers_passed": 57,
+          "last_measured_root_relative_xyz_m": [
+            15.046784400939941,
+            0.472049355506897,
+            9.905385971069336
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              15.056628227233887,
+              0.6504190564155579,
+              9.789061546325684
+            ],
+            [
+              15.475144386291504,
+              0.17848777770996094,
+              9.88366985321045
+            ],
+            [
+              14.851564407348633,
+              0.4950143098831177,
+              9.543468475341797
+            ],
+            [
+              14.837718963623047,
+              0.32465827465057373,
+              9.652778625488281
+            ]
+          ],
+          "first_episode_measured_duration_s": 62.459999084472656,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 16,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.07107734680175781,
+            -0.014429569244384766,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 9.790009498596191,
+          "max_directed_progress_from_initial_m": 9.86108684539795,
+          "estimated_root_risers_passed": 36,
+          "last_measured_root_relative_xyz_m": [
+            9.790009498596191,
+            0.4854940176010132,
+            6.300168037414551
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              9.833366394042969,
+              0.6503317952156067,
+              5.990357398986816
+            ],
+            [
+              10.221092224121094,
+              0.23198437690734863,
+              6.353631973266602
+            ],
+            [
+              9.606582641601562,
+              0.4969440698623657,
+              5.973618507385254
+            ],
+            [
+              9.608701705932617,
+              0.2796822786331177,
+              6.118506908416748
+            ]
+          ],
+          "first_episode_measured_duration_s": 40.79999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 17,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.00852203369140625,
+            -0.03737199306488037,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.168163299560547,
+          "max_directed_progress_from_initial_m": 10.176685333251953,
+          "estimated_root_risers_passed": 37,
+          "last_measured_root_relative_xyz_m": [
+            10.134407997131348,
+            0.5370059609413147,
+            6.503649711608887
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.372645378112793,
+              0.6217535138130188,
+              6.142511367797852
+            ],
+            [
+              10.505315780639648,
+              0.2704002857208252,
+              6.652699947357178
+            ],
+            [
+              9.939472198486328,
+              0.5434834957122803,
+              6.143301486968994
+            ],
+            [
+              9.88192367553711,
+              0.37940287590026855,
+              6.393778324127197
+            ]
+          ],
+          "first_episode_measured_duration_s": 42.86000061035156,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 18,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.020445823669433594,
+            -0.021798014640808105,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.290157318115234,
+          "max_directed_progress_from_initial_m": 11.2697114944458,
+          "estimated_root_risers_passed": 42,
+          "last_measured_root_relative_xyz_m": [
+            11.290157318115234,
+            0.4628422260284424,
+            7.361204147338867
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.475805282592773,
+              0.6569410562515259,
+              7.333099365234375
+            ],
+            [
+              11.726018905639648,
+              0.17435574531555176,
+              7.333720684051514
+            ],
+            [
+              11.110617637634277,
+              0.48886656761169434,
+              6.993464469909668
+            ],
+            [
+              11.12899112701416,
+              0.3227728605270386,
+              7.119489669799805
+            ]
+          ],
+          "first_episode_measured_duration_s": 46.89999771118164,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 19,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.03347969055175781,
+            0.07450246810913086,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 8.319395065307617,
+          "max_directed_progress_from_initial_m": 8.352874755859375,
+          "estimated_root_risers_passed": 30,
+          "last_measured_root_relative_xyz_m": [
+            8.300239562988281,
+            0.33411455154418945,
+            5.224428653717041
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.538797378540039,
+              0.5867124199867249,
+              5.292609214782715
+            ],
+            [
+              8.731710433959961,
+              0.16656005382537842,
+              5.4455790519714355
+            ],
+            [
+              7.976195812225342,
+              0.42235302925109863,
+              4.816073894500732
+            ],
+            [
+              8.04936408996582,
+              0.1536087989807129,
+              4.730594635009766
+            ]
+          ],
+          "first_episode_measured_duration_s": 43.119998931884766,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 20,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.04537200927734375,
+            -0.05388200283050537,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 8.700199127197266,
+          "max_directed_progress_from_initial_m": 8.654827117919922,
+          "estimated_root_risers_passed": 31,
+          "last_measured_root_relative_xyz_m": [
+            8.66458511352539,
+            0.6150879263877869,
+            5.489856243133545
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.839629173278809,
+              0.6200545430183411,
+              5.109102725982666
+            ],
+            [
+              8.921854972839355,
+              0.29414165019989014,
+              5.48199987411499
+            ],
+            [
+              8.393646240234375,
+              0.5877867937088013,
+              5.1222076416015625
+            ],
+            [
+              8.440258026123047,
+              0.4702010154724121,
+              5.3322649002075195
+            ]
+          ],
+          "first_episode_measured_duration_s": 47.47999954223633,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 21,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.02729034423828125,
+            -0.006986260414123535,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.542516708374023,
+          "max_directed_progress_from_initial_m": 11.569807052612305,
+          "estimated_root_risers_passed": 43,
+          "last_measured_root_relative_xyz_m": [
+            11.542516708374023,
+            0.4905635118484497,
+            7.486767292022705
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.590493202209473,
+              0.6538299918174744,
+              7.173366546630859
+            ],
+            [
+              11.969797134399414,
+              0.2417696714401245,
+              7.548821926116943
+            ],
+            [
+              11.358832359313965,
+              0.5014318227767944,
+              7.163572788238525
+            ],
+            [
+              11.354879379272461,
+              0.27904343605041504,
+              7.311324119567871
+            ]
+          ],
+          "first_episode_measured_duration_s": 47.87999725341797,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 22,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.006466865539550781,
+            -0.059684157371520996,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 14.66161823272705,
+          "max_directed_progress_from_initial_m": 14.668085098266602,
+          "estimated_root_risers_passed": 55,
+          "last_measured_root_relative_xyz_m": [
+            14.652957916259766,
+            0.5086176991462708,
+            9.568549156188965
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              14.858928680419922,
+              0.6220142841339111,
+              9.201412200927734
+            ],
+            [
+              14.97745418548584,
+              0.2762165069580078,
+              9.597264289855957
+            ],
+            [
+              14.452359199523926,
+              0.5584734082221985,
+              9.203243255615234
+            ],
+            [
+              14.432724952697754,
+              0.32711851596832275,
+              9.346783638000488
+            ]
+          ],
+          "first_episode_measured_duration_s": 60.79999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 23,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.024666786193847656,
+            -0.0742107629776001,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.0663423538208,
+          "max_directed_progress_from_initial_m": 11.091009140014648,
+          "estimated_root_risers_passed": 41,
+          "last_measured_root_relative_xyz_m": [
+            11.0663423538208,
+            0.4970521926879883,
+            7.159860134124756
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.304132461547852,
+              0.6221358180046082,
+              6.805318832397461
+            ],
+            [
+              11.461112976074219,
+              0.2584507465362549,
+              7.216235160827637
+            ],
+            [
+              10.848583221435547,
+              0.49959588050842285,
+              6.823248386383057
+            ],
+            [
+              10.904500007629395,
+              0.2851269245147705,
+              7.001928329467773
+            ]
+          ],
+          "first_episode_measured_duration_s": 45.959999084472656,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 24,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.025592803955078125,
+            0.06402790546417236,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 8.654031753540039,
+          "max_directed_progress_from_initial_m": 8.628438949584961,
+          "estimated_root_risers_passed": 31,
+          "last_measured_root_relative_xyz_m": [
+            8.653077125549316,
+            0.4982408285140991,
+            5.489380359649658
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.885358810424805,
+              0.6221474409103394,
+              5.122769832611084
+            ],
+            [
+              8.977424621582031,
+              0.2856462001800537,
+              5.509303569793701
+            ],
+            [
+              8.398772239685059,
+              0.5803948044776917,
+              5.122960567474365
+            ],
+            [
+              8.463216781616211,
+              0.31295347213745117,
+              5.277195453643799
+            ]
+          ],
+          "first_episode_measured_duration_s": 36.15999984741211,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 25,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.03920269012451172,
+            -0.05577504634857178,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 12.66525650024414,
+          "max_directed_progress_from_initial_m": 12.704459190368652,
+          "estimated_root_risers_passed": 47,
+          "last_measured_root_relative_xyz_m": [
+            12.652860641479492,
+            0.5277469158172607,
+            8.20911979675293
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              12.879769325256348,
+              0.6217535734176636,
+              7.846643924713135
+            ],
+            [
+              13.04289436340332,
+              0.2629528045654297,
+              8.354860305786133
+            ],
+            [
+              12.445594787597656,
+              0.5564687848091125,
+              7.84326696395874
+            ],
+            [
+              12.392510414123535,
+              0.3688979148864746,
+              8.08043384552002
+            ]
+          ],
+          "first_episode_measured_duration_s": 53.05999755859375,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 26,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.05581188201904297,
+            -0.04907631874084473,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.64665412902832,
+          "max_directed_progress_from_initial_m": 11.590842247009277,
+          "estimated_root_risers_passed": 43,
+          "last_measured_root_relative_xyz_m": [
+            11.646577835083008,
+            0.49752771854400635,
+            7.529910087585449
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.936385154724121,
+              0.6219792366027832,
+              7.178956985473633
+            ],
+            [
+              11.974705696105957,
+              0.2190309762954712,
+              7.514069080352783
+            ],
+            [
+              11.435272216796875,
+              0.5674018263816833,
+              7.162059783935547
+            ],
+            [
+              11.538565635681152,
+              0.3443336486816406,
+              7.333497524261475
+            ]
+          ],
+          "first_episode_measured_duration_s": 47.959999084472656,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 27,
+          "completed": false,
+          "fall": false,
+          "stall": true,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.050579071044921875,
+            -0.01220393180847168,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 6.532425880432129,
+          "max_directed_progress_from_initial_m": 6.481846809387207,
+          "estimated_root_risers_passed": 23,
+          "last_measured_root_relative_xyz_m": [
+            6.525590419769287,
+            0.510404646396637,
+            4.029287338256836
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              6.7614216804504395,
+              0.6217926144599915,
+              3.7295100688934326
+            ],
+            [
+              6.950323104858398,
+              0.26559555530548096,
+              4.225889205932617
+            ],
+            [
+              6.172637462615967,
+              0.5864875912666321,
+              3.5681591033935547
+            ],
+            [
+              6.285065650939941,
+              0.34384262561798096,
+              3.7628743648529053
+            ]
+          ],
+          "first_episode_measured_duration_s": 38.119998931884766,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 28,
+          "completed": false,
+          "fall": false,
+          "stall": true,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.028533935546875,
+            0.014186859130859375,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 4.994058609008789,
+          "max_directed_progress_from_initial_m": 5.022592544555664,
+          "estimated_root_risers_passed": 16,
+          "last_measured_root_relative_xyz_m": [
+            4.993626594543457,
+            0.5630837082862854,
+            3.0247251987457275
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              5.193561553955078,
+              0.6212145090103149,
+              2.735175132751465
+            ],
+            [
+              5.252963066101074,
+              0.2385166883468628,
+              3.172376871109009
+            ],
+            [
+              4.70246696472168,
+              0.5112269520759583,
+              2.572404146194458
+            ],
+            [
+              4.765576362609863,
+              0.4283628463745117,
+              2.8221371173858643
+            ]
+          ],
+          "first_episode_measured_duration_s": 29.920000076293945,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 29,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.05856513977050781,
+            -0.007470965385437012,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.892315864562988,
+          "max_directed_progress_from_initial_m": 10.950881004333496,
+          "estimated_root_risers_passed": 40,
+          "last_measured_root_relative_xyz_m": [
+            10.892315864562988,
+            0.49295687675476074,
+            7.020798683166504
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              11.198837280273438,
+              0.6219630241394043,
+              6.666480541229248
+            ],
+            [
+              11.228252410888672,
+              0.19039428234100342,
+              6.99371337890625
+            ],
+            [
+              10.643556594848633,
+              0.5084846019744873,
+              6.652401447296143
+            ],
+            [
+              10.7772216796875,
+              0.3143293857574463,
+              6.823554039001465
+            ]
+          ],
+          "first_episode_measured_duration_s": 45.23999786376953,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 30,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.0353240966796875,
+            -0.015729665756225586,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 10.66307258605957,
+          "max_directed_progress_from_initial_m": 10.698396682739258,
+          "estimated_root_risers_passed": 39,
+          "last_measured_root_relative_xyz_m": [
+            10.639153480529785,
+            0.5413493514060974,
+            6.844801425933838
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.860610961914062,
+              0.6217414140701294,
+              6.480833530426025
+            ],
+            [
+              11.001070022583008,
+              0.2762613296508789,
+              6.99269437789917
+            ],
+            [
+              10.450189590454102,
+              0.5414427518844604,
+              6.483321189880371
+            ],
+            [
+              10.38570499420166,
+              0.38317060470581055,
+              6.735027313232422
+            ]
+          ],
+          "first_episode_measured_duration_s": 44.79999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 31,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.005043983459472656,
+            -0.06526148319244385,
+            0.4000000059604645
+          ],
+          "maximum_root_relative_x_m": 11.894109725952148,
+          "max_directed_progress_from_initial_m": 11.889065742492676,
+          "estimated_root_risers_passed": 44,
+          "last_measured_root_relative_xyz_m": [
+            11.894109725952148,
+            0.4940929412841797,
+            7.700273036956787
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              12.196938514709473,
+              0.6219547986984253,
+              7.348177909851074
+            ],
+            [
+              12.228154182434082,
+              0.20638751983642578,
+              7.677610874176025
+            ],
+            [
+              11.65774154663086,
+              0.5183448791503906,
+              7.33288049697876
+            ],
+            [
+              11.770276069641113,
+              0.31896281242370605,
+              7.503952980041504
+            ]
+          ],
+          "first_episode_measured_duration_s": 49.39999771118164,
+          "completion_time_s": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "num_envs": 32,
+      "passed": false,
+      "completion_fraction": 0.21875,
+      "completions": 7,
+      "falls": 3,
+      "stalls": 0,
+      "lateral_escapes": 22,
+      "base_contact_envs": 3,
+      "current_sample_base_contact_envs": 2,
+      "current_sample_shank_contact_envs": 32,
+      "contact_sample_counts": {
+        "environment_samples": 89833,
+        "history_contact_foot_samples": 266407,
+        "current_contact_foot_samples": 261134
+      },
+      "metrics": {
+        "flight_pause_fraction": 0.0008139156318310776,
+        "xy_tracking_mae_m_s": 0.04862468385199987,
+        "yaw_tracking_mae_rad_s": 0.03637718788317533,
+        "measured_vx_m_s": 0.2832524024172623,
+        "measured_vy_m_s": 0.0018136061189053668,
+        "heading_abs_error_rad": 0.007561712000197911,
+        "lateral_abs_error_m": 0.15025615225960057,
+        "torque_saturation_fraction": 4.638236272687108e-06,
+        "base_contact_step_fraction": 3.339530016808968e-05,
+        "shank_contact_step_fraction": 0.5172041454699275,
+        "current_sample_base_contact_step_fraction": 2.2263533445393117e-05,
+        "current_sample_shank_contact_step_fraction": 0.48871795442654703,
+        "contact_foot_horizontal_speed_m_s": 0.1925262107326435,
+        "foot_slip_fraction": 0.2546066641807556,
+        "current_sample_contact_foot_horizontal_speed_m_s": 0.17393013779399935,
+        "current_sample_foot_slip_fraction": 0.23980025947093964,
+        "xy_tracking_rmse_m_s": 0.05960731425937578,
+        "roll_rms_rad": 0.04914661345149168,
+        "pitch_rms_rad": 0.3582061502572579,
+        "linear_acceleration_rms_m_s2": 1.203442671609188,
+        "linear_jerk_rms_m_s3": 64.73127564781886,
+        "body_angular_acceleration_rms_rad_s2": 13.894978800620688,
+        "action_delta_rms": 0.15220931468228244,
+        "action_second_delta_rms": 0.0821553402695515,
+        "applied_torque_rms_nm": 4.720982119306067,
+        "peak_contact_force_n": 979.676025390625,
+        "roll_peak_rad": 0.8455368876457214,
+        "longest_flight_pause_s": 0.36000001430511475
+      },
+      "mean_max_progress_m": 13.850502014160156,
+      "geometry": {
+        "schema_version": 1,
+        "direction": "desc",
+        "travel_sign": 1,
+        "num_steps": 100,
+        "step_height": 0.17,
+        "step_depth": 0.25,
+        "width": 1.2,
+        "nosing": 0.0,
+        "nosing_thickness": 0.02,
+        "landing_length": 2.0,
+        "start_x": 0.0,
+        "first_riser_x": 1.0,
+        "last_riser_x": 25.75,
+        "goal_platform_start_x": 26.0,
+        "goal_x": 26.65,
+        "flight_end_x": 28.0,
+        "start_platform_z": 0.0,
+        "goal_platform_z": -17.0,
+        "lateral_center_y": 0.0,
+        "goal_dwell_s": 0.5,
+        "terrain_local_origin": [
+          1.5,
+          1.5,
+          17.0
+        ],
+        "terrain_size": [
+          30.0,
+          3.0
+        ],
+        "treads": [
+          {
+            "index": 1,
+            "x_min": 1.0,
+            "x_max": 1.25,
+            "top_z": -0.17
+          },
+          {
+            "index": 2,
+            "x_min": 1.25,
+            "x_max": 1.5,
+            "top_z": -0.34
+          },
+          {
+            "index": 3,
+            "x_min": 1.5,
+            "x_max": 1.75,
+            "top_z": -0.51
+          },
+          {
+            "index": 4,
+            "x_min": 1.75,
+            "x_max": 2.0,
+            "top_z": -0.68
+          },
+          {
+            "index": 5,
+            "x_min": 2.0,
+            "x_max": 2.25,
+            "top_z": -0.8500000000000001
+          },
+          {
+            "index": 6,
+            "x_min": 2.25,
+            "x_max": 2.5,
+            "top_z": -1.02
+          },
+          {
+            "index": 7,
+            "x_min": 2.5,
+            "x_max": 2.75,
+            "top_z": -1.1900000000000002
+          },
+          {
+            "index": 8,
+            "x_min": 2.75,
+            "x_max": 3.0,
+            "top_z": -1.36
+          },
+          {
+            "index": 9,
+            "x_min": 3.0,
+            "x_max": 3.25,
+            "top_z": -1.53
+          },
+          {
+            "index": 10,
+            "x_min": 3.25,
+            "x_max": 3.5,
+            "top_z": -1.7000000000000002
+          },
+          {
+            "index": 11,
+            "x_min": 3.5,
+            "x_max": 3.75,
+            "top_z": -1.87
+          },
+          {
+            "index": 12,
+            "x_min": 3.75,
+            "x_max": 4.0,
+            "top_z": -2.04
+          },
+          {
+            "index": 13,
+            "x_min": 4.0,
+            "x_max": 4.25,
+            "top_z": -2.21
+          },
+          {
+            "index": 14,
+            "x_min": 4.25,
+            "x_max": 4.5,
+            "top_z": -2.3800000000000003
+          },
+          {
+            "index": 15,
+            "x_min": 4.5,
+            "x_max": 4.75,
+            "top_z": -2.5500000000000003
+          },
+          {
+            "index": 16,
+            "x_min": 4.75,
+            "x_max": 5.0,
+            "top_z": -2.72
+          },
+          {
+            "index": 17,
+            "x_min": 5.0,
+            "x_max": 5.25,
+            "top_z": -2.89
+          },
+          {
+            "index": 18,
+            "x_min": 5.25,
+            "x_max": 5.5,
+            "top_z": -3.06
+          },
+          {
+            "index": 19,
+            "x_min": 5.5,
+            "x_max": 5.75,
+            "top_z": -3.2300000000000004
+          },
+          {
+            "index": 20,
+            "x_min": 5.75,
+            "x_max": 6.0,
+            "top_z": -3.4000000000000004
+          },
+          {
+            "index": 21,
+            "x_min": 6.0,
+            "x_max": 6.25,
+            "top_z": -3.5700000000000003
+          },
+          {
+            "index": 22,
+            "x_min": 6.25,
+            "x_max": 6.5,
+            "top_z": -3.74
+          },
+          {
+            "index": 23,
+            "x_min": 6.5,
+            "x_max": 6.75,
+            "top_z": -3.91
+          },
+          {
+            "index": 24,
+            "x_min": 6.75,
+            "x_max": 7.0,
+            "top_z": -4.08
+          },
+          {
+            "index": 25,
+            "x_min": 7.0,
+            "x_max": 7.25,
+            "top_z": -4.25
+          },
+          {
+            "index": 26,
+            "x_min": 7.25,
+            "x_max": 7.5,
+            "top_z": -4.42
+          },
+          {
+            "index": 27,
+            "x_min": 7.5,
+            "x_max": 7.75,
+            "top_z": -4.590000000000001
+          },
+          {
+            "index": 28,
+            "x_min": 7.75,
+            "x_max": 8.0,
+            "top_z": -4.760000000000001
+          },
+          {
+            "index": 29,
+            "x_min": 8.0,
+            "x_max": 8.25,
+            "top_z": -4.930000000000001
+          },
+          {
+            "index": 30,
+            "x_min": 8.25,
+            "x_max": 8.5,
+            "top_z": -5.1000000000000005
+          },
+          {
+            "index": 31,
+            "x_min": 8.5,
+            "x_max": 8.75,
+            "top_z": -5.2700000000000005
+          },
+          {
+            "index": 32,
+            "x_min": 8.75,
+            "x_max": 9.0,
+            "top_z": -5.44
+          },
+          {
+            "index": 33,
+            "x_min": 9.0,
+            "x_max": 9.25,
+            "top_z": -5.61
+          },
+          {
+            "index": 34,
+            "x_min": 9.25,
+            "x_max": 9.5,
+            "top_z": -5.78
+          },
+          {
+            "index": 35,
+            "x_min": 9.5,
+            "x_max": 9.75,
+            "top_z": -5.95
+          },
+          {
+            "index": 36,
+            "x_min": 9.75,
+            "x_max": 10.0,
+            "top_z": -6.12
+          },
+          {
+            "index": 37,
+            "x_min": 10.0,
+            "x_max": 10.25,
+            "top_z": -6.29
+          },
+          {
+            "index": 38,
+            "x_min": 10.25,
+            "x_max": 10.5,
+            "top_z": -6.460000000000001
+          },
+          {
+            "index": 39,
+            "x_min": 10.5,
+            "x_max": 10.75,
+            "top_z": -6.630000000000001
+          },
+          {
+            "index": 40,
+            "x_min": 10.75,
+            "x_max": 11.0,
+            "top_z": -6.800000000000001
+          },
+          {
+            "index": 41,
+            "x_min": 11.0,
+            "x_max": 11.25,
+            "top_z": -6.970000000000001
+          },
+          {
+            "index": 42,
+            "x_min": 11.25,
+            "x_max": 11.5,
+            "top_z": -7.140000000000001
+          },
+          {
+            "index": 43,
+            "x_min": 11.5,
+            "x_max": 11.75,
+            "top_z": -7.3100000000000005
+          },
+          {
+            "index": 44,
+            "x_min": 11.75,
+            "x_max": 12.0,
+            "top_z": -7.48
+          },
+          {
+            "index": 45,
+            "x_min": 12.0,
+            "x_max": 12.25,
+            "top_z": -7.65
+          },
+          {
+            "index": 46,
+            "x_min": 12.25,
+            "x_max": 12.5,
+            "top_z": -7.82
+          },
+          {
+            "index": 47,
+            "x_min": 12.5,
+            "x_max": 12.75,
+            "top_z": -7.99
+          },
+          {
+            "index": 48,
+            "x_min": 12.75,
+            "x_max": 13.0,
+            "top_z": -8.16
+          },
+          {
+            "index": 49,
+            "x_min": 13.0,
+            "x_max": 13.25,
+            "top_z": -8.33
+          },
+          {
+            "index": 50,
+            "x_min": 13.25,
+            "x_max": 13.5,
+            "top_z": -8.5
+          },
+          {
+            "index": 51,
+            "x_min": 13.5,
+            "x_max": 13.75,
+            "top_z": -8.67
+          },
+          {
+            "index": 52,
+            "x_min": 13.75,
+            "x_max": 14.0,
+            "top_z": -8.84
+          },
+          {
+            "index": 53,
+            "x_min": 14.0,
+            "x_max": 14.25,
+            "top_z": -9.01
+          },
+          {
+            "index": 54,
+            "x_min": 14.25,
+            "x_max": 14.5,
+            "top_z": -9.180000000000001
+          },
+          {
+            "index": 55,
+            "x_min": 14.5,
+            "x_max": 14.75,
+            "top_z": -9.350000000000001
+          },
+          {
+            "index": 56,
+            "x_min": 14.75,
+            "x_max": 15.0,
+            "top_z": -9.520000000000001
+          },
+          {
+            "index": 57,
+            "x_min": 15.0,
+            "x_max": 15.25,
+            "top_z": -9.690000000000001
+          },
+          {
+            "index": 58,
+            "x_min": 15.25,
+            "x_max": 15.5,
+            "top_z": -9.860000000000001
+          },
+          {
+            "index": 59,
+            "x_min": 15.5,
+            "x_max": 15.75,
+            "top_z": -10.030000000000001
+          },
+          {
+            "index": 60,
+            "x_min": 15.75,
+            "x_max": 16.0,
+            "top_z": -10.200000000000001
+          },
+          {
+            "index": 61,
+            "x_min": 16.0,
+            "x_max": 16.25,
+            "top_z": -10.370000000000001
+          },
+          {
+            "index": 62,
+            "x_min": 16.25,
+            "x_max": 16.5,
+            "top_z": -10.540000000000001
+          },
+          {
+            "index": 63,
+            "x_min": 16.5,
+            "x_max": 16.75,
+            "top_z": -10.71
+          },
+          {
+            "index": 64,
+            "x_min": 16.75,
+            "x_max": 17.0,
+            "top_z": -10.88
+          },
+          {
+            "index": 65,
+            "x_min": 17.0,
+            "x_max": 17.25,
+            "top_z": -11.05
+          },
+          {
+            "index": 66,
+            "x_min": 17.25,
+            "x_max": 17.5,
+            "top_z": -11.22
+          },
+          {
+            "index": 67,
+            "x_min": 17.5,
+            "x_max": 17.75,
+            "top_z": -11.39
+          },
+          {
+            "index": 68,
+            "x_min": 17.75,
+            "x_max": 18.0,
+            "top_z": -11.56
+          },
+          {
+            "index": 69,
+            "x_min": 18.0,
+            "x_max": 18.25,
+            "top_z": -11.73
+          },
+          {
+            "index": 70,
+            "x_min": 18.25,
+            "x_max": 18.5,
+            "top_z": -11.9
+          },
+          {
+            "index": 71,
+            "x_min": 18.5,
+            "x_max": 18.75,
+            "top_z": -12.07
+          },
+          {
+            "index": 72,
+            "x_min": 18.75,
+            "x_max": 19.0,
+            "top_z": -12.24
+          },
+          {
+            "index": 73,
+            "x_min": 19.0,
+            "x_max": 19.25,
+            "top_z": -12.41
+          },
+          {
+            "index": 74,
+            "x_min": 19.25,
+            "x_max": 19.5,
+            "top_z": -12.58
+          },
+          {
+            "index": 75,
+            "x_min": 19.5,
+            "x_max": 19.75,
+            "top_z": -12.750000000000002
+          },
+          {
+            "index": 76,
+            "x_min": 19.75,
+            "x_max": 20.0,
+            "top_z": -12.920000000000002
+          },
+          {
+            "index": 77,
+            "x_min": 20.0,
+            "x_max": 20.25,
+            "top_z": -13.090000000000002
+          },
+          {
+            "index": 78,
+            "x_min": 20.25,
+            "x_max": 20.5,
+            "top_z": -13.260000000000002
+          },
+          {
+            "index": 79,
+            "x_min": 20.5,
+            "x_max": 20.75,
+            "top_z": -13.430000000000001
+          },
+          {
+            "index": 80,
+            "x_min": 20.75,
+            "x_max": 21.0,
+            "top_z": -13.600000000000001
+          },
+          {
+            "index": 81,
+            "x_min": 21.0,
+            "x_max": 21.25,
+            "top_z": -13.770000000000001
+          },
+          {
+            "index": 82,
+            "x_min": 21.25,
+            "x_max": 21.5,
+            "top_z": -13.940000000000001
+          },
+          {
+            "index": 83,
+            "x_min": 21.5,
+            "x_max": 21.75,
+            "top_z": -14.110000000000001
+          },
+          {
+            "index": 84,
+            "x_min": 21.75,
+            "x_max": 22.0,
+            "top_z": -14.280000000000001
+          },
+          {
+            "index": 85,
+            "x_min": 22.0,
+            "x_max": 22.25,
+            "top_z": -14.450000000000001
+          },
+          {
+            "index": 86,
+            "x_min": 22.25,
+            "x_max": 22.5,
+            "top_z": -14.620000000000001
+          },
+          {
+            "index": 87,
+            "x_min": 22.5,
+            "x_max": 22.75,
+            "top_z": -14.790000000000001
+          },
+          {
+            "index": 88,
+            "x_min": 22.75,
+            "x_max": 23.0,
+            "top_z": -14.96
+          },
+          {
+            "index": 89,
+            "x_min": 23.0,
+            "x_max": 23.25,
+            "top_z": -15.13
+          },
+          {
+            "index": 90,
+            "x_min": 23.25,
+            "x_max": 23.5,
+            "top_z": -15.3
+          },
+          {
+            "index": 91,
+            "x_min": 23.5,
+            "x_max": 23.75,
+            "top_z": -15.47
+          },
+          {
+            "index": 92,
+            "x_min": 23.75,
+            "x_max": 24.0,
+            "top_z": -15.64
+          },
+          {
+            "index": 93,
+            "x_min": 24.0,
+            "x_max": 24.25,
+            "top_z": -15.81
+          },
+          {
+            "index": 94,
+            "x_min": 24.25,
+            "x_max": 24.5,
+            "top_z": -15.98
+          },
+          {
+            "index": 95,
+            "x_min": 24.5,
+            "x_max": 24.75,
+            "top_z": -16.150000000000002
+          },
+          {
+            "index": 96,
+            "x_min": 24.75,
+            "x_max": 25.0,
+            "top_z": -16.32
+          },
+          {
+            "index": 97,
+            "x_min": 25.0,
+            "x_max": 25.25,
+            "top_z": -16.490000000000002
+          },
+          {
+            "index": 98,
+            "x_min": 25.25,
+            "x_max": 25.5,
+            "top_z": -16.66
+          },
+          {
+            "index": 99,
+            "x_min": 25.5,
+            "x_max": 25.75,
+            "top_z": -16.830000000000002
+          },
+          {
+            "index": 100,
+            "x_min": 25.75,
+            "x_max": 26.0,
+            "top_z": -17.0
+          }
+        ],
+        "collision_representation": "closed triangle meshes with physical overhang undersides",
+        "convert_to_heightfield": false
+      },
+      "independent_gate": {
+        "completion_fraction_recomputed": 0.21875,
+        "traversal_assessable": true,
+        "motion_assessable": true,
+        "traversal_gate_passed": false,
+        "traversal_failed_terms": [
+          "completion_below_95pct",
+          "base_contact",
+          "fall_fraction_above_5pct",
+          "lateral_escapes_fraction_above_5pct"
+        ],
+        "motion_screen_passed": false,
+        "motion_failed_terms": [
+          "exceeds_reference:roll_peak_rad"
+        ],
+        "numeric_screens_passed": false
+      },
+      "assessment": "FAIL",
+      "maximum_directed_progress_m": 26.82908058166504,
+      "maximum_estimated_root_risers_passed": 100,
+      "per_env": [
+        {
+          "environment_id": 32,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.010366439819335938,
+            0.011319994926452637,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.762666702270508,
+          "max_directed_progress_from_initial_m": 8.752300262451172,
+          "estimated_root_risers_passed": 32,
+          "last_measured_root_relative_xyz_m": [
+            8.762666702270508,
+            -0.36733293533325195,
+            -5.039328575134277
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.992151260375977,
+              -0.256030797958374,
+              -5.416399955749512
+            ],
+            [
+              8.887677192687988,
+              -0.3939574956893921,
+              -5.417140960693359
+            ],
+            [
+              8.380008697509766,
+              -0.20817530155181885,
+              -5.078108787536621
+            ],
+            [
+              8.395984649658203,
+              -0.652269721031189,
+              -5.176048278808594
+            ]
+          ],
+          "first_episode_measured_duration_s": 34.29999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 33,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.0006055831909179688,
+            -0.06958019733428955,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.514500617980957,
+          "max_directed_progress_from_initial_m": 7.515106201171875,
+          "estimated_root_risers_passed": 27,
+          "last_measured_root_relative_xyz_m": [
+            7.514500617980957,
+            -0.3669745922088623,
+            -4.189505577087402
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.74580717086792,
+              -0.2559307813644409,
+              -4.567339897155762
+            ],
+            [
+              7.628366470336914,
+              -0.39006829261779785,
+              -4.567351341247559
+            ],
+            [
+              7.130440711975098,
+              -0.20799148082733154,
+              -4.228207588195801
+            ],
+            [
+              7.150876045227051,
+              -0.6521552205085754,
+              -4.326137542724609
+            ]
+          ],
+          "first_episode_measured_duration_s": 29.399999618530273,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 34,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.0227203369140625,
+            -0.04097414016723633,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.41864013671875,
+          "max_directed_progress_from_initial_m": 8.441360473632812,
+          "estimated_root_risers_passed": 30,
+          "last_measured_root_relative_xyz_m": [
+            8.41864013671875,
+            -0.36240172386169434,
+            -4.790851593017578
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.490724563598633,
+              -0.2355133295059204,
+              -5.077095985412598
+            ],
+            [
+              8.588708877563477,
+              -0.39044201374053955,
+              -5.247152328491211
+            ],
+            [
+              8.113698959350586,
+              -0.21726417541503906,
+              -4.907135963439941
+            ],
+            [
+              8.000244140625,
+              -0.6541751623153687,
+              -4.826512336730957
+            ]
+          ],
+          "first_episode_measured_duration_s": 33.040000915527344,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 35,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.053254127502441406,
+            -0.05806159973144531,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.77471160888672,
+          "max_directed_progress_from_initial_m": 26.721458435058594,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.77471351623535,
+            0.4017770290374756,
+            -16.76552963256836
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.113834381103516,
+              0.532353401184082,
+              -16.987699508666992
+            ],
+            [
+              27.220178604125977,
+              0.2807743549346924,
+              -16.97615623474121
+            ],
+            [
+              26.32996368408203,
+              0.5013155937194824,
+              -16.978540420532227
+            ],
+            [
+              26.498855590820312,
+              0.24457287788391113,
+              -16.977815628051758
+            ]
+          ],
+          "first_episode_measured_duration_s": 116.83999633789062,
+          "completion_time_s": 116.83999633789062
+        },
+        {
+          "environment_id": 36,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.035490989685058594,
+            0.006423354148864746,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 17.026962280273438,
+          "max_directed_progress_from_initial_m": 16.991470336914062,
+          "estimated_root_risers_passed": 65,
+          "last_measured_root_relative_xyz_m": [
+            16.940881729125977,
+            0.6282117366790771,
+            -10.796747207641602
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              17.110084533691406,
+              0.5397236347198486,
+              -11.027868270874023
+            ],
+            [
+              17.302656173706055,
+              0.3232811689376831,
+              -10.742629051208496
+            ],
+            [
+              16.55569076538086,
+              0.6216943264007568,
+              -11.134807586669922
+            ],
+            [
+              16.61594009399414,
+              0.39952385425567627,
+              -10.687782287597656
+            ]
+          ],
+          "first_episode_measured_duration_s": 72.5999984741211,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 37,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.0052814483642578125,
+            -0.046642422676086426,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.275153160095215,
+          "max_directed_progress_from_initial_m": 7.280434608459473,
+          "estimated_root_risers_passed": 26,
+          "last_measured_root_relative_xyz_m": [
+            7.275153160095215,
+            -0.3625326156616211,
+            -4.023104667663574
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.485215187072754,
+              -0.24612867832183838,
+              -4.396434783935547
+            ],
+            [
+              7.409116744995117,
+              -0.3932178020477295,
+              -4.397080421447754
+            ],
+            [
+              6.884797096252441,
+              -0.20359158515930176,
+              -4.058195114135742
+            ],
+            [
+              6.906834125518799,
+              -0.6535024642944336,
+              -4.152814865112305
+            ]
+          ],
+          "first_episode_measured_duration_s": 28.5,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 38,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.0701303482055664,
+            -0.006848812103271484,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.774136066436768,
+          "max_directed_progress_from_initial_m": 7.704005718231201,
+          "estimated_root_risers_passed": 28,
+          "last_measured_root_relative_xyz_m": [
+            7.774136066436768,
+            -0.36436569690704346,
+            -4.364997863769531
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.987259864807129,
+              -0.2468721866607666,
+              -4.736424446105957
+            ],
+            [
+              7.920243263244629,
+              -0.39548492431640625,
+              -4.736989974975586
+            ],
+            [
+              7.3785200119018555,
+              -0.2029033899307251,
+              -4.398244857788086
+            ],
+            [
+              7.404357433319092,
+              -0.655456006526947,
+              -4.495945930480957
+            ]
+          ],
+          "first_episode_measured_duration_s": 30.059999465942383,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 39,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.038516998291015625,
+            -0.04203188419342041,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.782593250274658,
+          "max_directed_progress_from_initial_m": 7.744076251983643,
+          "estimated_root_risers_passed": 28,
+          "last_measured_root_relative_xyz_m": [
+            7.782593250274658,
+            -0.3541533946990967,
+            -4.3658246994018555
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.973452091217041,
+              -0.23989546298980713,
+              -4.736483573913574
+            ],
+            [
+              7.964817047119141,
+              -0.39078211784362793,
+              -4.736767768859863
+            ],
+            [
+              7.380687236785889,
+              -0.19500517845153809,
+              -4.398312568664551
+            ],
+            [
+              7.40761137008667,
+              -0.6517825722694397,
+              -4.481534004211426
+            ]
+          ],
+          "first_episode_measured_duration_s": 30.34000015258789,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 40,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.011040687561035156,
+            -0.0001157522201538086,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.78604507446289,
+          "max_directed_progress_from_initial_m": 26.79708480834961,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.78604507446289,
+            -0.012410402297973633,
+            -16.760578155517578
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.036821365356445,
+              0.11529970169067383,
+              -16.977293014526367
+            ],
+            [
+              27.274534225463867,
+              -0.13090085983276367,
+              -16.97614097595215
+            ],
+            [
+              26.526653289794922,
+              0.07934904098510742,
+              -16.976816177368164
+            ],
+            [
+              26.449716567993164,
+              -0.16692686080932617,
+              -16.977752685546875
+            ]
+          ],
+          "first_episode_measured_duration_s": 114.91999816894531,
+          "completion_time_s": 114.91999816894531
+        },
+        {
+          "environment_id": 41,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.019491195678710938,
+            -0.05536222457885742,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.54058837890625,
+          "max_directed_progress_from_initial_m": 8.521097183227539,
+          "estimated_root_risers_passed": 31,
+          "last_measured_root_relative_xyz_m": [
+            8.54058837890625,
+            -0.3536953926086426,
+            -4.880807876586914
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.717180252075195,
+              -0.2406463623046875,
+              -5.247230529785156
+            ],
+            [
+              8.743879318237305,
+              -0.389354944229126,
+              -5.2469682693481445
+            ],
+            [
+              8.13896369934082,
+              -0.1934216022491455,
+              -4.908434867858887
+            ],
+            [
+              8.16962718963623,
+              -0.6566678881645203,
+              -4.997763633728027
+            ]
+          ],
+          "first_episode_measured_duration_s": 33.79999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 42,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.048610687255859375,
+            -0.021054863929748535,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.765520095825195,
+          "max_directed_progress_from_initial_m": 7.716909408569336,
+          "estimated_root_risers_passed": 28,
+          "last_measured_root_relative_xyz_m": [
+            7.765520095825195,
+            -0.3692730665206909,
+            -4.3587446212768555
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.999548435211182,
+              -0.2575981616973877,
+              -4.736405372619629
+            ],
+            [
+              7.875086307525635,
+              -0.39086246490478516,
+              -4.737236976623535
+            ],
+            [
+              7.384121894836426,
+              -0.20710277557373047,
+              -4.398100852966309
+            ],
+            [
+              7.404305458068848,
+              -0.6523367762565613,
+              -4.497870445251465
+            ]
+          ],
+          "first_episode_measured_duration_s": 30.17999839782715,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 43,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.000347137451171875,
+            0.06153082847595215,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 19.869731903076172,
+          "max_directed_progress_from_initial_m": 19.869384765625,
+          "estimated_root_risers_passed": 76,
+          "last_measured_root_relative_xyz_m": [
+            19.866891860961914,
+            0.5262327194213867,
+            -12.67857551574707
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              19.89588165283203,
+              0.5756537914276123,
+              -12.924688339233398
+            ],
+            [
+              20.197189331054688,
+              0.32836949825286865,
+              -12.956253051757812
+            ],
+            [
+              19.485877990722656,
+              0.6613783836364746,
+              -12.850868225097656
+            ],
+            [
+              19.430862426757812,
+              0.2679460048675537,
+              -12.558760643005371
+            ]
+          ],
+          "first_episode_measured_duration_s": 84.22000122070312,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 44,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.013111114501953125,
+            0.06949663162231445,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 17.022260665893555,
+          "max_directed_progress_from_initial_m": 17.035371780395508,
+          "estimated_root_risers_passed": 65,
+          "last_measured_root_relative_xyz_m": [
+            16.96572494506836,
+            0.5460636615753174,
+            -10.801950454711914
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              17.12748146057129,
+              0.5690891742706299,
+              -11.041400909423828
+            ],
+            [
+              17.34836769104004,
+              0.28121185302734375,
+              -11.01060962677002
+            ],
+            [
+              16.586750030517578,
+              0.6217441558837891,
+              -11.11149787902832
+            ],
+            [
+              16.610288619995117,
+              0.25993824005126953,
+              -10.688855171203613
+            ]
+          ],
+          "first_episode_measured_duration_s": 72.36000061035156,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 45,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.012280464172363281,
+            -0.02328205108642578,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.433013916015625,
+          "max_directed_progress_from_initial_m": 8.420733451843262,
+          "estimated_root_risers_passed": 30,
+          "last_measured_root_relative_xyz_m": [
+            8.433013916015625,
+            -0.35710155963897705,
+            -4.798179626464844
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.56193733215332,
+              -0.2204822301864624,
+              -5.094656944274902
+            ],
+            [
+              8.58981704711914,
+              -0.38626646995544434,
+              -5.2471923828125
+            ],
+            [
+              8.125164985656738,
+              -0.20671546459197998,
+              -4.907196044921875
+            ],
+            [
+              8.017557144165039,
+              -0.65004563331604,
+              -4.811239242553711
+            ]
+          ],
+          "first_episode_measured_duration_s": 33.040000915527344,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 46,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.06151866912841797,
+            -0.07335984706878662,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.035093784332275,
+          "max_directed_progress_from_initial_m": 7.096612453460693,
+          "estimated_root_risers_passed": 25,
+          "last_measured_root_relative_xyz_m": [
+            7.035093784332275,
+            -0.3546478748321533,
+            -3.8574905395507812
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.225505352020264,
+              -0.24091041088104248,
+              -4.22647762298584
+            ],
+            [
+              7.2230143547058105,
+              -0.3901921510696411,
+              -4.226741790771484
+            ],
+            [
+              6.6370744705200195,
+              -0.19359445571899414,
+              -3.888286590576172
+            ],
+            [
+              6.659704685211182,
+              -0.6529985666275024,
+              -3.9733047485351562
+            ]
+          ],
+          "first_episode_measured_duration_s": 28.18000030517578,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 47,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.0028133392333984375,
+            0.05263972282409668,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.782150268554688,
+          "max_directed_progress_from_initial_m": 26.784963607788086,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.782150268554688,
+            0.026404380798339844,
+            -16.76089096069336
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.04307746887207,
+              0.15488946437835693,
+              -16.977293014526367
+            ],
+            [
+              27.27001190185547,
+              -0.09005546569824219,
+              -16.976091384887695
+            ],
+            [
+              26.50296401977539,
+              0.11821222305297852,
+              -16.976970672607422
+            ],
+            [
+              26.45573616027832,
+              -0.12892305850982666,
+              -16.97771453857422
+            ]
+          ],
+          "first_episode_measured_duration_s": 114.33999633789062,
+          "completion_time_s": 114.33999633789062
+        },
+        {
+          "environment_id": 48,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.013299942016601562,
+            0.019054055213928223,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.778301239013672,
+          "max_directed_progress_from_initial_m": 26.791601181030273,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.778301239013672,
+            0.20954430103302002,
+            -16.76028060913086
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.159255981445312,
+              0.3460807800292969,
+              -16.97588348388672
+            ],
+            [
+              27.186607360839844,
+              0.0923762321472168,
+              -16.977130889892578
+            ],
+            [
+              26.457233428955078,
+              0.3007892370223999,
+              -16.977733612060547
+            ],
+            [
+              26.588064193725586,
+              0.05418515205383301,
+              -16.976377487182617
+            ]
+          ],
+          "first_episode_measured_duration_s": 114.07999420166016,
+          "completion_time_s": 114.08000183105469
+        },
+        {
+          "environment_id": 49,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.07404613494873047,
+            0.07493948936462402,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 9.777647018432617,
+          "max_directed_progress_from_initial_m": 9.703600883483887,
+          "estimated_root_risers_passed": 36,
+          "last_measured_root_relative_xyz_m": [
+            9.777647018432617,
+            -0.36116349697113037,
+            -5.724472999572754
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              9.980619430541992,
+              -0.24505722522735596,
+              -6.09645938873291
+            ],
+            [
+              9.920623779296875,
+              -0.39233505725860596,
+              -6.097016334533691
+            ],
+            [
+              9.386415481567383,
+              -0.19912874698638916,
+              -5.758209228515625
+            ],
+            [
+              9.407793045043945,
+              -0.6539400219917297,
+              -5.851568222045898
+            ]
+          ],
+          "first_episode_measured_duration_s": 38.0,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 50,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.07559394836425781,
+            0.009627342224121094,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.269768714904785,
+          "max_directed_progress_from_initial_m": 8.194174766540527,
+          "estimated_root_risers_passed": 30,
+          "last_measured_root_relative_xyz_m": [
+            8.269768714904785,
+            -0.3670715093612671,
+            -4.702530860900879
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.495691299438477,
+              -0.25350308418273926,
+              -5.076399803161621
+            ],
+            [
+              8.406517028808594,
+              -0.3945358991622925,
+              -5.077059745788574
+            ],
+            [
+              7.883935451507568,
+              -0.2045905590057373,
+              -4.738144874572754
+            ],
+            [
+              7.902134418487549,
+              -0.6539575457572937,
+              -4.837338447570801
+            ]
+          ],
+          "first_episode_measured_duration_s": 32.05999755859375,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 51,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.030861854553222656,
+            -0.0031229257583618164,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.77047348022461,
+          "max_directed_progress_from_initial_m": 26.739612579345703,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.77047348022461,
+            0.3974555730819702,
+            -16.76854705810547
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.006580352783203,
+              0.5167720317840576,
+              -16.992155075073242
+            ],
+            [
+              27.250837326049805,
+              0.26588213443756104,
+              -16.97635841369629
+            ],
+            [
+              26.501079559326172,
+              0.49514269828796387,
+              -16.977027893066406
+            ],
+            [
+              26.400962829589844,
+              0.24770867824554443,
+              -16.977907180786133
+            ]
+          ],
+          "first_episode_measured_duration_s": 111.41999816894531,
+          "completion_time_s": 111.41999816894531
+        },
+        {
+          "environment_id": 52,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.04925060272216797,
+            0.04236924648284912,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 17.880382537841797,
+          "max_directed_progress_from_initial_m": 17.92963409423828,
+          "estimated_root_risers_passed": 68,
+          "last_measured_root_relative_xyz_m": [
+            17.880382537841797,
+            0.53271484375,
+            -11.332931518554688
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              17.864002227783203,
+              0.5574111938476562,
+              -11.538286209106445
+            ],
+            [
+              18.213211059570312,
+              0.29777050018310547,
+              -11.624696731567383
+            ],
+            [
+              17.526491165161133,
+              0.6582765579223633,
+              -11.530328750610352
+            ],
+            [
+              17.435810089111328,
+              0.28859663009643555,
+              -11.197858810424805
+            ]
+          ],
+          "first_episode_measured_duration_s": 75.25999450683594,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 53,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.04001903533935547,
+            0.019432425498962402,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.763840675354004,
+          "max_directed_progress_from_initial_m": 8.723821640014648,
+          "estimated_root_risers_passed": 32,
+          "last_measured_root_relative_xyz_m": [
+            8.763840675354004,
+            -0.37085700035095215,
+            -5.0402631759643555
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.99610710144043,
+              -0.258331298828125,
+              -5.4164018630981445
+            ],
+            [
+              8.879524230957031,
+              -0.39353644847869873,
+              -5.417202949523926
+            ],
+            [
+              8.382105827331543,
+              -0.20951735973358154,
+              -5.078099250793457
+            ],
+            [
+              8.400559425354004,
+              -0.6523002982139587,
+              -5.178862571716309
+            ]
+          ],
+          "first_episode_measured_duration_s": 34.279998779296875,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 54,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.04698753356933594,
+            -0.05906105041503906,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 7.531764984130859,
+          "max_directed_progress_from_initial_m": 7.578752517700195,
+          "estimated_root_risers_passed": 27,
+          "last_measured_root_relative_xyz_m": [
+            7.531764984130859,
+            -0.3548750877380371,
+            -4.196924209594727
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              7.719759464263916,
+              -0.24046814441680908,
+              -4.567337989807129
+            ],
+            [
+              7.699306964874268,
+              -0.3879953622817993,
+              -4.567069053649902
+            ],
+            [
+              7.135566711425781,
+              -0.19501566886901855,
+              -4.228350639343262
+            ],
+            [
+              7.157265663146973,
+              -0.6523005366325378,
+              -4.313714027404785
+            ]
+          ],
+          "first_episode_measured_duration_s": 29.69999885559082,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 55,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.061804771423339844,
+            -0.00847005844116211,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.780594825744629,
+          "max_directed_progress_from_initial_m": 8.842399597167969,
+          "estimated_root_risers_passed": 32,
+          "last_measured_root_relative_xyz_m": [
+            8.780594825744629,
+            -0.3635983467102051,
+            -5.046515464782715
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.980045318603516,
+              -0.24677670001983643,
+              -5.4164533615112305
+            ],
+            [
+              8.928045272827148,
+              -0.393665075302124,
+              -5.416986465454102
+            ],
+            [
+              8.382061958312988,
+              -0.20269227027893066,
+              -5.078282356262207
+            ],
+            [
+              8.410261154174805,
+              -0.6558239459991455,
+              -5.175363540649414
+            ]
+          ],
+          "first_episode_measured_duration_s": 35.0,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 56,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            -0.04414176940917969,
+            -0.004956245422363281,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.78493881225586,
+          "max_directed_progress_from_initial_m": 26.82908058166504,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.78493881225586,
+            0.2080303430557251,
+            -16.76058578491211
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.035701751708984,
+              0.3350731134414673,
+              -16.977279663085938
+            ],
+            [
+              27.273637771606445,
+              0.0887916088104248,
+              -16.97614097595215
+            ],
+            [
+              26.526504516601562,
+              0.30032801628112793,
+              -16.9768123626709
+            ],
+            [
+              26.446693420410156,
+              0.05390429496765137,
+              -16.977766036987305
+            ]
+          ],
+          "first_episode_measured_duration_s": 113.93999481201172,
+          "completion_time_s": 113.94000244140625
+        },
+        {
+          "environment_id": 57,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.0076618194580078125,
+            0.031850457191467285,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 10.418699264526367,
+          "max_directed_progress_from_initial_m": 10.41103744506836,
+          "estimated_root_risers_passed": 38,
+          "last_measured_root_relative_xyz_m": [
+            10.418699264526367,
+            -0.35993337631225586,
+            -6.151224136352539
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              10.491318702697754,
+              -0.233323335647583,
+              -6.43708610534668
+            ],
+            [
+              10.588493347167969,
+              -0.3909565210342407,
+              -6.607206344604492
+            ],
+            [
+              10.114791870117188,
+              -0.21250367164611816,
+              -6.267131805419922
+            ],
+            [
+              9.995637893676758,
+              -0.6540414690971375,
+              -6.176840782165527
+            ]
+          ],
+          "first_episode_measured_duration_s": 41.2599983215332,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 58,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.01649761199951172,
+            0.07568013668060303,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 9.419744491577148,
+          "max_directed_progress_from_initial_m": 9.403246879577637,
+          "estimated_root_risers_passed": 34,
+          "last_measured_root_relative_xyz_m": [
+            9.419744491577148,
+            -0.3632392883300781,
+            -5.470176696777344
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              9.481706619262695,
+              -0.23863303661346436,
+              -5.757187843322754
+            ],
+            [
+              9.589180946350098,
+              -0.3889498710632324,
+              -5.927244186401367
+            ],
+            [
+              9.115280151367188,
+              -0.21882307529449463,
+              -5.5871381759643555
+            ],
+            [
+              8.998753547668457,
+              -0.653075635433197,
+              -5.50752067565918
+            ]
+          ],
+          "first_episode_measured_duration_s": 36.880001068115234,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 59,
+          "completed": false,
+          "fall": true,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.057033538818359375,
+            0.0525130033493042,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 15.547410011291504,
+          "max_directed_progress_from_initial_m": 15.490376472473145,
+          "estimated_root_risers_passed": 59,
+          "last_measured_root_relative_xyz_m": [
+            15.524682998657227,
+            0.537691593170166,
+            -9.793106079101562
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              15.621528625488281,
+              0.5427761077880859,
+              -10.017154693603516
+            ],
+            [
+              15.863353729248047,
+              0.2856876850128174,
+              -10.078939437866211
+            ],
+            [
+              15.13541030883789,
+              0.6219103336334229,
+              -10.053152084350586
+            ],
+            [
+              15.115124702453613,
+              0.26399803161621094,
+              -9.6685209274292
+            ]
+          ],
+          "first_episode_measured_duration_s": 64.73999786376953,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 60,
+          "completed": true,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": false,
+          "initial_root_relative_xyz_m": [
+            0.055657386779785156,
+            0.002284526824951172,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 26.765918731689453,
+          "max_directed_progress_from_initial_m": 26.710262298583984,
+          "estimated_root_risers_passed": 100,
+          "last_measured_root_relative_xyz_m": [
+            26.765918731689453,
+            0.3846479654312134,
+            -16.768199920654297
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              27.04435920715332,
+              0.5062193870544434,
+              -16.99070930480957
+            ],
+            [
+              27.24862289428711,
+              0.25857973098754883,
+              -16.976171493530273
+            ],
+            [
+              26.447826385498047,
+              0.4817143678665161,
+              -16.977418899536133
+            ],
+            [
+              26.42595863342285,
+              0.2309499979019165,
+              -16.978059768676758
+            ]
+          ],
+          "first_episode_measured_duration_s": 111.6199951171875,
+          "completion_time_s": 111.62000274658203
+        },
+        {
+          "environment_id": 61,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            0.06430816650390625,
+            0.06389772891998291,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 9.178153038024902,
+          "max_directed_progress_from_initial_m": 9.113844871520996,
+          "estimated_root_risers_passed": 33,
+          "last_measured_root_relative_xyz_m": [
+            9.178153038024902,
+            -0.3607339859008789,
+            -5.306052207946777
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              9.278693199157715,
+              -0.22767364978790283,
+              -5.590541839599609
+            ],
+            [
+              9.339072227478027,
+              -0.38828587532043457,
+              -5.757209777832031
+            ],
+            [
+              8.872476577758789,
+              -0.21217012405395508,
+              -5.4171600341796875
+            ],
+            [
+              8.765567779541016,
+              -0.6544102430343628,
+              -5.335024833679199
+            ]
+          ],
+          "first_episode_measured_duration_s": 35.79999923706055,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 62,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.0025358200073242188,
+            -0.02893698215484619,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.536127090454102,
+          "max_directed_progress_from_initial_m": 8.538662910461426,
+          "estimated_root_risers_passed": 31,
+          "last_measured_root_relative_xyz_m": [
+            8.536127090454102,
+            -0.35306453704833984,
+            -4.877734184265137
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.715953826904297,
+              -0.2391577959060669,
+              -5.247336387634277
+            ],
+            [
+              8.724560737609863,
+              -0.38923585414886475,
+              -5.247028350830078
+            ],
+            [
+              8.132173538208008,
+              -0.1946166753768921,
+              -4.908445358276367
+            ],
+            [
+              8.163057327270508,
+              -0.6515906453132629,
+              -4.990567207336426
+            ]
+          ],
+          "first_episode_measured_duration_s": 33.47999954223633,
+          "completion_time_s": null
+        },
+        {
+          "environment_id": 63,
+          "completed": false,
+          "fall": false,
+          "stall": false,
+          "lateral_escape": true,
+          "initial_root_relative_xyz_m": [
+            -0.035785675048828125,
+            0.053185224533081055,
+            0.39999961853027344
+          ],
+          "maximum_root_relative_x_m": 8.787821769714355,
+          "max_directed_progress_from_initial_m": 8.823607444763184,
+          "estimated_root_risers_passed": 32,
+          "last_measured_root_relative_xyz_m": [
+            8.787821769714355,
+            -0.3535877466201782,
+            -5.048338890075684
+          ],
+          "last_measured_feet_relative_xyz_m": [
+            [
+              8.974722862243652,
+              -0.24027526378631592,
+              -5.41648006439209
+            ],
+            [
+              8.984825134277344,
+              -0.39049696922302246,
+              -5.416689872741699
+            ],
+            [
+              8.38764762878418,
+              -0.19230115413665771,
+              -5.078306198120117
+            ],
+            [
+              8.41448974609375,
+              -0.6530755162239075,
+              -5.162474632263184
+            ]
+          ],
+          "first_episode_measured_duration_s": 35.02000045776367,
+          "completion_time_s": null
+        }
+      ]
+    }
+  ],
+  "domain_readbacks": [
+    {
+      "kind": "domain_parameter_initial_readback",
+      "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_06-57-27_night2-round3-long100-both-selected-seed1301/domain-parameters-initial.json",
+      "sha256": "41829df559541c0418a1b86663c9f31568af144e75f0f580726d40c3761c8980",
+      "bytes": 20406,
+      "readback": {
+        "status": "captured",
+        "scope": "current physical parameters; not a robustness validation",
+        "base_body_names": [
+          "base"
+        ],
+        "base_body_ids": [
+          0
+        ],
+        "base_mass_kg": {
+          "status": "available",
+          "source": "robot.data.body_mass.torch",
+          "observed": {
+            "shape": [
+              64,
+              1
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                6.9210004806518555
+              ],
+              [
+                6.9210004806518555
+              ],
+              [
+                6.9210004806518555
+              ]
+            ]
+          },
+          "default": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          },
+          "observed_to_default_ratio": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          }
+        },
+        "base_inertia_kg_m2": {
+          "status": "available",
+          "source": "robot.data.body_inertia.torch",
+          "observed": {
+            "shape": [
+              64,
+              1,
+              9
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -3.120003384537995e-05,
+            "max": 0.10700000077486038,
+            "mean": 0.02585641831036709,
+            "std": 0.041706412307904596,
+            "samples_first_envs": [
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ],
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ],
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ]
+            ]
+          },
+          "default": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          },
+          "mass_scaled_inertia_check": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          }
+        },
+        "base_com": {
+          "status": "available",
+          "source": "robot.data.body_com_pose_b.torch",
+          "position_m": {
+            "shape": [
+              64,
+              1,
+              3
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -0.005365999881178141,
+            "max": 0.021111996844410896,
+            "mean": 0.005248665654410918,
+            "std": 0.011428982048981743,
+            "samples_first_envs": [
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ],
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ],
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ]
+            ]
+          },
+          "quaternion_xyzw": {
+            "shape": [
+              64,
+              1,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -0.000844442518427968,
+            "max": 0.9999579787254333,
+            "mean": 0.2524296987976413,
+            "std": 0.43160083499038243,
+            "samples_first_envs": [
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ],
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ],
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ]
+            ]
+          },
+          "default_and_offset": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'base_com' not found."
+          }
+        },
+        "actuator_pd": {
+          "status": "available",
+          "groups": {
+            "base_legs": {
+              "status": "available",
+              "actuator_type": "DCMotor",
+              "joint_names": [
+                "FL_hip_joint",
+                "FR_hip_joint",
+                "RL_hip_joint",
+                "RR_hip_joint",
+                "FL_thigh_joint",
+                "FR_thigh_joint",
+                "RL_thigh_joint",
+                "RR_thigh_joint",
+                "FL_calf_joint",
+                "FR_calf_joint",
+                "RL_calf_joint",
+                "RR_calf_joint"
+              ],
+              "stiffness": {
+                "status": "available",
+                "source": "robot.actuators['base_legs'].stiffness",
+                "observed": {
+                  "shape": [
+                    64,
+                    12
+                  ],
+                  "finite": true,
+                  "nonfinite_count": 0,
+                  "min": 25.0,
+                  "max": 25.0,
+                  "mean": 25.0,
+                  "std": 0.0,
+                  "samples_first_envs": [
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ],
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ],
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ]
+                  ]
+                },
+                "default": {
+                  "status": "available",
+                  "source": "actuator.cfg.stiffness (configured reference)",
+                  "values": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 25.0,
+                    "max": 25.0,
+                    "mean": 25.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ],
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ],
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ]
+                    ]
+                  },
+                  "observed_to_default_ratio": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 1.0,
+                    "max": 1.0,
+                    "mean": 1.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  }
+                }
+              },
+              "damping": {
+                "status": "available",
+                "source": "robot.actuators['base_legs'].damping",
+                "observed": {
+                  "shape": [
+                    64,
+                    12
+                  ],
+                  "finite": true,
+                  "nonfinite_count": 0,
+                  "min": 0.5,
+                  "max": 0.5,
+                  "mean": 0.5,
+                  "std": 0.0,
+                  "samples_first_envs": [
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ],
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ],
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ]
+                  ]
+                },
+                "default": {
+                  "status": "available",
+                  "source": "actuator.cfg.damping (configured reference)",
+                  "values": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 0.5,
+                    "max": 0.5,
+                    "mean": 0.5,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ]
+                    ]
+                  },
+                  "observed_to_default_ratio": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 1.0,
+                    "max": 1.0,
+                    "mean": 1.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "note": "Explicit DCMotor gains live on the actuator; zero solver joint_stiffness is not a PD readback"
+        },
+        "foot_material": {
+          "status": "available",
+          "source": "wp.to_torch(robot.root_view.get_material_properties())",
+          "body_names": [
+            "FL_foot",
+            "FR_foot",
+            "RL_foot",
+            "RR_foot"
+          ],
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "static_friction": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.800000011920929,
+            "max": 0.800000011920929,
+            "mean": 0.800000011920929,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ]
+            ]
+          },
+          "dynamic_friction": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.6000000238418579,
+            "max": 0.6000000238418579,
+            "mean": 0.6000000238418579,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ],
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ],
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ]
+            ]
+          },
+          "restitution": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          },
+          "dynamic_le_static": true,
+          "unique_material_count": 1,
+          "default": {
+            "status": "unavailable",
+            "reason": "The PhysX material event does not retain pre-randomization materials"
+          },
+          "configured_ranges": {
+            "static_friction_range": [
+              0.8,
+              0.8
+            ],
+            "dynamic_friction_range": [
+              0.6,
+              0.6
+            ],
+            "restitution_range": [
+              0.0,
+              0.0
+            ],
+            "num_buckets": 64
+          },
+          "bucket_pool": {
+            "status": "available",
+            "source": "physics_material.func._impl.material_buckets",
+            "values": {
+              "shape": [
+                64,
+                3
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 0.800000011920929,
+              "mean": 0.46666667858759564,
+              "std": 0.3399346412531781,
+              "samples_first_envs": [
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ],
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ],
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ]
+              ]
+            },
+            "all_observed_materials_in_bucket_pool": true
+          }
+        },
+        "terrain_material": {
+          "status": "available",
+          "source": "env.sim.stage; UsdShade.MaterialBindingAPI.ComputeBoundMaterial(materialPurpose='physics')",
+          "scope": "actual composed terrain USD mesh bindings and authored material attributes; not solver contact-pair coefficients",
+          "stage_root_layer_identifier": "anon:0x59f0ed6849b0:World0.usd",
+          "terrain_prim_path": "/World/ground",
+          "imported_terrain_prim_paths": [
+            "/World/ground/terrain"
+          ],
+          "collision_mesh_count": 1,
+          "collision_meshes": [
+            {
+              "mesh_prim_path": "/World/ground/terrain/mesh",
+              "collision_enabled": true,
+              "physics_binding": {
+                "status": "available",
+                "material_prim_path": "/World/ground/terrain/physicsMaterial",
+                "binding_relationship_path": "/World/ground/terrain/mesh.material:binding:physics",
+                "binding_relationship_targets": [
+                  "/World/ground/terrain/physicsMaterial"
+                ],
+                "material_applied_schemas": [
+                  "PhysicsMaterialAPI",
+                  "PhysxMaterialAPI"
+                ],
+                "attributes": {
+                  "static_friction": {
+                    "status": "available",
+                    "value": 1.0,
+                    "attribute": "physics:staticFriction",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "dynamic_friction": {
+                    "status": "available",
+                    "value": 1.0,
+                    "attribute": "physics:dynamicFriction",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "restitution": {
+                    "status": "available",
+                    "value": 0.0,
+                    "attribute": "physics:restitution",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "friction_combine_mode": {
+                    "status": "available",
+                    "value": "multiply",
+                    "attribute": "physxMaterial:frictionCombineMode",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "restitution_combine_mode": {
+                    "status": "available",
+                    "value": "multiply",
+                    "attribute": "physxMaterial:restitutionCombineMode",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "damping_combine_mode": {
+                    "status": "unavailable",
+                    "reason": "RuntimeError: No authored USD value for physxMaterial:dampingCombineMode; backend/schema fallback is not verified"
+                  }
+                }
+              },
+              "geometry_subsets": []
+            }
+          ],
+          "configured_reference": {
+            "source": "scene.terrain.cfg.physics_material; configuration only",
+            "values": {
+              "static_friction": 1.0,
+              "dynamic_friction": 1.0,
+              "restitution": 0.0,
+              "friction_combine_mode": "multiply",
+              "restitution_combine_mode": "multiply"
+            }
+          },
+          "solver_effective_contact_coefficients": {
+            "status": "unavailable",
+            "reason": "No solver contact-pair material readback is performed; effective coefficients also depend on the other shape, combine-mode priority and backend state"
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain_parameter_final_readback",
+      "path": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-12_06-57-27_night2-round3-long100-both-selected-seed1301/domain-parameters-final.json",
+      "sha256": "41829df559541c0418a1b86663c9f31568af144e75f0f580726d40c3761c8980",
+      "bytes": 20406,
+      "readback": {
+        "status": "captured",
+        "scope": "current physical parameters; not a robustness validation",
+        "base_body_names": [
+          "base"
+        ],
+        "base_body_ids": [
+          0
+        ],
+        "base_mass_kg": {
+          "status": "available",
+          "source": "robot.data.body_mass.torch",
+          "observed": {
+            "shape": [
+              64,
+              1
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 6.9210004806518555,
+            "max": 6.9210004806518555,
+            "mean": 6.9210004806518555,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                6.9210004806518555
+              ],
+              [
+                6.9210004806518555
+              ],
+              [
+                6.9210004806518555
+              ]
+            ]
+          },
+          "default": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          },
+          "observed_to_default_ratio": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          }
+        },
+        "base_inertia_kg_m2": {
+          "status": "available",
+          "source": "robot.data.body_inertia.torch",
+          "observed": {
+            "shape": [
+              64,
+              1,
+              9
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -3.120003384537995e-05,
+            "max": 0.10700000077486038,
+            "mean": 0.02585641831036709,
+            "std": 0.041706412307904596,
+            "samples_first_envs": [
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ],
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ],
+              [
+                [
+                  0.024480000138282776,
+                  0.00012165999942226335,
+                  0.0014849149156361818,
+                  0.00012165999942226335,
+                  0.09807701408863068,
+                  -3.120003384537995e-05,
+                  0.0014849149156361818,
+                  -3.120000474154949e-05,
+                  0.10700000077486038
+                ]
+              ]
+            ]
+          },
+          "default": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          },
+          "mass_scaled_inertia_check": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'add_base_mass' not found."
+          }
+        },
+        "base_com": {
+          "status": "available",
+          "source": "robot.data.body_com_pose_b.torch",
+          "position_m": {
+            "shape": [
+              64,
+              1,
+              3
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -0.005365999881178141,
+            "max": 0.021111996844410896,
+            "mean": 0.005248665654410918,
+            "std": 0.011428982048981743,
+            "samples_first_envs": [
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ],
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ],
+              [
+                [
+                  0.021111996844410896,
+                  0.0,
+                  -0.005365999881178141
+                ]
+              ]
+            ]
+          },
+          "quaternion_xyzw": {
+            "shape": [
+              64,
+              1,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": -0.000844442518427968,
+            "max": 0.9999579787254333,
+            "mean": 0.2524296987976413,
+            "std": 0.43160083499038243,
+            "samples_first_envs": [
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ],
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ],
+              [
+                [
+                  0.0016130266012623906,
+                  0.008992232382297516,
+                  -0.000844442518427968,
+                  0.9999579787254333
+                ]
+              ]
+            ]
+          },
+          "default_and_offset": {
+            "status": "unavailable",
+            "reason": "ValueError: Event term 'base_com' not found."
+          }
+        },
+        "actuator_pd": {
+          "status": "available",
+          "groups": {
+            "base_legs": {
+              "status": "available",
+              "actuator_type": "DCMotor",
+              "joint_names": [
+                "FL_hip_joint",
+                "FR_hip_joint",
+                "RL_hip_joint",
+                "RR_hip_joint",
+                "FL_thigh_joint",
+                "FR_thigh_joint",
+                "RL_thigh_joint",
+                "RR_thigh_joint",
+                "FL_calf_joint",
+                "FR_calf_joint",
+                "RL_calf_joint",
+                "RR_calf_joint"
+              ],
+              "stiffness": {
+                "status": "available",
+                "source": "robot.actuators['base_legs'].stiffness",
+                "observed": {
+                  "shape": [
+                    64,
+                    12
+                  ],
+                  "finite": true,
+                  "nonfinite_count": 0,
+                  "min": 25.0,
+                  "max": 25.0,
+                  "mean": 25.0,
+                  "std": 0.0,
+                  "samples_first_envs": [
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ],
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ],
+                    [
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0,
+                      25.0
+                    ]
+                  ]
+                },
+                "default": {
+                  "status": "available",
+                  "source": "actuator.cfg.stiffness (configured reference)",
+                  "values": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 25.0,
+                    "max": 25.0,
+                    "mean": 25.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ],
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ],
+                      [
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0,
+                        25.0
+                      ]
+                    ]
+                  },
+                  "observed_to_default_ratio": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 1.0,
+                    "max": 1.0,
+                    "mean": 1.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  }
+                }
+              },
+              "damping": {
+                "status": "available",
+                "source": "robot.actuators['base_legs'].damping",
+                "observed": {
+                  "shape": [
+                    64,
+                    12
+                  ],
+                  "finite": true,
+                  "nonfinite_count": 0,
+                  "min": 0.5,
+                  "max": 0.5,
+                  "mean": 0.5,
+                  "std": 0.0,
+                  "samples_first_envs": [
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ],
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ],
+                    [
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5,
+                      0.5
+                    ]
+                  ]
+                },
+                "default": {
+                  "status": "available",
+                  "source": "actuator.cfg.damping (configured reference)",
+                  "values": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 0.5,
+                    "max": 0.5,
+                    "mean": 0.5,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      [
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5,
+                        0.5
+                      ]
+                    ]
+                  },
+                  "observed_to_default_ratio": {
+                    "shape": [
+                      64,
+                      12
+                    ],
+                    "finite": true,
+                    "nonfinite_count": 0,
+                    "min": 1.0,
+                    "max": 1.0,
+                    "mean": 1.0,
+                    "std": 0.0,
+                    "samples_first_envs": [
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "note": "Explicit DCMotor gains live on the actuator; zero solver joint_stiffness is not a PD readback"
+        },
+        "foot_material": {
+          "status": "available",
+          "source": "wp.to_torch(robot.root_view.get_material_properties())",
+          "body_names": [
+            "FL_foot",
+            "FR_foot",
+            "RL_foot",
+            "RR_foot"
+          ],
+          "public_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "backend_body_ids": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "shape_ids": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "static_friction": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.800000011920929,
+            "max": 0.800000011920929,
+            "mean": 0.800000011920929,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ]
+            ]
+          },
+          "dynamic_friction": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.6000000238418579,
+            "max": 0.6000000238418579,
+            "mean": 0.6000000238418579,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ],
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ],
+              [
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579,
+                0.6000000238418579
+              ]
+            ]
+          },
+          "restitution": {
+            "shape": [
+              64,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "samples_first_envs": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          },
+          "dynamic_le_static": true,
+          "unique_material_count": 1,
+          "default": {
+            "status": "unavailable",
+            "reason": "The PhysX material event does not retain pre-randomization materials"
+          },
+          "configured_ranges": {
+            "static_friction_range": [
+              0.8,
+              0.8
+            ],
+            "dynamic_friction_range": [
+              0.6,
+              0.6
+            ],
+            "restitution_range": [
+              0.0,
+              0.0
+            ],
+            "num_buckets": 64
+          },
+          "bucket_pool": {
+            "status": "available",
+            "source": "physics_material.func._impl.material_buckets",
+            "values": {
+              "shape": [
+                64,
+                3
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 0.0,
+              "max": 0.800000011920929,
+              "mean": 0.46666667858759564,
+              "std": 0.3399346412531781,
+              "samples_first_envs": [
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ],
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ],
+                [
+                  0.800000011920929,
+                  0.6000000238418579,
+                  0.0
+                ]
+              ]
+            },
+            "all_observed_materials_in_bucket_pool": true
+          }
+        },
+        "terrain_material": {
+          "status": "available",
+          "source": "env.sim.stage; UsdShade.MaterialBindingAPI.ComputeBoundMaterial(materialPurpose='physics')",
+          "scope": "actual composed terrain USD mesh bindings and authored material attributes; not solver contact-pair coefficients",
+          "stage_root_layer_identifier": "anon:0x59f0ed6849b0:World0.usd",
+          "terrain_prim_path": "/World/ground",
+          "imported_terrain_prim_paths": [
+            "/World/ground/terrain"
+          ],
+          "collision_mesh_count": 1,
+          "collision_meshes": [
+            {
+              "mesh_prim_path": "/World/ground/terrain/mesh",
+              "collision_enabled": true,
+              "physics_binding": {
+                "status": "available",
+                "material_prim_path": "/World/ground/terrain/physicsMaterial",
+                "binding_relationship_path": "/World/ground/terrain/mesh.material:binding:physics",
+                "binding_relationship_targets": [
+                  "/World/ground/terrain/physicsMaterial"
+                ],
+                "material_applied_schemas": [
+                  "PhysicsMaterialAPI",
+                  "PhysxMaterialAPI"
+                ],
+                "attributes": {
+                  "static_friction": {
+                    "status": "available",
+                    "value": 1.0,
+                    "attribute": "physics:staticFriction",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "dynamic_friction": {
+                    "status": "available",
+                    "value": 1.0,
+                    "attribute": "physics:dynamicFriction",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "restitution": {
+                    "status": "available",
+                    "value": 0.0,
+                    "attribute": "physics:restitution",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "friction_combine_mode": {
+                    "status": "available",
+                    "value": "multiply",
+                    "attribute": "physxMaterial:frictionCombineMode",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "restitution_combine_mode": {
+                    "status": "available",
+                    "value": "multiply",
+                    "attribute": "physxMaterial:restitutionCombineMode",
+                    "has_authored_value_opinion": true,
+                    "source": "composed authored USD attribute, not solver effective contact coefficient"
+                  },
+                  "damping_combine_mode": {
+                    "status": "unavailable",
+                    "reason": "RuntimeError: No authored USD value for physxMaterial:dampingCombineMode; backend/schema fallback is not verified"
+                  }
+                }
+              },
+              "geometry_subsets": []
+            }
+          ],
+          "configured_reference": {
+            "source": "scene.terrain.cfg.physics_material; configuration only",
+            "values": {
+              "static_friction": 1.0,
+              "dynamic_friction": 1.0,
+              "restitution": 0.0,
+              "friction_combine_mode": "multiply",
+              "restitution_combine_mode": "multiply"
+            }
+          },
+          "solver_effective_contact_coefficients": {
+            "status": "unavailable",
+            "reason": "No solver contact-pair material readback is performed; effective coefficients also depend on the other shape, combine-mode priority and backend state"
+          }
+        }
+      }
+    }
+  ],
+  "completion_semantics": [
+    "root reachesgoal26.65m",
+    "all four feet beyond last riser and within goal platform/corridor",
+    "four foot heights at target landing tolerance",
+    "upright base with allowed height clearance",
+    "at least two foot contacts",
+    "continuous goal dwell0.5s within first episode"
+  ],
+  "progress_semantics": "maximum forward displacement from this environment's initial reset position",
+  "risers_estimate_semantics": "Count nominal riser x planes crossed by maximum root x, regardless of lateral corridor, feet, contacts, dwell or fall. Descriptive root estimate does not establish completion.",
+  "limitations": [
+    "dimensions17cm/25cm correspond to paper long stairs but100-riser Go2 nominal simulation is not original Aliengo hundreds-step realworld176.5+/-7.81 score",
+    "single resetseed1301 and one deterministic construction scene; no robustness or independent trainingseed claim",
+    "root directedprogress or estimated passedrisers cannot replace full four-foot completion/dwell",
+    "collector90% and process exit0 cannot certify this independent95% gate or smoothness",
+    "No long100 video was reviewed. Full four-foot dwell completion remains the collector outcome; retained per-env terminal positions and independent gates are audited here, not a new physics replay.",
+    "Normal-force boundary/history telemetry and foot-link velocity proxies do not measure continuous substep contact duration or true contact-point tangential slip."
+  ],
+  "very_silky_certified": false,
+  "paper_equivalent_performance_certified": false
+}
