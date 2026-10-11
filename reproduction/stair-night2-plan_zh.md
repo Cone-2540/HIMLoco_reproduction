@@ -82,6 +82,21 @@ python3 reproduction/analyze-stair-motion.py \
 
 这个旧分析器默认参考 `stair-acceptance.json`，只用于稠密轨迹、动作及接触对照；它也不实现本轮更严格的 core 门槛，不能把其 `declared_per_case_traversal_gate_passed` 当本轮最终判决。
 
+本轮独立 CPU 汇总入口会输出逐项／seed 表格、严格 core 门槛、roll／暂停筛查、来源配置检查，以及 default heading 与零 yaw 两个独立判决：
+
+```bash
+python3 reproduction/summarize-stair-night2.py \
+  isaaclab/logs/<同一候选实际speed03-heading目录>/result.json \
+  isaaclab/logs/<同一候选实际speed05-heading目录>/result.json \
+  isaaclab/logs/<同一候选实际speed03-zero-yaw目录>/result.json \
+  isaaclab/logs/<同一候选实际speed05-zero-yaw目录>/result.json \
+  --split final --output reproduction/stair-night2-selected-final-numeric
+```
+
+`--stage development`（默认；`--split` 是兼容别名）用于开发集；也可先输入单次快检，它会清楚标记缺少的速度、控制方式或 seed，不能把已观测样本合格当作完整协议 PASS。每次汇总只接受同一个真实 checkpoint SHA256、一致的运行源码和环境奖励权重；不同候选要分别汇总。不同 source commit 仅在保存的 Git 运行源码树完全相同且采集的 `source_tracked_files_dirty=false` 时允许汇总，避免文档提交造成无关阻碍。JSON 的 `controllers[].numeric_verdict` 是数值与来源协议判决，不是图像或论文复现结论，`smoothness_verified` 为 false 仅表示数值工具没有审查画面，主任务仍可按用户授权从完整图像／数据另行判断。缺少计数／关键遥测或不符协议的资料标记 `NOT_ASSESSED`；可观察的真实失败标记 `FAIL`。最终冻结证据由主任务另行核对。`source_protocol_errors` 显示几何／seed／环境数／密度／配置／计数不一致，不能忽略后再称通过。
+
+用户允许通过图片或数据判断足够好，故实时播放器不是额外门槛。拟采用的[运动质量审查解释补充](stair-night2-motion-review-interpretation_zh.md)允许完整帧序列＋20 ms 遥测＋匹配基线支持条件性“已足够顺畅”，并要求明确 `frame_sequence_reviewed_not_realtime_playback`。主任务应在首次候选选择前保存该解释版本；不能伪称已经实时连续播放。
+
 ## 回归与提前收尾
 
 冻结的楼梯策略另做平地 64 环境、20 s、seed907，指令含前进0.3／0.5、后退−0.5、左右侧移±0.3及转弯±0.5。235 维 critic 权重用于 48 维平地 critic 时，推理可显式 `--warm_start reset`，仅迁移 actor/HIM、不学习；必须把转移记录在报告。平地全向不是本轮楼梯 core 的必要条件，但退化不能隐藏，也不能宣称完整通用运动复现。命令示例：

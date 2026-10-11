@@ -1,0 +1,81 @@
+{
+  "created_local": "2026-10-12T00:44:34.870583+08:00",
+  "scope": "CPU decision/provenance checks only; no model inference, training or simulation",
+  "gpu_started": false,
+  "unit_tests": {
+    "command": [
+      "/usr/bin/python3",
+      "reproduction/test-stair-night2-summary.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 14,
+    "status": "PASS",
+    "log": "reproduction/stair-night2-evaluation-cpu-tests.txt"
+  },
+  "geometry_check": {
+    "development_cases": 18,
+    "final_cases": 16,
+    "environments_per_case_seed": 32,
+    "shared_known_core_cases": 6,
+    "distinct_final_exact_cases": 10,
+    "symmetric_ascent_descent_pairs": true,
+    "tile_fit_with_minimum_extra_margin_m": 1.0,
+    "status": "PASS"
+  },
+  "old_evidence_negative_control": {
+    "command": [
+      "/usr/bin/python3",
+      "reproduction/summarize-stair-night2.py",
+      "isaaclab/logs/2026-10-11_05-48-09_frozen-final-speed03/result.json",
+      "--stage",
+      "final",
+      "--output",
+      "/tmp/himloco-night2-old-evidence-reject-1dgg0u8f/summary"
+    ],
+    "exit_code": 0,
+    "numeric_verdict": "NOT_ASSESSED",
+    "complete_declared_numeric_protocol": false,
+    "old_geometry_rejected_for_all_rows": true,
+    "temporary_output": "/tmp/himloco-night2-old-evidence-reject-1dgg0u8f/summary",
+    "old_reports_unchanged": true,
+    "reason": "Real old schema read successfully; wrong matrix/seeds cannot be assessed as the new scope"
+  },
+  "sha256": {
+    "stair-night2-plan_zh.md": "d9f0f5e40e78881149650c6bd15f4a39d652282e18bbe2527c5c0d061f329792",
+    "stair-night2-evaluation-plan.json": "03e854ebc1b9575abe99364bb8c89156fc3b40400b40ebc4bb86e0e44d31d418",
+    "stair-night2-development-geometries.json": "dd98558974995a8c409491c11aef6a89be2e0953813a76412cb088279a322a98",
+    "stair-night2-final-geometries.json": "51d698a9a4a18b8b7d31af68fb7b69490d80ea07c02785085544e3f818c3933b",
+    "summarize-stair-night2.py": "6783978b59f668e20bf1a9d771c10ec664b131618e5ceb2aa621df889a51f66f",
+    "test-stair-night2-summary.py": "fc7c088eb2645c1c5b57c8d4fe908da0735e66fb0154d7f33565b6fda440ced2",
+    "stair-night2-evaluation-cpu-tests.txt": "b263525127fa284c6e9929537cc8e612e78957ce0ccd14ee84945f96d2200c8d",
+    "stair-night2-motion-review-interpretation_zh.md": "c0017d225e4a222e7773cf50a1c3e97bc556ec05b494e8526ffa6d3687e4e348",
+    "stair-night2-baseline-dev03-summary.json": "939ab3cb74c957d0963f4bf688447def8e359e612464da7e4ede37f7e4980a20",
+    "stair-night2-baseline-dev03-summary.csv": "77198de2ce3a8baec4fdee598363c1a4b8802f5ebff3fc4c35b4dfec2d3fd7df",
+    "stair-night2-baseline-dev03-summary.md": "274fc7737db6e6c7ba3b04398ba8fd7c4f4b7c267bbc78861bcdd924649fbd42"
+  },
+  "limitations": [
+    "Synthetic test cases do not establish locomotion or numerical motion quality",
+    "Old-record rejection prevents substituting night1 evidence for the newly declared scope",
+    "Continuous video and candidate/source/geometry freeze must still be verified independently"
+  ],
+  "actual_night2_raw_schema_check": {
+    "result": "isaaclab/logs/2026-10-12_00-36-57_night2-baseline-dev03/result.json",
+    "stage": "development",
+    "summary": "reproduction/stair-night2-baseline-dev03-summary.json",
+    "source_protocol_errors": [],
+    "observed_rows": 54,
+    "observed_pass_rows": 53,
+    "observed_fail_rows": 1,
+    "observed_not_assessed_rows": 0,
+    "core_completed": 576,
+    "core_total": 576,
+    "long_completed": 384,
+    "long_total": 384,
+    "moderate_completed": 767,
+    "moderate_total": 768,
+    "missing_mandatory_rows": 162,
+    "whole_protocol_complete": false,
+    "scope": "Single speed0.3/default-heading only; no automatic reading of final/other result files"
+  }
+}
