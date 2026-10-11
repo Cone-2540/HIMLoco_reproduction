@@ -9,7 +9,7 @@
   "checkpoint": "artifacts/go2-stairs-control660/model_660.pt",
   "checkpoint_sha256": "79fcc69b9447ecfb4df9fcfb41224cdab78632649f38fd9faf09c7b6adf69c61",
   "common": {
-    "num_envs": 8192,
+    "num_envs": 7680,
     "steps_per_env": 100,
     "additional_updates_per_job": 100,
     "save_interval": 20,
@@ -31,8 +31,8 @@
     "actor_history": 270,
     "critic": 235,
     "actor_privileged_heights": false,
-    "environment_steps_per_100_update_job": 81920000,
-    "num_envs_parameter_difference": "8192 doubles the released4096 environment batch after explicit memory preflight"
+    "environment_steps_per_100_update_job": 76800000,
+    "num_envs_parameter_difference": "7680 environments after sustained8192 allocation reached15825MiB; released4096 batch differs"
   },
   "pilot": {
     "profile": "contact_vertical",
@@ -81,6 +81,14 @@
     "host_gpu_configuration_changes": false,
     "driver_changes": false
   },
-  "status": "GPU_preflight_passed_formal_rewards_pending",
-  "resource_calibration_file": "reproduction/stair-night2-resource-calibration.json"
+  "status": "sustained_memory_revision_formal_round_restart_pending",
+  "resource_calibration_file": "reproduction/stair-night2-resource-calibration.json",
+  "sustained_memory_revision": {
+    "local_time": "2026-10-12T00:56:27.830903+08:00",
+    "excluded_job": "night2-faithful-seed1201-plus100 started00:50:16 at8192",
+    "peak_total_gpu_mib": 15825,
+    "reason": "above preferred15GiB/15360MiB total occupancy; restart all arms fromcontrol660 at7680",
+    "candidate_use": false,
+    "initial_preflight_remains_valid_only_for_short3updates": true
+  }
 }

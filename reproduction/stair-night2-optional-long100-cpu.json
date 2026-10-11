@@ -1,0 +1,37 @@
+{
+  "result": "PASS",
+  "exit_code": 0,
+  "scope": "optional geometry CPU check only, CUDA_VISIBLE_DEVICES empty; no training, policy, AppLauncher or PhysX",
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "CUDA_VISIBLE_DEVICES=",
+    "-e",
+    "OMP_NUM_THREADS=2",
+    "-w",
+    "/workspace/himloco/isaaclab",
+    "isaaclab-local-lab-1",
+    "/isaac-sim/python.sh",
+    "-c",
+    "import json\nfrom stair_terrain import build_stair_generator, stair_metadata, stair_meshes\nspec={\"height\":.17,\"depth\":.25,\"num_steps\":100,\"width\":1.2,\"direction\":\"asc\"}\ncfg=build_stair_generator(spec=spec,num_rows=1,num_cols=1,seed=1)\nterm=cfg.sub_terrains[\"heldout\"]\nmeshes,origin=stair_meshes(.5,term.replace(size=cfg.size))\nmeta=meshes[0].metadata[\"stair_geometry\"]\nassert cfg.size == (30.0,3.0)\nassert len(meta[\"treads\"]) == 100\nassert all(mesh.is_watertight and mesh.is_winding_consistent for mesh in meshes)\nassert abs(meta[\"goal_x\"]-26.65) < 1e-9\nprint(json.dumps({\"scope\":\"closed-mesh geometry validation only; no simulator or GPU\", \"terrain_size\":cfg.size,\"num_steps\":100,\"goal_x_m\":meta[\"goal_x\"],\"goal_platform_z_m\":meta[\"goal_platform_z\"],\"mesh_count\":len(meshes),\"all_meshes_closed\":True,\"origin\":origin.tolist()}))\n"
+  ],
+  "stdout": "{\"scope\": \"closed-mesh geometry validation only; no simulator or GPU\", \"terrain_size\": [30.0, 3.0], \"num_steps\": 100, \"goal_x_m\": 26.65, \"goal_platform_z_m\": 17.0, \"mesh_count\": 102, \"all_meshes_closed\": true, \"origin\": [1.5, 1.5, 0.0]}\n",
+  "geometry": {
+    "scope": "closed-mesh geometry validation only; no simulator or GPU",
+    "terrain_size": [
+      30.0,
+      3.0
+    ],
+    "num_steps": 100,
+    "goal_x_m": 26.65,
+    "goal_platform_z_m": 17.0,
+    "mesh_count": 102,
+    "all_meshes_closed": true,
+    "origin": [
+      1.5,
+      1.5,
+      0.0
+    ]
+  }
+}
