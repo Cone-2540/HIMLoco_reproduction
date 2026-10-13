@@ -134,11 +134,21 @@ def run(args):
     yaw = args.initial_yaw
     data.qpos[3:7] = [np.cos(yaw/2), 0, 0, np.sin(yaw/2)]
     data.qpos[qids] = default + rng.uniform(-args.initial_joint_noise, args.initial_joint_noise, 12)
+    if args.per_foot_friction:
+        for name in ('FL','FR','RL','RR'):
+            gid=mujoco.mj_name2id(model,mujoco.mjtObj.mjOBJ_GEOM,name)
+            model.geom_friction[gid,0]=rng.uniform(*args.per_foot_friction)
     mujoco.mj_forward(model, data)
     policy = torch.jit.load(str(args.policy), map_location='cpu').eval()
     history, action = np.zeros(270, np.float32), np.zeros(12)
     feet = [mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, n) for n in ('FL','FR','RL','RR')]
     kp, kd = 25*args.gain_scale, .5*args.gain_scale
+    if args.per_joint_gains:
+        kp=kp*rng.uniform(*args.per_joint_gains,12)
+        kd=kd*rng.uniform(*args.per_joint_gains,12)
+    strength = args.motor_strength
+    if args.per_joint_strength:
+        strength=strength*rng.uniform(*args.per_joint_strength,12)
     renderer = writer = viewer = None
     if args.video:
         import imageio.v2 as imageio
@@ -151,6 +161,7 @@ def run(args):
     camera.azimuth, camera.elevation, camera.distance = 125, -18, 3.7
     rows, dwell, passed, reason = [], 0., False, 'timeout'
     body_contact_steps, calf_contact_steps = 0, 0
+    body_loaded_steps, calf_loaded_steps, calf_peak_force = 0, 0, 0.
     lag = [np.zeros(12) for _ in range(args.delay_steps)]
     physics_lag = None
     started = time.monotonic()
@@ -187,6 +198,7 @@ def run(args):
                     applied = lag.pop(0)
                 target = default + config['action_scale']*applied
                 body_contact, calf_contact = False, False
+                body_loaded, calf_loaded, calf_force_this_step = False, False, 0.
                 for _ in range(args.decimation):
                     target_applied = target
                     if args.delay_physics_steps:
@@ -195,16 +207,27 @@ def run(args):
                         physics_lag.append(target.copy())
                         target_applied = physics_lag.pop(0)
                     tau, requested = dc_torque(target_applied, data.qpos[qids], data.qvel[vids], kp, kd, effort, velocity)
-                    data.ctrl[aids] = tau * args.motor_strength
+                    data.ctrl[aids] = np.clip(tau * strength,-effort,effort)
                     mujoco.mj_step(model, data)
-                    for contact in data.contact:
+                    for contact_index, contact in enumerate(data.contact):
+                        contact_force = np.zeros(6)
+                        mujoco.mj_contactForce(model, data, contact_index, contact_force)
+                        normal_force = abs(contact_force[0])
                         for geom in (contact.geom1, contact.geom2):
                             body = model.geom_bodyid[geom]
                             body_contact |= body == base
+                            body_loaded |= body == base and normal_force > 1.
                             name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_BODY, body) or ''
-                            calf_contact |= 'calf' in name and geom not in feet
+                            is_calf = 'calf' in name and geom not in feet
+                            calf_contact |= is_calf
+                            calf_loaded |= is_calf and normal_force > 1.
+                            if is_calf:
+                                calf_force_this_step = max(calf_force_this_step,normal_force)
                 body_contact_steps += int(body_contact)
                 calf_contact_steps += int(calf_contact)
+                body_loaded_steps += int(body_loaded)
+                calf_loaded_steps += int(calf_loaded)
+                calf_peak_force = max(calf_peak_force,calf_force_this_step)
                 R = data.xmat[base].reshape(3,3)
                 foot_x = data.geom_xpos[feet,0]
                 if args.terrain == 'flat':
@@ -221,6 +244,8 @@ def run(args):
                                  torque=tau.tolist(), torque_clipped=int(np.sum(np.abs(tau-requested)>1e-5)),
                                  foot_position=data.geom_xpos[feet].tolist(), body_contact=bool(body_contact),
                                  calf_contact=bool(calf_contact), goal_dwell=dwell))
+                rows[-1].update(body_loaded_contact=bool(body_loaded),calf_loaded_contact=bool(calf_loaded),
+                                calf_peak_normal_force_n=float(calf_force_this_step))
                 if writer:
                     camera.lookat[:] = data.qpos[:3]
                     renderer.update_scene(data, camera=camera)
@@ -257,6 +282,9 @@ def run(args):
     result = dict(success=passed, reason=reason, simulation_seconds=float(data.time),
                   wall_seconds=time.monotonic()-started, final_position=data.qpos[:3].tolist(),
                   body_contact_fraction=body_contact_steps/max(1,len(rows)), calf_contact_fraction=calf_contact_steps/max(1,len(rows)),
+                  body_loaded_contact_fraction=body_loaded_steps/max(1,len(rows)),
+                  calf_loaded_contact_fraction=calf_loaded_steps/max(1,len(rows)), calf_peak_normal_force_n=float(calf_peak_force),
+                  contact_scope='fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep',
                   xy_velocity_mae_m_s=float(xy_error.mean()) if xy_error.size else None,
                   yaw_velocity_mae_rad_s=float(yaw_error.mean()) if yaw_error.size else None,
                   mean_action_rate_squared=float(np.mean(np.diff(np.asarray([r['action'] for r in rows]),axis=0)**2)) if len(rows)>1 else None,
@@ -266,6 +294,9 @@ def run(args):
                   arguments={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},
                   actual_base_mass=float(model.body_mass[base]), actual_base_com=model.body_ipos[base].tolist(),
                   actual_joint_damping=model.dof_damping[vids].tolist(), goal_x=end+.08 if args.terrain!='flat' else None,
+                  actual_kp=np.broadcast_to(kp,(12,)).tolist(),actual_kd=np.broadcast_to(kd,(12,)).tolist(),
+                  actual_drive_strength=np.broadcast_to(strength,(12,)).tolist(),
+                  actual_foot_friction=model.geom_friction[feet].tolist(),
                   goal_definition='all four foot sphere centers past final riser+8cm, upright Rzz>.85, no body contact for 0.5s' if args.terrain!='flat' else 'command-direction 3m progress, upright/no body contact for 0.5s',
                   controller='50Hz HIM/6x45 newest-first, 200Hz explicit PD25/0.5 with IsaacLab DC torque-speed curve',
                   source_manifest=str(args.assets.parent/'SOURCE.json'))
@@ -302,6 +333,9 @@ def parse():
     p.add_argument('--armature',type=float)
     p.add_argument('--contact-profile',choices=['menagerie','rigid'],default='menagerie')
     p.add_argument('--motor-strength',type=float,default=1.)
+    p.add_argument('--per-joint-gains',type=float,nargs=2)
+    p.add_argument('--per-joint-strength',type=float,nargs=2)
+    p.add_argument('--per-foot-friction',type=float,nargs=2)
     p.add_argument('--delay-steps',type=int,default=0)
     p.add_argument('--delay-physics-steps',type=int,default=0)
     p.add_argument('--fixed-duration',action='store_true',help='Flat only: survive the full interval and pass velocity tracking gates')
@@ -316,6 +350,8 @@ def parse():
         p.error('Select either policy-frame delay or physics-substep delay')
     if args.fixed_duration and (args.terrain!='flat' or args.seconds<20):
         p.error('Full-duration flat tracking evaluation requires at least 20s')
+    for ranges in [args.per_joint_gains,args.per_joint_strength,args.per_foot_friction]:
+        if ranges and not 0<ranges[0]<=ranges[1]:p.error('Randomized physical ranges must be positive and ordered')
     return args
 
 

@@ -1,0 +1,1038 @@
+{
+  "status": "captured",
+  "scope": "current physical parameters; not a robustness validation",
+  "base_body_names": [
+    "base"
+  ],
+  "base_body_ids": [
+    0
+  ],
+  "base_mass_kg": {
+    "status": "available",
+    "source": "robot.data.body_mass.torch",
+    "observed": {
+      "shape": [
+        7680,
+        1
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": 5.537268161773682,
+      "max": 8.650774955749512,
+      "mean": 6.985522465035319,
+      "std": 0.8929710643514213,
+      "samples_first_envs": [
+        [
+          6.65529203414917
+        ],
+        [
+          7.000270843505859
+        ],
+        [
+          7.256476402282715
+        ]
+      ]
+    },
+    "default": {
+      "status": "available",
+      "source": "add_base_mass.func.default_mass",
+      "values": {
+        "shape": [
+          7680,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 6.9210004806518555,
+        "max": 6.9210004806518555,
+        "mean": 6.9210004806518555,
+        "std": 0.0,
+        "samples_first_envs": [
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ],
+          [
+            6.9210004806518555
+          ]
+        ]
+      }
+    },
+    "observed_to_default_ratio": {
+      "status": "available",
+      "values": {
+        "shape": [
+          7680,
+          1
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 0.8000676035881042,
+        "max": 1.2499312162399292,
+        "mean": 1.0093226385613283,
+        "std": 0.12902340698735176,
+        "samples_first_envs": [
+          [
+            0.961608350276947
+          ],
+          [
+            1.011453628540039
+          ],
+          [
+            1.0484721660614014
+          ]
+        ]
+      },
+      "operation": "scale",
+      "distribution": "log_uniform",
+      "distribution_parameters": [
+        0.8,
+        1.25
+      ]
+    }
+  },
+  "base_inertia_kg_m2": {
+    "status": "available",
+    "source": "robot.data.body_inertia.torch",
+    "observed": {
+      "shape": [
+        7680,
+        1,
+        9
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": -3.899789589922875e-05,
+      "max": 0.13374264538288116,
+      "mean": 0.02609746834054513,
+      "std": 0.04256869488673035,
+      "samples_first_envs": [
+        [
+          [
+            0.02354017272591591,
+            0.00011698927119141445,
+            0.0014279065653681755,
+            0.00011698927119141445,
+            0.0943116769194603,
+            -3.000221295224037e-05,
+            0.0014279065653681755,
+            -3.0002185667399317e-05,
+            0.10289209336042404
+          ]
+        ],
+        [
+          [
+            0.024760384112596512,
+            0.0001230534544447437,
+            0.0015019226120784879,
+            0.0001230534544447437,
+            0.09920035302639008,
+            -3.155738886562176e-05,
+            0.0015019226120784879,
+            -3.1557359761791304e-05,
+            0.10822553932666779
+          ]
+        ],
+        [
+          [
+            0.025666598230600357,
+            0.00012755712668877095,
+            0.0015568919479846954,
+            0.00012755712668877095,
+            0.10283102095127106,
+            -3.271236710133962e-05,
+            0.0015568919479846954,
+            -3.2712337997509167e-05,
+            0.11218652129173279
+          ]
+        ]
+      ]
+    },
+    "default": {
+      "status": "available",
+      "source": "add_base_mass.func.default_inertia",
+      "values": {
+        "shape": [
+          7680,
+          1,
+          9
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": -3.120003384537995e-05,
+        "max": 0.10700000077486038,
+        "mean": 0.02585641831036709,
+        "std": 0.04170641230790317,
+        "samples_first_envs": [
+          [
+            [
+              0.024480000138282776,
+              0.00012165999942226335,
+              0.0014849149156361818,
+              0.00012165999942226335,
+              0.09807701408863068,
+              -3.120003384537995e-05,
+              0.0014849149156361818,
+              -3.120000474154949e-05,
+              0.10700000077486038
+            ]
+          ],
+          [
+            [
+              0.024480000138282776,
+              0.00012165999942226335,
+              0.0014849149156361818,
+              0.00012165999942226335,
+              0.09807701408863068,
+              -3.120003384537995e-05,
+              0.0014849149156361818,
+              -3.120000474154949e-05,
+              0.10700000077486038
+            ]
+          ],
+          [
+            [
+              0.024480000138282776,
+              0.00012165999942226335,
+              0.0014849149156361818,
+              0.00012165999942226335,
+              0.09807701408863068,
+              -3.120003384537995e-05,
+              0.0014849149156361818,
+              -3.120000474154949e-05,
+              0.10700000077486038
+            ]
+          ]
+        ]
+      }
+    },
+    "mass_scaled_inertia_check": {
+      "status": "available",
+      "recompute_inertia": true,
+      "max_abs_error_from_default_times_mass_ratio_kg_m2": 0.0
+    }
+  },
+  "base_com": {
+    "status": "available",
+    "source": "robot.data.body_com_pose_b.torch",
+    "position_m": {
+      "shape": [
+        7680,
+        1,
+        3
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": -0.019997265189886093,
+      "max": 0.05110836774110794,
+      "mean": 0.005136903736921441,
+      "std": 0.01688538018293566,
+      "samples_first_envs": [
+        [
+          [
+            0.01775534078478813,
+            0.013939987868070602,
+            -0.003190315794199705
+          ]
+        ],
+        [
+          [
+            0.0025397446006536484,
+            0.0030560269951820374,
+            -0.005208453629165888
+          ]
+        ],
+        [
+          [
+            0.01748550683259964,
+            0.014650102704763412,
+            -0.00516582140699029
+          ]
+        ]
+      ]
+    },
+    "quaternion_xyzw": {
+      "shape": [
+        7680,
+        1,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": -0.0008444428094662726,
+      "max": 0.9999579787254333,
+      "mean": 0.25242969922049,
+      "std": 0.4316008347445889,
+      "samples_first_envs": [
+        [
+          [
+            0.0016130286967381835,
+            0.008992232382297516,
+            -0.000844442518427968,
+            0.9999579787254333
+          ]
+        ],
+        [
+          [
+            0.0016130284639075398,
+            0.008992232382297516,
+            -0.0008444426348432899,
+            0.9999579787254333
+          ]
+        ],
+        [
+          [
+            0.0016130264848470688,
+            0.008992232382297516,
+            -0.0008444424020126462,
+            0.9999579787254333
+          ]
+        ]
+      ]
+    },
+    "default_and_offset": {
+      "status": "available",
+      "source": "base_com.func.default_com",
+      "position_m": {
+        "shape": [
+          7680,
+          1,
+          3
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": -0.005365999881178141,
+        "max": 0.021111996844410896,
+        "mean": 0.005248665654410918,
+        "std": 0.011428982048983693,
+        "samples_first_envs": [
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ],
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ],
+          [
+            [
+              0.021111996844410896,
+              0.0,
+              -0.005365999881178141
+            ]
+          ]
+        ]
+      },
+      "offset_m": {
+        "shape": [
+          7680,
+          1,
+          3
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": -0.029970265924930573,
+        "max": 0.029996370896697044,
+        "mean": -0.00011176193396143693,
+        "std": 0.012431732497217626,
+        "samples_first_envs": [
+          [
+            [
+              -0.0033566560596227646,
+              0.013939987868070602,
+              0.0021756840869784355
+            ]
+          ],
+          [
+            [
+              -0.018572252243757248,
+              0.0030560269951820374,
+              0.0001575462520122528
+            ]
+          ],
+          [
+            [
+              -0.0036264900118112564,
+              0.014650102704763412,
+              0.00020017847418785095
+            ]
+          ]
+        ]
+      },
+      "offset_min_xyz_m": [
+        -0.029970265924930573,
+        -0.019997265189886093,
+        -0.00999806635081768
+      ],
+      "offset_max_xyz_m": [
+        0.029996370896697044,
+        0.019996557384729385,
+        0.009991386905312538
+      ],
+      "configured_offset_ranges_m": {
+        "x": [
+          -0.03,
+          0.03
+        ],
+        "y": [
+          -0.02,
+          0.02
+        ],
+        "z": [
+          -0.01,
+          0.01
+        ]
+      },
+      "max_abs_quaternion_change": 0.0
+    }
+  },
+  "actuator_pd": {
+    "status": "available",
+    "groups": {
+      "base_legs": {
+        "status": "available",
+        "actuator_type": "DCMotor",
+        "joint_names": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "stiffness": {
+          "status": "available",
+          "source": "robot.actuators['base_legs'].stiffness",
+          "observed": {
+            "shape": [
+              7680,
+              12
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 22.500003814697266,
+            "max": 27.49993133544922,
+            "mean": 25.003231372353103,
+            "std": 1.4437226834859724,
+            "samples_first_envs": [
+              [
+                26.793914794921875,
+                25.947200775146484,
+                26.374393463134766,
+                23.68463897705078,
+                26.517127990722656,
+                24.51561164855957,
+                24.748193740844727,
+                26.14706802368164,
+                27.136474609375,
+                24.576391220092773,
+                25.2321720123291,
+                23.70153045654297
+              ],
+              [
+                26.088062286376953,
+                25.66864776611328,
+                23.500553131103516,
+                26.9439640045166,
+                23.21218490600586,
+                27.313405990600586,
+                24.2333984375,
+                22.76087188720703,
+                27.089176177978516,
+                25.86846351623535,
+                26.358963012695312,
+                23.703453063964844
+              ],
+              [
+                25.457590103149414,
+                26.48124122619629,
+                25.14539337158203,
+                23.480857849121094,
+                26.568317413330078,
+                23.374534606933594,
+                26.795238494873047,
+                26.062763214111328,
+                23.64361000061035,
+                23.55826187133789,
+                24.959192276000977,
+                26.008085250854492
+              ]
+            ]
+          },
+          "default": {
+            "status": "available",
+            "source": "him_actuator_gains.func.default_actuator_stiffness['base_legs']",
+            "values": {
+              "shape": [
+                7680,
+                12
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 25.0,
+              "max": 25.0,
+              "mean": 25.0,
+              "std": 0.0,
+              "samples_first_envs": [
+                [
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0
+                ],
+                [
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0
+                ],
+                [
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0,
+                  25.0
+                ]
+              ]
+            },
+            "observed_to_default_ratio": {
+              "shape": [
+                7680,
+                12
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 0.9000001549720764,
+              "max": 1.0999972820281982,
+              "mean": 1.000129254840754,
+              "std": 0.05774890729280509,
+              "samples_first_envs": [
+                [
+                  1.0717566013336182,
+                  1.0378880500793457,
+                  1.0549757480621338,
+                  0.9473855495452881,
+                  1.060685157775879,
+                  0.9806244373321533,
+                  0.9899277687072754,
+                  1.0458827018737793,
+                  1.0854589939117432,
+                  0.9830556511878967,
+                  1.009286880493164,
+                  0.9480612277984619
+                ],
+                [
+                  1.0435224771499634,
+                  1.0267459154129028,
+                  0.9400221109390259,
+                  1.077758550643921,
+                  0.9284874200820923,
+                  1.092536211013794,
+                  0.9693359136581421,
+                  0.910434901714325,
+                  1.0835670232772827,
+                  1.034738540649414,
+                  1.0543584823608398,
+                  0.9481381177902222
+                ],
+                [
+                  1.018303632736206,
+                  1.0592496395111084,
+                  1.0058157444000244,
+                  0.9392343163490295,
+                  1.0627326965332031,
+                  0.9349814057350159,
+                  1.0718095302581787,
+                  1.0425105094909668,
+                  0.9457443952560425,
+                  0.9423304796218872,
+                  0.9983676671981812,
+                  1.0403233766555786
+                ]
+              ]
+            }
+          }
+        },
+        "damping": {
+          "status": "available",
+          "source": "robot.actuators['base_legs'].damping",
+          "observed": {
+            "shape": [
+              7680,
+              12
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "min": 0.4500005543231964,
+            "max": 0.5499990582466125,
+            "mean": 0.5000957377791767,
+            "std": 0.028830707311624744,
+            "samples_first_envs": [
+              [
+                0.5032445192337036,
+                0.48553216457366943,
+                0.4905288517475128,
+                0.5391408205032349,
+                0.5411901473999023,
+                0.472188264131546,
+                0.5316119194030762,
+                0.4748293161392212,
+                0.4869298040866852,
+                0.5132269263267517,
+                0.506657600402832,
+                0.5408175587654114
+              ],
+              [
+                0.5327893495559692,
+                0.4688563942909241,
+                0.5451383590698242,
+                0.4966331720352173,
+                0.500408411026001,
+                0.4740428626537323,
+                0.47511541843414307,
+                0.5251431465148926,
+                0.4693884253501892,
+                0.4809911549091339,
+                0.48466530442237854,
+                0.5378866195678711
+              ],
+              [
+                0.5369303822517395,
+                0.4568575322628021,
+                0.4964729845523834,
+                0.4960111379623413,
+                0.4805740714073181,
+                0.4565138518810272,
+                0.4819253385066986,
+                0.5020713806152344,
+                0.49247294664382935,
+                0.4868065118789673,
+                0.4844798743724823,
+                0.49442899227142334
+              ]
+            ]
+          },
+          "default": {
+            "status": "available",
+            "source": "him_actuator_gains.func.default_actuator_damping['base_legs']",
+            "values": {
+              "shape": [
+                7680,
+                12
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 0.5,
+              "max": 0.5,
+              "mean": 0.5,
+              "std": 0.0,
+              "samples_first_envs": [
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              ]
+            },
+            "observed_to_default_ratio": {
+              "shape": [
+                7680,
+                12
+              ],
+              "finite": true,
+              "nonfinite_count": 0,
+              "min": 0.9000011086463928,
+              "max": 1.099998116493225,
+              "mean": 1.0001914755583534,
+              "std": 0.05766141462324949,
+              "samples_first_envs": [
+                [
+                  1.0064890384674072,
+                  0.9710643291473389,
+                  0.9810577034950256,
+                  1.0782816410064697,
+                  1.0823802947998047,
+                  0.944376528263092,
+                  1.0632238388061523,
+                  0.9496586322784424,
+                  0.9738596081733704,
+                  1.0264538526535034,
+                  1.013315200805664,
+                  1.0816351175308228
+                ],
+                [
+                  1.0655786991119385,
+                  0.9377127885818481,
+                  1.0902767181396484,
+                  0.9932663440704346,
+                  1.000816822052002,
+                  0.9480857253074646,
+                  0.9502308368682861,
+                  1.0502862930297852,
+                  0.9387768507003784,
+                  0.9619823098182678,
+                  0.9693306088447571,
+                  1.0757732391357422
+                ],
+                [
+                  1.073860764503479,
+                  0.9137150645256042,
+                  0.9929459691047668,
+                  0.9920222759246826,
+                  0.9611481428146362,
+                  0.9130277037620544,
+                  0.9638506770133972,
+                  1.0041427612304688,
+                  0.9849458932876587,
+                  0.9736130237579346,
+                  0.9689597487449646,
+                  0.9888579845428467
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "note": "Explicit DCMotor gains live on the actuator; zero solver joint_stiffness is not a PD readback"
+  },
+  "foot_material": {
+    "status": "available",
+    "source": "wp.to_torch(robot.root_view.get_material_properties())",
+    "body_names": [
+      "FL_foot",
+      "FR_foot",
+      "RL_foot",
+      "RR_foot"
+    ],
+    "public_body_ids": [
+      15,
+      16,
+      17,
+      18
+    ],
+    "backend_body_ids": [
+      15,
+      16,
+      17,
+      18
+    ],
+    "shape_ids": [
+      23,
+      24,
+      25,
+      26
+    ],
+    "static_friction": {
+      "shape": [
+        7680,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": 0.6056923866271973,
+      "max": 1.086021065711975,
+      "mean": 0.8375803850009106,
+      "std": 0.14802027248429586,
+      "samples_first_envs": [
+        [
+          1.0608341693878174,
+          0.6346083283424377,
+          0.6078579425811768,
+          0.628510594367981
+        ],
+        [
+          0.874386727809906,
+          0.8707845211029053,
+          0.7664519548416138,
+          1.0608341693878174
+        ],
+        [
+          0.8184586763381958,
+          0.8545509576797485,
+          0.9177262783050537,
+          0.8460578918457031
+        ]
+      ]
+    },
+    "dynamic_friction": {
+      "shape": [
+        7680,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": 0.530542254447937,
+      "max": 0.9669894576072693,
+      "mean": 0.7019858138926793,
+      "std": 0.10962448919811002,
+      "samples_first_envs": [
+        [
+          0.763456404209137,
+          0.6346083283424377,
+          0.6078579425811768,
+          0.628510594367981
+        ],
+        [
+          0.7150243520736694,
+          0.8707845211029053,
+          0.530542254447937,
+          0.763456404209137
+        ],
+        [
+          0.7992149591445923,
+          0.7218414545059204,
+          0.9177262783050537,
+          0.8460578918457031
+        ]
+      ]
+    },
+    "restitution": {
+      "shape": [
+        7680,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "samples_first_envs": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "dynamic_le_static": true,
+    "unique_material_count": 64,
+    "default": {
+      "status": "unavailable",
+      "reason": "The PhysX material event does not retain pre-randomization materials"
+    },
+    "configured_ranges": {
+      "static_friction_range": [
+        0.6,
+        1.1
+      ],
+      "dynamic_friction_range": [
+        0.5,
+        1.0
+      ],
+      "restitution_range": [
+        0.0,
+        0.0
+      ],
+      "num_buckets": 64,
+      "make_consistent": true
+    },
+    "bucket_pool": {
+      "status": "available",
+      "source": "physics_material.func._impl.material_buckets",
+      "values": {
+        "shape": [
+          64,
+          3
+        ],
+        "finite": true,
+        "nonfinite_count": 0,
+        "min": 0.0,
+        "max": 1.086021065711975,
+        "mean": 0.512604806261758,
+        "std": 0.38168606333738986,
+        "samples_first_envs": [
+          [
+            0.9801213145256042,
+            0.6592578887939453,
+            0.0
+          ],
+          [
+            0.7108792066574097,
+            0.5799574851989746,
+            0.0
+          ],
+          [
+            1.0608341693878174,
+            0.763456404209137,
+            0.0
+          ]
+        ]
+      },
+      "all_observed_materials_in_bucket_pool": true
+    }
+  },
+  "terrain_material": {
+    "status": "available",
+    "source": "env.sim.stage; UsdShade.MaterialBindingAPI.ComputeBoundMaterial(materialPurpose='physics')",
+    "scope": "actual composed terrain USD mesh bindings and authored material attributes; not solver contact-pair coefficients",
+    "stage_root_layer_identifier": "anon:0x55a451fce780:World0.usd",
+    "terrain_prim_path": "/World/ground",
+    "imported_terrain_prim_paths": [
+      "/World/ground/terrain"
+    ],
+    "collision_mesh_count": 1,
+    "collision_meshes": [
+      {
+        "mesh_prim_path": "/World/ground/terrain/mesh",
+        "collision_enabled": true,
+        "physics_binding": {
+          "status": "available",
+          "material_prim_path": "/World/ground/terrain/physicsMaterial",
+          "binding_relationship_path": "/World/ground/terrain/mesh.material:binding:physics",
+          "binding_relationship_targets": [
+            "/World/ground/terrain/physicsMaterial"
+          ],
+          "material_applied_schemas": [
+            "PhysicsMaterialAPI",
+            "PhysxMaterialAPI"
+          ],
+          "attributes": {
+            "static_friction": {
+              "status": "available",
+              "value": 1.0,
+              "attribute": "physics:staticFriction",
+              "has_authored_value_opinion": true,
+              "source": "composed authored USD attribute, not solver effective contact coefficient"
+            },
+            "dynamic_friction": {
+              "status": "available",
+              "value": 1.0,
+              "attribute": "physics:dynamicFriction",
+              "has_authored_value_opinion": true,
+              "source": "composed authored USD attribute, not solver effective contact coefficient"
+            },
+            "restitution": {
+              "status": "available",
+              "value": 0.0,
+              "attribute": "physics:restitution",
+              "has_authored_value_opinion": true,
+              "source": "composed authored USD attribute, not solver effective contact coefficient"
+            },
+            "friction_combine_mode": {
+              "status": "available",
+              "value": "multiply",
+              "attribute": "physxMaterial:frictionCombineMode",
+              "has_authored_value_opinion": true,
+              "source": "composed authored USD attribute, not solver effective contact coefficient"
+            },
+            "restitution_combine_mode": {
+              "status": "available",
+              "value": "multiply",
+              "attribute": "physxMaterial:restitutionCombineMode",
+              "has_authored_value_opinion": true,
+              "source": "composed authored USD attribute, not solver effective contact coefficient"
+            },
+            "damping_combine_mode": {
+              "status": "unavailable",
+              "reason": "RuntimeError: No authored USD value for physxMaterial:dampingCombineMode; backend/schema fallback is not verified"
+            }
+          }
+        },
+        "geometry_subsets": []
+      }
+    ],
+    "configured_reference": {
+      "source": "scene.terrain.cfg.physics_material; configuration only",
+      "values": {
+        "static_friction": 1.0,
+        "dynamic_friction": 1.0,
+        "restitution": 0.0,
+        "friction_combine_mode": "multiply",
+        "restitution_combine_mode": "multiply"
+      }
+    },
+    "solver_effective_contact_coefficients": {
+      "status": "unavailable",
+      "reason": "No solver contact-pair material readback is performed; effective coefficients also depend on the other shape, combine-mode priority and backend state"
+    }
+  }
+}

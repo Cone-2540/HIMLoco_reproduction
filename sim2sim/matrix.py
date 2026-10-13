@@ -17,14 +17,14 @@ def main():
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--seeds',type=int,default=8)
     p.add_argument('--seed-start',type=int,default=1400)
-    p.add_argument('--suite',choices=['nominal','randomized','stress'],default='nominal')
+    p.add_argument('--suite',choices=['nominal','randomized','stress','deployment'],default='nominal')
     a=p.parse_args()
     a.output.mkdir(parents=True,exist_ok=False)
     configs=[]
     for terrain in ['flat','asc','desc']:
         for speed in [.3,.5]:
             configs.append(dict(name=f'{terrain}-16x27-v{speed}',terrain=terrain,height=.16,depth=.27,speed=speed))
-    if a.suite=='stress':
+    if a.suite in ('stress','deployment'):
         for terrain in ['asc','desc']:
             for h,d in [(.11,.35),(.17,.25),(.20,.30)]:
                 configs.append(dict(name=f'{terrain}-{h}x{d}-v03',terrain=terrain,height=h,depth=d,speed=.3))
@@ -45,22 +45,29 @@ def main():
             if a.suite!='nominal':
                 argv+=['--friction',str(rng.uniform(.6,1.1)),
                        '--mass-scale',str(np.exp(rng.uniform(np.log(.8),np.log(1.25)))),
-                       '--gain-scale',str(rng.uniform(.9,1.1)),
+                       '--gain-scale',str(1. if a.suite=='deployment' else rng.uniform(.9,1.1)),
                        '--com-offset',str(rng.uniform(-.03,.03)),str(rng.uniform(-.02,.02)),str(rng.uniform(-.01,.01)),
                        '--obs-noise']
             if a.suite=='stress':
                 argv+=['--motor-strength',str(rng.uniform(.9,1.1)),
                        '--delay-physics-steps',str(rng.integers(0,3))]
+            if a.suite=='deployment':
+                argv+=['--per-joint-gains','.9','1.1','--per-joint-strength','.9','1.1',
+                       '--per-foot-friction','.6','1.1','--delay-physics-steps',str(rng.integers(0,3))]
             sys.argv=argv
             with (a.output/'trial-console.txt').open('a') as stream,contextlib.redirect_stdout(stream):
                 result=run(parse())
-            row={k:result[k] for k in ['success','reason','simulation_seconds','final_position','body_contact_fraction','calf_contact_fraction','xy_velocity_mae_m_s','yaw_velocity_mae_rad_s','mean_action_rate_squared','policy_sha256','arguments']}
+            row={k:result[k] for k in ['success','reason','simulation_seconds','final_position','body_contact_fraction','calf_contact_fraction','body_loaded_contact_fraction','calf_loaded_contact_fraction','calf_peak_normal_force_n','xy_velocity_mae_m_s','yaw_velocity_mae_rad_s','mean_action_rate_squared','policy_sha256','arguments']}
             row.update(case=case['name'],seed=seed,result_file=str(Path(result['arguments']['output'])/'result.json'))
             record['trials'].append(row)
             trials.append(row)
         summary=dict(case=case['name'],passed=sum(x['success'] for x in trials),total=len(trials),
                      mean_calf_contact_fraction=float(np.mean([x['calf_contact_fraction'] for x in trials])),
-                     mean_body_contact_fraction=float(np.mean([x['body_contact_fraction'] for x in trials])))
+                     mean_body_contact_fraction=float(np.mean([x['body_contact_fraction'] for x in trials])),
+                     mean_calf_loaded_contact_fraction=float(np.mean([x['calf_loaded_contact_fraction'] for x in trials])),
+                     maximum_calf_normal_force_n=max(x['calf_peak_normal_force_n'] for x in trials),
+                     mean_xy_velocity_mae_m_s=float(np.mean([x['xy_velocity_mae_m_s'] for x in trials if x['xy_velocity_mae_m_s'] is not None])),
+                     mean_yaw_velocity_mae_rad_s=float(np.mean([x['yaw_velocity_mae_rad_s'] for x in trials if x['yaw_velocity_mae_rad_s'] is not None])))
         record['summary'].append(summary)
         (a.output/'matrix.json').write_text(json.dumps(record,indent=2)+'\n')
         print(json.dumps(summary),flush=True)
