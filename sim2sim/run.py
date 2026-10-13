@@ -107,6 +107,7 @@ def make_model(args, output):
 
 def run(args):
     torch.set_num_threads(1)
+    runner_sha256 = sha(__file__)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     config = json.loads(args.config.read_text())
@@ -290,6 +291,7 @@ def run(args):
                   mean_action_rate_squared=float(np.mean(np.diff(np.asarray([r['action'] for r in rows]),axis=0)**2)) if len(rows)>1 else None,
                   policy_sha256=sha(args.policy), config_sha256=sha(args.config), generated_xml_sha256=sha(output/'model.xml'),
                   source_model_sha256=sha(args.assets/'go2.xml'), mujoco_version=mujoco.__version__, torch_version=torch.__version__,
+                  runner_source_sha256=runner_sha256,
                   policy_joint_order=names, mujoco_qpos_indices=qids.tolist(), mujoco_actuator_indices=aids.tolist(),
                   arguments={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},
                   actual_base_mass=float(model.body_mass[base]), actual_base_com=model.body_ipos[base].tolist(),
