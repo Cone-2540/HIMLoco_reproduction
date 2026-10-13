@@ -234,7 +234,7 @@ def run(args):
                 if abs(data.qpos[1]) > args.width/2 + .15 and args.terrain != 'flat':
                     reason = 'left_stair_width'
                     break
-                if dwell >= .5:
+                if dwell >= .5 and not args.fixed_duration:
                     passed, reason = True, ('all_feet_on_landing_and_upright_dwell' if args.terrain!='flat' else 'forward_progress_and_upright_dwell')
                     break
     finally:
@@ -247,6 +247,13 @@ def run(args):
     tracking_rows = [r for r in rows if r['time'] >= 1.]
     xy_error = np.asarray([np.linalg.norm(np.asarray(r['linear_velocity_body'][:2])-r['command'][:2]) for r in tracking_rows])
     yaw_error = np.asarray([abs(r['omega'][2]-r['command'][2]) for r in tracking_rows])
+    if args.fixed_duration and reason=='timeout':
+        xy_limit = .08 if np.linalg.norm(args.command)==0 else .2
+        passed = bool(xy_error.size and xy_error.mean()<=xy_limit and yaw_error.mean()<=.3)
+        if np.linalg.norm(args.command[:2])==0:
+            displacement=np.linalg.norm(data.qpos[:2]-[0,args.initial_y])
+            passed &= bool(displacement <= (.5 if args.command[2]==0 else 1.))
+        reason = 'fixed_duration_tracking_pass' if passed else 'fixed_duration_tracking_fail'
     result = dict(success=passed, reason=reason, simulation_seconds=float(data.time),
                   wall_seconds=time.monotonic()-started, final_position=data.qpos[:3].tolist(),
                   body_contact_fraction=body_contact_steps/max(1,len(rows)), calf_contact_fraction=calf_contact_steps/max(1,len(rows)),
@@ -297,6 +304,7 @@ def parse():
     p.add_argument('--motor-strength',type=float,default=1.)
     p.add_argument('--delay-steps',type=int,default=0)
     p.add_argument('--delay-physics-steps',type=int,default=0)
+    p.add_argument('--fixed-duration',action='store_true',help='Flat only: survive the full interval and pass velocity tracking gates')
     for flag in ('heading-feedback','obs-noise','stock-joint-physics','conservative-calf','video','viewer'):
         p.add_argument('--'+flag,action='store_true')
     args = p.parse_args()
@@ -306,6 +314,8 @@ def parse():
         p.error('Invalid simulation dimensions/timing')
     if args.delay_physics_steps<0 or (args.delay_steps and args.delay_physics_steps):
         p.error('Select either policy-frame delay or physics-substep delay')
+    if args.fixed_duration and (args.terrain!='flat' or args.seconds<20):
+        p.error('Full-duration flat tracking evaluation requires at least 20s')
     return args
 
 
