@@ -1,0 +1,40 @@
+Actor MLP: Sequential(
+  (0): Linear(in_features=64, out_features=512, bias=True)
+  (1): ELU(alpha=1.0)
+  (2): Linear(in_features=512, out_features=256, bias=True)
+  (3): ELU(alpha=1.0)
+  (4): Linear(in_features=256, out_features=128, bias=True)
+  (5): ELU(alpha=1.0)
+  (6): Linear(in_features=128, out_features=12, bias=True)
+)
+Critic MLP: Sequential(
+  (0): Linear(in_features=235, out_features=512, bias=True)
+  (1): ELU(alpha=1.0)
+  (2): Linear(in_features=512, out_features=256, bias=True)
+  (3): ELU(alpha=1.0)
+  (4): Linear(in_features=256, out_features=128, bias=True)
+  (5): ELU(alpha=1.0)
+  (6): Linear(in_features=128, out_features=1, bias=True)
+)
+Estimator: Sequential(
+  (0): Linear(in_features=270, out_features=128, bias=True)
+  (1): ELU(alpha=1.0)
+  (2): Linear(in_features=128, out_features=64, bias=True)
+  (3): ELU(alpha=1.0)
+  (4): Linear(in_features=64, out_features=19, bias=True)
+)
+{
+  "checkpoint": "/home/cone/Research/HIMLoco/artifacts/go2-night3-selected/model.pt",
+  "output": "/home/cone/robotics/logs/night3-selected-export-reverification.pt",
+  "input_shape": [
+    128,
+    270
+  ],
+  "output_shape": [
+    128,
+    12
+  ],
+  "max_abs_error": 0.0,
+  "weights_finite": true,
+  "torch_version": "2.6.0+cpu"
+}

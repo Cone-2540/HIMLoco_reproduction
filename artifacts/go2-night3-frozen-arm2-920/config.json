@@ -1,0 +1,2536 @@
+{
+  "task": "Isaac-Velocity-Rough-UnitreeGo2",
+  "seed": 1402,
+  "num_envs": 7680,
+  "train": {
+    "runner": {
+      "policy_class_name": "HIMActorCritic",
+      "algorithm_class_name": "HIMPPO",
+      "num_steps_per_env": 100,
+      "save_interval": 20
+    },
+    "policy": {
+      "actor_hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "critic_hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "activation": "elu",
+      "init_noise_std": 1.0
+    },
+    "algorithm": {
+      "value_loss_coef": 1.0,
+      "use_clipped_value_loss": true,
+      "clip_param": 0.2,
+      "entropy_coef": 0.01,
+      "num_learning_epochs": 5,
+      "num_mini_batches": 4,
+      "learning_rate": 0.0001,
+      "schedule": "fixed",
+      "gamma": 0.99,
+      "lam": 0.95,
+      "desired_kl": 0.01,
+      "max_grad_norm": 1.0
+    }
+  },
+  "source_commit": "972955912a7ca612113e3f889c24202d83091336",
+  "source_tracked_files_dirty": false,
+  "observation": "45 per frame, newest first, 6 frames; critic velocity at 45:48",
+  "physics": "isaacsim_physx",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
+  "gpu_capability": [
+    12,
+    0
+  ],
+  "python": "3.12.13 (tags/v3.12.13-dirty:3bb231a, Apr 22 2026, 14:10:08) [GCC 11.4.0]",
+  "algorithm_source": "vendored original HIMLoco at ef289ac",
+  "mode": "train",
+  "checkpoint": "/workspace/himloco/artifacts/go2-stairs-night2-faithful-seed1213-760/model_760.pt",
+  "robot_usd": "/workspace/isaaclab/data_storage/assets/isaaclab6.1/Go2/go2.usd",
+  "robot_usd_source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.1/Isaac/IsaacLab/Robots/Unitree/Go2/go2.usd",
+  "physics_dt": 0.005,
+  "policy_decimation": 4,
+  "episode_length_s": 20.0,
+  "reward_weights": {
+    "track_lin_vel_xy_exp": 1.0,
+    "track_ang_vel_z_exp": 0.5,
+    "lin_vel_z_l2": -2.0,
+    "ang_vel_xy_l2": -0.05,
+    "dof_acc_l2": -2.5e-07,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": -0.2,
+    "joint_power": -2e-05,
+    "base_height": -1.0,
+    "foot_clearance": -0.01,
+    "action_smoothness": -0.01
+  },
+  "command_override": null,
+  "evaluation_seconds": 20.0,
+  "evaluation_trace_stride_policy_steps": 5,
+  "video": false,
+  "video_policy_only": false,
+  "video_length": null,
+  "video_fps": null,
+  "video_environment_index": null,
+  "video_isolate_environment": false,
+  "video_camera_eye_relative_xyz": null,
+  "video_camera_lookat_relative_xyz": null,
+  "evaluation_include_zero_action": null,
+  "training_turn_fraction": 0.0,
+  "exploration_std_override": 0.3,
+  "resume_learning_rate_override": 0.0001,
+  "requested_additional_training_updates": 200,
+  "terrain_start_level": 4,
+  "stair_training_speed_range_m_s": [
+    0.25,
+    0.65
+  ],
+  "terrain": "stairs",
+  "stairs": {
+    "stage": "paper_mixed",
+    "seed": 1402,
+    "heldout": false,
+    "num_rows": 10,
+    "num_cols": 112,
+    "terrain_size": [
+      8.0,
+      3.0
+    ],
+    "num_steps": 6,
+    "width": 1.2,
+    "landing_length": 2.0,
+    "convert_to_heightfield": false,
+    "geometry_reference": "relative to scene.env_origins; positive x travel",
+    "height_scanner_samples": 187,
+    "curriculum_promotion": "directed goal progress and actual stair_goal_reached, excluding genuine terminations",
+    "curriculum_diagnostics_scope": "current training reset rows by ascent/descent; zero fraction with reset_count=0 means no samples; not independent held-out validation",
+    "variants": [
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "kind": "flat",
+        "collision_representation": "true plane triangle mesh",
+        "terrain_local_origin": [
+          4.0,
+          1.5,
+          0.0
+        ]
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "asc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.3,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.01,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.11,
+          0.2
+        ],
+        "step_depth": 0.35,
+        "nosing": 0.02,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.16,
+          0.16
+        ],
+        "step_depth": 0.27,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      },
+      {
+        "direction": "desc",
+        "step_height_range": [
+          0.17,
+          0.17
+        ],
+        "step_depth": 0.25,
+        "nosing": 0.0,
+        "num_steps": 6,
+        "width": 1.2,
+        "landing_length": 2.0
+      }
+    ],
+    "flat_replay": {
+      "requested_fraction": 0.25,
+      "actual_column_fraction": 0.25,
+      "flat_columns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "stair_columns": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111
+      ],
+      "environment_column_mapping": "scene.terrain.terrain_types",
+      "origin": "plane tile centre at local (size_x/2,size_y/2,0); Lab world translation applies",
+      "world_block_bounds": "all row/flat-column terrain_origins min/max XY, expanded by half tile size",
+      "boundary_timeout": {
+        "term": "flat_replay_region_exit",
+        "inward_margin_m": 1.0,
+        "counts_as_failure": false,
+        "scope": "training only; can shorten edge-spawn episodes"
+      },
+      "curriculum": "no promotion/demotion or stair goal/corridor for flat environments",
+      "diagnostics": "flat_reset_count separate from ascent/descent reset counts"
+    }
+  },
+  "stair_reward": {
+    "profile": "faithful",
+    "source": "released HIMLoco Go1 config/reward code at ef289ac",
+    "base_height_sensor": "base_height_scanner",
+    "height_target_m": 0.3,
+    "body_foot_height_target_m": -0.2,
+    "joint_acceleration_interval": "policy step",
+    "physics_quaternion_order": "xyzw",
+    "weights": {
+      "track_lin_vel_xy_exp": 1.0,
+      "track_ang_vel_z_exp": 0.5,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "dof_acc_l2": -2.5e-07,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.2,
+      "joint_power": -2e-05,
+      "base_height": -1.0,
+      "foot_clearance": -0.01,
+      "action_smoothness": -0.01
+    },
+    "tuned_changes": [],
+    "adaptation_changes": [],
+    "contact_penalty": null,
+    "force_proxy_penalty": null,
+    "slide_proxy_penalty": null
+  },
+  "domain_randomization": {
+    "profile": "deployment",
+    "foot_material": {
+      "mode": "startup",
+      "static_friction_range": [
+        0.6,
+        1.1
+      ],
+      "dynamic_friction_range": [
+        0.5,
+        1.0
+      ],
+      "dynamic_le_static": true,
+      "restitution": 0.0,
+      "buckets": 64
+    },
+    "terrain_material": {
+      "static_friction": 1.0,
+      "dynamic_friction": 1.0,
+      "friction_combine_mode": "multiply"
+    },
+    "base_com_range_m": {
+      "x": [
+        -0.03,
+        0.03
+      ],
+      "y": [
+        -0.02,
+        0.02
+      ],
+      "z": [
+        -0.01,
+        0.01
+      ]
+    },
+    "base_mass": {
+      "enabled": true,
+      "preserved": true,
+      "mode": "startup",
+      "parameters": {
+        "mass_distribution_params": [
+          0.8,
+          1.25
+        ],
+        "operation": "scale",
+        "distribution": "log_uniform"
+      }
+    },
+    "pd_gain_scale": [
+      0.9,
+      1.1
+    ],
+    "pd_gain_mode": "reset from fixed defaults",
+    "actuator_model": "DCMotor with reset-randomized strength/position latency",
+    "motor_strength_randomization": [
+      0.9,
+      1.1
+    ],
+    "action_delay_randomization": {
+      "physics_substeps": [
+        0,
+        2
+      ],
+      "seconds": [
+        0,
+        0.01
+      ],
+      "mode": "reset"
+    },
+    "remaining_deployment_gaps": [
+      "No motor-strength scaling: public gain randomization is not torque-envelope randomization",
+      "No 0-15ms action delay: requires physics-substep command buffering while preserving DC curve"
+    ]
+  },
+  "calf_limit_sensitivity": null,
+  "friction_override": null,
+  "stair_pushes": false,
+  "evaluation_seeds": null,
+  "evaluation_randomized": false,
+  "flat_replay": {
+    "requested_terrain_fraction": 0.25,
+    "all_direction_commands": true,
+    "standing_fraction": 0.1,
+    "moving_categories": [
+      "forward",
+      "backward",
+      "left",
+      "right",
+      "positive_yaw",
+      "negative_yaw"
+    ],
+    "positive_magnitude_ranges": {
+      "vx": [
+        0.2,
+        0.65
+      ],
+      "vy": [
+        0.15,
+        0.35
+      ],
+      "yaw": [
+        0.2,
+        0.6
+      ]
+    },
+    "actor_terrain_inputs_added": false
+  },
+  "evaluation_dynamics_randomized": false,
+  "joint_names": [
+    "FL_hip_joint",
+    "FR_hip_joint",
+    "RL_hip_joint",
+    "RR_hip_joint",
+    "FL_thigh_joint",
+    "FR_thigh_joint",
+    "RL_thigh_joint",
+    "RR_thigh_joint",
+    "FL_calf_joint",
+    "FR_calf_joint",
+    "RL_calf_joint",
+    "RR_calf_joint"
+  ],
+  "default_joint_positions": [
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.10000000149011612,
+    -0.10000000149011612,
+    0.800000011920929,
+    0.800000011920929,
+    1.0,
+    1.0,
+    -1.5,
+    -1.5,
+    -1.5,
+    -1.5
+  ],
+  "action_scale": 0.25,
+  "flat_replay_runtime_readback": {
+    "flat_environment_count": 1920,
+    "stair_environment_count": 5760,
+    "flat_environment_fraction": 0.25,
+    "flat_column_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ],
+    "initial_sample_environment_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "initial_sample_commands": [
+      [
+        0.0,
+        -0.19845399260520935,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.4569503664970398
+      ],
+      [
+        0.0,
+        0.0,
+        0.2286447435617447
+      ],
+      [
+        0.0,
+        -0.17302758991718292,
+        0.0
+      ],
+      [
+        0.4442440867424011,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2010335922241211,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.6253412365913391,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.1620325893163681,
+        0.0
+      ],
+      [
+        0.0,
+        -0.21455799043178558,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.36587852239608765
+      ],
+      [
+        0.0,
+        -0.21771810948848724,
+        0.0
+      ],
+      [
+        0.6331619024276733,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.21955260634422302,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.19972234964370728,
+        0.0
+      ],
+      [
+        0.0,
+        0.23913228511810303,
+        0.0
+      ],
+      [
+        -0.31848394870758057,
+        0.0,
+        0.0
+      ],
+      [
+        -0.5247440934181213,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.21390783786773682
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.30087435245513916,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2549639940261841,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.530368983745575,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2073214203119278,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.39577215909957886
+      ],
+      [
+        0.0,
+        0.0,
+        0.2093213051557541
+      ],
+      [
+        0.5300006866455078,
+        0.0,
+        0.0
+      ],
+      [
+        -0.22493350505828857,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.23630034923553467,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5038946270942688
+      ],
+      [
+        0.0,
+        -0.20315039157867432,
+        0.0
+      ],
+      [
+        0.38342389464378357,
+        0.0,
+        0.0
+      ],
+      [
+        0.6113603711128235,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5224100351333618
+      ],
+      [
+        0.2406911849975586,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.3044949471950531
+      ],
+      [
+        0.0,
+        -0.2502945363521576,
+        0.0
+      ],
+      [
+        -0.36606043577194214,
+        0.0,
+        0.0
+      ],
+      [
+        0.22109147906303406,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.23316746950149536,
+        0.0
+      ],
+      [
+        0.38897550106048584,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.39864206314086914
+      ],
+      [
+        0.0,
+        -0.3494146466255188,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.26911449432373047
+      ],
+      [
+        0.4635738730430603,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5259862542152405
+      ],
+      [
+        0.0,
+        0.0,
+        0.3451257348060608
+      ],
+      [
+        0.0,
+        -0.19486984610557556,
+        0.0
+      ],
+      [
+        0.0,
+        0.2363397181034088,
+        0.0
+      ],
+      [
+        0.0,
+        -0.27016371488571167,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.4360160231590271
+      ],
+      [
+        0.0,
+        0.20880858600139618,
+        0.0
+      ],
+      [
+        0.45958369970321655,
+        0.0,
+        0.0
+      ],
+      [
+        0.5430288910865784,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5578567385673523
+      ],
+      [
+        0.0,
+        -0.170977383852005,
+        0.0
+      ],
+      [
+        0.0,
+        -0.17418977618217468,
+        0.0
+      ],
+      [
+        -0.21005958318710327,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.43966490030288696
+      ],
+      [
+        0.0,
+        -0.28243136405944824,
+        0.0
+      ],
+      [
+        0.4949055314064026,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.24036450684070587,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.2201298326253891
+      ],
+      [
+        -0.59300696849823,
+        0.0,
+        0.0
+      ],
+      [
+        0.5994547009468079,
+        0.0,
+        0.0
+      ],
+      [
+        -0.4985809922218323,
+        0.0,
+        0.0
+      ],
+      [
+        -0.2980281114578247,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.15940505266189575,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3016926646232605,
+        0.0
+      ],
+      [
+        0.0,
+        0.3183850944042206,
+        0.0
+      ],
+      [
+        -0.44166243076324463,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.23566025495529175,
+        0.0
+      ],
+      [
+        0.0,
+        -0.1877104789018631,
+        0.0
+      ],
+      [
+        0.0,
+        0.213667631149292,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.31773167848587036
+      ],
+      [
+        -0.3986881375312805,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.18092194199562073,
+        0.0
+      ],
+      [
+        0.0,
+        0.23973815143108368,
+        0.0
+      ],
+      [
+        0.0,
+        0.21382001042366028,
+        0.0
+      ],
+      [
+        0.0,
+        0.19560998678207397,
+        0.0
+      ],
+      [
+        0.4937594532966614,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.32976067066192627
+      ],
+      [
+        -0.5518996715545654,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.1546671986579895,
+        0.0
+      ],
+      [
+        0.0,
+        -0.2716933786869049,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.4729194641113281
+      ],
+      [
+        0.0,
+        0.29610124230384827,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.4361611008644104
+      ],
+      [
+        -0.6298493146896362,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.30706411600112915,
+        0.0
+      ],
+      [
+        -0.4231840968132019,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5085981488227844
+      ],
+      [
+        0.39162570238113403,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.2461131066083908
+      ],
+      [
+        0.6492746472358704,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5565250515937805
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5573002099990845
+      ],
+      [
+        0.0,
+        0.31839901208877563,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.30167365074157715
+      ],
+      [
+        0.0,
+        -0.18666328489780426,
+        0.0
+      ],
+      [
+        0.0,
+        0.20956726372241974,
+        0.0
+      ],
+      [
+        0.3316439390182495,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2405271828174591,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3010905981063843,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2028564214706421,
+        0.0
+      ],
+      [
+        -0.45679277181625366,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.20644991099834442,
+        0.0
+      ],
+      [
+        -0.45220160484313965,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5498811602592468
+      ],
+      [
+        0.0,
+        -0.2693578004837036,
+        0.0
+      ],
+      [
+        0.0,
+        0.19147613644599915,
+        0.0
+      ],
+      [
+        0.41519564390182495,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5479655861854553
+      ],
+      [
+        0.0,
+        0.0,
+        -0.5401755571365356
+      ],
+      [
+        -0.3394276201725006,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.42131292819976807
+      ],
+      [
+        0.5742729306221008,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.4770823121070862
+      ],
+      [
+        0.0,
+        0.0,
+        0.5887343287467957
+      ]
+    ],
+    "sample_scope": "after the runner's initial reset, before learning; not a rollout distribution",
+    "flat_boundary_timeout": "whole flat block with a 1 m inner margin",
+    "initial_category_counts": [
+      189,
+      265,
+      269,
+      308,
+      301,
+      282,
+      306
+    ],
+    "category_order": [
+      "standing",
+      "forward",
+      "backward",
+      "left",
+      "right",
+      "positive_yaw",
+      "negative_yaw"
+    ]
+  },
+  "domain_parameter_initial_readback": "domain-parameters-initial.json",
+  "reward_frame_validation": {
+    "quaternion_order": "xyzw",
+    "checked_physics_quaternions": 8,
+    "root_position": "root link origin",
+    "root_velocity": "root COM",
+    "foot_position": "foot link origin",
+    "foot_velocity": "foot COM"
+  },
+  "resume_learning_rate_applied": {
+    "before": {
+      "ppo": [
+        0.0001
+      ],
+      "estimator": [
+        0.0001
+      ]
+    },
+    "after": 0.0001,
+    "optimizer_state": "retained",
+    "training_iteration": 760
+  },
+  "runtime_training_state_before_learning": {
+    "completed_updates": 760,
+    "ppo_learning_rate": 0.0001,
+    "ppo_adam_group_rates": [
+      0.0001
+    ],
+    "him_learning_rate": 0.0001,
+    "him_adam_group_rates": [
+      0.0001
+    ],
+    "exploration_std_min": 0.30000001192092896,
+    "exploration_std_max": 0.30000001192092896,
+    "optimizer_state": "checkpoint Adam retained"
+  },
+  "domain_parameter_final_readback": "domain-parameters-final.json"
+}

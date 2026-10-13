@@ -15,6 +15,15 @@
 
 ## 运行
 
+本轮冻结候选的便捷入口（自动使用 `go2-night3-selected`，不是旧基线）：
+
+```bash
+bash sim2sim/play-selected.sh --terrain asc --heading-feedback --viewer \
+  --output /home/cone/robotics/logs/my-selected-stairs
+MUJOCO_GL=egl bash sim2sim/play-selected.sh --terrain desc --heading-feedback --video \
+  --output /home/cone/robotics/logs/my-selected-desc-video
+```
+
 在仓库根目录执行：
 
 ```bash
