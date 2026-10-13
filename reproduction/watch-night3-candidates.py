@@ -20,7 +20,8 @@ def main():
     p.add_argument('--iterations',type=int,nargs='+',required=True)
     a=p.parse_args()
     output=ROOT/'artifacts'/a.artifact
-    scores=[]
+    scores_path=ROOT/'reproduction'/f'night3-{a.run_name}-development-scores.json'
+    scores=json.loads(scores_path.read_text()) if scores_path.exists() else []
     for iteration in a.iterations:
         while True:
             if datetime.now().astimezone()>=DEADLINE:raise SystemExit('Deadline reached')
@@ -28,7 +29,8 @@ def main():
             if len(paths)>1:raise SystemExit('Ambiguous simulator source')
             if paths and (paths[0]/f'model_{iteration}.pt').is_file():
                 if time.time()-(paths[0]/f'model_{iteration}.pt').stat().st_mtime>3:break
-            if paths and (paths[0]/'result.json').is_file():raise SystemExit(f'Training ended without checkpoint {iteration}')
+            if paths and (paths[0]/'result.json').is_file() and not (paths[0]/f'model_{iteration}.pt').is_file():
+                raise SystemExit(f'Training ended without checkpoint {iteration}')
             time.sleep(10)
         source=paths[0]
         output.mkdir(parents=True,exist_ok=True)
@@ -49,8 +51,9 @@ def main():
             matrix=json.loads((directory/'matrix.json').read_text())
             summary[suite]={'passed':matrix['passed'],'total':matrix['total'],'cases':matrix['summary'],'directory':str(directory)}
             shutil.copyfile(directory/'matrix.json',ROOT/'reproduction'/f'night3-{a.run_name}-iter{iteration}-{suite}.json')
-        scores.append(summary)
-        (ROOT/'reproduction'/f'night3-{a.run_name}-development-scores.json').write_text(json.dumps(scores,indent=2)+'\n')
+        scores=[s for s in scores if s['iteration']!=iteration]+[summary]
+        scores.sort(key=lambda s:s['iteration'])
+        scores_path.write_text(json.dumps(scores,indent=2)+'\n')
         print('CANDIDATE_SCORE '+json.dumps(summary),flush=True)
     print('Development monitoring finished; final reserved seeds still required',flush=True)
 
