@@ -56,5 +56,28 @@ class InterfaceTests(unittest.TestCase):
             feet=[mujoco.mj_name2id(model,mujoco.mjtObj.mjOBJ_GEOM,n) for n in ('FL','FR','RL','RR')]
             self.assertTrue(all(model.geom_contype[g]==1 and model.geom_conaffinity[g]==2 for g in feet))
 
+    def test_real_tread_heights_and_thin_overhangs(self):
+        args=SimpleNamespace(assets=ASSETS,dt=.005,stock_joint_physics=False,
+            contact_profile='menagerie',terrain='asc',steps=6,depth=.27,width=1.2,
+            height=.16,nosing=.02,friction=1.,mass_scale=1.,com_offset=[0,0,0])
+        def height(model,data,x):
+            distance=mujoco.mj_ray(model,data,np.array([x,.5,3.]),np.array([0.,0.,-1.]),
+                None,1,-1,np.array([-1],dtype=np.int32))
+            return 3-distance
+        with tempfile.TemporaryDirectory() as directory:
+            model,_,start,_=make_model(args,Path(directory));data=mujoco.MjData(model);mujoco.mj_forward(model,data)
+            for i in range(6):
+                self.assertAlmostEqual(height(model,data,start+(i+.5)*.27),(i+1)*.16)
+            self.assertAlmostEqual(height(model,data,start-.01),.16)
+            self.assertAlmostEqual(height(model,data,start-.03),0.)
+            nose=mujoco.mj_name2id(model,mujoco.mjtObj.mjOBJ_GEOM,'nosing_0')
+            self.assertAlmostEqual(model.geom_size[nose,2],.015)
+            args.terrain='desc'
+            model,_,start,_=make_model(args,Path(directory));data=mujoco.MjData(model);mujoco.mj_forward(model,data)
+            for i in range(5):
+                self.assertAlmostEqual(height(model,data,start+(i+.5)*.27),(5-i)*.16)
+            self.assertAlmostEqual(height(model,data,start+.01),.96)
+            self.assertAlmostEqual(height(model,data,start+.03),.8)
+
 
 if __name__=='__main__':unittest.main()

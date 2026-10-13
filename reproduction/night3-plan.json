@@ -22,6 +22,17 @@
       "exploration_std_override": 0.3,
       "seed": 1402,
       "purpose": "extended dynamics and general flat commands; not a randomization-only ablation"
+    },
+    {
+      "name": "deployment-contact-light-arm3",
+      "start_checkpoint": "arm1 model_860.pt",
+      "updates": 200,
+      "seed": 1403,
+      "domain": "deployment",
+      "reward_change": "faithful plus existing leg_contacts -0.02 (zero in published reward)",
+      "flat_fraction": 0,
+      "exploration_std_override": 0.2,
+      "purpose": "one small existing reward change to reduce measured loaded calf contacts; adaptation, not exact published objective"
     }
   ],
   "mujoco_selection": "development seeds 1400-1415; freeze choice before final seeds 1800+; retain baseline if new models regress",

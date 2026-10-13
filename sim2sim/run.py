@@ -75,23 +75,27 @@ def make_model(args, output):
                       size=f'{(x1-x0)/2} {args.width/2} {height/2}',
                       contype='2', conaffinity='1', friction=f'{args.friction} .02 .01',
                       condim='3', rgba=color)
+    def nose(name,x0,x1,top):
+        if args.nosing<=0:return
+        thickness=min(.03,args.height/3)
+        ET.SubElement(world,'geom',name=name,type='box',
+                      pos=f'{(x0+x1)/2} 0 {top-thickness/2}',
+                      size=f'{(x1-x0)/2} {args.width/2} {thickness/2}',
+                      contype='2',conaffinity='1',friction=f'{args.friction} .02 .01',
+                      condim='3',rgba='.7 .7 .75 1')
     if args.terrain == 'asc':
         for i in range(args.steps):
-            box(f'step_{i}', start + i*args.depth - args.nosing, end+2,
+            box(f'step_{i}', start + i*args.depth, end+2,
                 (i+1)*args.height, '.55 .6 .65 1' if i%2 else '.65 .65 .65 1')
+            nose(f'nosing_{i}',start+i*args.depth-args.nosing,start+i*args.depth,(i+1)*args.height)
     elif args.terrain == 'desc':
         box('start_platform', -3, start, args.steps*args.height, '.55 .6 .65 1')
+        nose('platform_nosing',start,start+args.nosing,args.steps*args.height)
         for i in range(args.steps-1):
-            box(f'step_{i}', start+i*args.depth-args.nosing, end+2,
+            box(f'step_{i}', start+i*args.depth, start+(i+1)*args.depth,
                 (args.steps-i-1)*args.height, '.6 .6 .65 1')
-        # Descending boxes above overlap the lower landing if extended to end+2.
-        # Truncate each slab at its intended tread end; otherwise it becomes a wall.
-        for i in range(args.steps-1):
-            geom = world.find(f"geom[@name='step_{i}']")
-            x0 = start+i*args.depth-args.nosing
-            x1 = start+(i+1)*args.depth
-            geom.set('pos', f'{(x0+x1)/2} 0 {(args.steps-i-1)*args.height/2}')
-            geom.set('size', f'{(x1-x0)/2} {args.width/2} {(args.steps-i-1)*args.height/2}')
+            nose(f'nosing_{i}',start+(i+1)*args.depth,start+(i+1)*args.depth+args.nosing,
+                 (args.steps-i-1)*args.height)
     path = output / 'model.xml'
     xml.write(path)
     model = mujoco.MjModel.from_xml_path(str(path))
