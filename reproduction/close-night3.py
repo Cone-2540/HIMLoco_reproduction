@@ -82,7 +82,13 @@ def main():
             'frozen_local':datetime.now().astimezone().isoformat(),'reserved_seeds_start':1800,
             'policy_sha256':digest(frozen/'policy.pt'),'checkpoint_sha256':digest(frozen/'model.pt'),
             'runner_sha256':digest(ROOT/'sim2sim/run.py'),'candidate_results':candidates}
-    save(ROOT/'reproduction/night3-selection-frozen.json',freeze)
+    freeze_path=ROOT/'reproduction/night3-selection-frozen.json'
+    if freeze_path.exists():
+        previous=read(freeze_path)
+        if previous['policy_sha256']!=freeze['policy_sha256']:raise RuntimeError('Frozen selection must not change after final seeds are opened')
+        freeze=previous
+    else:
+        save(freeze_path,freeze)
     results={}
     for label,policy,config in [('baseline',original/'policy.pt',original/'config.json'),
                                ('selected',frozen/'policy.pt',frozen/'config.json')]:

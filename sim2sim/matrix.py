@@ -39,14 +39,14 @@ def main():
                   '--output',str(a.output/f"{case['name']}-seed{seed}"),'--terrain',case['terrain'],
                   '--height',str(case['height']),'--depth',str(case['depth']),
                   '--command',str(case['speed']),'0','0','--seconds','25','--seed',str(seed),
-                  '--initial-yaw',str(rng.uniform(-.06,.06)),
-                  '--initial-y',str(rng.uniform(-.04,.04)),'--initial-joint-noise','.03']
+                  '--initial-yaw',f'{rng.uniform(-.06,.06):.12f}',
+                  '--initial-y',f'{rng.uniform(-.04,.04):.12f}','--initial-joint-noise','.03']
             if case['terrain']!='flat':argv+=['--heading-feedback']
             if a.suite!='nominal':
                 argv+=['--friction',str(rng.uniform(.6,1.1)),
                        '--mass-scale',str(np.exp(rng.uniform(np.log(.8),np.log(1.25)))),
                        '--gain-scale',str(1. if a.suite=='deployment' else rng.uniform(.9,1.1)),
-                       '--com-offset',str(rng.uniform(-.03,.03)),str(rng.uniform(-.02,.02)),str(rng.uniform(-.01,.01)),
+                       '--com-offset',f'{rng.uniform(-.03,.03):.12f}',f'{rng.uniform(-.02,.02):.12f}',f'{rng.uniform(-.01,.01):.12f}',
                        '--obs-noise']
             if a.suite=='stress':
                 argv+=['--motor-strength',str(rng.uniform(.9,1.1)),
