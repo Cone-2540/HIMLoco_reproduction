@@ -1,0 +1,38 @@
+{
+  "deadline_local": "2026-10-14T07:20:00+08:00",
+  "baseline_policy": "artifacts/go2-stairs-night2-faithful-seed1213-760/policy.pt",
+  "algorithm_constraint": "original HIMActorCritic/HIMPPO, 6x45 history, no actor terrain scan; original faithful reward for both primary arms",
+  "arms": [
+    {
+      "name": "robust-faithful-arm1",
+      "start_checkpoint": "model_760.pt",
+      "updates": 100,
+      "domain": "robust",
+      "flat_fraction": 0,
+      "seed": 1401,
+      "purpose": "controlled domain profile change with original objective"
+    },
+    {
+      "name": "deployment-mixed-arm2",
+      "start_checkpoint": "model_760.pt",
+      "updates": 200,
+      "domain": "deployment",
+      "flat_fraction": 0.25,
+      "all_direction_flat_commands": true,
+      "exploration_std_override": 0.3,
+      "seed": 1402,
+      "purpose": "extended dynamics and general flat commands; not a randomization-only ablation"
+    }
+  ],
+  "mujoco_selection": "development seeds 1400-1415; freeze choice before final seeds 1800+; retain baseline if new models regress",
+  "acceptance": "Separate whole-flight completion, 20s flat command tracking, randomized domains, calf/body contacts and video review; training reward never counts as transfer proof",
+  "permissions": "Existing Docker and GitHub user authorization; no robot commands, no driver/system CUDA/graphics writes",
+  "installation": {
+    "python_environment": "/home/cone/robotics/envs/himloco-mujoco-py311",
+    "mujoco": "3.3.7",
+    "torch": "2.6.0+cpu",
+    "model_assets": "/home/cone/robotics/assets/mujoco-menagerie-go2",
+    "asset_commit": "71f066ad0be9cd271f7ed58c030243ef157af9f4"
+  },
+  "failure_limits": "Menagerie stock damping2/frictionloss.2 is an additional failed sensitivity, not hidden; calibration runs using inertial-frame omega excluded explicitly"
+}
