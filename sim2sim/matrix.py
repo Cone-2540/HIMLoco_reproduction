@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+"""Paired MuJoCo evaluation with explicit reset, dynamics and controller provenance."""
+import argparse
+import contextlib
+from datetime import datetime
+import json
+from pathlib import Path
+import sys
+import numpy as np
+from run import parse, run, DEFAULT_POLICY
+
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--policy',type=Path,default=DEFAULT_POLICY)
+    p.add_argument('--config',type=Path)
+    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--seeds',type=int,default=8)
+    p.add_argument('--seed-start',type=int,default=1400)
+    p.add_argument('--suite',choices=['nominal','randomized','stress'],default='nominal')
+    a=p.parse_args()
+    a.output.mkdir(parents=True,exist_ok=False)
+    configs=[]
+    for terrain in ['flat','asc','desc']:
+        for speed in [.3,.5]:
+            configs.append(dict(name=f'{terrain}-16x27-v{speed}',terrain=terrain,height=.16,depth=.27,speed=speed))
+    if a.suite=='stress':
+        for terrain in ['asc','desc']:
+            for h,d in [(.11,.35),(.17,.25),(.20,.30)]:
+                configs.append(dict(name=f'{terrain}-{h}x{d}-v03',terrain=terrain,height=h,depth=d,speed=.3))
+    record={'started_local':datetime.now().astimezone().isoformat(),'suite':a.suite,
+            'seed_start':a.seed_start,'seeds_per_case':a.seeds,'cases':configs,
+            'policy':str(a.policy.resolve()),'summary':[],'trials':[]}
+    for case in configs:
+        trials=[]
+        for seed in range(a.seed_start,a.seed_start+a.seeds):
+            rng=np.random.default_rng(seed)
+            argv=['run','--policy',str(a.policy),'--config',str(a.config or a.policy.parent/'config.json'),
+                  '--output',str(a.output/f"{case['name']}-seed{seed}"),'--terrain',case['terrain'],
+                  '--height',str(case['height']),'--depth',str(case['depth']),
+                  '--command',str(case['speed']),'0','0','--seconds','25','--seed',str(seed),
+                  '--initial-yaw',str(rng.uniform(-.06,.06)),
+                  '--initial-y',str(rng.uniform(-.04,.04)),'--initial-joint-noise','.03']
+            if case['terrain']!='flat':argv+=['--heading-feedback']
+            if a.suite!='nominal':
+                argv+=['--friction',str(rng.uniform(.6,1.1)),
+                       '--mass-scale',str(np.exp(rng.uniform(np.log(.8),np.log(1.25)))),
+                       '--gain-scale',str(rng.uniform(.9,1.1)),
+                       '--com-offset',str(rng.uniform(-.03,.03)),str(rng.uniform(-.02,.02)),str(rng.uniform(-.01,.01)),
+                       '--obs-noise']
+            if a.suite=='stress':
+                argv+=['--motor-strength',str(rng.uniform(.9,1.1)),
+                       '--delay-physics-steps',str(rng.integers(0,3))]
+            sys.argv=argv
+            with (a.output/'trial-console.txt').open('a') as stream,contextlib.redirect_stdout(stream):
+                result=run(parse())
+            row={k:result[k] for k in ['success','reason','simulation_seconds','final_position','body_contact_fraction','calf_contact_fraction','xy_velocity_mae_m_s','yaw_velocity_mae_rad_s','mean_action_rate_squared','policy_sha256','arguments']}
+            row.update(case=case['name'],seed=seed,result_file=str(Path(result['arguments']['output'])/'result.json'))
+            record['trials'].append(row)
+            trials.append(row)
+        summary=dict(case=case['name'],passed=sum(x['success'] for x in trials),total=len(trials),
+                     mean_calf_contact_fraction=float(np.mean([x['calf_contact_fraction'] for x in trials])),
+                     mean_body_contact_fraction=float(np.mean([x['body_contact_fraction'] for x in trials])))
+        record['summary'].append(summary)
+        (a.output/'matrix.json').write_text(json.dumps(record,indent=2)+'\n')
+        print(json.dumps(summary),flush=True)
+    record['ended_local']=datetime.now().astimezone().isoformat()
+    record['passed']=sum(x['success'] for x in record['trials'])
+    record['total']=len(record['trials'])
+    record['acceptance_scope']='first episode, finite/upright completion; smoothness and tracking assessed separately from trace'
+    (a.output/'matrix.json').write_text(json.dumps(record,indent=2)+'\n')
+    print(f"TOTAL: {record['passed']}/{record['total']}",flush=True)
+
+
+if __name__=='__main__':main()

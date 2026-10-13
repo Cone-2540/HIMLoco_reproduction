@@ -72,7 +72,7 @@ def main():
     source = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     source_dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True).strip())
     source_paths = ["isaaclab/run.py", "isaaclab/stair_rewards.py", "isaaclab/stair_terrain.py",
-                    "isaaclab/stair_evaluation.py", "isaaclab/adapter.py"]
+                    "isaaclab/stair_evaluation.py", "isaaclab/adapter.py", "isaaclab/stair_randomization.py", "isaaclab/deployment_motor.py"]
     record = {"name": args.name, "command": command, "started_local": now.isoformat(),
               "deadline_local": DEADLINE.isoformat(), "timeout_seconds": min(args.max_seconds, remaining),
               "source_commit": source, "source_dirty": source_dirty,

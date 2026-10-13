@@ -120,6 +120,12 @@ def configure_stair_evaluation(cfg, geometry, seconds=30.0, speed=0.3, randomize
     for name in events_to_remove:
         if hasattr(cfg.events, name):
             setattr(cfg.events, name, None)
+    if not dynamics_randomized:
+        robot_cfg = getattr(scene, "robot", None)
+        for motor in getattr(robot_cfg, "actuators", {}).values():
+            if hasattr(motor, "strength_range"):
+                motor.strength_range = (1.0, 1.0)
+                motor.min_delay = motor.max_delay = 0
     delta, yaw, vel = (0.08, 0.08, 0.03) if randomized else (0.0, 0.0, 0.0)
     # Every batch flight uses the same starting-landing origin convention.
     reset_geometry = geometry[0] if isinstance(geometry, (list, tuple)) else geometry

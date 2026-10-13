@@ -117,7 +117,7 @@ def main():
     parser.add_argument("--start_level", type=int, default=0)
     parser.add_argument("--stair_pushes", action="store_true")
     parser.add_argument("--stair_batch", type=Path, help="JSON list of fixed evaluation stair specifications.")
-    parser.add_argument("--domain_profile", choices=["none", "basic", "robust"], default="none")
+    parser.add_argument("--domain_profile", choices=["none", "basic", "robust", "deployment"], default="none")
     parser.add_argument("--conservative_calf", action="store_true")
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--candidate_checkpoint", type=Path, action="append",

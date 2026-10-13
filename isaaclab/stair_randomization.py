@@ -2,8 +2,8 @@
 
 Apply after terrain/reward configuration and before simulator launch. These
 presets do not alter the actor observations or replace the Go2 DC motor model.
-Actuation delay and motor-strength scaling are deliberately recorded as absent:
-neither is faithfully reproduced by merely changing a generic PD limit.
+The deployment profile adds a DC motor subclass with physics-step command
+delay and reset-sampled strength. Basic/robust keep the original motor unchanged.
 """
 
 from __future__ import annotations
@@ -138,6 +138,10 @@ def _domain_actuator_gains(env, robot):
             if not isinstance(actuator, IdealPDActuator):
                 raise TypeError(f"{type(actuator).__name__} is not a Lab IdealPD/DCMotor actuator")
             gains = {"actuator_type": type(actuator).__name__, "joint_names": list(actuator.joint_names)}
+            if hasattr(actuator, "drive_strength"):
+                gains["drive_strength"] = _domain_summary(actuator.drive_strength)
+                gains["position_delay_physics_steps"] = _domain_summary(actuator.positions_delay_buffer.time_lags)
+                gains["position_delay_seconds"] = _domain_summary(actuator.positions_delay_buffer.time_lags * env.physics_dt)
             for property_name in ("stiffness", "damping"):
                 def read_gain(property_name=property_name):
                     actual = _domain_tensor(getattr(actuator, property_name))
@@ -365,19 +369,20 @@ def _mass_manifest(cfg):
 
 
 def configure_stair_randomization(cfg, profile="basic"):
-    """Configure optional basic/robust physical variability; return provenance.
+    """Configure optional physical variability; return provenance.
 
     ``basic`` varies foot friction and a small base COM offset. ``robust`` adds
     larger COM offsets and independent +/-10% PD gains. The existing base mass
     distribution is retained exactly, including its inertia recomputation flag.
-    ``none`` leaves all event configuration unchanged.
+    ``deployment`` additionally randomizes motor strength and 0–10 ms position
+    command latency without changing HIM. ``none`` leaves events unchanged.
 
     PhysX contact materials are bucketed at startup, and gains are resampled at
     reset from their original defaults through the pinned supported API. This
     avoids compounding gain changes over repeated resets or material-limit use.
     """
-    if profile not in ("none", "basic", "robust"):
-        raise ValueError("domain profile must be none, basic, or robust")
+    if profile not in ("none", "basic", "robust", "deployment"):
+        raise ValueError("domain profile must be none, basic, robust, or deployment")
     if profile == "none":
         return {"profile": "none", "events_unchanged": True}
     _require_dc_actuators(cfg)
@@ -403,7 +408,7 @@ def configure_stair_randomization(cfg, profile="basic"):
         },
     )
     cfg.events.him_actuator_gains = None
-    if profile == "robust":
+    if profile in ("robust", "deployment"):
         cfg.events.him_actuator_gains = EventTermCfg(
             func=mdp + "randomize_actuator_gains", mode="reset", params={
                 "asset_cfg": SceneEntityCfg("robot"),
@@ -413,6 +418,9 @@ def configure_stair_randomization(cfg, profile="basic"):
                 "distribution": "uniform",
             },
         )
+    if profile == "deployment":
+        from deployment_motor import deployment_config
+        cfg.scene.robot.actuators = {name: deployment_config(motor) for name, motor in cfg.scene.robot.actuators.items()}
     terrain_material = cfg.scene.terrain.physics_material
     return {
         "profile": profile,
@@ -423,11 +431,11 @@ def configure_stair_randomization(cfg, profile="basic"):
             "static_friction", "dynamic_friction", "friction_combine_mode")},
         "base_com_range_m": com_range,
         "base_mass": _mass_manifest(cfg),
-        "pd_gain_scale": [0.9, 1.1] if profile == "robust" else [1.0, 1.0],
-        "pd_gain_mode": "reset from fixed defaults" if profile == "robust" else "unchanged",
-        "actuator_model": "existing DCMotor preserved",
-        "motor_strength_randomization": False,
-        "action_delay_randomization": False,
+        "pd_gain_scale": [0.9, 1.1] if profile in ("robust", "deployment") else [1.0, 1.0],
+        "pd_gain_mode": "reset from fixed defaults" if profile in ("robust", "deployment") else "unchanged",
+        "actuator_model": "DCMotor with reset-randomized strength/position latency" if profile == "deployment" else "existing DCMotor preserved",
+        "motor_strength_randomization": [0.9,1.1] if profile == "deployment" else False,
+        "action_delay_randomization": {"physics_substeps": [0,2], "seconds": [0,.01], "mode": "reset"} if profile == "deployment" else False,
         "remaining_deployment_gaps": [
             "No motor-strength scaling: public gain randomization is not torque-envelope randomization",
             "No 0-15ms action delay: requires physics-substep command buffering while preserving DC curve",

@@ -45,6 +45,8 @@ def make_model(args, output):
     option.set('timestep', str(args.dt))
     option.set('integrator', 'implicitfast')
     option.set('iterations', '100')
+    visual = ET.SubElement(root, 'visual')
+    ET.SubElement(visual, 'global', offwidth='1280', offheight='720')
     if not args.stock_joint_physics:
         joint = root.find("default/default[@class='go2']/joint")
         for key in ('damping', 'armature', 'frictionloss'):
@@ -52,6 +54,11 @@ def make_model(args, output):
     collision = root.find("default/default[@class='go2']/default[@class='collision']")
     collision.find('geom').set('contype', '1')
     collision.find('geom').set('conaffinity', '2')
+    if args.contact_profile == 'rigid':
+        foot = collision.find("default[@class='foot']/geom")
+        foot.set('solimp', '.9 .95 .001')
+        foot.set('solref', '.01 1')
+        foot.set('condim', '3')
     # Disable robot self collision, as in the training USD, but retain every leg geom.
     world = root.find('worldbody')
     ET.SubElement(world, 'light', pos='0 0 6', dir='0 0 -1', diffuse='.8 .8 .8')
@@ -112,6 +119,8 @@ def run(args):
     if (joints < 0).any():
         raise ValueError('Missing policy joints')
     qids, vids = model.jnt_qposadr[joints], model.jnt_dofadr[joints]
+    if args.armature is not None:
+        model.dof_armature[vids] = args.armature
     aids = np.array([np.flatnonzero(model.actuator_trnid[:, 0] == j).item() for j in joints])
     assert len(set(aids)) == 12
     effort = np.array([45.43 if 'calf' in n else 23.7 for n in names])
@@ -143,6 +152,7 @@ def run(args):
     rows, dwell, passed, reason = [], 0., False, 'timeout'
     body_contact_steps, calf_contact_steps = 0, 0
     lag = [np.zeros(12) for _ in range(args.delay_steps)]
+    physics_lag = None
     started = time.monotonic()
     try:
         with torch.inference_mode():
@@ -154,7 +164,12 @@ def run(args):
                 if args.heading_feedback:
                     command[2] = np.clip(-yaw_now, -.5, .5)
                 omega6 = np.zeros(6)
-                mujoco.mj_objectVelocity(model, data, mujoco.mjtObj.mjOBJ_BODY, base, omega6, 1)
+                # mjOBJ_BODY local velocity uses the inertial principal-axis frame,
+                # whose orientation differs substantially from the Go2 base link.
+                # Read world angular velocity and rotate into the IMU/base-link frame.
+                mujoco.mj_objectVelocity(model, data, mujoco.mjtObj.mjOBJ_BODY, base, omega6, 0)
+                omega6[:3] = R.T @ omega6[:3]
+                linear_velocity_body = R.T @ omega6[3:]
                 frame = observation(command, omega6[:3], R.T @ np.array([0,0,-1]),
                                     data.qpos[qids], data.qvel[vids], default, action)
                 if args.obs_noise:
@@ -173,7 +188,13 @@ def run(args):
                 target = default + config['action_scale']*applied
                 body_contact, calf_contact = False, False
                 for _ in range(args.decimation):
-                    tau, requested = dc_torque(target, data.qpos[qids], data.qvel[vids], kp, kd, effort, velocity)
+                    target_applied = target
+                    if args.delay_physics_steps:
+                        if physics_lag is None:
+                            physics_lag = [target.copy() for _ in range(args.delay_physics_steps)]
+                        physics_lag.append(target.copy())
+                        target_applied = physics_lag.pop(0)
+                    tau, requested = dc_torque(target_applied, data.qpos[qids], data.qvel[vids], kp, kd, effort, velocity)
                     data.ctrl[aids] = tau * args.motor_strength
                     mujoco.mj_step(model, data)
                     for contact in data.contact:
@@ -195,6 +216,7 @@ def run(args):
                 rows.append(dict(time=float(data.time), position=data.qpos[:3].tolist(),
                                  quaternion_wxyz=data.qpos[3:7].tolist(), gravity=(R.T@np.array([0,0,-1])).tolist(),
                                  omega=omega6[:3].tolist(), command=command.tolist(), joint_position=data.qpos[qids].tolist(),
+                                 linear_velocity_body=linear_velocity_body.tolist(),
                                  joint_velocity=data.qvel[vids].tolist(), action=action.tolist(),
                                  torque=tau.tolist(), torque_clipped=int(np.sum(np.abs(tau-requested)>1e-5)),
                                  foot_position=data.geom_xpos[feet].tolist(), body_contact=bool(body_contact),
@@ -213,7 +235,7 @@ def run(args):
                     reason = 'left_stair_width'
                     break
                 if dwell >= .5:
-                    passed, reason = True, 'all_feet_on_landing_and_upright_dwell'
+                    passed, reason = True, ('all_feet_on_landing_and_upright_dwell' if args.terrain!='flat' else 'forward_progress_and_upright_dwell')
                     break
     finally:
         if writer:
@@ -222,9 +244,15 @@ def run(args):
         if viewer:
             viewer.close()
     (output/'trace.json').write_text(json.dumps(rows))
+    tracking_rows = [r for r in rows if r['time'] >= 1.]
+    xy_error = np.asarray([np.linalg.norm(np.asarray(r['linear_velocity_body'][:2])-r['command'][:2]) for r in tracking_rows])
+    yaw_error = np.asarray([abs(r['omega'][2]-r['command'][2]) for r in tracking_rows])
     result = dict(success=passed, reason=reason, simulation_seconds=float(data.time),
                   wall_seconds=time.monotonic()-started, final_position=data.qpos[:3].tolist(),
                   body_contact_fraction=body_contact_steps/max(1,len(rows)), calf_contact_fraction=calf_contact_steps/max(1,len(rows)),
+                  xy_velocity_mae_m_s=float(xy_error.mean()) if xy_error.size else None,
+                  yaw_velocity_mae_rad_s=float(yaw_error.mean()) if yaw_error.size else None,
+                  mean_action_rate_squared=float(np.mean(np.diff(np.asarray([r['action'] for r in rows]),axis=0)**2)) if len(rows)>1 else None,
                   policy_sha256=sha(args.policy), config_sha256=sha(args.config), generated_xml_sha256=sha(output/'model.xml'),
                   source_model_sha256=sha(args.assets/'go2.xml'), mujoco_version=mujoco.__version__, torch_version=torch.__version__,
                   policy_joint_order=names, mujoco_qpos_indices=qids.tolist(), mujoco_actuator_indices=aids.tolist(),
@@ -264,8 +292,11 @@ def parse():
     p.add_argument('--mass-scale',type=float,default=1.)
     p.add_argument('--com-offset',type=float,nargs=3,default=[0,0,0])
     p.add_argument('--gain-scale',type=float,default=1.)
+    p.add_argument('--armature',type=float)
+    p.add_argument('--contact-profile',choices=['menagerie','rigid'],default='menagerie')
     p.add_argument('--motor-strength',type=float,default=1.)
     p.add_argument('--delay-steps',type=int,default=0)
+    p.add_argument('--delay-physics-steps',type=int,default=0)
     for flag in ('heading-feedback','obs-noise','stock-joint-physics','conservative-calf','video','viewer'):
         p.add_argument('--'+flag,action='store_true')
     args = p.parse_args()
@@ -273,6 +304,8 @@ def parse():
         p.error('Frozen exported policy requires 200Hz physics and 50Hz policy')
     if args.delay_steps<0 or args.seconds<=0 or args.steps<=0 or args.depth<=0 or args.height<=0:
         p.error('Invalid simulation dimensions/timing')
+    if args.delay_physics_steps<0 or (args.delay_steps and args.delay_physics_steps):
+        p.error('Select either policy-frame delay or physics-substep delay')
     return args
 
 
