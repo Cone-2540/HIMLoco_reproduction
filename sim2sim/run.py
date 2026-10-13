@@ -20,6 +20,9 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+RUNNER_SOURCE_SHA256 = sha(__file__)
+
+
 def dc_torque(target, q, dq, kp, kd, effort, velocity):
     requested = kp * (target - q) - kd * dq
     bounded_velocity = np.clip(dq, -2 * velocity, 2 * velocity)
@@ -111,10 +114,12 @@ def make_model(args, output):
 
 def run(args):
     torch.set_num_threads(1)
-    runner_sha256 = sha(__file__)
+    runner_sha256 = RUNNER_SOURCE_SHA256
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
-    config = json.loads(args.config.read_text())
+    config_bytes = args.config.read_bytes()
+    config_sha256 = hashlib.sha256(config_bytes).hexdigest()
+    config = json.loads(config_bytes)
     names = config['joint_names']
     default = np.asarray(config['default_joint_positions'])
     assert len(names) == len(set(names)) == 12
@@ -135,6 +140,8 @@ def run(args):
         velocity[8:] = 20.07
     model.actuator_ctrlrange[aids] = np.column_stack((-effort, effort))
     rng = np.random.default_rng(args.seed)
+    # Recompute derived constants after mass, COM and optional armature edits.
+    mujoco.mj_setConst(model, data)
     data.qpos[:3] = [0, args.initial_y, .4 + (args.steps*args.height if args.terrain == 'desc' else 0)]
     yaw = args.initial_yaw
     data.qpos[3:7] = [np.cos(yaw/2), 0, 0, np.sin(yaw/2)]
@@ -174,6 +181,7 @@ def run(args):
         with torch.inference_mode():
             for step in range(round(args.seconds / (args.dt*args.decimation))):
                 wall_step = time.monotonic()
+                observation_time = float(data.time)
                 R = data.xmat[base].reshape(3,3)
                 yaw_now = np.arctan2(R[1,0], R[0,0])
                 command = np.asarray(args.command, dtype=float).copy()
@@ -233,6 +241,9 @@ def run(args):
                 body_loaded_steps += int(body_loaded)
                 calf_loaded_steps += int(calf_loaded)
                 calf_peak_force = max(calf_peak_force,calf_force_this_step)
+                # mj_step integrates qpos/qvel after deriving xmat/cvel. Refresh
+                # derived quantities so the next frame uses one coherent timestamp.
+                mujoco.mj_forward(model, data)
                 R = data.xmat[base].reshape(3,3)
                 foot_x = data.geom_xpos[feet,0]
                 if args.terrain == 'flat':
@@ -241,7 +252,8 @@ def run(args):
                 else:
                     crossed = bool(np.min(foot_x) > end+.08)
                 dwell = dwell+args.dt*args.decimation if crossed and R[2,2]>.85 and not body_contact else 0.
-                rows.append(dict(time=float(data.time), position=data.qpos[:3].tolist(),
+                rows.append(dict(time=float(data.time), policy_observation_time=observation_time,
+                                 position=data.qpos[:3].tolist(),
                                  quaternion_wxyz=data.qpos[3:7].tolist(), gravity=(R.T@np.array([0,0,-1])).tolist(),
                                  omega=omega6[:3].tolist(), command=command.tolist(), joint_position=data.qpos[qids].tolist(),
                                  linear_velocity_body=linear_velocity_body.tolist(),
@@ -293,9 +305,10 @@ def run(args):
                   xy_velocity_mae_m_s=float(xy_error.mean()) if xy_error.size else None,
                   yaw_velocity_mae_rad_s=float(yaw_error.mean()) if yaw_error.size else None,
                   mean_action_rate_squared=float(np.mean(np.diff(np.asarray([r['action'] for r in rows]),axis=0)**2)) if len(rows)>1 else None,
-                  policy_sha256=sha(args.policy), config_sha256=sha(args.config), generated_xml_sha256=sha(output/'model.xml'),
+                  policy_sha256=sha(args.policy), config_sha256=config_sha256, generated_xml_sha256=sha(output/'model.xml'),
                   source_model_sha256=sha(args.assets/'go2.xml'), mujoco_version=mujoco.__version__, torch_version=torch.__version__,
                   runner_source_sha256=runner_sha256,
+                  protocol_version='2: derived inertial constants and end-of-step state refreshed',
                   policy_joint_order=names, mujoco_qpos_indices=qids.tolist(), mujoco_actuator_indices=aids.tolist(),
                   arguments={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},
                   actual_base_mass=float(model.body_mass[base]), actual_base_com=model.body_ipos[base].tolist(),

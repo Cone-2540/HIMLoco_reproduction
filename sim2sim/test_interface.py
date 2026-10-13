@@ -79,5 +79,20 @@ class InterfaceTests(unittest.TestCase):
             self.assertAlmostEqual(height(model,data,start+.01),.96)
             self.assertAlmostEqual(height(model,data,start+.03),.8)
 
+    def test_mass_randomization_recomputes_derived_constants(self):
+        args=SimpleNamespace(assets=ASSETS,dt=.005,stock_joint_physics=False,
+            contact_profile='menagerie',terrain='flat',steps=6,depth=.27,width=1.2,
+            height=.16,nosing=0,friction=1.,mass_scale=1.25,com_offset=[.03,-.01,0])
+        with tempfile.TemporaryDirectory() as directory:
+            model,base,_,_=make_model(args,Path(directory));data=mujoco.MjData(model)
+            self.assertFalse(np.isclose(model.body_subtreemass[base],model.body_mass.sum()))
+            mujoco.mj_setConst(model,data)
+            self.assertAlmostEqual(model.body_subtreemass[base],model.body_mass.sum())
+            mujoco.mj_forward(model,data)
+            for _ in range(4):mujoco.mj_step(model,data)
+            mujoco.mj_forward(model,data)
+            matrix=np.zeros(9);mujoco.mju_quat2Mat(matrix,data.qpos[3:7])
+            np.testing.assert_allclose(data.xmat[base],matrix,atol=1e-12)
+
 
 if __name__=='__main__':unittest.main()
