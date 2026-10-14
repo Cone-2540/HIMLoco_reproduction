@@ -1,0 +1,1420 @@
+{
+  "trials": [
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-flat-2000",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "88e1074f9ed7b45a9e37f9cd5c8a0dec1b7c8f47aadd2c875014274682ba4fe1",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 600,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            599,
+            504,
+            599,
+            599
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2302067827017052,
+            0.10955093297330575,
+            0.2317026307250791,
+            0.22991459631291625
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2370617696160267,
+            0.3531746031746032,
+            0.332220367278798,
+            0.2270450751252087
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            466,
+            310,
+            406,
+            460
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.03086990973352546,
+            0.02509197062800709,
+            0.02510523618436909,
+            0.016937698652672285
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.04721030042918455,
+            0.05161290322580645,
+            0.03694581280788178,
+            0.010869565217391304
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            361,
+            244,
+            278,
+            352
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009000314392745928,
+            0.004189960705855917,
+            0.012498875185619493,
+            0.013507195081243052
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            312,
+            163,
+            234,
+            270
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008846349525227263,
+            0.003087407301007386,
+            0.012155697306564616,
+            0.013210264354421217
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2731487307808935,
+        2.5146299610011855,
+        1.2200546816794102,
+        1.2768803254706564
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.8616666666666667,
+        1.0,
+        1.0
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2000,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-flat-2001",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "e68cee7c9b0cfbda30b1acb6da8bb68430318da0f61ab276424b99d014a82aa7",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 599,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            598,
+            505,
+            598,
+            598
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2300887798631729,
+            0.10949945042355957,
+            0.22974751155536555,
+            0.23012927086538215
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2391304347826087,
+            0.35247524752475246,
+            0.32441471571906355,
+            0.22909698996655517
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            464,
+            309,
+            405,
+            462
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.02873862451755569,
+            0.027814809976278675,
+            0.024995701453434577,
+            0.01657920363341334
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.04741379310344827,
+            0.05501618122977346,
+            0.037037037037037035,
+            0.010822510822510822
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            358,
+            244,
+            275,
+            352
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008968741543233348,
+            0.004177690838411438,
+            0.012439335186599648,
+            0.013461533524722707
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            314,
+            164,
+            235,
+            268
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008860428059113926,
+            0.003095009049708748,
+            0.012150695023442274,
+            0.0131924149912773
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2739709089963172,
+        2.4271139194504654,
+        1.2193988621583562,
+        1.2731922770670279
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.8647746243739566,
+        1.0,
+        1.0
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2001,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-flat-2002",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "61b2f2978552381abb455ce5e2292d63c078a1dd455ac80af3a4318cb24aec05",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 600,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            599,
+            503,
+            599,
+            599
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.23033393978618077,
+            0.10867275982113739,
+            0.2332077196510274,
+            0.2295465726236885
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.24040066777963273,
+            0.3518886679920477,
+            0.332220367278798,
+            0.2303839732888147
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            463,
+            308,
+            405,
+            463
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.027353354329172953,
+            0.02427958129543315,
+            0.02595049651454309,
+            0.01660707776145355
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.047516198704103674,
+            0.05194805194805195,
+            0.03950617283950617,
+            0.012958963282937365
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            357,
+            243,
+            277,
+            352
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008977475156772507,
+            0.004198682924568855,
+            0.012463905357335077,
+            0.01349913870467914
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            315,
+            166,
+            236,
+            267
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0088803101553108,
+            0.003116634975255196,
+            0.012171007487246897,
+            0.013201332190738794
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2726399518615987,
+        2.5303323742810386,
+        1.218156725585375,
+        1.2770502241944912
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.86,
+        1.0,
+        1.0
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2002,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-flat-2003",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "06a027fee6455a89c305d1d7a498ab44f93cd4006dea3e4c428c781e00592631",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 599,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            598,
+            503,
+            598,
+            598
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.23035004919741658,
+            0.10805184461132145,
+            0.22942884550651127,
+            0.2300697531897513
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2408026755852843,
+            0.3499005964214712,
+            0.33444816053511706,
+            0.23076923076923078
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            463,
+            309,
+            403,
+            462
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.02715998888740609,
+            0.026337881437658354,
+            0.023168157941583837,
+            0.017463939277856968
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.047516198704103674,
+            0.05501618122977346,
+            0.03722084367245657,
+            0.012987012987012988
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            361,
+            244,
+            279,
+            352
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009003720345673791,
+            0.004195372681700367,
+            0.012509424954546869,
+            0.013483461140586385
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            312,
+            165,
+            235,
+            270
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008846759826338233,
+            0.003107274804657025,
+            0.012171824471436015,
+            0.013194428019455367
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2781861862220876,
+        2.41411310516309,
+        1.218529489259108,
+        1.2788001970616039
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.8614357262103506,
+        1.0,
+        1.0
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2003,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-asc-2000",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "1b598a95582b061f62d5edb749efdfec0f90728b0ae6b0227a05d8a311d9f33a",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 645,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            543,
+            349,
+            542,
+            526
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11649481281081409,
+            0.07724853586800538,
+            0.16905955158073957,
+            0.08176667636292906
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.12338858195211787,
+            0.17478510028653296,
+            0.26014760147601473,
+            0.09125475285171103
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            481,
+            270,
+            377,
+            475
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.021611159513227732,
+            0.020654584571651438,
+            0.02432121664708178,
+            0.01683930340932326
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.02494802494802495,
+            0.05185185185185185,
+            0.03978779840848806,
+            0.010526315789473684
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            402,
+            194,
+            282,
+            422
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012390581914222964,
+            0.006545683938658347,
+            0.014084166929777138,
+            0.014636849419453124
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.005154639175257732,
+            0.0,
+            0.002369668246445498
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            309,
+            54,
+            240,
+            364
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012351276195096737,
+            0.004378846442392326,
+            0.013673761467567262,
+            0.01443445278678997
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.33444630575778,
+        108.43975590906211,
+        96.76123162089397,
+        96.50467475703947
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8558139534883721,
+        0.5705426356589147,
+        0.8573643410852713,
+        0.8325581395348837
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2000,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-asc-2001",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "4b4318fcc9489a4b693f87722948cc1db9e9a58e5dd7babc0c3d2f902fa1e5f3",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 640,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            532,
+            365,
+            538,
+            528
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10930279921661146,
+            0.07875964706577743,
+            0.16760847370804807,
+            0.09396214352281468
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.11466165413533834,
+            0.2136986301369863,
+            0.2527881040892193,
+            0.10227272727272728
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            474,
+            280,
+            380,
+            475
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01949809343268709,
+            0.019686301948975353,
+            0.02732033419955227,
+            0.02355787204565679
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.02109704641350211,
+            0.05714285714285714,
+            0.04473684210526316,
+            0.023157894736842106
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            403,
+            187,
+            282,
+            416
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013820308425568745,
+            0.0052289244220104485,
+            0.014352665129066368,
+            0.017582027136181896
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.004962779156327543,
+            0.0,
+            0.0,
+            0.002403846153846154
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            305,
+            51,
+            240,
+            357
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011990373798983472,
+            0.0043853192924359526,
+            0.013927730436836617,
+            0.014609429939186892
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.33567269226128,
+        105.05375276351725,
+        96.83075958506181,
+        96.24555307780369
+      ],
+      "loaded_foot_interval_fraction": [
+        0.846875,
+        0.5984375,
+        0.8578125,
+        0.84375
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2001,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-asc-2002",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "4013b8efe72e894a9e8e1e23bb3c0af7e1184b04a7c016364301625099b06a49",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 646,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            539,
+            357,
+            543,
+            523
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.1098067622557398,
+            0.08205569161530295,
+            0.16954183580832521,
+            0.07315062443822834
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.11688311688311688,
+            0.19607843137254902,
+            0.2578268876611418,
+            0.08221797323135756
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            483,
+            279,
+            381,
+            479
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.020969388704938693,
+            0.02377608768111426,
+            0.02276702382857397,
+            0.017753308609039998
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.026915113871635612,
+            0.05734767025089606,
+            0.04199475065616798,
+            0.012526096033402923
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            409,
+            193,
+            283,
+            425
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012908420233264566,
+            0.006350661669954359,
+            0.014132243911714878,
+            0.014718408018552549
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0024449877750611247,
+            0.0051813471502590676,
+            0.0,
+            0.002352941176470588
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            312,
+            53,
+            238,
+            364
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012276943309157613,
+            0.008208116531785555,
+            0.013596863886284005,
+            0.014386104166854327
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.018867924528301886,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.48717587397047,
+        108.38412264941954,
+        96.75268312364845,
+        96.41672669630476
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8498452012383901,
+        0.5789473684210527,
+        0.8575851393188855,
+        0.8281733746130031
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2002,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-asc-2003",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "0123f32f2a1a0389d0b4f5e7dce357cfab16700a7a99534198b385b137db2c39",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 635,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            521,
+            360,
+            531,
+            499
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11012139414945707,
+            0.08199742060529808,
+            0.1534349424828504,
+            0.08397424573100284
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.11516314779270634,
+            0.18888888888888888,
+            0.2278719397363465,
+            0.09819639278557114
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            464,
+            288,
+            390,
+            455
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.02210226818092066,
+            0.027735716413883078,
+            0.021337389865583208,
+            0.023393271953725595
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.02586206896551724,
+            0.06597222222222222,
+            0.03076923076923077,
+            0.02857142857142857
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            384,
+            203,
+            287,
+            404
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013363226857535737,
+            0.011063664951926708,
+            0.013892161600475504,
+            0.014263689972574526
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0026041666666666665,
+            0.014778325123152709,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            277,
+            53,
+            245,
+            347
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012040154921324264,
+            0.005661160653638128,
+            0.013577018316644155,
+            0.014463831834240725
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.33989298706491,
+        108.15148132087478,
+        96.47225148522372,
+        96.51132226456787
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8377952755905512,
+        0.5984251968503937,
+        0.8551181102362204,
+        0.8094488188976378
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2003,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-desc-2000",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "88a07c877fed24c4b4e7136dce84c6f3dab52fe1bc1f2e54caa23ecf442c4fb2",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 698,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            642,
+            407,
+            630,
+            651
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14643099732989615,
+            0.1996927760678298,
+            0.19395399014647463,
+            0.16100749750231894
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15109034267912771,
+            0.32678132678132676,
+            0.3047619047619048,
+            0.23195084485407066
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            574,
+            294,
+            556,
+            525
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.043177675788964545,
+            0.06989508987002636,
+            0.13678848697313362,
+            0.039796385928191916
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.05749128919860627,
+            0.15306122448979592,
+            0.23201438848920863,
+            0.06666666666666667
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            471,
+            204,
+            276,
+            368
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007564784269151828,
+            0.008325321721942443,
+            0.01545280445755689,
+            0.014328440886654427
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.00980392156862745,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            411,
+            137,
+            134,
+            78
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007106700727813223,
+            0.004136015334293505,
+            0.012859327059783886,
+            0.01340803563231736
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.35104673996129,
+        96.75807198360435,
+        96.87789351828971,
+        96.86580548647272
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9326647564469914,
+        0.6060171919770774,
+        0.9126074498567335,
+        0.9441260744985673
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2000,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-desc-2001",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "c81c0079136b9665cc491bde4f32f823d74fe838fec3b3dc6a696f76735f9c15",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 700,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            602,
+            437,
+            634,
+            658
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14469927105301106,
+            0.1870633153697208,
+            0.17232236936807793,
+            0.15850822897393024
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1611295681063123,
+            0.2906178489702517,
+            0.2744479495268139,
+            0.23404255319148937
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            520,
+            306,
+            564,
+            558
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05721392976103622,
+            0.1027493482078276,
+            0.11848804299800597,
+            0.0578393541753837
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.07884615384615384,
+            0.16666666666666666,
+            0.20390070921985815,
+            0.1057347670250896
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            409,
+            216,
+            268,
+            386
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008073916184101955,
+            0.005385433788549737,
+            0.014441873396286572,
+            0.015493688118742046
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0024449877750611247,
+            0.0,
+            0.0,
+            0.0025906735751295338
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            372,
+            162,
+            147,
+            81
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007338563265339564,
+            0.004540004518770541,
+            0.012756023274241645,
+            0.013652439408425672
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.31000668026692,
+        96.74412764690885,
+        96.88316676436423,
+        96.74494321909779
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8714285714285714,
+        0.6471428571428571,
+        0.9157142857142857,
+        0.95
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2001,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-desc-2002",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "93b893cbcee9a3392f9c1c131a12a57421b7cdde9b2b6df98437db6ca7f09157",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 690,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            633,
+            424,
+            617,
+            646
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.13963950680717593,
+            0.1879967868620865,
+            0.16979154392830537,
+            0.15472700171727127
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15323854660347552,
+            0.28537735849056606,
+            0.2739059967585089,
+            0.2260061919504644
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            569,
+            317,
+            553,
+            543
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04995638487305775,
+            0.07545963641491525,
+            0.11649294426394206,
+            0.05118690507188892
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06854130052724078,
+            0.14826498422712933,
+            0.2007233273056058,
+            0.0865561694290976
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            459,
+            217,
+            276,
+            377
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008420403044268627,
+            0.005559980784136197,
+            0.015043634314319635,
+            0.015788593907193678
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.002178649237472767,
+            0.004608294930875576,
+            0.0,
+            0.002652519893899204
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            408,
+            144,
+            143,
+            77
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007357855181006686,
+            0.004187534586709555,
+            0.01306757714960909,
+            0.013679152773958854
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.34653894871762,
+        96.68434376309777,
+        96.9095945696535,
+        96.81806610535368
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9304347826086956,
+        0.6347826086956522,
+        0.9057971014492754,
+        0.9478260869565217
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2002,
+      "arm": "medium940"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-medium940-perleg-desc-2003",
+      "available": true,
+      "policy_sha256": "fc0d340569f6d29a5044a24988adec276fe408df1f1b475a1b551c0efbfd69eb",
+      "trace_sha256": "092fc8adbb3e104b7f97358465cfe0b7d46dbeb8716bcefa8f176331a4c6f954",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 693,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            589,
+            423,
+            630,
+            653
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.13376124543141685,
+            0.2049846921941868,
+            0.17567492705368837,
+            0.16099609702392761
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15619694397283532,
+            0.2978723404255319,
+            0.28253968253968254,
+            0.23583460949464014
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            512,
+            299,
+            563,
+            551
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0554878523942335,
+            0.08075974965149241,
+            0.12087313154357426,
+            0.0567603663314489
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.078125,
+            0.14381270903010032,
+            0.20959147424511546,
+            0.0998185117967332
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            401,
+            218,
+            269,
+            388
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008419786496743862,
+            0.005654330592510298,
+            0.014698367161614946,
+            0.015283480401977526
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0024937655860349127,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            366,
+            161,
+            152,
+            78
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007337359190838306,
+            0.004470939351715737,
+            0.012906205147814145,
+            0.013757652227662072
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.30548887187764,
+        96.7822911421956,
+        96.89181368643052,
+        96.76740099519859
+      ],
+      "loaded_foot_interval_fraction": [
+        0.862914862914863,
+        0.6334776334776335,
+        0.9191919191919192,
+        0.9523809523809523
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain",
+      "seed": 2003,
+      "arm": "medium940"
+    }
+  ]
+}
