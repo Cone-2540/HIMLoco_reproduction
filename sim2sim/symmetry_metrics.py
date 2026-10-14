@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from run import observation
+from run import observation, push_history
 
 
 def mirror_frame(frame):
@@ -69,6 +69,27 @@ def summarize(directory):
     with torch.inference_mode():
         action = policy(torch.from_numpy(history)[None]).numpy()[0]
         mirrored_action = mirror_joints(policy(torch.from_numpy(mirrored)[None]).numpy()[0])
+    recorded_input_probe = None
+    if all("policy_input" in row for row in rows):
+        history = np.zeros(270, dtype=np.float32)
+        maximum_error, residuals = 0., []
+        with torch.inference_mode():
+            for i, row in enumerate(rows):
+                history = push_history(history, np.asarray(row["policy_input"], dtype=np.float32))
+                if i % 10 or row["time"] < 2:
+                    continue
+                original = np.clip(policy(torch.from_numpy(history)[None]).numpy()[0], -100, 100)
+                maximum_error = max(maximum_error, float(np.max(np.abs(original-np.asarray(row["action"])))))
+                flipped = mirror_frame(history.reshape(6, 45)).reshape(270)
+                mapped = mirror_joints(np.clip(policy(torch.from_numpy(flipped)[None]).numpy()[0], -100, 100))
+                residuals.append(original - mapped)
+        if maximum_error > 1e-5:
+            raise ValueError("Reconstructed exact actor history disagrees with saved action")
+        errors = np.asarray(residuals)
+        recorded_input_probe = {"samples": len(errors), "saved_action_max_abs_reconstruction_error": maximum_error,
+                                "mirror_action_rms": float(np.sqrt(np.mean(errors**2))),
+                                "per_joint_mirror_action_rms": np.sqrt(np.mean(errors**2, 0)).tolist(),
+                                "scope": "exact recorded noisy frame history; mirrored policy inputs, no second physics rollout"}
     return {"source": str(directory.resolve()), "policy_sha256": result["policy_sha256"],
             "trace_sha256": hashlib.sha256((directory / "trace.json").read_bytes()).hexdigest(),
             "success": result["success"], "terrain": result["arguments"]["terrain"],
@@ -82,6 +103,7 @@ def summarize(directory):
             "mean_abs_joint_torque_nm": np.abs(torque).mean(0).tolist(),
             "neutral_input_mirror_action_rms": float(np.sqrt(np.mean((action - mirrored_action)**2))),
             "neutral_action": action.tolist(), "neutral_action_mirror_residual": (action-mirrored_action).tolist(),
+            "recorded_input_mirror_probe": recorded_input_probe,
             "scope": "full post-warmup trial means; mean bias is phase averaged but stair sequencing can differ; neutral probe is off-trajectory and diagnostic only"}
 
 

@@ -263,6 +263,8 @@ def run(args):
                                  calf_contact=bool(calf_contact), goal_dwell=dwell))
                 rows[-1].update(body_loaded_contact=bool(body_loaded),calf_loaded_contact=bool(calf_loaded),
                                 calf_peak_normal_force_n=float(calf_force_this_step))
+                if args.record_policy_input:
+                    rows[-1]["policy_input"] = frame.tolist()
                 if writer:
                     camera.lookat[:] = data.qpos[:3]
                     renderer.update_scene(data, camera=camera)
@@ -358,6 +360,8 @@ def parse():
     p.add_argument('--delay-steps',type=int,default=0)
     p.add_argument('--delay-physics-steps',type=int,default=0)
     p.add_argument('--fixed-duration',action='store_true',help='Flat only: survive the full interval and pass velocity tracking gates')
+    p.add_argument('--record-policy-input',action='store_true',
+                   help='Save the exact pre-inference frame, including observation noise, for mirror diagnostics')
     for flag in ('heading-feedback','obs-noise','stock-joint-physics','conservative-calf','video','viewer'):
         p.add_argument('--'+flag,action='store_true')
     args = p.parse_args()
