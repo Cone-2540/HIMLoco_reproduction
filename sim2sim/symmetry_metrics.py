@@ -38,6 +38,11 @@ def summarize(directory):
     if not np.allclose(default, mirror_joints(default), atol=1e-6):
         raise ValueError("Default pose is not mirror symmetric")
     q = np.asarray([r["joint_position"] for r in rows if r["time"] >= 2])
+    if len(q) == 0:
+        return {"source": str(directory.resolve()), "policy_sha256": result["policy_sha256"],
+                "success": result["success"], "terrain": result["arguments"]["terrain"],
+                "command": result["arguments"]["command"], "samples_after_2s": 0,
+                "scope": "No frames after warmup; symmetry unassessed, completion retained"}
     hip = np.column_stack((q[:, 0] + q[:, 1], q[:, 2] + q[:, 3]))
     thigh = q[:, [4, 6]] - q[:, [5, 7]]
     calf = q[:, [8, 10]] - q[:, [9, 11]]

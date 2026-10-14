@@ -52,7 +52,11 @@ def summarize(directory, warmup=2.0, stride=1):
             calf_by_leg.append(row["calf_peak_normal_force_by_leg_n"])
             foot_by_leg.append(row["foot_peak_normal_force_by_leg_n"])
     if not angles:
-        return {"source": str(directory), "samples": 0, "scope": "no frames after warmup"}
+        return {"source": str(directory.resolve()), "samples": 0,
+                "policy_sha256": result["policy_sha256"],
+                "success": result["success"], "terrain": result["arguments"]["terrain"],
+                "command": result["arguments"]["command"], "reason": result["reason"],
+                "scope": "no frames after warmup; posture unassessed, completion retained"}
     angles, clearance = np.asarray(angles), np.asarray(clearance)
     per_leg = None
     if calf_by_leg:

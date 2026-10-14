@@ -24,7 +24,8 @@ def digest(path):
 
 def summarize(matrix_path, posture_path):
     matrix, posture = read(matrix_path), read(posture_path)
-    flat = [t for t in posture["trials"] if t.get("terrain") == "flat"]
+    flat_all = [t for t in posture["trials"] if t.get("terrain") == "flat"]
+    flat = [t for t in flat_all if t.get("samples", 0) > 0]
     result = {
         "matrix_source": str(matrix_path.resolve()),
         "matrix_sha256": digest(matrix_path),
@@ -37,11 +38,12 @@ def summarize(matrix_path, posture_path):
                           for t in matrix["trials"] if not t["success"]],
         "cases": matrix["summary"],
         "flat_posture": {},
+        "flat_trials_without_post_warmup_posture": len(flat_all) - len(flat),
         "scope": "development only; equal trial weighting; 20 ms contact intervals, not contact impulse",
     }
     for key in ("mean_shank_angle_deg", "fraction_shank_angle_gt70",
                 "mean_knee_clearance_cm", "p5_knee_clearance_cm", "mean_root_world_z_m"):
-        result["flat_posture"][key] = np.mean([t[key] for t in flat], axis=0).tolist()
+        result["flat_posture"][key] = np.mean([t[key] for t in flat], axis=0).tolist() if flat else None
     for name, rows in (
         ("flat", [s for s in matrix["summary"] if s["case"].startswith("flat")]),
         ("ascending", [s for s in matrix["summary"] if s["case"].startswith("asc")]),
@@ -67,6 +69,10 @@ def add_diagnostics(row, suite, matrix_path, archive_name=None):
             continue
         document = read(path)
         flat = [t for t in document["trials"] if t.get("terrain") == "flat"]
+        if analyzer == "symmetry_metrics":
+            missing = sum(t.get("samples_after_2s", 0) == 0 for t in flat)
+            result["flat_trials_without_post_warmup_symmetry"] = missing
+            flat = [t for t in flat if t.get("samples_after_2s", 0) > 0]
         if analyzer == "symmetry_metrics" and flat:
             result["flat_symmetry"] = {
                 "mean_front_thigh_signed_mirror_bias_rad": float(np.mean([
