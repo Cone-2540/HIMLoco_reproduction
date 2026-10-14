@@ -6,7 +6,7 @@ from unittest import mock
 
 import torch
 
-from stair_rewards import configure_stair_rewards, shank_horizontal_l2
+from stair_rewards import configure_stair_rewards, shank_horizontal_l2, slow_mirror_bias_l2
 
 
 def env_for_angles(angles):
@@ -117,6 +117,55 @@ class ShankPostureTest(unittest.TestCase):
             self.assertEqual(modified.rewards.other_undesired_contacts.params["threshold"], .3)
             self.assertEqual(modified.rewards.head_undesired_contacts.params["threshold"], .3)
             self.assertEqual(len(combined["adaptation_changes"]), 2)
+
+
+class SlowMirrorBiasTest(unittest.TestCase):
+    def make_env(self):
+        q = torch.tensor([[.1, -.1, .1, -.1, .8, .8, 1., 1., -1.5, -1.5, -1.5, -1.5]])
+        command = torch.tensor([[.3, 0., 0.]])
+        return NS(scene={"robot": NS(data=NS(joint_pos=q))},
+                  command_manager=NS(get_command=lambda _: command), command=command,
+                  episode_length_buf=torch.ones(1, dtype=torch.long), common_step_counter=1, step_dt=.02)
+
+    def advance(self, env, n=200, alternating=False):
+        result = None
+        for i in range(n):
+            env.common_step_counter += 1
+            env.episode_length_buf += 1
+            if alternating:
+                phase = math.sin(i * .02 * 2 * math.pi * 3)
+                env.scene["robot"].data.joint_pos[0, 4:6] = torch.tensor([.8 + .3*phase, .8 - .3*phase])
+            result = slow_mirror_bias_l2(env, NS(name="robot", joint_ids=list(range(12))))
+        return result
+
+    @mock.patch.dict("sys.modules", {"stair_terrain": NS(flat_env_mask=lambda e: torch.ones(1, dtype=torch.bool))})
+    def test_persistent_bias_is_detected_but_alternation_is_not(self):
+        env = self.make_env()
+        env.scene["robot"].data.joint_pos[0, 4] += .6
+        self.assertGreater(float(self.advance(env)), .1)
+        env = self.make_env()
+        self.assertLess(float(self.advance(env, alternating=True)), .001)
+
+    @mock.patch.dict("sys.modules", {"stair_terrain": NS(flat_env_mask=lambda e: torch.ones(1, dtype=torch.bool))})
+    def test_reset_turn_and_repeated_evaluation_have_no_stale_bias(self):
+        env = self.make_env()
+        env.scene["robot"].data.joint_pos[0, 4] += .6
+        before = self.advance(env)
+        state = env._him_slow_mirror_bias["mean"].clone()
+        torch.testing.assert_close(slow_mirror_bias_l2(env, NS(name="robot", joint_ids=list(range(12)))), before)
+        torch.testing.assert_close(env._him_slow_mirror_bias["mean"], state)
+        env.episode_length_buf[:] = 0
+        self.assertEqual(float(self.advance(env, 1)), 0.)
+        self.advance(env)
+        env.command[:, 2] = .5
+        self.assertEqual(float(self.advance(env, 1)), 0.)
+        self.assertEqual(float(env._him_slow_mirror_bias["mean"].abs().max()), 0.)
+
+    @mock.patch.dict("sys.modules", {"stair_terrain": NS(flat_env_mask=lambda e: torch.zeros(1, dtype=torch.bool))})
+    def test_stair_environments_are_excluded(self):
+        env = self.make_env()
+        env.scene["robot"].data.joint_pos[0, 4] += .6
+        self.assertEqual(float(self.advance(env)), 0.)
 
 
 if __name__ == "__main__":

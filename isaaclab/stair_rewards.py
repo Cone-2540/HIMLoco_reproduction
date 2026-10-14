@@ -237,8 +237,47 @@ def shank_horizontal_l2(
     return (phase_weight * excess.square()).mean(dim=1)
 
 
+def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
+                        deadband_rad=0.10, scale_rad=0.35, warmup_s=1.5):
+    """Penalize persistent L/R pose bias on flat straight-moving replay ONLY.
+
+    Hip mirror differences are sums; thigh/calf differences are differences.
+    A reset-safe EMA averages out normal alternating gait, with a deadband.
+    Turning, lateral commands, stairs and first 1.5 s are unpenalized. This is
+    reward state only; it is not added to actor inputs or controller targets.
+    Selection MUST be grouped hip/thigh/calf and FL/FR/RL/RR within each group.
+    """
+    from stair_terrain import flat_env_mask
+
+    robot = env.scene[asset_cfg.name]
+    q = _tensor(robot.data.joint_pos)[:, asset_cfg.joint_ids]
+    command = env.command_manager.get_command("base_velocity")
+    eligible = flat_env_mask(env) & (command[:, 0].abs() > 0.1)
+    eligible &= (command[:, 1].abs() < 0.05) & (command[:, 2].abs() < 0.15)
+    difference = torch.stack((q[:, 0] + q[:, 1], q[:, 2] + q[:, 3],
+                              q[:, 4] - q[:, 5], q[:, 6] - q[:, 7],
+                              q[:, 8] - q[:, 9], q[:, 10] - q[:, 11]), dim=1)
+    key = "_him_slow_mirror_bias"
+    state = getattr(env, key, None)
+    if state is None:
+        state = {"step": -1, "mean": torch.zeros_like(difference),
+                 "age": torch.zeros_like(command[:, 0])}
+        setattr(env, key, state)
+    step = int(env.common_step_counter)
+    if state["step"] != step:
+        reset = (env.episode_length_buf <= 1) | (~eligible)
+        alpha = 1.0 - math.exp(-float(env.step_dt) / time_constant_s)
+        state["mean"] = torch.where(reset[:, None], 0.0,
+                                     (1.0 - alpha) * state["mean"] + alpha * difference)
+        state["age"] = torch.where(reset, 0.0, state["age"] + float(env.step_dt))
+        state["step"] = step
+    error = ((state["mean"].abs() - deadband_rad).clamp_min(0.0) / scale_rad).square().clamp_max(4.0)
+    return error.mean(1) * (eligible & (state["age"] >= warmup_s))
+
+
 def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
-                            posture_angle_deg=65.0, posture_swing_weight=0.25):
+                            posture_angle_deg=65.0, posture_swing_weight=0.25,
+                            symmetry_weight=-0.08):
     """Replace stock rewards before launch and return serializable provenance.
 
     Call after terrain configuration has installed ``base_height_scanner``.
@@ -254,9 +293,9 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
     ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
     """
     contact_profiles = ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
-    posture_profiles = ("posture", "posture_contact")
+    posture_profiles = ("posture", "posture_contact", "posture_symmetric")
     if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, *posture_profiles, "stock"):
-        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, posture, posture_contact, or stock")
+        raise ValueError("Unknown stair reward profile")
     if profile in posture_profiles:
         if not math.isfinite(posture_weight) or posture_weight >= 0.0:
             raise ValueError("posture_weight must be finite and negative")
@@ -264,6 +303,8 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             raise ValueError("posture_angle_deg must be in [30, 80]")
         if not math.isfinite(posture_swing_weight) or not 0.0 < posture_swing_weight <= 1.0:
             raise ValueError("posture_swing_weight must be in (0, 1]")
+    if profile == "posture_symmetric" and (not math.isfinite(symmetry_weight) or symmetry_weight >= 0):
+        raise ValueError("symmetry_weight must be finite and negative")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     sensor_name = "base_height_scanner"
@@ -331,6 +372,12 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=["Head_.*"]))
         add("other_undesired_contacts", mdp + "undesired_contacts", -0.01, threshold=0.3,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_hip", ".*_thigh", ".*_calf"]))
+    if profile == "posture_symmetric":
+        add("slow_mirror_bias", custom + "slow_mirror_bias_l2", symmetry_weight,
+            asset_cfg=SceneEntityCfg("robot", joint_names=[leg + "_" + part + "_joint"
+                for part in ("hip", "thigh", "calf") for leg in ("FL", "FR", "RL", "RR")],
+                preserve_order=True), time_constant_s=0.8, deadband_rad=0.10,
+            scale_rad=0.35, warmup_s=1.5)
     manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -441,6 +488,18 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             "weight_scaling": "reward manager multiplies each weight by policy dt",
             "limitations": "contact count does not directly measure clearance, shank angle, impulse or damage",
             "reproduction_scope": "explicit user-requested Go2 contact reward adaptation",
+        }
+    if profile == "posture_symmetric":
+        manifest["adaptation_changes"].append(
+            "posture plus reset-safe EMA mirror joint bias on flat straight-moving replay only")
+        manifest["symmetry_penalty"] = {
+            "term": "slow_mirror_bias", "weight": symmetry_weight,
+            "time_constant_s": 0.8, "deadband_rad": 0.10, "scale_rad": 0.35,
+            "warmup_s": 1.5, "raw_cost_cap": 4.0,
+            "scope": "terrain-masked flat replay; abs(vx)>0.1, abs(vy)<0.05, abs(yaw rate)<0.15",
+            "mirror": "hip sums, thigh/calf differences; front and rear pairs",
+            "limitations": "EMA reward state; does not prescribe a gait phase or guarantee symmetry on stairs",
+            "actor_inputs_added": False,
         }
     if profile in ("contact_vertical", "contact_clearance"):
         vertical = profile == "contact_vertical"

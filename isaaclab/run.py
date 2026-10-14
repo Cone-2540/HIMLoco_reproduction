@@ -105,11 +105,12 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "posture", "posture_contact", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "posture", "posture_contact", "posture_symmetric", "stock"], default="faithful")
     parser.add_argument("--posture_weight", type=float, default=-0.08,
                         help="Posture profile only: negative soft shank-angle reward weight.")
     parser.add_argument("--posture_angle_deg", type=float, default=65.0)
     parser.add_argument("--posture_swing_weight", type=float, default=0.25)
+    parser.add_argument("--symmetry_weight", type=float, default=-0.08)
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -236,7 +237,8 @@ def main():
         cfg.scene.terrain.max_init_terrain_level = args.start_level
         reward_manifest = configure_stair_rewards(
             cfg, args.reward_profile, posture_weight=args.posture_weight,
-            posture_angle_deg=args.posture_angle_deg, posture_swing_weight=args.posture_swing_weight)
+            posture_angle_deg=args.posture_angle_deg, posture_swing_weight=args.posture_swing_weight,
+            symmetry_weight=args.symmetry_weight)
         cfg.episode_length_s = max(args.eval_seconds, 20.0)
         cfg.commands.base_velocity.heading_command = True
         cfg.commands.base_velocity.rel_heading_envs = 1.0
@@ -385,7 +387,7 @@ def main():
                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
             }
         robot = wrapped.env.scene["robot"]
-        if args.terrain == "stairs" and args.reward_profile in ("posture", "posture_contact"):
+        if args.terrain == "stairs" and args.reward_profile in ("posture", "posture_contact", "posture_symmetric"):
             term = wrapped.env.reward_manager.get_term_cfg("shank_horizontal")
             resolved = {}
             for key, part in (("knee_cfg", "calf"), ("foot_cfg", "foot"),
@@ -400,6 +402,15 @@ def main():
                     raise ValueError(f"Shank posture {key} leg order mismatch: {names} != {expected}")
                 resolved[key] = names
             metadata["resolved_posture_reward_body_selections"] = resolved
+        if args.terrain == "stairs" and args.reward_profile == "posture_symmetric":
+            term = wrapped.env.reward_manager.get_term_cfg("slow_mirror_bias")
+            entity_cfg = term.params["asset_cfg"]
+            names = [robot.joint_names[int(i)] for i in entity_cfg.joint_ids]
+            expected = [leg + "_" + part + "_joint" for part in ("hip", "thigh", "calf")
+                        for leg in ("FL", "FR", "RL", "RR")]
+            if names != expected:
+                raise ValueError(f"Symmetry joint order mismatch: {names}")
+            metadata["resolved_symmetry_reward_joint_selection"] = names
         if args.terrain == "stairs" and args.reward_profile == "posture_contact":
             selections = {}
             for name, expected in (
