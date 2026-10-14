@@ -50,7 +50,10 @@ def main():
              "--learning_rate", ".00005", "--resume_learning_rate", ".00005", "--lr_schedule", "fixed",
              "--seed", str(a.seed), "--stair_speed_range", ".25", ".65",
              "--flat_replay_fraction", ".25", "--flat_replay_all_directions"]
-    smoke = [*train, "--num_envs", "128", "--steps_per_env", "24", "--max_iterations", "3", "--save_interval", "1"]
+    # EMA symmetry warmup is 1.5 s. Three 24-step rollouts last only 1.44 s,
+    # so use 48 steps for this profile to exercise a nonzero reward in smoke.
+    smoke_steps = 48 if a.reward_profile == "posture_symmetric" else 24
+    smoke = [*train, "--num_envs", "128", "--steps_per_env", str(smoke_steps), "--max_iterations", "3", "--save_interval", "1"]
     formal = [*train, "--num_envs", str(a.num_envs), "--steps_per_env", "100",
               "--max_iterations", str(a.updates), "--save_interval", "20"]
     checkpoints = list(range(a.start_iteration + 40, a.start_iteration + a.updates + 1, 40))
