@@ -1,0 +1,805 @@
+{
+  "recorded_local": "2026-10-14T17:17:02.537333+08:00",
+  "iteration": 900,
+  "additional_updates": 40,
+  "scope": "single deterministic early-development probe per terrain, seed2000, vx0.3; not final acceptance; no initial joint noise; stair heading feedback enabled",
+  "checkpoint": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-14_17-03-38_posture-20261014-weak-train/model_900.pt",
+  "checkpoint_sha256": "c6a0b80b1a40f9c48533c601060407eae5663b9c54d110be013745c2426749df",
+  "results": {
+    "flat": {
+      "metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-early900/flat",
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "trace_sha256": "2e7bc40dcd261974802a83d9338976b5908d93a1dd5702bbdbdddc3e58d9566f",
+        "success": true,
+        "terrain": "flat",
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "samples": 573,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          68.27805087261477,
+          84.5475075669593,
+          35.235250145756794,
+          36.27803166406947
+        ],
+        "p95_shank_angle_deg": [
+          82.61360887461747,
+          93.7204732042438,
+          57.76147396292692,
+          61.22117500046153
+        ],
+        "fraction_shank_angle_gt70": [
+          0.5218150087260035,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "mean_knee_clearance_cm": [
+          8.76330536151078,
+          4.643395398978362,
+          18.068588981863115,
+          17.55114113003577
+        ],
+        "p5_knee_clearance_cm": [
+          4.082972002156016,
+          3.436519886361733,
+          12.467903707357362,
+          11.309941911828005
+        ],
+        "mean_root_world_z_m": 0.2584477935311682,
+        "loaded_calf_policy_interval_fraction": 0.0,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "result": {
+        "success": true,
+        "reason": "forward_progress_and_upright_dwell",
+        "simulation_seconds": 13.460000000000704,
+        "wall_seconds": 0.41881150500012154,
+        "final_position": [
+          3.119556341621753,
+          0.5551715888305702,
+          0.25646382482403657
+        ],
+        "body_contact_fraction": 0.0,
+        "calf_contact_fraction": 0.0,
+        "body_loaded_contact_fraction": 0.0,
+        "calf_loaded_contact_fraction": 0.0,
+        "calf_peak_normal_force_n": 0.0,
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "xy_velocity_mae_m_s": 0.06514790162640464,
+        "yaw_velocity_mae_rad_s": 0.025901820155876047,
+        "mean_action_rate_squared": 0.01805215672992023,
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "config_sha256": "a618b96c2d63ed6b0a421bb3f512654dc04f58a9ed3cf1a97a379bba418d640c",
+        "generated_xml_sha256": "df6702be4a2093afb454f16e11e46264312bfe62d5faf79a147faa561619c9bc",
+        "source_model_sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+        "mujoco_version": "3.3.7",
+        "torch_version": "2.6.0+cpu",
+        "runner_source_sha256": "1e46d09da94d28aeed2a9ae811f40cb03a2982c1fe12b5092b306155acec7b26",
+        "protocol_version": "2: derived inertial constants and end-of-step state refreshed",
+        "policy_joint_order": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mujoco_qpos_indices": [
+          7,
+          10,
+          13,
+          16,
+          8,
+          11,
+          14,
+          17,
+          9,
+          12,
+          15,
+          18
+        ],
+        "mujoco_actuator_indices": [
+          0,
+          3,
+          6,
+          9,
+          1,
+          4,
+          7,
+          10,
+          2,
+          5,
+          8,
+          11
+        ],
+        "arguments": {
+          "policy": "/home/cone/robotics/logs/posture-20261014-early900/policy.pt",
+          "config": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-14_17-03-38_posture-20261014-weak-train/config.json",
+          "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+          "output": "/home/cone/robotics/logs/posture-20261014-early900/flat",
+          "terrain": "flat",
+          "height": 0.16,
+          "depth": 0.27,
+          "steps": 6,
+          "width": 1.2,
+          "nosing": 0.0,
+          "seconds": 25.0,
+          "dt": 0.005,
+          "decimation": 4,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "flat_distance": 3.0,
+          "seed": 2000,
+          "initial_yaw": 0.0,
+          "initial_y": 0.0,
+          "initial_joint_noise": 0.0,
+          "friction": 1.0,
+          "mass_scale": 1.0,
+          "com_offset": [
+            0,
+            0,
+            0
+          ],
+          "gain_scale": 1.0,
+          "armature": null,
+          "contact_profile": "menagerie",
+          "motor_strength": 1.0,
+          "per_joint_gains": null,
+          "per_joint_strength": null,
+          "per_foot_friction": null,
+          "delay_steps": 0,
+          "delay_physics_steps": 0,
+          "fixed_duration": false,
+          "heading_feedback": false,
+          "obs_noise": false,
+          "stock_joint_physics": false,
+          "conservative_calf": false,
+          "video": false,
+          "viewer": false
+        },
+        "actual_base_mass": 6.921,
+        "actual_base_com": [
+          0.021112,
+          0.0,
+          -0.005366
+        ],
+        "actual_joint_damping": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "goal_x": null,
+        "actual_kp": [
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0
+        ],
+        "actual_kd": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "actual_drive_strength": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "actual_foot_friction": [
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ]
+        ],
+        "goal_definition": "command-direction 3m progress, upright/no body contact for 0.5s",
+        "controller": "50Hz HIM/6x45 newest-first, 200Hz explicit PD25/0.5 with IsaacLab DC torque-speed curve",
+        "source_manifest": "/home/cone/robotics/assets/mujoco-menagerie-go2/SOURCE.json"
+      }
+    },
+    "asc": {
+      "metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-early900/asc",
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "trace_sha256": "59f0eec00232cdb42347b5acec3a2ed3412642c14396d53900ef9f9f7b8ba52b",
+        "success": true,
+        "terrain": "asc",
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "samples": 781,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          62.68936848042801,
+          97.11144219449734,
+          37.00752275923195,
+          56.27611186488764
+        ],
+        "p95_shank_angle_deg": [
+          100.96939921347789,
+          134.49883926822818,
+          60.295513159617826,
+          97.28499102097994
+        ],
+        "fraction_shank_angle_gt70": [
+          0.36363636363636365,
+          0.9257362355953905,
+          0.0,
+          0.26632522407170295
+        ],
+        "mean_knee_clearance_cm": [
+          18.252973853125926,
+          11.097134133679463,
+          22.932909538355634,
+          21.227011914293637
+        ],
+        "p5_knee_clearance_cm": [
+          6.387266404397884,
+          2.082387229023741,
+          13.010007639032395,
+          10.731091323110231
+        ],
+        "mean_root_world_z_m": 0.72042409211519,
+        "loaded_calf_policy_interval_fraction": 0.13316261203585147,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "result": {
+        "success": true,
+        "reason": "all_feet_on_landing_and_upright_dwell",
+        "simulation_seconds": 17.62000000000078,
+        "wall_seconds": 0.5493830930004151,
+        "final_position": [
+          3.309536864731051,
+          0.2598458869013393,
+          1.2219922523768556
+        ],
+        "body_contact_fraction": 0.01362088535754824,
+        "calf_contact_fraction": 0.12372304199772985,
+        "body_loaded_contact_fraction": 0.01362088535754824,
+        "calf_loaded_contact_fraction": 0.11804767309875142,
+        "calf_peak_normal_force_n": 78.21545211925644,
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "xy_velocity_mae_m_s": 0.10750791920329644,
+        "yaw_velocity_mae_rad_s": 0.045183375142919306,
+        "mean_action_rate_squared": 0.039893229271072,
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "config_sha256": "a618b96c2d63ed6b0a421bb3f512654dc04f58a9ed3cf1a97a379bba418d640c",
+        "generated_xml_sha256": "358082023ab71fc494427d99f88fc486893a1342e8f3a78ff3b6cc84d417a6c7",
+        "source_model_sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+        "mujoco_version": "3.3.7",
+        "torch_version": "2.6.0+cpu",
+        "runner_source_sha256": "1e46d09da94d28aeed2a9ae811f40cb03a2982c1fe12b5092b306155acec7b26",
+        "protocol_version": "2: derived inertial constants and end-of-step state refreshed",
+        "policy_joint_order": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mujoco_qpos_indices": [
+          7,
+          10,
+          13,
+          16,
+          8,
+          11,
+          14,
+          17,
+          9,
+          12,
+          15,
+          18
+        ],
+        "mujoco_actuator_indices": [
+          0,
+          3,
+          6,
+          9,
+          1,
+          4,
+          7,
+          10,
+          2,
+          5,
+          8,
+          11
+        ],
+        "arguments": {
+          "policy": "/home/cone/robotics/logs/posture-20261014-early900/policy.pt",
+          "config": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-14_17-03-38_posture-20261014-weak-train/config.json",
+          "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+          "output": "/home/cone/robotics/logs/posture-20261014-early900/asc",
+          "terrain": "asc",
+          "height": 0.16,
+          "depth": 0.27,
+          "steps": 6,
+          "width": 1.2,
+          "nosing": 0.0,
+          "seconds": 25.0,
+          "dt": 0.005,
+          "decimation": 4,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "flat_distance": 3.0,
+          "seed": 2000,
+          "initial_yaw": 0.0,
+          "initial_y": 0.0,
+          "initial_joint_noise": 0.0,
+          "friction": 1.0,
+          "mass_scale": 1.0,
+          "com_offset": [
+            0,
+            0,
+            0
+          ],
+          "gain_scale": 1.0,
+          "armature": null,
+          "contact_profile": "menagerie",
+          "motor_strength": 1.0,
+          "per_joint_gains": null,
+          "per_joint_strength": null,
+          "per_foot_friction": null,
+          "delay_steps": 0,
+          "delay_physics_steps": 0,
+          "fixed_duration": false,
+          "heading_feedback": true,
+          "obs_noise": false,
+          "stock_joint_physics": false,
+          "conservative_calf": false,
+          "video": false,
+          "viewer": false
+        },
+        "actual_base_mass": 6.921,
+        "actual_base_com": [
+          0.021112,
+          0.0,
+          -0.005366
+        ],
+        "actual_joint_damping": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "goal_x": 2.9000000000000004,
+        "actual_kp": [
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0
+        ],
+        "actual_kd": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "actual_drive_strength": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "actual_foot_friction": [
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ]
+        ],
+        "goal_definition": "all four foot sphere centers past final riser+8cm, upright Rzz>.85, no body contact for 0.5s",
+        "controller": "50Hz HIM/6x45 newest-first, 200Hz explicit PD25/0.5 with IsaacLab DC torque-speed curve",
+        "source_manifest": "/home/cone/robotics/assets/mujoco-menagerie-go2/SOURCE.json"
+      }
+    },
+    "desc": {
+      "metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-early900/desc",
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "trace_sha256": "2d393343159039bf7a8fc6195cac94d612b3ebb2ef6d8c4612b431d9c96ec209",
+        "success": true,
+        "terrain": "desc",
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "samples": 674,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          54.66807715707033,
+          63.53405155404759,
+          26.58114227596907,
+          35.22004286879653
+        ],
+        "p95_shank_angle_deg": [
+          79.45206278094108,
+          89.78753417605036,
+          52.75245950530618,
+          56.544706410868905
+        ],
+        "fraction_shank_angle_gt70": [
+          0.17359050445103857,
+          0.44510385756676557,
+          0.0,
+          0.0
+        ],
+        "mean_knee_clearance_cm": [
+          12.889757314874847,
+          7.341923044380261,
+          19.395446263910646,
+          21.225518170891267
+        ],
+        "p5_knee_clearance_cm": [
+          4.816595910183752,
+          2.663156175150334,
+          7.14144726739965,
+          13.098176951118162
+        ],
+        "mean_root_world_z_m": 0.7644040034803854,
+        "loaded_calf_policy_interval_fraction": 0.30415430267062316,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "result": {
+        "success": true,
+        "reason": "all_feet_on_landing_and_upright_dwell",
+        "simulation_seconds": 15.48000000000102,
+        "wall_seconds": 0.48510661899990737,
+        "final_position": [
+          3.31827315610282,
+          0.120116009918364,
+          0.25855455096243196
+        ],
+        "body_contact_fraction": 0.0,
+        "calf_contact_fraction": 0.2648578811369509,
+        "body_loaded_contact_fraction": 0.0,
+        "calf_loaded_contact_fraction": 0.2648578811369509,
+        "calf_peak_normal_force_n": 194.95306183083895,
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "xy_velocity_mae_m_s": 0.07430967259594994,
+        "yaw_velocity_mae_rad_s": 0.03336657668676523,
+        "mean_action_rate_squared": 0.020509887093158825,
+        "policy_sha256": "2df9d6df753a551e5cae7132f670216ac20c846442d79a9fab10804c5bfc1601",
+        "config_sha256": "a618b96c2d63ed6b0a421bb3f512654dc04f58a9ed3cf1a97a379bba418d640c",
+        "generated_xml_sha256": "c4820f7f244c0a315e7079c50558631ddb126acac1558397ce7897cb274923d9",
+        "source_model_sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+        "mujoco_version": "3.3.7",
+        "torch_version": "2.6.0+cpu",
+        "runner_source_sha256": "1e46d09da94d28aeed2a9ae811f40cb03a2982c1fe12b5092b306155acec7b26",
+        "protocol_version": "2: derived inertial constants and end-of-step state refreshed",
+        "policy_joint_order": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mujoco_qpos_indices": [
+          7,
+          10,
+          13,
+          16,
+          8,
+          11,
+          14,
+          17,
+          9,
+          12,
+          15,
+          18
+        ],
+        "mujoco_actuator_indices": [
+          0,
+          3,
+          6,
+          9,
+          1,
+          4,
+          7,
+          10,
+          2,
+          5,
+          8,
+          11
+        ],
+        "arguments": {
+          "policy": "/home/cone/robotics/logs/posture-20261014-early900/policy.pt",
+          "config": "/home/cone/Research/HIMLoco/isaaclab/logs/2026-10-14_17-03-38_posture-20261014-weak-train/config.json",
+          "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+          "output": "/home/cone/robotics/logs/posture-20261014-early900/desc",
+          "terrain": "desc",
+          "height": 0.16,
+          "depth": 0.27,
+          "steps": 6,
+          "width": 1.2,
+          "nosing": 0.0,
+          "seconds": 25.0,
+          "dt": 0.005,
+          "decimation": 4,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "flat_distance": 3.0,
+          "seed": 2000,
+          "initial_yaw": 0.0,
+          "initial_y": 0.0,
+          "initial_joint_noise": 0.0,
+          "friction": 1.0,
+          "mass_scale": 1.0,
+          "com_offset": [
+            0,
+            0,
+            0
+          ],
+          "gain_scale": 1.0,
+          "armature": null,
+          "contact_profile": "menagerie",
+          "motor_strength": 1.0,
+          "per_joint_gains": null,
+          "per_joint_strength": null,
+          "per_foot_friction": null,
+          "delay_steps": 0,
+          "delay_physics_steps": 0,
+          "fixed_duration": false,
+          "heading_feedback": true,
+          "obs_noise": false,
+          "stock_joint_physics": false,
+          "conservative_calf": false,
+          "video": false,
+          "viewer": false
+        },
+        "actual_base_mass": 6.921,
+        "actual_base_com": [
+          0.021112,
+          0.0,
+          -0.005366
+        ],
+        "actual_joint_damping": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "goal_x": 2.9000000000000004,
+        "actual_kp": [
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0,
+          25.0
+        ],
+        "actual_kd": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "actual_drive_strength": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "actual_foot_friction": [
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ],
+          [
+            1.0,
+            0.02,
+            0.01
+          ]
+        ],
+        "goal_definition": "all four foot sphere centers past final riser+8cm, upright Rzz>.85, no body contact for 0.5s",
+        "controller": "50Hz HIM/6x45 newest-first, 200Hz explicit PD25/0.5 with IsaacLab DC torque-speed curve",
+        "source_manifest": "/home/cone/robotics/assets/mujoco-menagerie-go2/SOURCE.json"
+      }
+    }
+  }
+}
