@@ -9,6 +9,8 @@ small stair ablation, and ``contact`` adds only a leg-contact penalty to faithfu
 reward weight from contact; both preserve the released reward formulas.
 ``faithful_tracking`` changes only the original XY velocity tracking weight
 from faithful, without adding contact or lateral-controller terms.
+``posture`` adds a support-aware soft shank-angle penalty to faithful. It does
+not force a particular joint pose or add terrain/contact inputs to the actor.
 The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
@@ -199,7 +201,42 @@ def leg_contact_force_proxy(env, sensor_cfg, threshold_n=50.0, force_scale_n=50.
     return excess.square().clamp_max(parameters["cap_per_body"]).sum(dim=1)
 
 
-def configure_stair_rewards(cfg, profile="faithful"):
+def _contact_peak_norm(env, sensor_cfg):
+    sensor = env.scene[sensor_cfg.name]
+    history = _tensor(getattr(sensor.data, "net_normal_forces_w_history", None))
+    if history is not None and history.shape[1] > 0:
+        return history[:, :, sensor_cfg.body_ids].norm(dim=-1).amax(dim=1)
+    return _tensor(sensor.data.net_normal_forces_w)[:, sensor_cfg.body_ids].norm(dim=-1)
+
+
+def shank_horizontal_l2(
+    env, knee_cfg, foot_cfg, foot_sensor_cfg, calf_sensor_cfg,
+    max_stance_angle_deg=65.0, swing_weight=0.25, threshold_n=1.0,
+):
+    """Soft excess angle to WORLD down, with reduced cost during free swing.
+
+    Knee/foot and the two contact selections MUST have the same leg order;
+    the runtime checks the resolved names before learning. A calf-supported
+    leg gets the full weight even if its foot is not touching the terrain.
+    Free swing retains a small cost, avoiding a discontinuous zero-cost escape.
+    The normalized cosine deficit is capped before squaring (per-leg cap 4).
+    No prescribed gait phase, body-pitch target, joint offset or actor input.
+    """
+    robot = env.scene[knee_cfg.name]
+    positions = _tensor(robot.data.body_link_pos_w)
+    shank = positions[:, foot_cfg.body_ids] - positions[:, knee_cfg.body_ids]
+    down_cosine = -shank[..., 2] / shank.norm(dim=-1).clamp_min(1e-6)
+    cosine_limit = math.cos(math.radians(max_stance_angle_deg))
+    excess = ((cosine_limit - down_cosine) / cosine_limit).clamp(0.0, 2.0)
+    support = (_contact_peak_norm(env, foot_sensor_cfg) > threshold_n) | (
+        _contact_peak_norm(env, calf_sensor_cfg) > threshold_n
+    )
+    phase_weight = swing_weight + (1.0 - swing_weight) * support.to(excess.dtype)
+    return (phase_weight * excess.square()).mean(dim=1)
+
+
+def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
+                            posture_angle_deg=65.0, posture_swing_weight=0.25):
     """Replace stock rewards before launch and return serializable provenance.
 
     Call after terrain configuration has installed ``base_height_scanner``.
@@ -215,19 +252,25 @@ def configure_stair_rewards(cfg, profile="faithful"):
     ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
     """
     contact_profiles = ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
-    if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "stock"):
-        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, or stock")
+    if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "posture", "stock"):
+        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, posture, or stock")
+    if profile == "posture":
+        if not math.isfinite(posture_weight) or posture_weight >= 0.0:
+            raise ValueError("posture_weight must be finite and negative")
+        if not math.isfinite(posture_angle_deg) or not 30.0 <= posture_angle_deg <= 80.0:
+            raise ValueError("posture_angle_deg must be in [30, 80]")
+        if not math.isfinite(posture_swing_weight) or not 0.0 < posture_swing_weight <= 1.0:
+            raise ValueError("posture_swing_weight must be in (0, 1]")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
-    from isaaclab.managers import RewardTermCfg, SceneEntityCfg
-
     sensor_name = "base_height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         sensor_name = "height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
-    if profile in contact_profiles and getattr(cfg.scene, "contact_forces", None) is None:
+    if profile in (*contact_profiles, "posture") and getattr(cfg.scene, "contact_forces", None) is None:
         raise ValueError("Contact reward requires the contact_forces sensor")
+    from isaaclab.managers import RewardTermCfg, SceneEntityCfg
 
     # Prevent residual stock torque/air-time/position-limit rewards from silently
     # changing the released objective when the source task adds optional terms.
@@ -270,6 +313,16 @@ def configure_stair_rewards(cfg, profile="faithful"):
         add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
             threshold_n=50.0, force_scale_n=50.0, cap_per_body=4.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
+    if profile == "posture":
+        legs = ("FL", "FR", "RL", "RR")
+        def selection(name, part):
+            return SceneEntityCfg(name, body_names=[leg + "_" + part for leg in legs], preserve_order=True)
+        add("shank_horizontal", custom + "shank_horizontal_l2", posture_weight,
+            knee_cfg=selection("robot", "calf"), foot_cfg=selection("robot", "foot"),
+            foot_sensor_cfg=selection("contact_forces", "foot"),
+            calf_sensor_cfg=selection("contact_forces", "calf"),
+            max_stance_angle_deg=posture_angle_deg, swing_weight=posture_swing_weight,
+            threshold_n=1.0)
     manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -350,6 +403,23 @@ def configure_stair_rewards(cfg, profile="faithful"):
             "actor_observations_and_collision_geometry": "unchanged",
         } if profile == "contact_slide" else None,
     }
+    if profile == "posture":
+        manifest["adaptation_changes"] = [
+            "faithful plus support-aware shank_horizontal; all released reward terms unchanged"
+        ]
+        manifest["posture_penalty"] = {
+            "term": "shank_horizontal", "weight": posture_weight,
+            "max_stance_angle_deg": posture_angle_deg, "swing_weight": posture_swing_weight,
+            "threshold_n": 1.0, "leg_order": ["FL", "FR", "RL", "RR"],
+            "geometry": "knee/calf link origin to foot link origin, world frame",
+            "formula": "mean_i phase_i * clamp((cos(theta_max)-cos(theta_i))/cos(theta_max),0,2)^2",
+            "support": "foot OR calf retained-history net-normal-force norm > 1 N",
+            "phase_weight": "1 when supported, swing_weight otherwise",
+            "weight_scaling": "reward manager multiplies weight by policy dt; function applies no dt",
+            "scope": "Go2 reward adaptation, not an original paper reward; mean over all four legs",
+            "limitations": "soft posture preference, not terrain clearance or a force/damage limit",
+            "actor_observations_controller_and_collision_geometry": "unchanged",
+        }
     if profile in ("contact_vertical", "contact_clearance"):
         vertical = profile == "contact_vertical"
         manifest["reward_weight_ablation"] = {
