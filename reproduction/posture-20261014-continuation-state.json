@@ -1,14 +1,14 @@
 {
-  "updated_local": "2026-10-14T19:19:20.082839+08:00",
+  "updated_local": "2026-10-14T19:37:20.634675+08:00",
   "continuation_requested": true,
   "active_goal": "continuous autonomous posture and symmetry reward research; no inherited deadline",
   "gpu_cap_mib": 15360,
   "no_driver_system_cuda_graphics_changes": true,
   "branch": "feature/go2-shank-posture-20261014",
   "frozen_original_sha256": "4e0c046734eda739fbea83ee7177ac7f3a6dbd35ef5fd0dae0a83e48f92cd83b",
-  "active_gpu_pipeline": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/pipeline.json",
-  "active_gpu_console": "/home/cone/robotics/logs/posture-20261014-symmetric1b-console.txt",
-  "active_cpu_watcher": "/home/cone/robotics/logs/posture-20261014-symmetric1b-early-console.txt",
+  "active_gpu_pipeline": "/home/cone/robotics/logs/posture-20261014-symmetrystair1-pipeline/pipeline.json",
+  "active_gpu_console": "/home/cone/robotics/logs/posture-20261014-symmetrystair1-queue-console.txt",
+  "active_cpu_watcher": "/home/cone/robotics/logs/posture-20261014-symmetrystair1-early-console.txt",
   "queued_symmetry_start_checkpoint": "artifacts/posture-20261014-weak/model_980.pt",
   "queued_symmetry_iterations": [
     1020,
@@ -16,12 +16,10 @@
     1100
   ],
   "next_actions": [
-    "Monitor current symmetric1b training with15360 cap; actual nonzero smoke cost verified",
-    "Compare1020/1060/1100 phase-averaged biases, foot placement, per-leg descending calf contacts and paired completion",
-    "Record actual physics Isaac/MuJoCo videos whenGPUidle; saved-pose renders exist medium940-visual",
-    "If symmetry-only helps, strengthen angle reward independently or extend symmetry scope to stairs with phase-aware gating; do not silently change several terms",
-    "Choose and freeze on development then paired new independent seeds2400; preserve original artifacts",
-    "Continue front posture/stair symmetry research until user stop; paper existing other issues excluded"
+    "Monitor current isolated stair symmetry run with15360 MiB cap and intermediate CPU checks",
+    "Complete paired Isaac/MuJoCo nominal and deployment results for1020/1060/1100",
+    "If bias or posture remains, tune one existing reward weight from a fully evaluated stable checkpoint",
+    "Select development evidence then freeze before new seeds2400; continue research until userstop"
   ],
   "do_not_promote_original": true,
   "weak980_prior_heldout_seeds": [
@@ -34,17 +32,17 @@
   "original_symmetry_watcher_cancelled": true,
   "active_cpu_diagnostics_console": "/home/cone/robotics/logs/posture-20261014-symmetric1b-details-console.txt",
   "active_cpu_diagnostics_output": "/home/cone/robotics/logs/posture-20261014-symmetric1b-per-leg-development",
-  "last_completed_checkpoint": 1020,
-  "last_diagnostic_summary": "Paired MuJoCo24/24 nominal48/48 deployment; flat front joint/foot biases reduced but not solved; descending loaded contact 28.1% ->24.3% under matching per-leg protocol; next1060 evaluating",
-  "training_current_iteration_approximate": 1060,
+  "last_completed_checkpoint": 1100,
+  "last_diagnostic_summary": "Symmetric1b1060 nominal24/24 deployment48/48; symmetric1b1100 nominal24/24 deployment45/48, all three failures during startup <1.1s; target checks not met",
   "predeclared_targets": "reproduction/posture-20261014-symmetry-gates.json",
   "target_assessor": "reproduction/assess-posture-candidate.py",
-  "actual_training_process_pid": 44196,
   "next_gpu_queue_console": "/home/cone/robotics/logs/posture-20261014-symmetrystair1-queue-console.txt",
   "next_gpu_queue_steps": [
     "Wait for symmetric1b complete paired evidence",
     "Actual Isaac flat/asc/desc and actual MuJoCo left/right/asc/desc recordings for1100 with idle guard",
     "Scope-only ablation fromsame frozenweak980, EMA staircase scale0->0.5, allotherrewardparamsfixed"
   ],
-  "next_training_plan": "reproduction/posture-20261014-symmetrystair1-plan.json"
+  "next_training_plan": "reproduction/posture-20261014-symmetrystair1-plan.json",
+  "actual_videos": "/home/cone/robotics/logs/posture-20261014-symmetric1b1100-videos/manifest.json",
+  "current_experiment": "symmetrystair1: fromweak980 change stair EMA scale0->0.5 only"
 }

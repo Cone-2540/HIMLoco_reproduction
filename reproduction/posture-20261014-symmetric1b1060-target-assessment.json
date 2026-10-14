@@ -1,0 +1,152 @@
+{
+  "candidate_iteration": 1060,
+  "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-symmetric1b/policy_1060.pt",
+  "policy_sha256": "2d365b92887395e2c5d2f1981ed65bf8618deb8ca6288bacc127516e6690a502",
+  "pipeline": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/pipeline.json",
+  "checks": [
+    {
+      "name": "front_leg_mean_shank_angle_deg_each_max",
+      "measured": [
+        64.21588305619255,
+        79.22821449040177
+      ],
+      "target": 65.0,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "nominal .3/.5 m/s, equal trial means; knee origin, not collision-surface clearance"
+    },
+    {
+      "name": "front_knee_origin_p5_height_cm_each_min",
+      "measured": [
+        5.857003222248072,
+        5.545468387883079
+      ],
+      "target": 5.0,
+      "direction": "min",
+      "status": "met",
+      "scope": "nominal .3/.5 m/s, equal trial means; knee origin, not collision-surface clearance"
+    },
+    {
+      "name": "front_leg_supported_fraction_angle_gt70_each_max",
+      "measured": [
+        0.33159030688442453,
+        0.9634146341463414
+      ],
+      "target": 0.25,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "sparse saved-pose supported-angle fractions, each front leg"
+    },
+    {
+      "name": "mean_front_thigh_mirror_difference_abs_rad_max",
+      "measured": 0.6705822847333535,
+      "target": 0.25,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "mean of absolute per-trial front L/R mean biases; preserves gait phase"
+    },
+    {
+      "name": "mean_front_calf_mirror_difference_abs_rad_max",
+      "measured": 0.40047180393323906,
+      "target": 0.25,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "mean of absolute per-trial front L/R mean biases; preserves gait phase"
+    },
+    {
+      "name": "mean_front_mirrored_foot_longitudinal_difference_abs_m_max",
+      "measured": 0.14958342521281465,
+      "target": 0.05,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "mean absolute per-trial body-frame front foot longitudinal bias"
+    },
+    {
+      "name": "mujoco_nominal_first_episode_completion_fraction_min",
+      "measured": 1.0,
+      "target": 1.0,
+      "direction": "min",
+      "status": "met",
+      "scope": "paired development first episodes, 24/24; smoothness assessed separately"
+    },
+    {
+      "name": "nominal_forward_tracking_regression",
+      "measured": -0.003365311864863961,
+      "target": 0.03,
+      "direction": "max",
+      "status": "met",
+      "scope": "largest paired forward-command case mean XY tracking increase vs frozen original"
+    },
+    {
+      "name": "nominal_standard_stair_calf_contact",
+      "measured": [
+        0.011232364359435658,
+        0.06908725083104586,
+        0.17717973642143722,
+        0.27861117836433935
+      ],
+      "target": 0.1,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "each standard .3/.5 m/s ascending/descending case; any calf >1N in 20 ms policy interval"
+    },
+    {
+      "name": "mujoco_deployment_first_episode_completion_fraction_target_min",
+      "measured": 1.0,
+      "target": 0.98,
+      "direction": "min",
+      "status": "met",
+      "scope": "paired development first episodes, 48/48; smoothness assessed separately"
+    },
+    {
+      "name": "deployment_forward_tracking_regression",
+      "measured": -0.010023468548507622,
+      "target": 0.03,
+      "direction": "max",
+      "status": "met",
+      "scope": "largest paired forward-command case mean XY tracking increase vs frozen original"
+    },
+    {
+      "name": "deployment_standard_stair_calf_contact",
+      "measured": [
+        0.10748842957642946,
+        0.08748937884261296,
+        0.28971908176975986,
+        0.34683584152733077
+      ],
+      "target": 0.1,
+      "direction": "max",
+      "status": "not_met",
+      "scope": "each standard .3/.5 m/s ascending/descending case; any calf >1N in 20 ms policy interval"
+    },
+    {
+      "name": "isaac_nominal_first_episode_completion_fraction_target_min",
+      "measured": 1.0,
+      "target": 0.999,
+      "direction": "min",
+      "status": "met",
+      "scope": "paired first-episode environment completions (1024, 1024)"
+    },
+    {
+      "name": "isaac_deployment_first_episode_completion_fraction_target_min",
+      "measured": 0.998046875,
+      "target": 0.98,
+      "direction": "min",
+      "status": "met",
+      "scope": "paired first-episode environment completions (1022, 1024)"
+    },
+    {
+      "name": "frozen_original_identity",
+      "measured": 1,
+      "target": 1,
+      "direction": "min",
+      "status": "met",
+      "scope": "read-only checkpoint SHA256"
+    }
+  ],
+  "all_quantitative_development_targets_met": false,
+  "visual_review_verified_by_this_script": false,
+  "independent_validation_verified_by_this_script": false,
+  "automatic_promotion": false,
+  "scope": "predeclared research targets, development evidence only; unknown is not a pass; no deployment certification"
+}

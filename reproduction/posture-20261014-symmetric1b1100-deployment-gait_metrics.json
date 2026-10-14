@@ -1,0 +1,5239 @@
+{
+  "trials": [
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "e69d09d7537d8b1a4c00d50c2f184cacc725cb30640df66bd927819f0b75f53a",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 588,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            545,
+            464,
+            580,
+            568
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.17318462324037656,
+            0.11532734859674848,
+            0.223264516200607,
+            0.20605866517279217
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.22201834862385322,
+            0.2672413793103448,
+            0.33448275862068966,
+            0.2306338028169014
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            443,
+            354,
+            459,
+            465
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.046906851880743804,
+            0.032303649401285064,
+            0.07558654789203986,
+            0.042897960204369014
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0654627539503386,
+            0.09322033898305085,
+            0.15904139433551198,
+            0.06666666666666667
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            345,
+            251,
+            304,
+            352
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.00987598552123712,
+            0.004674931175783043,
+            0.009080582058167277,
+            0.012563128825730407
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            303,
+            155,
+            242,
+            264
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009616664169505637,
+            0.0041828576443689895,
+            0.00795075627097782,
+            0.012612331201024701
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.5223522209762177,
+        2.8394250145926057,
+        1.090152634971681,
+        1.3960829447221974
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9472789115646258,
+        0.8299319727891157,
+        0.9914965986394558,
+        0.9761904761904762
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "43474ab9acf793fda8631bb9444a3a905d534f3e7ad0ac91336bbfa9568872f7",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 645,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            633,
+            571,
+            644,
+            629
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2142730879991243,
+            0.17489233748066474,
+            0.2142471950748768,
+            0.18750586329791857
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.25434439178515006,
+            0.38879159369527144,
+            0.32142857142857145,
+            0.18441971383147854
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            495,
+            400,
+            498,
+            548
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06828832325734976,
+            0.061681738587199095,
+            0.06890141788340887,
+            0.04322234828538468
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.09090909090909091,
+            0.17,
+            0.13855421686746988,
+            0.06386861313868614
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            390,
+            265,
+            320,
+            440
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007587350056796672,
+            0.0035999769896442805,
+            0.009332258320318592,
+            0.0126275578287557
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            336,
+            188,
+            257,
+            330
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007205833200860883,
+            0.0031433027291719743,
+            0.008668636638230948,
+            0.01178479427396515
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2147245553709032,
+        1.7956585269892393,
+        1.0653838479697861,
+        1.2895427731868647
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9875968992248062,
+        0.9100775193798449,
+        1.0,
+        0.9844961240310077
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "25f1d95d8fb1ce6e211cd768fa070fcb40a3000d124808723d4732ae7cd1d703",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 578,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            533,
+            491,
+            577,
+            565
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14561473784580214,
+            0.16463233020979146,
+            0.23656957069862158,
+            0.20413133306801517
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1575984990619137,
+            0.39918533604887985,
+            0.35181975736568455,
+            0.19646017699115045
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            472,
+            274,
+            447,
+            478
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0465599468712313,
+            0.048600801560968666,
+            0.07116432131218411,
+            0.03275963164232745
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06567796610169492,
+            0.11313868613138686,
+            0.16778523489932887,
+            0.0502092050209205
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            396,
+            192,
+            224,
+            394
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.010375928452557717,
+            0.006006849967215771,
+            0.01408506666250128,
+            0.009370521683142239
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007575757575757576,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            341,
+            131,
+            165,
+            279
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008756105021009332,
+            0.005002720779460842,
+            0.013975228420031155,
+            0.009194250806803148
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.5591272608740518,
+        1.949393790701396,
+        1.1851505900630066,
+        1.2988494001840174
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9446366782006921,
+        0.8823529411764706,
+        1.0,
+        0.986159169550173
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "f470ac088e7460385f3ef001c38c0cbd14ff4fc0d331115a3a7484a8e43923ba",
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 565,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            564,
+            521,
+            523,
+            560
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.24604957395409174,
+            0.17613726290250178,
+            0.17185936837445254,
+            0.24155155079287444
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2801418439716312,
+            0.3800383877159309,
+            0.28489483747609945,
+            0.2732142857142857
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            466,
+            420,
+            369,
+            471
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12130872633837403,
+            0.10018190167825115,
+            0.01768677324935995,
+            0.07540693486877995
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.148068669527897,
+            0.23809523809523808,
+            0.013550135501355014,
+            0.13588110403397027
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            338,
+            281,
+            298,
+            348
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012053313883628507,
+            0.008524092056530298,
+            0.010106275566530203,
+            0.013615570863479054
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.021352313167259787,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            290,
+            206,
+            248,
+            276
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011206629303284095,
+            0.0037804132006495706,
+            0.00967099156650635,
+            0.013013191857692273
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.0803016785018775,
+        1.8783826266569956,
+        1.579850607034965,
+        1.2670556145906418
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.9415929203539823,
+        0.9451327433628318,
+        0.9964601769911504
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "95edbf18fd21d55049bdc9b831dedb76f690c763e3ef34b3041fb6536eb0433e",
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 288,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            259,
+            184,
+            255,
+            250
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.25302755038414415,
+            0.13185574457381025,
+            0.32001631668755165,
+            0.24546612725566472
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2548262548262548,
+            0.27717391304347827,
+            0.2980392156862745,
+            0.196
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            225,
+            159,
+            220,
+            224
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11634595018613127,
+            0.07488428700881104,
+            0.13987624775192053,
+            0.08869961010539207
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1511111111111111,
+            0.18867924528301888,
+            0.18636363636363637,
+            0.10267857142857142
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            191,
+            113,
+            159,
+            180
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.026682144529554794,
+            0.01537090752754508,
+            0.02247703760258237,
+            0.026622356634859883
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.04712041884816754,
+            0.061946902654867256,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            163,
+            58,
+            114,
+            119
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01802889035674238,
+            0.011237775873059404,
+            0.018077357856102882,
+            0.02633865840777025
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.8084961191873452,
+        6.662602120924102,
+        1.7304744644152028,
+        2.138870490365348
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9270833333333334,
+        0.6736111111111112,
+        0.9097222222222222,
+        0.8958333333333334
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "461dff164e55a52ae43371e0a93f02e30a3b99c56fc614223406794c70edad74",
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 299,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            296,
+            210,
+            295,
+            288
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.4025636611558259,
+            0.16570963872173633,
+            0.4000747490794956,
+            0.36098497554248593
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.3141891891891892,
+            0.3,
+            0.34915254237288135,
+            0.2604166666666667
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            234,
+            172,
+            227,
+            251
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14931684284979407,
+            0.07101713623138949,
+            0.11403765833825442,
+            0.13000544741662973
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14102564102564102,
+            0.1511627906976744,
+            0.15418502202643172,
+            0.15139442231075698
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            188,
+            122,
+            164,
+            200
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.020875805289916862,
+            0.010109796494756003,
+            0.020726018417659517,
+            0.027462528155328524
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.015957446808510637,
+            0.00819672131147541,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            159,
+            79,
+            135,
+            146
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.015510012099765831,
+            0.00646225543885714,
+            0.019731553235515446,
+            0.02618394255015706
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2489014016612374,
+        5.031658197689148,
+        1.394632331704583,
+        1.4259315706458366
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9966555183946488,
+        0.7391304347826086,
+        0.9933110367892977,
+        0.979933110367893
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2002",
+      "available": false,
+      "reason": "Missing post-warmup per-leg force telemetry"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "e82a1fb64e413754180dbc04f322c6bed84b2a307e0077161864de9150e764b0",
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 282,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            281,
+            206,
+            236,
+            271
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.4157006176186571,
+            0.21491728099985505,
+            0.2580409658841445,
+            0.373964801545932
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.3274021352313167,
+            0.3446601941747573,
+            0.25,
+            0.2988929889298893
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            237,
+            184,
+            191,
+            233
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.20375832857758233,
+            0.14865213429458649,
+            0.05168674655316107,
+            0.1624919055018268
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.20253164556962025,
+            0.266304347826087,
+            0.07329842931937172,
+            0.18454935622317598
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            185,
+            131,
+            153,
+            173
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0275882257329748,
+            0.03537509115755588,
+            0.01977660017244032,
+            0.026964972863646623
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.032432432432432434,
+            0.06870229007633588,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            160,
+            90,
+            125,
+            144
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.020502591536354576,
+            0.013681702388943225,
+            0.019155533084721208,
+            0.02641993860113561
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.022222222222222223,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        1.2500361276242977,
+        4.669103732920997,
+        2.3181935935122038,
+        1.4392401155907404
+      ],
+      "loaded_foot_interval_fraction": [
+        1.0,
+        0.7588652482269503,
+        0.8652482269503546,
+        0.9787234042553191
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "398dad170f084cee74c428ed549c6edb46aa7e0aafe89a4dfc058007cd3a2b91",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 614,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            490,
+            386,
+            491,
+            467
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10635004383272167,
+            0.0991607627029005,
+            0.09563835169158517,
+            0.08122146287651275
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15306122448979592,
+            0.22538860103626943,
+            0.18126272912423624,
+            0.10920770877944326
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            444,
+            320,
+            418,
+            430
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04624301646509071,
+            0.045091903280598374,
+            0.0258704244483924,
+            0.023872824749565952
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.08558558558558559,
+            0.1125,
+            0.045454545454545456,
+            0.03488372093023256
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            360,
+            218,
+            328,
+            384
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01508825679894032,
+            0.0105822886766034,
+            0.011513949000027621,
+            0.015022903105949966
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.005555555555555556,
+            0.013761467889908258,
+            0.003048780487804878,
+            0.0026041666666666665
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            225,
+            55,
+            271,
+            329
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013568466367459675,
+            0.009206224511127611,
+            0.009956095471374528,
+            0.015382087048803719
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.01818181818181818,
+            0.0,
+            0.00303951367781155
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.92052710625352,
+        107.55405613230819,
+        96.42194136821442,
+        96.55439918070876
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8175895765472313,
+        0.6612377850162866,
+        0.8175895765472313,
+        0.7866449511400652
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "daacec97ac60063b43fb9e39ccd4169582fc36b0d615dbeb766671a81268e604",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 782,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            645,
+            500,
+            683,
+            632
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10888678617971893,
+            0.10326563680125593,
+            0.13231414721293908,
+            0.08846058118665699
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15193798449612403,
+            0.222,
+            0.19619326500732065,
+            0.11550632911392406
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            565,
+            419,
+            588,
+            590
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.038068184851738816,
+            0.04665586944861196,
+            0.06208179631638853,
+            0.036570279244887684
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06725663716814159,
+            0.11933174224343675,
+            0.10884353741496598,
+            0.0576271186440678
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            452,
+            254,
+            385,
+            512
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01446270081541521,
+            0.013201840400073354,
+            0.012957564691476726,
+            0.01431501322275448
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.01327433628318584,
+            0.03543307086614173,
+            0.01038961038961039,
+            0.005859375
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            291,
+            84,
+            325,
+            451
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008823018598077426,
+            0.008700856155051888,
+            0.010006844296197966,
+            0.01227977384297021
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.023809523809523808,
+            0.0,
+            0.0022172949002217295
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.22029891620274,
+        104.78343495167637,
+        96.3043852953288,
+        96.12637744902844
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8465473145780051,
+        0.6572890025575447,
+        0.8925831202046036,
+        0.8337595907928389
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "1db34a10448521db94634317ea21aa34308912506edc7d332aee98b1fddda6a7",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 616,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            495,
+            355,
+            485,
+            490
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0892930288499649,
+            0.10501718523677502,
+            0.10780463557370464,
+            0.09936097096280708
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.10909090909090909,
+            0.24788732394366197,
+            0.1979381443298969,
+            0.12244897959183673
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            462,
+            273,
+            401,
+            450
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.03369277976032895,
+            0.05078009024565919,
+            0.03200845798919943,
+            0.029857266718006724
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.05411255411255411,
+            0.12087912087912088,
+            0.06234413965087282,
+            0.044444444444444446
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            383,
+            188,
+            269,
+            404
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.015130650718417885,
+            0.015924018315717988,
+            0.01597062519999021,
+            0.014100504726956044
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007832898172323759,
+            0.0425531914893617,
+            0.007434944237918215,
+            0.007425742574257425
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            210,
+            52,
+            217,
+            349
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012070474525285528,
+            0.007766352706934511,
+            0.01495197869000665,
+            0.013332089884446343
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.019230769230769232,
+            0.0,
+            0.0028653295128939827
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.43008145921804,
+        108.27727691880511,
+        96.38546970717397,
+        96.74065844985759
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8246753246753247,
+        0.6038961038961039,
+        0.8116883116883117,
+        0.8165584415584416
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "427ce14f84c1ab12e287a8427a4edd766195c82a6d79d9e8e31ce4950bf8995f",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 651,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            551,
+            408,
+            536,
+            520
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12734960404613974,
+            0.13700585237161417,
+            0.13000387346213507,
+            0.08666072124499989
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.16878402903811252,
+            0.28431372549019607,
+            0.21082089552238806,
+            0.12307692307692308
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            499,
+            352,
+            403,
+            489
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05570000765676697,
+            0.08157105057292569,
+            0.017414034509125553,
+            0.04054071072532283
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0841683366733467,
+            0.19318181818181818,
+            0.01240694789081886,
+            0.06952965235173825
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            418,
+            266,
+            319,
+            418
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01577808713329422,
+            0.02042497442751218,
+            0.011781307191280855,
+            0.015187324523439205
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0023923444976076554,
+            0.04887218045112782,
+            0.0,
+            0.007177033492822967
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            308,
+            104,
+            280,
+            382
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.014696235668259224,
+            0.013671920273503443,
+            0.01114227319938974,
+            0.014120106104319437
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.028846153846153848,
+            0.0,
+            0.002617801047120419
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        97.15506906971483,
+        102.44142151373974,
+        96.67017814991789,
+        96.36143490519157
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8617511520737328,
+        0.6451612903225806,
+        0.8448540706605223,
+        0.8218125960061444
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "70ab73201463fe6d88e989da4ff24234f6210c2ee35d6e7d7cd714a27eba6541",
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 349,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            234,
+            185,
+            260,
+            250
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05814220480746102,
+            0.15655412534109991,
+            0.19635824917927908,
+            0.11203990826722972
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.07692307692307693,
+            0.2918918918918919,
+            0.23461538461538461,
+            0.124
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            231,
+            163,
+            231,
+            237
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.045641283909329575,
+            0.08449167580754302,
+            0.09002594362191477,
+            0.07670651014793424
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06493506493506493,
+            0.19631901840490798,
+            0.1471861471861472,
+            0.08016877637130802
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            212,
+            107,
+            185,
+            210
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.024353287507865962,
+            0.03471847636538213,
+            0.027303161688120848,
+            0.025854813793633406
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.014150943396226415,
+            0.08411214953271028,
+            0.02702702702702703,
+            0.009523809523809525
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            118,
+            25,
+            160,
+            189
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01928126079477767,
+            0.03149551754038684,
+            0.020560447240652723,
+            0.025482841561316805
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.12,
+            0.00625,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        101.04391945582324,
+        97.82914691727298,
+        96.80556028750512,
+        98.31546265032195
+      ],
+      "loaded_foot_interval_fraction": [
+        0.6991404011461319,
+        0.5616045845272206,
+        0.7765042979942693,
+        0.7449856733524355
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "0c127b48fb4a74e200eaa423a96317186445630fe4333662312aea9f4629d872",
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 367,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            265,
+            183,
+            283,
+            281
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06857843064505534,
+            0.12490475903814659,
+            0.24160433484656335,
+            0.08496466392455328
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.07169811320754717,
+            0.21311475409836064,
+            0.24381625441696114,
+            0.07829181494661921
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            253,
+            161,
+            240,
+            271
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04188165073805855,
+            0.06362230151858966,
+            0.07518951271342615,
+            0.04696614787845217
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.04743083003952569,
+            0.13043478260869565,
+            0.11666666666666667,
+            0.04428044280442804
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            232,
+            90,
+            177,
+            248
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.019497813735682358,
+            0.023838475611984312,
+            0.018685037092013062,
+            0.025069453266043904
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.01293103448275862,
+            0.044444444444444446,
+            0.011299435028248588,
+            0.004032258064516129
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            151,
+            24,
+            142,
+            220
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.016130276350541258,
+            0.050126773414832786,
+            0.0171516369394126,
+            0.024250399181322168
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.08333333333333333,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        98.76489068738434,
+        98.64950612682628,
+        96.47736662901892,
+        96.749992988955
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7493188010899182,
+        0.5367847411444142,
+        0.8038147138964578,
+        0.7929155313351499
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2002",
+      "available": false,
+      "reason": "Missing post-warmup per-leg force telemetry"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "0827aefc65ad123f5b1bad6beade8e6a7203ee975070fa58f9306a00a4b88805",
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 349,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            261,
+            198,
+            253,
+            255
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.17337297507723415,
+            0.13633438527302913,
+            0.21081935599995824,
+            0.09877823782160394
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1417624521072797,
+            0.31313131313131315,
+            0.2134387351778656,
+            0.11764705882352941
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            231,
+            185,
+            219,
+            239
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.039579263251553184,
+            0.10113659649114433,
+            0.08899564018192241,
+            0.05316264181048638
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.03896103896103896,
+            0.2648648648648649,
+            0.1004566210045662,
+            0.06276150627615062
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            217,
+            132,
+            182,
+            221
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.023822647833262836,
+            0.04353455633957759,
+            0.024769318729423003,
+            0.02579885889901785
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.009216589861751152,
+            0.11363636363636363,
+            0.01098901098901099,
+            0.013574660633484163
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            148,
+            48,
+            162,
+            195
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.020039602845212688,
+            0.02792154505969285,
+            0.020568139546249406,
+            0.023091491891959765
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.08333333333333333,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        99.37622889742583,
+        93.61726737085728,
+        97.0082891410026,
+        97.34405129898343
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7707736389684814,
+        0.5988538681948424,
+        0.7707736389684814,
+        0.7593123209169055
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "8677fd79cfd34645c695a59d3d921b1feb4d8664f45c7c18cfc3da8980d4a119",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 677,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            566,
+            414,
+            574,
+            619
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.15062101136081774,
+            0.13181718415938576,
+            0.16171705877054368,
+            0.14374918140184603
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.19964664310954064,
+            0.21014492753623187,
+            0.23519163763066203,
+            0.24717285945072698
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            492,
+            364,
+            491,
+            544
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.09430330600292526,
+            0.05655084326140613,
+            0.07818213651138978,
+            0.0793856038621606
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.13821138211382114,
+            0.12087912087912088,
+            0.13034623217922606,
+            0.16544117647058823
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            359,
+            268,
+            308,
+            343
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009280611050641038,
+            0.00559247474596707,
+            0.012446621466341163,
+            0.017653977733336403
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0037313432835820895,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            308,
+            195,
+            149,
+            82
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008165641772052534,
+            0.004004625589941381,
+            0.00896047071057141,
+            0.013160171443527213
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.37303445538171,
+        96.35966185422672,
+        97.01102173106241,
+        96.66227460256582
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8522895125553914,
+        0.6425406203840472,
+        0.8641063515509602,
+        0.9320531757754801
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "8a899f044bf7a6dbac4520bd9c64135585d6ba1aa5af6c663c49cfbae360b10b",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 664,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            512,
+            445,
+            599,
+            634
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.18438869632023525,
+            0.18573296567330277,
+            0.17678238086093218,
+            0.1765940694588045
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.234375,
+            0.2808988764044944,
+            0.25041736227045075,
+            0.2697160883280757
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            407,
+            366,
+            526,
+            569
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11753325901961126,
+            0.07663700270357031,
+            0.10669106005975959,
+            0.1022224899802457
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14496314496314497,
+            0.1448087431693989,
+            0.15779467680608364,
+            0.19507908611599298
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            320,
+            289,
+            316,
+            354
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01569046562334301,
+            0.004648597832142327,
+            0.01376604386009984,
+            0.01889518026034028
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0125,
+            0.0,
+            0.0,
+            0.011299435028248588
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            256,
+            238,
+            171,
+            122
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008177646584368823,
+            0.004290478001499852,
+            0.011869067674948485,
+            0.015144968688693654
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.01639344262295082
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.46901514929459,
+        96.4722475314719,
+        96.91285028981912,
+        96.75988543648347
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7846385542168675,
+        0.6897590361445783,
+        0.9141566265060241,
+        0.9653614457831325
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "ccd1c64b98ea7188de94c35f5b0e534e5ad45720e4546a55ff2c66a61e1ea205",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 667,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            585,
+            376,
+            580,
+            615
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.1368328275128071,
+            0.21667809216218994,
+            0.18116067307202657,
+            0.16618062014771423
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.13846153846153847,
+            0.3617021276595745,
+            0.31896551724137934,
+            0.22601626016260162
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            539,
+            284,
+            483,
+            547
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06514695160042523,
+            0.11625521675305017,
+            0.10718440253543089,
+            0.08229143206114034
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0686456400742115,
+            0.21830985915492956,
+            0.21325051759834368,
+            0.13345521023765997
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            474,
+            171,
+            230,
+            356
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0116335357295535,
+            0.006872743086543848,
+            0.016932588265014308,
+            0.013295428704014015
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.016877637130801686,
+            0.005847953216374269,
+            0.0,
+            0.0028089887640449437
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            400,
+            113,
+            86,
+            80
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007071089519886715,
+            0.005002031380617706,
+            0.014420394823389282,
+            0.01211748853062948
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0125
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.20281778985152,
+        96.60631752266346,
+        96.93887951522672,
+        96.64704119975215
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8920539730134932,
+        0.5862068965517241,
+        0.8845577211394303,
+        0.9340329835082459
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "d65528d376ab112fd02755f9f207292e13110f1ddd8cf26c3d252de8bd81e4f5",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 609,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            492,
+            360,
+            481,
+            563
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.18471234138987583,
+            0.26302567091993334,
+            0.16242974175821087,
+            0.18272047425328256
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.22764227642276422,
+            0.4,
+            0.27442827442827444,
+            0.261101243339254
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            442,
+            301,
+            375,
+            509
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.1118756057918108,
+            0.19834391921630762,
+            0.0752371401750712,
+            0.10049758283631083
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.16063348416289594,
+            0.3089700996677741,
+            0.12,
+            0.18271119842829076
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            365,
+            202,
+            231,
+            346
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01907696423770134,
+            0.03137380161178346,
+            0.015045045656180013,
+            0.017871774983548
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.024657534246575342,
+            0.06930693069306931,
+            0.0,
+            0.005780346820809248
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            310,
+            154,
+            126,
+            132
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009791971861091058,
+            0.009075352473553813,
+            0.010555846544825016,
+            0.01429916260595824
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.006493506493506494,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.47800985890535,
+        96.46197726481344,
+        97.2094129357268,
+        96.80896254924804
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8210180623973727,
+        0.6108374384236454,
+        0.80623973727422,
+        0.9376026272577996
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "90e9389d83f6844986bac4fd238d7750f7ed22576746acc09baba18d32265785",
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 353,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            197,
+            220,
+            286,
+            313
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.24729950248073704,
+            0.16927111054378946,
+            0.24723072598834814,
+            0.22735742346707313
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2182741116751269,
+            0.22272727272727272,
+            0.3006993006993007,
+            0.34185303514376997
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            169,
+            203,
+            254,
+            284
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14467038781412814,
+            0.11223374675478234,
+            0.16216624831349216,
+            0.13755125139735183
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14201183431952663,
+            0.17733990147783252,
+            0.2125984251968504,
+            0.2746478873239437
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            136,
+            154,
+            158,
+            192
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.025688086771616186,
+            0.014808025767152953,
+            0.028782740195851707,
+            0.05166744395554105
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.029411764705882353,
+            0.03896103896103896,
+            0.006329113924050633,
+            0.11458333333333333
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            120,
+            111,
+            63,
+            43
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.017764736013919046,
+            0.010282230233186272,
+            0.022579276061267563,
+            0.030725477622353007
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.023255813953488372
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.02258252244515,
+        90.16387510528874,
+        96.81632078052401,
+        96.69600644629868
+      ],
+      "loaded_foot_interval_fraction": [
+        0.5779036827195467,
+        0.6515580736543909,
+        0.8356940509915014,
+        0.9093484419263456
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "71880c38c2e617ca7b8e33698f3f94371380106be34eb9008af20e33d9184977",
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 337,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            225,
+            181,
+            286,
+            305
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.3155735220870395,
+            0.22684586937242918,
+            0.28040841720819626,
+            0.2689509497552225
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2311111111111111,
+            0.2541436464088398,
+            0.2937062937062937,
+            0.3081967213114754
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            211,
+            167,
+            269,
+            276
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.25122684233018566,
+            0.15302828224695803,
+            0.22674563319142801,
+            0.18185533147140837
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.18009478672985782,
+            0.19760479041916168,
+            0.24907063197026022,
+            0.25
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            175,
+            120,
+            160,
+            170
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04525349542828546,
+            0.014281193075256259,
+            0.03095792002727423,
+            0.048766795839144346
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.045714285714285714,
+            0.008333333333333333,
+            0.00625,
+            0.09411764705882353
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            148,
+            94,
+            82,
+            46
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.015043709346363668,
+            0.010223117095384152,
+            0.028149248148641604,
+            0.03393511736110421
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.012195121951219513,
+            0.043478260869565216
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.02793658085878,
+        92.2262353685011,
+        96.91758354570757,
+        96.65151795717722
+      ],
+      "loaded_foot_interval_fraction": [
+        0.6824925816023739,
+        0.56973293768546,
+        0.8753709198813057,
+        0.9258160237388724
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2002",
+      "available": false,
+      "reason": "Missing post-warmup per-leg force telemetry"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "c82e7cc2c1c726365056c3bc0303b28728b1b4eb021ecb84d52586e86b62d2a1",
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 339,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            193,
+            216,
+            266,
+            299
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2896711528866187,
+            0.2635510326453152,
+            0.26916344667602204,
+            0.2334161867102367
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2694300518134715,
+            0.27314814814814814,
+            0.2819548872180451,
+            0.3411371237458194
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            168,
+            183,
+            230,
+            281
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.20835580272110096,
+            0.12533335406909785,
+            0.13711294118759754,
+            0.1738591703866006
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.21428571428571427,
+            0.15846994535519127,
+            0.16956521739130434,
+            0.298932384341637
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            142,
+            154,
+            150,
+            192
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05966763071560718,
+            0.04783274813676232,
+            0.028877138659686472,
+            0.05263415994591151
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.09154929577464789,
+            0.07792207792207792,
+            0.0,
+            0.09895833333333333
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            116,
+            106,
+            63,
+            74
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.020082321813115485,
+            0.018136760719484616,
+            0.023101512735634187,
+            0.03207064686142156
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.008620689655172414,
+            0.018867924528301886,
+            0.0,
+            0.02702702702702703
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        96.04648831820714,
+        88.52940130428627,
+        97.14049674986398,
+        96.6419710301769
+      ],
+      "loaded_foot_interval_fraction": [
+        0.5958702064896755,
+        0.6666666666666666,
+        0.8112094395280236,
+        0.9056047197640118
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "4277055cdd44178b8ad7948929785a4e6c6cca00b014829c2a5cfd9a3e148fb7",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 685,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            571,
+            436,
+            546,
+            525
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12569027052243328,
+            0.08856530616670028,
+            0.1138822944065357,
+            0.07429614100785051
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1681260945709282,
+            0.22706422018348624,
+            0.19963369963369965,
+            0.09333333333333334
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            524,
+            373,
+            458,
+            483
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06429665590590003,
+            0.04895463770612479,
+            0.030007949936355388,
+            0.019013050164826115
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.10114503816793893,
+            0.12332439678284182,
+            0.06768558951965066,
+            0.022774327122153208
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            439,
+            238,
+            360,
+            432
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.015506554969293056,
+            0.00963776952389838,
+            0.01177569071354936,
+            0.013573931016965803
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.011389521640091117,
+            0.008403361344537815,
+            0.002777777777777778,
+            0.0023148148148148147
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            283,
+            60,
+            290,
+            368
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013321393932724883,
+            0.017893934067783685,
+            0.01052654438552734,
+            0.013706752619361374
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0035335689045936395,
+            0.03333333333333333,
+            0.0034482758620689655,
+            0.002717391304347826
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.8983145486005,
+        70.6330927111771,
+        66.54200440354198,
+        66.84597211758374
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8496350364963504,
+        0.6686131386861314,
+        0.8204379562043795,
+        0.7897810218978102
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "6a127d38e4cd967a4968ad277c7f2f47626da577267a44b92044c51e18d71483",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 810,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            671,
+            548,
+            716,
+            679
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10311249950761944,
+            0.11691320693017776,
+            0.15834225863115178,
+            0.0854021232149986
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14903129657228018,
+            0.26277372262773724,
+            0.23324022346368714,
+            0.10751104565537556
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            597,
+            437,
+            580,
+            642
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.0364603719220446,
+            0.05282366535710818,
+            0.05277335945865639,
+            0.03686737336283573
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06867671691792294,
+            0.12814645308924486,
+            0.09655172413793103,
+            0.05763239875389408
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            522,
+            288,
+            376,
+            566
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.018814728133835907,
+            0.008192679690819457,
+            0.011089267211405863,
+            0.016038930639108016
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.02490421455938697,
+            0.017361111111111112,
+            0.0026595744680851063,
+            0.012367491166077738
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            365,
+            90,
+            305,
+            483
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01466579847794039,
+            0.0038188936478798286,
+            0.00995253742429949,
+            0.012192028646410013
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0136986301369863,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        67.06027648666831,
+        72.7711214957471,
+        66.42772429159385,
+        66.20850283325763
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8493827160493828,
+        0.6925925925925925,
+        0.9037037037037037,
+        0.8592592592592593
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "45f2804351413505054dd0ebc12b642d30077be978eade3e6575d9069b12c7bd",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 752,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            633,
+            530,
+            581,
+            602
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.08945198970877757,
+            0.10435227515415423,
+            0.12565597129050457,
+            0.09606448515823005
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.13902053712480253,
+            0.25471698113207547,
+            0.23924268502581755,
+            0.12458471760797342
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            590,
+            405,
+            466,
+            561
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04846241291859618,
+            0.049363988864564785,
+            0.03989855078151182,
+            0.03187802299415955
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.08135593220338982,
+            0.12345679012345678,
+            0.07510729613733906,
+            0.06060606060606061
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            490,
+            258,
+            326,
+            498
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01802099334655412,
+            0.011233836224945967,
+            0.019697696691613288,
+            0.016502567960585107
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.022448979591836733,
+            0.015503875968992248,
+            0.006134969325153374,
+            0.02208835341365462
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            294,
+            66,
+            272,
+            431
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011249768373380107,
+            0.008745497899112097,
+            0.014831430202596566,
+            0.009580346580095224
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.003401360544217687,
+            0.0,
+            0.0,
+            0.002320185614849188
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.85630718157563,
+        68.46913949072692,
+        66.57511495557702,
+        66.22347192720841
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8617021276595744,
+        0.7313829787234043,
+        0.8085106382978723,
+        0.8218085106382979
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "b4fc9fdbd1d2de0d2bd2ebb96ce2962ae08e42ab3ff1cd896d8d540b1ac02854",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 688,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            573,
+            473,
+            551,
+            543
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.13471029207623475,
+            0.15411920447671726,
+            0.10671397465034854,
+            0.09320745529953547
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.18324607329842932,
+            0.33403805496828753,
+            0.16333938294010888,
+            0.12154696132596685
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            523,
+            401,
+            436,
+            509
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.067718397161799,
+            0.09512427158734206,
+            0.020191995024952496,
+            0.0374009296324391
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1089866156787763,
+            0.2169576059850374,
+            0.020642201834862386,
+            0.06679764243614932
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            434,
+            318,
+            342,
+            437
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.021476408310635083,
+            0.0290709286726707,
+            0.011912003809016525,
+            0.01407194486865379
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.018433179723502304,
+            0.07232704402515723,
+            0.0,
+            0.004576659038901602
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            340,
+            159,
+            295,
+            391
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01989892932525458,
+            0.012976644200368384,
+            0.011537317520875905,
+            0.012966003037378306
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.008823529411764706,
+            0.031446540880503145,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.99627057993132,
+        73.12824759928034,
+        66.56631700257584,
+        66.41495928730271
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8517441860465116,
+        0.7063953488372093,
+        0.8226744186046512,
+        0.809593023255814
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "87f7ae20c8ea3053c63719f97a92554bc6e9d3360d96b6fbeb336d1f1b998a49",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 607,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            485,
+            379,
+            480,
+            457
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10979173534305378,
+            0.11823898338366744,
+            0.09336214455875098,
+            0.09865924811011978
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15463917525773196,
+            0.25065963060686014,
+            0.16666666666666666,
+            0.12691466083150985
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            450,
+            316,
+            418,
+            417
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06222006769460846,
+            0.06047396416669212,
+            0.027554452093934027,
+            0.03548451874336772
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.09555555555555556,
+            0.13924050632911392,
+            0.05263157894736842,
+            0.047961630695443645
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            343,
+            218,
+            329,
+            368
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.014395413715685448,
+            0.023147316417481006,
+            0.012139590602038222,
+            0.020230725680281048
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.05045871559633028,
+            0.0,
+            0.010869565217391304
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            194,
+            51,
+            274,
+            318
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.012855432162540412,
+            0.013678510862523016,
+            0.01036645672269282,
+            0.01622497692722137
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0392156862745098,
+            0.0,
+            0.006289308176100629
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        103.68340862673362,
+        113.98695800091649,
+        102.5635759751292,
+        102.58059389870462
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8204283360790774,
+        0.6523887973640856,
+        0.8105436573311368,
+        0.7825370675453048
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "650423aaf05619df6110a0177d9c5acaced3f61b1c415fc6f6e750ddc02382d3",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 759,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            611,
+            486,
+            667,
+            612
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10634771531682648,
+            0.11717427658517285,
+            0.12963516559834753,
+            0.09542628336792482
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14238952536824878,
+            0.25102880658436216,
+            0.18590704647676162,
+            0.12745098039215685
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            533,
+            401,
+            580,
+            573
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.034072476918221795,
+            0.05604975124279152,
+            0.05057404903384964,
+            0.03750876958084301
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06191369606003752,
+            0.13216957605985039,
+            0.09137931034482759,
+            0.07155322862129145
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            419,
+            244,
+            407,
+            493
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011762557657572139,
+            0.01447716243456949,
+            0.011417734221276314,
+            0.01386241731092489
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007159904534606206,
+            0.028688524590163935,
+            0.004914004914004914,
+            0.008113590263691683
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            244,
+            66,
+            345,
+            430
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009075241131667008,
+            0.017087731478251475,
+            0.009090128391475404,
+            0.012390328807687355
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.030303030303030304,
+            0.0,
+            0.002325581395348837
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        103.30409331338856,
+        113.66111215749335,
+        102.26233544804823,
+        102.09206366629367
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8247694334650857,
+        0.6600790513833992,
+        0.8972332015810277,
+        0.8326745718050066
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "4fca4485bd9c513d3bb2f10554080025c838ffbb7b45e7ff91859dbcbe776139",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 620,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            503,
+            374,
+            489,
+            496
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.07355180431938493,
+            0.13151571858979236,
+            0.1252247327423045,
+            0.088898356360509
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.10536779324055666,
+            0.28609625668449196,
+            0.24130879345603273,
+            0.10483870967741936
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            477,
+            267,
+            384,
+            465
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.041225515538967396,
+            0.05205495737925444,
+            0.0367892943750974,
+            0.0323731559934942
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06708595387840671,
+            0.13108614232209737,
+            0.06510416666666667,
+            0.047311827956989246
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            398,
+            158,
+            261,
+            424
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.018630465181912085,
+            0.016916616340642385,
+            0.01569519817273815,
+            0.014070634648186711
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.017587939698492462,
+            0.04430379746835443,
+            0.0,
+            0.007075471698113208
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            211,
+            47,
+            205,
+            367
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01185093566093176,
+            0.012711395724953672,
+            0.015446954909085533,
+            0.01255504947048116
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0425531914893617,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        103.497136367618,
+        118.97764027559754,
+        102.76147955066062,
+        102.2848515305101
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8338709677419355,
+        0.6290322580645161,
+        0.8145161290322581,
+        0.8193548387096774
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "b670339b530771c9cf3a8ef5c5ff284194af6a4159c381de9e384e054024d804",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 657,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            560,
+            411,
+            537,
+            537
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12734530833830254,
+            0.1360581878409403,
+            0.11496524185688323,
+            0.10807467686094648
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15535714285714286,
+            0.2871046228710462,
+            0.19553072625698323,
+            0.12290502793296089
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            504,
+            360,
+            410,
+            500
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05515709057729104,
+            0.08344819729001954,
+            0.02591532855462987,
+            0.03907468475086878
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.07738095238095238,
+            0.19722222222222222,
+            0.03414634146341464,
+            0.058
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            426,
+            253,
+            315,
+            441
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.016111969627422004,
+            0.022233441515724983,
+            0.011863381614150898,
+            0.018586670231515508
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007042253521126761,
+            0.05928853754940711,
+            0.0,
+            0.011337868480725623
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            325,
+            97,
+            269,
+            396
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.014904023125702263,
+            0.01658794022404996,
+            0.011137161301705643,
+            0.01622173514842723
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.003076923076923077,
+            0.020618556701030927,
+            0.0,
+            0.007575757575757576
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        103.17741445909432,
+        112.58890121216889,
+        102.4485416264793,
+        102.31623337344413
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8660578386605784,
+        0.6484018264840182,
+        0.837138508371385,
+        0.837138508371385
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "4f8058d401d0046a130c3cd712fabbba672bc0ac2853e630a725194690e9c1ce",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 731,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            537,
+            505,
+            586,
+            515
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12064712181847688,
+            0.12024266805726061,
+            0.12841905108559284,
+            0.11688866277808062
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.19925512104283055,
+            0.25544554455445545,
+            0.19283276450511946,
+            0.16893203883495145
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            488,
+            417,
+            508,
+            470
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.06345932248320565,
+            0.06164523941143065,
+            0.04959147169739676,
+            0.048451046029050635
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1290983606557377,
+            0.15347721822541965,
+            0.08661417322834646,
+            0.09574468085106383
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            382,
+            257,
+            417,
+            407
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.02382654078209422,
+            0.013405514114550142,
+            0.014286959481967213,
+            0.024465798795607122
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.031413612565445025,
+            0.019455252918287938,
+            0.004796163069544364,
+            0.03194103194103194
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            244,
+            67,
+            359,
+            348
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.014424969184893575,
+            0.006321699191736675,
+            0.009840621059010093,
+            0.019234108503981433
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.00819672131147541,
+            0.0,
+            0.0,
+            0.011494252873563218
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        122.84344273559998,
+        128.5379292064029,
+        120.42658423575723,
+        120.24783987046455
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7633378932968536,
+        0.7168262653898769,
+        0.8194254445964432,
+        0.7387140902872777
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "311740d86564534dd463ec8f02b663d32c881f648c5628289ca14262fb3f9c75",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 877,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            664,
+            597,
+            771,
+            648
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12593866260515613,
+            0.10761430135913559,
+            0.1268176718826424,
+            0.1292987125882379
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.19427710843373494,
+            0.23283082077051925,
+            0.19844357976653695,
+            0.16820987654320987
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            571,
+            507,
+            656,
+            588
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.04826006716471653,
+            0.05518202967737693,
+            0.043494987256378896,
+            0.04760935337229957
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.09457092819614711,
+            0.13806706114398423,
+            0.08231707317073171,
+            0.08333333333333333
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            456,
+            338,
+            516,
+            501
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.024525799889627928,
+            0.014114297948345574,
+            0.01202144316840633,
+            0.02253278102827454
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.03508771929824561,
+            0.026627218934911243,
+            0.009689922480620155,
+            0.023952095808383235
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            258,
+            97,
+            448,
+            414
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013052665598071415,
+            0.004666348648088988,
+            0.010189962989806131,
+            0.014562408127886919
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.003875968992248062,
+            0.0,
+            0.006696428571428571,
+            0.007246376811594203
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        121.37367686594797,
+        131.4914269198537,
+        120.38484281454045,
+        120.13083330195371
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7833523375142531,
+        0.7035347776510832,
+        0.8973774230330672,
+        0.7696693272519954
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "89b281f247fadad35bac4ae98bfbafd392d73c3dcb1739f97c63c7eae6b62ad2",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 728,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            538,
+            472,
+            586,
+            533
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10245357762877422,
+            0.14094847065110577,
+            0.11647424084586931,
+            0.15042794356141764
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.18029739776951673,
+            0.2923728813559322,
+            0.19795221843003413,
+            0.17823639774859287
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            494,
+            346,
+            487,
+            486
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.055884266474753724,
+            0.06220184155045297,
+            0.04184146357615976,
+            0.06376402236110802
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1194331983805668,
+            0.1416184971098266,
+            0.07392197125256673,
+            0.09876543209876543
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            395,
+            205,
+            365,
+            425
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.024974443272252227,
+            0.018255615916904416,
+            0.01630794435126325,
+            0.03017516183389785
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.04810126582278481,
+            0.03902439024390244,
+            0.00821917808219178,
+            0.04
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            218,
+            50,
+            315,
+            353
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.017657431461884136,
+            0.007396757357298436,
+            0.015104702444140056,
+            0.01855756614253762
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.022935779816513763,
+            0.0,
+            0.0031746031746031746,
+            0.0113314447592068
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        121.71821756156875,
+        129.94283581228487,
+        120.62934024341936,
+        120.30388086028998
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7692307692307693,
+        0.6785714285714286,
+        0.8310439560439561,
+        0.7596153846153846
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "b63af660e07b785bfc7b34b17fb2cf3b3bd7eba5f352900be8b860f45a15aa9d",
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 780,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            598,
+            543,
+            646,
+            571
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.13542630425074967,
+            0.14407164900282438,
+            0.1138310756917191,
+            0.12175278189089049
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.21906354515050167,
+            0.27255985267034993,
+            0.1873065015479876,
+            0.17162872154115585
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            553,
+            465,
+            527,
+            535
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.08254030578661484,
+            0.07840476524489397,
+            0.033800700161213684,
+            0.06692410046954843
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15732368896925858,
+            0.16774193548387098,
+            0.05313092979127135,
+            0.11775700934579439
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            443,
+            316,
+            431,
+            453
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.03867215193490221,
+            0.020116848352434363,
+            0.011830593656827275,
+            0.027224283724838337
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.05869074492099323,
+            0.03164556962025317,
+            0.002320185614849188,
+            0.04415011037527594
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            316,
+            142,
+            384,
+            405
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.03425922967132205,
+            0.010698909118784565,
+            0.010885834041293405,
+            0.022629922926151697
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.028481012658227847,
+            0.014084507042253521,
+            0.0,
+            0.027160493827160494
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        121.25365227418956,
+        127.91669164245596,
+        120.38223267397903,
+        120.09166339220427
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7974358974358975,
+        0.7141025641025641,
+        0.8487179487179487,
+        0.7628205128205128
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "0adf9d36065782dedb080449041b04ae192cfff5cfcdc841ac234424f4be65b6",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 740,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            642,
+            423,
+            655,
+            684
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.18167620869685294,
+            0.1881807474428264,
+            0.1770006998551387,
+            0.1500182270277983
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.22897196261682243,
+            0.35697399527186763,
+            0.2961832061068702,
+            0.27631578947368424
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            548,
+            327,
+            531,
+            603
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12260636467041781,
+            0.08226579653499222,
+            0.06899527902377078,
+            0.09539983625356903
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.16058394160583941,
+            0.1926605504587156,
+            0.13559322033898305,
+            0.1956882255389718
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            413,
+            207,
+            364,
+            381
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008939990290532525,
+            0.006294223690268466,
+            0.011894419105886409,
+            0.014869470208459414
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.002421307506053269,
+            0.004830917874396135,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            341,
+            134,
+            245,
+            128
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008454968418869818,
+            0.005120719865595341,
+            0.010635219857595342,
+            0.01342046502117419
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.31241017267433,
+        66.22437363814888,
+        66.85720279943021,
+        66.68430438200362
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8824324324324324,
+        0.6013513513513513,
+        0.9,
+        0.9418918918918919
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "7745a0caf37bf5f29b201bc5ca689b2399bf5aca596b6ec10664b53410e73e15",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 747,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            619,
+            511,
+            685,
+            715
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.20600617516206424,
+            0.19118447700593758,
+            0.1834905472668649,
+            0.1738849479866133
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.23263327948303716,
+            0.299412915851272,
+            0.29635036496350364,
+            0.25034965034965034
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            527,
+            404,
+            579,
+            636
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11546840027377765,
+            0.07304659689625091,
+            0.10103757543080112,
+            0.09603186680851744
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.13092979127134724,
+            0.14603960396039603,
+            0.17271157167530224,
+            0.16981132075471697
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            409,
+            255,
+            354,
+            416
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01445500196419382,
+            0.007639633621225146,
+            0.01284623851593963,
+            0.014674089690944038
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.009779951100244499,
+            0.00784313725490196,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            342,
+            177,
+            242,
+            196
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008171361094353631,
+            0.004652797597327127,
+            0.011835519778831703,
+            0.013088970387001103
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.40316131429414,
+        66.34988517304816,
+        66.8989157718089,
+        66.69128481599975
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8393574297188755,
+        0.7054886211512718,
+        0.92904953145917,
+        0.9678714859437751
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "b4c2db656c1b8ca0e7d00ed6f5da3598d74e02561dd756d9af07497dfbb05113",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 709,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            608,
+            484,
+            644,
+            674
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.16862559031441435,
+            0.2082672931131247,
+            0.16627207803761582,
+            0.17823600246027368
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.16776315789473684,
+            0.3760330578512397,
+            0.31211180124223603,
+            0.24629080118694363
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            532,
+            306,
+            531,
+            584
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.077397788230026,
+            0.07877341960605515,
+            0.08613470796100328,
+            0.08707370963180838
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.08270676691729323,
+            0.18627450980392157,
+            0.1902071563088512,
+            0.136986301369863
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            438,
+            187,
+            288,
+            401
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011412567787720375,
+            0.016941950742640623,
+            0.01590159493291351,
+            0.012217774647205701
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0136986301369863,
+            0.0374331550802139,
+            0.0,
+            0.0024937655860349127
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            370,
+            106,
+            129,
+            121
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008541079036812494,
+            0.008348389642157115,
+            0.015010925515864805,
+            0.010826526774649233
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.002702702702702703,
+            0.009433962264150943,
+            0.0,
+            0.008264462809917356
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.1798573565512,
+        66.48972873876406,
+        66.86132108460767,
+        66.56081571259296
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8744710860366713,
+        0.7066290550070522,
+        0.923836389280677,
+        0.9619181946403385
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "15e2507bc18f9633020b00d73936d2b1607fefb357b097e2ffe00dd765b9762a",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 696,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            630,
+            445,
+            593,
+            664
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2049521319300302,
+            0.17364572310079487,
+            0.17976095281508064,
+            0.18902256795722666
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.23333333333333334,
+            0.3235955056179775,
+            0.2934232715008432,
+            0.29066265060240964
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            573,
+            370,
+            443,
+            587
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.14539355907118262,
+            0.100522556737521,
+            0.06363837966602788,
+            0.11770086489246036
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.16928446771378708,
+            0.21351351351351353,
+            0.09029345372460497,
+            0.2010221465076661
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            437,
+            259,
+            326,
+            371
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.025774537888961963,
+            0.013660086313847415,
+            0.020858855199604967,
+            0.01914621092497583
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.036613272311212815,
+            0.03088803088803089,
+            0.012269938650306749,
+            0.008086253369272238
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            346,
+            165,
+            222,
+            172
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.010266202351701906,
+            0.005520719579045612,
+            0.012316211704970624,
+            0.014317087192608543
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        66.36270375313282,
+        66.23981450258782,
+        67.12728402240101,
+        66.64291666361439
+      ],
+      "loaded_foot_interval_fraction": [
+        0.9166666666666666,
+        0.6666666666666666,
+        0.8721264367816092,
+        0.9655172413793104
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "d9ce93ab92903f8b604b78f82b8c5bfd8a79563038bfb443deb75c9da70337bc",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 672,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            519,
+            434,
+            562,
+            619
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.1556053832046126,
+            0.12493384006996971,
+            0.1584623107634108,
+            0.15267540505005628
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.19460500963391136,
+            0.18663594470046083,
+            0.2580071174377224,
+            0.27140549273021003
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            435,
+            390,
+            487,
+            532
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.08472579224872703,
+            0.054336469706087936,
+            0.08809616498628803,
+            0.07324569919259742
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.12643678160919541,
+            0.11282051282051282,
+            0.15811088295687886,
+            0.16165413533834586
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            314,
+            303,
+            303,
+            334
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.010419732112567434,
+            0.00566716376970181,
+            0.012305076726715011,
+            0.017803309641774012
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.006369426751592357,
+            0.0033003300330033004,
+            0.0,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            262,
+            229,
+            151,
+            80
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008571464893925651,
+            0.00404950882043013,
+            0.009527874244333216,
+            0.013156294931344636
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        102.38691293836126,
+        102.37446085333173,
+        103.01508757696871,
+        102.71364837376842
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7872023809523809,
+        0.6726190476190477,
+        0.8526785714285714,
+        0.9375
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "a3a98788454d286120f06a5586a614eedf3e71cfcc378d8e86ab69de1547253f",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 631,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            439,
+            429,
+            568,
+            596
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.19217109686556746,
+            0.18394013927557068,
+            0.1790588841818924,
+            0.17616858710542366
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.23006833712984054,
+            0.28438228438228436,
+            0.26936619718309857,
+            0.26677852348993286
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            354,
+            376,
+            490,
+            536
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.1143549325460743,
+            0.135030066370741,
+            0.104258316224533,
+            0.09064500704554816
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.12429378531073447,
+            0.19680851063829788,
+            0.17142857142857143,
+            0.19776119402985073
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            284,
+            277,
+            289,
+            341
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.014528740640798118,
+            0.005130881096364968,
+            0.015447352611247167,
+            0.02029776765272648
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007042253521126761,
+            0.0036101083032490976,
+            0.0034602076124567475,
+            0.01466275659824047
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            241,
+            214,
+            147,
+            106
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007682769028139921,
+            0.003835414988000391,
+            0.011121559089886464,
+            0.013513737539754702
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        102.50796856584603,
+        102.54536810466455,
+        102.84290949769854,
+        102.78001664189573
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7068145800316957,
+        0.6973058637083994,
+        0.9128367670364501,
+        0.9572107765451664
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "b18c35ab1d0922b97c415af4d472710ea9dd6bdc77859a8fc469935a461bd1bc",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 691,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            557,
+            375,
+            614,
+            633
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.12456044284593636,
+            0.21215875413871982,
+            0.1505860180875384,
+            0.1566289221859188
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1400359066427289,
+            0.344,
+            0.2947882736156352,
+            0.2211690363349131
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            496,
+            271,
+            525,
+            578
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.05239278744752994,
+            0.09742340683590815,
+            0.09495314712842741,
+            0.08472231381665275
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.06048387096774194,
+            0.15867158671586715,
+            0.21904761904761905,
+            0.15051903114186851
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            419,
+            193,
+            229,
+            331
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.009386364631719742,
+            0.007125052633007027,
+            0.022275390346249382,
+            0.014609112270206965
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.007159904534606206,
+            0.010362694300518135,
+            0.013100436681222707,
+            0.0030211480362537764
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            361,
+            128,
+            85,
+            81
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.006655090789877687,
+            0.004970963118599686,
+            0.015470540670717046,
+            0.009137313743430842
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        102.19515430255248,
+        102.5449859135873,
+        102.93642554039135,
+        102.47813981553166
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8234442836468886,
+        0.5658465991316932,
+        0.9044862518089725,
+        0.9290882778581766
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "faf05beadeefddd6f7d03cf9781f98f170ff0f57d837249a6c5f02c04e7c171e",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 586,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            454,
+            386,
+            469,
+            540
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.17511121915186117,
+            0.2353818676134387,
+            0.16622721956786068,
+            0.16505346202755652
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.2092511013215859,
+            0.36528497409326427,
+            0.27078891257995735,
+            0.2351851851851852
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            423,
+            328,
+            374,
+            490
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.10881581181076154,
+            0.16376438326364112,
+            0.0813603702305876,
+            0.08935217378769011
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.1536643026004728,
+            0.2621951219512195,
+            0.12032085561497326,
+            0.15714285714285714
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            350,
+            237,
+            234,
+            341
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.01840793737089076,
+            0.027179476231120245,
+            0.016068890656607947,
+            0.01852002206826626
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.025714285714285714,
+            0.05063291139240506,
+            0.0,
+            0.005865102639296188
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            297,
+            179,
+            116,
+            134
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.010121462025984712,
+            0.0053951380992790085,
+            0.011259365986779377,
+            0.014524608167128639
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        102.47561342713874,
+        102.4939446228289,
+        103.18706117742539,
+        102.78004561058265
+      ],
+      "loaded_foot_interval_fraction": [
+        0.7832764505119454,
+        0.6774744027303754,
+        0.8174061433447098,
+        0.9351535836177475
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2000",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "c8d1a668759a6797ed3a16641c2289198b1d6d85781672f68ea9913bc3889454",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 655,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            513,
+            344,
+            497,
+            587
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.15090058176376453,
+            0.13168496121358803,
+            0.1880877688634976,
+            0.1671134611942934
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15204678362573099,
+            0.20348837209302326,
+            0.3158953722334004,
+            0.2555366269165247
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            485,
+            317,
+            417,
+            465
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.09211861797800056,
+            0.06829152045030851,
+            0.11298414273623382,
+            0.06627760646644715
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.10721649484536082,
+            0.13564668769716087,
+            0.21103117505995203,
+            0.1010752688172043
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            388,
+            253,
+            264,
+            277
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.011428844823995365,
+            0.014396233589201897,
+            0.030968811000517845,
+            0.018071968267354754
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.010309278350515464,
+            0.023715415019762844,
+            0.056818181818181816,
+            0.0
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            316,
+            175,
+            123,
+            82
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008377507793806709,
+            0.006815720132734152,
+            0.01166401101257551,
+            0.014954126724888765
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        120.41621479149822,
+        120.38079983470418,
+        121.0328971242901,
+        120.76693112372196
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8,
+        0.5511450381679389,
+        0.7816793893129771,
+        0.9114503816793893
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2001",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "3f025dc3dbb529bb09bcbf7c579b6f877d560fa03ecf9c6d388d9b161e4fb041",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 658,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            539,
+            423,
+            540,
+            604
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.2077360611941873,
+            0.25451164922937325,
+            0.20089882978560236,
+            0.17020974424991794
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.20408163265306123,
+            0.40425531914893614,
+            0.3148148148148148,
+            0.23509933774834438
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            494,
+            350,
+            454,
+            520
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.125167553269927,
+            0.17487885139893689,
+            0.1250544346503486,
+            0.0771245544365877
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.145748987854251,
+            0.3,
+            0.20704845814977973,
+            0.12692307692307692
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            401,
+            222,
+            246,
+            357
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.015031052403424585,
+            0.014097347457374194,
+            0.018468212695042133,
+            0.023819801120434306
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.012468827930174564,
+            0.036036036036036036,
+            0.0,
+            0.014005602240896359
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            360,
+            153,
+            124,
+            129
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007576669362023179,
+            0.005307078419842077,
+            0.013023898262905792,
+            0.014186725447903056
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        120.4826399162213,
+        120.48594389467833,
+        120.92415204217046,
+        120.78512111022002
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8297872340425532,
+        0.6580547112462006,
+        0.8358662613981763,
+        0.9285714285714286
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2002",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "e51df4918b668b416c35f1f15793113e4d189570d471ea0b5ed0ba7d80634a83",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 697,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            547,
+            407,
+            531,
+            607
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.13924158961693114,
+            0.21492977158647522,
+            0.1632588305524619,
+            0.15491366284923888
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.15539305301645337,
+            0.343980343980344,
+            0.3126177024482109,
+            0.21911037891268534
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            514,
+            324,
+            432,
+            543
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.07969259599943838,
+            0.13431413098750958,
+            0.0846291085180417,
+            0.08255488108123218
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.10311284046692606,
+            0.22839506172839505,
+            0.19212962962962962,
+            0.14917127071823205
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            439,
+            201,
+            196,
+            383
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.013194501457302478,
+            0.02092820636853576,
+            0.018875871945098027,
+            0.01518269061889173
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.015945330296127564,
+            0.03482587064676617,
+            0.0,
+            0.007832898172323759
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            383,
+            156,
+            72,
+            109
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.007060123660817119,
+            0.017267015459712324,
+            0.016220433747509602,
+            0.01271367790745478
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.019230769230769232,
+            0.0,
+            0.009174311926605505
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        120.18419276892094,
+        120.54513902317395,
+        121.11598077427945,
+        120.62808298142416
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8034433285509326,
+        0.6068866571018652,
+        0.7819225251076041,
+        0.8852223816355811
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2003",
+      "available": true,
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "trace_sha256": "d4e7456ddc060419212522465d3cf0673ce77e5d60660fa4869d22b9aff1b0e2",
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "samples": 686,
+      "force_gates_n": {
+        "1": {
+          "samples_by_leg": [
+            544,
+            408,
+            566,
+            619
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.18560235436069908,
+            0.2063038985494049,
+            0.17492309958863472,
+            0.1860555141721721
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.20772058823529413,
+            0.3382352941176471,
+            0.3197879858657244,
+            0.2956381260096931
+          ]
+        },
+        "10": {
+          "samples_by_leg": [
+            499,
+            356,
+            437,
+            542
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.11294748896098689,
+            0.1468179995512921,
+            0.07672948218433523,
+            0.10645490719106353
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.14228456913827656,
+            0.25280898876404495,
+            0.15331807780320367,
+            0.2029520295202952
+          ]
+        },
+        "30": {
+          "samples_by_leg": [
+            413,
+            267,
+            271,
+            287
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.021498235731793266,
+            0.03296223171485555,
+            0.025466582467840306,
+            0.037157286397635284
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.029055690072639227,
+            0.0749063670411985,
+            0.014760147601476014,
+            0.059233449477351915
+          ]
+        },
+        "50": {
+          "samples_by_leg": [
+            354,
+            193,
+            133,
+            147
+          ],
+          "mean_foot_center_xy_speed_m_s": [
+            0.008381512550466682,
+            0.0124571719018566,
+            0.012060960469559925,
+            0.01824981994476461
+          ],
+          "fraction_speed_gt_0_10_m_s": [
+            0.0,
+            0.015544041450777202,
+            0.0,
+            0.013605442176870748
+          ]
+        }
+      },
+      "foot_center_world_z_p95_minus_p5_cm": [
+        120.36488690012521,
+        120.29230575578782,
+        121.07351726087524,
+        120.67806893228163
+      ],
+      "loaded_foot_interval_fraction": [
+        0.8075801749271136,
+        0.6107871720116618,
+        0.8411078717201166,
+        0.9183673469387755
+      ],
+      "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+    }
+  ]
+}
