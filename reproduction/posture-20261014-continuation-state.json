@@ -1,17 +1,14 @@
 {
-  "updated_local": "2026-10-14T18:29:37.489448+08:00",
+  "updated_local": "2026-10-14T18:49:50.609755+08:00",
   "continuation_requested": true,
   "active_goal": "continuous autonomous posture and symmetry reward research; no inherited deadline",
   "gpu_cap_mib": 15360,
   "no_driver_system_cuda_graphics_changes": true,
   "branch": "feature/go2-shank-posture-20261014",
   "frozen_original_sha256": "4e0c046734eda739fbea83ee7177ac7f3a6dbd35ef5fd0dae0a83e48f92cd83b",
-  "active_gpu_pipeline": "/home/cone/robotics/logs/posture-20261014-medium-pipeline/pipeline.json",
-  "active_gpu_console": "/home/cone/robotics/logs/posture-20261014-medium-queue-console.txt",
-  "active_cpu_watcher": "/home/cone/robotics/logs/posture-20261014-medium-early-console.txt",
-  "queued_symmetry_pipeline": "/home/cone/robotics/logs/posture-20261014-symmetric1-pipeline/pipeline.json",
-  "queued_symmetry_console": "/home/cone/robotics/logs/posture-20261014-symmetric1-queue-console.txt",
-  "queued_symmetry_cpu_watcher": "/home/cone/robotics/logs/posture-20261014-symmetric1-early-console.txt",
+  "active_gpu_pipeline": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/pipeline.json",
+  "active_gpu_console": "/home/cone/robotics/logs/posture-20261014-symmetric1b-console.txt",
+  "active_cpu_watcher": "/home/cone/robotics/logs/posture-20261014-symmetric1b-early-console.txt",
   "queued_symmetry_start_checkpoint": "artifacts/posture-20261014-weak/model_980.pt",
   "queued_symmetry_iterations": [
     1020,
@@ -19,18 +16,20 @@
     1100
   ],
   "next_actions": [
-    "Do not duplicate current/queued jobs; CPU intermediate evaluation and GPU jobs remain separate",
-    "Inspect stronger940 then completed pipeline; archive evidence before further changes",
-    "Verify symmetric1 smoke joint mapping and actual nonzero slow_mirror_bias; monitor15360 cap",
-    "Measure left-right phase-averaged joint biases, foot placement, supported shank angle and per-leg loaded calf contacts; prioritize descending stairs",
-    "Record actual Isaac and MuJoCo video once GPU training queue clears; label saved-pose renders separately",
-    "Freeze a development-selected candidate before new independent seeds2400; then paired Isaac/MuJoCo/domain tests",
-    "Continue experiments focused on front knee and symmetry; do not broaden to existing paper command-tracking issues"
+    "Monitor current symmetric1b training with15360 cap; actual nonzero smoke cost verified",
+    "Compare1020/1060/1100 phase-averaged biases, foot placement, per-leg descending calf contacts and paired completion",
+    "Record actual physics Isaac/MuJoCo videos whenGPUidle; saved-pose renders exist medium940-visual",
+    "If symmetry-only helps, strengthen angle reward independently or extend symmetry scope to stairs with phase-aware gating; do not silently change several terms",
+    "Choose and freeze on development then paired new independent seeds2400; preserve original artifacts",
+    "Continue front posture/stair symmetry research until user stop; paper existing other issues excluded"
   ],
   "do_not_promote_original": true,
   "weak980_prior_heldout_seeds": [
     2200,
     2207
   ],
-  "new_independent_seed_start": 2400
+  "new_independent_seed_start": 2400,
+  "completed_previous_gpu_pipeline": "/home/cone/robotics/logs/posture-20261014-medium-pipeline/pipeline.json",
+  "failed_original_symmetry_smoke": "reproduction/posture-20261014-symmetric1-failed-smoke.json",
+  "original_symmetry_watcher_cancelled": true
 }
