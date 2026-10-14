@@ -98,6 +98,26 @@ class ShankPostureTest(unittest.TestCase):
             configure_stair_rewards(cfg, "posture")
         self.assertIs(cfg.rewards.old, old)
 
+    def test_user_contact_profile_keeps_posture_and_excludes_feet(self):
+        managers = NS(RewardTermCfg=lambda **kw: NS(**kw),
+                      SceneEntityCfg=lambda name, **kw: NS(name=name, **kw))
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        with mock.patch.dict("sys.modules", {"isaaclab.managers": managers}):
+            baseline, modified = config(), config()
+            original = configure_stair_rewards(baseline, "posture")
+            combined = configure_stair_rewards(modified, "posture_contact")
+            self.assertEqual(combined["weights"], {**original["weights"],
+                             "head_undesired_contacts": -1., "other_undesired_contacts": -.01})
+            for name in original["weights"]:
+                self.assertEqual(vars(getattr(baseline.rewards, name)), vars(getattr(modified.rewards, name)))
+            self.assertEqual(modified.rewards.head_undesired_contacts.params["sensor_cfg"].body_names, ["Head_.*"])
+            self.assertEqual(modified.rewards.other_undesired_contacts.params["sensor_cfg"].body_names,
+                             [".*_hip", ".*_thigh", ".*_calf"])
+            self.assertEqual(modified.rewards.other_undesired_contacts.params["threshold"], .3)
+            self.assertEqual(modified.rewards.head_undesired_contacts.params["threshold"], .3)
+            self.assertEqual(len(combined["adaptation_changes"]), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

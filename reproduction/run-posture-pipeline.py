@@ -28,6 +28,7 @@ def main():
     p.add_argument("--num-envs", type=int, default=8192)
     p.add_argument("--updates", type=int, default=120)
     p.add_argument("--posture-weight", type=float, default=-.08)
+    p.add_argument("--reward-profile", choices=["posture", "posture_contact"], default="posture")
     p.add_argument("--seed", type=int, default=2001)
     p.add_argument("--tag", default="20261014-weak")
     a = p.parse_args()
@@ -36,7 +37,7 @@ def main():
     if hashlib.sha256(BASELINE.read_bytes()).hexdigest() != EXPECTED:
         raise SystemExit("Frozen baseline identity changed")
     name = "posture-" + a.tag
-    train = ["train", "--terrain", "stairs", "--reward_profile", "posture",
+    train = ["train", "--terrain", "stairs", "--reward_profile", a.reward_profile,
              "--posture_weight", str(a.posture_weight), "--posture_angle_deg", "65",
              "--posture_swing_weight", ".25", "--checkpoint", str(BASELINE),
              "--stair_stage", "paper_mixed", "--start_level", "4", "--domain_profile", "deployment",
@@ -56,7 +57,7 @@ def main():
             "mujoco": {"development_seed_start": 2000, "seeds_per_case": 4,
                        "suites": ["nominal", "deployment"], "final_seed_start_reserved": 2200},
             "gpu_cap_mib": 15360, "original_model_overwrite": False,
-            "automatic_model_promotion": False, "new_paper_reward_adaptation": "support-aware shank posture only",
+            "automatic_model_promotion": False, "new_paper_reward_adaptation": a.reward_profile,
             "domain_training": "retain existing deployment distribution; domain tests follow nominal sim2sim"}
     if not a.execute:
         print(json.dumps(plan, indent=2))

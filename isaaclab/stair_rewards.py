@@ -11,6 +11,8 @@ reward weight from contact; both preserve the released reward formulas.
 from faithful, without adding contact or lateral-controller terms.
 ``posture`` adds a support-aware soft shank-angle penalty to faithful. It does
 not force a particular joint pose or add terrain/contact inputs to the actor.
+``posture_contact`` keeps posture and adds the user's separate head/non-foot
+contact-count penalties at -1/-0.01 with a 0.3 N normal-force threshold.
 The controller, asset, and physics remain Go2/Isaac Lab,
 so this profile alone does not establish an identical paper reproduction.
 
@@ -252,9 +254,10 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
     ``faithful_tracking`` increases only faithful's XY tracking weight to 1.5.
     """
     contact_profiles = ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance")
-    if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, "posture", "stock"):
-        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, posture, or stock")
-    if profile == "posture":
+    posture_profiles = ("posture", "posture_contact")
+    if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, *posture_profiles, "stock"):
+        raise ValueError("reward profile must be faithful, faithful_tracking, tuned, contact, contact_light, contact_force, contact_slide, contact_vertical, contact_clearance, posture, posture_contact, or stock")
+    if profile in posture_profiles:
         if not math.isfinite(posture_weight) or posture_weight >= 0.0:
             raise ValueError("posture_weight must be finite and negative")
         if not math.isfinite(posture_angle_deg) or not 30.0 <= posture_angle_deg <= 80.0:
@@ -268,7 +271,7 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
         sensor_name = "height_scanner"
     if getattr(cfg.scene, sensor_name, None) is None:
         raise ValueError("Stair rewards require a terrain ray scanner; configure terrain first")
-    if profile in (*contact_profiles, "posture") and getattr(cfg.scene, "contact_forces", None) is None:
+    if profile in (*contact_profiles, *posture_profiles) and getattr(cfg.scene, "contact_forces", None) is None:
         raise ValueError("Contact reward requires the contact_forces sensor")
     from isaaclab.managers import RewardTermCfg, SceneEntityCfg
 
@@ -313,7 +316,7 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
         add("leg_contact_force_proxy", custom + "leg_contact_force_proxy", -0.02,
             threshold_n=50.0, force_scale_n=50.0, cap_per_body=4.0,
             sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_thigh", ".*_calf"]))
-    if profile == "posture":
+    if profile in posture_profiles:
         legs = ("FL", "FR", "RL", "RR")
         def selection(name, part):
             return SceneEntityCfg(name, body_names=[leg + "_" + part for leg in legs], preserve_order=True)
@@ -323,6 +326,11 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             calf_sensor_cfg=selection("contact_forces", "calf"),
             max_stance_angle_deg=posture_angle_deg, swing_weight=posture_swing_weight,
             threshold_n=1.0)
+    if profile == "posture_contact":
+        add("head_undesired_contacts", mdp + "undesired_contacts", -1.0, threshold=0.3,
+            sensor_cfg=SceneEntityCfg("contact_forces", body_names=["Head_.*"]))
+        add("other_undesired_contacts", mdp + "undesired_contacts", -0.01, threshold=0.3,
+            sensor_cfg=SceneEntityCfg("contact_forces", body_names=[".*_hip", ".*_thigh", ".*_calf"]))
     manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -403,7 +411,7 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             "actor_observations_and_collision_geometry": "unchanged",
         } if profile == "contact_slide" else None,
     }
-    if profile == "posture":
+    if profile in posture_profiles:
         manifest["adaptation_changes"] = [
             "faithful plus support-aware shank_horizontal; all released reward terms unchanged"
         ]
@@ -419,6 +427,20 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             "scope": "Go2 reward adaptation, not an original paper reward; mean over all four legs",
             "limitations": "soft posture preference, not terrain clearance or a force/damage limit",
             "actor_observations_controller_and_collision_geometry": "unchanged",
+        }
+    if profile == "posture_contact":
+        manifest["adaptation_changes"].append(
+            "posture plus user head contact -1 and hip/thigh/calf contact -0.01 at 0.3 N; all other terms unchanged")
+        manifest["separate_contact_penalties"] = {
+            "baseline_profile": "posture", "threshold_n": 0.3,
+            "head": {"term": "head_undesired_contacts", "weight": -1.0,
+                     "patterns": ["Head_.*"], "expected_bodies": ["Head_upper", "Head_lower"]},
+            "other": {"term": "other_undesired_contacts", "weight": -0.01,
+                      "patterns": [".*_hip", ".*_thigh", ".*_calf"], "expected_body_count": 12},
+            "measurement": "count of bodies with retained-history net-normal-force norm > threshold",
+            "weight_scaling": "reward manager multiplies each weight by policy dt",
+            "limitations": "contact count does not directly measure clearance, shank angle, impulse or damage",
+            "reproduction_scope": "explicit user-requested Go2 contact reward adaptation",
         }
     if profile in ("contact_vertical", "contact_clearance"):
         vertical = profile == "contact_vertical"

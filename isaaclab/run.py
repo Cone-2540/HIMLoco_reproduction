@@ -105,7 +105,7 @@ def main():
     parser.add_argument("--stair_depth", type=float, default=0.27)
     parser.add_argument("--stair_nosing", type=float, default=0.0)
     parser.add_argument("--stair_direction", choices=["asc", "desc"], default="asc")
-    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "posture", "stock"], default="faithful")
+    parser.add_argument("--reward_profile", choices=["faithful", "faithful_tracking", "tuned", "contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance", "posture", "posture_contact", "stock"], default="faithful")
     parser.add_argument("--posture_weight", type=float, default=-0.08,
                         help="Posture profile only: negative soft shank-angle reward weight.")
     parser.add_argument("--posture_angle_deg", type=float, default=65.0)
@@ -385,7 +385,7 @@ def main():
                 "operation": "USD visibility only; collision and rigid-body attributes unchanged",
             }
         robot = wrapped.env.scene["robot"]
-        if args.terrain == "stairs" and args.reward_profile == "posture":
+        if args.terrain == "stairs" and args.reward_profile in ("posture", "posture_contact"):
             term = wrapped.env.reward_manager.get_term_cfg("shank_horizontal")
             resolved = {}
             for key, part in (("knee_cfg", "calf"), ("foot_cfg", "foot"),
@@ -400,6 +400,23 @@ def main():
                     raise ValueError(f"Shank posture {key} leg order mismatch: {names} != {expected}")
                 resolved[key] = names
             metadata["resolved_posture_reward_body_selections"] = resolved
+        if args.terrain == "stairs" and args.reward_profile == "posture_contact":
+            selections = {}
+            for name, expected in (
+                ("head_undesired_contacts", {"Head_upper", "Head_lower"}),
+                ("other_undesired_contacts", {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
+                                              for part in ("hip", "thigh", "calf")}),
+            ):
+                entity_cfg = wrapped.env.reward_manager.get_term_cfg(name).params["sensor_cfg"]
+                entity = wrapped.env.scene[entity_cfg.name]
+                ids = entity_cfg.body_ids
+                names = list(entity.body_names[ids]) if isinstance(ids, slice) else [
+                    entity.body_names[int(index)] for index in ids]
+                if set(names) != expected or len(names) != len(expected):
+                    raise ValueError(f"{name} must match exact Go2 bodies: {names}")
+                selections[name] = names
+            metadata["resolved_separate_contact_body_selections"] = selections
+        metadata["robot_body_names"] = list(robot.body_names)
         if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")
                               for part in ("thigh", "calf")}
