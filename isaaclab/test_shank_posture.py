@@ -120,6 +120,22 @@ class ShankPostureTest(unittest.TestCase):
 
 
 class SlowMirrorBiasTest(unittest.TestCase):
+    def test_profile_adds_only_slow_bias_and_validates_joint_order(self):
+        managers = NS(RewardTermCfg=lambda **kw: NS(**kw),
+                      SceneEntityCfg=lambda name, **kw: NS(name=name, **kw))
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        with mock.patch.dict("sys.modules", {"isaaclab.managers": managers}):
+            base, symmetric = config(), config()
+            baseline = configure_stair_rewards(base, "posture", posture_weight=-.24)
+            adapted = configure_stair_rewards(symmetric, "posture_symmetric", posture_weight=-.24)
+            self.assertEqual(adapted["weights"], {**baseline["weights"], "slow_mirror_bias": -.08})
+            cfg = symmetric.rewards.slow_mirror_bias.params["asset_cfg"]
+            self.assertEqual(cfg.joint_names, [leg + "_" + part + "_joint"
+                for part in ("hip", "thigh", "calf") for leg in ("FL", "FR", "RL", "RR")])
+            self.assertTrue(cfg.preserve_order)
+            self.assertFalse(adapted["symmetry_penalty"]["actor_inputs_added"])
+
     def make_env(self):
         q = torch.tensor([[.1, -.1, .1, -.1, .8, .8, 1., 1., -1.5, -1.5, -1.5, -1.5]])
         command = torch.tensor([[.3, 0., 0.]])
