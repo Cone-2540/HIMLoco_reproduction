@@ -1,5 +1,5 @@
 {
-  "updated_local": "2026-10-14T19:10:20.373920+08:00",
+  "updated_local": "2026-10-14T19:19:20.082839+08:00",
   "continuation_requested": true,
   "active_goal": "continuous autonomous posture and symmetry reward research; no inherited deadline",
   "gpu_cap_mib": 15360,
@@ -39,5 +39,12 @@
   "training_current_iteration_approximate": 1060,
   "predeclared_targets": "reproduction/posture-20261014-symmetry-gates.json",
   "target_assessor": "reproduction/assess-posture-candidate.py",
-  "actual_training_process_pid": 44196
+  "actual_training_process_pid": 44196,
+  "next_gpu_queue_console": "/home/cone/robotics/logs/posture-20261014-symmetrystair1-queue-console.txt",
+  "next_gpu_queue_steps": [
+    "Wait for symmetric1b complete paired evidence",
+    "Actual Isaac flat/asc/desc and actual MuJoCo left/right/asc/desc recordings for1100 with idle guard",
+    "Scope-only ablation fromsame frozenweak980, EMA staircase scale0->0.5, allotherrewardparamsfixed"
+  ],
+  "next_training_plan": "reproduction/posture-20261014-symmetrystair1-plan.json"
 }
