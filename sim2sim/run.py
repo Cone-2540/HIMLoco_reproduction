@@ -212,6 +212,8 @@ def run(args):
                 target = default + config['action_scale']*applied
                 body_contact, calf_contact = False, False
                 body_loaded, calf_loaded, calf_force_this_step = False, False, 0.
+                if args.record_leg_contacts:
+                    calf_force_by_leg, foot_force_by_leg = np.zeros(4), np.zeros(4)
                 for _ in range(args.decimation):
                     target_applied = target
                     if args.delay_physics_steps:
@@ -236,6 +238,12 @@ def run(args):
                             calf_loaded |= is_calf and normal_force > 1.
                             if is_calf:
                                 calf_force_this_step = max(calf_force_this_step,normal_force)
+                            if args.record_leg_contacts:
+                                for leg_index, leg in enumerate(('FL', 'FR', 'RL', 'RR')):
+                                    if name == leg + '_calf' and geom not in feet:
+                                        calf_force_by_leg[leg_index] = max(calf_force_by_leg[leg_index], normal_force)
+                                    if geom == feet[leg_index]:
+                                        foot_force_by_leg[leg_index] = max(foot_force_by_leg[leg_index], normal_force)
                 body_contact_steps += int(body_contact)
                 calf_contact_steps += int(calf_contact)
                 body_loaded_steps += int(body_loaded)
@@ -265,6 +273,9 @@ def run(args):
                                 calf_peak_normal_force_n=float(calf_force_this_step))
                 if args.record_policy_input:
                     rows[-1]["policy_input"] = frame.tolist()
+                if args.record_leg_contacts:
+                    rows[-1]["calf_peak_normal_force_by_leg_n"] = calf_force_by_leg.tolist()
+                    rows[-1]["foot_peak_normal_force_by_leg_n"] = foot_force_by_leg.tolist()
                 if writer:
                     camera.lookat[:] = data.qpos[:3]
                     renderer.update_scene(data, camera=camera)
@@ -362,6 +373,8 @@ def parse():
     p.add_argument('--fixed-duration',action='store_true',help='Flat only: survive the full interval and pass velocity tracking gates')
     p.add_argument('--record-policy-input',action='store_true',
                    help='Save the exact pre-inference frame, including observation noise, for mirror diagnostics')
+    p.add_argument('--record-leg-contacts',action='store_true',
+                   help='Save per-leg calf/foot peak normal forces across each policy interval')
     for flag in ('heading-feedback','obs-noise','stock-joint-physics','conservative-calf','video','viewer'):
         p.add_argument('--'+flag,action='store_true')
     args = p.parse_args()

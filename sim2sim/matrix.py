@@ -19,6 +19,7 @@ def main():
     p.add_argument('--seed-start',type=int,default=1400)
     p.add_argument('--suite',choices=['nominal','randomized','stress','deployment'],default='nominal')
     p.add_argument('--record-policy-input',action='store_true')
+    p.add_argument('--record-leg-contacts',action='store_true')
     a=p.parse_args()
     a.output.mkdir(parents=True,exist_ok=False)
     configs=[]
@@ -44,6 +45,7 @@ def main():
                   '--initial-y',f'{rng.uniform(-.04,.04):.12f}','--initial-joint-noise','.03']
             if case['terrain']!='flat':argv+=['--heading-feedback']
             if a.record_policy_input:argv+=['--record-policy-input']
+            if a.record_leg_contacts:argv+=['--record-leg-contacts']
             if a.suite!='nominal':
                 argv+=['--friction',str(rng.uniform(.6,1.1)),
                        '--mass-scale',str(np.exp(rng.uniform(np.log(.8),np.log(1.25)))),

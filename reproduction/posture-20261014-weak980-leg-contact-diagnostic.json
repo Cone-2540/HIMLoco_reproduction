@@ -1,0 +1,100 @@
+{
+  "trials": [
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-weak980-leg-contact-diagnostic",
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "trace_sha256": "11e61decfc8a7508a4c11ffacb080c11575136bf40d52c96cbf54a46b9162dd9",
+      "success": true,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "samples": 675,
+      "leg_order": [
+        "FL",
+        "FR",
+        "RL",
+        "RR"
+      ],
+      "warmup_s": 2.0,
+      "stride": 1,
+      "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+      "mean_shank_angle_deg": [
+        53.412018271474466,
+        62.64842470178275,
+        25.24913097998284,
+        33.2967316855092
+      ],
+      "p95_shank_angle_deg": [
+        75.93307737554392,
+        85.30286931460662,
+        47.55002997299769,
+        54.04906179586367
+      ],
+      "fraction_shank_angle_gt70": [
+        0.1288888888888889,
+        0.4533333333333333,
+        0.0,
+        0.0
+      ],
+      "mean_knee_clearance_cm": [
+        13.24402730475934,
+        7.87004149440106,
+        20.704448369195713,
+        21.806282876706106
+      ],
+      "p5_knee_clearance_cm": [
+        5.5458568640420935,
+        2.376257448308543,
+        14.408951446665183,
+        14.84956952110627
+      ],
+      "mean_root_world_z_m": 0.7594633028851004,
+      "loaded_calf_policy_interval_fraction": 0.2948148148148148,
+      "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+      "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+      "per_leg_contacts": {
+        "loaded_calf_interval_fraction_by_leg": [
+          0.035555555555555556,
+          0.2651851851851852,
+          0.014814814814814815,
+          0.0
+        ],
+        "loaded_foot_interval_fraction_by_leg": [
+          0.9037037037037037,
+          0.5866666666666667,
+          0.9185185185185185,
+          0.9333333333333333
+        ],
+        "max_calf_normal_force_by_leg_n": [
+          60.367881781569935,
+          175.20264285360832,
+          28.484199451156698,
+          0.0
+        ],
+        "support_samples_by_leg": [
+          617,
+          467,
+          625,
+          630
+        ],
+        "supported_mean_shank_angle_deg": [
+          52.76259697189347,
+          58.7560185822124,
+          24.577048323601254,
+          33.23282088107442
+        ],
+        "supported_fraction_shank_angle_gt70": [
+          0.13452188006482982,
+          0.4261241970021413,
+          0.0,
+          0.0
+        ],
+        "scope": "post-step sampled angle gated by any >1 N contact during preceding 20 ms; not instantaneous phase/force correlation"
+      },
+      "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+    }
+  ]
+}

@@ -26,6 +26,7 @@ def summarize(directory, warmup=2.0, stride=1):
         model.geom_group[gid] = 5 if name == "floor" or name == "start_platform" or name.startswith(("step_", "nosing_", "platform_nosing")) else 0
     groups = np.array([0, 0, 0, 0, 0, 1], dtype=np.uint8)
     angles, clearance, root, forces = [], [], [], []
+    calf_by_leg, foot_by_leg = [], []
     for row in rows[::stride]:
         if row["time"] < warmup:
             continue
@@ -47,9 +48,28 @@ def summarize(directory, warmup=2.0, stride=1):
         clearance.append(leg_clearance)
         root.append(row["position"][2])
         forces.append(bool(row["calf_loaded_contact"]))
+        if "calf_peak_normal_force_by_leg_n" in row:
+            calf_by_leg.append(row["calf_peak_normal_force_by_leg_n"])
+            foot_by_leg.append(row["foot_peak_normal_force_by_leg_n"])
     if not angles:
         return {"source": str(directory), "samples": 0, "scope": "no frames after warmup"}
     angles, clearance = np.asarray(angles), np.asarray(clearance)
+    per_leg = None
+    if calf_by_leg:
+        if len(calf_by_leg) != len(angles):
+            raise ValueError("Incomplete per-leg contact telemetry")
+        calf_by_leg, foot_by_leg = np.asarray(calf_by_leg), np.asarray(foot_by_leg)
+        supported = (calf_by_leg > 1) | (foot_by_leg > 1)
+        count = supported.sum(0)
+        per_leg = {
+            "loaded_calf_interval_fraction_by_leg": (calf_by_leg > 1).mean(0).tolist(),
+            "loaded_foot_interval_fraction_by_leg": (foot_by_leg > 1).mean(0).tolist(),
+            "max_calf_normal_force_by_leg_n": calf_by_leg.max(0).tolist(),
+            "support_samples_by_leg": count.tolist(),
+            "supported_mean_shank_angle_deg": [float(angles[supported[:, i], i].mean()) if count[i] else None for i in range(4)],
+            "supported_fraction_shank_angle_gt70": [float((angles[supported[:, i], i] > 70).mean()) if count[i] else None for i in range(4)],
+            "scope": "post-step sampled angle gated by any >1 N contact during preceding 20 ms; not instantaneous phase/force correlation",
+        }
     return {"source": str(directory.resolve()), "policy_sha256": result["policy_sha256"],
             "trace_sha256": hashlib.sha256((directory / "trace.json").read_bytes()).hexdigest(),
             "success": result["success"], "terrain": result["arguments"]["terrain"],
@@ -65,6 +85,7 @@ def summarize(directory, warmup=2.0, stride=1):
             "loaded_calf_policy_interval_fraction": float(np.mean(forces)),
             "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
             "contact_scope": result["contact_scope"],
+            "per_leg_contacts": per_leg,
             "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"}
 
 

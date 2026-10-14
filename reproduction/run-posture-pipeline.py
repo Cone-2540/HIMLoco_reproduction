@@ -136,7 +136,7 @@ def main():
                     subprocess.run([str(CPU), str(ROOT / "sim2sim/matrix.py"), "--policy", str(policy),
                                     "--config", str(artifacts / "config.json"), "--output", str(output),
                                     "--seeds", "4", "--seed-start", "2000", "--suite", suite,
-                                    "--record-policy-input"],
+                                    "--record-policy-input", "--record-leg-contacts"],
                                    cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=True)
                 subprocess.run([str(CPU), str(ROOT / "sim2sim/posture_metrics.py"), str(output),
                                 "--matrix", "--stride", "5", "--output", str(directory / f"iter{i}-{suite}-posture.json")],
