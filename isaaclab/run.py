@@ -405,7 +405,9 @@ def main():
         if args.terrain == "stairs" and args.reward_profile == "posture_symmetric":
             term = wrapped.env.reward_manager.get_term_cfg("slow_mirror_bias")
             entity_cfg = term.params["asset_cfg"]
-            names = [robot.joint_names[int(i)] for i in entity_cfg.joint_ids]
+            ids = entity_cfg.joint_ids
+            names = list(robot.joint_names[ids]) if isinstance(ids, slice) else [
+                robot.joint_names[int(i)] for i in ids]
             expected = [leg + "_" + part + "_joint" for part in ("hip", "thigh", "calf")
                         for leg in ("FL", "FR", "RL", "RR")]
             if names != expected:
