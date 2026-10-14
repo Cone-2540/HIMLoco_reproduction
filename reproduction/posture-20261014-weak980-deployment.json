@@ -1,0 +1,4025 @@
+{
+  "started_local": "2026-10-14T17:41:22.370921+08:00",
+  "suite": "deployment",
+  "seed_start": 2000,
+  "seeds_per_case": 4,
+  "cases": [
+    {
+      "name": "flat-16x27-v0.3",
+      "terrain": "flat",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.3
+    },
+    {
+      "name": "flat-16x27-v0.5",
+      "terrain": "flat",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.5
+    },
+    {
+      "name": "asc-16x27-v0.3",
+      "terrain": "asc",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.3
+    },
+    {
+      "name": "asc-16x27-v0.5",
+      "terrain": "asc",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.5
+    },
+    {
+      "name": "desc-16x27-v0.3",
+      "terrain": "desc",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.3
+    },
+    {
+      "name": "desc-16x27-v0.5",
+      "terrain": "desc",
+      "height": 0.16,
+      "depth": 0.27,
+      "speed": 0.5
+    },
+    {
+      "name": "asc-0.11x0.35-v03",
+      "terrain": "asc",
+      "height": 0.11,
+      "depth": 0.35,
+      "speed": 0.3
+    },
+    {
+      "name": "asc-0.17x0.25-v03",
+      "terrain": "asc",
+      "height": 0.17,
+      "depth": 0.25,
+      "speed": 0.3
+    },
+    {
+      "name": "asc-0.2x0.3-v03",
+      "terrain": "asc",
+      "height": 0.2,
+      "depth": 0.3,
+      "speed": 0.3
+    },
+    {
+      "name": "desc-0.11x0.35-v03",
+      "terrain": "desc",
+      "height": 0.11,
+      "depth": 0.35,
+      "speed": 0.3
+    },
+    {
+      "name": "desc-0.17x0.25-v03",
+      "terrain": "desc",
+      "height": 0.17,
+      "depth": 0.25,
+      "speed": 0.3
+    },
+    {
+      "name": "desc-0.2x0.3-v03",
+      "terrain": "desc",
+      "height": 0.2,
+      "depth": 0.3,
+      "speed": 0.3
+    }
+  ],
+  "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+  "summary": [
+    {
+      "case": "flat-16x27-v0.3",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.0,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.0,
+      "maximum_calf_normal_force_n": 0.0,
+      "mean_xy_velocity_mae_m_s": 0.07166718387602045,
+      "mean_yaw_velocity_mae_rad_s": 0.04534868847081227
+    },
+    {
+      "case": "flat-16x27-v0.5",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.024214659685863876,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.022905759162303665,
+      "maximum_calf_normal_force_n": 30.467386001470437,
+      "mean_xy_velocity_mae_m_s": 0.0798113956718961,
+      "mean_yaw_velocity_mae_rad_s": 0.05683860719772198
+    },
+    {
+      "case": "asc-16x27-v0.3",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.12557716667243207,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.11789603930421469,
+      "maximum_calf_normal_force_n": 118.03598220931691,
+      "mean_xy_velocity_mae_m_s": 0.07512911760966784,
+      "mean_yaw_velocity_mae_rad_s": 0.05672467154178477
+    },
+    {
+      "case": "asc-16x27-v0.5",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.11777034014631145,
+      "mean_body_contact_fraction": 0.0016666666666666668,
+      "mean_calf_loaded_contact_fraction": 0.09954291068457238,
+      "maximum_calf_normal_force_n": 146.51542520674872,
+      "mean_xy_velocity_mae_m_s": 0.10318402217491507,
+      "mean_yaw_velocity_mae_rad_s": 0.06999037142009895
+    },
+    {
+      "case": "desc-16x27-v0.3",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.2931118696713989,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.29075455844225206,
+      "maximum_calf_normal_force_n": 232.9306203467628,
+      "mean_xy_velocity_mae_m_s": 0.06744376674736378,
+      "mean_yaw_velocity_mae_rad_s": 0.05639876306087966
+    },
+    {
+      "case": "desc-16x27-v0.5",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.3398133558637565,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.33702778303355496,
+      "maximum_calf_normal_force_n": 208.31896810330716,
+      "mean_xy_velocity_mae_m_s": 0.08939573962876524,
+      "mean_yaw_velocity_mae_rad_s": 0.07300878557531407
+    },
+    {
+      "case": "asc-0.11x0.35-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.013070198797293476,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.012180485644861256,
+      "maximum_calf_normal_force_n": 108.87512591060666,
+      "mean_xy_velocity_mae_m_s": 0.07184128873287945,
+      "mean_yaw_velocity_mae_rad_s": 0.055994075343045846
+    },
+    {
+      "case": "asc-0.17x0.25-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.15927817111571116,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.1506123601986728,
+      "maximum_calf_normal_force_n": 108.57610847283554,
+      "mean_xy_velocity_mae_m_s": 0.077289047451719,
+      "mean_yaw_velocity_mae_rad_s": 0.05777845826750047
+    },
+    {
+      "case": "asc-0.2x0.3-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.23337478628869823,
+      "mean_body_contact_fraction": 0.008805985140617076,
+      "mean_calf_loaded_contact_fraction": 0.22508746749409642,
+      "maximum_calf_normal_force_n": 120.42850615846778,
+      "mean_xy_velocity_mae_m_s": 0.08520029173819732,
+      "mean_yaw_velocity_mae_rad_s": 0.0646560372847326
+    },
+    {
+      "case": "desc-0.11x0.35-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.3326585932297951,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.3302373770115331,
+      "maximum_calf_normal_force_n": 138.01548659550295,
+      "mean_xy_velocity_mae_m_s": 0.06724090658185346,
+      "mean_yaw_velocity_mae_rad_s": 0.059689726535643764
+    },
+    {
+      "case": "desc-0.17x0.25-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.3559514594551022,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.35560033585959655,
+      "maximum_calf_normal_force_n": 152.35332730573927,
+      "mean_xy_velocity_mae_m_s": 0.07220042055383125,
+      "mean_yaw_velocity_mae_rad_s": 0.05942749990176595
+    },
+    {
+      "case": "desc-0.2x0.3-v03",
+      "passed": 4,
+      "total": 4,
+      "mean_calf_contact_fraction": 0.3199619274695345,
+      "mean_body_contact_fraction": 0.0,
+      "mean_calf_loaded_contact_fraction": 0.31601243652731786,
+      "maximum_calf_normal_force_n": 369.55934904401346,
+      "mean_xy_velocity_mae_m_s": 0.07540283184748103,
+      "mean_yaw_velocity_mae_rad_s": 0.07038016049014804
+    }
+  ],
+  "trials": [
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 13.82000000000076,
+      "final_position": [
+        3.1032643133667297,
+        0.5560558136398474,
+        0.27140114021800493
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.07493358030751056,
+      "yaw_velocity_mae_rad_s": 0.03852564495703515,
+      "mean_action_rate_squared": 0.0276480196014034,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2000",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.3",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 14.640000000000889,
+      "final_position": [
+        3.0970872759003982,
+        0.47863174311008744,
+        0.25087830529946276
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.08573999974911269,
+      "yaw_velocity_mae_rad_s": 0.05113369779680137,
+      "mean_action_rate_squared": 0.02694109960989158,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2001",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.3",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 12.98000000000063,
+      "final_position": [
+        3.1025915661173022,
+        0.6393528795165473,
+        0.2846732797453144
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.06491698054047179,
+      "yaw_velocity_mae_rad_s": 0.04305502741660671,
+      "mean_action_rate_squared": 0.02854607456552746,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2002",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.3",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 12.880000000000614,
+      "final_position": [
+        3.1170409735921947,
+        -0.04915633825624861,
+        0.24654364718557287
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.061078174906986735,
+      "yaw_velocity_mae_rad_s": 0.04868038371280583,
+      "mean_action_rate_squared": 0.02752829659234236,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2003",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.3",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.3-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 7.939999999999853,
+      "final_position": [
+        3.2047179847869667,
+        0.5121879860467708,
+        0.2624282344783943
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.08783868804578758,
+      "yaw_velocity_mae_rad_s": 0.05342316436958929,
+      "mean_action_rate_squared": 0.052704434230076334,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2000",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.5",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 7.9599999999998525,
+      "final_position": [
+        3.1937763807630914,
+        0.3742162455460435,
+        0.23880499387378865
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.09033316698473946,
+      "yaw_velocity_mae_rad_s": 0.07066075653735261,
+      "mean_action_rate_squared": 0.052237559048292935,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2001",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.5",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 7.5399999999998615,
+      "final_position": [
+        3.2260306196354804,
+        0.5244694061456074,
+        0.2691218551454335
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0,
+      "calf_peak_normal_force_n": 0.0,
+      "xy_velocity_mae_m_s": 0.06662429487490587,
+      "yaw_velocity_mae_rad_s": 0.052983730850117344,
+      "mean_action_rate_squared": 0.054976868080891424,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2002",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.5",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "simulation_seconds": 7.639999999999859,
+      "final_position": [
+        3.2137848871488437,
+        0.09909801436526268,
+        0.23864751439064494
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0968586387434555,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.09162303664921466,
+      "calf_peak_normal_force_n": 30.467386001470437,
+      "xy_velocity_mae_m_s": 0.07444943278215149,
+      "yaw_velocity_mae_rad_s": 0.050286777033828674,
+      "mean_action_rate_squared": 0.05106509458124133,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2003",
+        "terrain": "flat",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": false,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "flat-16x27-v0.5",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/flat-16x27-v0.5-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.100000000000804,
+      "final_position": [
+        3.2819318760853378,
+        0.21454514923171344,
+        1.2447058566913733
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.10780141843971631,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.10070921985815603,
+      "calf_peak_normal_force_n": 85.31038710764963,
+      "xy_velocity_mae_m_s": 0.06429220973304432,
+      "yaw_velocity_mae_rad_s": 0.04812071179682124,
+      "mean_action_rate_squared": 0.04738647815117877,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2000",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.3",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.440000000001014,
+      "final_position": [
+        3.299671073452349,
+        0.04204324589920371,
+        1.2159437038381151
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.14233576642335766,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.13381995133819952,
+      "calf_peak_normal_force_n": 117.45064946638063,
+      "xy_velocity_mae_m_s": 0.09367238733170552,
+      "yaw_velocity_mae_rad_s": 0.0604580297505849,
+      "mean_action_rate_squared": 0.05422666534781343,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2001",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.3",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.800000000000914,
+      "final_position": [
+        3.3693408533006415,
+        0.1836393657287312,
+        1.2536936271100196
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.07837837837837838,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.07567567567567568,
+      "calf_peak_normal_force_n": 79.03563744448748,
+      "xy_velocity_mae_m_s": 0.07136481691702877,
+      "yaw_velocity_mae_rad_s": 0.05729516092431063,
+      "mean_action_rate_squared": 0.048186795169754645,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2002",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.3",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.500000000000867,
+      "final_position": [
+        3.2854390352204157,
+        -0.021028543201256376,
+        1.2122588651492217
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.17379310344827587,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.16137931034482758,
+      "calf_peak_normal_force_n": 118.03598220931691,
+      "xy_velocity_mae_m_s": 0.07118705645689272,
+      "yaw_velocity_mae_rad_s": 0.061024783695422295,
+      "mean_action_rate_squared": 0.051479577363736505,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2003",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.3",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.3-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 8.879999999999988,
+      "final_position": [
+        3.4079192095274164,
+        0.18341889508150433,
+        1.2253804415105947
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.07207207207207207,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.04954954954954955,
+      "calf_peak_normal_force_n": 110.03272469431248,
+      "xy_velocity_mae_m_s": 0.0926320134912476,
+      "yaw_velocity_mae_rad_s": 0.06163159859006888,
+      "mean_action_rate_squared": 0.09821505638633574,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2000",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.5",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 9.560000000000095,
+      "final_position": [
+        3.35698040346467,
+        -0.011385913815739957,
+        1.206170848835206
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.1799163179916318,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.16317991631799164,
+      "calf_peak_normal_force_n": 106.10241903085792,
+      "xy_velocity_mae_m_s": 0.1287816351801512,
+      "yaw_velocity_mae_rad_s": 0.0793513387520953,
+      "mean_action_rate_squared": 0.0960037096436103,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2001",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.5",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 8.819999999999979,
+      "final_position": [
+        3.3827190777330998,
+        0.05706695802871511,
+        1.2298903649679471
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.06575963718820861,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.049886621315192746,
+      "calf_peak_normal_force_n": 96.92736509836425,
+      "xy_velocity_mae_m_s": 0.09432770919809215,
+      "yaw_velocity_mae_rad_s": 0.06228192548725894,
+      "mean_action_rate_squared": 0.09736595247629785,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2002",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.5",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 9.000000000000007,
+      "final_position": [
+        3.433729698107629,
+        0.02948915117615438,
+        1.200187231344135
+      ],
+      "body_contact_fraction": 0.006666666666666667,
+      "calf_contact_fraction": 0.15333333333333332,
+      "body_loaded_contact_fraction": 0.006666666666666667,
+      "calf_loaded_contact_fraction": 0.13555555555555557,
+      "calf_peak_normal_force_n": 146.51542520674872,
+      "xy_velocity_mae_m_s": 0.09699473083016935,
+      "yaw_velocity_mae_rad_s": 0.07669662285097267,
+      "mean_action_rate_squared": 0.09884844876967049,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2003",
+        "terrain": "asc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-16x27-v0.5",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-16x27-v0.5-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.500000000001023,
+      "final_position": [
+        3.3544061370212175,
+        0.022584174398524594,
+        0.2721727245996994
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.2593548387096774,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.25806451612903225,
+      "calf_peak_normal_force_n": 89.82927781225818,
+      "xy_velocity_mae_m_s": 0.07394946320178535,
+      "yaw_velocity_mae_rad_s": 0.04995006549196545,
+      "mean_action_rate_squared": 0.02956777942081408,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2000",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.3",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.10000000000096,
+      "final_position": [
+        3.3617213819188505,
+        0.000882931589898959,
+        0.2491788268456103
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.1947019867549669,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.19337748344370861,
+      "calf_peak_normal_force_n": 232.9306203467628,
+      "xy_velocity_mae_m_s": 0.0679779927707174,
+      "yaw_velocity_mae_rad_s": 0.058550520425522126,
+      "mean_action_rate_squared": 0.032341955467619705,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2001",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.3",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.10000000000096,
+      "final_position": [
+        3.4173335503761493,
+        0.3121705901914578,
+        0.27648181507966313
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.27947019867549666,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.27549668874172184,
+      "calf_peak_normal_force_n": 104.28058039971846,
+      "xy_velocity_mae_m_s": 0.0687171625055984,
+      "yaw_velocity_mae_rad_s": 0.060502778931848564,
+      "mean_action_rate_squared": 0.030319618146211317,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2002",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.3",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.080000000000801,
+      "final_position": [
+        3.3922985285938974,
+        -0.08043049018576,
+        0.2503120339947421
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.43892045454545453,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.43607954545454547,
+      "calf_peak_normal_force_n": 127.22661203184451,
+      "xy_velocity_mae_m_s": 0.059130448511354024,
+      "yaw_velocity_mae_rad_s": 0.0565916873941825,
+      "mean_action_rate_squared": 0.0335829159204059,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2003",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.3",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.3-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 9.260000000000048,
+      "final_position": [
+        3.501775107253349,
+        -0.07890497277039175,
+        0.24335184898810197
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.31533477321814257,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.31101511879049676,
+      "calf_peak_normal_force_n": 118.61556209927485,
+      "xy_velocity_mae_m_s": 0.10324432354079127,
+      "yaw_velocity_mae_rad_s": 0.07122670159860534,
+      "mean_action_rate_squared": 0.05609165136023205,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2000",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.5",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 8.659999999999954,
+      "final_position": [
+        3.4606121597166153,
+        -0.031764970359031836,
+        0.23149710340648155
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3348729792147806,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3325635103926097,
+      "calf_peak_normal_force_n": 137.27217733902393,
+      "xy_velocity_mae_m_s": 0.08435670833667987,
+      "yaw_velocity_mae_rad_s": 0.0751319095462432,
+      "mean_action_rate_squared": 0.06161224158961263,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2001",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.5",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 9.120000000000026,
+      "final_position": [
+        3.5577259892300455,
+        0.10395961098667142,
+        0.26274296076419645
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.29605263157894735,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.29385964912280704,
+      "calf_peak_normal_force_n": 208.31896810330716,
+      "xy_velocity_mae_m_s": 0.0891863627483133,
+      "yaw_velocity_mae_rad_s": 0.07361464947395273,
+      "mean_action_rate_squared": 0.059572115336172564,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2002",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.5",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 8.619999999999948,
+      "final_position": [
+        3.4777176550970017,
+        -0.20314922914853048,
+        0.23302834921312032
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.41299303944315546,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.41067285382830626,
+      "calf_peak_normal_force_n": 153.70240415724888,
+      "xy_velocity_mae_m_s": 0.08079556388927649,
+      "yaw_velocity_mae_rad_s": 0.07206188168245496,
+      "mean_action_rate_squared": 0.06002691318816508,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2003",
+        "terrain": "desc",
+        "height": 0.16,
+        "depth": 0.27,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-16x27-v0.5",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-16x27-v0.5-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.420000000001018,
+      "final_position": [
+        3.866110233294419,
+        0.22961070077046664,
+        0.9361585074473259
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.00243605359317905,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.00243605359317905,
+      "calf_peak_normal_force_n": 4.802321622736919,
+      "xy_velocity_mae_m_s": 0.06814524444725421,
+      "yaw_velocity_mae_rad_s": 0.045620143135273884,
+      "mean_action_rate_squared": 0.041846833601391076,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2000",
+        "terrain": "asc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.11x0.35-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 17.36000000000083,
+      "final_position": [
+        3.801756935086202,
+        0.005076190353522516,
+        0.9164509158772804
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.03225806451612903,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.029953917050691243,
+      "calf_peak_normal_force_n": 108.87512591060666,
+      "xy_velocity_mae_m_s": 0.08392104623403214,
+      "yaw_velocity_mae_rad_s": 0.05885396681842702,
+      "mean_action_rate_squared": 0.045621246195318585,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2001",
+        "terrain": "asc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.11x0.35-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.680000000001051,
+      "final_position": [
+        3.817156281324436,
+        0.1213952918238845,
+        0.9526867535139414
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.0012755102040816326,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.0012755102040816326,
+      "calf_peak_normal_force_n": 4.7991568756758305,
+      "xy_velocity_mae_m_s": 0.06554760337029977,
+      "yaw_velocity_mae_rad_s": 0.05370732129088563,
+      "mean_action_rate_squared": 0.04594392337909989,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2002",
+        "terrain": "asc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.11x0.35-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.940000000001092,
+      "final_position": [
+        3.8193139346152063,
+        -0.15868356710102943,
+        0.9039549029901524
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.01631116687578419,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.015056461731493099,
+      "calf_peak_normal_force_n": 85.59341198733425,
+      "xy_velocity_mae_m_s": 0.06975126087993169,
+      "yaw_velocity_mae_rad_s": 0.06579487012759686,
+      "mean_action_rate_squared": 0.044995138458172636,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2003",
+        "terrain": "asc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.11x0.35-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.11x0.35-v03-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.26000000000083,
+      "final_position": [
+        3.206377726884281,
+        0.20146587771192487,
+        1.3055568210627797
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.15007012622720897,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.14165497896213183,
+      "calf_peak_normal_force_n": 81.47790713557322,
+      "xy_velocity_mae_m_s": 0.0699926191963714,
+      "yaw_velocity_mae_rad_s": 0.05075561619604109,
+      "mean_action_rate_squared": 0.05243413962474724,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2000",
+        "terrain": "asc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.17x0.25-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.180000000001066,
+      "final_position": [
+        3.196417790329256,
+        0.023920799058217805,
+        1.2702491096988704
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.20395550061804696,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.19283065512978986,
+      "calf_peak_normal_force_n": 68.0575980760277,
+      "xy_velocity_mae_m_s": 0.09349923847102921,
+      "yaw_velocity_mae_rad_s": 0.06272405555630774,
+      "mean_action_rate_squared": 0.05557357980789674,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2001",
+        "terrain": "asc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.17x0.25-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.620000000000886,
+      "final_position": [
+        3.2432601448537346,
+        0.22034157492868825,
+        1.3196359161601703
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.09575923392612859,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.09165526675786594,
+      "calf_peak_normal_force_n": 76.97530618382302,
+      "xy_velocity_mae_m_s": 0.07553938069714619,
+      "yaw_velocity_mae_rad_s": 0.05556136525877432,
+      "mean_action_rate_squared": 0.0534555240703942,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2002",
+        "terrain": "asc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.17x0.25-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.52000000000087,
+      "final_position": [
+        3.2504340045766384,
+        -0.010913131688726343,
+        1.2733224182033662
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.18732782369146006,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.1763085399449036,
+      "calf_peak_normal_force_n": 108.57610847283554,
+      "xy_velocity_mae_m_s": 0.07012495144232919,
+      "yaw_velocity_mae_rad_s": 0.062072796058878735,
+      "mean_action_rate_squared": 0.05074404873640491,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2003",
+        "terrain": "asc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.17x0.25-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.17x0.25-v03-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.20000000000106,
+      "final_position": [
+        3.535965137655889,
+        0.3285515161226259,
+        1.4808384931512948
+      ],
+      "body_contact_fraction": 0.0024691358024691358,
+      "calf_contact_fraction": 0.17037037037037037,
+      "body_loaded_contact_fraction": 0.0024691358024691358,
+      "calf_loaded_contact_fraction": 0.1617283950617284,
+      "calf_peak_normal_force_n": 92.57273525855535,
+      "xy_velocity_mae_m_s": 0.07515237206925834,
+      "yaw_velocity_mae_rad_s": 0.056439762329583296,
+      "mean_action_rate_squared": 0.06531324821306075,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2000",
+        "terrain": "asc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.2x0.3-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 18.42000000000062,
+      "final_position": [
+        3.490642081476957,
+        0.06477930421259344,
+        1.4558770916027874
+      ],
+      "body_contact_fraction": 0.003257328990228013,
+      "calf_contact_fraction": 0.3279044516829533,
+      "body_loaded_contact_fraction": 0.003257328990228013,
+      "calf_loaded_contact_fraction": 0.31921824104234525,
+      "calf_peak_normal_force_n": 74.00364373075048,
+      "xy_velocity_mae_m_s": 0.10143887412919038,
+      "yaw_velocity_mae_rad_s": 0.06671938581064489,
+      "mean_action_rate_squared": 0.06039745726041233,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2001",
+        "terrain": "asc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.2x0.3-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.680000000001051,
+      "final_position": [
+        3.5147146731213192,
+        0.22498548138943733,
+        1.493095682004454
+      ],
+      "body_contact_fraction": 0.003826530612244898,
+      "calf_contact_fraction": 0.15051020408163265,
+      "body_loaded_contact_fraction": 0.003826530612244898,
+      "calf_loaded_contact_fraction": 0.14285714285714285,
+      "calf_peak_normal_force_n": 120.42850615846778,
+      "xy_velocity_mae_m_s": 0.07402667226039382,
+      "yaw_velocity_mae_rad_s": 0.05754661965154935,
+      "mean_action_rate_squared": 0.0671827758398573,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2002",
+        "terrain": "asc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.2x0.3-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 17.140000000000875,
+      "final_position": [
+        3.501039890573446,
+        0.15532461226722608,
+        1.4513451634835666
+      ],
+      "body_contact_fraction": 0.025670945157526253,
+      "calf_contact_fraction": 0.2847141190198366,
+      "body_loaded_contact_fraction": 0.025670945157526253,
+      "calf_loaded_contact_fraction": 0.2765460910151692,
+      "calf_peak_normal_force_n": 119.82457844014576,
+      "xy_velocity_mae_m_s": 0.09018324849394674,
+      "yaw_velocity_mae_rad_s": 0.07791838134715282,
+      "mean_action_rate_squared": 0.06969476468358406,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2003",
+        "terrain": "asc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "asc-0.2x0.3-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/asc-0.2x0.3-v03-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.800000000000942,
+      "final_position": [
+        3.828874502566556,
+        0.13323685780511357,
+        0.281424650737732
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.30714285714285716,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3011904761904762,
+      "calf_peak_normal_force_n": 89.95266775582218,
+      "xy_velocity_mae_m_s": 0.07128234738080215,
+      "yaw_velocity_mae_rad_s": 0.05127091947758828,
+      "mean_action_rate_squared": 0.02953199832599179,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2000",
+        "terrain": "desc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.11x0.35-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 16.480000000001006,
+      "final_position": [
+        3.787695077668889,
+        0.04453224777609537,
+        0.25458797181975623
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3567961165048544,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.35558252427184467,
+      "calf_peak_normal_force_n": 138.01548659550295,
+      "xy_velocity_mae_m_s": 0.0705959857604629,
+      "yaw_velocity_mae_rad_s": 0.06851579152580126,
+      "mean_action_rate_squared": 0.030788678361174562,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2001",
+        "terrain": "desc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.11x0.35-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.780000000001067,
+      "final_position": [
+        3.7840732773907026,
+        0.31445382074251077,
+        0.28470338806302253
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.27122940430925224,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.27122940430925224,
+      "calf_peak_normal_force_n": 109.15218852571115,
+      "xy_velocity_mae_m_s": 0.06540251475834911,
+      "yaw_velocity_mae_rad_s": 0.05860784076432875,
+      "mean_action_rate_squared": 0.03019479889604684,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2002",
+        "terrain": "desc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.11x0.35-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.880000000001083,
+      "final_position": [
+        3.852339814361983,
+        -0.09483913487939051,
+        0.24481734592579232
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3954659949622166,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3929471032745592,
+      "calf_peak_normal_force_n": 112.47025562294388,
+      "xy_velocity_mae_m_s": 0.061682778427799685,
+      "yaw_velocity_mae_rad_s": 0.06036435437485677,
+      "mean_action_rate_squared": 0.030759278903042146,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2003",
+        "terrain": "desc",
+        "height": 0.11,
+        "depth": 0.35,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.11x0.35-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.11x0.35-v03-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.440000000001014,
+      "final_position": [
+        3.2834554600462833,
+        -0.03766340557518712,
+        0.2758880920059641
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3329015544041451,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3329015544041451,
+      "calf_peak_normal_force_n": 109.78784120821365,
+      "xy_velocity_mae_m_s": 0.07701733642631542,
+      "yaw_velocity_mae_rad_s": 0.05615859970798682,
+      "mean_action_rate_squared": 0.030008960695378728,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2000",
+        "terrain": "desc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.17x0.25-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.240000000000826,
+      "final_position": [
+        3.211560501653758,
+        -0.13141901931336678,
+        0.2425327122965005
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3202247191011236,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3188202247191011,
+      "calf_peak_normal_force_n": 123.46365389017258,
+      "xy_velocity_mae_m_s": 0.0737415104097485,
+      "yaw_velocity_mae_rad_s": 0.06253555645790097,
+      "mean_action_rate_squared": 0.033486689666642935,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2001",
+        "terrain": "desc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.17x0.25-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.860000000000923,
+      "final_position": [
+        3.2923821632416295,
+        0.26901345210293204,
+        0.2705497997495909
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.32166890982503366,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.32166890982503366,
+      "calf_peak_normal_force_n": 101.67228763537194,
+      "xy_velocity_mae_m_s": 0.07334560393815048,
+      "yaw_velocity_mae_rad_s": 0.06282962740022427,
+      "mean_action_rate_squared": 0.030567670638603096,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2002",
+        "terrain": "desc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.17x0.25-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 13.140000000000654,
+      "final_position": [
+        3.1966474180427253,
+        -0.11668247132839832,
+        0.24893315376567385
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.4490106544901065,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.4490106544901065,
+      "calf_peak_normal_force_n": 152.35332730573927,
+      "xy_velocity_mae_m_s": 0.06469723144111057,
+      "yaw_velocity_mae_rad_s": 0.05618621604095173,
+      "mean_action_rate_squared": 0.0330944957931061,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2003",
+        "terrain": "desc",
+        "height": 0.17,
+        "depth": 0.25,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.17x0.25-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.17x0.25-v03-seed2003/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.180000000000973,
+      "final_position": [
+        3.4280782694339003,
+        0.07621085850088945,
+        0.2755934399197596
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3254281949934124,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.3214756258234519,
+      "calf_peak_normal_force_n": 173.3050768900459,
+      "xy_velocity_mae_m_s": 0.08322202886342481,
+      "yaw_velocity_mae_rad_s": 0.06891067582844264,
+      "mean_action_rate_squared": 0.04184418257757474,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2000",
+        "terrain": "desc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2000,
+        "initial_yaw": 0.009016358263,
+        "initial_y": 0.012513968743,
+        "initial_joint_noise": 0.03,
+        "friction": 0.6135188519696239,
+        "mass_scale": 1.00293069266916,
+        "com_offset": [
+          0.008830108546,
+          -0.009237976684,
+          0.009229162654
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.2x0.3-v03",
+      "seed": 2000,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2000/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.260000000000986,
+      "final_position": [
+        3.444241658559108,
+        0.13444760555768692,
+        0.2502223378462348
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.28309305373525556,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.27916120576671033,
+      "calf_peak_normal_force_n": 164.1536279293414,
+      "xy_velocity_mae_m_s": 0.07223383692111754,
+      "yaw_velocity_mae_rad_s": 0.0795255295831288,
+      "mean_action_rate_squared": 0.03719949814833583,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2001",
+        "terrain": "desc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2001,
+        "initial_yaw": -0.009159623701,
+        "initial_y": -0.023702038858,
+        "initial_joint_noise": 0.03,
+        "friction": 0.8375501276087072,
+        "mass_scale": 1.2290615282267874,
+        "com_offset": [
+          -0.004081263593,
+          -0.006504519982,
+          0.009969666752
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 0,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.2x0.3-v03",
+      "seed": 2001,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2001/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 15.820000000001073,
+      "final_position": [
+        3.495746271091096,
+        0.33247973648273327,
+        0.2828126038832917
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.3059418457648546,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.30214917825537296,
+      "calf_peak_normal_force_n": 134.19181357022677,
+      "xy_velocity_mae_m_s": 0.07911834314417572,
+      "yaw_velocity_mae_rad_s": 0.06865472195098037,
+      "mean_action_rate_squared": 0.036257435610183776,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2002",
+        "terrain": "desc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2002,
+        "initial_yaw": 0.046651122882,
+        "initial_y": 0.036856898202,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9290563056855659,
+        "mass_scale": 0.8558674798396478,
+        "com_offset": [
+          0.011551320752,
+          -0.013915100767,
+          -0.003494350378
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 1,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.2x0.3-v03",
+      "seed": 2002,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2002/result.json"
+    },
+    {
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "simulation_seconds": 14.560000000000876,
+      "final_position": [
+        3.549286231309463,
+        -0.012272853673639174,
+        0.24705969655637822
+      ],
+      "body_contact_fraction": 0.0,
+      "calf_contact_fraction": 0.36538461538461536,
+      "body_loaded_contact_fraction": 0.0,
+      "calf_loaded_contact_fraction": 0.36126373626373626,
+      "calf_peak_normal_force_n": 369.55934904401346,
+      "xy_velocity_mae_m_s": 0.06703711846120608,
+      "yaw_velocity_mae_rad_s": 0.06442971459804037,
+      "mean_action_rate_squared": 0.03785256036395317,
+      "policy_sha256": "67323f989c26f915e5643f261d182df27bdf53a99394d60ebfd68da8b4ba0678",
+      "arguments": {
+        "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/policy_980.pt",
+        "config": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-weak/config.json",
+        "assets": "/home/cone/robotics/assets/mujoco-menagerie-go2/unitree_go2",
+        "output": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2003",
+        "terrain": "desc",
+        "height": 0.2,
+        "depth": 0.3,
+        "steps": 6,
+        "width": 1.2,
+        "nosing": 0.0,
+        "seconds": 25.0,
+        "dt": 0.005,
+        "decimation": 4,
+        "command": [
+          0.3,
+          0.0,
+          0.0
+        ],
+        "flat_distance": 3.0,
+        "seed": 2003,
+        "initial_yaw": -0.024644430053,
+        "initial_y": 0.030492713767,
+        "initial_joint_noise": 0.03,
+        "friction": 0.9256728915229786,
+        "mass_scale": 1.2491157593554252,
+        "com_offset": [
+          0.028927636858,
+          -0.014320887086,
+          -0.005925242475
+        ],
+        "gain_scale": 1.0,
+        "armature": null,
+        "contact_profile": "menagerie",
+        "motor_strength": 1.0,
+        "per_joint_gains": [
+          0.9,
+          1.1
+        ],
+        "per_joint_strength": [
+          0.9,
+          1.1
+        ],
+        "per_foot_friction": [
+          0.6,
+          1.1
+        ],
+        "delay_steps": 0,
+        "delay_physics_steps": 2,
+        "fixed_duration": false,
+        "heading_feedback": true,
+        "obs_noise": true,
+        "stock_joint_physics": false,
+        "conservative_calf": false,
+        "video": false,
+        "viewer": false
+      },
+      "case": "desc-0.2x0.3-v03",
+      "seed": 2003,
+      "result_file": "/home/cone/robotics/logs/posture-20261014-weak-pipeline/iter980-deployment/desc-0.2x0.3-v03-seed2003/result.json"
+    }
+  ],
+  "ended_local": "2026-10-14T17:41:46.746567+08:00",
+  "passed": 48,
+  "total": 48,
+  "acceptance_scope": "first episode, finite/upright completion; smoothness and tracking assessed separately from trace"
+}
