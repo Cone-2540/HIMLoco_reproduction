@@ -57,10 +57,8 @@ def summarize(directory):
         stats[name] = {"mean_signed_mirror_difference_rad": values.mean(0).tolist(),
                        "instantaneous_rms_difference_rad": np.sqrt(np.mean(values**2, 0)).tolist(),
                        "pair_order": ["front", "rear"]}
-    # Reconstruct the recorded OBSERVATION-TIME state, not post-step qpos.
-    # Only neutral input is used for equivariance below; recorded trace rows
-    # mix pre-step omega/gravity/action with post-step qpos and cannot be safely
-    # treated as complete original actor input histories.
+    # Old telemetry mixes pre/post-step quantities, so infer mirror behavior
+    # from a neutral probe only unless exact policy_input frames were recorded.
     policy = torch.jit.load(result["arguments"]["policy"], map_location="cpu").eval()
     neutral = observation(result["arguments"]["command"], np.zeros(3), np.array([0., 0., -1.]),
                           default, np.zeros(12), default, np.zeros(12))

@@ -141,6 +141,10 @@ def main():
                 subprocess.run([str(CPU), str(ROOT / "sim2sim/posture_metrics.py"), str(output),
                                 "--matrix", "--stride", "5", "--output", str(directory / f"iter{i}-{suite}-posture.json")],
                                cwd=ROOT, check=True)
+                for analyzer in ("symmetry_metrics", "gait_metrics"):
+                    subprocess.run([str(CPU), str(ROOT / f"sim2sim/{analyzer}.py"), str(output),
+                                    "--matrix", "--output", str(directory / f"iter{i}-{suite}-{analyzer}.json")],
+                                   cwd=ROOT, check=True)
                 matrix = json.loads((output / "matrix.json").read_text())
                 candidate["matrices"][suite] = {"passed": matrix["passed"], "total": matrix["total"],
                                                  "summary": matrix["summary"], "source": str(output / "matrix.json")}
