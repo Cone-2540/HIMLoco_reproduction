@@ -56,9 +56,44 @@ def summarize(matrix_path, posture_path):
     return result
 
 
+def add_diagnostics(row, suite, matrix_path, archive_name=None):
+    directory = matrix_path.parent.parent
+    # Baseline/weak-arm telemetry predates optional exact-input/per-leg data.
+    stem = matrix_path.parent.name
+    result = row["suites"][suite]
+    for analyzer in ("symmetry_metrics", "gait_metrics"):
+        path = directory / f"{stem}-{analyzer}.json"
+        if not path.exists():
+            continue
+        document = read(path)
+        flat = [t for t in document["trials"] if t.get("terrain") == "flat"]
+        if analyzer == "symmetry_metrics" and flat:
+            result["flat_symmetry"] = {
+                "mean_front_thigh_signed_mirror_bias_rad": float(np.mean([
+                    t["mirror_bias"]["thigh"]["mean_signed_mirror_difference_rad"][0] for t in flat])),
+                "mean_front_calf_signed_mirror_bias_rad": float(np.mean([
+                    t["mirror_bias"]["calf"]["mean_signed_mirror_difference_rad"][0] for t in flat])),
+                "mean_front_foot_signed_longitudinal_mirror_difference_m": float(np.mean([
+                    t["mean_mirrored_foot_difference_m"][0][0] for t in flat])),
+                "mean_body_roll_deg": float(np.mean([t["body_roll_mean_deg"] for t in flat])),
+            }
+        elif analyzer == "gait_metrics" and flat and all(t.get("available") for t in flat):
+            result["flat_gait"] = {
+                "mean_foot_center_world_z_span_p95_p5_cm": np.mean([
+                    t["foot_center_world_z_p95_minus_p5_cm"] for t in flat], axis=0).tolist(),
+                "mean_loaded_30n_foot_center_xy_speed_m_s": np.mean([
+                    t["force_gates_n"]["30"]["mean_foot_center_xy_speed_m_s"] for t in flat], axis=0).tolist(),
+                "scope": "trial-weighted means of saved-pose force-gated proxies",
+            }
+        result[analyzer + "_source"] = str(path)
+        result[analyzer + "_sha256"] = digest(path)
+        if archive_name:
+            shutil.copyfile(path, OUT / f"posture-20261014-{archive_name}-{suite}-{analyzer}.json")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--tags", nargs="+", default=["weak", "contact", "medium"])
+    p.add_argument("--tags", nargs="+", default=["weak", "contact", "medium", "symmetric1b"])
     p.add_argument("--archive", action="store_true", help="Copy completed matrices/configs, without raw rollouts")
     a = p.parse_args()
     comparison = {"recorded_local": datetime.now().astimezone().isoformat(),
@@ -86,6 +121,7 @@ def main():
                 matrix_path = directory / f"iter{iteration}-{suite}/matrix.json"
                 posture_path = directory / f"iter{iteration}-{suite}-posture.json"
                 row["suites"][suite] = summarize(matrix_path, posture_path)
+                add_diagnostics(row, suite, matrix_path, f"{tag}{iteration}" if a.archive else None)
                 if a.archive:
                     for source, suffix in ((matrix_path, ""), (posture_path, "-posture")):
                         shutil.copyfile(source, OUT / f"posture-20261014-{tag}{iteration}-{suite}{suffix}.json")

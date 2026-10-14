@@ -1,0 +1,1244 @@
+{
+  "scope": "single-seed intermediate diagnosis only; not selection/acceptance",
+  "results": {
+    "flat": {
+      "posture_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/flat",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "66bff4a1d3e8ac2cefd78cdcba42fdb78f3a1b7ec7834a280bd262cee0f19e54",
+        "success": true,
+        "terrain": "flat",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples": 588,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          61.26587893687232,
+          76.3496311065966,
+          35.73159925888201,
+          32.6099617269679
+        ],
+        "p95_shank_angle_deg": [
+          74.34248508531302,
+          81.7750991319416,
+          53.21716653257942,
+          54.56852936596157
+        ],
+        "fraction_shank_angle_gt70": [
+          0.21768707482993196,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "mean_knee_clearance_cm": [
+          11.14646999002051,
+          6.735019789634862,
+          18.176879793362595,
+          18.462577697770296
+        ],
+        "p5_knee_clearance_cm": [
+          7.223791213502398,
+          6.177543522295914,
+          13.915712042629579,
+          13.477769135012336
+        ],
+        "mean_root_world_z_m": 0.284640304419948,
+        "loaded_calf_policy_interval_fraction": 0.0,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "per_leg_contacts": {
+          "loaded_calf_interval_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "loaded_foot_interval_fraction_by_leg": [
+            0.9914965986394558,
+            0.6632653061224489,
+            1.0,
+            0.9982993197278912
+          ],
+          "max_calf_normal_force_by_leg_n": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "support_samples_by_leg": [
+            583,
+            390,
+            588,
+            587
+          ],
+          "supported_mean_shank_angle_deg": [
+            61.2251035601088,
+            74.5091123340547,
+            35.73159925888202,
+            32.582726662784474
+          ],
+          "supported_fraction_shank_angle_gt70": [
+            0.21783876500857632,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "scope": "post-step sampled angle gated by any >1 N contact during preceding 20 ms; not instantaneous phase/force correlation"
+        },
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "symmetry_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/flat",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "66bff4a1d3e8ac2cefd78cdcba42fdb78f3a1b7ec7834a280bd262cee0f19e54",
+        "success": true,
+        "terrain": "flat",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples_after_2s": 588,
+        "joint_names": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mean_joint_position_rad": [
+          -0.16452851316963468,
+          0.23126246119830907,
+          -0.2718961017499868,
+          0.06943492816915818,
+          0.6897984192901271,
+          0.006765958269243436,
+          1.2568837846184582,
+          1.1610581031352822,
+          -1.7259001180609188,
+          -1.3111779437424853,
+          -1.7878392003271024,
+          -1.7058842482210943
+        ],
+        "joint_std_rad": [
+          0.03129406450859555,
+          0.01902260658198208,
+          0.007873802669996394,
+          0.011573624954237482,
+          0.23724570009311524,
+          0.20298722416946163,
+          0.1157276588021237,
+          0.13730353552242883,
+          0.08187634579822341,
+          0.17719434513318788,
+          0.08681847186920161,
+          0.11173003647269827
+        ],
+        "mirror_bias": {
+          "hip": {
+            "mean_signed_mirror_difference_rad": [
+              0.06673394802867437,
+              -0.20246117358082838
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.07579334138169634,
+              0.20280644400005568
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "thigh": {
+            "mean_signed_mirror_difference_rad": [
+              0.6830324610208836,
+              0.09582568148317568
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.7967526935454544,
+              0.2430965795147793
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "calf": {
+            "mean_signed_mirror_difference_rad": [
+              -0.41472217431843433,
+              -0.08195495210601099
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.4841102515020617,
+              0.19703312857329655
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          }
+        },
+        "body_roll_mean_deg": -1.0140812791505174,
+        "body_roll_rms_deg": 1.3276761396012073,
+        "mean_foot_body_position_m": [
+          [
+            0.24134999039781346,
+            0.09664460835384096,
+            -0.2802357937411883
+          ],
+          [
+            0.3967672560324921,
+            -0.0783937819699965,
+            -0.28129600043088177
+          ],
+          [
+            -0.2905524480681579,
+            0.07228561308921898,
+            -0.263184862031181
+          ],
+          [
+            -0.2814584979301145,
+            -0.12357398533968278,
+            -0.2678311044289645
+          ]
+        ],
+        "mean_mirrored_foot_difference_m": [
+          [
+            -0.15541726563467934,
+            0.018250826383844385,
+            0.0010602066896936435
+          ],
+          [
+            -0.009093950138043516,
+            -0.05128837225046388,
+            0.0046462423977841625
+          ]
+        ],
+        "mean_abs_joint_torque_nm": [
+          1.5741615942885365,
+          0.8541758430895298,
+          0.5807594897222484,
+          2.147811269666354,
+          4.0525143990082,
+          3.870397421314948,
+          1.7452219911196072,
+          2.4232035098626623,
+          9.313540430309393,
+          4.2352693630566085,
+          5.133995000395722,
+          5.227274276717546
+        ],
+        "neutral_input_mirror_action_rms": 0.6458598375320435,
+        "neutral_action": [
+          -0.9985977411270142,
+          0.46364933252334595,
+          -0.5180487036705017,
+          0.7005167007446289,
+          -0.5776951313018799,
+          -0.7735962867736816,
+          0.08592255413532257,
+          -0.7735098600387573,
+          1.493924856185913,
+          0.4692518413066864,
+          0.6579866409301758,
+          1.254969835281372
+        ],
+        "neutral_action_mirror_residual": [
+          -0.5349484086036682,
+          -0.5349484086036682,
+          0.1824679970741272,
+          0.1824679970741272,
+          0.19590115547180176,
+          -0.19590115547180176,
+          0.8594323992729187,
+          -0.8594323992729187,
+          1.0246729850769043,
+          -1.0246729850769043,
+          -0.5969831943511963,
+          0.5969831943511963
+        ],
+        "recorded_input_mirror_probe": {
+          "samples": 59,
+          "saved_action_max_abs_reconstruction_error": 0.0,
+          "mirror_action_rms": 0.3203226923942566,
+          "per_joint_mirror_action_rms": [
+            0.2675158977508545,
+            0.08369551599025726,
+            0.3397737741470337,
+            0.30540069937705994,
+            0.4807857573032379,
+            0.6038485765457153,
+            0.22344674170017242,
+            0.19011299312114716,
+            0.21669811010360718,
+            0.3322139084339142,
+            0.2723776698112488,
+            0.17498810589313507
+          ],
+          "scope": "exact recorded noisy frame history; mirrored policy inputs, no second physics rollout"
+        },
+        "scope": "full post-warmup trial means; mean bias is phase averaged but stair sequencing can differ; neutral probe is off-trajectory and diagnostic only"
+      },
+      "gait_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/flat",
+        "available": true,
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "66bff4a1d3e8ac2cefd78cdcba42fdb78f3a1b7ec7834a280bd262cee0f19e54",
+        "terrain": "flat",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "success": true,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "samples": 588,
+        "force_gates_n": {
+          "1": {
+            "samples_by_leg": [
+              580,
+              368,
+              587,
+              585
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.22071775639990274,
+              0.08071297738849062,
+              0.24048865655052176,
+              0.22879011389746146
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.2103448275862069,
+              0.19293478260869565,
+              0.3696763202725724,
+              0.20341880341880342
+            ]
+          },
+          "10": {
+            "samples_by_leg": [
+              455,
+              269,
+              357,
+              465
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.036582248959590606,
+              0.022426993783856323,
+              0.01725026162126762,
+              0.016031091395906416
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.04835164835164835,
+              0.055762081784386616,
+              0.0056022408963585435,
+              0.010752688172043012
+            ]
+          },
+          "30": {
+            "samples_by_leg": [
+              374,
+              207,
+              253,
+              381
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.00947107752389643,
+              0.002919724449397548,
+              0.012414657218279185,
+              0.013593630153912479
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "50": {
+            "samples_by_leg": [
+              332,
+              130,
+              211,
+              301
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.009359415139196536,
+              0.0022610394364645766,
+              0.012042518798336805,
+              0.01328171180381419
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "foot_center_world_z_p95_minus_p5_cm": [
+          1.5028139105883918,
+          2.7386778719111207,
+          1.1857998229143663,
+          1.376148532441053
+        ],
+        "loaded_foot_interval_fraction": [
+          0.9914965986394558,
+          0.6632653061224489,
+          1.0,
+          0.9982993197278912
+        ],
+        "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+      }
+    },
+    "asc": {
+      "posture_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/asc",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "914810a386548fbd9cb049bd0cec6078ce09acc7a95cff1b23ab6171021b85f3",
+        "success": true,
+        "terrain": "asc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples": 701,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          67.93952720059274,
+          96.43059315295235,
+          36.8187673138554,
+          59.438983811153086
+        ],
+        "p95_shank_angle_deg": [
+          100.70942813849564,
+          137.25227245103338,
+          61.78052439240522,
+          100.42358968021212
+        ],
+        "fraction_shank_angle_gt70": [
+          0.38944365192582026,
+          0.9258202567760342,
+          0.0014265335235378032,
+          0.33238231098430815
+        ],
+        "mean_knee_clearance_cm": [
+          18.7863884314521,
+          12.400804309368256,
+          23.363594664192057,
+          21.514130320579987
+        ],
+        "p5_knee_clearance_cm": [
+          8.191621885995204,
+          3.5542512297384476,
+          14.632527171860676,
+          12.729940221676639
+        ],
+        "mean_root_world_z_m": 0.7802683027283354,
+        "loaded_calf_policy_interval_fraction": 0.012838801711840228,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "per_leg_contacts": {
+          "loaded_calf_interval_fraction_by_leg": [
+            0.008559201141226819,
+            0.0042796005706134095,
+            0.0,
+            0.0
+          ],
+          "loaded_foot_interval_fraction_by_leg": [
+            0.8630527817403709,
+            0.4664764621968616,
+            0.8388017118402282,
+            0.8502139800285307
+          ],
+          "max_calf_normal_force_by_leg_n": [
+            36.91155210515058,
+            49.20717520806167,
+            0.0,
+            0.0
+          ],
+          "support_samples_by_leg": [
+            605,
+            327,
+            588,
+            596
+          ],
+          "supported_mean_shank_angle_deg": [
+            66.08066930703326,
+            80.36667581909997,
+            38.203071288255664,
+            56.24484275886046
+          ],
+          "supported_fraction_shank_angle_gt70": [
+            0.35702479338842974,
+            0.8440366972477065,
+            0.0,
+            0.2936241610738255
+          ],
+          "scope": "post-step sampled angle gated by any >1 N contact during preceding 20 ms; not instantaneous phase/force correlation"
+        },
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "symmetry_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/asc",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "914810a386548fbd9cb049bd0cec6078ce09acc7a95cff1b23ab6171021b85f3",
+        "success": true,
+        "terrain": "asc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples_after_2s": 701,
+        "joint_names": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mean_joint_position_rad": [
+          -6.340161453954833e-05,
+          -0.15578582706601884,
+          -0.2529268322463227,
+          0.14237462951368332,
+          0.9019647282763407,
+          -0.02730064683043086,
+          1.2785734299412053,
+          1.1370688527344102,
+          -1.8115103408884803,
+          -1.3880819239023456,
+          -1.5799081971310551,
+          -1.8973090804632098
+        ],
+        "joint_std_rad": [
+          0.1394416387319898,
+          0.2803217051367167,
+          0.03625700770823765,
+          0.0549106716425293,
+          0.3034582281118516,
+          0.25399704586777655,
+          0.21502884661489163,
+          0.2677044759498741,
+          0.2117391387185171,
+          0.31449798597960527,
+          0.3437883399655343,
+          0.22637095821979297
+        ],
+        "mirror_bias": {
+          "hip": {
+            "mean_signed_mirror_difference_rad": [
+              -0.15584922868055864,
+              -0.11055220273263953
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.2653160368715115,
+              0.13057307301778937
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "thigh": {
+            "mean_signed_mirror_difference_rad": [
+              0.9292653751067713,
+              0.1415045772067946
+            ],
+            "instantaneous_rms_difference_rad": [
+              1.0637093425791875,
+              0.30629951201493877
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "calf": {
+            "mean_signed_mirror_difference_rad": [
+              -0.4234284169861351,
+              0.31740088333215305
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.5641527221802466,
+              0.5722823237309734
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          }
+        },
+        "body_roll_mean_deg": -1.1061962579272049,
+        "body_roll_rms_deg": 2.5652956786949646,
+        "mean_foot_body_position_m": [
+          [
+            0.19257359041373276,
+            0.13743367740521434,
+            -0.2495059469768921
+          ],
+          [
+            0.39863832479626765,
+            -0.16429512297257443,
+            -0.21542820440176766
+          ],
+          [
+            -0.33432519915964587,
+            0.07562625057030269,
+            -0.2694678759749986
+          ],
+          [
+            -0.24466829688439373,
+            -0.10869962378334826,
+            -0.24311420506440054
+          ]
+        ],
+        "mean_mirrored_foot_difference_m": [
+          [
+            -0.20606473438253498,
+            -0.02686144556736001,
+            -0.03407774257512469
+          ],
+          [
+            -0.0896569022752523,
+            -0.0330733732130457,
+            -0.026353670910598394
+          ]
+        ],
+        "mean_abs_joint_torque_nm": [
+          2.4864761044438426,
+          1.674126416233932,
+          1.1129541839313861,
+          2.3316736348935354,
+          3.503663720928106,
+          2.906667216666295,
+          2.0360949499940633,
+          3.57668124022476,
+          8.041955900951015,
+          2.817705467342825,
+          5.777025806373808,
+          10.053430498020417
+        ],
+        "neutral_input_mirror_action_rms": 0.6458598375320435,
+        "neutral_action": [
+          -0.9985977411270142,
+          0.46364933252334595,
+          -0.5180487036705017,
+          0.7005167007446289,
+          -0.5776951313018799,
+          -0.7735962867736816,
+          0.08592255413532257,
+          -0.7735098600387573,
+          1.493924856185913,
+          0.4692518413066864,
+          0.6579866409301758,
+          1.254969835281372
+        ],
+        "neutral_action_mirror_residual": [
+          -0.5349484086036682,
+          -0.5349484086036682,
+          0.1824679970741272,
+          0.1824679970741272,
+          0.19590115547180176,
+          -0.19590115547180176,
+          0.8594323992729187,
+          -0.8594323992729187,
+          1.0246729850769043,
+          -1.0246729850769043,
+          -0.5969831943511963,
+          0.5969831943511963
+        ],
+        "recorded_input_mirror_probe": {
+          "samples": 71,
+          "saved_action_max_abs_reconstruction_error": 0.0,
+          "mirror_action_rms": 0.6672965288162231,
+          "per_joint_mirror_action_rms": [
+            0.34302887320518494,
+            0.5534859895706177,
+            0.4063785672187805,
+            0.7911112904548645,
+            1.301297903060913,
+            0.727480411529541,
+            0.38770705461502075,
+            0.41469359397888184,
+            0.5755407810211182,
+            0.4889531433582306,
+            0.8172654509544373,
+            0.587591290473938
+          ],
+          "scope": "exact recorded noisy frame history; mirrored policy inputs, no second physics rollout"
+        },
+        "scope": "full post-warmup trial means; mean bias is phase averaged but stair sequencing can differ; neutral probe is off-trajectory and diagnostic only"
+      },
+      "gait_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/asc",
+        "available": true,
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "914810a386548fbd9cb049bd0cec6078ce09acc7a95cff1b23ab6171021b85f3",
+        "terrain": "asc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "success": true,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "samples": 701,
+        "force_gates_n": {
+          "1": {
+            "samples_by_leg": [
+              593,
+              308,
+              572,
+              583
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.07120639739380638,
+              0.059677054247609995,
+              0.1483021615199837,
+              0.06483076179476657
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.08768971332209106,
+              0.15584415584415584,
+              0.26573426573426573,
+              0.0686106346483705
+            ]
+          },
+          "10": {
+            "samples_by_leg": [
+              551,
+              243,
+              394,
+              544
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.026623340155195675,
+              0.015181741279329418,
+              0.026472595329747148,
+              0.01813952180741464
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.039927404718693285,
+              0.03292181069958848,
+              0.030456852791878174,
+              0.012867647058823529
+            ]
+          },
+          "30": {
+            "samples_by_leg": [
+              457,
+              168,
+              290,
+              496
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.01155650405901111,
+              0.006052338642371912,
+              0.01600429014228632,
+              0.015864163221483447
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.005952380952380952,
+              0.0034482758620689655,
+              0.004032258064516129
+            ]
+          },
+          "50": {
+            "samples_by_leg": [
+              325,
+              50,
+              240,
+              434
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.01120049275454444,
+              0.007200598731377497,
+              0.013759276289023651,
+              0.013069148603251556
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.02,
+              0.0,
+              0.002304147465437788
+            ]
+          }
+        },
+        "foot_center_world_z_p95_minus_p5_cm": [
+          97.3403615613811,
+          112.99886470060439,
+          96.77784450462835,
+          96.19138419907844
+        ],
+        "loaded_foot_interval_fraction": [
+          0.8630527817403709,
+          0.4664764621968616,
+          0.8388017118402282,
+          0.8502139800285307
+        ],
+        "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+      }
+    },
+    "desc": {
+      "posture_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/desc",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "008ba88722509c3919d861fe10b6b0daea06c3bb40c0b7489c12eb67880d3487",
+        "success": true,
+        "terrain": "desc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples": 684,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "stride": 1,
+        "angle_definition": "world down to knee-to-foot-center vector; 90 deg is horizontal",
+        "mean_shank_angle_deg": [
+          52.475163906426914,
+          62.708328183074215,
+          26.302777507063603,
+          31.544639451660164
+        ],
+        "p95_shank_angle_deg": [
+          74.27242797085157,
+          84.54642557920484,
+          48.341846178481866,
+          52.719540910448835
+        ],
+        "fraction_shank_angle_gt70": [
+          0.10964912280701754,
+          0.48391812865497075,
+          0.0,
+          0.0
+        ],
+        "mean_knee_clearance_cm": [
+          13.537970454811688,
+          7.722970836543828,
+          19.959323924511807,
+          21.77719087826782
+        ],
+        "p5_knee_clearance_cm": [
+          6.195336652217138,
+          2.6461349678529045,
+          10.556635786342008,
+          15.541414036430613
+        ],
+        "mean_root_world_z_m": 0.7611839893973983,
+        "loaded_calf_policy_interval_fraction": 0.3055555555555556,
+        "clearance_scope": "knee joint origin above highest terrain vertically below; not collision-surface clearance or side-riser distance",
+        "contact_scope": "fraction of 20ms policy intervals with any geometric contact; loaded contact additionally requires >1N normal force in any 5ms physics substep",
+        "per_leg_contacts": {
+          "loaded_calf_interval_fraction_by_leg": [
+            0.029239766081871343,
+            0.2777777777777778,
+            0.029239766081871343,
+            0.0
+          ],
+          "loaded_foot_interval_fraction_by_leg": [
+            0.9078947368421053,
+            0.47368421052631576,
+            0.9122807017543859,
+            0.9415204678362573
+          ],
+          "max_calf_normal_force_by_leg_n": [
+            59.72974269132017,
+            179.68089488978106,
+            45.6498086490028,
+            0.0
+          ],
+          "support_samples_by_leg": [
+            627,
+            431,
+            636,
+            644
+          ],
+          "supported_mean_shank_angle_deg": [
+            51.78373415535761,
+            57.21987333511766,
+            25.679320338541103,
+            31.46671040088335
+          ],
+          "supported_fraction_shank_angle_gt70": [
+            0.11323763955342903,
+            0.4245939675174014,
+            0.0,
+            0.0
+          ],
+          "scope": "post-step sampled angle gated by any >1 N contact during preceding 20 ms; not instantaneous phase/force correlation"
+        },
+        "scope": "post-warmup saved policy-boundary poses, all terrain phases; sparse stride if requested"
+      },
+      "symmetry_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/desc",
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "008ba88722509c3919d861fe10b6b0daea06c3bb40c0b7489c12eb67880d3487",
+        "success": true,
+        "terrain": "desc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "samples_after_2s": 684,
+        "joint_names": [
+          "FL_hip_joint",
+          "FR_hip_joint",
+          "RL_hip_joint",
+          "RR_hip_joint",
+          "FL_thigh_joint",
+          "FR_thigh_joint",
+          "RL_thigh_joint",
+          "RR_thigh_joint",
+          "FL_calf_joint",
+          "FR_calf_joint",
+          "RL_calf_joint",
+          "RR_calf_joint"
+        ],
+        "mean_joint_position_rad": [
+          -0.16902822542261925,
+          0.3131753808558099,
+          -0.15740197778285409,
+          -0.26597069918183136,
+          0.6040073789522884,
+          0.06000838291404023,
+          1.4799921531076181,
+          1.3227083451350292,
+          -1.6925019835094464,
+          -1.3277723561265813,
+          -1.9483997020982657,
+          -1.5156572248469
+        ],
+        "joint_std_rad": [
+          0.04843612034572175,
+          0.06114057440459404,
+          0.08518132923195103,
+          0.22810237963808372,
+          0.3420584873722345,
+          0.2269489256207651,
+          0.3110254750139664,
+          0.18562857531579402,
+          0.24997090454040838,
+          0.21598088857991254,
+          0.22744940195261862,
+          0.21622742306958942
+        ],
+        "mirror_bias": {
+          "hip": {
+            "mean_signed_mirror_difference_rad": [
+              0.1441471554331905,
+              -0.42337267696468556
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.16123537377810998,
+              0.45423100695602786
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "thigh": {
+            "mean_signed_mirror_difference_rad": [
+              0.5439989960382487,
+              0.15728380797258784
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.754243830672125,
+              0.32698252405737277
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          },
+          "calf": {
+            "mean_signed_mirror_difference_rad": [
+              -0.36472962738286463,
+              -0.43274247725136866
+            ],
+            "instantaneous_rms_difference_rad": [
+              0.4972802538103616,
+              0.5857262995694654
+            ],
+            "pair_order": [
+              "front",
+              "rear"
+            ]
+          }
+        },
+        "body_roll_mean_deg": -2.322838293674831,
+        "body_roll_rms_deg": 2.9463628782101456,
+        "mean_foot_body_position_m": [
+          [
+            0.2630408922285346,
+            0.09646492846811801,
+            -0.27561060382669195
+          ],
+          [
+            0.3770508974791768,
+            -0.05439410272777279,
+            -0.28604410393113394
+          ],
+          [
+            -0.3056620316735947,
+            0.10593215723818993,
+            -0.2115604411887754
+          ],
+          [
+            -0.35986969236464367,
+            -0.19538814171006308,
+            -0.2093257510683762
+          ]
+        ],
+        "mean_mirrored_foot_difference_m": [
+          [
+            -0.11401000525064237,
+            0.04207082574034536,
+            0.010433500104442068
+          ],
+          [
+            0.05420766069104893,
+            -0.08945598447187297,
+            -0.002234690120399112
+          ]
+        ],
+        "mean_abs_joint_torque_nm": [
+          1.5163587957052098,
+          0.834674680748106,
+          0.9956933944104321,
+          3.0302313711577082,
+          4.30616016461929,
+          2.7801430232019353,
+          3.5220263584403857,
+          4.880224739692481,
+          10.338735006089498,
+          3.023282691659489,
+          3.965856750589842,
+          2.9252950400109854
+        ],
+        "neutral_input_mirror_action_rms": 0.6458598375320435,
+        "neutral_action": [
+          -0.9985977411270142,
+          0.46364933252334595,
+          -0.5180487036705017,
+          0.7005167007446289,
+          -0.5776951313018799,
+          -0.7735962867736816,
+          0.08592255413532257,
+          -0.7735098600387573,
+          1.493924856185913,
+          0.4692518413066864,
+          0.6579866409301758,
+          1.254969835281372
+        ],
+        "neutral_action_mirror_residual": [
+          -0.5349484086036682,
+          -0.5349484086036682,
+          0.1824679970741272,
+          0.1824679970741272,
+          0.19590115547180176,
+          -0.19590115547180176,
+          0.8594323992729187,
+          -0.8594323992729187,
+          1.0246729850769043,
+          -1.0246729850769043,
+          -0.5969831943511963,
+          0.5969831943511963
+        ],
+        "recorded_input_mirror_probe": {
+          "samples": 69,
+          "saved_action_max_abs_reconstruction_error": 0.0,
+          "mirror_action_rms": 0.40908586978912354,
+          "per_joint_mirror_action_rms": [
+            0.2494744211435318,
+            0.2925689220428467,
+            0.31468698382377625,
+            0.474637508392334,
+            0.5981220006942749,
+            0.5961198210716248,
+            0.4189766049385071,
+            0.24420514702796936,
+            0.2716452181339264,
+            0.2969343960285187,
+            0.3973344564437866,
+            0.51763916015625
+          ],
+          "scope": "exact recorded noisy frame history; mirrored policy inputs, no second physics rollout"
+        },
+        "scope": "full post-warmup trial means; mean bias is phase averaged but stair sequencing can differ; neutral probe is off-trajectory and diagnostic only"
+      },
+      "gait_metrics": {
+        "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b1000-quick/desc",
+        "available": true,
+        "policy_sha256": "86ee5926dd77182f379b7ab5a48db8d876d03988063d98a248cc30cdb99248f7",
+        "trace_sha256": "008ba88722509c3919d861fe10b6b0daea06c3bb40c0b7489c12eb67880d3487",
+        "terrain": "desc",
+        "command": [
+          0.3,
+          0,
+          0
+        ],
+        "success": true,
+        "leg_order": [
+          "FL",
+          "FR",
+          "RL",
+          "RR"
+        ],
+        "warmup_s": 2.0,
+        "samples": 684,
+        "force_gates_n": {
+          "1": {
+            "samples_by_leg": [
+              610,
+              310,
+              617,
+              634
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.12303539178646246,
+              0.17232603450387823,
+              0.18724557602212924,
+              0.15795069627699257
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.13114754098360656,
+              0.24516129032258063,
+              0.32901134521880065,
+              0.2113564668769716
+            ]
+          },
+          "10": {
+            "samples_by_leg": [
+              560,
+              228,
+              530,
+              533
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.05526041998863954,
+              0.05726463141339139,
+              0.1322376519747432,
+              0.060104984539985196
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.07321428571428572,
+              0.11403508771929824,
+              0.2320754716981132,
+              0.09193245778611632
+            ]
+          },
+          "30": {
+            "samples_by_leg": [
+              469,
+              167,
+              270,
+              379
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.008090967764585011,
+              0.004153766067086656,
+              0.015308729318767887,
+              0.015144793362002534
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.0,
+              0.0,
+              0.002638522427440633
+            ]
+          },
+          "50": {
+            "samples_by_leg": [
+              429,
+              119,
+              116,
+              88
+            ],
+            "mean_foot_center_xy_speed_m_s": [
+              0.007847629301587859,
+              0.003428425426612316,
+              0.012255576571695485,
+              0.0133998529140892
+            ],
+            "fraction_speed_gt_0_10_m_s": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "foot_center_world_z_p95_minus_p5_cm": [
+          96.41733692198758,
+          97.39848197742764,
+          96.88642584999296,
+          96.91529477344953
+        ],
+        "loaded_foot_interval_fraction": [
+          0.9078947368421053,
+          0.47368421052631576,
+          0.9122807017543859,
+          0.9415204678362573
+        ],
+        "scope": "finite difference of post-step foot centers; gated by >threshold peak normal force in both adjacent 20 ms intervals; proxy, not contact-point tangential slip; world-z span is only a swing proxy on flat terrain"
+      }
+    }
+  }
+}

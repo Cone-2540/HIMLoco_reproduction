@@ -53,10 +53,14 @@ def main():
             with (directory / (suite + "-console.txt")).open("x") as stream:
                 subprocess.run([str(CPU), str(ROOT / "sim2sim/matrix.py"), "--policy", str(policy),
                                 "--config", str(directory / "config.json"), "--output", str(matrix_dir),
-                                "--seeds", "4", "--seed-start", "2000", "--suite", suite],
+                                "--seeds", "4", "--seed-start", "2000", "--suite", suite,
+                                "--record-policy-input", "--record-leg-contacts"],
                                cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=True)
             subprocess.run([str(CPU), str(ROOT / "sim2sim/posture_metrics.py"), str(matrix_dir), "--matrix",
                             "--stride", "5", "--output", str(directory / (suite + "-posture.json"))], cwd=ROOT, check=True)
+            for analyzer in ("symmetry_metrics", "gait_metrics"):
+                subprocess.run([str(CPU), str(ROOT / f"sim2sim/{analyzer}.py"), str(matrix_dir), "--matrix",
+                                "--output", str(directory / f"{suite}-{analyzer}.json")], cwd=ROOT, check=True)
             matrix = json.loads((matrix_dir / "matrix.json").read_text())
             score["results"][suite] = {"passed": matrix["passed"], "total": matrix["total"],
                                        "summary": matrix["summary"], "source": str(matrix_dir / "matrix.json")}
