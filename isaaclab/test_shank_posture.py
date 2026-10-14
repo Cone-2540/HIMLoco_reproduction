@@ -183,6 +183,27 @@ class SlowMirrorBiasTest(unittest.TestCase):
         env.scene["robot"].data.joint_pos[0, 4] += .6
         self.assertEqual(float(self.advance(env)), 0.)
 
+    def test_explicit_stair_exposure_scales_same_bias_and_preserves_default(self):
+        def simulate(flat, scale):
+            env = self.make_env()
+            env.scene["robot"].data.joint_pos[0, 4] += .6
+            with mock.patch.dict("sys.modules", {"stair_terrain": NS(
+                    flat_env_mask=lambda e: torch.full((1,), flat, dtype=torch.bool))}):
+                for _ in range(200):
+                    env.common_step_counter += 1
+                    env.episode_length_buf += 1
+                    value = slow_mirror_bias_l2(env, NS(name="robot", joint_ids=list(range(12))), stair_scale=scale)
+            return value
+        flat = simulate(True, 0.5)
+        stair = simulate(False, 0.5)
+        torch.testing.assert_close(stair, flat * .5)
+        self.assertEqual(float(simulate(False, 0)), 0.)
+
+    def test_invalid_stair_scale_fails_before_config_mutation(self):
+        for value in (-.1, 1.1, math.nan):
+            with self.assertRaisesRegex(ValueError, "symmetry_stair_scale"):
+                configure_stair_rewards(NS(), "posture_symmetric", symmetry_stair_scale=value)
+
 
 if __name__ == "__main__":
     unittest.main()

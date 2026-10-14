@@ -30,6 +30,7 @@ def main():
     p.add_argument("--posture-weight", type=float, default=-.08)
     p.add_argument("--reward-profile", choices=["posture", "posture_contact", "posture_symmetric"], default="posture")
     p.add_argument("--symmetry-weight", type=float, default=-.08)
+    p.add_argument("--symmetry-stair-scale", type=float, default=0.0)
     p.add_argument("--checkpoint", type=Path, default=BASELINE)
     p.add_argument("--start-iteration", type=int, default=860)
     p.add_argument("--seed", type=int, default=2001)
@@ -45,6 +46,7 @@ def main():
     train = ["train", "--terrain", "stairs", "--reward_profile", a.reward_profile,
              "--posture_weight", str(a.posture_weight), "--posture_angle_deg", "65",
              "--posture_swing_weight", ".25", "--symmetry_weight", str(a.symmetry_weight),
+             "--symmetry_stair_scale", str(a.symmetry_stair_scale),
              "--checkpoint", str(a.checkpoint.resolve()),
              "--stair_stage", "paper_mixed", "--start_level", "4", "--domain_profile", "deployment",
              "--learning_rate", ".00005", "--resume_learning_rate", ".00005", "--lr_schedule", "fixed",

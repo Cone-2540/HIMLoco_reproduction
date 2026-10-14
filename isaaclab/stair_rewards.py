@@ -238,12 +238,14 @@ def shank_horizontal_l2(
 
 
 def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
-                        deadband_rad=0.10, scale_rad=0.35, warmup_s=1.5):
-    """Penalize persistent L/R pose bias on flat straight-moving replay ONLY.
+                        deadband_rad=0.10, scale_rad=0.35, warmup_s=1.5,
+                        stair_scale=0.0):
+    """Penalize persistent L/R pose bias under straight-moving commands.
 
     Hip mirror differences are sums; thigh/calf differences are differences.
     A reset-safe EMA averages out normal alternating gait, with a deadband.
-    Turning, lateral commands, stairs and first 1.5 s are unpenalized. This is
+    Turning, lateral commands and first 1.5 s are unpenalized. The default
+    excludes stairs; an explicit stair_scale adds reduced stair exposure. This is
     reward state only; it is not added to actor inputs or controller targets.
     Selection MUST be grouped hip/thigh/calf and FL/FR/RL/RR within each group.
     """
@@ -252,7 +254,9 @@ def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
     robot = env.scene[asset_cfg.name]
     q = _tensor(robot.data.joint_pos)[:, asset_cfg.joint_ids]
     command = env.command_manager.get_command("base_velocity")
-    eligible = flat_env_mask(env) & (command[:, 0].abs() > 0.1)
+    flat = flat_env_mask(env)
+    terrain_weight = torch.where(flat, 1.0, float(stair_scale))
+    eligible = (terrain_weight > 0) & (command[:, 0].abs() > 0.1)
     eligible &= (command[:, 1].abs() < 0.05) & (command[:, 2].abs() < 0.15)
     difference = torch.stack((q[:, 0] + q[:, 1], q[:, 2] + q[:, 3],
                               q[:, 4] - q[:, 5], q[:, 6] - q[:, 7],
@@ -273,14 +277,14 @@ def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
         state["age"] = torch.where(reset, 0.0, state["age"] + float(env.step_dt))
         state["step"] = step
     error = ((state["mean"].abs() - deadband_rad).clamp_min(0.0) / scale_rad).square().clamp_max(4.0)
-    value = error.mean(1) * (eligible & (state["age"] >= warmup_s))
+    value = error.mean(1) * terrain_weight * (eligible & (state["age"] >= warmup_s))
     state["max_raw_cost_seen"] = torch.maximum(state["max_raw_cost_seen"], value.max())
     return value
 
 
 def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
                             posture_angle_deg=65.0, posture_swing_weight=0.25,
-                            symmetry_weight=-0.08):
+                            symmetry_weight=-0.08, symmetry_stair_scale=0.0):
     """Replace stock rewards before launch and return serializable provenance.
 
     Call after terrain configuration has installed ``base_height_scanner``.
@@ -308,6 +312,9 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             raise ValueError("posture_swing_weight must be in (0, 1]")
     if profile == "posture_symmetric" and (not math.isfinite(symmetry_weight) or symmetry_weight >= 0):
         raise ValueError("symmetry_weight must be finite and negative")
+    if profile == "posture_symmetric" and (not math.isfinite(symmetry_stair_scale)
+                                           or not 0.0 <= symmetry_stair_scale <= 1.0):
+        raise ValueError("symmetry_stair_scale must be finite in [0,1]")
     if profile == "stock":
         return {"profile": "stock", "source": "pinned Isaac Lab Go2 task"}
     sensor_name = "base_height_scanner"
@@ -380,7 +387,7 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             asset_cfg=SceneEntityCfg("robot", joint_names=[leg + "_" + part + "_joint"
                 for part in ("hip", "thigh", "calf") for leg in ("FL", "FR", "RL", "RR")],
                 preserve_order=True), time_constant_s=0.8, deadband_rad=0.10,
-            scale_rad=0.35, warmup_s=1.5)
+                scale_rad=0.35, warmup_s=1.5, stair_scale=symmetry_stair_scale)
     manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -494,14 +501,15 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
         }
     if profile == "posture_symmetric":
         manifest["adaptation_changes"].append(
-            "posture plus reset-safe EMA mirror joint bias on flat straight-moving replay only")
+            "posture plus reset-safe EMA mirror joint bias under straight-moving commands; explicit terrain weights")
         manifest["symmetry_penalty"] = {
             "term": "slow_mirror_bias", "weight": symmetry_weight,
             "time_constant_s": 0.8, "deadband_rad": 0.10, "scale_rad": 0.35,
             "warmup_s": 1.5, "raw_cost_cap": 4.0,
-            "scope": "terrain-masked flat replay; abs(vx)>0.1, abs(vy)<0.05, abs(yaw rate)<0.15",
+            "flat_scale": 1.0, "stair_scale": symmetry_stair_scale,
+            "scope": "flat scale1, explicit stair scale; abs(vx)>0.1, abs(vy)<0.05, abs(yaw rate)<0.15",
             "mirror": "hip sums, thigh/calf differences; front and rear pairs",
-            "limitations": "EMA reward state; does not prescribe a gait phase or guarantee symmetry on stairs",
+            "limitations": "EMA reward state; does not prescribe a gait phase or guarantee symmetry; different treads can justify temporary bias",
             "actor_inputs_added": False,
         }
     if profile in ("contact_vertical", "contact_clearance"):

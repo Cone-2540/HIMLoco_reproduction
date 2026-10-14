@@ -111,6 +111,7 @@ def main():
     parser.add_argument("--posture_angle_deg", type=float, default=65.0)
     parser.add_argument("--posture_swing_weight", type=float, default=0.25)
     parser.add_argument("--symmetry_weight", type=float, default=-0.08)
+    parser.add_argument("--symmetry_stair_scale", type=float, default=0.0)
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -238,7 +239,7 @@ def main():
         reward_manifest = configure_stair_rewards(
             cfg, args.reward_profile, posture_weight=args.posture_weight,
             posture_angle_deg=args.posture_angle_deg, posture_swing_weight=args.posture_swing_weight,
-            symmetry_weight=args.symmetry_weight)
+            symmetry_weight=args.symmetry_weight, symmetry_stair_scale=args.symmetry_stair_scale)
         cfg.episode_length_s = max(args.eval_seconds, 20.0)
         cfg.commands.base_velocity.heading_command = True
         cfg.commands.base_velocity.rel_heading_envs = 1.0
