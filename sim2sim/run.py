@@ -170,7 +170,7 @@ def run(args):
         from mujoco import viewer as mj_viewer
         viewer = mj_viewer.launch_passive(model, data)
     camera = mujoco.MjvCamera()
-    camera.azimuth, camera.elevation, camera.distance = 125, -18, 3.7
+    camera.azimuth, camera.elevation, camera.distance = args.video_azimuth, args.video_elevation, args.video_distance
     rows, dwell, passed, reason = [], 0., False, 'timeout'
     body_contact_steps, calf_contact_steps = 0, 0
     body_loaded_steps, calf_loaded_steps, calf_peak_force = 0, 0, 0.
@@ -375,6 +375,9 @@ def parse():
                    help='Save the exact pre-inference frame, including observation noise, for mirror diagnostics')
     p.add_argument('--record-leg-contacts',action='store_true',
                    help='Save per-leg calf/foot peak normal forces across each policy interval')
+    p.add_argument('--video-azimuth',type=float,default=125.)
+    p.add_argument('--video-elevation',type=float,default=-18.)
+    p.add_argument('--video-distance',type=float,default=3.7)
     for flag in ('heading-feedback','obs-noise','stock-joint-physics','conservative-calf','video','viewer'):
         p.add_argument('--'+flag,action='store_true')
     args = p.parse_args()
