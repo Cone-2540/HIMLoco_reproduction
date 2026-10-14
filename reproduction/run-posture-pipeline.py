@@ -110,7 +110,14 @@ def main():
         return Path(record["simulator_log_dir"])
 
     try:
-        job("smoke", 240, smoke)
+        smoke_source = job("smoke", 240, smoke)
+        if a.reward_profile == "posture_symmetric":
+            readback = json.loads((smoke_source / "config.json").read_text()).get(
+                "symmetry_reward_runtime_readback", {})
+            progress["symmetry_smoke_runtime_readback"] = readback
+            save()
+            if readback.get("maximum_raw_cost_seen", 0) <= 0:
+                raise RuntimeError("Symmetry smoke did not exercise a nonzero mature reward")
         source = job("train", max(3600, a.updates * 30), formal)
         for i in checkpoints:
             if not (source / f"model_{i}.pt").is_file():

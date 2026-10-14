@@ -261,7 +261,8 @@ def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
     state = getattr(env, key, None)
     if state is None:
         state = {"step": -1, "mean": torch.zeros_like(difference),
-                 "age": torch.zeros_like(command[:, 0])}
+                 "age": torch.zeros_like(command[:, 0]),
+                 "max_raw_cost_seen": torch.zeros((), device=q.device, dtype=q.dtype)}
         setattr(env, key, state)
     step = int(env.common_step_counter)
     if state["step"] != step:
@@ -272,7 +273,9 @@ def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
         state["age"] = torch.where(reset, 0.0, state["age"] + float(env.step_dt))
         state["step"] = step
     error = ((state["mean"].abs() - deadband_rad).clamp_min(0.0) / scale_rad).square().clamp_max(4.0)
-    return error.mean(1) * (eligible & (state["age"] >= warmup_s))
+    value = error.mean(1) * (eligible & (state["age"] >= warmup_s))
+    state["max_raw_cost_seen"] = torch.maximum(state["max_raw_cost_seen"], value.max())
+    return value
 
 
 def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,

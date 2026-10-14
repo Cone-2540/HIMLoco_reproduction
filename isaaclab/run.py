@@ -554,6 +554,15 @@ def main():
         if args.mode == "train":
             started = time.monotonic()
             runner.learn(args.max_iterations, init_at_random_ep_len=True)
+            if args.reward_profile == "posture_symmetric":
+                state = wrapped.env._him_slow_mirror_bias
+                metadata["symmetry_reward_runtime_readback"] = {
+                    "maximum_raw_cost_seen": float(state["max_raw_cost_seen"]),
+                    "maximum_current_eligible_age_s": float(state["age"].max()),
+                    "current_mature_environment_count": int((state["age"] >= 1.5).sum()),
+                    "scope": "reward was computed on physical rollout states; no added actor inputs",
+                }
+                (log_dir / "config.json").write_text(json.dumps(metadata, indent=2))
             model = runner.alg.actor_critic
             if not all(torch.isfinite(p).all().item() for p in model.parameters()):
                 raise RuntimeError("Non-finite trained parameters")
