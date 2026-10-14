@@ -28,6 +28,7 @@ def main():
     p.add_argument("--num-envs", type=int, default=8192)
     p.add_argument("--updates", type=int, default=120)
     p.add_argument("--posture-weight", type=float, default=-.08)
+    p.add_argument("--seed", type=int, default=2001)
     p.add_argument("--tag", default="20261014-weak")
     a = p.parse_args()
     if a.updates < 40 or a.updates % 40 or a.num_envs < 128 or any(c not in "0123456789abcdefghijklmnopqrstuvwxyz-" for c in a.tag):
@@ -40,7 +41,7 @@ def main():
              "--posture_swing_weight", ".25", "--checkpoint", str(BASELINE),
              "--stair_stage", "paper_mixed", "--start_level", "4", "--domain_profile", "deployment",
              "--learning_rate", ".00005", "--resume_learning_rate", ".00005", "--lr_schedule", "fixed",
-             "--seed", "2001", "--stair_speed_range", ".25", ".65",
+             "--seed", str(a.seed), "--stair_speed_range", ".25", ".65",
              "--flat_replay_fraction", ".25", "--flat_replay_all_directions"]
     smoke = [*train, "--num_envs", "128", "--steps_per_env", "24", "--max_iterations", "3", "--save_interval", "1"]
     formal = [*train, "--num_envs", str(a.num_envs), "--steps_per_env", "100",
