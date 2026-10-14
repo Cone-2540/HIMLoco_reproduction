@@ -284,7 +284,8 @@ def slow_mirror_bias_l2(env, asset_cfg, time_constant_s=0.8,
 
 def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
                             posture_angle_deg=65.0, posture_swing_weight=0.25,
-                            symmetry_weight=-0.08, symmetry_stair_scale=0.0):
+                            symmetry_weight=-0.08, symmetry_stair_scale=0.0,
+                            calf_contact_weight=0.0):
     """Replace stock rewards before launch and return serializable provenance.
 
     Call after terrain configuration has installed ``base_height_scanner``.
@@ -303,6 +304,10 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
     posture_profiles = ("posture", "posture_contact", "posture_symmetric")
     if profile not in ("faithful", "faithful_tracking", "tuned", *contact_profiles, *posture_profiles, "stock"):
         raise ValueError("Unknown stair reward profile")
+    if not math.isfinite(calf_contact_weight) or calf_contact_weight > 0:
+        raise ValueError("calf_contact_weight must be finite and non-positive")
+    if calf_contact_weight and profile not in ("posture", "posture_symmetric"):
+        raise ValueError("calf_contact_weight requires posture or posture_symmetric; do not double-count other contact profiles")
     if profile in posture_profiles:
         if not math.isfinite(posture_weight) or posture_weight >= 0.0:
             raise ValueError("posture_weight must be finite and negative")
@@ -388,6 +393,11 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
                 for part in ("hip", "thigh", "calf") for leg in ("FL", "FR", "RL", "RR")],
                 preserve_order=True), time_constant_s=0.8, deadband_rad=0.10,
                 scale_rad=0.35, warmup_s=1.5, stair_scale=symmetry_stair_scale)
+    if calf_contact_weight:
+        add("calf_loaded_contacts", mdp + "undesired_contacts", calf_contact_weight,
+            threshold=1.0, sensor_cfg=SceneEntityCfg("contact_forces",
+                body_names=[leg + "_calf" for leg in ("FL", "FR", "RL", "RR")],
+                preserve_order=True))
     manifest = {
         "profile": profile,
         "source": "released HIMLoco Go1 config/reward code at ef289ac",
@@ -511,6 +521,19 @@ def configure_stair_rewards(cfg, profile="faithful", *, posture_weight=-0.08,
             "mirror": "hip sums, thigh/calf differences; front and rear pairs",
             "limitations": "EMA reward state; does not prescribe a gait phase or guarantee symmetry; different treads can justify temporary bias",
             "actor_inputs_added": False,
+        }
+    if calf_contact_weight:
+        manifest["adaptation_changes"].append(
+            "additional calf loaded contact count; shank/symmetry and all released terms unchanged")
+        manifest["calf_contact_penalty"] = {
+            "term": "calf_loaded_contacts", "weight": calf_contact_weight, "threshold_n": 1.0,
+            "bodies": [leg + "_calf" for leg in ("FL", "FR", "RL", "RR")],
+            "function": mdp + "undesired_contacts",
+            "measurement": "count of calf bodies with retained-history net-normal-force norm >1N",
+            "weight_scaling": "manager multiplies weight by policy dt",
+            "reason": "loaded calf contact can occur below the shank-angle threshold on stairs",
+            "limitations": "frequency preference, not a collision impulse, clearance or damage guarantee",
+            "actor_inputs_controller_and_collision_geometry": "unchanged",
         }
     if profile in ("contact_vertical", "contact_clearance"):
         vertical = profile == "contact_vertical"

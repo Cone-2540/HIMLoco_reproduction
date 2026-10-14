@@ -112,6 +112,8 @@ def main():
     parser.add_argument("--posture_swing_weight", type=float, default=0.25)
     parser.add_argument("--symmetry_weight", type=float, default=-0.08)
     parser.add_argument("--symmetry_stair_scale", type=float, default=0.0)
+    parser.add_argument("--calf_contact_weight", type=float, default=0.0,
+                        help="Opt-in posture/symmetric profile calf contact count weight; <=0, default disabled.")
     parser.add_argument("--speed", type=float, default=0.3)
     parser.add_argument("--eval_seed", type=int, action="append")
     parser.add_argument("--eval_randomized", action="store_true")
@@ -239,7 +241,8 @@ def main():
         reward_manifest = configure_stair_rewards(
             cfg, args.reward_profile, posture_weight=args.posture_weight,
             posture_angle_deg=args.posture_angle_deg, posture_swing_weight=args.posture_swing_weight,
-            symmetry_weight=args.symmetry_weight, symmetry_stair_scale=args.symmetry_stair_scale)
+            symmetry_weight=args.symmetry_weight, symmetry_stair_scale=args.symmetry_stair_scale,
+            calf_contact_weight=args.calf_contact_weight)
         cfg.episode_length_s = max(args.eval_seconds, 20.0)
         cfg.commands.base_velocity.heading_command = True
         cfg.commands.base_velocity.rel_heading_envs = 1.0
@@ -430,6 +433,16 @@ def main():
                     raise ValueError(f"{name} must match exact Go2 bodies: {names}")
                 selections[name] = names
             metadata["resolved_separate_contact_body_selections"] = selections
+        if args.terrain == "stairs" and args.calf_contact_weight:
+            entity_cfg = wrapped.env.reward_manager.get_term_cfg("calf_loaded_contacts").params["sensor_cfg"]
+            entity = wrapped.env.scene[entity_cfg.name]
+            ids = entity_cfg.body_ids
+            names = list(entity.body_names[ids]) if isinstance(ids, slice) else [
+                entity.body_names[int(index)] for index in ids]
+            expected = [leg + "_calf" for leg in ("FL", "FR", "RL", "RR")]
+            if names != expected:
+                raise ValueError(f"Loaded calf reward body order mismatch: {names}")
+            metadata["resolved_loaded_calf_contact_bodies"] = names
         metadata["robot_body_names"] = list(robot.body_names)
         if args.terrain == "stairs" and args.reward_profile in ("contact", "contact_light", "contact_force", "contact_slide", "contact_vertical", "contact_clearance"):
             expected_names = {leg + "_" + part for leg in ("FL", "FR", "RL", "RR")

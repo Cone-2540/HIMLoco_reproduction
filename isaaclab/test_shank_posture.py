@@ -120,6 +120,33 @@ class ShankPostureTest(unittest.TestCase):
 
 
 class SlowMirrorBiasTest(unittest.TestCase):
+    def test_optional_loaded_calf_term_keeps_original_objective_and_excludes_feet(self):
+        managers = NS(RewardTermCfg=lambda **kw: NS(**kw),
+                      SceneEntityCfg=lambda name, **kw: NS(name=name, **kw))
+        def config():
+            return NS(scene=NS(base_height_scanner=object(), contact_forces=object()), rewards=NS())
+        with mock.patch.dict("sys.modules", {"isaaclab.managers": managers}):
+            before, after = config(), config()
+            original = configure_stair_rewards(before, "posture_symmetric", symmetry_stair_scale=.5)
+            added = configure_stair_rewards(after, "posture_symmetric", symmetry_stair_scale=.5,
+                                            calf_contact_weight=-.05)
+            self.assertEqual(added["weights"], {**original["weights"], "calf_loaded_contacts": -.05})
+            for name in original["weights"]:
+                self.assertEqual(vars(getattr(before.rewards, name)), vars(getattr(after.rewards, name)))
+            term = after.rewards.calf_loaded_contacts
+            self.assertEqual(term.func, "isaaclab.envs.mdp:undesired_contacts")
+            self.assertEqual(term.params["threshold"], 1.)
+            self.assertEqual(term.params["sensor_cfg"].body_names,
+                             [leg + "_calf" for leg in ("FL", "FR", "RL", "RR")])
+
+    def test_invalid_calf_weight_or_duplicate_profile_fails_before_mutation(self):
+        for value in (.1, math.nan, math.inf):
+            with self.assertRaisesRegex(ValueError, "calf_contact_weight"):
+                configure_stair_rewards(NS(), "posture_symmetric", calf_contact_weight=value)
+        for profile in ("faithful", "stock", "posture_contact", "contact"):
+            with self.assertRaisesRegex(ValueError, "calf_contact_weight"):
+                configure_stair_rewards(NS(), profile, calf_contact_weight=-.05)
+
     def test_profile_adds_only_slow_bias_and_validates_joint_order(self):
         managers = NS(RewardTermCfg=lambda **kw: NS(**kw),
                       SceneEntityCfg=lambda name, **kw: NS(name=name, **kw))

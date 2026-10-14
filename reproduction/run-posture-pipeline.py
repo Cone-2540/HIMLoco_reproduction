@@ -8,6 +8,7 @@ import argparse
 from datetime import datetime
 import hashlib
 import json
+import math
 from pathlib import Path
 import shutil
 import subprocess
@@ -31,6 +32,7 @@ def main():
     p.add_argument("--reward-profile", choices=["posture", "posture_contact", "posture_symmetric"], default="posture")
     p.add_argument("--symmetry-weight", type=float, default=-.08)
     p.add_argument("--symmetry-stair-scale", type=float, default=0.0)
+    p.add_argument("--calf-contact-weight", type=float, default=0.0)
     p.add_argument("--checkpoint", type=Path, default=BASELINE)
     p.add_argument("--start-iteration", type=int, default=860)
     p.add_argument("--seed", type=int, default=2001)
@@ -38,6 +40,9 @@ def main():
     a = p.parse_args()
     if a.updates < 40 or a.updates % 40 or a.num_envs < 128 or any(c not in "0123456789abcdefghijklmnopqrstuvwxyz-" for c in a.tag):
         p.error("Use updates divisible by 40, num-envs>=128 and a simple unique tag")
+    if (not math.isfinite(a.calf_contact_weight) or a.calf_contact_weight > 0
+            or (a.calf_contact_weight and a.reward_profile not in ("posture", "posture_symmetric"))):
+        p.error("Require calf contact weight <=0 on posture/symmetric profiles without duplicate contact terms")
     if hashlib.sha256(BASELINE.read_bytes()).hexdigest() != EXPECTED:
         raise SystemExit("Frozen baseline identity changed")
     if not a.checkpoint.is_file():
@@ -47,6 +52,7 @@ def main():
              "--posture_weight", str(a.posture_weight), "--posture_angle_deg", "65",
              "--posture_swing_weight", ".25", "--symmetry_weight", str(a.symmetry_weight),
              "--symmetry_stair_scale", str(a.symmetry_stair_scale),
+             "--calf_contact_weight", str(a.calf_contact_weight),
              "--checkpoint", str(a.checkpoint.resolve()),
              "--stair_stage", "paper_mixed", "--start_level", "4", "--domain_profile", "deployment",
              "--learning_rate", ".00005", "--resume_learning_rate", ".00005", "--lr_schedule", "fixed",
@@ -70,6 +76,7 @@ def main():
             "mujoco": {"development_seed_start": 2000, "seeds_per_case": 4,
                        "suites": ["nominal", "deployment"], "final_seed_start_reserved": 2400},
             "gpu_cap_mib": 15360, "original_model_overwrite": False,
+            "calf_contact_weight": a.calf_contact_weight,
             "automatic_model_promotion": False, "new_paper_reward_adaptation": a.reward_profile,
             "domain_training": "retain existing deployment distribution; domain tests follow nominal sim2sim"}
     if not a.execute:

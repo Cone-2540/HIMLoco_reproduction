@@ -1,0 +1,5436 @@
+{
+  "scope": "Saved post-step root/joint poses and preceding 20ms contact maxima; no new physics.",
+  "phase_definition": "startup t<2s; thereafter approach/flight/landing by saved XML root X with 0.25m margin",
+  "joint_bias_scope": "phase mean, allows alternating steps; flight bias can reflect different treads",
+  "contact_scope": "interval force >1N; peak normal force is not impact impulse or measured damage",
+  "leg_order": [
+    "FL",
+    "FR",
+    "RL",
+    "RR"
+  ],
+  "trials": [
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2000",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "e69d09d7537d8b1a4c00d50c2f184cacc725cb30640df66bd927819f0b75f53a",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.3147166844586e-06,
+          "last_root_x_m": 0.42485831027663223,
+          "mean_roll_deg": -0.10921709946935203,
+          "max_abs_roll_deg": 2.540241070820015,
+          "front_thigh_signed_mean_bias_rad": 0.37603484096613143,
+          "front_calf_signed_mean_bias_rad": -0.11754627992748885,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 588,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 13.760000000000751,
+          "first_root_x_m": 0.42907681038099915,
+          "last_root_x_m": 3.11033897130337,
+          "mean_roll_deg": -0.6463425332021263,
+          "max_abs_roll_deg": 3.3498098931127447,
+          "front_thigh_signed_mean_bias_rad": 0.5074547564788614,
+          "front_calf_signed_mean_bias_rad": -0.2877902308841099,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2001",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "43474ab9acf793fda8631bb9444a3a905d534f3e7ad0ac91336bbfa9568872f7",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00012034115052928282,
+          "last_root_x_m": 0.41050674018836036,
+          "mean_roll_deg": 0.19908026064985862,
+          "max_abs_roll_deg": 2.9427927317797717,
+          "front_thigh_signed_mean_bias_rad": 0.42115757133550974,
+          "front_calf_signed_mean_bias_rad": -0.19163781984620648,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 645,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 14.90000000000093,
+          "first_root_x_m": 0.41451374148420794,
+          "last_root_x_m": 3.1016103502115344,
+          "mean_roll_deg": 0.9172079584013142,
+          "max_abs_roll_deg": 2.626350446564564,
+          "front_thigh_signed_mean_bias_rad": 0.562884898730043,
+          "front_calf_signed_mean_bias_rad": -0.3559813797593853,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2002",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "25f1d95d8fb1ce6e211cd768fa070fcb40a3000d124808723d4732ae7cd1d703",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -7.670475157996445e-06,
+          "last_root_x_m": 0.44224442758329224,
+          "mean_roll_deg": 2.078318062271829,
+          "max_abs_roll_deg": 4.631464538061891,
+          "front_thigh_signed_mean_bias_rad": 0.3188355592909188,
+          "front_calf_signed_mean_bias_rad": -0.09336347785410982,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 578,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 13.56000000000072,
+          "first_root_x_m": 0.4471821222449264,
+          "last_root_x_m": 3.116728640984372,
+          "mean_roll_deg": 2.0254080925986684,
+          "max_abs_roll_deg": 4.647430550915702,
+          "front_thigh_signed_mean_bias_rad": 0.43640411475767427,
+          "front_calf_signed_mean_bias_rad": -0.2153552578162613,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.3-seed2003",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "flat",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "f470ac088e7460385f3ef001c38c0cbd14ff4fc0d331115a3a7484a8e43923ba",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.7687046574693965e-05,
+          "last_root_x_m": 0.4409528052094109,
+          "mean_roll_deg": 0.9653698322018113,
+          "max_abs_roll_deg": 3.5423058546699293,
+          "front_thigh_signed_mean_bias_rad": 0.40238407393177833,
+          "front_calf_signed_mean_bias_rad": -0.15217985753131116,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 565,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 13.30000000000068,
+          "first_root_x_m": 0.44544016394952074,
+          "last_root_x_m": 3.1128729462151483,
+          "mean_roll_deg": 1.5912970461113498,
+          "max_abs_roll_deg": 4.280169493154984,
+          "front_thigh_signed_mean_bias_rad": 0.6168071172380613,
+          "front_calf_signed_mean_bias_rad": -0.35883010242124164,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2000",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "95edbf18fd21d55049bdc9b831dedb76f690c763e3ef34b3041fb6536eb0433e",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.562414807197037e-05,
+          "last_root_x_m": 0.7845397207240999,
+          "mean_roll_deg": -0.4874101547837103,
+          "max_abs_roll_deg": 2.2448054606683865,
+          "front_thigh_signed_mean_bias_rad": 0.40410722901302054,
+          "front_calf_signed_mean_bias_rad": -0.12989748876650903,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 288,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 7.759999999999857,
+          "first_root_x_m": 0.7922011767775428,
+          "last_root_x_m": 3.2064440744313623,
+          "mean_roll_deg": -0.66808866821644,
+          "max_abs_roll_deg": 2.399581877752629,
+          "front_thigh_signed_mean_bias_rad": 0.6415603519272053,
+          "front_calf_signed_mean_bias_rad": -0.3552412127729607,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2001",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "461dff164e55a52ae43371e0a93f02e30a3b99c56fc614223406794c70edad74",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00018052819010562824,
+          "last_root_x_m": 0.7777423148924245,
+          "mean_roll_deg": 0.3968107810195551,
+          "max_abs_roll_deg": 2.8146272219656976,
+          "front_thigh_signed_mean_bias_rad": 0.5594683323871206,
+          "front_calf_signed_mean_bias_rad": -0.2678395022859646,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 299,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 7.979999999999852,
+          "first_root_x_m": 0.7854189315337848,
+          "last_root_x_m": 3.1917271791584296,
+          "mean_roll_deg": 0.7137761287847488,
+          "max_abs_roll_deg": 2.268561604071805,
+          "front_thigh_signed_mean_bias_rad": 0.6772299879886805,
+          "front_calf_signed_mean_bias_rad": -0.4338424262349236,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2002",
+      "success": false,
+      "reason": "fall_or_nonfinite",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "6b805e457c28930553b148d3d8823173d8e43b2ccd3314f55f2ca3c5bed489b8",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 49,
+          "first_time_s": 0.02,
+          "last_time_s": 0.9800000000000008,
+          "first_root_x_m": -9.1863538052534e-05,
+          "last_root_x_m": 0.038031428179201264,
+          "mean_roll_deg": 21.982352912786947,
+          "max_abs_roll_deg": 60.86449629391895,
+          "front_thigh_signed_mean_bias_rad": 0.03410963553193746,
+          "front_calf_signed_mean_bias_rad": -0.5950653694289174,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": false,
+          "samples": 0
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/flat-16x27-v0.5-seed2003",
+      "success": true,
+      "reason": "forward_progress_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "flat",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "e82a1fb64e413754180dbc04f322c6bed84b2a307e0077161864de9150e764b0",
+      "stair_flight_x_bounds_m": null,
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.789599239576167e-05,
+          "last_root_x_m": 0.7983725467062014,
+          "mean_roll_deg": 1.1427915808703244,
+          "max_abs_roll_deg": 3.6974138472185265,
+          "front_thigh_signed_mean_bias_rad": 0.5031437432121028,
+          "front_calf_signed_mean_bias_rad": -0.19263958744415047,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 282,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 7.639999999999859,
+          "first_root_x_m": 0.8061332963685033,
+          "last_root_x_m": 3.2047144917663215,
+          "mean_roll_deg": 1.3581839690260054,
+          "max_abs_roll_deg": 3.571324941424297,
+          "front_thigh_signed_mean_bias_rad": 0.7139878703248531,
+          "front_calf_signed_mean_bias_rad": -0.4148731792881862,
+          "any_calf_loaded_fraction": 0.010638297872340425,
+          "any_calf_max_peak_normal_force_n": 10.422444013129432,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.010638297872340425,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            10.422444013129432,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "398dad170f084cee74c428ed549c6edb46aa7e0aafe89a4dfc058007cd3a2b91",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318556e-05,
+          "last_root_x_m": 0.4239338864301515,
+          "mean_roll_deg": -0.18376089708426557,
+          "max_abs_roll_deg": 2.549322983093965,
+          "front_thigh_signed_mean_bias_rad": 0.378644727765913,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382533,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 117,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.33999999999993,
+          "first_root_x_m": 0.42822643443013436,
+          "last_root_x_m": 0.9486856738534374,
+          "mean_roll_deg": -0.9456673370464188,
+          "max_abs_roll_deg": 3.535563272041343,
+          "front_thigh_signed_mean_bias_rad": 0.5289394936685164,
+          "front_calf_signed_mean_bias_rad": -0.15731621788336023,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 440,
+          "first_time_s": 4.359999999999929,
+          "last_time_s": 13.140000000000654,
+          "first_root_x_m": 0.9534228305899699,
+          "last_root_x_m": 3.065100159460249,
+          "mean_roll_deg": -0.24580074939905283,
+          "max_abs_roll_deg": 4.6980068445876295,
+          "front_thigh_signed_mean_bias_rad": 0.8790542468655185,
+          "front_calf_signed_mean_bias_rad": -0.537937450520758,
+          "any_calf_loaded_fraction": 0.1159090909090909,
+          "any_calf_max_peak_normal_force_n": 96.57883785802119,
+          "calf_loaded_fraction_by_leg": [
+            0.022727272727272728,
+            0.09318181818181819,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            41.18305591848069,
+            96.57883785802119,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 57,
+          "first_time_s": 13.160000000000657,
+          "last_time_s": 14.280000000000832,
+          "first_root_x_m": 3.070620390328307,
+          "last_root_x_m": 3.325067172997839,
+          "mean_roll_deg": -0.12002522629099151,
+          "max_abs_roll_deg": 1.6806887642690804,
+          "front_thigh_signed_mean_bias_rad": 0.3968747580542776,
+          "front_calf_signed_mean_bias_rad": -0.2018871544651318,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "daacec97ac60063b43fb9e39ccd4169582fc36b0d615dbeb766671a81268e604",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742471,
+          "last_root_x_m": 0.41021832788610335,
+          "mean_roll_deg": 0.2179484213668418,
+          "max_abs_roll_deg": 2.9643849759622944,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090954,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472296,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 128,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.559999999999925,
+          "first_root_x_m": 0.4142158327059961,
+          "last_root_x_m": 0.9480277839430717,
+          "mean_roll_deg": 0.8118160772142231,
+          "max_abs_roll_deg": 2.5262231258608216,
+          "front_thigh_signed_mean_bias_rad": 0.5282129858699448,
+          "front_calf_signed_mean_bias_rad": -0.21874178221918356,
+          "any_calf_loaded_fraction": 0.0234375,
+          "any_calf_max_peak_normal_force_n": 86.30989763479754,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0234375,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            86.30989763479754,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 602,
+          "first_time_s": 4.579999999999925,
+          "last_time_s": 16.600000000000982,
+          "first_root_x_m": 0.9516951532289376,
+          "last_root_x_m": 3.068849744765553,
+          "mean_roll_deg": -0.6352135955989568,
+          "max_abs_roll_deg": 6.1412951186616915,
+          "front_thigh_signed_mean_bias_rad": 0.938643211302556,
+          "front_calf_signed_mean_bias_rad": -0.5485612112616651,
+          "any_calf_loaded_fraction": 0.20930232558139536,
+          "any_calf_max_peak_normal_force_n": 97.46597319843586,
+          "calf_loaded_fraction_by_leg": [
+            0.04817275747508306,
+            0.1362126245847176,
+            0.024916943521594685,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            96.31078740320551,
+            97.46597319843586,
+            31.425144577730915,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 52,
+          "first_time_s": 16.620000000000978,
+          "last_time_s": 17.640000000000775,
+          "first_root_x_m": 3.0727922676007475,
+          "last_root_x_m": 3.277769398434993,
+          "mean_roll_deg": 2.5574160483429766,
+          "max_abs_roll_deg": 4.308997079074412,
+          "front_thigh_signed_mean_bias_rad": 0.5556299226242521,
+          "front_calf_signed_mean_bias_rad": -0.3327139299755197,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "1db34a10448521db94634317ea21aa34308912506edc7d332aee98b1fddda6a7",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932349332e-05,
+          "last_root_x_m": 0.4433623704796618,
+          "mean_roll_deg": 2.054260906127292,
+          "max_abs_roll_deg": 4.506140907739563,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837198,
+          "front_calf_signed_mean_bias_rad": -0.0887140921849347,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 115,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.2999999999999305,
+          "first_root_x_m": 0.4481261095999513,
+          "last_root_x_m": 0.9478240624449434,
+          "mean_roll_deg": 1.492540045360737,
+          "max_abs_roll_deg": 3.5277086421796535,
+          "front_thigh_signed_mean_bias_rad": 0.3254520134629097,
+          "front_calf_signed_mean_bias_rad": -0.04222465536675536,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 455,
+          "first_time_s": 4.31999999999993,
+          "last_time_s": 13.400000000000695,
+          "first_root_x_m": 0.9518026964080726,
+          "last_root_x_m": 3.06866740421337,
+          "mean_roll_deg": 1.3899598837387894,
+          "max_abs_roll_deg": 4.594585965256452,
+          "front_thigh_signed_mean_bias_rad": 0.8277907899473855,
+          "front_calf_signed_mean_bias_rad": -0.42209850559199485,
+          "any_calf_loaded_fraction": 0.07252747252747253,
+          "any_calf_max_peak_normal_force_n": 143.2607711219341,
+          "calf_loaded_fraction_by_leg": [
+            0.026373626373626374,
+            0.046153846153846156,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            49.242921293247456,
+            143.2607711219341,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 46,
+          "first_time_s": 13.420000000000698,
+          "last_time_s": 14.320000000000839,
+          "first_root_x_m": 3.0730149333232157,
+          "last_root_x_m": 3.2984614252127256,
+          "mean_roll_deg": 2.4842231273660507,
+          "max_abs_roll_deg": 3.8405526866291075,
+          "front_thigh_signed_mean_bias_rad": 0.3971344229071317,
+          "front_calf_signed_mean_bias_rad": -0.20169114305367675,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.3-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "427ce14f84c1ab12e287a8427a4edd766195c82a6d79d9e8e31ce4950bf8995f",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.441251884768183e-05,
+          "last_root_x_m": 0.44249084786788645,
+          "mean_roll_deg": 1.058948768090186,
+          "max_abs_roll_deg": 3.6819214084454948,
+          "front_thigh_signed_mean_bias_rad": 0.3937978550290044,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271304,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 111,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.219999999999932,
+          "first_root_x_m": 0.4469349311688938,
+          "last_root_x_m": 0.9469998996009165,
+          "mean_roll_deg": 1.5207366275394352,
+          "max_abs_roll_deg": 3.385424965178572,
+          "front_thigh_signed_mean_bias_rad": 0.5260223591038994,
+          "front_calf_signed_mean_bias_rad": -0.2146098509629009,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 485,
+          "first_time_s": 4.239999999999932,
+          "last_time_s": 13.920000000000776,
+          "first_root_x_m": 0.9515915561949473,
+          "last_root_x_m": 3.0684587570601107,
+          "mean_roll_deg": -0.006217937912834273,
+          "max_abs_roll_deg": 3.2308439743333524,
+          "front_thigh_signed_mean_bias_rad": 0.9521070498488696,
+          "front_calf_signed_mean_bias_rad": -0.5476436705389184,
+          "any_calf_loaded_fraction": 0.2309278350515464,
+          "any_calf_max_peak_normal_force_n": 77.92220584582282,
+          "calf_loaded_fraction_by_leg": [
+            0.03711340206185567,
+            0.19381443298969073,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            54.95205548443723,
+            77.92220584582282,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 55,
+          "first_time_s": 13.94000000000078,
+          "last_time_s": 15.020000000000948,
+          "first_root_x_m": 3.073168823938968,
+          "last_root_x_m": 3.3286537951190076,
+          "mean_roll_deg": 1.7781402410257483,
+          "max_abs_roll_deg": 3.1083251911601515,
+          "front_thigh_signed_mean_bias_rad": 0.6093526483779254,
+          "front_calf_signed_mean_bias_rad": -0.3611068887628272,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "70ab73201463fe6d88e989da4ff24234f6210c2ee35d6e7d7cd714a27eba6541",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.713555372660318e-05,
+          "last_root_x_m": 0.7847496977066292,
+          "mean_roll_deg": -0.5290150802510094,
+          "max_abs_roll_deg": 2.2248643663439025,
+          "front_thigh_signed_mean_bias_rad": 0.4049599675281654,
+          "front_calf_signed_mean_bias_rad": -0.12944444295032875,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 20,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.399999999999971,
+          "first_root_x_m": 0.792444567540035,
+          "last_root_x_m": 0.9440889849953614,
+          "mean_roll_deg": -0.6544595286689742,
+          "max_abs_roll_deg": 1.427853861213253,
+          "front_thigh_signed_mean_bias_rad": 0.24812241034312352,
+          "front_calf_signed_mean_bias_rad": 0.48068643612589546,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 282,
+          "first_time_s": 2.4199999999999706,
+          "last_time_s": 8.039999999999857,
+          "first_root_x_m": 0.9518362876477742,
+          "last_root_x_m": 3.065706208387837,
+          "mean_roll_deg": -1.4147821135084606,
+          "max_abs_roll_deg": 4.255772138276505,
+          "front_thigh_signed_mean_bias_rad": 0.9811149751230153,
+          "front_calf_signed_mean_bias_rad": -0.4516333771440375,
+          "any_calf_loaded_fraction": 0.04609929078014184,
+          "any_calf_max_peak_normal_force_n": 84.22483823614552,
+          "calf_loaded_fraction_by_leg": [
+            0.03900709219858156,
+            0.0070921985815602835,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            84.22483823614552,
+            50.40025328753808,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 47,
+          "first_time_s": 8.05999999999986,
+          "last_time_s": 8.980000000000004,
+          "first_root_x_m": 3.073705782438067,
+          "last_root_x_m": 3.464670961590675,
+          "mean_roll_deg": -0.3831947935250396,
+          "max_abs_roll_deg": 1.4892648945251796,
+          "front_thigh_signed_mean_bias_rad": 0.5022307480389373,
+          "front_calf_signed_mean_bias_rad": -0.2103511643152909,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "0c127b48fb4a74e200eaa423a96317186445630fe4333662312aea9f4629d872",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00017832941613263862,
+          "last_root_x_m": 0.7782645501136819,
+          "mean_roll_deg": 0.37824316128248625,
+          "max_abs_roll_deg": 2.8721857900738534,
+          "front_thigh_signed_mean_bias_rad": 0.5605276007544951,
+          "front_calf_signed_mean_bias_rad": -0.2680828573417216,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 24,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.4799999999999693,
+          "first_root_x_m": 0.7859269373516946,
+          "last_root_x_m": 0.948450697777356,
+          "mean_roll_deg": 0.606787245163651,
+          "max_abs_roll_deg": 1.6660122945194424,
+          "front_thigh_signed_mean_bias_rad": 0.3483393624310103,
+          "front_calf_signed_mean_bias_rad": 0.32243187382248034,
+          "any_calf_loaded_fraction": 0.20833333333333334,
+          "any_calf_max_peak_normal_force_n": 76.4682405510192,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.20833333333333334,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            76.4682405510192,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 307,
+          "first_time_s": 2.499999999999969,
+          "last_time_s": 8.619999999999948,
+          "first_root_x_m": 0.9539762430187916,
+          "last_root_x_m": 3.0671096784456893,
+          "mean_roll_deg": -0.875915037790572,
+          "max_abs_roll_deg": 5.455095690025172,
+          "front_thigh_signed_mean_bias_rad": 1.1323400521476144,
+          "front_calf_signed_mean_bias_rad": -0.5995417452638431,
+          "any_calf_loaded_fraction": 0.2964169381107492,
+          "any_calf_max_peak_normal_force_n": 98.93925319427267,
+          "calf_loaded_fraction_by_leg": [
+            0.06188925081433225,
+            0.1986970684039088,
+            0.035830618892508145,
+            0.006514657980456026
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            87.80270760866993,
+            74.00095835507824,
+            98.93925319427267,
+            22.988543134372797
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 36,
+          "first_time_s": 8.63999999999995,
+          "last_time_s": 9.34000000000006,
+          "first_root_x_m": 3.0761677566587213,
+          "last_root_x_m": 3.3566207899289173,
+          "mean_roll_deg": 1.578563128036222,
+          "max_abs_roll_deg": 3.540798522883565,
+          "front_thigh_signed_mean_bias_rad": 0.6966272929533021,
+          "front_calf_signed_mean_bias_rad": -0.40951877399357667,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2002",
+      "success": false,
+      "reason": "fall_or_nonfinite",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "3e1ca39132c4a3abdaf4b433f01b47560592cc269477c2dc91587285346b0d03",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 54,
+          "first_time_s": 0.02,
+          "last_time_s": 1.079999999999999,
+          "first_root_x_m": -9.884010091379534e-05,
+          "last_root_x_m": 0.07611354510759265,
+          "mean_roll_deg": 20.016825176297957,
+          "max_abs_roll_deg": 60.630457600612125,
+          "front_thigh_signed_mean_bias_rad": -0.036849746905429234,
+          "front_calf_signed_mean_bias_rad": -0.5553242620426997,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": false,
+          "samples": 0
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-16x27-v0.5-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "asc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "0827aefc65ad123f5b1bad6beade8e6a7203ee975070fa58f9306a00a4b88805",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.434728061886728e-05,
+          "last_root_x_m": 0.7982441503087013,
+          "mean_roll_deg": 1.2248501776803606,
+          "max_abs_roll_deg": 3.799001250966794,
+          "front_thigh_signed_mean_bias_rad": 0.5017309667977282,
+          "front_calf_signed_mean_bias_rad": -0.1891634585625713,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 26,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.5199999999999685,
+          "first_root_x_m": 0.8061017434911714,
+          "last_root_x_m": 0.944618176835396,
+          "mean_roll_deg": 0.3370291496253777,
+          "max_abs_roll_deg": 3.2614309689279937,
+          "front_thigh_signed_mean_bias_rad": 0.13522273550558606,
+          "front_calf_signed_mean_bias_rad": 0.40990462248830994,
+          "any_calf_loaded_fraction": 0.038461538461538464,
+          "any_calf_max_peak_normal_force_n": 52.06197114851637,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.038461538461538464,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            52.06197114851637,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 279,
+          "first_time_s": 2.539999999999968,
+          "last_time_s": 8.099999999999866,
+          "first_root_x_m": 0.9511677228030324,
+          "last_root_x_m": 3.0645412102950487,
+          "mean_roll_deg": -0.38256190800145123,
+          "max_abs_roll_deg": 4.1957497935576304,
+          "front_thigh_signed_mean_bias_rad": 1.086037418270463,
+          "front_calf_signed_mean_bias_rad": -0.564929885833378,
+          "any_calf_loaded_fraction": 0.2078853046594982,
+          "any_calf_max_peak_normal_force_n": 132.3275067703633,
+          "calf_loaded_fraction_by_leg": [
+            0.053763440860215055,
+            0.15412186379928317,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            132.3275067703633,
+            48.03694200058491,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 44,
+          "first_time_s": 8.11999999999987,
+          "last_time_s": 8.980000000000004,
+          "first_root_x_m": 3.07343832196769,
+          "last_root_x_m": 3.4433360345256525,
+          "mean_roll_deg": 1.7938025786680567,
+          "max_abs_roll_deg": 3.098408781607747,
+          "front_thigh_signed_mean_bias_rad": 0.664089760397595,
+          "front_calf_signed_mean_bias_rad": -0.3576052477777239,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "8677fd79cfd34645c695a59d3d921b1feb4d8664f45c7c18cfc3da8980d4a119",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318208e-05,
+          "last_root_x_m": 0.42393388643015173,
+          "mean_roll_deg": -0.18376089708420973,
+          "max_abs_roll_deg": 2.5493229830940023,
+          "front_thigh_signed_mean_bias_rad": 0.3786447277659129,
+          "front_calf_signed_mean_bias_rad": -0.1153489687538244,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 114,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.279999999999931,
+          "first_root_x_m": 0.4282264344301347,
+          "last_root_x_m": 0.9499931021493593,
+          "mean_roll_deg": -0.8210182979463589,
+          "max_abs_roll_deg": 3.535563272041018,
+          "front_thigh_signed_mean_bias_rad": 0.5535796933525449,
+          "front_calf_signed_mean_bias_rad": -0.3564471471731719,
+          "any_calf_loaded_fraction": 0.19298245614035087,
+          "any_calf_max_peak_normal_force_n": 45.176870072770114,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.19298245614035087,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.176870072770114,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 494,
+          "first_time_s": 4.2999999999999305,
+          "last_time_s": 14.160000000000814,
+          "first_root_x_m": 0.955013704846545,
+          "last_root_x_m": 3.068615950167695,
+          "mean_roll_deg": 0.6551694747656476,
+          "max_abs_roll_deg": 4.881576446768636,
+          "front_thigh_signed_mean_bias_rad": 0.3175522491700036,
+          "front_calf_signed_mean_bias_rad": -0.2871583126738554,
+          "any_calf_loaded_fraction": 0.5020242914979757,
+          "any_calf_max_peak_normal_force_n": 112.25410180014244,
+          "calf_loaded_fraction_by_leg": [
+            0.18218623481781376,
+            0.3866396761133603,
+            0.008097165991902834,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            92.27895453425297,
+            112.25410180014244,
+            27.791538471859738,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 69,
+          "first_time_s": 14.180000000000817,
+          "last_time_s": 15.54000000000103,
+          "first_root_x_m": 3.0724799111260657,
+          "last_root_x_m": 3.3837693493609824,
+          "mean_roll_deg": -1.3135037071857725,
+          "max_abs_roll_deg": 2.7096446951832682,
+          "front_thigh_signed_mean_bias_rad": 0.4478703524998846,
+          "front_calf_signed_mean_bias_rad": -0.28800129745554703,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "8a899f044bf7a6dbac4520bd9c64135585d6ba1aa5af6c663c49cfbae360b10b",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742511,
+          "last_root_x_m": 0.4102183278861016,
+          "mean_roll_deg": 0.21794842136684103,
+          "max_abs_roll_deg": 2.9643849759623015,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090959,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472346,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 124,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.479999999999927,
+          "first_root_x_m": 0.4142158327059945,
+          "last_root_x_m": 0.9490983231688487,
+          "mean_roll_deg": 1.1267246273096183,
+          "max_abs_roll_deg": 3.0066446812037793,
+          "front_thigh_signed_mean_bias_rad": 0.595735348533392,
+          "front_calf_signed_mean_bias_rad": -0.4257233333765899,
+          "any_calf_loaded_fraction": 0.13709677419354838,
+          "any_calf_max_peak_normal_force_n": 64.49380665721998,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.13709677419354838,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            64.49380665721998,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 478,
+          "first_time_s": 4.499999999999926,
+          "last_time_s": 14.040000000000795,
+          "first_root_x_m": 0.9533987200066648,
+          "last_root_x_m": 3.0695355863690064,
+          "mean_roll_deg": 1.4975776888650818,
+          "max_abs_roll_deg": 5.572162340542699,
+          "front_thigh_signed_mean_bias_rad": 0.26433238659339076,
+          "front_calf_signed_mean_bias_rad": -0.23752597894812075,
+          "any_calf_loaded_fraction": 0.5502092050209205,
+          "any_calf_max_peak_normal_force_n": 113.61850330414575,
+          "calf_loaded_fraction_by_leg": [
+            0.3682008368200837,
+            0.3723849372384937,
+            0.0020920502092050207,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            106.70406185817474,
+            113.61850330414575,
+            51.67237864899106,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 62,
+          "first_time_s": 14.060000000000798,
+          "last_time_s": 15.280000000000989,
+          "first_root_x_m": 3.0748598734611186,
+          "last_root_x_m": 3.3486071994499897,
+          "mean_roll_deg": -0.5448197724879855,
+          "max_abs_roll_deg": 2.696103310547093,
+          "front_thigh_signed_mean_bias_rad": 0.5426181969934852,
+          "front_calf_signed_mean_bias_rad": -0.3545348621911883,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "ccd1c64b98ea7188de94c35f5b0e534e5ad45720e4546a55ff2c66a61e1ea205",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932350426e-05,
+          "last_root_x_m": 0.44336237047966226,
+          "mean_roll_deg": 2.054260906127273,
+          "max_abs_roll_deg": 4.506140907739588,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837201,
+          "front_calf_signed_mean_bias_rad": -0.08871409218493471,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 110,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.199999999999933,
+          "first_root_x_m": 0.44812610959995175,
+          "last_root_x_m": 0.9449699381403048,
+          "mean_roll_deg": 1.4299465401429388,
+          "max_abs_roll_deg": 2.9250134790100124,
+          "front_thigh_signed_mean_bias_rad": 0.43328427411965725,
+          "front_calf_signed_mean_bias_rad": -0.24610059303626713,
+          "any_calf_loaded_fraction": 0.02727272727272727,
+          "any_calf_max_peak_normal_force_n": 24.49318484953445,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.02727272727272727,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            24.49318484953445,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 492,
+          "first_time_s": 4.219999999999932,
+          "last_time_s": 14.040000000000795,
+          "first_root_x_m": 0.9505040773023209,
+          "last_root_x_m": 3.0661631880345595,
+          "mean_roll_deg": 1.1411169576188533,
+          "max_abs_roll_deg": 5.36323223655151,
+          "front_thigh_signed_mean_bias_rad": 0.37025127095984783,
+          "front_calf_signed_mean_bias_rad": -0.2237461270656546,
+          "any_calf_loaded_fraction": 0.5101626016260162,
+          "any_calf_max_peak_normal_force_n": 136.26638323927241,
+          "calf_loaded_fraction_by_leg": [
+            0.09349593495934959,
+            0.42886178861788615,
+            0.054878048780487805,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            47.07202805427224,
+            136.26638323927241,
+            69.22188797620237,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 65,
+          "first_time_s": 14.060000000000798,
+          "last_time_s": 15.340000000000998,
+          "first_root_x_m": 3.070916742966031,
+          "last_root_x_m": 3.3898775107821715,
+          "mean_roll_deg": 2.72629804933012,
+          "max_abs_roll_deg": 4.572068125497181,
+          "front_thigh_signed_mean_bias_rad": 0.33077385727707503,
+          "front_calf_signed_mean_bias_rad": -0.16556458577113436,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.3-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "d65528d376ab112fd02755f9f207292e13110f1ddd8cf26c3d252de8bd81e4f5",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.441251884768226e-05,
+          "last_root_x_m": 0.44249084786788667,
+          "mean_roll_deg": 1.0589487680902736,
+          "max_abs_roll_deg": 3.6819214084455134,
+          "front_thigh_signed_mean_bias_rad": 0.3937978550290036,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271076,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 108,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.1599999999999335,
+          "first_root_x_m": 0.44693493116889405,
+          "last_root_x_m": 0.9454277882837674,
+          "mean_roll_deg": 1.5301176133039944,
+          "max_abs_roll_deg": 3.3854249651784225,
+          "front_thigh_signed_mean_bias_rad": 0.6337191872794555,
+          "front_calf_signed_mean_bias_rad": -0.3990436453151877,
+          "any_calf_loaded_fraction": 0.037037037037037035,
+          "any_calf_max_peak_normal_force_n": 65.59782452853423,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.037037037037037035,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            65.59782452853423,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 430,
+          "first_time_s": 4.179999999999933,
+          "last_time_s": 12.760000000000595,
+          "first_root_x_m": 0.9505727721456718,
+          "last_root_x_m": 3.0671178452385366,
+          "mean_roll_deg": 0.4236596121749686,
+          "max_abs_roll_deg": 7.776365604926152,
+          "front_thigh_signed_mean_bias_rad": 0.40082147041169974,
+          "front_calf_signed_mean_bias_rad": -0.2791276514853914,
+          "any_calf_loaded_fraction": 0.5209302325581395,
+          "any_calf_max_peak_normal_force_n": 129.2449510566472,
+          "calf_loaded_fraction_by_leg": [
+            0.1930232558139535,
+            0.4255813953488372,
+            0.004651162790697674,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            98.0604009751877,
+            129.2449510566472,
+            19.725409642016622,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 71,
+          "first_time_s": 12.780000000000598,
+          "last_time_s": 14.180000000000817,
+          "first_root_x_m": 3.0713482319681544,
+          "last_root_x_m": 3.4146935771414135,
+          "mean_roll_deg": 1.2545951624027027,
+          "max_abs_roll_deg": 3.7425303159276955,
+          "front_thigh_signed_mean_bias_rad": 0.5586007826874336,
+          "front_calf_signed_mean_bias_rad": -0.3293618940921691,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "90e9389d83f6844986bac4fd238d7750f7ed22576746acc09baba18d32265785",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.713555372660318e-05,
+          "last_root_x_m": 0.78474969770663,
+          "mean_roll_deg": -0.5290150802515251,
+          "max_abs_roll_deg": 2.224864366343871,
+          "front_thigh_signed_mean_bias_rad": 0.4049599675281696,
+          "front_calf_signed_mean_bias_rad": -0.1294444429503344,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 18,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.359999999999972,
+          "first_root_x_m": 0.7924445675400358,
+          "last_root_x_m": 0.944483397530432,
+          "mean_roll_deg": -0.5521839452850406,
+          "max_abs_roll_deg": 1.0279496047901462,
+          "front_thigh_signed_mean_bias_rad": 0.7154738384973958,
+          "front_calf_signed_mean_bias_rad": -0.379831904627432,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 283,
+          "first_time_s": 2.3799999999999715,
+          "last_time_s": 8.019999999999854,
+          "first_root_x_m": 0.9538537791647994,
+          "last_root_x_m": 3.064743881157649,
+          "mean_roll_deg": 1.051584934780921,
+          "max_abs_roll_deg": 4.679491707389799,
+          "front_thigh_signed_mean_bias_rad": 0.3238328832697472,
+          "front_calf_signed_mean_bias_rad": -0.2559909367367435,
+          "any_calf_loaded_fraction": 0.5547703180212014,
+          "any_calf_max_peak_normal_force_n": 103.93906781753547,
+          "calf_loaded_fraction_by_leg": [
+            0.38162544169611307,
+            0.22968197879858657,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            95.08715619724396,
+            103.93906781753547,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 52,
+          "first_time_s": 8.039999999999857,
+          "last_time_s": 9.060000000000016,
+          "first_root_x_m": 3.071059920534222,
+          "last_root_x_m": 3.4889986869105827,
+          "mean_roll_deg": -0.39413556772236397,
+          "max_abs_roll_deg": 1.513426255613569,
+          "front_thigh_signed_mean_bias_rad": 0.6601750300587561,
+          "front_calf_signed_mean_bias_rad": -0.3631156225206388,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "71880c38c2e617ca7b8e33698f3f94371380106be34eb9008af20e33d9184977",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.000178329416132639,
+          "last_root_x_m": 0.7782645501136755,
+          "mean_roll_deg": 0.37824316128157315,
+          "max_abs_roll_deg": 2.872185790073809,
+          "front_thigh_signed_mean_bias_rad": 0.5605276007544991,
+          "front_calf_signed_mean_bias_rad": -0.26808285734173376,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 20,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.399999999999971,
+          "first_root_x_m": 0.7859269373516886,
+          "last_root_x_m": 0.9468491040668676,
+          "mean_roll_deg": 0.5645580806739032,
+          "max_abs_roll_deg": 2.041813474916413,
+          "front_thigh_signed_mean_bias_rad": 0.7516381148476415,
+          "front_calf_signed_mean_bias_rad": -0.548117532343232,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 269,
+          "first_time_s": 2.4199999999999706,
+          "last_time_s": 7.779999999999856,
+          "first_root_x_m": 0.9556065879996907,
+          "last_root_x_m": 3.066698087643368,
+          "mean_roll_deg": 0.783859271813403,
+          "max_abs_roll_deg": 4.808790528004402,
+          "front_thigh_signed_mean_bias_rad": 0.3701838847166967,
+          "front_calf_signed_mean_bias_rad": -0.26164323375088844,
+          "any_calf_loaded_fraction": 0.5018587360594795,
+          "any_calf_max_peak_normal_force_n": 117.30103239664734,
+          "calf_loaded_fraction_by_leg": [
+            0.2899628252788104,
+            0.2825278810408922,
+            0.01486988847583643,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            103.14568803388843,
+            117.30103239664734,
+            81.22457221406626,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 48,
+          "first_time_s": 7.799999999999856,
+          "last_time_s": 8.739999999999966,
+          "first_root_x_m": 3.074530940105043,
+          "last_root_x_m": 3.4583541597463525,
+          "mean_roll_deg": -1.7169194276393809,
+          "max_abs_roll_deg": 4.370265878256816,
+          "front_thigh_signed_mean_bias_rad": 0.6592304005741448,
+          "front_calf_signed_mean_bias_rad": -0.39196689303849735,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2002",
+      "success": false,
+      "reason": "fall_or_nonfinite",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "d7dcded3fe520f417aacfcad8e233e23f44ecc458d88f476b68ce031268b03e9",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 54,
+          "first_time_s": 0.02,
+          "last_time_s": 1.079999999999999,
+          "first_root_x_m": -9.884010091379598e-05,
+          "last_root_x_m": 0.07611354510761227,
+          "mean_roll_deg": 20.01682517629118,
+          "max_abs_roll_deg": 60.63045760057709,
+          "front_thigh_signed_mean_bias_rad": -0.03684974690544567,
+          "front_calf_signed_mean_bias_rad": -0.5553242620426725,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": false,
+          "samples": 0
+        },
+        "flight": {
+          "available": false,
+          "samples": 0
+        },
+        "landing": {
+          "available": false,
+          "samples": 0
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-16x27-v0.5-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "desc",
+      "command": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "c82e7cc2c1c726365056c3bc0303b28728b1b4eb021ecb84d52586e86b62d2a1",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.8200000000000003
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -9.434728061886766e-05,
+          "last_root_x_m": 0.7982441503087061,
+          "mean_roll_deg": 1.2248501776808893,
+          "max_abs_roll_deg": 3.7990012509668163,
+          "front_thigh_signed_mean_bias_rad": 0.5017309667977236,
+          "front_calf_signed_mean_bias_rad": -0.18916345856256378,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 17,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 2.3399999999999723,
+          "first_root_x_m": 0.8061017434911756,
+          "last_root_x_m": 0.9469987048777717,
+          "mean_roll_deg": 1.4878956845726936,
+          "max_abs_roll_deg": 2.473277491617975,
+          "front_thigh_signed_mean_bias_rad": 0.5440760416928137,
+          "front_calf_signed_mean_bias_rad": -0.37941205213640977,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 272,
+          "first_time_s": 2.359999999999972,
+          "last_time_s": 7.779999999999856,
+          "first_root_x_m": 0.9559744140449439,
+          "last_root_x_m": 3.0636771704915557,
+          "mean_roll_deg": 1.0017033598771001,
+          "max_abs_roll_deg": 7.1354780179168396,
+          "front_thigh_signed_mean_bias_rad": 0.36018951341371147,
+          "front_calf_signed_mean_bias_rad": -0.29967052188476384,
+          "any_calf_loaded_fraction": 0.6617647058823529,
+          "any_calf_max_peak_normal_force_n": 144.89247456121547,
+          "calf_loaded_fraction_by_leg": [
+            0.47058823529411764,
+            0.34191176470588236,
+            0.0,
+            0.003676470588235294
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            144.89247456121547,
+            140.31667885414274,
+            0.0,
+            17.496675776708862
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 50,
+          "first_time_s": 7.799999999999856,
+          "last_time_s": 8.779999999999973,
+          "first_root_x_m": 3.070514795361063,
+          "last_root_x_m": 3.4891058455592914,
+          "mean_roll_deg": -0.024205254541264997,
+          "max_abs_roll_deg": 2.290090151288977,
+          "front_thigh_signed_mean_bias_rad": 0.8114060850750335,
+          "front_calf_signed_mean_bias_rad": -0.4644392428560233,
+          "any_calf_loaded_fraction": 0.14,
+          "any_calf_max_peak_normal_force_n": 33.03552891487707,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.14,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            33.03552891487707,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "4277055cdd44178b8ad7948929785a4e6c6cca00b014829c2a5cfd9a3e148fb7",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318556e-05,
+          "last_root_x_m": 0.4239338864301515,
+          "mean_roll_deg": -0.18376089708426557,
+          "max_abs_roll_deg": 2.549322983093965,
+          "front_thigh_signed_mean_bias_rad": 0.378644727765913,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382533,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 116,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.31999999999993,
+          "first_root_x_m": 0.42822643443013436,
+          "last_root_x_m": 0.9458593710438135,
+          "mean_roll_deg": -0.9131849902726391,
+          "max_abs_roll_deg": 3.535563272041343,
+          "front_thigh_signed_mean_bias_rad": 0.5176127437415793,
+          "front_calf_signed_mean_bias_rad": -0.15718202557325442,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 509,
+          "first_time_s": 4.33999999999993,
+          "last_time_s": 14.500000000000867,
+          "first_root_x_m": 0.9510904664802442,
+          "last_root_x_m": 3.5478385517679376,
+          "mean_roll_deg": -0.44402500919114846,
+          "max_abs_roll_deg": 5.623862828192162,
+          "front_thigh_signed_mean_bias_rad": 0.6906504698048873,
+          "front_calf_signed_mean_bias_rad": -0.41345967662474087,
+          "any_calf_loaded_fraction": 0.007858546168958742,
+          "any_calf_max_peak_normal_force_n": 35.27851596124728,
+          "calf_loaded_fraction_by_leg": [
+            0.003929273084479371,
+            0.0,
+            0.003929273084479371,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            35.27851596124728,
+            0.0,
+            13.700268614885278,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 60,
+          "first_time_s": 14.52000000000087,
+          "last_time_s": 15.700000000001054,
+          "first_root_x_m": 3.5516235963761043,
+          "last_root_x_m": 3.825519594380598,
+          "mean_roll_deg": -1.2194813119238903,
+          "max_abs_roll_deg": 1.9357613264047064,
+          "front_thigh_signed_mean_bias_rad": 0.5671593448119532,
+          "front_calf_signed_mean_bias_rad": -0.3016063177973008,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "6a127d38e4cd967a4968ad277c7f2f47626da577267a44b92044c51e18d71483",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742471,
+          "last_root_x_m": 0.41021832788610335,
+          "mean_roll_deg": 0.2179484213668418,
+          "max_abs_roll_deg": 2.9643849759622944,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090954,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472296,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 125,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.499999999999926,
+          "first_root_x_m": 0.4142158327059961,
+          "last_root_x_m": 0.9462771713632129,
+          "mean_roll_deg": 0.9905447261127786,
+          "max_abs_roll_deg": 2.5262231258608234,
+          "front_thigh_signed_mean_bias_rad": 0.5294108558604886,
+          "front_calf_signed_mean_bias_rad": -0.22623880674510163,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 630,
+          "first_time_s": 4.519999999999926,
+          "last_time_s": 17.100000000000882,
+          "first_root_x_m": 0.9516000992940825,
+          "last_root_x_m": 3.5478940773156284,
+          "mean_roll_deg": 0.056040234401792545,
+          "max_abs_roll_deg": 7.867809199683983,
+          "front_thigh_signed_mean_bias_rad": 0.7500432312571659,
+          "front_calf_signed_mean_bias_rad": -0.29922431566424257,
+          "any_calf_loaded_fraction": 0.06507936507936508,
+          "any_calf_max_peak_normal_force_n": 54.045064585854675,
+          "calf_loaded_fraction_by_leg": [
+            0.05396825396825397,
+            0.0,
+            0.011111111111111112,
+            0.006349206349206349
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            44.644588781949935,
+            0.0,
+            54.045064585854675,
+            42.038545037747575
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 55,
+          "first_time_s": 17.12000000000088,
+          "last_time_s": 18.200000000000664,
+          "first_root_x_m": 3.551800818893706,
+          "last_root_x_m": 3.774456646089415,
+          "mean_roll_deg": 1.7132956559438008,
+          "max_abs_roll_deg": 2.455447111917328,
+          "front_thigh_signed_mean_bias_rad": 0.5626556976345478,
+          "front_calf_signed_mean_bias_rad": -0.3490865183193961,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "45f2804351413505054dd0ebc12b642d30077be978eade3e6575d9069b12c7bd",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932349332e-05,
+          "last_root_x_m": 0.4433623704796618,
+          "mean_roll_deg": 2.054260906127292,
+          "max_abs_roll_deg": 4.506140907739563,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837198,
+          "front_calf_signed_mean_bias_rad": -0.0887140921849347,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 115,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.2999999999999305,
+          "first_root_x_m": 0.4481261095999513,
+          "last_root_x_m": 0.9478249382062444,
+          "mean_roll_deg": 1.492399531997328,
+          "max_abs_roll_deg": 3.5277086421796233,
+          "front_thigh_signed_mean_bias_rad": 0.325485558524175,
+          "front_calf_signed_mean_bias_rad": -0.04240034988032873,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 585,
+          "first_time_s": 4.31999999999993,
+          "last_time_s": 16.0000000000011,
+          "first_root_x_m": 0.9520498154226255,
+          "last_root_x_m": 3.5456692923667292,
+          "mean_roll_deg": 1.3844867547790478,
+          "max_abs_roll_deg": 6.473530391280948,
+          "front_thigh_signed_mean_bias_rad": 0.5745002599107827,
+          "front_calf_signed_mean_bias_rad": -0.2632452389308094,
+          "any_calf_loaded_fraction": 0.07863247863247863,
+          "any_calf_max_peak_normal_force_n": 43.16336509930286,
+          "calf_loaded_fraction_by_leg": [
+            0.07521367521367521,
+            0.0,
+            0.003418803418803419,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            43.16336509930286,
+            0.0,
+            18.660188220372046,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 52,
+          "first_time_s": 16.020000000001097,
+          "last_time_s": 17.040000000000894,
+          "first_root_x_m": 3.5520524234572757,
+          "last_root_x_m": 3.7995396462723243,
+          "mean_roll_deg": 3.014701762647531,
+          "max_abs_roll_deg": 4.207098402919436,
+          "front_thigh_signed_mean_bias_rad": 0.3779709533757759,
+          "front_calf_signed_mean_bias_rad": -0.14655968935551808,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.11x0.35-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "b4fc9fdbd1d2de0d2bd2ebb96ce2962ae08e42ab3ff1cd896d8d540b1ac02854",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.441251884768183e-05,
+          "last_root_x_m": 0.44249084786788645,
+          "mean_roll_deg": 1.058948768090186,
+          "max_abs_roll_deg": 3.6819214084454948,
+          "front_thigh_signed_mean_bias_rad": 0.3937978550290044,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271304,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 111,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.219999999999932,
+          "first_root_x_m": 0.4469349311688938,
+          "last_root_x_m": 0.9469998996009164,
+          "mean_roll_deg": 1.5207366275394356,
+          "max_abs_roll_deg": 3.385424965178572,
+          "front_thigh_signed_mean_bias_rad": 0.5260223591038993,
+          "front_calf_signed_mean_bias_rad": -0.21460985096290092,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 532,
+          "first_time_s": 4.239999999999932,
+          "last_time_s": 14.860000000000923,
+          "first_root_x_m": 0.9515849377421767,
+          "last_root_x_m": 3.546112679956479,
+          "mean_roll_deg": 0.35581207243165347,
+          "max_abs_roll_deg": 4.601815958478963,
+          "front_thigh_signed_mean_bias_rad": 0.7482299058394656,
+          "front_calf_signed_mean_bias_rad": -0.3820189329321652,
+          "any_calf_loaded_fraction": 0.045112781954887216,
+          "any_calf_max_peak_normal_force_n": 86.88624590829109,
+          "calf_loaded_fraction_by_leg": [
+            0.015037593984962405,
+            0.007518796992481203,
+            0.022556390977443608,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            86.88624590829109,
+            29.867435043714142,
+            15.634515278224136,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 45,
+          "first_time_s": 14.880000000000926,
+          "last_time_s": 15.760000000001064,
+          "first_root_x_m": 3.5514667711395824,
+          "last_root_x_m": 3.772786545421901,
+          "mean_roll_deg": 2.639977184264266,
+          "max_abs_roll_deg": 4.177436373259144,
+          "front_thigh_signed_mean_bias_rad": 0.5435591511911666,
+          "front_calf_signed_mean_bias_rad": -0.2871068240888391,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "87f7ae20c8ea3053c63719f97a92554bc6e9d3360d96b6fbeb336d1f1b998a49",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318556e-05,
+          "last_root_x_m": 0.4239338864301515,
+          "mean_roll_deg": -0.18376089708426557,
+          "max_abs_roll_deg": 2.549322983093965,
+          "front_thigh_signed_mean_bias_rad": 0.378644727765913,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382533,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 117,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.33999999999993,
+          "first_root_x_m": 0.42822643443013436,
+          "last_root_x_m": 0.9495292736118759,
+          "mean_roll_deg": -0.946981360920149,
+          "max_abs_roll_deg": 3.535563272041343,
+          "front_thigh_signed_mean_bias_rad": 0.5289075768141475,
+          "front_calf_signed_mean_bias_rad": -0.15475854772869954,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 438,
+          "first_time_s": 4.359999999999929,
+          "last_time_s": 13.100000000000648,
+          "first_root_x_m": 0.9542375910168,
+          "last_root_x_m": 2.946091385216511,
+          "mean_roll_deg": -0.6580522901813671,
+          "max_abs_roll_deg": 3.9893978866463886,
+          "front_thigh_signed_mean_bias_rad": 0.9031335917745728,
+          "front_calf_signed_mean_bias_rad": -0.5510266933010352,
+          "any_calf_loaded_fraction": 0.2146118721461187,
+          "any_calf_max_peak_normal_force_n": 89.34153775296838,
+          "calf_loaded_fraction_by_leg": [
+            0.04794520547945205,
+            0.1689497716894977,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            67.95891672392737,
+            89.34153775296838,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 52,
+          "first_time_s": 13.120000000000651,
+          "last_time_s": 14.14000000000081,
+          "first_root_x_m": 2.9517466780363444,
+          "last_root_x_m": 3.1906368402340615,
+          "mean_roll_deg": -0.5897956300487748,
+          "max_abs_roll_deg": 1.7893784520585216,
+          "front_thigh_signed_mean_bias_rad": 0.45398371290716877,
+          "front_calf_signed_mean_bias_rad": -0.26246841230483453,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "650423aaf05619df6110a0177d9c5acaced3f61b1c415fc6f6e750ddc02382d3",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742471,
+          "last_root_x_m": 0.41021832788610335,
+          "mean_roll_deg": 0.2179484213668418,
+          "max_abs_roll_deg": 2.9643849759622944,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090954,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472296,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 129,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.579999999999925,
+          "first_root_x_m": 0.4142158327059961,
+          "last_root_x_m": 0.949307877367741,
+          "mean_roll_deg": 0.7927547481739919,
+          "max_abs_roll_deg": 2.5962827411513247,
+          "front_thigh_signed_mean_bias_rad": 0.5245372917441469,
+          "front_calf_signed_mean_bias_rad": -0.212657256856392,
+          "any_calf_loaded_fraction": 0.031007751937984496,
+          "any_calf_max_peak_normal_force_n": 78.7063434607886,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.031007751937984496,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            78.7063434607886,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 579,
+          "first_time_s": 4.599999999999924,
+          "last_time_s": 16.16000000000107,
+          "first_root_x_m": 0.952863673095933,
+          "last_root_x_m": 2.947537392404863,
+          "mean_roll_deg": -0.9608194845321123,
+          "max_abs_roll_deg": 10.148159566676124,
+          "front_thigh_signed_mean_bias_rad": 0.9292380952151655,
+          "front_calf_signed_mean_bias_rad": -0.53530224564853,
+          "any_calf_loaded_fraction": 0.22107081174438686,
+          "any_calf_max_peak_normal_force_n": 124.75091664273145,
+          "calf_loaded_fraction_by_leg": [
+            0.06735751295336788,
+            0.15025906735751296,
+            0.0051813471502590676,
+            0.0051813471502590676
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            124.75091664273145,
+            46.697705302828105,
+            56.23901138937058,
+            35.96268722000302
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 51,
+          "first_time_s": 16.180000000001066,
+          "last_time_s": 17.180000000000867,
+          "first_root_x_m": 2.9513253613101367,
+          "last_root_x_m": 3.1645764763442474,
+          "mean_roll_deg": 2.2105180960838546,
+          "max_abs_roll_deg": 3.174142532781782,
+          "front_thigh_signed_mean_bias_rad": 0.5633443463094363,
+          "front_calf_signed_mean_bias_rad": -0.33649839427880834,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "4fca4485bd9c513d3bb2f10554080025c838ffbb7b45e7ff91859dbcbe776139",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932349332e-05,
+          "last_root_x_m": 0.4433623704796618,
+          "mean_roll_deg": 2.054260906127292,
+          "max_abs_roll_deg": 4.506140907739563,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837198,
+          "front_calf_signed_mean_bias_rad": -0.0887140921849347,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 115,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.2999999999999305,
+          "first_root_x_m": 0.4481261095999513,
+          "last_root_x_m": 0.9475686767510265,
+          "mean_roll_deg": 1.4892490875179099,
+          "max_abs_roll_deg": 3.5277086421796535,
+          "front_thigh_signed_mean_bias_rad": 0.32491422866981606,
+          "front_calf_signed_mean_bias_rad": -0.04143454910689328,
+          "any_calf_loaded_fraction": 0.008695652173913044,
+          "any_calf_max_peak_normal_force_n": 45.84518365639285,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.008695652173913044,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.84518365639285,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 446,
+          "first_time_s": 4.31999999999993,
+          "last_time_s": 13.220000000000667,
+          "first_root_x_m": 0.9506903291216624,
+          "last_root_x_m": 2.9479919503651613,
+          "mean_roll_deg": 0.5730335977537452,
+          "max_abs_roll_deg": 8.131857259521,
+          "front_thigh_signed_mean_bias_rad": 0.8825714360087383,
+          "front_calf_signed_mean_bias_rad": -0.4238024023744253,
+          "any_calf_loaded_fraction": 0.09417040358744394,
+          "any_calf_max_peak_normal_force_n": 95.94605086889656,
+          "calf_loaded_fraction_by_leg": [
+            0.033632286995515695,
+            0.05829596412556054,
+            0.002242152466367713,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            95.94605086889656,
+            55.441364799744925,
+            37.50012741237707,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 59,
+          "first_time_s": 13.24000000000067,
+          "last_time_s": 14.400000000000851,
+          "first_root_x_m": 2.9520115753833944,
+          "last_root_x_m": 3.214115708187571,
+          "mean_roll_deg": 2.3167454953842306,
+          "max_abs_roll_deg": 4.045256528292776,
+          "front_thigh_signed_mean_bias_rad": 0.4697102839354635,
+          "front_calf_signed_mean_bias_rad": -0.20379459795170107,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.17x0.25-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "b670339b530771c9cf3a8ef5c5ff284194af6a4159c381de9e384e054024d804",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.441251884768183e-05,
+          "last_root_x_m": 0.44249084786788645,
+          "mean_roll_deg": 1.058948768090186,
+          "max_abs_roll_deg": 3.6819214084454948,
+          "front_thigh_signed_mean_bias_rad": 0.3937978550290044,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271304,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 111,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.219999999999932,
+          "first_root_x_m": 0.4469349311688938,
+          "last_root_x_m": 0.9469998996009165,
+          "mean_roll_deg": 1.5207366275394352,
+          "max_abs_roll_deg": 3.385424965178572,
+          "front_thigh_signed_mean_bias_rad": 0.5260223591038994,
+          "front_calf_signed_mean_bias_rad": -0.2146098509629009,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 484,
+          "first_time_s": 4.239999999999932,
+          "last_time_s": 13.900000000000773,
+          "first_root_x_m": 0.9515034608628751,
+          "last_root_x_m": 2.9483866626533652,
+          "mean_roll_deg": -0.8132172795405356,
+          "max_abs_roll_deg": 4.880587306315772,
+          "front_thigh_signed_mean_bias_rad": 0.9693318161700543,
+          "front_calf_signed_mean_bias_rad": -0.5438837813054698,
+          "any_calf_loaded_fraction": 0.27479338842975204,
+          "any_calf_max_peak_normal_force_n": 89.44337005141588,
+          "calf_loaded_fraction_by_leg": [
+            0.04338842975206612,
+            0.23140495867768596,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            58.89454602212212,
+            89.44337005141588,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 62,
+          "first_time_s": 13.920000000000776,
+          "last_time_s": 15.140000000000967,
+          "first_root_x_m": 2.953207097366713,
+          "last_root_x_m": 3.245501618245892,
+          "mean_roll_deg": 1.6789413523807997,
+          "max_abs_roll_deg": 3.180797601249257,
+          "front_thigh_signed_mean_bias_rad": 0.5801326036442227,
+          "front_calf_signed_mean_bias_rad": -0.31475426376332827,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "4f8058d401d0046a130c3cd712fabbba672bc0ac2853e630a725194690e9c1ce",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318556e-05,
+          "last_root_x_m": 0.4239338864301515,
+          "mean_roll_deg": -0.18376089708426557,
+          "max_abs_roll_deg": 2.549322983093965,
+          "front_thigh_signed_mean_bias_rad": 0.378644727765913,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382533,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 118,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.359999999999929,
+          "first_root_x_m": 0.42822643443013436,
+          "last_root_x_m": 0.9469501358157697,
+          "mean_roll_deg": -1.092682803350438,
+          "max_abs_roll_deg": 3.535563272041343,
+          "front_thigh_signed_mean_bias_rad": 0.5263040029625174,
+          "front_calf_signed_mean_bias_rad": -0.1534964906054658,
+          "any_calf_loaded_fraction": 0.025423728813559324,
+          "any_calf_max_peak_normal_force_n": 82.27803433822835,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.025423728813559324,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            82.27803433822835,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 550,
+          "first_time_s": 4.379999999999929,
+          "last_time_s": 15.360000000001001,
+          "first_root_x_m": 0.9507799818279598,
+          "last_root_x_m": 3.246632929011911,
+          "mean_roll_deg": -0.6712968085706776,
+          "max_abs_roll_deg": 5.569719840374552,
+          "front_thigh_signed_mean_bias_rad": 0.9416854153350821,
+          "front_calf_signed_mean_bias_rad": -0.5999568943293409,
+          "any_calf_loaded_fraction": 0.19818181818181818,
+          "any_calf_max_peak_normal_force_n": 135.30344761536804,
+          "calf_loaded_fraction_by_leg": [
+            0.01090909090909091,
+            0.18,
+            0.005454545454545455,
+            0.0018181818181818182
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            71.70887031946461,
+            135.30344761536804,
+            21.419360595366186,
+            7.91123787400565
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 63,
+          "first_time_s": 15.380000000001004,
+          "last_time_s": 16.620000000000978,
+          "first_root_x_m": 3.251675631803813,
+          "last_root_x_m": 3.5448580851570703,
+          "mean_roll_deg": 0.13784101338694105,
+          "max_abs_roll_deg": 1.3325584330019076,
+          "front_thigh_signed_mean_bias_rad": 0.4835577030337388,
+          "front_calf_signed_mean_bias_rad": -0.27322870477781025,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "311740d86564534dd463ec8f02b663d32c881f648c5628289ca14262fb3f9c75",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742471,
+          "last_root_x_m": 0.41021832788610335,
+          "mean_roll_deg": 0.2179484213668418,
+          "max_abs_roll_deg": 2.9643849759622944,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090954,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472296,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 128,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.559999999999925,
+          "first_root_x_m": 0.4142158327059961,
+          "last_root_x_m": 0.9485684630447945,
+          "mean_roll_deg": 0.9298271109172564,
+          "max_abs_roll_deg": 3.0647979556745444,
+          "front_thigh_signed_mean_bias_rad": 0.5134916695237685,
+          "front_calf_signed_mean_bias_rad": -0.17382068668943382,
+          "any_calf_loaded_fraction": 0.03125,
+          "any_calf_max_peak_normal_force_n": 100.19260515257498,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.03125,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            100.19260515257498,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 686,
+          "first_time_s": 4.579999999999925,
+          "last_time_s": 18.280000000000648,
+          "first_root_x_m": 0.9526589657015363,
+          "last_root_x_m": 3.246029051736373,
+          "mean_roll_deg": -0.822640176004662,
+          "max_abs_roll_deg": 8.636492304701783,
+          "front_thigh_signed_mean_bias_rad": 0.9349551098479236,
+          "front_calf_signed_mean_bias_rad": -0.6114640076471791,
+          "any_calf_loaded_fraction": 0.25510204081632654,
+          "any_calf_max_peak_normal_force_n": 174.11131670681388,
+          "calf_loaded_fraction_by_leg": [
+            0.048104956268221574,
+            0.1967930029154519,
+            0.013119533527696793,
+            0.008746355685131196
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            109.43570035341682,
+            174.11131670681388,
+            65.38464717461396,
+            159.96695706387015
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 63,
+          "first_time_s": 18.300000000000644,
+          "last_time_s": 19.540000000000397,
+          "first_root_x_m": 3.250865375299028,
+          "last_root_x_m": 3.513676838226228,
+          "mean_roll_deg": 2.6463178503680047,
+          "max_abs_roll_deg": 4.775908093389241,
+          "front_thigh_signed_mean_bias_rad": 0.5238450077181128,
+          "front_calf_signed_mean_bias_rad": -0.30654279434379655,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "89b281f247fadad35bac4ae98bfbafd392d73c3dcb1739f97c63c7eae6b62ad2",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932349332e-05,
+          "last_root_x_m": 0.4433623704796618,
+          "mean_roll_deg": 2.054260906127292,
+          "max_abs_roll_deg": 4.506140907739563,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837198,
+          "front_calf_signed_mean_bias_rad": -0.0887140921849347,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 116,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.31999999999993,
+          "first_root_x_m": 0.4481261095999513,
+          "last_root_x_m": 0.9481856540556047,
+          "mean_roll_deg": 1.474533993048298,
+          "max_abs_roll_deg": 3.5277086421796424,
+          "front_thigh_signed_mean_bias_rad": 0.32348270552316905,
+          "front_calf_signed_mean_bias_rad": -0.030522324854587543,
+          "any_calf_loaded_fraction": 0.034482758620689655,
+          "any_calf_max_peak_normal_force_n": 57.40732950551473,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.034482758620689655,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            57.40732950551473,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 558,
+          "first_time_s": 4.33999999999993,
+          "last_time_s": 15.48000000000102,
+          "first_root_x_m": 0.950832991960266,
+          "last_root_x_m": 3.2497026849129913,
+          "mean_roll_deg": 1.2589640040941406,
+          "max_abs_roll_deg": 6.74031532710969,
+          "front_thigh_signed_mean_bias_rad": 0.8930489796176428,
+          "front_calf_signed_mean_bias_rad": -0.5073366701485308,
+          "any_calf_loaded_fraction": 0.17383512544802868,
+          "any_calf_max_peak_normal_force_n": 175.89074834179718,
+          "calf_loaded_fraction_by_leg": [
+            0.010752688172043012,
+            0.16308243727598568,
+            0.0,
+            0.0017921146953405018
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            82.398946087957,
+            175.89074834179718,
+            0.0,
+            10.262883545650247
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 54,
+          "first_time_s": 15.500000000001023,
+          "last_time_s": 16.56000000000099,
+          "first_root_x_m": 3.254467574137861,
+          "last_root_x_m": 3.525320121819301,
+          "mean_roll_deg": 1.9050200580172434,
+          "max_abs_roll_deg": 3.156375217517836,
+          "front_thigh_signed_mean_bias_rad": 0.44260668988830393,
+          "front_calf_signed_mean_bias_rad": -0.2220766637029673,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/asc-0.2x0.3-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "asc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "b63af660e07b785bfc7b34b17fb2cf3b3bd7eba5f352900be8b860f45a15aa9d",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.441251884768183e-05,
+          "last_root_x_m": 0.44249084786788645,
+          "mean_roll_deg": 1.058948768090186,
+          "max_abs_roll_deg": 3.6819214084454948,
+          "front_thigh_signed_mean_bias_rad": 0.3937978550290044,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271304,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 129,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.579999999999925,
+          "first_root_x_m": 0.4469349311688938,
+          "last_root_x_m": 0.9495281230174479,
+          "mean_roll_deg": 0.8579959036209479,
+          "max_abs_roll_deg": 3.385424965178572,
+          "front_thigh_signed_mean_bias_rad": 0.45512861993641457,
+          "front_calf_signed_mean_bias_rad": -0.09805636605377382,
+          "any_calf_loaded_fraction": 0.031007751937984496,
+          "any_calf_max_peak_normal_force_n": 45.72501309883747,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.031007751937984496,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.72501309883747,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 608,
+          "first_time_s": 4.599999999999924,
+          "last_time_s": 16.740000000000954,
+          "first_root_x_m": 0.9526606190190754,
+          "last_root_x_m": 3.249608707657713,
+          "mean_roll_deg": -0.6146646200493365,
+          "max_abs_roll_deg": 7.084409153775353,
+          "front_thigh_signed_mean_bias_rad": 1.021573644921814,
+          "front_calf_signed_mean_bias_rad": -0.5840251386341432,
+          "any_calf_loaded_fraction": 0.35855263157894735,
+          "any_calf_max_peak_normal_force_n": 129.71338258832444,
+          "calf_loaded_fraction_by_leg": [
+            0.023026315789473683,
+            0.3355263157894737,
+            0.004934210526315789,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            70.98215328277374,
+            129.71338258832444,
+            30.944985129170995,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 43,
+          "first_time_s": 16.76000000000095,
+          "last_time_s": 17.600000000000783,
+          "first_root_x_m": 3.253961970220495,
+          "last_root_x_m": 3.44618839609307,
+          "mean_roll_deg": 1.4788655770559487,
+          "max_abs_roll_deg": 2.9428658033091057,
+          "front_thigh_signed_mean_bias_rad": 0.7161593018986173,
+          "front_calf_signed_mean_bias_rad": -0.38457672246005803,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "0adf9d36065782dedb080449041b04ae192cfff5cfcdc841ac234424f4be65b6",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.059995822631846e-05,
+          "last_root_x_m": 0.4239338864301499,
+          "mean_roll_deg": -0.18376089708420335,
+          "max_abs_roll_deg": 2.549322983094011,
+          "front_thigh_signed_mean_bias_rad": 0.3786447277659113,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382387,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 114,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.279999999999931,
+          "first_root_x_m": 0.42822643443013286,
+          "last_root_x_m": 0.9499931325771223,
+          "mean_roll_deg": -0.8210153321383624,
+          "max_abs_roll_deg": 3.5355632720410437,
+          "front_thigh_signed_mean_bias_rad": 0.5535796284475362,
+          "front_calf_signed_mean_bias_rad": -0.35644698023621973,
+          "any_calf_loaded_fraction": 0.19298245614035087,
+          "any_calf_max_peak_normal_force_n": 45.17698582052221,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.19298245614035087,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.17698582052221,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 564,
+          "first_time_s": 4.2999999999999305,
+          "last_time_s": 15.560000000001033,
+          "first_root_x_m": 0.9550137350020448,
+          "last_root_x_m": 3.5462091489262764,
+          "mean_roll_deg": 0.1450005236988769,
+          "max_abs_roll_deg": 3.798415515271878,
+          "front_thigh_signed_mean_bias_rad": 0.31776645286799987,
+          "front_calf_signed_mean_bias_rad": -0.1324972603703008,
+          "any_calf_loaded_fraction": 0.49645390070921985,
+          "any_calf_max_peak_normal_force_n": 100.39382905749424,
+          "calf_loaded_fraction_by_leg": [
+            0.21808510638297873,
+            0.39361702127659576,
+            0.0070921985815602835,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            96.29761751271266,
+            100.39382905749424,
+            29.775893638425607,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 62,
+          "first_time_s": 15.580000000001036,
+          "last_time_s": 16.800000000000942,
+          "first_root_x_m": 3.5510064977773084,
+          "last_root_x_m": 3.8408657016395544,
+          "mean_roll_deg": -0.2767113181427876,
+          "max_abs_roll_deg": 1.5021126360195551,
+          "front_thigh_signed_mean_bias_rad": 0.6011107916968806,
+          "front_calf_signed_mean_bias_rad": -0.34482598735331443,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "7745a0caf37bf5f29b201bc5ca689b2399bf5aca596b6ec10664b53410e73e15",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742484,
+          "last_root_x_m": 0.41021832788610274,
+          "mean_roll_deg": 0.21794842136683637,
+          "max_abs_roll_deg": 2.9643849759622833,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090963,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472326,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 124,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.479999999999927,
+          "first_root_x_m": 0.41421583270599566,
+          "last_root_x_m": 0.9490983061278223,
+          "mean_roll_deg": 1.1267250035842922,
+          "max_abs_roll_deg": 3.0066471023986994,
+          "front_thigh_signed_mean_bias_rad": 0.5957353129409672,
+          "front_calf_signed_mean_bias_rad": -0.42572332682308955,
+          "any_calf_loaded_fraction": 0.13709677419354838,
+          "any_calf_max_peak_normal_force_n": 64.49380759100227,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.13709677419354838,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            64.49380759100227,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 564,
+          "first_time_s": 4.499999999999926,
+          "last_time_s": 15.760000000001064,
+          "first_root_x_m": 0.9533987005225335,
+          "last_root_x_m": 3.54585992931765,
+          "mean_roll_deg": 0.970036541650426,
+          "max_abs_roll_deg": 4.914971561802894,
+          "front_thigh_signed_mean_bias_rad": 0.32596664894299565,
+          "front_calf_signed_mean_bias_rad": -0.20021705761232259,
+          "any_calf_loaded_fraction": 0.4166666666666667,
+          "any_calf_max_peak_normal_force_n": 102.89501587542814,
+          "calf_loaded_fraction_by_leg": [
+            0.24645390070921985,
+            0.2765957446808511,
+            0.012411347517730497,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            83.85017016796239,
+            102.89501587542814,
+            84.12137517038926,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 59,
+          "first_time_s": 15.780000000001067,
+          "last_time_s": 16.940000000000914,
+          "first_root_x_m": 3.5513308000743797,
+          "last_root_x_m": 3.8021354008712387,
+          "mean_roll_deg": 0.8860949125125959,
+          "max_abs_roll_deg": 2.43973902914535,
+          "front_thigh_signed_mean_bias_rad": 0.5035680317866772,
+          "front_calf_signed_mean_bias_rad": -0.28778641871332566,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "b4c2db656c1b8ca0e7d00ed6f5da3598d74e02561dd756d9af07497dfbb05113",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932350499e-05,
+          "last_root_x_m": 0.44336237047965776,
+          "mean_roll_deg": 2.05426090612728,
+          "max_abs_roll_deg": 4.506140907739538,
+          "front_thigh_signed_mean_bias_rad": 0.32229083678371945,
+          "front_calf_signed_mean_bias_rad": -0.08871409218493484,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 110,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.199999999999933,
+          "first_root_x_m": 0.44812610959994725,
+          "last_root_x_m": 0.9449699375867207,
+          "mean_roll_deg": 1.429946677772114,
+          "max_abs_roll_deg": 2.925016286228743,
+          "front_thigh_signed_mean_bias_rad": 0.43328427336615033,
+          "front_calf_signed_mean_bias_rad": -0.24610060323591498,
+          "any_calf_loaded_fraction": 0.02727272727272727,
+          "any_calf_max_peak_normal_force_n": 24.493157608032057,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.02727272727272727,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            24.493157608032057,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 556,
+          "first_time_s": 4.219999999999932,
+          "last_time_s": 15.320000000000995,
+          "first_root_x_m": 0.9505040758392715,
+          "last_root_x_m": 3.5471389381777074,
+          "mean_roll_deg": 3.1162490048514266,
+          "max_abs_roll_deg": 8.964331617851855,
+          "front_thigh_signed_mean_bias_rad": 0.30797108828668107,
+          "front_calf_signed_mean_bias_rad": -0.11601361131293601,
+          "any_calf_loaded_fraction": 0.3902877697841727,
+          "any_calf_max_peak_normal_force_n": 122.95497856074019,
+          "calf_loaded_fraction_by_leg": [
+            0.1510791366906475,
+            0.31115107913669066,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            83.4032340366681,
+            122.95497856074019,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 43,
+          "first_time_s": 15.340000000000998,
+          "last_time_s": 16.180000000001066,
+          "first_root_x_m": 3.551906023330238,
+          "last_root_x_m": 3.7789662990717656,
+          "mean_roll_deg": 1.7467040433366352,
+          "max_abs_roll_deg": 3.260390010328548,
+          "front_thigh_signed_mean_bias_rad": 0.4210520016965607,
+          "front_calf_signed_mean_bias_rad": -0.21477252500748373,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.11x0.35-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "15e2507bc18f9633020b00d73936d2b1607fefb357b097e2ffe00dd765b9762a",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.3
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.44125188476824e-05,
+          "last_root_x_m": 0.44249084786788623,
+          "mean_roll_deg": 1.0589487680903125,
+          "max_abs_roll_deg": 3.681921408445511,
+          "front_thigh_signed_mean_bias_rad": 0.39379785502900433,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271057,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 108,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.1599999999999335,
+          "first_root_x_m": 0.4469349311688936,
+          "last_root_x_m": 0.9454277892213286,
+          "mean_roll_deg": 1.5301177689522791,
+          "max_abs_roll_deg": 3.385424965178351,
+          "front_thigh_signed_mean_bias_rad": 0.633719186447837,
+          "front_calf_signed_mean_bias_rad": -0.3990436385158835,
+          "any_calf_loaded_fraction": 0.037037037037037035,
+          "any_calf_max_peak_normal_force_n": 65.59764108032253,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.037037037037037035,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            65.59764108032253,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 541,
+          "first_time_s": 4.179999999999933,
+          "last_time_s": 14.980000000000942,
+          "first_root_x_m": 0.9505727738737267,
+          "last_root_x_m": 3.5455559001531785,
+          "mean_roll_deg": 0.993488204782458,
+          "max_abs_roll_deg": 3.9108021655121927,
+          "front_thigh_signed_mean_bias_rad": 0.3749864730435717,
+          "front_calf_signed_mean_bias_rad": -0.1843755931421268,
+          "any_calf_loaded_fraction": 0.5046210720887245,
+          "any_calf_max_peak_normal_force_n": 119.16834284128821,
+          "calf_loaded_fraction_by_leg": [
+            0.1645101663585952,
+            0.46210720887245843,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            100.6045616738874,
+            119.16834284128821,
+            0.0,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 47,
+          "first_time_s": 15.000000000000945,
+          "last_time_s": 15.920000000001089,
+          "first_root_x_m": 3.5507975008974935,
+          "last_root_x_m": 3.775425680916774,
+          "mean_roll_deg": 2.4310670593690933,
+          "max_abs_roll_deg": 4.682858744730671,
+          "front_thigh_signed_mean_bias_rad": 0.5788310905458709,
+          "front_calf_signed_mean_bias_rad": -0.34233027658177634,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "d9ce93ab92903f8b604b78f82b8c5bfd8a79563038bfb443deb75c9da70337bc",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318213e-05,
+          "last_root_x_m": 0.4239338864301505,
+          "mean_roll_deg": -0.1837608970841318,
+          "max_abs_roll_deg": 2.5493229830940156,
+          "front_thigh_signed_mean_bias_rad": 0.37864472776591,
+          "front_calf_signed_mean_bias_rad": -0.1153489687538233,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 114,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.279999999999931,
+          "first_root_x_m": 0.4282264344301335,
+          "last_root_x_m": 0.949993083952954,
+          "mean_roll_deg": -0.8210185294793092,
+          "max_abs_roll_deg": 3.5355632720408696,
+          "front_thigh_signed_mean_bias_rad": 0.5535796758430002,
+          "front_calf_signed_mean_bias_rad": -0.3564471435629254,
+          "any_calf_loaded_fraction": 0.19298245614035087,
+          "any_calf_max_peak_normal_force_n": 45.17716754607593,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.19298245614035087,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.17716754607593,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 483,
+          "first_time_s": 4.2999999999999305,
+          "last_time_s": 13.94000000000078,
+          "first_root_x_m": 0.9550136844655112,
+          "last_root_x_m": 2.9470203924013942,
+          "mean_roll_deg": 0.9261826540909768,
+          "max_abs_roll_deg": 4.371951669473835,
+          "front_thigh_signed_mean_bias_rad": 0.3039605286454657,
+          "front_calf_signed_mean_bias_rad": -0.30246052773559173,
+          "any_calf_loaded_fraction": 0.4989648033126294,
+          "any_calf_max_peak_normal_force_n": 105.25482502140811,
+          "calf_loaded_fraction_by_leg": [
+            0.2857142857142857,
+            0.2857142857142857,
+            0.014492753623188406,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            105.25482502140811,
+            102.58512664765657,
+            33.135946415682604,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 75,
+          "first_time_s": 13.960000000000782,
+          "last_time_s": 15.440000000001014,
+          "first_root_x_m": 2.95142013120185,
+          "last_root_x_m": 3.281272652142529,
+          "mean_roll_deg": -0.845447336525958,
+          "max_abs_roll_deg": 1.8384154492201477,
+          "front_thigh_signed_mean_bias_rad": 0.40296607856844496,
+          "front_calf_signed_mean_bias_rad": -0.24630880029338476,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "a3a98788454d286120f06a5586a614eedf3e71cfcc378d8e86ab69de1547253f",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742514,
+          "last_root_x_m": 0.4102183278861034,
+          "mean_roll_deg": 0.21794842136679995,
+          "max_abs_roll_deg": 2.9643849759622953,
+          "front_thigh_signed_mean_bias_rad": 0.42308712110909674,
+          "front_calf_signed_mean_bias_rad": -0.19276760238472407,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 124,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.479999999999927,
+          "first_root_x_m": 0.4142158327059964,
+          "last_root_x_m": 0.9490983307656391,
+          "mean_roll_deg": 1.1267246837705593,
+          "max_abs_roll_deg": 3.006645119104294,
+          "front_thigh_signed_mean_bias_rad": 0.5957353815393872,
+          "front_calf_signed_mean_bias_rad": -0.42572335380882065,
+          "any_calf_loaded_fraction": 0.13709677419354838,
+          "any_calf_max_peak_normal_force_n": 64.49377055517644,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.13709677419354838,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            64.49377055517644,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 443,
+          "first_time_s": 4.499999999999926,
+          "last_time_s": 13.340000000000686,
+          "first_root_x_m": 0.9533987268142458,
+          "last_root_x_m": 2.9484329987476134,
+          "mean_roll_deg": 0.6496238024654839,
+          "max_abs_roll_deg": 4.125600324149576,
+          "front_thigh_signed_mean_bias_rad": 0.28386356852444733,
+          "front_calf_signed_mean_bias_rad": -0.26419651566585656,
+          "any_calf_loaded_fraction": 0.5846501128668171,
+          "any_calf_max_peak_normal_force_n": 112.98891909916779,
+          "calf_loaded_fraction_by_leg": [
+            0.37020316027088035,
+            0.3160270880361174,
+            0.006772009029345372,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            112.98891909916779,
+            109.7225763804798,
+            33.074919421807735,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 64,
+          "first_time_s": 13.360000000000689,
+          "last_time_s": 14.620000000000886,
+          "first_root_x_m": 2.952120621172214,
+          "last_root_x_m": 3.2248926135355265,
+          "mean_roll_deg": 0.024174183796601214,
+          "max_abs_roll_deg": 2.885503990869464,
+          "front_thigh_signed_mean_bias_rad": 0.5687302437112252,
+          "front_calf_signed_mean_bias_rad": -0.36093787412696066,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "b18c35ab1d0922b97c415af4d472710ea9dd6bdc77859a8fc469935a461bd1bc",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932350568e-05,
+          "last_root_x_m": 0.4433623704796572,
+          "mean_roll_deg": 2.0542609061273542,
+          "max_abs_roll_deg": 4.506140907739588,
+          "front_thigh_signed_mean_bias_rad": 0.32229083678371845,
+          "front_calf_signed_mean_bias_rad": -0.08871409218493373,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 110,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.199999999999933,
+          "first_root_x_m": 0.44812610959994664,
+          "last_root_x_m": 0.9449699347586482,
+          "mean_roll_deg": 1.4299465303392291,
+          "max_abs_roll_deg": 2.9250135128521983,
+          "front_thigh_signed_mean_bias_rad": 0.4332842712241662,
+          "front_calf_signed_mean_bias_rad": -0.24610058786221284,
+          "any_calf_loaded_fraction": 0.02727272727272727,
+          "any_calf_max_peak_normal_force_n": 24.493189945220006,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.02727272727272727,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            24.493189945220006,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 524,
+          "first_time_s": 4.219999999999932,
+          "last_time_s": 14.680000000000895,
+          "first_root_x_m": 0.9505040732688373,
+          "last_root_x_m": 2.947823233128794,
+          "mean_roll_deg": 2.271671382378172,
+          "max_abs_roll_deg": 6.621895521509277,
+          "front_thigh_signed_mean_bias_rad": 0.3656065193862735,
+          "front_calf_signed_mean_bias_rad": -0.23132288116144709,
+          "any_calf_loaded_fraction": 0.6755725190839694,
+          "any_calf_max_peak_normal_force_n": 461.43991505690695,
+          "calf_loaded_fraction_by_leg": [
+            0.32633587786259544,
+            0.38549618320610685,
+            0.013358778625954198,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            101.02474970049298,
+            106.50666357611037,
+            461.43991505690695,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 57,
+          "first_time_s": 14.700000000000898,
+          "last_time_s": 15.820000000001073,
+          "first_root_x_m": 2.9544548365970784,
+          "last_root_x_m": 3.242711638867916,
+          "mean_roll_deg": 2.323436492784792,
+          "max_abs_roll_deg": 3.7707816167660186,
+          "front_thigh_signed_mean_bias_rad": 0.4783691835008369,
+          "front_calf_signed_mean_bias_rad": -0.26158795103247706,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.17x0.25-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "faf05beadeefddd6f7d03cf9781f98f170ff0f57d837249a6c5f02c04e7c171e",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        2.7
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.4412518847682126e-05,
+          "last_root_x_m": 0.4424908478678874,
+          "mean_roll_deg": 1.0589487680902954,
+          "max_abs_roll_deg": 3.681921408445504,
+          "front_thigh_signed_mean_bias_rad": 0.39379785502900416,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271035,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 108,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.1599999999999335,
+          "first_root_x_m": 0.44693493116889477,
+          "last_root_x_m": 0.9454277880500965,
+          "mean_roll_deg": 1.5301176052007956,
+          "max_abs_roll_deg": 3.38542496517821,
+          "front_thigh_signed_mean_bias_rad": 0.6337191875336544,
+          "front_calf_signed_mean_bias_rad": -0.39904364702886075,
+          "any_calf_loaded_fraction": 0.037037037037037035,
+          "any_calf_max_peak_normal_force_n": 65.597855623987,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.037037037037037035,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            65.597855623987,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 424,
+          "first_time_s": 4.179999999999933,
+          "last_time_s": 12.640000000000576,
+          "first_root_x_m": 0.9505727707672397,
+          "last_root_x_m": 2.949836729898646,
+          "mean_roll_deg": 0.17164755030087855,
+          "max_abs_roll_deg": 5.615711425657084,
+          "front_thigh_signed_mean_bias_rad": 0.40368162963726906,
+          "front_calf_signed_mean_bias_rad": -0.3221176221611701,
+          "any_calf_loaded_fraction": 0.455188679245283,
+          "any_calf_max_peak_normal_force_n": 116.63951414144861,
+          "calf_loaded_fraction_by_leg": [
+            0.18396226415094338,
+            0.31839622641509435,
+            0.014150943396226415,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            90.68240203956766,
+            116.63951414144861,
+            23.878380830081,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 54,
+          "first_time_s": 12.66000000000058,
+          "last_time_s": 13.720000000000745,
+          "first_root_x_m": 2.9545116510644895,
+          "last_root_x_m": 3.2117829171637777,
+          "mean_roll_deg": 0.3019244588073293,
+          "max_abs_roll_deg": 1.2188938583933715,
+          "front_thigh_signed_mean_bias_rad": 0.7211988826937552,
+          "front_calf_signed_mean_bias_rad": -0.42632878690290305,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2000",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2000,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "c8d1a668759a6797ed3a16641c2289198b1d6d85781672f68ea9913bc3889454",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.0599958226318512e-05,
+          "last_root_x_m": 0.42393388643015006,
+          "mean_roll_deg": -0.1837608970842494,
+          "max_abs_roll_deg": 2.5493229830940374,
+          "front_thigh_signed_mean_bias_rad": 0.3786447277659142,
+          "front_calf_signed_mean_bias_rad": -0.11534896875382561,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 114,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.279999999999931,
+          "first_root_x_m": 0.42822643443013303,
+          "last_root_x_m": 0.9499930459424508,
+          "mean_roll_deg": -0.8210201969817446,
+          "max_abs_roll_deg": 3.535563272041223,
+          "front_thigh_signed_mean_bias_rad": 0.5535797159959598,
+          "front_calf_signed_mean_bias_rad": -0.3564472324406072,
+          "any_calf_loaded_fraction": 0.19298245614035087,
+          "any_calf_max_peak_normal_force_n": 45.17718378520531,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.19298245614035087,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            45.17718378520531,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 504,
+          "first_time_s": 4.2999999999999305,
+          "last_time_s": 14.360000000000845,
+          "first_root_x_m": 0.9550136466115061,
+          "last_root_x_m": 3.2469137679924076,
+          "mean_roll_deg": -0.9785875930264456,
+          "max_abs_roll_deg": 9.147258093221582,
+          "front_thigh_signed_mean_bias_rad": 0.2642702547620679,
+          "front_calf_signed_mean_bias_rad": -0.11943557907086014,
+          "any_calf_loaded_fraction": 0.4603174603174603,
+          "any_calf_max_peak_normal_force_n": 185.12204186814031,
+          "calf_loaded_fraction_by_leg": [
+            0.10317460317460317,
+            0.35912698412698413,
+            0.057539682539682536,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            139.07777272783716,
+            185.12204186814031,
+            83.71920082831197,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 37,
+          "first_time_s": 14.380000000000848,
+          "last_time_s": 15.10000000000096,
+          "first_root_x_m": 3.2511370833147617,
+          "last_root_x_m": 3.422218856028905,
+          "mean_roll_deg": 0.21163941891753302,
+          "max_abs_roll_deg": 2.3248916993631035,
+          "front_thigh_signed_mean_bias_rad": 0.31205326456400473,
+          "front_calf_signed_mean_bias_rad": -0.14937277440791794,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2001",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2001,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "3f025dc3dbb529bb09bcbf7c579b6f877d560fa03ecf9c6d388d9b161e4fb041",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -0.00011849271223742514,
+          "last_root_x_m": 0.410218327886103,
+          "mean_roll_deg": 0.21794842136683454,
+          "max_abs_roll_deg": 2.964384975962291,
+          "front_thigh_signed_mean_bias_rad": 0.4230871211090965,
+          "front_calf_signed_mean_bias_rad": -0.1927676023847232,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 124,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.479999999999927,
+          "first_root_x_m": 0.41421583270599593,
+          "last_root_x_m": 0.9490983521781851,
+          "mean_roll_deg": 1.1267245395798227,
+          "max_abs_roll_deg": 3.0066426071529957,
+          "front_thigh_signed_mean_bias_rad": 0.595735391101574,
+          "front_calf_signed_mean_bias_rad": -0.42572334232451103,
+          "any_calf_loaded_fraction": 0.13709677419354838,
+          "any_calf_max_peak_normal_force_n": 64.49379487313212,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.13709677419354838,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            64.49379487313212,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 490,
+          "first_time_s": 4.499999999999926,
+          "last_time_s": 14.280000000000832,
+          "first_root_x_m": 0.9533987502931345,
+          "last_root_x_m": 3.2478222745185383,
+          "mean_roll_deg": -1.1660561223874044,
+          "max_abs_roll_deg": 10.523050227836286,
+          "front_thigh_signed_mean_bias_rad": 0.3140724296509569,
+          "front_calf_signed_mean_bias_rad": -0.2745970661607073,
+          "any_calf_loaded_fraction": 0.45510204081632655,
+          "any_calf_max_peak_normal_force_n": 227.80194492935746,
+          "calf_loaded_fraction_by_leg": [
+            0.1469387755102041,
+            0.32653061224489793,
+            0.05102040816326531,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            227.80194492935746,
+            171.2685674178771,
+            76.67027495685304,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 44,
+          "first_time_s": 14.300000000000836,
+          "last_time_s": 15.16000000000097,
+          "first_root_x_m": 3.252531117200209,
+          "last_root_x_m": 3.448779390024854,
+          "mean_roll_deg": -0.006724050944350659,
+          "max_abs_roll_deg": 1.691728397408854,
+          "front_thigh_signed_mean_bias_rad": 0.5919184208561612,
+          "front_calf_signed_mean_bias_rad": -0.35678980939143945,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2002",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2002,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "e51df4918b668b416c35f1f15793113e4d189570d471ea0b5ed0ba7d80634a83",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -1.3152499932350567e-05,
+          "last_root_x_m": 0.4433623704796624,
+          "mean_roll_deg": 2.0542609061272192,
+          "max_abs_roll_deg": 4.506140907739532,
+          "front_thigh_signed_mean_bias_rad": 0.3222908367837206,
+          "front_calf_signed_mean_bias_rad": -0.08871409218493592,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 110,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.199999999999933,
+          "first_root_x_m": 0.4481261095999519,
+          "last_root_x_m": 0.9449699323471586,
+          "mean_roll_deg": 1.4299465042273123,
+          "max_abs_roll_deg": 2.925012684544037,
+          "front_thigh_signed_mean_bias_rad": 0.4332842753340787,
+          "front_calf_signed_mean_bias_rad": -0.24610058772763926,
+          "any_calf_loaded_fraction": 0.02727272727272727,
+          "any_calf_max_peak_normal_force_n": 24.493204589881355,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.02727272727272727,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            24.493204589881355,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 530,
+          "first_time_s": 4.219999999999932,
+          "last_time_s": 14.800000000000914,
+          "first_root_x_m": 0.95050406995813,
+          "last_root_x_m": 3.247448510519485,
+          "mean_roll_deg": 1.8624922902925245,
+          "max_abs_roll_deg": 7.989529184059541,
+          "front_thigh_signed_mean_bias_rad": 0.23562563071355075,
+          "front_calf_signed_mean_bias_rad": -0.0841604759035217,
+          "any_calf_loaded_fraction": 0.3452830188679245,
+          "any_calf_max_peak_normal_force_n": 144.15257687644248,
+          "calf_loaded_fraction_by_leg": [
+            0.12641509433962264,
+            0.2849056603773585,
+            0.02830188679245283,
+            0.0037735849056603774
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            144.15257687644248,
+            116.27055597936803,
+            81.55913021848309,
+            8.532285084542313
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 57,
+          "first_time_s": 14.820000000000917,
+          "last_time_s": 15.940000000001092,
+          "first_root_x_m": 3.251941518596733,
+          "last_root_x_m": 3.5234074760024137,
+          "mean_roll_deg": 2.3892635837885243,
+          "max_abs_roll_deg": 4.137806159203628,
+          "front_thigh_signed_mean_bias_rad": 0.46840868787047046,
+          "front_calf_signed_mean_bias_rad": -0.22406727497354956,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "source": "/home/cone/robotics/logs/posture-20261014-symmetric1b-pipeline/iter1100-deployment/desc-0.2x0.3-v03-seed2003",
+      "success": true,
+      "reason": "all_feet_on_landing_and_upright_dwell",
+      "policy_sha256": "c99d81080ee297af003dffd403df649d84e167fbb5566a367f9628bebc1c012c",
+      "seed": 2003,
+      "terrain": "desc",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trace_sha256": "d4e7456ddc060419212522465d3cf0673ce77e5d60660fa4869d22b9aff1b0e2",
+      "stair_flight_x_bounds_m": [
+        1.2000000000000002,
+        3.0
+      ],
+      "phases": {
+        "startup": {
+          "available": true,
+          "samples": 100,
+          "first_time_s": 0.02,
+          "last_time_s": 1.9999999999999793,
+          "first_root_x_m": -3.4412518847681875e-05,
+          "last_root_x_m": 0.44249084786788645,
+          "mean_roll_deg": 1.0589487680902991,
+          "max_abs_roll_deg": 3.68192140844548,
+          "front_thigh_signed_mean_bias_rad": 0.39379785502900383,
+          "front_calf_signed_mean_bias_rad": -0.15047143534271024,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "approach": {
+          "available": true,
+          "samples": 108,
+          "first_time_s": 2.019999999999979,
+          "last_time_s": 4.1599999999999335,
+          "first_root_x_m": 0.4469349311688939,
+          "last_root_x_m": 0.9454277916272926,
+          "mean_roll_deg": 1.5301175355632415,
+          "max_abs_roll_deg": 3.385424965178829,
+          "front_thigh_signed_mean_bias_rad": 0.633719187513829,
+          "front_calf_signed_mean_bias_rad": -0.3990436480035736,
+          "any_calf_loaded_fraction": 0.037037037037037035,
+          "any_calf_max_peak_normal_force_n": 65.5979403030887,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.037037037037037035,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            65.5979403030887,
+            0.0,
+            0.0
+          ]
+        },
+        "flight": {
+          "available": true,
+          "samples": 513,
+          "first_time_s": 4.179999999999933,
+          "last_time_s": 14.420000000000854,
+          "first_root_x_m": 0.9505727758374695,
+          "last_root_x_m": 3.2473281949681914,
+          "mean_roll_deg": 1.1989104892279183,
+          "max_abs_roll_deg": 9.978066768818493,
+          "front_thigh_signed_mean_bias_rad": 0.2514403903752664,
+          "front_calf_signed_mean_bias_rad": -0.019192678266284808,
+          "any_calf_loaded_fraction": 0.5750487329434698,
+          "any_calf_max_peak_normal_force_n": 255.3912826319704,
+          "calf_loaded_fraction_by_leg": [
+            0.24951267056530213,
+            0.4775828460038986,
+            0.017543859649122806,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            161.89233748940717,
+            255.3912826319704,
+            55.97393887127495,
+            0.0
+          ]
+        },
+        "landing": {
+          "available": true,
+          "samples": 65,
+          "first_time_s": 14.440000000000857,
+          "last_time_s": 15.720000000001058,
+          "first_root_x_m": 3.2517437083907432,
+          "last_root_x_m": 3.5673210881203854,
+          "mean_roll_deg": 1.7229035072521364,
+          "max_abs_roll_deg": 4.926080484026216,
+          "front_thigh_signed_mean_bias_rad": 0.5770964498495215,
+          "front_calf_signed_mean_bias_rad": -0.317477248516091,
+          "any_calf_loaded_fraction": 0.0,
+          "any_calf_max_peak_normal_force_n": 0.0,
+          "calf_loaded_fraction_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "calf_max_peak_normal_force_n_by_leg": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ]
+}
