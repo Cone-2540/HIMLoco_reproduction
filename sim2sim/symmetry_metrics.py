@@ -41,6 +41,17 @@ def summarize(directory):
     hip = np.column_stack((q[:, 0] + q[:, 1], q[:, 2] + q[:, 3]))
     thigh = q[:, [4, 6]] - q[:, [5, 7]]
     calf = q[:, [8, 10]] - q[:, [9, 11]]
+    saved = [r for r in rows if r["time"] >= 2]
+    quaternion = np.asarray([r["quaternion_wxyz"] for r in saved])
+    w, x, y, z = quaternion.T
+    roll = np.arctan2(2*(w*x+y*z), 1-2*(x*x+y*y))
+    # Inverse quaternion rotation of post-step world foot offsets into body.
+    relative = np.asarray([r["foot_position"] for r in saved]) - np.asarray([r["position"] for r in saved])[:, None]
+    xyz = quaternion[:, None, 1:]
+    feet = relative - 2*quaternion[:, None, :1]*np.cross(xyz, relative)
+    feet += 2*np.cross(xyz, np.cross(xyz, relative))
+    foot_bias = feet[:, [0, 2]] - feet[:, [1, 3]] * np.array([1., -1., 1.])
+    torque = np.asarray([r["torque"] for r in saved])
     stats = {}
     for name, values in (("hip", hip), ("thigh", thigh), ("calf", calf)):
         stats[name] = {"mean_signed_mirror_difference_rad": values.mean(0).tolist(),
@@ -64,6 +75,11 @@ def summarize(directory):
             "command": result["arguments"]["command"], "samples_after_2s": len(q),
             "joint_names": expected, "mean_joint_position_rad": q.mean(0).tolist(),
             "joint_std_rad": q.std(0).tolist(), "mirror_bias": stats,
+            "body_roll_mean_deg": float(np.rad2deg(roll.mean())),
+            "body_roll_rms_deg": float(np.rad2deg(np.sqrt(np.mean(roll**2)))),
+            "mean_foot_body_position_m": feet.mean(0).tolist(),
+            "mean_mirrored_foot_difference_m": foot_bias.mean(0).tolist(),
+            "mean_abs_joint_torque_nm": np.abs(torque).mean(0).tolist(),
             "neutral_input_mirror_action_rms": float(np.sqrt(np.mean((action - mirrored_action)**2))),
             "neutral_action": action.tolist(), "neutral_action_mirror_residual": (action-mirrored_action).tolist(),
             "scope": "full post-warmup trial means; mean bias is phase averaged but stair sequencing can differ; neutral probe is off-trajectory and diagnostic only"}
