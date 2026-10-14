@@ -1,0 +1,36 @@
+{
+  "scope": "Research targets fixed before symmetric1 starts; targets are not an automatic deployment approval or a claim of paper fidelity",
+  "evaluation": {
+    "development_seeds": [2000, 2003],
+    "new_independent_seed_start_after_freezing": 2400,
+    "flat_commands_m_s": [0.3, 0.5],
+    "post_warmup_seconds": 2.0,
+    "leg_order": ["FL", "FR", "RL", "RR"]
+  },
+  "desired_flat_posture": {
+    "front_leg_mean_shank_angle_deg_each_max": 65.0,
+    "front_leg_supported_fraction_angle_gt70_each_max": 0.25,
+    "front_knee_origin_p5_height_cm_each_min": 5.0,
+    "mean_front_thigh_mirror_difference_abs_rad_max": 0.25,
+    "mean_front_calf_mirror_difference_abs_rad_max": 0.25,
+    "mean_front_mirrored_foot_longitudinal_difference_abs_m_max": 0.05
+  },
+  "performance": {
+    "mujoco_nominal_first_episode_completion_fraction_min": 1.0,
+    "mujoco_deployment_first_episode_completion_fraction_target_min": 0.98,
+    "isaac_nominal_first_episode_completion_fraction_target_min": 0.999,
+    "isaac_deployment_first_episode_completion_fraction_target_min": 0.98,
+    "mean_forward_xy_velocity_mae_regression_m_s_max": 0.03,
+    "standard_stair_loaded_calf_interval_fraction_target_max": 0.10,
+    "scope": "Paired against frozen original and weak980; per-case failures, pauses and force peaks must be retained even if averages pass"
+  },
+  "visual_review": {
+    "required": ["Both left and right side views on flat terrain", "Whole-flight ascending and descending standard stairs", "Randomized and moderate stair variants", "Review least successful and high-contact trials as well as representative passes"],
+    "criteria": ["Front knees remain visibly clear", "Both front legs contribute coordinated stepping", "No persistent dragging or leg collapse", "No extended pause or repeated stair-edge catching"],
+    "scope": "Recordings supplement paired quantitative measurements; saved-pose playback labeled separately from new physics"
+  },
+  "original_artifacts_must_remain_unchanged": true,
+  "driver_configuration_must_remain_unchanged": true,
+  "whole_gpu_cap_mib": 15360,
+  "automatic_promotion": false
+}
