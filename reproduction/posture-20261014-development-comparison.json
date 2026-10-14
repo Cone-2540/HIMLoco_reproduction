@@ -1,5 +1,5 @@
 {
-  "recorded_local": "2026-10-14T18:02:18.587341+08:00",
+  "recorded_local": "2026-10-14T18:16:04.372039+08:00",
   "development_seed_start": 2000,
   "leg_order": [
     "FL",
@@ -1434,6 +1434,664 @@
         ],
         "source": "/home/cone/robotics/logs/posture-20261014-weak980-flat-development/matrix.json",
         "sha256": "9cdb5b60d6bf03ee0ccd20c640d888fcdda5584e85da97bbb1a3219d9ab16e2a"
+      }
+    },
+    {
+      "name": "contact900",
+      "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-contact/policy_900.pt",
+      "policy_sha256": "71c29a7b928c51660192857070a37125b2ad6b78a37acbb5a86ffbb90804f1cd",
+      "suites": {
+        "nominal": {
+          "matrix_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter900-nominal/matrix.json",
+          "matrix_sha256": "c0feab0f5a9b14cf696e11c5c9ad23aee6abef705e56679b3df472c53bd61755",
+          "posture_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter900-nominal-posture.json",
+          "posture_sha256": "e587f61c27af78b2c1afdd8571dfede58bc1b8e14e9da0b0dbc527df8be7660a",
+          "passed": 24,
+          "total": 24,
+          "seed_start": 2000,
+          "seeds_per_case": 4,
+          "failed_trials": [],
+          "cases": [
+            {
+              "case": "flat-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.0,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.0,
+              "maximum_calf_normal_force_n": 0.0,
+              "mean_xy_velocity_mae_m_s": 0.05803314698815255,
+              "mean_yaw_velocity_mae_rad_s": 0.02326746845335992
+            },
+            {
+              "case": "flat-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.0,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.0,
+              "maximum_calf_normal_force_n": 0.0,
+              "mean_xy_velocity_mae_m_s": 0.0747132213400667,
+              "mean_yaw_velocity_mae_rad_s": 0.043550220928126084
+            },
+            {
+              "case": "asc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.09498914331076921,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.08554396064755168,
+              "maximum_calf_normal_force_n": 237.35378394613855,
+              "mean_xy_velocity_mae_m_s": 0.06858643259327916,
+              "mean_yaw_velocity_mae_rad_s": 0.035252886731077106
+            },
+            {
+              "case": "asc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.1095803015923231,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.09236792154381526,
+              "maximum_calf_normal_force_n": 95.7174013356583,
+              "mean_xy_velocity_mae_m_s": 0.08393575732867553,
+              "mean_yaw_velocity_mae_rad_s": 0.0477138175720334
+            },
+            {
+              "case": "desc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.2608973695251776,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.2602289155484126,
+              "maximum_calf_normal_force_n": 149.6080402562845,
+              "mean_xy_velocity_mae_m_s": 0.06540067356019776,
+              "mean_yaw_velocity_mae_rad_s": 0.036365020366797195
+            },
+            {
+              "case": "desc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.30651082017749215,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3032249402411076,
+              "maximum_calf_normal_force_n": 244.39394990470177,
+              "mean_xy_velocity_mae_m_s": 0.09647127536549076,
+              "mean_yaw_velocity_mae_rad_s": 0.05716474182505202
+            }
+          ],
+          "flat_posture": {
+            "mean_shank_angle_deg": [
+              67.8442144397215,
+              87.20711269902469,
+              31.458869934464264,
+              39.631167218739485
+            ],
+            "fraction_shank_angle_gt70": [
+              0.49384111782982054,
+              1.0,
+              0.0,
+              0.03278130671506352
+            ],
+            "mean_knee_clearance_cm": [
+              8.934925522963788,
+              4.529087724426916,
+              18.895762442222335,
+              16.724507229669538
+            ],
+            "p5_knee_clearance_cm": [
+              3.7649434631945278,
+              3.3834019548203016,
+              13.939860254637379,
+              9.788348975767205
+            ],
+            "mean_root_world_z_m": 0.25526194720837403
+          },
+          "scope": "development only; equal trial weighting; 20 ms contact intervals, not contact impulse",
+          "flat": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.0,
+            "maximum_calf_normal_force_n": 0.0,
+            "mean_xy_velocity_mae_m_s": 0.06637318416410962
+          },
+          "ascending": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.08895594109568347,
+            "maximum_calf_normal_force_n": 237.35378394613855,
+            "mean_xy_velocity_mae_m_s": 0.07626109496097735
+          },
+          "descending": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.28172692789476006,
+            "maximum_calf_normal_force_n": 244.39394990470177,
+            "mean_xy_velocity_mae_m_s": 0.08093597446284426
+          }
+        },
+        "deployment": {
+          "matrix_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter900-deployment/matrix.json",
+          "matrix_sha256": "7b92282a9542a4f90c6767c3d86adfc8e15331b4d7414fd76355fe825f677103",
+          "posture_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter900-deployment-posture.json",
+          "posture_sha256": "3361380367b79d425b98f625a518b5354cfa9d1d18ce07d3ab6f42338270ee87",
+          "passed": 48,
+          "total": 48,
+          "seed_start": 2000,
+          "seeds_per_case": 4,
+          "failed_trials": [],
+          "cases": [
+            {
+              "case": "flat-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.053419534851649,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.05018851708105126,
+              "maximum_calf_normal_force_n": 44.81024501967252,
+              "mean_xy_velocity_mae_m_s": 0.05777059063329978,
+              "mean_yaw_velocity_mae_rad_s": 0.04472359090845055
+            },
+            {
+              "case": "flat-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.047330447330447334,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.046031746031746035,
+              "maximum_calf_normal_force_n": 54.307610181659534,
+              "mean_xy_velocity_mae_m_s": 0.07828320117182122,
+              "mean_yaw_velocity_mae_rad_s": 0.05509439024859997
+            },
+            {
+              "case": "asc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.13199079637500333,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.12267452789395422,
+              "maximum_calf_normal_force_n": 110.71235159547837,
+              "mean_xy_velocity_mae_m_s": 0.07023512382962555,
+              "mean_yaw_velocity_mae_rad_s": 0.0580074099853948
+            },
+            {
+              "case": "asc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.13242764778325122,
+              "mean_body_contact_fraction": 0.002197802197802198,
+              "mean_calf_loaded_contact_fraction": 0.11358814497284325,
+              "maximum_calf_normal_force_n": 151.25244890942955,
+              "mean_xy_velocity_mae_m_s": 0.10346575762703887,
+              "mean_yaw_velocity_mae_rad_s": 0.07382467616899314
+            },
+            {
+              "case": "desc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3912730704764603,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.38876211720240084,
+              "maximum_calf_normal_force_n": 190.4473977797579,
+              "mean_xy_velocity_mae_m_s": 0.0621971450608806,
+              "mean_yaw_velocity_mae_rad_s": 0.058084684556603976
+            },
+            {
+              "case": "desc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3432440552469332,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.33753978985007627,
+              "maximum_calf_normal_force_n": 506.3787656075074,
+              "mean_xy_velocity_mae_m_s": 0.0921509140847382,
+              "mean_yaw_velocity_mae_rad_s": 0.07301886092406798
+            },
+            {
+              "case": "asc-0.11x0.35-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.041128710600085466,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.03892030096492559,
+              "maximum_calf_normal_force_n": 80.8099355980647,
+              "mean_xy_velocity_mae_m_s": 0.06984610743183517,
+              "mean_yaw_velocity_mae_rad_s": 0.056246497809166456
+            },
+            {
+              "case": "asc-0.17x0.25-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.17757546381933628,
+              "mean_body_contact_fraction": 0.0006675567423230974,
+              "mean_calf_loaded_contact_fraction": 0.16538996613306914,
+              "maximum_calf_normal_force_n": 127.72077366935565,
+              "mean_xy_velocity_mae_m_s": 0.08059277416045686,
+              "mean_yaw_velocity_mae_rad_s": 0.0618533487800646
+            },
+            {
+              "case": "asc-0.2x0.3-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.2548607181112958,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.24379846140026412,
+              "maximum_calf_normal_force_n": 241.40639977143928,
+              "mean_xy_velocity_mae_m_s": 0.0915132998752224,
+              "mean_yaw_velocity_mae_rad_s": 0.07334756070845432
+            },
+            {
+              "case": "desc-0.11x0.35-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3853341556766797,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3814621175463208,
+              "maximum_calf_normal_force_n": 115.48135164924588,
+              "mean_xy_velocity_mae_m_s": 0.06103408184092163,
+              "mean_yaw_velocity_mae_rad_s": 0.06251319859808718
+            },
+            {
+              "case": "desc-0.17x0.25-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.37757030992211466,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3761258282843565,
+              "maximum_calf_normal_force_n": 118.46178867456419,
+              "mean_xy_velocity_mae_m_s": 0.06415275172179714,
+              "mean_yaw_velocity_mae_rad_s": 0.057370714009901416
+            },
+            {
+              "case": "desc-0.2x0.3-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3801711760296022,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3794970081090922,
+              "maximum_calf_normal_force_n": 222.35812400333728,
+              "mean_xy_velocity_mae_m_s": 0.07711605013413705,
+              "mean_yaw_velocity_mae_rad_s": 0.07088662223477415
+            }
+          ],
+          "flat_posture": {
+            "mean_shank_angle_deg": [
+              71.39807722125539,
+              87.30758733154781,
+              38.61108982330169,
+              37.48806562148104
+            ],
+            "fraction_shank_angle_gt70": [
+              0.6041617152721411,
+              1.0,
+              0.003199404761904762,
+              0.020506092327213017
+            ],
+            "mean_knee_clearance_cm": [
+              7.722237046291038,
+              3.448916770129731,
+              17.28650310194143,
+              17.130030219576724
+            ],
+            "p5_knee_clearance_cm": [
+              2.8491609210353235,
+              2.461337249713162,
+              11.187874376893793,
+              10.080965727780981
+            ],
+            "mean_root_world_z_m": 0.24865254463264838
+          },
+          "scope": "development only; equal trial weighting; 20 ms contact intervals, not contact impulse",
+          "flat": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.04811013155639865,
+            "maximum_calf_normal_force_n": 54.307610181659534,
+            "mean_xy_velocity_mae_m_s": 0.0680268959025605
+          },
+          "ascending": {
+            "passed": 20,
+            "total": 20,
+            "mean_loaded_calf_interval_fraction": 0.13687428027301127,
+            "maximum_calf_normal_force_n": 241.40639977143928,
+            "mean_xy_velocity_mae_m_s": 0.08313061258483576
+          },
+          "descending": {
+            "passed": 20,
+            "total": 20,
+            "mean_loaded_calf_interval_fraction": 0.3726773721984493,
+            "maximum_calf_normal_force_n": 506.3787656075074,
+            "mean_xy_velocity_mae_m_s": 0.07133018856849493
+          }
+        }
+      }
+    },
+    {
+      "name": "contact940",
+      "policy": "/home/cone/Research/HIMLoco/artifacts/posture-20261014-contact/policy_940.pt",
+      "policy_sha256": "46a86fcbf0d2465ea572c89764a98da6e5f1f604afc6718c2f036b35c48a6afb",
+      "suites": {
+        "nominal": {
+          "matrix_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter940-nominal/matrix.json",
+          "matrix_sha256": "c09a519a43509efd5479a285722bb249bbf9c7e603c50f90e2107ec1c401d0a5",
+          "posture_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter940-nominal-posture.json",
+          "posture_sha256": "b4ba014db0f2da752f02da3e21fdf05bf7c93b1123432a8dca4610504bc925ac",
+          "passed": 24,
+          "total": 24,
+          "seed_start": 2000,
+          "seeds_per_case": 4,
+          "failed_trials": [],
+          "cases": [
+            {
+              "case": "flat-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.0,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.0,
+              "maximum_calf_normal_force_n": 0.0,
+              "mean_xy_velocity_mae_m_s": 0.05973374423676666,
+              "mean_yaw_velocity_mae_rad_s": 0.024126796633743727
+            },
+            {
+              "case": "flat-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.0,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.0,
+              "maximum_calf_normal_force_n": 0.0,
+              "mean_xy_velocity_mae_m_s": 0.07436767175060449,
+              "mean_yaw_velocity_mae_rad_s": 0.04399013110888242
+            },
+            {
+              "case": "asc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.04573265572993653,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.03861852514646477,
+              "maximum_calf_normal_force_n": 82.71244685707686,
+              "mean_xy_velocity_mae_m_s": 0.06515820692091122,
+              "mean_yaw_velocity_mae_rad_s": 0.03556212552441783
+            },
+            {
+              "case": "asc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.059978342078096235,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.046138823554453444,
+              "maximum_calf_normal_force_n": 139.51478296938237,
+              "mean_xy_velocity_mae_m_s": 0.0817386656094128,
+              "mean_yaw_velocity_mae_rad_s": 0.049325683498428856
+            },
+            {
+              "case": "desc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.2430940271024091,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.24211863373779707,
+              "maximum_calf_normal_force_n": 186.8669946652926,
+              "mean_xy_velocity_mae_m_s": 0.06972255129214006,
+              "mean_yaw_velocity_mae_rad_s": 0.03818681198391326
+            },
+            {
+              "case": "desc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.2719724798637939,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.2693943454166849,
+              "maximum_calf_normal_force_n": 227.5210792919135,
+              "mean_xy_velocity_mae_m_s": 0.12029016835311779,
+              "mean_yaw_velocity_mae_rad_s": 0.0644213817015377
+            }
+          ],
+          "flat_posture": {
+            "mean_shank_angle_deg": [
+              65.49988121060977,
+              85.90706789993428,
+              33.29500616800388,
+              37.57537828638206
+            ],
+            "fraction_shank_angle_gt70": [
+              0.43189188386273236,
+              1.0,
+              0.0,
+              0.019585601935874167
+            ],
+            "mean_knee_clearance_cm": [
+              9.695685473357047,
+              5.0292321828668545,
+              18.54127922381329,
+              17.154876101341852
+            ],
+            "p5_knee_clearance_cm": [
+              4.57287416308693,
+              3.9994474880918967,
+              13.159705281559328,
+              10.148106548459277
+            ],
+            "mean_root_world_z_m": 0.25736974314672767
+          },
+          "scope": "development only; equal trial weighting; 20 ms contact intervals, not contact impulse",
+          "flat": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.0,
+            "maximum_calf_normal_force_n": 0.0,
+            "mean_xy_velocity_mae_m_s": 0.06705070799368558
+          },
+          "ascending": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.04237867435045911,
+            "maximum_calf_normal_force_n": 139.51478296938237,
+            "mean_xy_velocity_mae_m_s": 0.07344843626516201
+          },
+          "descending": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.25575648957724095,
+            "maximum_calf_normal_force_n": 227.5210792919135,
+            "mean_xy_velocity_mae_m_s": 0.09500635982262892
+          }
+        },
+        "deployment": {
+          "matrix_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter940-deployment/matrix.json",
+          "matrix_sha256": "fc5956e353ea3020fb3c23ff64dd248fa6653da670d08bc70810161f438ba928",
+          "posture_source": "/home/cone/robotics/logs/posture-20261014-contact-pipeline/iter940-deployment-posture.json",
+          "posture_sha256": "fd5ee0683eb30fc57838232736890122c2de8772ad3af538196e0696a9a09aa0",
+          "passed": 48,
+          "total": 48,
+          "seed_start": 2000,
+          "seeds_per_case": 4,
+          "failed_trials": [],
+          "cases": [
+            {
+              "case": "flat-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.008744038155802861,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.008744038155802861,
+              "maximum_calf_normal_force_n": 42.39398105840382,
+              "mean_xy_velocity_mae_m_s": 0.06256052835078571,
+              "mean_yaw_velocity_mae_rad_s": 0.047393115294332606
+            },
+            {
+              "case": "flat-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.027994791666666668,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.026041666666666668,
+              "maximum_calf_normal_force_n": 41.23884355361247,
+              "mean_xy_velocity_mae_m_s": 0.07953158285618767,
+              "mean_yaw_velocity_mae_rad_s": 0.06023751534290706
+            },
+            {
+              "case": "asc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.08839396009902278,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.08277663515822882,
+              "maximum_calf_normal_force_n": 127.50659849995465,
+              "mean_xy_velocity_mae_m_s": 0.07078413833799255,
+              "mean_yaw_velocity_mae_rad_s": 0.06138034767690593
+            },
+            {
+              "case": "asc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.11290965827241858,
+              "mean_body_contact_fraction": 0.0016629711751662971,
+              "mean_calf_loaded_contact_fraction": 0.08798337314664187,
+              "maximum_calf_normal_force_n": 155.16736374955954,
+              "mean_xy_velocity_mae_m_s": 0.09757171733581817,
+              "mean_yaw_velocity_mae_rad_s": 0.07503189523844978
+            },
+            {
+              "case": "desc-16x27-v0.3",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3237174785544438,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.32163872157671053,
+              "maximum_calf_normal_force_n": 111.23753041015296,
+              "mean_xy_velocity_mae_m_s": 0.06359215050304083,
+              "mean_yaw_velocity_mae_rad_s": 0.058640093256539856
+            },
+            {
+              "case": "desc-16x27-v0.5",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.35515643324156054,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3496031286648312,
+              "maximum_calf_normal_force_n": 317.3515343768609,
+              "mean_xy_velocity_mae_m_s": 0.09330125659490877,
+              "mean_yaw_velocity_mae_rad_s": 0.07356209829396548
+            },
+            {
+              "case": "asc-0.11x0.35-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.011747524160009574,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.010260150195972833,
+              "maximum_calf_normal_force_n": 74.6455737915806,
+              "mean_xy_velocity_mae_m_s": 0.07057776336493479,
+              "mean_yaw_velocity_mae_rad_s": 0.061045593132972614
+            },
+            {
+              "case": "asc-0.17x0.25-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.15194690323683335,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.14258484235089883,
+              "maximum_calf_normal_force_n": 146.65564612792429,
+              "mean_xy_velocity_mae_m_s": 0.07260563433899112,
+              "mean_yaw_velocity_mae_rad_s": 0.06382311437501971
+            },
+            {
+              "case": "asc-0.2x0.3-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.2342550171904193,
+              "mean_body_contact_fraction": 0.0009339975093399751,
+              "mean_calf_loaded_contact_fraction": 0.22663755461812396,
+              "maximum_calf_normal_force_n": 205.38871163904756,
+              "mean_xy_velocity_mae_m_s": 0.08213509767485892,
+              "mean_yaw_velocity_mae_rad_s": 0.07221622669180067
+            },
+            {
+              "case": "desc-0.11x0.35-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3609046703013377,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.35778551262014135,
+              "maximum_calf_normal_force_n": 109.91070422587086,
+              "mean_xy_velocity_mae_m_s": 0.06769258534846069,
+              "mean_yaw_velocity_mae_rad_s": 0.06125704131844639
+            },
+            {
+              "case": "desc-0.17x0.25-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.3720282820113544,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.36997535360211636,
+              "maximum_calf_normal_force_n": 142.66121173917816,
+              "mean_xy_velocity_mae_m_s": 0.0715536648360916,
+              "mean_yaw_velocity_mae_rad_s": 0.06066282837656653
+            },
+            {
+              "case": "desc-0.2x0.3-v03",
+              "passed": 4,
+              "total": 4,
+              "mean_calf_contact_fraction": 0.37001693035838046,
+              "mean_body_contact_fraction": 0.0,
+              "mean_calf_loaded_contact_fraction": 0.3680501131659336,
+              "maximum_calf_normal_force_n": 166.50916214777186,
+              "mean_xy_velocity_mae_m_s": 0.07606478899307609,
+              "mean_yaw_velocity_mae_rad_s": 0.07148723918425398
+            }
+          ],
+          "flat_posture": {
+            "mean_shank_angle_deg": [
+              68.17404711367483,
+              85.77034054826183,
+              38.30654034348252,
+              37.42632126260426
+            ],
+            "fraction_shank_angle_gt70": [
+              0.5145738235592308,
+              1.0,
+              0.0,
+              0.012609649122807017
+            ],
+            "mean_knee_clearance_cm": [
+              8.797053569533045,
+              3.995170735898635,
+              17.459089945671174,
+              17.11458542673728
+            ],
+            "p5_knee_clearance_cm": [
+              3.9570411020847733,
+              3.0685594763298254,
+              11.834039201901476,
+              10.018883342198622
+            ],
+            "mean_root_world_z_m": 0.2513492880919953
+          },
+          "scope": "development only; equal trial weighting; 20 ms contact intervals, not contact impulse",
+          "flat": {
+            "passed": 8,
+            "total": 8,
+            "mean_loaded_calf_interval_fraction": 0.017392852411234765,
+            "maximum_calf_normal_force_n": 42.39398105840382,
+            "mean_xy_velocity_mae_m_s": 0.07104605560348669
+          },
+          "ascending": {
+            "passed": 20,
+            "total": 20,
+            "mean_loaded_calf_interval_fraction": 0.11004851109397326,
+            "maximum_calf_normal_force_n": 205.38871163904756,
+            "mean_xy_velocity_mae_m_s": 0.07873487021051911
+          },
+          "descending": {
+            "passed": 20,
+            "total": 20,
+            "mean_loaded_calf_interval_fraction": 0.3534105659259466,
+            "maximum_calf_normal_force_n": 317.3515343768609,
+            "mean_xy_velocity_mae_m_s": 0.0744408892551156
+          }
+        }
       }
     }
   ]
