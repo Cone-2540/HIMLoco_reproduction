@@ -53,18 +53,20 @@ def main():
             raise ValueError(f"{suite} matrix policy or development protocol identity mismatch")
     if any(t["policy_sha256"] != expected_sha for t in nominal_posture):
         raise ValueError("Posture evidence policy identity mismatch")
-    flat = [r for r in nominal_posture if r.get("terrain") == "flat"]
+    flat_all = [r for r in nominal_posture if r.get("terrain") == "flat"]
+    flat = [r for r in flat_all if r.get("samples", 0) > 0]
+    complete_flat_posture = len(flat) == len(flat_all) and bool(flat)
     desired = gates["desired_flat_posture"]
     for key, target_name, direction in (
         ("mean_shank_angle_deg", "front_leg_mean_shank_angle_deg_each_max", "max"),
         ("p5_knee_clearance_cm", "front_knee_origin_p5_height_cm_each_min", "min"),
     ):
-        measured = np.mean([r[key] for r in flat], axis=0)[:2].tolist()
+        measured = np.mean([r[key] for r in flat], axis=0)[:2].tolist() if complete_flat_posture else None
         check(target_name, measured, desired[target_name], direction,
               "nominal .3/.5 m/s, equal trial means; knee origin, not collision-surface clearance")
     loaded = [r["per_leg_contacts"] for r in flat if r.get("per_leg_contacts")]
     measured = None
-    if len(loaded) == len(flat):
+    if complete_flat_posture and len(loaded) == len(flat):
         measured = np.mean([r["supported_fraction_shank_angle_gt70"] for r in loaded], axis=0)[:2].tolist()
     key = "front_leg_supported_fraction_angle_gt70_each_max"
     check(key, measured, desired[key], "max", "sparse saved-pose supported-angle fractions, each front leg")
@@ -75,7 +77,10 @@ def main():
         symmetry = read(symmetry_path)["trials"]
         if any(t["policy_sha256"] != expected_sha for t in symmetry):
             raise ValueError("Symmetry evidence policy identity mismatch")
-        flat_symmetry = [r for r in symmetry if r["terrain"] == "flat"]
+        flat_symmetry_all = [r for r in symmetry if r["terrain"] == "flat"]
+        flat_symmetry = [r for r in flat_symmetry_all if r.get("samples_after_2s", 0) > 0]
+        if len(flat_symmetry) != len(flat_symmetry_all):
+            flat_symmetry = []  # Partial survivor data cannot establish whole-suite target.
     for part in ("thigh", "calf"):
         measured = float(np.mean([abs(r["mirror_bias"][part]["mean_signed_mirror_difference_rad"][0])
                                   for r in flat_symmetry])) if flat_symmetry else None

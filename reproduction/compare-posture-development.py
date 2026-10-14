@@ -145,8 +145,9 @@ def main():
     path.write_text(json.dumps(comparison, indent=2) + "\n")
     for row in comparison["candidates"]:
         suite = row["suites"]["deployment"]
+        angles = suite["flat_posture"]["mean_shank_angle_deg"]
         print(row["name"], f"{suite['passed']}/{suite['total']}",
-              "flat shank:", np.round(suite["flat_posture"]["mean_shank_angle_deg"][:2], 1).tolist(),
+              "flat shank:", np.round(angles[:2], 1).tolist() if angles is not None else "unknown",
               "asc/desc loaded calf:", round(suite["ascending"]["mean_loaded_calf_interval_fraction"], 3),
               round(suite["descending"]["mean_loaded_calf_interval_fraction"], 3))
     print(path)
